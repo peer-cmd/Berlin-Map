@@ -40,10 +40,9 @@
             "gfz"
           ],
           "visible": true,
-          "opacity": 0.88
+          "opacity": 0.78
         }
       ]
     }
-  ],
-  "outline": "#ffffff"
+  ]
 }

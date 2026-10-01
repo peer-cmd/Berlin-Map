@@ -4,7 +4,7 @@
 
 - Steps 0–2 of the plan: config split into `config/sources.json` (catalogue) and `config/maps/research.json`; pipeline writes GeoJSON + CSV + meta; `--map` option; smoke test isolated in a temp folder.
 - Viewer: map definitions, DE/EN, grouped layer list, view selector, stepped and categorical styles, points and lines, legend per visible layer, download links, embed mode, `layers=` parameter, OpenFreeMap with fallback, website colour tokens and IBM Plex fonts.
-- Data colours: Grootens-style palette in `config/sources.json` → `palette` (named colours + `heat` ramp); white hairlines between areas.
+- Colours: values use the brown `earth` ramp (one colour family); categories use Grootens-style named colours (pink, plum, violet, yellow, orange, olive, green) in `config/sources.json` → `palette`. Category views can set their own opacity.
 
 ## Next
 

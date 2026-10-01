@@ -156,9 +156,10 @@
       expr.push(col(style.other_color || "grey"));
       return expr;
     }
-    return col(style.color || "ultramarine");
+    return col(style.color || "violet");
   }
   const currentStyle = (it) => (it.view ? it.src.views[it.view].style : { kind: "single", color: it.def.color || "#4a6fa5" });
+  const opacityOf = (it) => currentStyle(it).opacity ?? it.opacity;
   const hover = (a, b) => ["case", ["boolean", ["feature-state", "hover"], false], a, b];
 
   function addItem(it) {
@@ -181,12 +182,12 @@
       it.colorProps = [[id + "-main", "line-color"]];
     } else {
       map.addLayer({ id: id + "-main", type: "fill", source: id, layout: { visibility: vis }, paint: {
-        "fill-color": color, "fill-opacity": hover(Math.min(1, it.opacity + 0.17), it.opacity),
+        "fill-color": color, "fill-opacity": hover(Math.min(1, opacityOf(it) + 0.17), opacityOf(it)),
       } }, firstSymbol);
       map.addLayer({ id: id + "-line", type: "line", source: id, layout: { visibility: vis }, paint: {
         "line-color": hover("#14171a", col(it.def.outline || def.outline || "#14171a")),
-        "line-opacity": hover(0.95, 0.6),
-        "line-width": ["interpolate", ["linear"], ["zoom"], 9, hover(1.2, 0.3), 15, hover(2.2, 1)],
+        "line-opacity": hover(0.95, 0.28),
+        "line-width": ["interpolate", ["linear"], ["zoom"], 9, hover(1.2, 0.2), 15, hover(2.2, 0.8)],
       } }, firstSymbol);
       it.layerIds = [id + "-main", id + "-line"];
       it.colorProps = [[id + "-main", "fill-color"]];
@@ -257,7 +258,7 @@
     } else if (st.kind === "categorical") {
       rows = st.categories.map((c) => sw(col(c.color), esc(t(c.label)))).join("");
     } else {
-      rows = sw(col(st.color || "ultramarine"), esc(t(it.src.title)));
+      rows = sw(col(st.color || "violet"), esc(t(it.src.title)));
     }
     const viewLabel = it.view && it.views.length > 1 ? ` · ${esc(t(it.src.views[it.view].label))}` : "";
     return `<div class="legend-block"><div class="legend-title">${esc(t(it.src.title))}${viewLabel}</div>${unit}${rows}</div>`;
@@ -296,6 +297,7 @@
         it.view = sel.value;
         const c = colorExpr(currentStyle(it));
         it.colorProps.forEach(([lid, prop]) => map.setPaintProperty(lid, prop, c));
+        if (it.kind === "polygon") map.setPaintProperty(it.src.id + "-main", "fill-opacity", hover(Math.min(1, opacityOf(it) + 0.17), opacityOf(it)));
         renderLegend();
       });
       row.appendChild(sel);
