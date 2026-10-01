@@ -79,6 +79,9 @@ body{
   letter-spacing:0.04em;
 }
 
+/* masthead link (zahlen: Quellenbelege) */
+.masthead .meta a{color:inherit;}
+
 /* ---------- Background/context page & standalone content pages ---------- */
 /* standalone pages (index, zahlen, glossar): masthead text aligns with the body column */
 .masthead:has(+ .bg-page){padding-left:max(32px, calc((100% - var(--content-width))/2 + 32px));padding-right:max(32px, calc((100% - var(--content-width))/2 + 32px));}
@@ -158,13 +161,10 @@ body{
   background:#F0EFEA;
   padding:1px 4px;
 }
-.bg-page sup.src{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:9.5px;
-  color:var(--faint);
-  line-height:0;
-  cursor:default;
-}
+.bg-page sup.fn{font-family:'IBM Plex Mono',monospace;font-size:9.5px;line-height:0;margin-left:1px;}
+.bg-page sup.fn a{color:var(--blue);text-decoration:none;}
+.bg-page sup.fn + sup.fn::before{content:",";}
+.bg-page ol.source-list{margin:-4px 0 16px;}
 .bg-page .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 8px;}
 .bg-page .cta{
   display:inline-block;

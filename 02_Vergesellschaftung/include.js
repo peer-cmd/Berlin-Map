@@ -1,15 +1,9 @@
 (function(){
   "use strict";
+  var src = window.SITE_INCLUDES || {};
   document.querySelectorAll('[data-include]').forEach(function(el){
-    var src = el.getAttribute('data-include');
-    fetch(src).then(function(r){
-      if(!r.ok) throw new Error(r.status);
-      return r.text();
-    }).then(function(html){
-      el.innerHTML = html;
-    }).catch(function(err){
-      el.innerHTML = '<p class="hint">Inhalt konnte nicht geladen werden (' + src + ').</p>';
-      console.error('include failed:', src, err);
-    });
+    var key = el.getAttribute('data-include');
+    el.innerHTML = src[key] !== undefined ? src[key]
+      : '<p class="hint">Inhalt konnte nicht geladen werden (' + key + ').</p>';
   });
 })();

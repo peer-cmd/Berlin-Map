@@ -146,3 +146,15 @@ Auf Wunsch als eigenständiges fünftes Preset umgesetzt (Alternative zu Update 
 - DWE-Factsheet weiterhin nicht im `pdf/`-Ordner (nur per URL referenziert).
 - `2026_beratungsbericht_zuwendungen_senkultgz_gesamt.pdf` — vermutlich versehentlich hinzugefügtes, themenfremdes PDF — noch mit Peer abzuklären.
 - Sichttest im echten Browser (Regler bewegen, Charts prüfen) seit dem Include-Refactor (2026-09-06) weiterhin ausstehend.
+
+## 2026-10-01 — Layout und Inhalt „Die Zahlen erklärt"; Includes ohne fetch; Quellenbelege als Seite
+
+**Geändert:**
+- `style.css` — Tabellen in `.bg-page` umbrechen wieder (globale `th,td`-Regeln mit `nowrap` griffen durch); Masthead auf Index, Zahlen, Glossar an der Textspalte ausgerichtet; Fließtext dieser Seiten im Blocksatz mit Silbentrennung; `sup.src` durch nummerierte Fußnoten (`sup.fn` + `ol.source-list`) ersetzt.
+- `zahlen.html` — Fußnoten je Abschnitt; Kostentabelle zeigt jetzt die fünf Modell-Presets (Betrag, Quote, Hintergrund), Senatsschätzung 28,8–36 / 30–39 Mrd. € als Text darunter; eigener Abschnitt Rechnungshof mit den am Original-PDF geprüften Angaben (S. 23: 11-Mrd.-Schwelle, 700 Mio. € bei 29 Mrd. €, 1 Mrd. € bei 36 Mrd. €; S. 25: Bewirtschaftungskosten, 2,20 €/m² als Umrechnung); Arbeitsprotokoll-Formulierungen entfernt; „Offene Punkte" nennt die inhaltlich offenen Fragen aus `quellenbelege.md` Abschnitt 9/10.
+- Masthead-Untertitel auf Index, Zahlen, Glossar, Modell (kompakt) entfernt.
+- `glossary-content.html`, `timeline-content.html` → `content.js` (`window.SITE_INCLUDES`); `include.js` liest daraus statt per `fetch()`. Seiten funktionieren damit auch per Doppelklick (file://). v37 lud `include.js` bisher gar nicht — Zeitlicher Ablauf und Glossar blieben dort leer; jetzt eingebunden.
+- `build_quellenbelege.py` (neu) erzeugt `quellenbelege.html` aus `quellenbelege.md`. Nach jeder Änderung an der .md erneut ausführen. Verlinkt von Zahlen, Index, Glossar.
+
+**Noch offen:**
+- `quellenbelege.md` Abschnitt 2 meldet „noch in v37 zu präzisieren" für 29–36 vs. 29–39; v37 trennt beides inzwischen (Abschnitt „Entschädigungsspanne"). Status in der .md nachziehen.

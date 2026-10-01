@@ -22,18 +22,18 @@
   <div class="masthead">
     <div>
       <h1>Die Zahlen erklärt</h1>
-      <p>Woher die Zahlen im Modell kommen, was sie bedeuten, und wo Quellen sich widersprechen oder unklar sind.</p>
     </div>
-    <div class="meta">Volle Belege: quellenbelege.md</div>
+    <div class="meta"><a href="quellenbelege.html">Volle Belege: Quellenbelege</a></div>
   </div>
 
   <div class="bg-page">
 
-    <p class="lead">Diese Seite erklärt die wichtigsten Zahlen im <a href="vergesellschaftung-modell-v37.html">Modell</a> in normaler Sprache, mit knappem Quellenverweis. Für die vollständige Beleglage — jede Zahl mit Datei und Seitenzahl — siehe <code>quellenbelege.md</code> im Projektordner.</p>
+    <p class="lead">Diese Seite erklärt die wichtigsten Zahlen im <a href="vergesellschaftung-modell-v37.html">Modell</a>: woher sie kommen, was sie bedeuten und wo Quellen sich widersprechen oder unklar sind. Jede Zahl ist mit einer Fußnote belegt; alle Fundstellen mit Datei und Seitenzahl stehen in den <a href="quellenbelege.html">Quellenbelegen</a>.</p>
 
     <div class="jump-nav">
       <a href="#bestand">Bestand</a>
       <a href="#kosten">Kosten</a>
+      <a href="#rechnungshof">Rechnungshof</a>
       <a href="#mieten">Mieten</a>
       <a href="#verkehrswert">Verkehrswert</a>
       <a href="#recht">Recht</a>
@@ -42,44 +42,84 @@
     </div>
 
     <h2 id="bestand">Wie viele Wohnungen? — 240.000</h2>
-    <p>Alle relevanten Quellen — die Initiative DWE, das IW-Köln-Gutachten der Banken und die amtliche Kostenschätzung des Senats — rechnen mit derselben Bestandsgröße: rund 240.000 Wohnungen bei Unternehmen mit mehr als 3.000 Berliner Einheiten.<sup class="src">DWE 2022, S. 8f/45/112; IW Köln/Empirica 2026, S. 8/16; BBU-Sodan 2019, S. 54</sup> Das ist damit keine strittige Zahl — die 240.000 im Modell-Default sind der Konsens aller Lager.</p>
+    <p>Alle relevanten Quellen — die Initiative DWE, das IW-Köln-Gutachten der Banken und die amtliche Kostenschätzung des Senats — rechnen mit derselben Bestandsgröße: rund 240.000 Wohnungen bei Unternehmen mit mehr als 3.000 Berliner Einheiten.<sup class="fn"><a href="#fn1">1</a></sup> Die 240.000 im Modell sind damit der Konsens aller Lager. Einzige Ausnahme ist der DWE-Gesetzentwurf 2025 mit rund 220.000 Wohnungen (siehe unten).</p>
+    <ol class="source-list" start="1">
+      <li id="fn1">DWE 2022, S. 8 f., 45, 112; IW Köln/Empirica 2026, S. 8, 16; BBU-Sodan 2019, S. 54.</li>
+    </ol>
 
-    <h2 id="kosten">Warum schwanken die Gesamtkosten so stark? — 8 Mrd. bis 39 Mrd. €</h2>
-    <p>Die zitierten Gesamtsummen reichen von rund 8 Mrd. € bis knapp 40 Mrd. €. Das liegt nicht an unterschiedlichen Immobilienwerten, sondern an der politischen Grundfrage: <strong>wie viel Prozent des Verkehrswerts soll überhaupt gezahlt werden?</strong> Das Modell trägt dem jetzt Rechnung, indem es einen einheitlichen Verkehrswert (2.085 €/m²) verwendet und nur die Entschädigungsquote zwischen den fünf Positionen variiert.</p>
+    <h2 id="kosten">Warum schwanken die Gesamtkosten so stark? — 8 bis 39 Mrd. €</h2>
+    <p>Die zitierten Gesamtsummen reichen von rund 8 Mrd. € (Faire-Mieten-Modell, wie im IW-Gutachten zitiert)<sup class="fn"><a href="#fn2">2</a></sup> bis 39 Mrd. € (amtliche Kostenschätzung einschließlich Nebenkosten).<sup class="fn"><a href="#fn3">3</a></sup> Die Spanne folgt aus der politischen Grundfrage: <strong>wie viel Prozent des Verkehrswerts soll gezahlt werden?</strong> Das Modell verwendet deshalb für alle fünf Positionen denselben Verkehrswert von 2.085 €/m² und variiert nur die Entschädigungsquote.</p>
     <table>
-      <thead><tr><th>Position</th><th>Betrag</th><th>Bedeutet</th></tr></thead>
+      <thead><tr><th>Position im Modell</th><th>Entschädigung</th><th>Quote</th><th>Hintergrund</th></tr></thead>
       <tbody>
-        <tr><td>Faire-Mieten-Modell (DWE)</td><td>≈ 14 Mrd. €<sup class="src">Modell-Preset</sup> (im IW-Gutachten zitiert als 8–11 Mrd. €<sup class="src">IW Köln/Empirica, S. 8</sup>)</td><td>≈ 43 % vom Verkehrswert</td></tr>
-        <tr><td>DWE-Gesetzentwurf 2025 (Sachwertverfahren)</td><td>14,5–17,0 Mrd. €<sup class="src">PwC-Whitepaper (Heim/Hackelberg), Fn. 1–2, zitiert Gesetzentwurf u. Factsheet</sup></td><td>40–60 % vom Verkehrswert (Modell: 50 %); 220.000 statt 240.000 Wohnungen, Zahlung über 100-jährige Schuldverschreibungen statt Bankkredit</td></tr>
-        <tr><td>Bernt/Holm (Ist-Miete)</td><td>≈ 24 Mrd. €</td><td>≈ 74 % vom Verkehrswert</td></tr>
-        <tr><td>Amtliche Kostenschätzung (Senat 2019) — Entschädigung allein</td><td>28,8–36 Mrd. €<sup class="src">BBU-Sodan, S. 9/68/70/102</sup></td><td>≈ 100 % (verkehrswertnah)</td></tr>
-        <tr><td>Amtliche Kostenschätzung — inkl. Erwerbsnebenkosten</td><td>30–39 Mrd. €<sup class="src">BBU-Sodan, S. 68</sup></td><td>dieselbe Entschädigung + 1,5–2,9 Mrd. € Nebenkosten</td></tr>
+        <tr><td>Faire-Mieten-Modell (DWE)</td><td>≈ 14 Mrd. €</td><td>43 %</td><td>Zielmiete 3,70 €/m². Das IW-Gutachten zitiert die Position mit 8–11 Mrd. €.<sup class="fn"><a href="#fn2">2</a></sup></td></tr>
+        <tr><td>DWE-Gesetzentwurf 2025</td><td>≈ 14,9 Mrd. €</td><td>50 %</td><td>220.000 Wohnungen. Quelle nennt 14,5–17,0 Mrd. € bzw. 40–60 % vom Verkehrswert; Zahlung über 100-jährige Schuldverschreibungen.<sup class="fn"><a href="#fn4">4</a></sup></td></tr>
+        <tr><td>Bernt/Holm (Ist-Miete)</td><td>≈ 24 Mrd. €</td><td>74 %</td><td>Miete auf dem Niveau der Landeseigenen, 6,29 €/m².<sup class="fn"><a href="#fn5">5</a></sup></td></tr>
+        <tr><td>Rechnungshof</td><td>≈ 32,5 Mrd. €</td><td>100 %</td><td>Verkehrswertorientiert; liegt zwischen den Rechnungshof-Szenarien 29 und 36 Mrd. €.<sup class="fn"><a href="#fn6">6</a></sup></td></tr>
+        <tr><td>Gegenmodell IW Köln/Empirica</td><td>≈ 32,5 Mrd. €</td><td>100 %</td><td>Wie Rechnungshof, zusätzlich Risikoprämie auf den Zins.<sup class="fn"><a href="#fn7">7</a></sup></td></tr>
       </tbody>
     </table>
-    <p>Die 29–36 vs. 29–39 Mrd. €, die an verschiedenen Stellen kursieren, sind also kein Widerspruch — es ist derselbe Senatswert, einmal ohne und einmal mit Nebenkosten gerechnet. Im Modelltext ist das aktuell nicht auseinandergehalten; das wäre die nächste Präzisierung.</p>
-    <p>Der Rechnungshof-Bericht (20.02.2024) ist inzwischen verifiziert (Web-Fetch statt lokalem PDF, siehe <code>quellenbelege.md</code> Abschnitt 7). Dabei zeigte sich: Das S.-23-Zitat zur 11-Mrd.-Schwelle sitzt tatsächlich auf S. 16, mit leicht anderem Wortlaut; der „700 Mio. €"-Zuschussbedarf ist die untere Grenze einer 700-Mio.–1-Mrd.-€-Spanne über zehn Jahre, kein fixer Wert; und die im Modell zuvor zitierten 2,20 €/m²/Monat Bewirtschaftungskosten finden sich im Bericht nicht — dort stehen stattdessen 17,18 €/m² Instandhaltung und 3,60 €/m² Betriebskosten, beide pro Jahr. Alle drei Punkte sind jetzt im Modelltext korrigiert.</p>
+    <p>Die Beträge im Modell ergeben sich aus Wohnungen × 65 m² × 2.085 €/m² × Quote.</p>
+    <p>Die amtliche Kostenschätzung des Senats (2019) liegt im Bereich der beiden verkehrswertnahen Positionen: 28,8–36 Mrd. € für die Entschädigung allein, 30–39 Mrd. € einschließlich 1,5–2,9 Mrd. € Erwerbsnebenkosten.<sup class="fn"><a href="#fn3">3</a></sup> Die Angaben „29–36 Mrd. €" und „29–39 Mrd. €", die an verschiedenen Stellen kursieren, bezeichnen also denselben Senatswert, einmal ohne und einmal mit Nebenkosten.</p>
+    <ol class="source-list" start="2">
+      <li id="fn2">IW Köln/Empirica 2026, S. 8.</li>
+      <li id="fn3">BBU-Sodan 2019, S. 9, 68, 70, 102; Gesamtkosten inkl. Nebenkosten S. 68.</li>
+      <li id="fn4">PwC-Whitepaper (Heim/Hackelberg), Fn. 1–2, zitiert DWE-Gesetzentwurf (Stand 26.09.2025) und Factsheet.</li>
+      <li id="fn5">Bernt/Holm 2023, S. 12, 22.</li>
+      <li id="fn6">Rechnungshof Berlin 2024, § 2.1, S. 11–13.</li>
+      <li id="fn7">IW Köln/Empirica 2026, S. 8; Risikoprämien S. 128 ff.</li>
+    </ol>
+
+    <h2 id="rechnungshof">Was rechnet der Rechnungshof?</h2>
+    <p>Der Berliner Rechnungshof hat am 20.02.2024 einen Beratungsbericht zu den Folgen einer Vergesellschaftung für den Landeshaushalt vorgelegt. Eine angemessene Entschädigungshöhe bewertet er nicht selbst. Er rechnet vier übernommene Szenarien durch: 8 und 11 Mrd. € aus dem Umfeld der Initiative, 29 und 36 Mrd. € aus der amtlichen Senatsschätzung.<sup class="fn"><a href="#fn6">6</a></sup> Sein Ergebnis: Schon Entschädigungssummen über 11 Mrd. € führen wegen der Finanzierungskosten zu Defiziten bei der Bewirtschaftung durch eine Anstalt öffentlichen Rechts. Bei 29 Mrd. € wären in den ersten zehn Jahren durchschnittlich rund 700 Mio. € Zuschuss pro Jahr nötig, bei 36 Mrd. € rund 1 Mrd. €.<sup class="fn"><a href="#fn8">8</a></sup></p>
+    <p>Für die Bewirtschaftung nennt der Bericht Jahreswerte: 343,69 € Verwaltung je Wohnung, 17,18 €/m² Instandhaltung, 3,60 €/m² nicht umlagefähige Betriebskosten und 2 % Mietausfallwagnis.<sup class="fn"><a href="#fn9">9</a></sup> Bei der dort angesetzten Wohnungsgröße von 61 m² ergeben die ersten drei Posten zusammen rund 2,20 €/m² im Monat. Mit diesem umgerechneten Wert arbeitet das Rechnungshof-Preset im Modell; im Bericht selbst steht er nicht.</p>
+    <ol class="source-list" start="8">
+      <li id="fn8">Rechnungshof Berlin 2024, S. 23.</li>
+      <li id="fn9">Rechnungshof Berlin 2024, S. 25 (Anhang 1).</li>
+    </ol>
 
     <h2 id="mieten">Welche Miete wird zugrunde gelegt?</h2>
     <ul>
-      <li><strong>3,70 €/m²</strong> — Zielmiete des Faire-Mieten-Modells (DWE): so niedrig kalkuliert, dass sie an der Armutsgrenze bezahlbar bleibt.<sup class="src">DWE 2022, S. 117</sup></li>
-      <li><strong>6,29 €/m²</strong> — durchschnittliche Nettokaltmiete der landeseigenen Wohnungsgesellschaften; Referenzwert für „was ist real möglich, wenn man wie das Land wirtschaftet".<sup class="src">Bernt/Holm-Studie, S. 12/22</sup></li>
-      <li><strong>7,63 €/m²</strong> — durchschnittliche Nettokaltmiete der sechs größten privaten Konzerne (≈ 222.000 Wohnungen); Ausgangsmiete im Gegenmodell, weil dort keine Mietsenkung unterstellt wird.<sup class="src">Bernt/Holm-Studie, S. 12/22</sup></li>
+      <li><strong>3,70 €/m²</strong> — Zielmiete des Faire-Mieten-Modells (DWE): so niedrig kalkuliert, dass sie an der Armutsgrenze bezahlbar bleibt.<sup class="fn"><a href="#fn10">10</a></sup></li>
+      <li><strong>6,29 €/m²</strong> — durchschnittliche Nettokaltmiete der landeseigenen Wohnungsgesellschaften; Referenzwert dafür, was möglich ist, wenn man wie das Land wirtschaftet.<sup class="fn"><a href="#fn5">5</a></sup></li>
+      <li><strong>7,63 €/m²</strong> — durchschnittliche Nettokaltmiete der sechs größten privaten Konzerne (≈ 222.000 Wohnungen); Ausgangsmiete im Gegenmodell, das keine Mietsenkung unterstellt.<sup class="fn"><a href="#fn5">5</a></sup></li>
     </ul>
-    <p>Bernt &amp; Holm (Rosa-Luxemburg-Stiftung, 2023) kommen unabhängig zu dem Ergebnis, dass eine Vergesellschaftung die Miete für ~200.000 Haushalte im Schnitt um 16 % senken könnte — dieselbe 16-%-Zahl findet sich auch im Abschlussbericht der Expertenkommission.<sup class="src">Bernt/Holm-Studie, S. 22f; Expertenkommission 2023, S. 60</sup></p>
+    <p>Bernt &amp; Holm (Rosa-Luxemburg-Stiftung, 2023) kommen zu dem Ergebnis, dass eine Vergesellschaftung die Miete für ~200.000 Haushalte im Schnitt um 16 % senken könnte. Dieselbe Zahl nennt der Abschlussbericht der Expertenkommission.<sup class="fn"><a href="#fn11">11</a></sup></p>
+    <ol class="source-list" start="10">
+      <li id="fn10">DWE 2022, S. 117.</li>
+      <li id="fn11">Bernt/Holm 2023, S. 22 f.; Expertenkommission 2023, S. 60.</li>
+    </ol>
 
     <h2 id="verkehrswert">Woher kommt der Verkehrswert von 2.085 €/m²?</h2>
-    <p>Rechtlich maßgeblich für vermietete Bestände ist das <strong>Ertragswertverfahren</strong>: Wert = kapitalisierte Nettomiete, nicht der Preis für eine leerstehende Eigentumswohnung. Der Gutachterausschuss für Grundstückswerte in Berlin weist für 2022–2024 einen mittleren Kaufpreis von 2.644 €/m² Wohn-/Nutzfläche aus, mit einer 5–95-Perzentil-Bandbreite von 1.634–4.247 €/m².<sup class="src">Gutachterausschuss, Liegenschaftszinssätze 2025, S. 16</sup> Der Modellwert 2.085 €/m² liegt in dieser Bandbreite, leicht unter dem Mittelwert — passend zu „verkehrswertnah bei regulierten Bestandsmieten". Die konkreten 897 / 1.538 / 2.085 €/m², die vor der jüngsten Korrektur je Modell unterschiedlich verwendet wurden, waren keine eigenständig zitierten Werte, sondern aus den Gesamtsummen zurückgerechnet — deshalb war es ein Fehler, sie als unterschiedliche „Verkehrswerte" zu behandeln, statt als unterschiedliche Entschädigungsquoten auf denselben Verkehrswert.</p>
+    <p>Rechtlich maßgeblich für vermietete Bestände ist das <strong>Ertragswertverfahren</strong>: Der Wert ergibt sich aus der kapitalisierten Nettomiete. Kaufpreise für leerstehende Eigentumswohnungen spielen dafür keine Rolle. Der Gutachterausschuss für Grundstückswerte in Berlin weist für 2022–2024 einen mittleren Kaufpreis von 2.644 €/m² Wohn-/Nutzfläche aus, mit einer 5–95-Perzentil-Bandbreite von 1.634–4.247 €/m².<sup class="fn"><a href="#fn12">12</a></sup> Der Modellwert von 2.085 €/m² liegt in dieser Bandbreite, leicht unter dem Mittelwert — passend zu „verkehrswertnah bei regulierten Bestandsmieten". Alle fünf Positionen im Modell rechnen mit diesem einen Verkehrswert und unterscheiden sich nur in der Entschädigungsquote.</p>
+    <ol class="source-list" start="12">
+      <li id="fn12">Gutachterausschuss für Grundstückswerte in Berlin, Liegenschaftszinssätze 2025, S. 16.</li>
+    </ol>
 
     <h2 id="recht">Der Rechtsstreit: wie viel Prozent muss gezahlt werden?</h2>
-    <p>Die Expertenkommission war hier gespalten. Die <strong>Mehrheit</strong> hält eine Entschädigung unterhalb des vollen Verkehrswerts für zulässig. Ein <strong>Sondervotum von drei der 13 Mitglieder</strong> (Durner, Eichberger, Waldhoff) widerspricht — allerdings genauer, als es oft zusammengefasst wird: Sie fordern nicht schlicht den vollen Verkehrswert, sondern dass der Verkehrswert der zwingende <em>Ausgangspunkt</em> jeder Berechnung sein muss, mit nur engem Spielraum für Abschläge (etwa wegen Sozialbindung).<sup class="src">Expertenkommission 2023, S. 16, 124f.</sup> Das ist ein feinerer Unterschied als „100 % oder weniger" — er betrifft die Methode, nicht nur die Quote.</p>
-    <p>Interessant für die Einordnung des Rechnungshof-Berichts: Die Expertenkommission hat dessen Prognosen bereits 2023 ausdrücklich als methodisch nicht überzeugend zurückgewiesen — die Rechnungshof-Präsidentin sei von einem unrealistisch niedrigen, zeitlich starren Mietniveau ausgegangen.<sup class="src">Expertenkommission 2023, S. 60</sup> Der Rechnungshof gilt im Modell als vergleichsweise unabhängige Quelle — das ist mit dieser Kritik im Hinterkopf zu lesen: unabhängig als Institution heißt nicht automatisch, dass die zugrunde liegenden Annahmen von den Fachleuten der Kommission geteilt werden.</p>
+    <p>Die Expertenkommission war hier gespalten. Die <strong>Mehrheit</strong> hält eine Entschädigung unterhalb des vollen Verkehrswerts für zulässig. Ein <strong>Sondervotum von drei der 13 Mitglieder</strong> (Durner, Eichberger, Waldhoff) widerspricht: Der Verkehrswert ist der zwingende <em>Ausgangspunkt</em> jeder Berechnung; Abschläge, etwa wegen Sozialbindung, sind nur in engem Rahmen zulässig.<sup class="fn"><a href="#fn13">13</a></sup> Der Streit betrifft damit die Methode der Berechnung und erst über sie die Quote.</p>
+    <p>Die Prognosen des Rechnungshofs hat die Expertenkommission 2023 als methodisch nicht überzeugend zurückgewiesen: Die Rechnungshof-Präsidentin sei von einem unrealistisch niedrigen, zeitlich starren Mietniveau ausgegangen.<sup class="fn"><a href="#fn14">14</a></sup> Der Rechnungshof ist als Institution unabhängig; seine Annahmen teilen die Fachleute der Kommission trotzdem nicht.</p>
+    <ol class="source-list" start="13">
+      <li id="fn13">Expertenkommission 2023, S. 16, 124 f.</li>
+      <li id="fn14">Expertenkommission 2023, S. 60.</li>
+    </ol>
 
     <h2 id="gegenmodell">Wer steht hinter dem „Gegenmodell"?</h2>
-    <p>Das im Modell als „IW Köln/Empirica (2026)" bezeichnete Gegenmodell ist ein reales, im Projektordner vorliegendes Gutachten: Dr. Philipp Deschermeier und Prof. Dr. Michael Voigtländer (Institut der deutschen Wirtschaft Köln), im Auftrag von Berliner Sparkasse, Berliner Volksbank, Deutscher Kreditbank (DKB) und Investitionsbank Berlin (IBB).<sup class="src">IW Köln/Empirica-Gutachten, Titelseite, S. 1</sup> Kernargument: Eine Entschädigung unterhalb des Marktwerts löse einen Vertrauensbruch aus, auf den Kapitalmärkte mit höheren Risikoprämien reagieren würden — das begründet im Modell den Zinsaufschlag dieses Presets.</p>
+    <p>Das Gegenmodell stützt sich auf ein Gutachten von Dr. Philipp Deschermeier und Prof. Dr. Michael Voigtländer (Institut der deutschen Wirtschaft Köln) vom 23.06.2026, im Auftrag von Berliner Sparkasse, Berliner Volksbank, Deutscher Kreditbank (DKB) und Investitionsbank Berlin (IBB).<sup class="fn"><a href="#fn15">15</a></sup> Kernargument: Eine Entschädigung unterhalb des Marktwerts löse einen Vertrauensbruch aus, auf den Kapitalmärkte mit höheren Risikoprämien reagieren würden.<sup class="fn"><a href="#fn2">2</a></sup> Daraus leitet sich im Modell der Zinsaufschlag dieses Presets ab.</p>
+    <ol class="source-list" start="15">
+      <li id="fn15">IW Köln/Empirica 2026, Titelseite, S. 1.</li>
+    </ol>
 
     <h2 id="offen">Offene Punkte</h2>
-    <p>Stand dieser Seite: Alle vier zuvor hier gelisteten Punkte (29–36-vs.-29–39-Klärung, Sondervotum-Formulierung, Rechnungshof-Zitate, Kommissionskritik am Rechnungshof) sind im Modelltext korrigiert bzw. ergänzt. Verbleibend offen: Der Rechnungshof-Bericht liegt weiterhin nicht als lokale PDF-Datei im Projektordner vor, nur als geprüfte Web-Fetch-Extraktion (<code>pdf/markdown/Rechnungshof_2024_Beratungsbericht-Vergesellschaftung.extract.md</code>) — für belastbare Einzelzitate ggf. gegen das Original nachprüfen.</p>
-    <p>Vollständige Zitate, Seitenzahlen und die Einordnung jeder einzelnen Quelle: <code>quellenbelege.md</code>.</p>
+    <ul>
+      <li><strong>Wohnungsgröße.</strong> Der Rechnungshof rechnet mit Ø 61 m²,<sup class="fn"><a href="#fn9">9</a></sup> das Modell mit 65 m² (DWE/BBU). Mit 61 m² sänke die verkehrswertnahe Entschädigung von ≈ 32,5 auf ≈ 30,5 Mrd. €.</li>
+      <li><strong>DWE-Gesetzentwurf 2025.</strong> Gesamtsumme (14,5–17,0 Mrd. €) und Quote (40–60 %) stehen im Factsheet der Initiative, nicht im Gesetzestext. Das Factsheet liegt nicht im Projektordner; belegt sind beide Zahlen über das PwC-Whitepaper.<sup class="fn"><a href="#fn4">4</a></sup> Die 100-jährigen Schuldverschreibungen bildet das Modell näherungsweise als 100-jährigen Kredit ab.</li>
+      <li><strong>PwC-Whitepaper.</strong> Ein Auftraggeber ist auf den geprüften Seiten nicht angegeben.</li>
+      <li><strong>Aktuellere Mieten.</strong> Das PwC-Whitepaper nennt für 2024/25 Bestandsmieten von Ø 6,82 €/m² (landeseigene) und 8,39 €/m² (Adler/Vonovia).<sup class="fn"><a href="#fn16">16</a></sup> Die Werte beruhen auf Angaben der Unternehmen; das Modell verwendet weiter die Bernt/Holm-Werte von 6,29 und 7,63 €/m².</li>
+    </ul>
+    <ol class="source-list" start="16">
+      <li id="fn16">PwC-Whitepaper (Heim/Hackelberg).</li>
+    </ol>
 
   </div>
 
