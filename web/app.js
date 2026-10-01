@@ -1,5 +1,7 @@
 /* Berlin Research Map.
-   Reads the dataset catalogue ../config/sources.json and one map definition ../config/maps/<map>.json.
+   Reads the dataset catalogue <base>sources.json and one map definition <base>maps/<map>.json.
+   Paths come from <body data-base data-data data-map>: defaults ../config/ and ../data/processed/ under web/;
+   the website's karte.html uses karte/ for both (built by scripts/export_site.py).
    URL parameters:
      map=<id>              map definition (default "research")
      lang=de|en            interface and label language (default: the map's "lang")
@@ -11,7 +13,9 @@
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const banner = (msg) => { const b = $("banner"); b.innerHTML = msg; b.hidden = !msg; };
   const params = new URLSearchParams(location.search);
-  const mapId = (params.get("map") || "research").replace(/[^a-z0-9_-]/gi, "");
+  const BASE = document.body.dataset.base || "../config/";
+  const DATA_DIR = document.body.dataset.data || "../data/processed/";
+  const mapId = (params.get("map") || document.body.dataset.map || "research").replace(/[^a-z0-9_-]/gi, "");
 
   async function getJson(url) {
     const r = await fetch(url);
@@ -21,7 +25,7 @@
 
   let catalogue, def;
   try {
-    [catalogue, def] = await Promise.all([getJson("../config/sources.json"), getJson(`../config/maps/${mapId}.json`)]);
+    [catalogue, def] = await Promise.all([getJson(`${BASE}sources.json`), getJson(`${BASE}maps/${mapId}.json`)]);
   } catch (e) {
     banner(`Konfiguration nicht lesbar / cannot read configuration (${esc(e.message)}). Start the map with run.bat; opening index.html directly does not work.`);
     return;
@@ -119,7 +123,7 @@
   // Metadata (small) for every layer up front; GeoJSON only when a layer is first shown.
   await Promise.all(items.map(async (it) => {
     try {
-      const m = await fetch(`../data/processed/${it.src.id}.meta.json`);
+      const m = await fetch(`${DATA_DIR}${it.src.id}.meta.json`);
       if (!m.ok) throw new Error("HTTP " + m.status);
       it.meta = await m.json();
     } catch (e) {
@@ -134,7 +138,7 @@
   async function ensureData(it) {
     if (it.geojson) return true;
     if (!it.loading) {
-      it.loading = fetch(`../data/processed/${it.src.id}.geojson`)
+      it.loading = fetch(`${DATA_DIR}${it.src.id}.geojson`)
         .then((r) => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
         .then((g) => { it.geojson = g; if (map.getSource(it.src.id)) map.getSource(it.src.id).setData(g); return true; })
         .catch((e) => { banner(`${esc(t(it.src.title))}: ${UI.noData} (${esc(e.message)}). ${UI.runUpdate}.`); it.loading = null; return false; });
@@ -358,8 +362,8 @@
     const m = it.meta;
     const n = m ? ` · ${m.feature_count} ${esc(t(it.src.unit_label) || "")}`.trimEnd() : "";
     const w = m && m.warnings && m.warnings.length ? ` · <span title="${esc(m.warnings.join("\n"))}">${m.warnings.length} ${UI.warnings}</span>` : "";
-    const dl = ` · ${UI.download}: <a href="../data/processed/${esc(it.src.id)}.geojson" download>GeoJSON</a>` +
-      (m && m.files && m.files.csv ? `, <a href="../data/processed/${esc(m.files.csv)}" download>CSV</a>` : "");
+    const dl = ` · ${UI.download}: <a href="${DATA_DIR}${esc(it.src.id)}.geojson" download>GeoJSON</a>` +
+      (m && m.files && m.files.csv ? `, <a href="${DATA_DIR}${esc(m.files.csv)}" download>CSV</a>` : "");
     const note = it.src.note ? `<br><span class="src-note">${esc(t(it.src.note))}</span>` : "";
     return `<p>${sourceLine(it)}${n}${w}${dl}${note}</p>`;
   }).join("") + `<p>${UI.basemap}: ${bm.attribution}</p>`;

@@ -1,6 +1,6 @@
 # Berlin Research Map
 
-Browser map of Berlin built with MapLibre GL JS 5.24 (vendored in `web/vendor`, BSD-3). Phase 1 shows the Bodenrichtwerte 01.01.2026.
+Browser map of Berlin built with MapLibre GL JS 5.24 (vendored in `web/vendor`, BSD-3). It combines official WFS layers of the Berlin geodata infrastructure (land values, ownership, planning law, housing market, social monitoring, population) through a project-neutral catalogue and per-project map definitions.
 
 ## Windows setup
 
@@ -12,6 +12,16 @@ URL parameters: `?map=<id>` picks a map definition from `config/maps/` (default 
 
 Re-run `update_data.bat` whenever the data should be refreshed. Each download is kept in `data/raw/` with a provenance file.
 
+## Website (Strato)
+
+The map is published as `02_Vergesellschaftung/karte.html`, linked as "Karte" in the site navigation. Strato serves static files only, so the map assets are copied into the site folder:
+
+1. `update_data.bat` ends with `scripts/export_site.py --zip`, which writes `02_Vergesellschaftung/karte/` (viewer, MapLibre, `sources.json`, the map definition `vergesellschaftung.json`, and GeoJSON, CSV and `meta.json` of every layer that map uses) and `website-upload.zip` (the site without archive, PDFs, bibliography and notes). The folder and the ZIP are build output and not tracked in git. The export refuses data whose provenance does not match the configured service (e.g. mock data).
+2. Upload the contents of `02_Vergesellschaftung/` by SFTP (e.g. FileZilla, host and login from the Strato customer area), including `.htaccess`, `fonts/`, `vendor/` and `karte/`. Do not upload `vergesellschaftung-modell-v37.html` (replaced by `modell-kompakt.html` plus `hintergrund.html`), `archive/`, `pdf/`, `Bibliography/`, the `.bib` file and the `.md` files.
+3. Check after the first upload: the GeoJSON response should carry `Content-Encoding: gzip` (set in `.htaccess`; population density is 12.5 MB uncompressed and loads only when switched on).
+
+Fonts and Chart.js are served from the site itself (`fonts/`, `vendor/`). The only third-party request is the basemap on `karte.html` (`tiles.openfreemap.org`), declared in `datenschutz.html`. `impressum.html` and `datenschutz.html` are linked from every page footer and from the map panel.
+
 ## Layout
 
 | Path | Role |
@@ -21,6 +31,7 @@ Re-run `update_data.bat` whenever the data should be refreshed. Each download is
 | `scripts/acquire.py` | WFS download, count check, raw file plus provenance (URLs, SHA-256, licence text from the service). `--layer ID` or `--map ID` |
 | `scripts/process.py` | Validation, coordinate rounding, size-ordered features; writes GeoJSON, attribute CSV and `meta.json` to `data/processed/` |
 | `scripts/serve.py` | Local web server |
+| `scripts/export_site.py` | Copies the map, the sources it uses and their data into `02_Vergesellschaftung/karte/` for upload; `--zip` builds `website-upload.zip` |
 | `web/` | Viewer, reads only `config/` and `data/processed/`; polygons, points and lines; stepped and categorical styles |
 | `data/processed/` | Reusable outputs: `<id>.geojson` (EPSG:4326, opens in QGIS), `<id>.csv` (UTF-8, one row per feature), `<id>.meta.json` (provenance) |
 | `tests/` | Mock WFS and `smoke.py` (offline pipeline test in a temporary folder) |

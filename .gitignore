@@ -4,3 +4,7 @@ __pycache__/
 # Raw WFS downloads are large; their provenance files (URLs, SHA-256) stay in git.
 data/raw/*.geojson
 data/raw/*.capabilities.xml
+
+# Build output of scripts/export_site.py
+02_Vergesellschaftung/karte/
+website-upload.zip

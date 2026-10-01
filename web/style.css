@@ -58,8 +58,8 @@ h3:first-child { margin-top: 0; }
 .zone + .zone { border-top: 1px solid var(--line); margin-top: 10px; padding-top: 10px; }
 .zone-layer { font: 500 9.5px var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
 .zone-value { font-size: 20px; font-weight: 600; font-variant-numeric: tabular-nums; margin-bottom: 6px; }
-.zone dl { display: grid; grid-template-columns: 112px 1fr; gap: 3px 10px; margin: 0; }
-.zone dt { color: var(--muted); }
+.zone dl { display: grid; grid-template-columns: 136px 1fr; gap: 3px 10px; margin: 0; }
+.zone dt { color: var(--muted); hyphens: auto; }
 .zone dd { margin: 0; overflow-wrap: anywhere; }
 .pop-head { color: var(--muted); margin-bottom: 8px; }
 .pop-src { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }

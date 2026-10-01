@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karte — Eigentum, Planungsrecht und Wohnungsmarkt in Berlin</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="karte/vendor/maplibre-gl.css">
+<link rel="stylesheet" href="karte/map.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="map-page" data-base="karte/" data-data="karte/" data-map="vergesellschaftung">
+
+  <nav class="site-nav">
+    <a href="index.html">Übersicht</a>
+    <a href="modell-kompakt.html">Modell</a>
+    <a href="hintergrund.html">Hintergrund</a>
+    <a href="zahlen.html">Die Zahlen erklärt</a>
+    <a href="glossar.html">Glossar</a>
+    <a href="karte.html" class="active">Karte</a>
+  </nav>
+
+  <div class="map-wrap">
+    <div id="map"></div>
+    <button id="panel-toggle" type="button" hidden></button>
+    <aside id="panel">
+      <h1 id="map-title"></h1>
+      <section>
+        <h2 id="h-layers"></h2>
+        <div id="toggles"></div>
+      </section>
+      <section id="legend-section" hidden>
+        <h2 id="h-legend"></h2>
+        <div id="legend"></div>
+      </section>
+      <section id="source">
+        <h2 id="h-sources"></h2>
+        <div id="source-text"></div>
+      </section>
+      <section class="legal"><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></section>
+    </aside>
+    <div id="banner" role="alert" hidden></div>
+  </div>
+
+<script src="karte/vendor/maplibre-gl.js"></script>
+<script src="karte/app.js"></script>
+</body>
+</html>
