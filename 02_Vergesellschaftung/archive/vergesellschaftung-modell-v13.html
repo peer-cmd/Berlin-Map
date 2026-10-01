@@ -1,0 +1,1971 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vergesellschaftung Berlin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+  :root{
+    --paper:#FAFAF8;
+    --panel:#FFFFFE;
+    --ink:#14171A;
+    --muted:#6B6B63;
+    --faint:#9A9A90;
+    --line:#DADAD2;
+    --line-strong:#B9B8AE;
+    --blue:#1E3A5F;
+    --blue-mid:#4A6FA5;
+    --blue-light:#93AECB;
+    --green:#2F7D46;
+    --red:#B23A34;
+    --amber:#A9762C;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;overflow-x:hidden;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans',sans-serif;
+    font-size:13px;
+    line-height:1.45;
+    -webkit-font-smoothing:antialiased;
+  }
+  .app{max-width:1440px;margin:0 auto;padding:0 0 64px;}
+
+  /* ---------- Masthead ---------- */
+  .masthead{
+    padding:28px 32px 22px;
+    border-bottom:1px solid var(--line-strong);
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .masthead h1{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:22px;
+    letter-spacing:-0.01em;
+    margin:0 0 6px;
+  }
+  .masthead p{
+    margin:0;
+    color:var(--muted);
+    font-size:12.5px;
+    max-width:560px;
+  }
+  .masthead .meta{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    color:var(--faint);
+    text-align:right;
+    line-height:1.6;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
+
+  /* ---------- Background/context page ---------- */
+  .bg-page{
+    max-width:760px;
+    margin:0 auto;
+    padding:36px 32px 64px;
+  }
+  .bg-page h2{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:17px;
+    font-weight:600;
+    margin:40px 0 12px;
+    padding-bottom:8px;
+    border-bottom:1px solid var(--line-strong);
+  }
+  .bg-page h2:first-child{margin-top:0;}
+  .bg-page h3{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:13px;
+    font-weight:600;
+    margin:20px 0 8px;
+    color:var(--blue);
+  }
+  .bg-page p{margin:0 0 12px;font-size:13px;line-height:1.6;}
+  .bg-page ul, .bg-page ol{margin:0 0 12px;padding-left:20px;font-size:13px;line-height:1.6;}
+  .bg-page li{margin-bottom:5px;}
+  .bg-page .lead{
+    font-size:14.5px;
+    color:var(--muted);
+    border-left:2px solid var(--blue);
+    padding-left:14px;
+    margin-bottom:28px;
+  }
+  .bg-page table{width:100%;border-collapse:collapse;font-size:12.5px;margin:12px 0 16px;}
+  .bg-page th, .bg-page td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left;}
+  .bg-page th{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+    color:var(--muted);
+    border-bottom:1px solid var(--line-strong);
+  }
+  .bg-page .glossary dt{font-weight:600;font-family:'IBM Plex Mono',monospace;font-size:12px;margin-top:10px;color:var(--ink);}
+  .bg-page .glossary dd{margin:2px 0 0;font-size:12.5px;color:var(--muted);}
+  .bg-page .source-list{font-size:11.5px;color:var(--muted);}
+  .bg-page .source-list li{margin-bottom:4px;}
+  .bg-page .note-box{
+    background:#FCFCFA;
+    border:1px solid var(--line-strong);
+    border-left:2px solid var(--amber);
+    padding:12px 16px;
+    font-size:12.5px;
+    margin:12px 0 16px;
+  }
+  .bg-page code{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    background:#F0EFEA;
+    padding:1px 4px;
+  }
+
+  /* ---------- Layout ---------- */
+  .layout{
+    display:grid;
+    grid-template-columns:296px 328px 1fr;
+    align-items:start;
+    min-width:0;
+  }
+  .layout > *{ min-width:0; }
+  .bg-col{
+    order:0;
+    border-right:1px solid var(--line-strong);
+    position:sticky;
+    top:0;
+    max-height:100vh;
+    overflow-y:auto;
+  }
+  .bg-col .bg-page{
+    max-width:none;
+    margin:0;
+    padding:22px 20px 40px;
+  }
+  .controls{
+    order:1;
+    border-right:1px solid var(--line-strong);
+    padding:0;
+    position:sticky;
+    top:0;
+    max-height:100vh;
+    overflow-y:auto;
+  }
+  .results{
+    order:2;
+    position:sticky;
+    top:0;
+    max-height:100vh;
+    overflow-y:auto;
+    padding:24px 28px 40px;
+    background-color: #FCFCFA;
+  }
+
+  /* ---------- Control groups ---------- */
+  .group{
+    border-bottom:1px solid var(--line);
+    padding:16px 22px;
+  }
+  .group-title{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--blue);
+    display:flex;
+    gap:8px;
+    align-items:baseline;
+    margin:0 0 14px;
+  }
+  .group-title .n{color:var(--faint);}
+
+  .field{margin-bottom:14px;}
+  .field:last-child{margin-bottom:0;}
+  .field-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:5px;
+  }
+  .field-row label{font-size:12px;color:var(--ink);}
+  .field-row .val{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    font-weight:500;
+    color:var(--blue);
+    font-variant-numeric:tabular-nums;
+  }
+  input[type=range]{
+    -webkit-appearance:none;
+    width:100%;
+    height:2px;
+    background:var(--line-strong);
+    outline:none;
+    margin:8px 0 2px;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;
+    width:12px;height:12px;
+    background:var(--blue);
+    cursor:pointer;
+    border-radius:0;
+    margin-top:-5px;
+  }
+  input[type=range]::-moz-range-thumb{
+    width:12px;height:12px;
+    background:var(--blue);
+    border:none;
+    cursor:pointer;
+    border-radius:0;
+  }
+  input[type=range]::-moz-range-track{
+    height:2px;background:var(--line-strong);
+  }
+  .hint{font-size:10.5px;color:var(--faint);margin-top:2px;}
+  .linked-row{display:flex;align-items:center;gap:7px;margin-top:5px;}
+  .linked-label{font-size:10px;color:var(--muted);font-family:'IBM Plex Mono',monospace;white-space:nowrap;}
+  .linked-input{width:96px;font-family:'IBM Plex Mono',monospace;font-size:11px;border:1px solid var(--line-strong);background:#fff;padding:3px 6px;color:var(--ink);}
+  .linked-input:focus{outline:1px solid var(--blue);border-color:var(--blue);}
+  .linked-suffix{font-size:10px;color:var(--muted);font-family:'IBM Plex Mono',monospace;}
+
+  .seg{
+    display:flex;
+    border:1px solid var(--line-strong);
+  }
+  .seg button{
+    flex:1;
+    padding:7px 4px;
+    background:var(--panel);
+    border:none;
+    border-right:1px solid var(--line-strong);
+    font-family:'IBM Plex Sans',sans-serif;
+    font-size:11px;
+    color:var(--muted);
+    cursor:pointer;
+  }
+  .seg button:last-child{border-right:none;}
+  .seg button.active{background:var(--blue);color:#fff;}
+
+  select{
+    width:100%;
+    padding:7px 8px;
+    border:1px solid var(--line-strong);
+    background:var(--panel);
+    font-family:'IBM Plex Sans',sans-serif;
+    font-size:12px;
+    color:var(--ink);
+  }
+
+  .subpanel{
+    margin-top:10px;
+    padding-top:10px;
+    border-top:1px dashed var(--line-strong);
+    display:none;
+  }
+  .subpanel.show{display:block;}
+
+  .reset-row{padding:16px 22px;}
+  .reset-btn{
+    width:100%;
+    padding:9px;
+    background:var(--panel);
+    border:1px solid var(--ink);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    cursor:pointer;
+  }
+  .reset-btn:hover{background:var(--ink);color:#fff;}
+
+  .print-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    margin-bottom:14px;
+  }
+  .print-note{
+    font-size:11.5px;
+    color:var(--muted);
+    margin:0;
+  }
+  .print-btn{
+    padding:8px 14px;
+    background:var(--panel);
+    border:1px solid var(--ink);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    cursor:pointer;
+  }
+  .print-btn:hover{background:var(--ink);color:#fff;}
+
+  .snap-btn{
+    padding:6px 10px;
+    background:var(--blue);
+    color:#fff;
+    border:1px solid var(--blue);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .snap-btn:hover{background:var(--ink);border-color:var(--ink);}
+  .snap-clear{
+    background:none;border:none;color:var(--faint);
+    font-family:'IBM Plex Mono',monospace;font-size:9px;
+    text-decoration:underline;cursor:pointer;padding:0;
+  }
+
+  .preset-btn{
+    display:block;
+    width:100%;
+    text-align:left;
+    padding:8px 10px;
+    margin-bottom:6px;
+    background:var(--panel);
+    border:1px solid var(--line-strong);
+    border-left:3px solid var(--blue-light);
+    font-family:'IBM Plex Sans',sans-serif;
+    font-size:11.5px;
+    color:var(--ink);
+    cursor:pointer;
+  }
+  .preset-btn:last-child{margin-bottom:0;}
+  .preset-btn:hover{border-left-color:var(--blue);background:#F3F6FA;}
+
+  /* ---------- Verdict banner ---------- */
+  .verdict{
+    padding:14px 18px;
+    margin-bottom:16px;
+    border:1px solid var(--line-strong);
+    border-left:4px solid var(--faint);
+    background:var(--panel);
+  }
+  .verdict-text{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:15px;
+    font-weight:500;
+    line-height:1.4;
+  }
+  .verdict.pos{border-left-color:var(--green);}
+  .verdict.neg{border-left-color:var(--red);}
+  .verdict-text strong{font-weight:700;}
+
+  /* ---------- Stat cards ---------- */
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--line-strong);
+    border:1px solid var(--line-strong);
+    margin-bottom:20px;
+  }
+  .stat{
+    background:var(--panel);
+    padding:14px 16px;
+  }
+  .stat .label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:9.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:8px;
+  }
+  .stat .value{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:20px;
+    font-weight:600;
+    font-variant-numeric:tabular-nums;
+    line-height:1.15;
+  }
+  .stat .sub{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    color:var(--faint);
+    margin-top:4px;
+  }
+  .pos{color:var(--green);}
+  .neg{color:var(--red);}
+
+  /* ---------- Chart panels ---------- */
+  .panel-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    margin-bottom:18px;
+  }
+  .panel-grid.single-col{grid-template-columns:1fr;}
+  .panel-grid .panel{margin-bottom:0;}
+
+  .panel{
+    background:var(--panel);
+    border:1px solid var(--line-strong);
+    padding:16px 18px 10px;
+    margin-bottom:18px;
+  }
+  .panel-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:10px;
+  }
+  .panel-head h2{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:13.5px;
+    font-weight:600;
+    margin:0;
+  }
+  .panel-head .caption{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    color:var(--faint);
+  }
+  .legend{
+    display:flex;
+    gap:16px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    color:var(--muted);
+    margin-top:8px;
+  }
+  .legend span{display:flex;align-items:center;gap:5px;}
+  .swatch{width:10px;height:2px;display:inline-block;}
+  canvas{max-width:100%;}
+  .panel-sub{
+    font-size:11px;
+    color:var(--muted);
+    margin:-2px 0 12px;
+    line-height:1.45;
+    max-width:74ch;
+  }
+
+  /* ---------- Table ---------- */
+  details.panel summary{
+    cursor:pointer;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:13.5px;
+    font-weight:600;
+    list-style:none;
+  }
+  details.panel summary::-webkit-details-marker{display:none;}
+  details.panel summary:before{content:"▸ ";color:var(--blue);}
+  details.panel[open] summary:before{content:"▾ ";}
+  .table-wrap{max-height:340px;overflow-y:auto;overflow-x:auto;margin-top:12px;border-top:1px solid var(--line);-webkit-overflow-scrolling:touch;}
+  table{width:100%;border-collapse:collapse;font-family:'IBM Plex Mono',monospace;font-size:10.5px;}
+  th,td{
+    padding:5px 8px;
+    text-align:right;
+    font-variant-numeric:tabular-nums;
+    border-bottom:1px solid var(--line);
+    white-space:nowrap;
+  }
+  th{
+    position:sticky;top:0;
+    background:var(--panel);
+    color:var(--muted);
+    font-weight:500;
+    text-transform:uppercase;
+    font-size:9px;
+    letter-spacing:0.04em;
+    border-bottom:1px solid var(--line-strong);
+  }
+  td:first-child,th:first-child{text-align:left;color:var(--muted);}
+
+  footer{
+    padding:20px 32px;
+    color:var(--faint);
+    font-size:10.5px;
+    border-top:1px solid var(--line);
+    margin-top:8px;
+  }
+  .colophon{
+    padding:14px 32px 28px;
+    color:var(--faint);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    line-height:1.7;
+    text-align:center;
+    border-top:1px solid var(--line);
+  }
+
+  @media (max-width:1160px){
+    .layout{grid-template-columns:1fr;}
+    .controls{position:relative;max-height:none;border-right:none;border-bottom:1px solid var(--line-strong);}
+    .bg-col{position:relative;max-height:none;border-right:none;border-bottom:1px solid var(--line-strong);}
+    .bg-col .bg-page{padding:22px 28px 32px;}
+    .results{position:relative;max-height:none;}
+    .stats{grid-template-columns:repeat(2,1fr);}
+    .masthead{flex-direction:column;align-items:flex-start;}
+    .panel-grid{grid-template-columns:1fr;}
+  }
+
+  @media print{
+    .controls, .bg-col, .print-row{display:none !important;}
+    .layout{display:block;}
+    .results{
+      position:static;
+      max-height:none;
+      overflow:visible;
+      padding:0;
+    }
+    .app{max-width:none;}
+    .masthead{border-bottom:1px solid var(--ink);}
+    .panel{break-inside:avoid;border-color:#999;}
+    .stats{break-inside:avoid;}
+    canvas{max-width:100%;}
+    footer{border-top:1px solid #999;}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <div class="masthead">
+    <div>
+      <h1>Vergesellschaftung großer Wohnungsunternehmen</h1>
+    </div>
+  </div>
+
+  <div class="layout">
+
+    <aside class="controls">
+
+      <div class="group">
+        <p class="group-title"><span class="n">00</span> Voreinstellungen</p>
+        <div class="field">
+          <button class="preset-btn" data-preset="linke">Linke / Faire-Mieten-Modell</button>
+          <button class="preset-btn" data-preset="holm">Bernt/Holm (empirisch)</button>
+          <button class="preset-btn" data-preset="rechnungshof">Rechnungshof (verkehrswertnah)</button>
+          <button class="preset-btn" data-preset="gegenmodell">Gegenmodell (IW/Empirica)</button>
+          <button class="preset-btn" data-preset="wien">Wien-Vergleich (hoher Opex)</button>
+        </div>
+        <div class="hint">Setzt alle Regler auf die jeweilige Position; einzeln danach weiter anpassbar.</div>
+      </div>
+
+      <div class="group">
+        <p class="group-title"><span class="n">01</span> Bestand &amp; Entschädigung</p>
+        <div class="field">
+          <div class="field-row"><label>Anzahl Wohnungen</label><span class="val" id="v-units">240.000</span></div>
+          <input type="range" id="units" min="50000" max="400000" step="5000" value="240000">
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Ø Wohnungsgröße</label><span class="val" id="v-avgSize">65 m²</span></div>
+          <input type="range" id="avgSize" min="40" max="100" step="1" value="65">
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Verkehrswert/m²</label><span class="val" id="v-price">2.085 €/m²</span></div>
+          <input type="range" id="price" min="500" max="5000" step="20" value="2085">
+          <div class="hint">Gesamtwert = Wohnungen × Größe × Verkehrswert/m² → <span id="v-totalDerived">32,5 Mrd €</span></div>
+          <div class="linked-row">
+            <label class="linked-label">≈ pro Wohnung</label>
+            <input type="number" class="linked-input" id="pricePerUnit" step="1000">
+            <span class="linked-suffix">€ (Verkehrswert einer Whg.)</span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Entschädigungsquote (vom Verkehrswert)</label><span class="val" id="v-purchaseFactor">100 %</span></div>
+          <input type="range" id="purchaseFactor" min="50" max="100" step="5" value="100">
+          <div class="hint">100 % = voller Verkehrswert wird gezahlt; darunter laut Expertenkommission rechtlich umstritten, aber mehrheitlich für zulässig gehalten → tatsächlicher Kaufpreis: <span id="v-effectivePrice">2.085 €/m² · 32,5 Mrd €</span></div>
+        </div>
+      </div>
+
+      <div class="group">
+        <p class="group-title"><span class="n">02</span> Finanzierung</p>
+        <div class="field">
+          <div class="field-row"><label>Modus</label></div>
+          <div class="seg" id="seg-financing">
+            <button data-val="kredit" class="active">Kredit</button>
+            <button data-val="eigen">Eigenmittel</button>
+          </div>
+        </div>
+        <div class="field" id="wrap-rate">
+          <div class="field-row"><label>Zinssatz</label><span class="val" id="v-rate">3,5 %</span></div>
+          <input type="range" id="rate" min="0" max="7" step="0.1" value="3.5">
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Risikoprämie ab Ankündigung</label><span class="val" id="v-riskPremium">0,0 pp</span></div>
+          <input type="range" id="riskPremium" min="0" max="2" step="0.1" value="0">
+          <div class="hint">Sofortiger Zinsaufschlag ab Jahr 1 durch Marktreaktion (These IW Köln/Empirica 2026)</div>
+        </div>
+        <div class="field" id="wrap-term">
+          <div class="field-row"><label>Tilgungsdauer</label><span class="val" id="v-term">30 J.</span></div>
+          <input type="range" id="term" min="5" max="40" step="1" value="30">
+        </div>
+        <div class="field" id="wrap-reset">
+          <div class="field-row"><label>Zinsbindung</label><span class="val" id="v-rateResetYears">10 J.</span></div>
+          <input type="range" id="rateResetYears" min="5" max="30" step="1" value="10">
+          <div class="hint">Nach Ablauf: Anschlussfinanzierung zum Aufschlagszins</div>
+        </div>
+        <div class="field" id="wrap-increment">
+          <div class="field-row"><label>Zinsaufschlag danach</label><span class="val" id="v-rateIncrement">+1,0 pp</span></div>
+          <input type="range" id="rateIncrement" min="0" max="3" step="0.1" value="1.0">
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Einmalige Kosten</label><span class="val" id="v-onceCosts">405 Mio €</span></div>
+          <input type="range" id="onceCosts" min="0" max="1500" step="5" value="405">
+          <div class="hint">Transaktion, Aufbau, Recht (Jahr 0)</div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Integrationskosten</label><span class="val" id="v-integrationCosts">2,0 %</span></div>
+          <input type="range" id="integrationCosts" min="0" max="10" step="0.5" value="2">
+          <div class="hint">% des Kaufpreises, Jahr 0. Kosten der Zusammenführung vieler getrennter Bestände in eine Anstalt (IT, Verwaltung, Recht) — von IW Köln 2026 als im DWE-Modell fehlend kritisiert. Kein wohnungswirtschaftsspezifischer Wert bekannt; 2 % ist eine grobe Analogie zur allgemeinen M&amp;A-Literatur (typ. niedriger einstelliger Prozentbereich), keine belastbare Schätzung.</div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Sanierungsstau pro Wohnung</label><span class="val" id="v-maintBacklog">20.000 €</span></div>
+          <input type="range" id="maintBacklog" min="0" max="30000" step="500" value="20000">
+          <div class="hint">Einmaliger Nachholbedarf bei Übernahme (These Bernt/Holm: private Konzerne unterinvestieren). Default grob hergeleitet aus Berliner Sanierungsbedarf-Schätzungen für Bestandsbauten (Größenordnung 20.000–30.000 €/Whg. bei Teilmodernisierung; energetische Vollsanierung nach IW-Consult-Kostensätzen 660–1.600 €/m² liegt deutlich höher, 40.000+ €/Whg.). Illustrativ, keine belastbare Einzelschätzung je Bestand.</div>
+        </div>
+      </div>
+
+      <div class="group">
+        <p class="group-title"><span class="n">03</span> Miete &amp; Bewirtschaftung</p>
+        <div class="field">
+          <div class="field-row"><label>Ausgangsmiete</label><span class="val" id="v-baseRent">7,63 €/m²</span></div>
+          <input type="range" id="baseRent" min="3" max="20" step="0.1" value="7.63">
+          <div class="hint">Ø Nettokaltmiete der 6 größten privaten Wohnungskonzerne, exakt der Vergesellschaftungs-Bestand (Bernt/Holm 2023, Rosa-Luxemburg-Stiftung)</div>
+          <div class="linked-row">
+            <label class="linked-label">≈ pro Wohnung</label>
+            <input type="number" class="linked-input" id="baseRentPerUnit" step="5">
+            <span class="linked-suffix">€/Monat</span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Mietsteigerung p.a.</label><span class="val" id="v-rentGrowth">1,5 %</span></div>
+          <input type="range" id="rentGrowth" min="0" max="4" step="0.1" value="1.5">
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Kosteninflation p.a.</label><span class="val" id="v-costInflation">2,5 %</span></div>
+          <input type="range" id="costInflation" min="0" max="6" step="0.1" value="2.5">
+          <div class="hint">Bewirtschaftungskosten, unabhängig von der Miete</div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Bewirtschaftungskosten-Modus</label></div>
+          <div class="seg" id="seg-opexmode">
+            <button data-val="percent" class="active">% der Miete</button>
+            <button data-val="absolute">Absolut €/m²</button>
+          </div>
+        </div>
+        <div class="field" id="wrap-opex-percent">
+          <div class="field-row"><label>Bewirtschaftungskosten</label><span class="val" id="v-opex">40 %</span></div>
+          <input type="range" id="opex" min="20" max="60" step="1" value="40">
+        </div>
+        <div class="field" id="wrap-opex-absolute" style="display:none;">
+          <div class="field-row"><label>Bewirtschaftungskosten absolut</label><span class="val" id="v-opexAbsolute">2,20 €/m²</span></div>
+          <input type="range" id="opexAbsolute" min="1" max="5" step="0.05" value="2.2">
+          <div class="hint">Fixbetrag/Monat, unabhängig von der Miete (Ansatz Rechnungshof Berlin 2024, S. 25)</div>
+          <div class="linked-row">
+            <label class="linked-label">≈ pro Wohnung</label>
+            <input type="number" class="linked-input" id="opexAbsolutePerUnit" step="5">
+            <span class="linked-suffix">€/Monat</span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Referenz: freier Markt</label><span class="val" id="v-freeMarketRent">15,80 €/m²</span></div>
+          <input type="range" id="freeMarketRent" min="8" max="25" step="0.1" value="15.8">
+          <div class="hint">Neuvertragsmiete Berlin, Wachstum fix 3,0 %/Jahr angenommen (Berlin Hyp/CBRE 2026)</div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Referenz: kommunale WoGes.</label><span class="val" id="v-munizRent">6,29 €/m²</span></div>
+          <input type="range" id="munizRent" min="4" max="12" step="0.1" value="6.29">
+          <div class="hint">Ø Nettokaltmiete landeseigene Gesellschaften (Bernt/Holm 2023); Wachstum fix 2,0 %/Jahr angenommen</div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Referenz: Verbraucherpreise (CPI)</label><span class="val" id="v-cpiGrowth">2,0 %/J.</span></div>
+          <input type="range" id="cpiGrowth" min="0" max="5" step="0.1" value="2.0">
+          <div class="hint">Ab Ausgangsmiete indexiert — These IW Köln: Bestandsmiete wächst wie CPI</div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Referenz: Haushaltseinkommen</label><span class="val" id="v-incomeGrowth">3,0 %/J.</span></div>
+          <input type="range" id="incomeGrowth" min="0" max="6" step="0.1" value="3.0">
+          <div class="hint">Ab Ausgangsmiete indexiert — Vergleichsmaßstab: wächst Einkommen schneller als Miete?</div>
+        </div>
+      </div>
+
+      <div class="group">
+        <p class="group-title"><span class="n">04</span> Verwendung des Überschusses</p>
+        <div class="field">
+          <select id="mode">
+            <option value="none">Keine Reinvestition</option>
+            <option value="neubau">Neubau — Bestand wächst</option>
+            <option value="sozial">Umwandlung in Sozialwohnungen</option>
+          </select>
+        </div>
+
+        <div class="subpanel" id="panel-neubau">
+          <div class="field">
+            <div class="field-row"><label>Baukosten Neubau</label><span class="val" id="v-buildCost">3.500 €/m²</span></div>
+            <input type="range" id="buildCost" min="1500" max="6000" step="100" value="3500">
+            <div class="linked-row">
+              <label class="linked-label">≈ pro Wohnung</label>
+              <input type="number" class="linked-input" id="buildCostPerUnit" step="1000">
+              <span class="linked-suffix">€ (Baukosten je Whg.)</span>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-row"><label>Reinvestitionsquote</label><span class="val" id="v-reinvestQuota1">100 %</span></div>
+            <input type="range" id="reinvestQuota1" min="0" max="100" step="5" value="100">
+          </div>
+        </div>
+
+        <div class="subpanel" id="panel-sozial">
+          <div class="field">
+            <div class="field-row"><label>Sozialmiete</label><span class="val" id="v-sozialRent">6,50 €/m²</span></div>
+            <input type="range" id="sozialRent" min="3" max="10" step="0.1" value="6.5">
+            <div class="hint" id="hint-sozialRentCap" style="display:none;color:var(--red);">Sozialmiete liegt über der Ausgangsmiete — im Modell auf die Ausgangsmiete gedeckelt (Sozialmiete kann Marktmiete nicht übersteigen).</div>
+            <div class="linked-row">
+              <label class="linked-label">≈ pro Wohnung</label>
+              <input type="number" class="linked-input" id="sozialRentPerUnit" step="5">
+              <span class="linked-suffix">€/Monat</span>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-row"><label>Umwandlungskosten</label><span class="val" id="v-convCost">1.200 €/m²</span></div>
+            <input type="range" id="convCost" min="300" max="3000" step="50" value="1200">
+            <div class="hint">× Ø Wohnungsgröße = Kosten pro umgewandelter Einheit</div>
+            <div class="linked-row">
+              <label class="linked-label">≈ pro Wohnung</label>
+              <input type="number" class="linked-input" id="convCostPerUnit" step="1000">
+              <span class="linked-suffix">€ (Kosten je Whg.)</span>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-row"><label>Umwandlungstempo</label></div>
+            <div class="seg" id="seg-sozialpace">
+              <button data-val="surplus" class="active">Aus Überschuss</button>
+              <button data-val="fixed">Fester Zeitplan</button>
+            </div>
+            <div class="hint">„Aus Überschuss": Umwandlung nur soweit der Cashflow reicht (Reinvestitionsquote unten). „Fester Zeitplan": Umwandlung Jahr für Jahr in festem Tempo — schrittweise, nicht alle Wohnungen auf einmal — unabhängig vom Cashflow; die Kosten mindern den Cashflow des jeweiligen Jahres.</div>
+          </div>
+          <div class="field" id="wrap-reinvestQuota2">
+            <div class="field-row"><label>Reinvestitionsquote</label><span class="val" id="v-reinvestQuota2">100 %</span></div>
+            <input type="range" id="reinvestQuota2" min="0" max="100" step="5" value="100">
+          </div>
+          <div class="field" id="wrap-sozialPaceRate" style="display:none;">
+            <div class="field-row"><label>Umwandlungstempo</label><span class="val" id="v-sozialPaceRate">3,3 %/Jahr</span></div>
+            <input type="range" id="sozialPaceRate" min="0.5" max="20" step="0.1" value="3.3">
+            <div class="hint">Anteil des Gesamtbestands, der pro Jahr zusätzlich umgewandelt wird — bei 3,3 %/Jahr ist der gesamte Bestand nach rund 30 Jahren umgewandelt.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="group">
+        <p class="group-title"><span class="n">05</span> Zeithorizont</p>
+        <div class="field">
+          <div class="field-row"><label>Betrachtungszeitraum</label><span class="val" id="v-horizon">30 Jahre</span></div>
+          <input type="range" id="horizon" min="10" max="50" step="1" value="30">
+        </div>
+      </div>
+
+      <div class="group">
+        <p class="group-title"><span class="n">06</span> Szenario-Vergleich</p>
+        <div class="field">
+          <label style="font-size:11px;">Aktuelle Einstellung sichern als:</label>
+        </div>
+        <div class="field" style="display:flex;gap:6px;">
+          <input type="text" id="labelA" placeholder="Name Szenario A" maxlength="18"
+            style="flex:1;padding:6px 7px;border:1px solid var(--line-strong);font-family:'IBM Plex Sans',sans-serif;font-size:11px;">
+          <button class="snap-btn" id="saveA">A speichern</button>
+        </div>
+        <div class="field" style="display:flex;gap:6px;">
+          <input type="text" id="labelB" placeholder="Name Szenario B" maxlength="18"
+            style="flex:1;padding:6px 7px;border:1px solid var(--line-strong);font-family:'IBM Plex Sans',sans-serif;font-size:11px;">
+          <button class="snap-btn" id="saveB">B speichern</button>
+        </div>
+        <div class="hint">Vergleichstabelle erscheint unten in den Ergebnissen, sobald A oder B gespeichert ist.</div>
+      </div>
+
+      <div class="reset-row">
+        <button class="reset-btn" id="resetBtn">Zurücksetzen</button>
+      </div>
+
+    </aside>
+
+    <main class="results">
+
+      <div class="print-row">
+        <p class="print-note">Entschädigung, Finanzierung, Miete und Verwendung des Überschusses frei kombinierbar. Alle Kurven aktualisieren sich live.</p>
+        <button class="print-btn" id="printBtn">Ergebnisse drucken</button>
+      </div>
+
+      <div class="verdict" id="verdictBanner">
+        <span class="verdict-text" id="verdictText">–</span>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="label">Entschädigungsquote</div>
+          <div class="value" id="s-kaufpreis">–</div>
+          <div class="sub" id="s-kaufpreis-sub">–</div>
+        </div>
+        <div class="stat">
+          <div class="label">Break-even</div>
+          <div class="value" id="s-breakeven">–</div>
+          <div class="sub">Jahr, kum. Cashflow &gt; 0</div>
+        </div>
+        <div class="stat">
+          <div class="label">Nettoergebnis</div>
+          <div class="value" id="s-netto">–</div>
+          <div class="sub" id="s-netto-sub">nach Horizont</div>
+        </div>
+        <div class="stat">
+          <div class="label">Bestandseffekt</div>
+          <div class="value" id="s-bestand">–</div>
+          <div class="sub" id="s-bestand-sub">–</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Cashflow-Verlauf</h2>
+          <span class="caption" id="cf-caption">nach Schuldendienst</span>
+        </div>
+        <p class="panel-sub">Jährlicher Cashflow nach Schuldendienst (Balken) und dessen kumulierter Verlauf (Linie, rechte Achse). Zeigt, in welchem Jahr die Bewirtschaftung in den Überschuss dreht.</p>
+        <canvas id="chartCombo" height="85"></canvas>
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--green)"></i>Jahres-Cashflow positiv</span>
+          <span><i class="swatch" style="background:var(--red)"></i>Jahres-Cashflow negativ</span>
+          <span><i class="swatch" style="background:var(--blue)"></i>kumuliert (rechte Achse)</span>
+        </div>
+      </div>
+
+      <div class="panel-grid" id="topPanelGrid">
+        <div class="panel" id="balancePanelWrap">
+          <div class="panel-head">
+            <h2>Restschuld-Verlauf</h2>
+            <span class="caption" id="balance-caption">Basis-Szenario</span>
+          </div>
+          <p class="panel-sub">Verbleibende Kreditsumme über die Zeit. Der Knick markiert das Ende der Zinsbindung, danach Anschlussfinanzierung zum Aufschlagszins.</p>
+          <canvas id="chartBalance" height="70"></canvas>
+        </div>
+
+        <div class="panel" id="stockPanelWrap" style="display:none;">
+          <div class="panel-head">
+            <h2 id="stock-title">Bestandsentwicklung</h2>
+            <span class="caption">Modellergebnis</span>
+          </div>
+          <p class="panel-sub" id="stock-sub">Entwicklung des Wohnungsbestands durch Reinvestition des jährlichen Cashflow-Überschusses gemäß Abschnitt 04.</p>
+          <canvas id="chartStock" height="70"></canvas>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Kapitalposition Berlins</h2>
+          <span class="caption">Nettovermögensposition</span>
+        </div>
+        <p class="panel-sub">Verkehrswert des gehaltenen Bestands, abzüglich Restschuld, zuzüglich kumuliertem Cashflow aus dem laufenden Betrieb (inkl. Kosten für Neubau/Sozialumwandlung). Zeigt, wie sich das Landesvermögen insgesamt entwickelt — schnellere Umwandlungstempi oder Neubau schlagen sich hier als reale Kosten nieder, nicht nur im Cashflow-Chart oben.</p>
+        <canvas id="chartCapital" height="70"></canvas>
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--blue-light)"></i>Vermögenswert Bestand</span>
+          <span><i class="swatch" style="background:var(--red)"></i>Restschuld</span>
+          <span><i class="swatch" style="background:#A9762C"></i>Kumulierter Cashflow</span>
+          <span><i class="swatch" style="background:var(--green)"></i>Nettoposition</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Zunahme Sozialwohnungen</h2>
+          <span class="caption" id="sozial-caption">Vergleichsrechnung</span>
+        </div>
+        <p class="panel-sub">Zahl der Einheiten, die bei vollständiger Reinvestition des Cashflow-Überschusses in Sozialumwandlung (Parameter aus Abschnitt 04) entstünden — unabhängig vom aktuell gewählten Reinvestitionsmodus, zum Vergleich.</p>
+        <canvas id="chartSozial" height="70"></canvas>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Mieteinsparung für Mieter</h2>
+          <span class="caption" id="tenant-caption">kumuliert, Vergleichsrechnung</span>
+        </div>
+        <p class="panel-sub">Kumulierte Differenz zwischen Marktmiete-Pfad und tatsächlich gezahlter Sozialmiete, multipliziert mit der Zahl der umgewandelten Wohnungen aus der Sozialumwandlungs-Vergleichsrechnung oben (Abschnitt 04-Parameter, unabhängig vom aktuell gewählten Modus). Operationalisiert das Argument „Vergesellschaftung senkt die Miete" (Bernt/Holm, Rosa-Luxemburg-Stiftung 2023) als Zahl: was Mieter über den Betrachtungszeitraum gegenüber dem Marktmiete-Szenario einsparen.</p>
+        <canvas id="chartTenantSavings" height="70"></canvas>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Mietniveau des Bestands</h2>
+          <span class="caption">Modellergebnis</span>
+        </div>
+        <p class="panel-sub">Ø Nettokaltmiete im übernommenen Bestand (Modell) im Vergleich zu freiem Markt, landeseigenen Gesellschaften, Verbraucherpreisen und Haushaltseinkommen.</p>
+        <canvas id="chartRent" height="70"></canvas>
+        <div class="legend">
+          <span><i class="swatch" style="background:#B23A34"></i>Freier Markt</span>
+          <span><i class="swatch" style="background:#A9762C"></i>Kommunale WoGes.</span>
+          <span><i class="swatch" style="background:#6B6B63"></i>CPI (indexiert)</span>
+          <span><i class="swatch" style="background:#3A7D44"></i>Einkommen (indexiert)</span>
+          <span><i class="swatch" style="background:var(--blue)"></i>Ø Miete Bestand (Modell)</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Szenario-Übersicht</h2>
+          <span class="caption">4 Voreinstellungen im Vergleich</span>
+        </div>
+        <p class="panel-sub">Kaufpreis und Nettoergebnis nach Horizont (links, Mrd €) sowie Break-even-Jahr (rechts) für die vier Voreinstellungen aus Abschnitt 00 — unabhängig von den aktuellen Reglereinstellungen.</p>
+        <canvas id="chartScenarios" height="80"></canvas>
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--blue-light)"></i>Kaufpreis</span>
+          <span><i class="swatch" style="background:var(--green)"></i>Nettoergebnis positiv</span>
+          <span><i class="swatch" style="background:var(--red)"></i>Nettoergebnis negativ</span>
+          <span><i class="swatch" style="background:var(--ink)"></i>Break-even (rechte Achse)</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Zinssensitivität des Zuschussbedarfs</h2>
+          <span class="caption">bei aktuellen Reglereinstellungen</span>
+        </div>
+        <p class="panel-sub">Ø jährlicher Zuschussbedarf aus dem Landeshaushalt (Fehlbetrag über den Horizont geglättet) in Abhängigkeit vom Zinssatz, alle übrigen Regler auf aktuellem Stand. Markierung zeigt den aktuell eingestellten Zinssatz.</p>
+        <canvas id="chartRateSens" height="70"></canvas>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Sensitivität der Entschädigungsquote</h2>
+          <span class="caption">bei aktuellen Reglereinstellungen</span>
+        </div>
+        <p class="panel-sub">Nettoergebnis nach Horizont (links, Mrd €) und Break-even-Jahr (rechts) in Abhängigkeit von der Entschädigungsquote, alle übrigen Regler auf aktuellem Stand. Markierung zeigt die aktuell eingestellte Quote.</p>
+        <canvas id="chartCompSens" height="70"></canvas>
+      </div>
+
+      <details class="panel">
+        <summary>Jahr-für-Jahr</summary>
+        <div class="table-wrap">
+          <table id="dataTable">
+            <thead>
+              <tr>
+                <th>Jahr</th><th>Modell-Ausgangsmiete €/m²</th><th>Ø Miete Bestand €/m²</th><th>Mieteinnahmen</th><th>NOI</th>
+                <th>Annuität</th><th>Cashflow</th><th>Kumuliert</th><th>Bestand/Sozial</th>
+              </tr>
+            </thead>
+            <tbody id="dataTableBody"></tbody>
+          </table>
+        </div>
+      </details>
+
+      <div class="panel" id="comparePanel" style="display:none;">
+        <div class="panel-head">
+          <h2>Szenario-Vergleich</h2>
+          <span class="caption">Aktuelle Einstellung je Snapshot</span>
+        </div>
+        <div class="table-wrap" style="max-height:none;">
+          <table id="compareTable">
+            <thead>
+              <tr id="compareHeadRow">
+                <th style="text-align:left;">Kennzahl</th>
+                <th>Aktuell</th>
+              </tr>
+            </thead>
+            <tbody id="compareBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+
+  <div class="bg-col"><div class="bg-page">
+
+    <h2>Einführung</h2>
+    <p class="lead">Der Volksentscheid „Deutsche Wohnen &amp; Co enteignen" (26. September 2021) sprach sich mit 56,4 % Ja-Stimmen dafür aus, Wohnungsunternehmen mit mehr als 3.000 Berliner Wohnungen im Bestand zu vergesellschaften. Der Senat setzte daraufhin eine Expertenkommission ein; das Abgeordnetenhaus hat bislang kein Umsetzungsgesetz beschlossen. Dieses Modell rechnet durch, was ein solches Gesetz finanziell bedeuten würde — unter verschiedenen Annahmen zu Entschädigung, Finanzierung und Mietniveau.</p>
+
+    <h3>Zeitlicher Ablauf</h3>
+    <ul>
+      <li><strong>2021</strong> — Volksentscheid, 56,4 % Zustimmung (nicht rechtlich bindend, sondern politischer Auftrag an den Senat)</li>
+      <li><strong>2021–2023</strong> — Expertenkommission „Vergesellschaftung" tagt, prüft Rechtsfragen und Kostenrahmen</li>
+      <li><strong>2023</strong> — Abschlussbericht: Mehrheitsvotum hält Vergesellschaftung für verfassungsrechtlich möglich, auch mit Entschädigung unterhalb des Verkehrswerts; ein Sondervotum (3 von 13 Mitgliedern) fordert Entschädigung zum vollen Verkehrswert</li>
+      <li><strong>2024</strong> — Berliner Rechnungshof veröffentlicht Kostenszenarien für den Landeshaushalt</li>
+      <li><strong>Bislang offen</strong> — kein Umsetzungsgesetz, keine verbindliche Entschädigungshöhe, keine höchstrichterliche Klärung</li>
+    </ul>
+
+    <h2>Rechtlicher Rahmen</h2>
+    <h3>Art. 15 Grundgesetz</h3>
+    <p>Anders als die Enteignung nach Art. 14 Abs. 3 GG (Einzelfall, im öffentlichen Interesse, gegen Entschädigung) erlaubt Art. 15 GG die <strong>Vergesellschaftung</strong> ganzer Wirtschaftszweige — Grund und Boden, Naturschätze, Produktionsmittel — in Gemeineigentum, „durch ein Gesetz, das Art und Ausmaß der Entschädigung bestimmt". Art. 15 GG wurde seit 1949 noch nie angewendet; es gibt daher keine Rechtsprechung, die die Entschädigungshöhe konkretisiert.</p>
+    <div class="note-box">
+      <strong>Zentraler Streitpunkt:</strong> Muss die Entschädigung dem vollen Verkehrswert entsprechen (wie bei Art. 14 GG üblich), oder erlaubt Art. 15 GG als eigenständige Kategorie eine geringere Entschädigung, weil sie strukturell anders angelegt ist als die klassische Enteignung? Die Expertenkommission war hier gespalten; eine verbindliche gerichtliche Klärung steht aus.
+    </div>
+
+    <h2>Herleitung der Kostenschätzungen</h2>
+    <h3>Betroffener Bestand</h3>
+    <p>Rund 240.000 Wohnungen bei Unternehmen mit &gt;3.000 Berliner Einheiten (u. a. Deutsche Wohnen, Vonovia-Bestände, Akelius u. a.) — Berechnungsgrundlage des Rechnungshof-Berichts 2024 und der ursprünglichen Landesschätzung von 2019.</p>
+    <h3>Entschädigungsspanne 29–36 Mrd. €</h3>
+    <p>Diese Spanne stammt aus der offiziellen Kostenschätzung des Landes Berlin (2019, BBU-Einordnung) und gilt als „verkehrswertnah" — sie basiert auf einem Ertragswertverfahren (siehe unten), nicht auf Vergleichspreisen für leerstehende Eigentumswohnungen. Andere Modelle kommen zu deutlich anderen Zahlen:</p>
+    <table>
+      <thead><tr><th>Modell</th><th>Größenordnung</th><th>Methodik-Ansatz</th></tr></thead>
+      <tbody>
+        <tr><td>Faire-Mieten-Modell (Holm et al.)</td><td>≈ 14 Mrd. €</td><td>Entschädigung finanzierbar bei Miete 3,70 €/m² (Mietbelastung an der Armutsgrenze, 30% des Einkommens)</td></tr>
+        <tr><td>Ist-Miete-Modell (DWE, Senatsdaten 2018)</td><td>≈ 24 Mrd. €</td><td>Entschädigung finanzierbar bei damaliger Ist-Miete 6,71 €/m² (89% des Bestands erfasst)</td></tr>
+        <tr><td>Landesschätzung / BBU 2019</td><td>≈ 29–36 Mrd. €</td><td>Ertragswertverfahren, verkehrswertnah</td></tr>
+        <tr><td>Volle Verkehrswert-Position (Sondervotum)</td><td>&gt; 36 Mrd. € (nicht offiziell beziffert)</td><td>Vergleichswert-orientiert, ggf. mit Abschlägen</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Bernt &amp; Holm (2023): Vergesellschaftung senkt die Miete</h3>
+    <p>Die Studie von Matthias Bernt und Andrej Holm (Rosa-Luxemburg-Stiftung, Januar 2023) vergleicht die Bewirtschaftungspraxis der sechs größten privaten Wohnungskonzerne (~222.000 Wohnungen) mit der der landeseigenen Gesellschaften. Kernbefunde:</p>
+    <ul>
+      <li>Ø Nettokaltmiete große Private: <strong>7,63 €/m²</strong> — Ø Landeseigene: <strong>6,29 €/m²</strong></li>
+      <li>Vergesellschaftung könnte die Miete für ~200.000 Haushalte im Schnitt um <strong>16 %</strong> senken</li>
+      <li>Landeseigene erwirtschaften trotz niedrigerer Miete einen Überschuss im dreistelligen Millionenbereich — Kernargument, dass niedrigere Miete wirtschaftliche Tragfähigkeit nicht ausschließt</li>
+      <li>Weitere Befunde: bessere Instandhaltung als bei den Konzernen zu erwarten, mehr Sozialwohnungen, wirkt räumlicher Segregation entgegen (private Bestände konzentrieren sich in teuren Innenstadtlagen, landeseigene eher am Stadtrand)</li>
+    </ul>
+    <p>Diese Zahlen bilden die Grundlage für die Ausgangsmiete (7,63 €/m²) und die Referenzlinie „Kommunale Wohnungsgesellschaften" (6,29 €/m²) im Modell-Tab.</p>
+
+    <h3>Ertragswertverfahren vs. Vergleichswertverfahren</h3>
+    <p>Für vermietete Mehrfamilienhäuser mit Bestandsmieter:innen ist rechtlich das <strong>Ertragswertverfahren</strong> einschlägig: Wert = kapitalisierter Reinertrag (Miete abzüglich Bewirtschaftungskosten), abgezinst mit dem amtlichen <strong>Liegenschaftszins</strong> des Gutachterausschusses Berlin — der laut Gutachterausschuss ausdrücklich auch „zur Bemessung von Enteignungsentschädigungen" dient. Das ergibt bei den heutigen, oft regulierten Bestandsmieten (~7 €/m²) deutlich niedrigere Werte (rund 1.500–2.500 €/m²) als der Vergleichswert für leerstehende Eigentumswohnungen (~5.000–5.700 €/m², Gutachterausschuss H1/2025).</p>
+
+    <h2>Der Bericht des Landesrechnungshofs</h2>
+    <p>Der Berliner Rechnungshof veröffentlichte am 20.02.2024 einen Beratungsbericht (nach § 88 Abs. 2 LHO) zu den „Auswirkungen einer Vergesellschaftung großer Wohnungsunternehmen auf den Landeshaushalt". Der Rechnungshof entscheidet nicht über die Entschädigungshöhe; diese obliegt dem Gesetzgeber. Der Bericht rechnet vier exogen vorgegebene Szenarien durch: <strong>8, 11, 29 und 36 Mrd. €</strong> für 240.000 Wohnungen.</p>
+    <div class="note-box">
+      Zentrales Ergebnis (S. 23): „Bereits Entschädigungssummen über 11 Mrd. € [führen] wegen der hohen Finanzierungskosten unweigerlich zu Defiziten bei der Bewirtschaftung der zu vergesellschaftenden Bestände durch eine AöR." Bei einer <strong>verkehrswertorientierten Entschädigung</strong> (~29–36 Mrd. €) beziffert der Rechnungshof den jährlichen <strong>Zuschussbedarf aus dem Landeshaushalt auf rund 700 Mio. €</strong>.
+    </div>
+    <p>Methodisch rechnet der Rechnungshof mit Bewirtschaftungskosten von <strong>2,20 €/m²/Monat</strong> als Absolutbetrag (S. 25) — nicht als Prozentsatz der Miete wie in der Standardeinstellung dieses Tools. Diese Option lässt sich jetzt unter „Bewirtschaftungskosten-Modus" auf „Absolut €/m²" umstellen, um näher am Rechnungshof-Ansatz zu rechnen. Ein Blogger (planwirtschaft.works) versuchte, das Modell nachzubauen, und musste einen zusätzlichen, im Bericht nicht erklärten Aufschlag von 55 Cent einbauen, um auf dieselben Ausgangsmieten zu kommen — ein Hinweis, dass selbst dieser amtliche Bericht nicht vollständig transparent nachvollziehbar ist.</p>
+    <p>Institutionelle Einordnung: Von allen zitierten Quellen ist der Rechnungshof am ehesten unabhängig — aber nicht ergebnisoffen im Sinne von „ohne Tendenz". Seine Kernaufgabe ist Haushaltskonsolidierung und Risikovermeidung; Präsidentin Karin Klingen äußerte öffentlich, sie sehe „keine Möglichkeit, eine Vergesellschaftung mit vertretbaren Risiken umzusetzen". Das ist eine andere Motivation als bei IW/Empirica (marktliberal) oder Bernt/Holm (umverteilungsorientiert), führt aber in eine ähnliche Richtung wie die Bankenstudie — aus einer schuldenbremsen-fokussierten statt marktideologischen Perspektive.</p>
+
+    <h2>Kontroverse: Gegenüberstellung der Positionen</h2>
+    <p>Keine der zitierten Quellen ist institutionell neutral; dies betrifft beide Seiten der Debatte gleichermaßen. Jede Zahl ist im Kontext ihrer Herkunft zu lesen.</p>
+    <table>
+      <thead><tr><th></th><th>Pro Vergesellschaftung</th><th>Contra Vergesellschaftung</th></tr></thead>
+      <tbody>
+        <tr><td>Quelle</td><td>Bernt &amp; Holm (2023)</td><td>IW Köln &amp; Empirica (2026)</td></tr>
+        <tr><td>Auftraggeber / Nähe</td><td>Rosa-Luxemburg-Stiftung (Linke-nah)</td><td>Berliner Sparkasse, Volksbank, DKB, IBB (vier Banken)</td></tr>
+        <tr><td>Eigeninteresse</td><td>Mieterbewegung, Umverteilung</td><td>Banken halten Grundpfandrechte an den betroffenen Beständen — Kreditrückforderung bei Enteignung droht</td></tr>
+        <tr><td>Kernbehauptung</td><td>Ø 16 % Mietsenkung für ~200.000 Haushalte möglich, Landeseigene trotzdem profitabel</td><td>&gt;40 % der Mieter in den Beständen haben überdurchschnittliches Einkommen — Maßnahme sozialpolitisch schlecht gezielt</td></tr>
+        <tr><td>Risiko-Argument</td><td>Kein systemisches Risiko benannt</td><td>Kapitalflucht, höhere Risikoprämien, Ausstrahlung auf andere Art.-15-Branchen (Gesundheit, Energie, Infrastruktur)</td></tr>
+        <tr><td>Datenbasis</td><td>Geschäftsberichte der Unternehmen (prüfbar)</td><td>Einkommens-/Mietstatistik, internationale Fallbeispiele (Interpretation umstritten)</td></tr>
+      </tbody>
+    </table>
+    <div class="note-box">
+      Am ehesten institutionell unabhängig sind der Berliner Rechnungshof und der Gutachterausschuss für Grundstückswerte — beide amtlich, aber auch sie operieren nicht im politikfreien Raum. Eine Lektüre beider Studien im Original ist der jeweiligen Zusammenfassung durch die eigene Seite vorzuziehen.
+    </div>
+
+    <h2>Modellmethodik</h2>
+    <h3>Modellstruktur</h3>
+    <p>Der Kaufpreis (Verkehrswert × Entschädigungsquote) wird entweder über ein Annuitätendarlehen finanziert (Zins + Tilgung, mit Zinsbindung und Anschlussfinanzierungs-Risiko) oder aus Eigenmitteln des Landeshaushalts. Die laufenden Mieteinnahmen abzüglich Bewirtschaftungskosten (Nettobetriebsergebnis, NOI) müssen den Schuldendienst tragen. Positive Überschüsse können reinvestiert werden — in Neubau (Bestand wächst) oder in die Umwandlung weiterer Einheiten in Sozialwohnungen (Mietniveau sinkt für einen wachsenden Anteil).</p>
+    <h3>Nicht abgebildete Faktoren</h3>
+    <ul>
+      <li>Diskontierung/Barwert — alle Werte sind nominal aufsummiert, nicht auf heutigen Wert abgezinst</li>
+      <li>Leerstand/Mietausfall — es wird 100 % Vermietung unterstellt</li>
+      <li>Mietpreisbremse/Kappungsgrenze als rechtliche Deckelung der Mietsteigerung</li>
+      <li>Instandhaltungsstau und energetische Pflichtsanierung (GEG) als eigener Kostenblock</li>
+      <li>Rückkopplung auf Berlins Gesamtbonität und Zinskosten bestehender Landesschulden</li>
+      <li>Politisches/rechtliches Verzögerungsrisiko bis zu einer verfassungsgerichtlichen Klärung</li>
+    </ul>
+
+    <h2>Glossar</h2>
+    <dl class="glossary">
+      <dt>Verkehrswert</dt><dd>Der im gewöhnlichen Geschäftsverkehr nach den rechtlichen Gegebenheiten und tatsächlichen Eigenschaften eines Grundstücks zu erzielende Preis (§ 194 BauGB), ohne Rücksicht auf ungewöhnliche oder persönliche Verhältnisse.</dd>
+      <dt>Ertragswertverfahren</dt><dd>Wertermittlungsmethode für vermietete Objekte: kapitalisierter Reinertrag (Miete abzüglich Bewirtschaftungskosten), abgezinst mit dem Liegenschaftszins. Maßgeblich für Bestände mit Mieterschutz und regulierten Mieten.</dd>
+      <dt>Vergleichswertverfahren</dt><dd>Wertermittlungsmethode auf Basis tatsächlich erzielter Kaufpreise vergleichbarer, in der Regel unvermieteter Objekte. Liegt den höheren Marktpreisangaben für Eigentumswohnungen zugrunde.</dd>
+      <dt>Liegenschaftszins</dt><dd>Amtlicher Kapitalisierungszinssatz des Gutachterausschusses zur Ermittlung des Ertragswerts vermieteter Immobilien.</dd>
+      <dt>Entschädigungsquote</dt><dd>Anteil des vollen Verkehrswerts, der tatsächlich als Entschädigung gezahlt wird (100 % = voller Verkehrswert, sog. Kaufpreisfaktor).</dd>
+      <dt>Annuität</dt><dd>Konstante jährliche Zahlung aus Zins und Tilgung bei einem Annuitätendarlehen.</dd>
+      <dt>Restschuld</dt><dd>Zu einem Zeitpunkt noch nicht getilgter Anteil der ursprünglichen Kreditsumme.</dd>
+      <dt>Zinsbindung</dt><dd>Zeitraum, für den ein Kreditzins fest vereinbart ist; danach Anschlussfinanzierung zu dann geltenden Konditionen.</dd>
+      <dt>NOI (Nettobetriebsergebnis)</dt><dd>Mieteinnahmen abzüglich laufender Bewirtschaftungskosten, vor Schuldendienst.</dd>
+      <dt>Bewirtschaftungskosten</dt><dd>Laufende, nicht auf Mieter umlegbare Kosten der Immobilienverwaltung: Instandhaltung, Verwaltung, Mietausfallwagnis (ImmoWertV Anlage 3).</dd>
+      <dt>Reinvestitionsquote</dt><dd>Anteil des positiven Cashflows nach Schuldendienst, der in Neubau oder Umwandlung fließt, statt als Rücklage zu verbleiben.</dd>
+      <dt>Sozialbindung / Belegungsbindung</dt><dd>Vertragliche oder gesetzliche Verpflichtung, eine Wohnung für einen bestimmten Zeitraum zu gedeckelter Sozialmiete an berechtigte Haushalte zu vermieten.</dd>
+      <dt>Kappungsgrenze</dt><dd>Gesetzliche Obergrenze für Mieterhöhungen bei bestehenden Mietverhältnissen innerhalb eines Dreijahreszeitraums (§ 558 BGB), in angespannten Wohnungsmärkten abgesenkt.</dd>
+      <dt>Grundpfandrecht</dt><dd>Dingliches Sicherungsrecht an einem Grundstück zugunsten eines Gläubigers (Hypothek, Grundschuld); Grundlage der Kreditvergabe im Immobiliengeschäft.</dd>
+      <dt>AöR (Anstalt öffentlichen Rechts)</dt><dd>Rechtsform öffentlicher Trägerschaft ohne Mitglieder, im Kontext der Vergesellschaftung als mögliche Trägerin des überführten Bestands diskutiert.</dd>
+      <dt>Break-even</dt><dd>Erstes Jahr, in dem der kumulierte Cashflow (bzw. NOI abzüglich Kaufpreis) positiv wird.</dd>
+    </dl>
+
+    <h2>Quellen</h2>
+    <ul class="source-list">
+      <li>Berliner Rechnungshof (20.02.2024) — Beratungsbericht „Auswirkungen einer Vergesellschaftung großer Wohnungsunternehmen auf den Landeshaushalt" (§ 88 Abs. 2 LHO)</li>
+      <li>Expertenkommission Vergesellschaftung Berlin (2023) — Abschlussbericht, Mehrheits- und Sondervotum</li>
+      <li>BBU Verband Berlin-Brandenburgischer Wohnungsunternehmen — Kostenschätzung Land Berlin 2019</li>
+      <li>Matthias Bernt &amp; Andrej Holm (2023) — „Vergesellschaftung senkt die Miete", Rosa-Luxemburg-Stiftung</li>
+      <li>Deutsche Wohnen &amp; Co enteignen — „Was kostet Vergesellschaftung" (Berechnungsgrundlage Holm et al.)</li>
+      <li>IW Köln &amp; Empirica (2026) — „Auswirkungen der Vergesellschaftung privater Wohnungsunternehmen in Berlin" (Deschermeier/Voigtländer, Simons), im Auftrag Berliner Sparkasse/Volksbank/DKB/IBB</li>
+      <li>Gutachterausschuss für Grundstückswerte in Berlin — Liegenschaftszinssätze 2025, Kaufpreisstatistik H1/2025</li>
+      <li>Berlin Hyp / CBRE — Wohnmarktreport Berlin 2026</li>
+      <li>BKI / Statistisches Bundesamt (Destatis) — Baupreisindex Wohngebäude 2025/26</li>
+      <li>Marktdaten Baufinanzierung (Finanztip, Dr. Klein, Baufi24) — Bauzinsen Stand Juli 2026</li>
+      <li>IW Köln — Gutachten zu Refinanzierungsrisiken einer Vergesellschaftung</li>
+    </ul>
+
+    <div class="note-box">
+      Dieses Modell dient der eigenen Auseinandersetzung mit den Zahlen und ersetzt keine juristische, steuerliche oder finanzielle Beratung. Alle Standardwerte sind Annahmen und über die Regler frei änderbar.
+    </div>
+
+  </div></div>
+  </div>
+
+  <footer>
+    Alle Parameter sind Modellannahmen, keine amtlichen Festlegungen. Die Entschädigungshöhe für eine Vergesellschaftung nach Art. 15 GG ist rechtlich ungeklärt (BVerfG-Klärung steht aus).<br>
+    Referenzwerte (Stand: Juli 2026) — Bestandsmiete landeseigene Wohnungsgesellschaften Berlin: &lt;7,50 €/m² (Berlin Hyp/CBRE Wohnmarktreport 2026). Neuvertragsmiete Berlin: ⌀15,80 €/m² (dies.). Baukosten Neubau Wohngebäude: 3.300–3.800 €/m² (BKI/Destatis 2025). Bauzinsen 10 Jahre fest: 3,6–4,0 % (Marktdaten Juli 2026). Grundlage Entschädigungshöhe: Berliner Rechnungshof (2024), Expertenkommission Vergesellschaftung (2023), BBU-Kostenschätzung 2019.<br>
+    Ergänzende Literatur (Stand: Juli 2026) — Finanzierungskorridor 10–17 Mrd. €: Holm/Thonke, „Refinanzierungsoptionen in vergesellschafteten Wohnungsbeständen" (DWE, Nov. 2025). Kritik an fehlenden Integrations-/Modernisierungskosten: IW Köln, „Auswirkungen der Vergesellschaftung privater Wohnungsunternehmen in Berlin" (2026). Sanierungskosten-Bandbreite 660–1.600 €/m²: IW Consult, „Sanierungspotenziale von Wohnimmobilien in Deutschland" (2024). Opex-Vergleichswert Wien (~60 % der Mieteinnahmen, Altbestand): AEI/Social Europe zum Wiener Gemeindebau (2023). Mietsenkungs-These: Bernt/Holm, „Vergesellschaftung senkt die Miete" (Rosa-Luxemburg-Stiftung, 2023). Integrationskosten-Größenordnung ist eine grobe Analogie aus allgemeiner M&amp;A-Literatur, nicht wohnungswirtschaftsspezifisch belegt.
+  </footer>
+
+  <div class="colophon">Berlin · Art. 15 GG<br>240.000 Wohnungen Referenzbestand<br>Modell-Stand: Juli 2026</div>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  const $ = id => document.getElementById(id);
+
+  const defaults = {
+    units:240000, price:2085, purchaseFactor:100,
+    financing:'kredit', rate:3.5, riskPremium:0, term:30, rateResetYears:10, rateIncrement:1.0, onceCosts:405, maintBacklog:20000, integrationCosts:2,
+    baseRent:7.63, rentGrowth:1.5, costInflation:2.5, avgSize:65, opex:40, opexMode:'percent', opexAbsolute:2.2,
+    freeMarketRent:15.8, munizRent:6.29, cpiGrowth:2.0, incomeGrowth:3.0,
+    mode:'none', buildCost:3500, reinvestQuota1:100,
+    sozialRent:6.5, convCost:1200, reinvestQuota2:100, sozialPace:'surplus', sozialPaceRate:3.3,
+    horizon:30
+  };
+  let state = Object.assign({}, defaults);
+  let savedScenarios = { A: null, B: null };
+
+  const sliderIds = ['units','price','purchaseFactor','rate','riskPremium','term','rateResetYears','rateIncrement','onceCosts','maintBacklog','integrationCosts',
+    'baseRent','rentGrowth','costInflation','avgSize','opex','opexAbsolute','freeMarketRent','munizRent','cpiGrowth','incomeGrowth','buildCost','reinvestQuota1',
+    'sozialRent','convCost','reinvestQuota2','sozialPaceRate','horizon'];
+
+  // Parameter, die im Kern €/m² sind, aber wahlweise auch als €-Betrag pro Wohnung
+  // bedient werden koennen (verlinkte Zweitfelder, zwei Wege dieselbe Groesse einzugeben).
+  // "monthly:true" heisst: der €/m²-Wert ist bereits ein Monatswert (z.B. Miete), also
+  // ist der Pro-Wohnung-Wert = €/m²-Wert * avgSize (kein weiterer Faktor).
+  const perUnitFields = [
+    { key:'price', decimals:0 },
+    { key:'baseRent', decimals:0 },
+    { key:'opexAbsolute', decimals:0 },
+    { key:'buildCost', decimals:0 },
+    { key:'sozialRent', decimals:0 },
+    { key:'convCost', decimals:0 }
+  ];
+
+  function fmtInt(n){ return Math.round(n).toLocaleString('de-DE'); }
+  function fmtEUR(n){
+    const sign = n<0 ? '−' : '';
+    n = Math.abs(n);
+    if(n>=1e9) return sign+(n/1e9).toLocaleString('de-DE',{maximumFractionDigits:2})+' Mrd €';
+    if(n>=1e6) return sign+(n/1e6).toLocaleString('de-DE',{maximumFractionDigits:1})+' Mio €';
+    return sign+fmtInt(n)+' €';
+  }
+  function fmtYear(y){ return (y===null) ? '> Horizont' : ('Jahr '+y); }
+
+  function pmt(rate, nper, pv){
+    if(nper<=0) return 0;
+    if(rate===0) return pv/nper;
+    return pv * rate / (1 - Math.pow(1+rate,-nper));
+  }
+
+  // ---- core simulation for one price-per-sqm scenario (€/m² Verkehrswert) ----
+  function runScenario(pricePerSqm, p){
+    const fullValue = p.units*p.avgSize*pricePerSqm;
+    const principal = fullValue*(p.purchaseFactor/100);
+    let balance = principal;
+    let currentRate = p.rate/100 + p.riskPremium/100;
+    let annuity = p.financing==='kredit' ? pmt(currentRate, p.term, principal) : 0;
+
+    let units = p.units;
+    let sozialUnits = 0;
+    let cum = 0;
+    const rows = [];
+    let breakEvenYear = null;
+    const opexPerUnitBase = p.opexMode==='absolute'
+      ? p.avgSize*p.opexAbsolute*12
+      : p.avgSize*p.baseRent*12*(p.opex/100);
+
+    for(let t=1;t<=p.horizon;t++){
+      const rent = p.baseRent*Math.pow(1+p.rentGrowth/100, t-1);
+      // Sozialmiete darf die Ausgangsmiete nie übersteigen (sonst würde Umwandlung die Miete erhöhen statt senken)
+      const sozialRent = Math.min(p.sozialRent, p.baseRent)*Math.pow(1+p.rentGrowth/100, t-1);
+
+      // fixed-schedule conversion: happens at the start of the year, in fixed steps,
+      // independent of that year's cashflow (its cost then reduces this year's cashflow below)
+      let fixedConversionCost = 0;
+      if(p.mode==='sozial' && p.sozialPace==='fixed'){
+        const capacityBefore = p.units - sozialUnits;
+        const newSozialFixed = Math.min(p.units*((p.sozialPaceRate||0)/100), Math.max(capacityBefore,0));
+        sozialUnits = sozialUnits + newSozialFixed;
+        fixedConversionCost = newSozialFixed*p.convCost*p.avgSize;
+      }
+
+      let income;
+      if(p.mode==='sozial'){
+        const marketUnits = units - sozialUnits;
+        income = marketUnits*p.avgSize*rent*12 + sozialUnits*p.avgSize*sozialRent*12;
+      } else {
+        income = units*p.avgSize*rent*12;
+      }
+
+      const opexPerUnit = opexPerUnitBase*Math.pow(1+p.costInflation/100, t-1);
+      const opexAmt = units*opexPerUnit;
+      const noi = income - opexAmt;
+
+      // financing with rate reset at end of Zinsbindung
+      let annuityThisYear = 0;
+      if(p.financing==='kredit' && t<=p.term){
+        if(t === p.rateResetYears+1 && p.rateResetYears < p.term){
+          currentRate = p.rate/100 + p.riskPremium/100 + p.rateIncrement/100;
+          const remainingTerm = p.term - p.rateResetYears;
+          annuity = pmt(currentRate, remainingTerm, balance);
+        }
+        const interestPortion = balance*currentRate;
+        let principalPortion = annuity - interestPortion;
+        if(principalPortion > balance) principalPortion = balance;
+        balance = Math.max(balance - principalPortion, 0);
+        annuityThisYear = annuity;
+      }
+
+      const cashflow = noi - annuityThisYear - fixedConversionCost;
+
+      if(p.financing==='kredit'){
+        cum += cashflow;
+        if(breakEvenYear===null && cum>0) breakEvenYear = t;
+      } else {
+        cum += noi - fixedConversionCost;
+        if(breakEvenYear===null && cum>principal) breakEvenYear = t;
+      }
+
+      rows.push({t, rent, sozialRent, income, noi, annuity:annuityThisYear, cashflow,
+        cumForChart: p.financing==='kredit' ? cum : (cum-principal),
+        units, sozialUnits, rateNow: currentRate*100,
+        avgRent: income/(units*p.avgSize*12),
+        balance: p.financing==='kredit' ? balance : null});
+
+      // reinvestment for next year -- spending is subtracted from the cash reserve (cum) so it is
+      // counted exactly once (either as cash-on-hand, or converted into recorded asset/stock value),
+      // never both. This also means it delays break-even/Kapitalposition, as real capex would.
+      if(p.mode==='neubau'){
+        const buildSpend = Math.max(cashflow,0)*(p.reinvestQuota1/100);
+        const newUnits = buildSpend/(p.buildCost*p.avgSize);
+        units = units + newUnits;
+        cum -= buildSpend;
+      } else if(p.mode==='sozial' && p.sozialPace!=='fixed'){
+        const capacity = p.units - sozialUnits;
+        const convBudget = Math.max(cashflow,0)*(p.reinvestQuota2/100);
+        const newSozial = Math.min(convBudget/(p.convCost*p.avgSize), Math.max(capacity,0));
+        const actualSpend = newSozial*p.convCost*p.avgSize; // capped if capacity is reached
+        sozialUnits = sozialUnits + newSozial;
+        cum -= actualSpend;
+      }
+    }
+
+    const finalCum = rows[rows.length-1].cumForChart;
+    const netResult = finalCum - p.onceCosts*1e6 - p.maintBacklog*p.units - principal*((p.integrationCosts||0)/100);
+
+    return {
+      principal, fullValue, rows, breakEvenYear, netResult,
+      finalUnits: rows[rows.length-1].units,
+      finalSozial: rows[rows.length-1].sozialUnits
+    };
+  }
+
+  function readState(){
+    state.units = +$('units').value;
+    state.price = +$('price').value;
+    state.purchaseFactor = +$('purchaseFactor').value;
+    state.rate = +$('rate').value;
+    state.riskPremium = +$('riskPremium').value;
+    state.term = +$('term').value;
+    state.rateResetYears = +$('rateResetYears').value;
+    state.rateIncrement = +$('rateIncrement').value;
+    state.onceCosts = +$('onceCosts').value;
+    state.maintBacklog = +$('maintBacklog').value;
+    state.integrationCosts = +$('integrationCosts').value;
+    state.baseRent = +$('baseRent').value;
+    state.rentGrowth = +$('rentGrowth').value;
+    state.costInflation = +$('costInflation').value;
+    state.avgSize = +$('avgSize').value;
+    state.opex = +$('opex').value;
+    state.opexAbsolute = +$('opexAbsolute').value;
+    state.freeMarketRent = +$('freeMarketRent').value;
+    state.munizRent = +$('munizRent').value;
+    state.cpiGrowth = +$('cpiGrowth').value;
+    state.incomeGrowth = +$('incomeGrowth').value;
+    state.mode = $('mode').value;
+    state.buildCost = +$('buildCost').value;
+    state.reinvestQuota1 = +$('reinvestQuota1').value;
+    state.sozialRent = +$('sozialRent').value;
+    state.convCost = +$('convCost').value;
+    state.reinvestQuota2 = +$('reinvestQuota2').value;
+    state.sozialPaceRate = +$('sozialPaceRate').value;
+    state.horizon = +$('horizon').value;
+  }
+
+  function updateLabels(){
+    $('v-units').textContent = fmtInt(state.units);
+    $('v-price').textContent = fmtInt(state.price)+' €/m²';
+    const total = state.units*state.avgSize*state.price/1e9;
+    $('v-totalDerived').textContent = total.toLocaleString('de-DE',{maximumFractionDigits:1})+' Mrd €';
+    $('v-purchaseFactor').textContent = state.purchaseFactor+' %';
+    const effPricePerSqm = state.price*(state.purchaseFactor/100);
+    const effTotal = total*(state.purchaseFactor/100);
+    $('v-effectivePrice').textContent = fmtInt(effPricePerSqm)+' €/m² · '+effTotal.toLocaleString('de-DE',{maximumFractionDigits:1})+' Mrd €';
+    $('v-rate').textContent = state.rate.toLocaleString('de-DE',{minimumFractionDigits:1})+' %';
+    $('v-riskPremium').textContent = '+'+state.riskPremium.toLocaleString('de-DE',{minimumFractionDigits:1})+' pp';
+    $('v-term').textContent = state.term+' J.';
+    $('v-rateResetYears').textContent = state.rateResetYears+' J.';
+    $('v-rateIncrement').textContent = '+'+state.rateIncrement.toLocaleString('de-DE',{minimumFractionDigits:1})+' pp';
+    $('v-onceCosts').textContent = fmtInt(state.onceCosts)+' Mio €';
+    $('v-maintBacklog').textContent = fmtInt(state.maintBacklog)+' €';
+    $('v-integrationCosts').textContent = state.integrationCosts.toLocaleString('de-DE',{minimumFractionDigits:1})+' %';
+    $('v-baseRent').textContent = state.baseRent.toLocaleString('de-DE',{minimumFractionDigits:2})+' €/m²';
+    $('v-rentGrowth').textContent = state.rentGrowth.toLocaleString('de-DE',{minimumFractionDigits:1})+' %';
+    $('v-costInflation').textContent = state.costInflation.toLocaleString('de-DE',{minimumFractionDigits:1})+' %';
+    $('v-avgSize').textContent = state.avgSize+' m²';
+    $('v-opex').textContent = state.opex+' %';
+    $('v-opexAbsolute').textContent = state.opexAbsolute.toLocaleString('de-DE',{minimumFractionDigits:2})+' €/m²';
+    $('wrap-opex-percent').style.display = state.opexMode==='percent' ? 'block' : 'none';
+    $('wrap-opex-absolute').style.display = state.opexMode==='absolute' ? 'block' : 'none';
+    $('v-freeMarketRent').textContent = state.freeMarketRent.toLocaleString('de-DE',{minimumFractionDigits:2})+' €/m²';
+    $('v-munizRent').textContent = state.munizRent.toLocaleString('de-DE',{minimumFractionDigits:2})+' €/m²';
+    $('v-cpiGrowth').textContent = state.cpiGrowth.toLocaleString('de-DE',{minimumFractionDigits:1})+' %/J.';
+    $('v-incomeGrowth').textContent = state.incomeGrowth.toLocaleString('de-DE',{minimumFractionDigits:1})+' %/J.';
+    $('v-buildCost').textContent = fmtInt(state.buildCost)+' €/m²';
+    $('v-reinvestQuota1').textContent = state.reinvestQuota1+' %';
+    $('v-sozialRent').textContent = state.sozialRent.toLocaleString('de-DE',{minimumFractionDigits:2})+' €/m²';
+    $('hint-sozialRentCap').style.display = state.sozialRent > state.baseRent ? 'block' : 'none';
+    $('v-convCost').textContent = fmtInt(state.convCost)+' €/m²';
+    $('v-reinvestQuota2').textContent = state.reinvestQuota2+' %';
+    $('v-sozialPaceRate').textContent = state.sozialPaceRate.toLocaleString('de-DE',{minimumFractionDigits:1})+' %/Jahr';
+    $('wrap-reinvestQuota2').style.display = state.sozialPace==='fixed' ? 'none' : 'block';
+    $('wrap-sozialPaceRate').style.display = state.sozialPace==='fixed' ? 'block' : 'none';
+    $('v-horizon').textContent = state.horizon+' Jahre';
+
+    // verlinkte "pro Wohnung"-Zweitfelder aktualisieren (nicht ueberschreiben waehrend der Nutzer tippt)
+    perUnitFields.forEach(({key, decimals})=>{
+      const el = $(key+'PerUnit');
+      if(document.activeElement !== el){
+        const perUnit = state[key]*state.avgSize;
+        el.value = Math.round(perUnit*Math.pow(10,decimals))/Math.pow(10,decimals);
+      }
+    });
+
+    $('wrap-rate').style.opacity = state.financing==='kredit' ? 1 : 0.35;
+    $('wrap-term').style.opacity = state.financing==='kredit' ? 1 : 0.35;
+    $('wrap-reset').style.opacity = state.financing==='kredit' ? 1 : 0.35;
+    $('wrap-increment').style.opacity = state.financing==='kredit' ? 1 : 0.35;
+    $('rate').disabled = state.financing!=='kredit';
+    $('term').disabled = state.financing!=='kredit';
+    $('rateResetYears').disabled = state.financing!=='kredit';
+    $('rateIncrement').disabled = state.financing!=='kredit';
+
+    $('panel-neubau').classList.toggle('show', state.mode==='neubau');
+    $('panel-sozial').classList.toggle('show', state.mode==='sozial');
+  }
+
+  let chartCombo, chartStock, chartRent, chartBalance, chartCapital, chartSozial, chartTenantSavings, chartScenarios, chartRateSens, chartCompSens;
+
+  const vlinePlugin = {
+    id: 'vlineMarker',
+    afterDatasetsDraw(chart, args, opts){
+      const idx = chart.options.plugins.vlineMarker && chart.options.plugins.vlineMarker.index;
+      if(idx===null || idx===undefined) return;
+      const xScale = chart.scales.x;
+      const yArea = chart.chartArea;
+      if(!xScale || !yArea) return;
+      const xPix = xScale.getPixelForValue(idx);
+      const ctx = chart.ctx;
+      ctx.save();
+      ctx.beginPath();
+      ctx.strokeStyle = '#6B6B63';
+      ctx.setLineDash([3,3]);
+      ctx.lineWidth = 1;
+      ctx.moveTo(xPix, yArea.top);
+      ctx.lineTo(xPix, yArea.bottom);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = '#6B6B63';
+      ctx.font = "9px 'IBM Plex Mono'";
+      const label = (opts && opts.label) || '';
+      ctx.fillText(label, xPix+4, yArea.top+10);
+      ctx.restore();
+    }
+  };
+  Chart.register(vlinePlugin);
+
+  function initCharts(){
+    const ctx1 = $('chartCombo').getContext('2d');
+    chartCombo = new Chart(ctx1, {
+      data:{ labels:[], datasets:[
+        {type:'bar', label:'Jahres-Cashflow', data:[], backgroundColor:[], yAxisID:'y', order:2},
+        {type:'line', label:'Kumuliert', data:[], borderColor:'#1E3A5F', backgroundColor:'transparent', borderWidth:2.2, pointRadius:0, tension:0.15, yAxisID:'y1', order:1},
+        {type:'line', label:'Null', data:[], borderColor:'#9A9A90', borderWidth:1, pointRadius:0, borderDash:[2,3], yAxisID:'y', order:3}
+      ]},
+      options:{
+        responsive:true,
+        animation:{duration:250},
+        interaction:{mode:'index', intersect:false},
+        plugins:{ legend:{display:false},
+          tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+fmtEUR(ctx.parsed.y) }},
+          vlineMarker:{ index:null, label:'' }
+        },
+        scales:{
+          x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{display:false}, ticks:{font:{family:'IBM Plex Mono',size:9}, maxTicksLimit:15} },
+          y:{ position:'left', title:{display:true,text:'Jahres-Cashflow',font:{family:'IBM Plex Mono',size:9}}, ticks:{ font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v) }, grid:{color:'#EAEAE4'} },
+          y1:{ position:'right', title:{display:true,text:'Kumuliert',font:{family:'IBM Plex Mono',size:9}}, ticks:{ font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v) }, grid:{display:false} }
+        }
+      }
+    });
+
+    const ctx2 = $('chartStock').getContext('2d');
+    chartStock = new Chart(ctx2, {
+      type:'line',
+      data:{ labels:[], datasets:[
+        {label:'Bestand', data:[], borderColor:'#2F7D46', backgroundColor:'rgba(47,125,70,0.08)', borderWidth:2, pointRadius:0, fill:true, tension:0.15}
+      ]},
+      options:{
+        responsive:true,
+        animation:{duration:250},
+        plugins:{ legend:{display:false} },
+        scales:{
+          x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:{font:{family:'IBM Plex Mono',size:9}} },
+          y:{ ticks:{font:{family:'IBM Plex Mono',size:9}}, grid:{color:'#EAEAE4'} }
+        }
+      }
+    });
+
+    const ctx3 = $('chartRent').getContext('2d');
+    chartRent = new Chart(ctx3, {
+      type:'line',
+      data:{ labels:[], datasets:[
+        {label:'Freier Markt', data:[], borderColor:'#B23A34', backgroundColor:'transparent', borderWidth:1.5, borderDash:[3,3], pointRadius:0, tension:0.15},
+        {label:'Kommunale Wohnungsgesellschaften', data:[], borderColor:'#A9762C', backgroundColor:'transparent', borderWidth:1.5, borderDash:[6,2], pointRadius:0, tension:0.15},
+        {label:'Verbraucherpreise (CPI, indexiert)', data:[], borderColor:'#6B6B63', backgroundColor:'transparent', borderWidth:1.2, borderDash:[1,3], pointRadius:0, tension:0.15},
+        {label:'Haushaltseinkommen (indexiert)', data:[], borderColor:'#3A7D44', backgroundColor:'transparent', borderWidth:1.2, borderDash:[1,3], pointRadius:0, tension:0.15},
+        {label:'Ø Miete im Bestand (Modell)', data:[], borderColor:'#1E3A5F', backgroundColor:'rgba(30,58,95,0.06)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.15}
+      ]},
+      options:{
+        responsive:true,
+        animation:{duration:250},
+        interaction:{mode:'index', intersect:false},
+        plugins:{ legend:{display:false},
+          tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+ctx.parsed.y.toLocaleString('de-DE',{maximumFractionDigits:2})+' €/m²' }}
+        },
+        scales:{
+          x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:{font:{family:'IBM Plex Mono',size:9}} },
+          y:{ ticks:{font:{family:'IBM Plex Mono',size:9}, callback:v=>v.toLocaleString('de-DE',{maximumFractionDigits:1})+' €'}, grid:{color:'#EAEAE4'} }
+        }
+      }
+    });
+
+    const ctx5 = $('chartBalance').getContext('2d');
+    chartBalance = new Chart(ctx5, {
+      type:'line',
+      data:{ labels:[], datasets:[
+        {label:'Restschuld', data:[], borderColor:'#1E3A5F', backgroundColor:'rgba(30,58,95,0.06)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.1}
+      ]},
+      options:{
+        responsive:true,
+        animation:{duration:250},
+        interaction:{mode:'index', intersect:false},
+        plugins:{ legend:{display:false},
+          tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+fmtEUR(ctx.parsed.y) }},
+          vlineMarker:{ index:null, label:'' }
+        },
+        scales:{
+          x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:{font:{family:'IBM Plex Mono',size:9}} },
+          y:{ ticks:{font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v)}, grid:{color:'#EAEAE4'} }
+        }
+      }
+    });
+
+    const ctx6 = $('chartCapital').getContext('2d');
+    chartCapital = new Chart(ctx6, {
+      type:'line',
+      data:{ labels:[], datasets:[
+        {label:'Vermögenswert Bestand', data:[], borderColor:'#93AECB', backgroundColor:'transparent', borderWidth:1.5, borderDash:[3,3], pointRadius:0, tension:0.1},
+        {label:'Restschuld', data:[], borderColor:'#B23A34', backgroundColor:'transparent', borderWidth:1.5, borderDash:[6,2], pointRadius:0, tension:0.1},
+        {label:'Kumulierter Cashflow', data:[], borderColor:'#A9762C', backgroundColor:'transparent', borderWidth:1.2, borderDash:[1,3], pointRadius:0, tension:0.1},
+        {label:'Nettoposition', data:[], borderColor:'#2F7D46', backgroundColor:'rgba(47,125,70,0.08)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.1}
+      ]},
+      options:{
+        responsive:true,
+        animation:{duration:250},
+        interaction:{mode:'index', intersect:false},
+        plugins:{ legend:{display:false},
+          tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+fmtEUR(ctx.parsed.y) }}
+        },
+        scales:{
+          x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:{font:{family:'IBM Plex Mono',size:9}} },
+          y:{ ticks:{font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v)}, grid:{color:'#EAEAE4'} }
+        }
+      }
+    });
+
+    const ctx7 = $('chartSozial').getContext('2d');
+    chartSozial = new Chart(ctx7, {
+      type:'line',
+      data:{ labels:[], datasets:[
+        {label:'Sozialwohnungen', data:[], borderColor:'#A9762C', backgroundColor:'rgba(169,118,44,0.08)', borderWidth:2, pointRadius:0, fill:true, tension:0.15}
+      ]},
+      options:{
+        responsive:true,
+        animation:{duration:250},
+        plugins:{ legend:{display:false},
+          tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+fmtInt(ctx.parsed.y)+' Whg.' }}
+        },
+        scales:{
+          x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:{font:{family:'IBM Plex Mono',size:9}} },
+          y:{ ticks:{font:{family:'IBM Plex Mono',size:9}}, grid:{color:'#EAEAE4'} }
+        }
+      }
+    });
+
+    const ctx7b = $('chartTenantSavings').getContext('2d');
+    chartTenantSavings = new Chart(ctx7b, {
+      type:'line',
+      data:{ labels:[], datasets:[
+        {label:'Kumulierte Mieteinsparung', data:[], borderColor:'#2F7D46', backgroundColor:'rgba(47,125,70,0.10)', borderWidth:2, pointRadius:0, fill:true, tension:0.15}
+      ]},
+      options:{
+        responsive:true,
+        animation:{duration:250},
+        plugins:{ legend:{display:false},
+          tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+fmtEUR(ctx.parsed.y) }}
+        },
+        scales:{
+          x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:{font:{family:'IBM Plex Mono',size:9}} },
+          y:{ ticks:{font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v)}, grid:{color:'#EAEAE4'} }
+        }
+      }
+    });
+
+    const ctx8 = $('chartScenarios').getContext('2d');
+    chartScenarios = new Chart(ctx8, {
+      data:{ labels:[], datasets:[
+        {type:'bar', label:'Kaufpreis', data:[], backgroundColor:'#93AECB', yAxisID:'y', order:2},
+        {type:'bar', label:'Nettoergebnis', data:[], backgroundColor:[], yAxisID:'y', order:2},
+        {type:'line', label:'Break-even (Jahr)', data:[], borderColor:'#14171A', backgroundColor:'#14171A', borderWidth:1.5, pointRadius:4, pointBackgroundColor:'#14171A', showLine:false, yAxisID:'y1', order:1}
+      ]},
+      options:{
+        responsive:true,
+        animation:{duration:250},
+        plugins:{ legend:{display:false},
+          tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+(ctx.dataset.label==='Break-even (Jahr)' ? (ctx.parsed.y===null?'kein Break-even':('Jahr '+ctx.parsed.y)) : fmtEUR(ctx.parsed.y)) }}
+        },
+        scales:{
+          x:{ grid:{display:false}, ticks:{font:{family:'IBM Plex Mono',size:9}} },
+          y:{ position:'left', title:{display:true,text:'Kaufpreis / Nettoergebnis',font:{family:'IBM Plex Mono',size:9}}, ticks:{ font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v) }, grid:{color:'#EAEAE4'} },
+          y1:{ position:'right', title:{display:true,text:'Break-even (Jahr)',font:{family:'IBM Plex Mono',size:9}}, ticks:{ font:{family:'IBM Plex Mono',size:9} }, grid:{display:false} }
+        }
+      }
+    });
+
+    const ctx9 = $('chartRateSens').getContext('2d');
+    chartRateSens = new Chart(ctx9, {
+      type:'line',
+      data:{ labels:[], datasets:[
+        {label:'Ø jährlicher Zuschussbedarf', data:[], borderColor:'#B23A34', backgroundColor:'rgba(178,58,52,0.08)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.2}
+      ]},
+      options:{
+        responsive:true,
+        animation:{duration:250},
+        interaction:{mode:'index', intersect:false},
+        plugins:{ legend:{display:false},
+          tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+fmtEUR(ctx.parsed.y*1e6) }},
+          vlineMarker:{ index:null, label:'' }
+        },
+        scales:{
+          x:{ title:{display:true,text:'Zinssatz %',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:{font:{family:'IBM Plex Mono',size:9}} },
+          y:{ title:{display:true,text:'Mio €/Jahr',font:{family:'IBM Plex Mono',size:9}}, ticks:{font:{family:'IBM Plex Mono',size:9}}, grid:{color:'#EAEAE4'} }
+        }
+      }
+    });
+
+    const ctx10 = $('chartCompSens').getContext('2d');
+    chartCompSens = new Chart(ctx10, {
+      data:{ labels:[], datasets:[
+        {type:'line', label:'Nettoergebnis', data:[], borderColor:'#1E3A5F', backgroundColor:'rgba(30,58,95,0.06)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.15, yAxisID:'y'},
+        {type:'line', label:'Break-even (Jahr)', data:[], borderColor:'#A9762C', backgroundColor:'transparent', borderWidth:1.5, borderDash:[4,2], pointRadius:0, tension:0.15, yAxisID:'y1'}
+      ]},
+      options:{
+        responsive:true,
+        animation:{duration:250},
+        interaction:{mode:'index', intersect:false},
+        plugins:{ legend:{display:false},
+          tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+(ctx.dataset.label==='Break-even (Jahr)' ? (ctx.parsed.y===null?'kein Break-even':('Jahr '+ctx.parsed.y)) : fmtEUR(ctx.parsed.y)) }},
+          vlineMarker:{ index:null, label:'' }
+        },
+        scales:{
+          x:{ title:{display:true,text:'Entschädigungsquote %',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:{font:{family:'IBM Plex Mono',size:9}} },
+          y:{ position:'left', title:{display:true,text:'Nettoergebnis',font:{family:'IBM Plex Mono',size:9}}, ticks:{font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v)}, grid:{color:'#EAEAE4'} },
+          y1:{ position:'right', title:{display:true,text:'Break-even (Jahr)',font:{family:'IBM Plex Mono',size:9}}, ticks:{font:{family:'IBM Plex Mono',size:9}}, grid:{display:false} }
+        }
+      }
+    });
+  }
+
+  function render(){
+    readState();
+    updateLabels();
+
+    const result = runScenario(state.price, state);
+
+    // ---- stats ----
+    $('s-kaufpreis').textContent = state.purchaseFactor+' % vom Verkehrswert';
+    $('s-kaufpreis-sub').textContent = fmtInt(state.price*(state.purchaseFactor/100))+' €/m² · '+fmtEUR(result.principal)+' gesamt';
+
+    // ---- verdict banner ----
+    const verdictEl = $('verdictBanner');
+    const isPos = result.netResult >= 0;
+    verdictEl.className = 'verdict '+(isPos ? 'pos' : 'neg');
+    const beText = result.breakEvenYear ? ('Break-even in Jahr '+result.breakEvenYear) : ('kein Break-even innerhalb von '+state.horizon+' Jahren');
+    const modeText = state.mode==='neubau' ? (', dabei wächst der Bestand um '+fmtInt(result.finalUnits-state.units)+' Wohnungen')
+      : state.mode==='sozial' ? (', dabei steigt der Sozialanteil auf '+(result.finalSozial/state.units*100).toLocaleString('de-DE',{maximumFractionDigits:1})+' %')
+      : '';
+    $('verdictText').innerHTML = 'Bei diesen Annahmen: <strong>'+(isPos?'Überschuss':'Defizit')+' von '+fmtEUR(Math.abs(result.netResult))+'</strong> nach '+state.horizon+' Jahren — '+beText+modeText+'.';
+
+    $('s-breakeven').textContent = fmtYear(result.breakEvenYear);
+
+    $('s-netto').textContent = fmtEUR(result.netResult);
+    $('s-netto').className = 'value '+(result.netResult>=0?'pos':'neg');
+    $('s-netto-sub').textContent = 'nach '+state.horizon+' Jahren';
+
+    if(state.mode==='neubau'){
+      const delta = result.finalUnits - state.units;
+      $('s-bestand').textContent = '+'+fmtInt(delta);
+      $('s-bestand-sub').textContent = 'neue Wohnungen';
+    } else if(state.mode==='sozial'){
+      const share = result.finalSozial/state.units*100;
+      $('s-bestand').textContent = share.toLocaleString('de-DE',{maximumFractionDigits:1})+' %';
+      $('s-bestand-sub').textContent = 'Sozialanteil';
+    } else {
+      $('s-bestand').textContent = '—';
+      $('s-bestand-sub').textContent = 'keine Reinvestition';
+    }
+
+    $('cf-caption').textContent = state.financing==='kredit'
+      ? ('nach Schuldendienst · Zinsbindung '+state.rateResetYears+' J., danach +'+state.rateIncrement.toLocaleString('de-DE',{minimumFractionDigits:1})+' pp')
+      : 'kum. NOI − Kaufpreis';
+
+    // ---- combo chart: annual bars + cumulative line ----
+    const labels = result.rows.map(r=>r.t);
+    const cfValues = result.rows.map(r=>r.cashflow);
+    chartCombo.data.labels = labels;
+    chartCombo.data.datasets[0].data = cfValues;
+    chartCombo.data.datasets[0].backgroundColor = cfValues.map(v=> v>=0 ? '#2F7D46' : '#B23A34');
+    chartCombo.data.datasets[1].data = result.rows.map(r=>r.cumForChart);
+    chartCombo.data.datasets[2].data = labels.map(()=>0);
+    if(result.breakEvenYear){
+      chartCombo.options.plugins.vlineMarker.index = result.breakEvenYear-1;
+      chartCombo.options.plugins.vlineMarker.label = 'Break-even (Jahr '+result.breakEvenYear+')';
+    } else {
+      chartCombo.options.plugins.vlineMarker.index = null;
+    }
+    chartCombo.update('none');
+
+    // ---- chart stock (conditional) ----
+    const showStock = state.mode!=='none';
+    $('stockPanelWrap').style.display = showStock ? 'block' : 'none';
+    $('topPanelGrid').classList.toggle('single-col', !showStock);
+    if(showStock){
+      $('stock-title').textContent = state.mode==='neubau' ? 'Bestandsentwicklung (Neubau)' : 'Sozialanteil am Bestand';
+      $('stock-sub').textContent = state.mode==='neubau'
+        ? 'Wachstum des Wohnungsbestands durch Reinvestition des Cashflow-Überschusses in Neubau (Abschnitt 04).'
+        : 'Zunahme des mit Sozialmiete belegten Anteils am Bestand durch Reinvestition des Cashflow-Überschusses (Abschnitt 04).';
+      chartStock.data.labels = labels;
+      if(state.mode==='neubau'){
+        chartStock.data.datasets[0].label = 'Wohnungen gesamt';
+        chartStock.data.datasets[0].data = result.rows.map(r=>Math.round(r.units));
+      } else {
+        chartStock.data.datasets[0].label = 'Sozialwohnungen';
+        chartStock.data.datasets[0].data = result.rows.map(r=>Math.round(r.sozialUnits));
+      }
+      chartStock.update('none');
+    }
+
+    // ---- chart rent level ----
+    chartRent.data.labels = labels;
+    chartRent.data.datasets[0].data = labels.map(t=>state.freeMarketRent*Math.pow(1.03,t-1));
+    chartRent.data.datasets[1].data = labels.map(t=>state.munizRent*Math.pow(1.02,t-1));
+    chartRent.data.datasets[2].data = labels.map(t=>state.baseRent*Math.pow(1+state.cpiGrowth/100,t-1));
+    chartRent.data.datasets[3].data = labels.map(t=>state.baseRent*Math.pow(1+state.incomeGrowth/100,t-1));
+    chartRent.data.datasets[4].data = result.rows.map(r=>r.avgRent);
+    chartRent.update('none');
+
+    // ---- chart Restschuld (conditional on Kredit) ----
+    const showBalance = state.financing==='kredit';
+    $('balancePanelWrap').style.display = showBalance ? 'block' : 'none';
+    if(showBalance){
+      $('balance-caption').textContent = 'Zinsbindung '+state.rateResetYears+' J.';
+      chartBalance.data.labels = labels;
+      chartBalance.data.datasets[0].data = result.rows.map(r=>r.balance);
+      if(state.rateResetYears < state.term && state.rateResetYears < state.horizon){
+        chartBalance.options.plugins.vlineMarker.index = state.rateResetYears;
+        chartBalance.options.plugins.vlineMarker.label = 'Ende Zinsbindung';
+      } else {
+        chartBalance.options.plugins.vlineMarker.index = null;
+      }
+      chartBalance.update('none');
+    }
+
+    // ---- chart Kapitalposition (Vermögenswert Bestand vs. Restschuld) ----
+    chartCapital.data.labels = labels;
+    chartCapital.data.datasets[0].data = result.rows.map(r=>state.price*state.avgSize*r.units);
+    chartCapital.data.datasets[1].data = result.rows.map(r=>r.balance||0);
+    chartCapital.data.datasets[2].data = result.rows.map(r=>r.cumForChart);
+    chartCapital.data.datasets[3].data = result.rows.map(r=>(state.price*state.avgSize*r.units)-(r.balance||0)+r.cumForChart);
+    chartCapital.update('none');
+
+    // ---- chart Zunahme Sozialwohnungen (Vergleichsrechnung, unabhängig vom gewählten Modus) ----
+    const sozialParams = Object.assign({}, state, {mode:'sozial'});
+    const sozialResult = runScenario(state.price, sozialParams);
+    const sozialData = sozialResult.rows.map(r=>Math.round(r.sozialUnits));
+    const sozialMax = Math.max(...sozialData);
+    chartSozial.data.labels = sozialResult.rows.map(r=>r.t);
+    chartSozial.data.datasets[0].data = sozialData;
+    chartSozial.options.scales.y.suggestedMax = state.units;
+    $('sozial-caption').textContent = sozialMax>0
+      ? ('bis zu '+fmtInt(sozialMax)+' Whg. bei vollständiger Reinvestition')
+      : 'kein Cashflow-Überschuss zur Reinvestition bei aktuellen Annahmen';
+    chartSozial.update('none');
+
+    // ---- chart Mieteinsparung für Mieter (kumuliert, aus derselben Sozial-Vergleichsrechnung) ----
+    let cumSavings = 0;
+    const savingsData = sozialResult.rows.map(r=>{
+      const savingPerYear = (r.rent - r.sozialRent) * r.sozialUnits * state.avgSize * 12;
+      cumSavings += savingPerYear;
+      return cumSavings;
+    });
+    chartTenantSavings.data.labels = sozialResult.rows.map(r=>r.t);
+    chartTenantSavings.data.datasets[0].data = savingsData;
+    const totalSavings = savingsData[savingsData.length-1] || 0;
+    $('tenant-caption').textContent = totalSavings>0
+      ? (fmtEUR(totalSavings)+' Einsparung ggü. Marktmiete-Pfad über '+state.horizon+' Jahre')
+      : 'keine Einsparung (keine Umwandlung bei aktuellen Annahmen)';
+    chartTenantSavings.update('none');
+
+    // ---- chart Szenario-Übersicht (4 Voreinstellungen, unabhängig von aktuellen Reglern) ----
+    const presetOrder = [['linke','Linke'],['holm','Holm'],['rechnungshof','Rechnungshof'],['gegenmodell','Gegenmodell'],['wien','Wien']];
+    const presetResults = presetOrder.map(([key,label])=>{
+      const p = Object.assign({}, defaults, presets[key]);
+      const r = runScenario(p.price, p);
+      return {label, principal:r.principal, netResult:r.netResult, breakEvenYear:r.breakEvenYear};
+    });
+    chartScenarios.data.labels = presetResults.map(r=>r.label);
+    chartScenarios.data.datasets[0].data = presetResults.map(r=>r.principal);
+    chartScenarios.data.datasets[1].data = presetResults.map(r=>r.netResult);
+    chartScenarios.data.datasets[1].backgroundColor = presetResults.map(r=>r.netResult>=0?'#2F7D46':'#B23A34');
+    chartScenarios.data.datasets[2].data = presetResults.map(r=>r.breakEvenYear);
+    chartScenarios.update('none');
+
+    // ---- chart Zinssensitivität (bei aktuellen Reglereinstellungen, Zins variiert) ----
+    const rateSteps = [];
+    for(let r=0; r<=7; r+=0.5) rateSteps.push(Math.round(r*10)/10);
+    const rateSubsidy = rateSteps.map(r=>{
+      const p = Object.assign({}, state, {rate:r});
+      const res = runScenario(state.price, p);
+      return res.netResult<0 ? (-res.netResult/state.horizon/1e6) : 0;
+    });
+    chartRateSens.data.labels = rateSteps.map(r=>r.toLocaleString('de-DE',{minimumFractionDigits:1})+' %');
+    chartRateSens.data.datasets[0].data = rateSubsidy;
+    let rateIdx = rateSteps.reduce((best,r,i)=> Math.abs(r-state.rate)<Math.abs(rateSteps[best]-state.rate) ? i : best, 0);
+    chartRateSens.options.plugins.vlineMarker.index = rateIdx;
+    chartRateSens.options.plugins.vlineMarker.label = 'aktuell: '+state.rate.toLocaleString('de-DE',{minimumFractionDigits:1})+' %';
+    chartRateSens.update('none');
+
+    // ---- chart Sensitivität Entschädigungsquote (bei aktuellen Reglereinstellungen, Quote variiert) ----
+    const pfSteps = [];
+    for(let pf=50; pf<=100; pf+=5) pfSteps.push(pf);
+    const pfResults = pfSteps.map(pf=>{
+      const p = Object.assign({}, state, {purchaseFactor:pf});
+      return runScenario(state.price, p);
+    });
+    chartCompSens.data.labels = pfSteps.map(pf=>pf+' %');
+    chartCompSens.data.datasets[0].data = pfResults.map(r=>r.netResult);
+    chartCompSens.data.datasets[1].data = pfResults.map(r=>r.breakEvenYear);
+    let pfIdx = pfSteps.reduce((best,pf,i)=> Math.abs(pf-state.purchaseFactor)<Math.abs(pfSteps[best]-state.purchaseFactor) ? i : best, 0);
+    chartCompSens.options.plugins.vlineMarker.index = pfIdx;
+    chartCompSens.options.plugins.vlineMarker.label = 'aktuell: '+state.purchaseFactor+' %';
+    chartCompSens.update('none');
+
+    // ---- table ----
+    const tbody = $('dataTableBody');
+    tbody.innerHTML = result.rows.map(r=>{
+      const stockCell = state.mode==='sozial' ? fmtInt(r.sozialUnits) : (state.mode==='neubau' ? fmtInt(r.units) : '–');
+      return '<tr><td>'+r.t+'</td><td>'+r.rent.toLocaleString('de-DE',{maximumFractionDigits:2})+'</td>'+
+        '<td>'+r.avgRent.toLocaleString('de-DE',{maximumFractionDigits:2})+'</td>'+
+        '<td>'+fmtEUR(r.income)+'</td><td>'+fmtEUR(r.noi)+'</td><td>'+fmtEUR(r.annuity)+'</td>'+
+        '<td>'+fmtEUR(r.cashflow)+'</td><td>'+fmtEUR(r.cumForChart)+'</td><td>'+stockCell+'</td></tr>';
+    }).join('');
+
+    renderCompareTable();
+  }
+
+  function describeSnapshot(s){
+    const finParts = [s.financing==='kredit' ? ('Kredit '+s.rate+'%') : 'Eigenmittel'];
+    const sozialPaceLabel = s.sozialPace==='fixed' ? (' (fest '+s.sozialPaceRate+'%/J.)') : ' (aus Überschuss)';
+    const modeLabel = s.mode==='neubau' ? 'Neubau' : (s.mode==='sozial' ? ('Sozialumwandlung'+sozialPaceLabel) : 'keine Reinvest.');
+    return finParts[0]+' · '+modeLabel+' · '+s.purchaseFactor+'% Kaufpreis';
+  }
+
+  function renderCompareTable(){
+    const slots = Object.entries(savedScenarios).filter(([k,v])=>v!==null);
+    const wrap = $('comparePanel');
+    if(slots.length===0){ wrap.style.display='none'; return; }
+    wrap.style.display='block';
+
+    const headRow = $('compareHeadRow');
+    headRow.innerHTML = '<th style="text-align:left;">Kennzahl</th><th>Aktuell</th>'+
+      slots.map(([k,v])=>'<th>'+(v.label||('Szenario '+k))+'</th>').join('');
+
+    const currentResult = runScenario(state.price, state);
+    const results = [ {label:'Aktuell', s:state, r:currentResult} ].concat(
+      slots.map(([k,v])=>({label:v.label||('Szenario '+k), s:v, r: runScenario(v.price, v)}))
+    );
+
+    const rowsDef = [
+      ['Konfiguration', r=>describeSnapshot(r.s)],
+      ['Kaufpreis (Basis)', r=>fmtEUR(r.r.principal)],
+      ['Break-even (Basis)', r=>fmtYear(r.r.breakEvenYear)],
+      ['Nettoergebnis (Basis)', r=>fmtEUR(r.r.netResult)],
+      ['Bestandseffekt (Basis)', r=>{
+        if(r.s.mode==='neubau') return '+'+fmtInt(r.r.finalUnits-r.s.units)+' Whg.';
+        if(r.s.mode==='sozial') return (r.r.finalSozial/r.s.units*100).toLocaleString('de-DE',{maximumFractionDigits:1})+'% sozial';
+        return '–';
+      }]
+    ];
+
+    const body = $('compareBody');
+    body.innerHTML = rowsDef.map(([label, fn])=>{
+      return '<tr><td style="text-align:left;color:var(--ink);">'+label+'</td>'+
+        results.map(r=>'<td>'+fn(r)+'</td>').join('')+'</tr>';
+    }).join('');
+  }
+
+  // ---- events ----
+  sliderIds.forEach(id=>{
+    $(id).addEventListener('input', render);
+  });
+
+  // Ruecklaeufige Bindung: "pro Wohnung"-Zweitfeld editieren -> €/m²-Regler + state aktualisieren.
+  // Gerundet/geclamped auf den erlaubten Bereich des zugehoerigen Reglers, damit beide Felder
+  // immer denselben (ggf. geclampten) Wert zeigen -- nie stillschweigend auseinanderlaufen.
+  perUnitFields.forEach(({key})=>{
+    const el = $(key+'PerUnit');
+    const slider = $(key);
+    el.addEventListener('input', ()=>{
+      const entered = +el.value;
+      if(!isFinite(entered) || state.avgSize<=0) return;
+      let raw = entered/state.avgSize;
+      const min = +slider.min, max = +slider.max, step = +slider.step || 1;
+      raw = Math.min(max, Math.max(min, raw));
+      raw = Math.round(raw/step)*step;
+      raw = Math.round(raw*1000)/1000; // Gleitkomma-Reste vermeiden
+      slider.value = raw;
+      render();
+    });
+  });
+  $('mode').addEventListener('change', render);
+  document.querySelectorAll('#seg-financing button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('#seg-financing button').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      state.financing = btn.dataset.val;
+      render();
+    });
+  });
+  document.querySelectorAll('#seg-opexmode button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('#seg-opexmode button').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      state.opexMode = btn.dataset.val;
+      render();
+    });
+  });
+  document.querySelectorAll('#seg-sozialpace button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('#seg-sozialpace button').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      state.sozialPace = btn.dataset.val;
+      render();
+    });
+  });
+  function applyState(overrides){
+    state = Object.assign({}, defaults, overrides);
+    sliderIds.forEach(id=>{ $(id).value = state[id]; });
+    $('mode').value = state.mode;
+    document.querySelectorAll('#seg-financing button').forEach(b=>b.classList.toggle('active', b.dataset.val===state.financing));
+    document.querySelectorAll('#seg-opexmode button').forEach(b=>b.classList.toggle('active', b.dataset.val===state.opexMode));
+    document.querySelectorAll('#seg-sozialpace button').forEach(b=>b.classList.toggle('active', b.dataset.val===state.sozialPace));
+    render();
+  }
+
+  $('resetBtn').addEventListener('click', ()=>applyState({}));
+
+  $('printBtn').addEventListener('click', ()=>{
+    document.querySelectorAll('details.panel').forEach(d => d.open = true);
+    window.print();
+  });
+
+  const presets = {
+    linke: {
+      // Faire-Mieten-Modell (Holm et al. / DWE-Papier): ~14 Mrd € bei 3,70 €/m² Zielmiete
+      price: 897, purchaseFactor: 100,
+      financing: 'kredit', rate: 3.5, riskPremium: 0, term: 30, rateResetYears: 30, rateIncrement: 0,
+      baseRent: 3.70, rentGrowth: 0.5, costInflation: 2.5,
+      opexMode: 'percent', opex: 40, mode: 'none'
+    },
+    holm: {
+      // Bernt & Holm 2023: Ist-Miete-Modell (~24 Mrd €), Mietsenkung auf Landeseigenen-Niveau 6,29 €/m²
+      price: 1538, purchaseFactor: 100,
+      financing: 'kredit', rate: 3.5, riskPremium: 0, term: 30, rateResetYears: 30, rateIncrement: 0,
+      baseRent: 6.29, rentGrowth: 1.5, costInflation: 2.0,
+      opexMode: 'percent', opex: 35, mode: 'none'
+    },
+    rechnungshof: {
+      // Rechnungshof Berlin 2024: verkehrswertorientiert (~32,5 Mrd €), Bewirtschaftungskosten absolut 2,20 €/m²
+      price: 2085, purchaseFactor: 100,
+      financing: 'kredit', rate: 3.5, riskPremium: 0, term: 30, rateResetYears: 10, rateIncrement: 1.0,
+      baseRent: 6.71, rentGrowth: 1.5, costInflation: 2.0,
+      opexMode: 'absolute', opexAbsolute: 2.20, mode: 'none'
+    },
+    gegenmodell: {
+      // IW Köln/Empirica 2026 (Bankengutachten): verkehrswertnah + Risikoprämie/Kapitalflucht-These
+      price: 2085, purchaseFactor: 100,
+      financing: 'kredit', rate: 3.5, riskPremium: 0.5, term: 30, rateResetYears: 5, rateIncrement: 2.0,
+      baseRent: 7.63, rentGrowth: 1.5, costInflation: 3.0,
+      opexMode: 'percent', opex: 40, mode: 'none'
+    },
+    wien: {
+      // Vergleichsfall Wien/Gemeindebau: gleiche Basisannahmen wie Rechnungshof, aber Opex 60% statt 40%
+      // (AEI/Social Europe: Bewirtschaftungskosten des Wiener Gemeindebaus ca. 60% der Mieteinnahmen, Altbestand)
+      price: 2085, purchaseFactor: 100,
+      financing: 'kredit', rate: 3.5, riskPremium: 0, term: 30, rateResetYears: 10, rateIncrement: 1.0,
+      baseRent: 7.63, rentGrowth: 1.5, costInflation: 2.5,
+      opexMode: 'percent', opex: 60, mode: 'none'
+    }
+  };
+
+  document.querySelectorAll('.preset-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>applyState(presets[btn.dataset.preset]));
+  });
+
+  function saveSlot(key, labelInputId){
+    readState();
+    const labelVal = $(labelInputId).value.trim();
+    savedScenarios[key] = Object.assign({}, state, { label: labelVal || ('Szenario '+key) });
+    render();
+  }
+  $('saveA').addEventListener('click', ()=>saveSlot('A','labelA'));
+  $('saveB').addEventListener('click', ()=>saveSlot('B','labelB'));
+
+  initCharts();
+  render();
+})();
+</script>
+</body>
+</html>

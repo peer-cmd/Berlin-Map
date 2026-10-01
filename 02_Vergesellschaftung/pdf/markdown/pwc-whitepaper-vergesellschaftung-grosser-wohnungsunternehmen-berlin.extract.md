@@ -1,0 +1,22 @@
+# Extraction — PwC-affiliated whitepaper: "Vergesellschaftung großer Wohnungsunternehmen in Berlin" (Heim/Hackelberg)
+
+Source: `pdf/pwc-whitepaper-vergesellschaftung-grosser-wohnungsunternehmen-berlin.pdf` → markdown (10 pages). By Dr. Harald Heim and Prof. Dr. Michael Hackelberg; commissioning organization not stated on the title/summary pages fetched (page 9–10 source list not fully reviewed — check for an Auftraggeber/disclosure line before citing this as independent). Dated by internal citations to May 2026 ("abgerufen am: 05. Mai 2026"). A critical/skeptical economic analysis of the 26.09.2025 DWE draft law, structurally similar in stance to the IW Köln/Empirica (2026) "Gegenmodell" already in the corpus, but newer, differently authored, and focused more on financing/banking and international-investor channels than on the state-budget angle IW Köln/Empirica emphasizes.
+
+## Data
+
+- **Confirms key 2025 draft-law parameters** (citing the law and its factsheet directly, footnotes 1–2): compensation at **40–60 % of Verkehrswert**, paid via **100-year Schuldverschreibungen at 3,5 % p. a.**, total **14,5–17,0 Mrd. €**, covering **≈220.000 Wohnungen**. DWE's own claim (per this paper): fully refinanceable from ongoing rental income, without rent increases or additional Landeshaushalt funds.
+- **Bestandsmieten comparison (S. 4, "Abbildung 1"):** 7 landeseigene Gesellschaften Ø 6,82 €/m² (range 6,65–7,18); 2 large private holders (Adler Group, Vonovia) Ø 8,39 €/m² (8,17/8,62); city-wide average Angebotsmiete (new-letting) 16,25 €/m² (IBB Wohnungsmarktbericht 2025). Source basis: FY2024/FY2025 annual reports/investor presentations, individually footnoted per company.
+- **Core argument:** compensation below market value could push heavily leveraged landlords' liabilities above assets (technical insolvency risk); extinguishing existing Grundpfandrechte (mortgage liens) removes banks' collateral, which the paper argues would raise financing costs market-wide, not just for the affected companies; the broader claim is that socialization reduces new housing supply (deterred investment) rather than solving the underlying scarcity, and could raise rents medium-term even as some existing tenants see short-term relief.
+- **New building rents context (S. 4–5):** even landeseigene Gesellschaften let new-build units at 9,15–15,00 €/m², well above their own Bestandsmieten — cited to argue high construction costs, not ownership structure, are the binding constraint on affordable new supply.
+- **International-investor angle (S. 7):** cites Scandinavian pension/sovereign-wealth ownership stakes in the affected companies and argues a below-market, non-cash expropriation could raise Germany's country-level risk premium for real-estate investment generally, not just in Berlin.
+
+## Caveats / what to verify before citing in the model
+
+- **Authorship/funding not yet confirmed** — unlike IW Köln/Empirica (whose bank funders are stated on the title page), this document's commissioning body wasn't visible in the pages reviewed here; check the full source list (S. 9–10) or the PDF's metadata before treating it as equivalent in transparency to the IW Köln/Empirica source.
+- Several claims here (compensation-percentage-driven insolvency, market-wide financing-cost spillover) are argued, not modeled with a disclosed methodology in the excerpt reviewed — treat as an opinionated economic argument (like IW Köln/Empirica), not as a third independent quantitative estimate on the same footing as the Rechnungshof or Expertenkommission.
+
+## Relational / modeling relevance
+
+- A second, more recent skeptical/bank-and-investor-perspective source alongside IW Köln/Empirica (2026) — could either be folded into that preset's supporting citations or treated as a distinct fifth viewpoint, depending on how Peer wants to represent "the critical case" going forward.
+- Its Bestandsmieten figures (6,82 landeseigen / 8,39 privat) are more recent (FY2024/2025) than the model's current Bernt/Holm-sourced defaults (6,29 / 7,63, based on ~2021–2022 data) — worth a look if the model's rent defaults are ever refreshed, though not the same methodology (this paper's figures are per-company self-reported, Bernt/Holm's are a research aggregation).
+- Directly documents the concrete parameters of the 26.09.2025 DWE draft law (see the companion extract for that PDF) — cross-reference rather than duplicate.
