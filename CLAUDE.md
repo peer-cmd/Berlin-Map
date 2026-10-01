@@ -24,3 +24,13 @@ MapLibre map of Berlin for architectural and urban research. Phase 1 (Bodenricht
 - BRW WFS: `https://gdi.berlin.de/services/wfs/brw2026`, type `brw2026:brw2026_vector`, 1623 features, EPSG:4326 requested, licence dl-de-zero-2.0.
 - B-Plan WFS: `https://gdi.berlin.de/services/wfs/bplan`, types `bplan:b_bp_fs` (2846), `a_bp_iv`, `c_bp_ak`.
 - Basemap: OpenFreeMap positron style (no key). CARTO tiles need an API key; do not use them.
+
+## 02_Vergesellschaftung (separate project)
+
+Static site: cost and financing model for the socialisation of large Berlin housing companies (Art. 15 GG). German-language content.
+
+- Edit `vergesellschaftung-modell-v37.html`, then run `python3 build_kompakt.py`; `modell-kompakt.html` is generated.
+- Edit `quellenbelege.md`, then run `python3 build_quellenbelege.py`; `quellenbelege.html` is generated.
+- Model logic and presets: `model-calc.js`. Shared glossary and timeline text: `content.js` (loaded by `include.js`, works from file://).
+- Chart.js 4.4.0 is vendored in `vendor/`. Primary sources are PDFs in `pdf/` with Markdown extractions in `pdf/markdown/`.
+- Every number needs a source with page in `quellenbelege.md`; quote verbatim only from the original PDF. Log changes in `entwicklungsprotokoll.md`.

@@ -158,3 +158,15 @@ Auf Wunsch als eigenständiges fünftes Preset umgesetzt (Alternative zu Update 
 
 **Noch offen:**
 - `quellenbelege.md` Abschnitt 2 meldet „noch in v37 zu präzisieren" für 29–36 vs. 29–39; v37 trennt beides inzwischen (Abschnitt „Entschädigungsspanne"). Status in der .md nachziehen.
+
+## 2026-10-01 (Teil 2) — Aufräumen: Modelltext, Seitenstruktur, Quellenbelege, Dateien
+
+**Geändert:**
+- v37: Szenario-Übersicht „5 Voreinstellungen"/„fünf"; Liste „Entschädigungsspanne" um DWE-Gesetzentwurf 2025 ergänzt; Sondervotum wie in Glossar/Zahlen beschrieben (Verkehrswert als Ausgangspunkt, enge Abschläge; „> 36 Mrd. €, vergleichswertorientiert" entfernt, da ohne Beleg); Spaltenlabel „Hintergründen" → „Hintergrund"; Neuvertragsmiete 15,80 €/m² und „IW Köln — Refinanzierungsrisiken" als ungeprüft gekennzeichnet; Modell-Stand September 2026. Die Kommissionskritik am Rechnungshof stand bereits im Modelltext (Status in `quellenbelege.md` war veraltet).
+- `build_kompakt.py` (neu) erzeugt `modell-kompakt.html` aus v37 (ohne Hintergrundspalte). Nur noch v37 bearbeiten, dann Skript ausführen.
+- Chart.js 4.4.0 lokal unter `vendor/chart.umd.js` (MIT, Lizenz in `vendor/chart.js-LICENSE.md`), statt CDN.
+- Navigation auf allen Seiten um „Quellenbelege" ergänzt; Übersicht listet alle Seiten; Stand Oktober 2026.
+- `quellenbelege.md` auf Belege reduziert. Entfernte Prüfstatus-Notizen (alle erledigt): 29–36/29–39 in v37 getrennt; Sondervotum in v37 präzisiert; Kommissionskritik in v37 vorhanden; Rechnungshof-Zitate S. 23 am Original-PDF bestätigt (die Web-Fetch-Fassung hatte S. 16 und S. 23 vermischt — wörtliche Zitate nur aus Original-PDFs übernehmen); 897/1.538 €/m² durch einheitlich 2.085 €/m² ersetzt.
+- Gelöscht: `pdf/test_write.txt`, themenfremder Rechnungshof-Bericht `pdf/2026_beratungsbericht_zuwendungen_senkultgz_gesamt.pdf` samt Markdown-Extraktion.
+- `My Collection_All.bib` bleibt im Projektordner (Pfad in `Bibliography/scripts/corpus_search.py` erwartet).
+- Regler Verkehrswert: Schrittweite 20 → 5 €/m². Bei Schritt 20 (ab 500) rastete 2.085 auf 2.080 ein; alle Presets rechneten dadurch mit 2.080 statt 2.085 €/m² (32,45 statt 32,53 Mrd. € bei 100 %).

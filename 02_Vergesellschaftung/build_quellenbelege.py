@@ -33,6 +33,7 @@ PAGE = """<!DOCTYPE html>
     <a href="modell-kompakt.html">Modell (kompakt)</a>
     <a href="zahlen.html">Die Zahlen erklärt</a>
     <a href="glossar.html">Glossar</a>
+    <a href="quellenbelege.html" class="active">Quellenbelege</a>
   </nav>
 
   <div class="masthead">

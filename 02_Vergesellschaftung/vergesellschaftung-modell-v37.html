@@ -6,7 +6,7 @@
 <title>Kosten- und Finanzierungsmodell der Vergesellschaftung Berlin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script src="vendor/chart.umd.js"></script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,6 +18,7 @@
     <a href="modell-kompakt.html">Modell (kompakt)</a>
     <a href="zahlen.html">Die Zahlen erklärt</a>
     <a href="glossar.html">Glossar</a>
+    <a href="quellenbelege.html">Quellenbelege</a>
   </nav>
 
   <div class="masthead">
@@ -62,7 +63,7 @@
         </div>
         <div class="field">
           <div class="field-row"><label>Verkehrswert/m²</label><span class="val" id="v-price">2.085 €/m²</span></div>
-          <input type="range" id="price" min="500" max="5000" step="20" value="2085">
+          <input type="range" id="price" min="500" max="5000" step="5" value="2085">
           <div class="hint">Gesamtwert = Wohnungen × Größe × Verkehrswert/m² → <span id="v-totalDerived">32,5 Mrd €</span></div>
           <div class="linked-row">
             <label class="linked-label">≈ pro Wohnung</label>
@@ -170,7 +171,7 @@
         <div class="field">
           <div class="field-row"><label>Referenz: freier Markt</label><span class="val" id="v-freeMarketRent">15,80 €/m²</span></div>
           <input type="range" id="freeMarketRent" min="8" max="25" step="0.1" value="15.8">
-          <div class="hint">Neuvertragsmiete Berlin, Wachstum fix 3,0 %/Jahr angenommen (Berlin Hyp/CBRE 2026)</div>
+          <div class="hint">Neuvertragsmiete Berlin, Wachstum fix 3,0 %/Jahr angenommen (Berlin Hyp/CBRE 2026; Quelle nicht im Projektordner, Wert nicht geprüft)</div>
         </div>
         <div class="field">
           <div class="field-row"><label>Referenz: kommunale WoGes.</label><span class="val" id="v-munizRent">6,29 €/m²</span></div>
@@ -366,9 +367,9 @@
       <div class="panel">
         <div class="panel-head">
           <h2>Szenario-Übersicht</h2>
-          <span class="caption">4 Voreinstellungen im Vergleich</span>
+          <span class="caption">5 Voreinstellungen im Vergleich</span>
         </div>
-        <p class="panel-sub">Kaufpreis und Nettoergebnis nach Horizont (links, Mrd €) sowie Break-even-Jahr (rechts) für die vier Voreinstellungen aus Abschnitt 00 — unabhängig von den aktuellen Reglereinstellungen.</p>
+        <p class="panel-sub">Kaufpreis und Nettoergebnis nach Horizont (links, Mrd €) sowie Break-even-Jahr (rechts) für die fünf Voreinstellungen aus Abschnitt 00 — unabhängig von den aktuellen Reglereinstellungen.</p>
         <canvas id="chartScenarios" height="80"></canvas>
         <div class="legend">
           <span><i class="swatch" style="background:var(--blue-light)"></i>Kaufpreis</span>
@@ -478,7 +479,7 @@
 
   <div class="bg-col"><div class="bg-page">
 
-    <p class="group-title">Hintergründen</p>
+    <p class="group-title">Hintergrund</p>
 
     <div class="jump-nav">
       <a href="#section-einfuehrung">Einführung</a>
@@ -517,7 +518,8 @@
       <li><strong>Faire-Mieten-Modell (DWE-Initiative, Gerhardt/Holm)</strong> — ≈ 14 Mrd. €. Entschädigung finanzierbar bei Miete 3,70 €/m² (Mietbelastung an der Armutsgrenze, 30 % des Einkommens).</li>
       <li><strong>Ist-Miete-Modell (Bernt/Holm 2023)</strong> — ≈ 24 Mrd. €. Entschädigung finanzierbar bei Ist-Miete auf Landeseigenen-Niveau, 6,29 €/m².</li>
       <li><strong>Landesschätzung / BBU 2019</strong> — ≈ 29–36 Mrd. €. Ertragswertverfahren, verkehrswertnah.</li>
-      <li><strong>Volle Verkehrswert-Position (Sondervotum)</strong> — &gt; 36 Mrd. €. Vergleichswert-orientiert, ggf. mit Abschlägen. Nicht offiziell beziffert.</li>
+      <li><strong>DWE-Gesetzentwurf 2025</strong> — 14,5–17,0 Mrd. € für ≈ 220.000 Wohnungen, 40–60 % vom Verkehrswert; Sachwertverfahren, Zahlung über 100-jährige Schuldverschreibungen (PwC-Whitepaper, Fn. 1–2).</li>
+      <li><strong>Sondervotum der Expertenkommission (3 von 13 Mitgliedern)</strong> — Verkehrswert als zwingender Ausgangspunkt, Abschläge etwa wegen Sozialbindung nur in engem Rahmen (Abschlussbericht, S. 16, 124 f.). Nicht offiziell beziffert.</li>
     </ul>
 
     <h3>Bernt &amp; Holm (2023): Vergesellschaftung senkt die Miete</h3>
@@ -548,10 +550,10 @@
       <li>Deutsche Wohnen &amp; Co enteignen — „Was kostet Vergesellschaftung" (Berechnungsgrundlage Holm et al.)</li>
       <li>IW Köln &amp; Empirica (2026) — „Auswirkungen der Vergesellschaftung privater Wohnungsunternehmen in Berlin" (Deschermeier/Voigtländer, Simons), im Auftrag Berliner Sparkasse/Volksbank/DKB/IBB</li>
       <li>Gutachterausschuss für Grundstückswerte in Berlin — Liegenschaftszinssätze 2025, Kaufpreisstatistik H1/2025</li>
-      <li>Berlin Hyp / CBRE — Wohnmarktreport Berlin 2026</li>
+      <li>Berlin Hyp / CBRE — Wohnmarktreport Berlin 2026 (nicht im Projektordner, nicht geprüft)</li>
       <li>BKI / Statistisches Bundesamt (Destatis) — Baupreisindex Wohngebäude 2025/26</li>
       <li>Marktdaten Baufinanzierung (Finanztip, Dr. Klein, Baufi24) — Bauzinsen Stand Juli 2026</li>
-      <li>IW Köln — Gutachten zu Refinanzierungsrisiken einer Vergesellschaftung</li>
+      <li>IW Köln — Gutachten zu Refinanzierungsrisiken einer Vergesellschaftung (Titel und Jahr nicht angegeben, nicht im Projektordner)</li>
     </ul>
     <p>Alle Parameter sind Modellannahmen, keine amtlichen Festlegungen. Die Entschädigungshöhe für eine Vergesellschaftung nach Art. 15 GG ist rechtlich ungeklärt (BVerfG-Klärung steht aus). Referenzwerte (Stand: Juli 2026): Bestandsmiete landeseigene Wohnungsgesellschaften Berlin &lt;7,50 €/m², Neuvertragsmiete ⌀15,80 €/m² (Berlin Hyp/CBRE Wohnmarktreport 2026); Baukosten Neubau 3.300–3.800 €/m² (BKI/Destatis 2025); Bauzinsen 10 Jahre fest 3,6–4,0 % (Marktdaten Juli 2026). Finanzierungskorridor 10–17 Mrd. € (Holm/Thonke, DWE Nov. 2025); Sanierungskosten-Bandbreite 660–1.600 €/m² (IW Consult 2024). Integrationskosten-Größenordnung ist eine grobe Analogie aus allgemeiner M&amp;A-Literatur, nicht wohnungswirtschaftsspezifisch belegt.</p>
 
@@ -562,7 +564,7 @@
     <p><strong>Impressum</strong> — Angaben gemäß § 5 TMG: Peer Frantzen, Kirchstr. 19, 10557 Berlin · Kontakt: <a href="mailto:peerfrantzen@gmail.com">peerfrantzen@gmail.com</a> · Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV: Peer Frantzen (Anschrift wie oben).</p>
   </div>
 
-  <div class="colophon">Modell-Stand: Juli 2026</div>
+  <div class="colophon">Modell-Stand: September 2026</div>
 
 </div>
 
