@@ -1,0 +1,95 @@
+{
+  "map": {
+    "center": [13.405, 52.52],
+    "zoom": 10.3,
+    "minZoom": 8.5,
+    "maxZoom": 19,
+    "maxBounds": [[12.6, 52.1], [14.2, 52.9]]
+  },
+  "basemap": {
+    "background": "#f2f1ed",
+    "base": {
+      "id": "carto-light-nolabels",
+      "tiles": ["https://a.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png",
+                "https://b.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png",
+                "https://c.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png"],
+      "tileSize": 256,
+      "maxzoom": 20
+    },
+    "labels": {
+      "id": "carto-light-labels",
+      "tiles": ["https://a.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png",
+                "https://b.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png",
+                "https://c.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png"],
+      "tileSize": 256,
+      "maxzoom": 20
+    },
+    "attribution": "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap contributors</a> &copy; <a href=\"https://carto.com/attributions\">CARTO</a>"
+  },
+  "layers": [
+    {
+      "id": "brw2026",
+      "title": "Bodenrichtwerte 01.01.2026",
+      "enabled": true,
+      "phase": 1,
+      "source": {
+        "type": "wfs",
+        "base_url": "https://gdi.berlin.de/services/wfs/brw2026",
+        "version": "2.0.0",
+        "type_name": "brw2026:brw2026_vector",
+        "output_format": "application/json",
+        "srs_name": "EPSG:4326",
+        "dataset_page": "https://daten.berlin.de/datensaetze/bodenrichtwerte-01-01-2026-wfs-0933be9c"
+      },
+      "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+      "license": {
+        "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+        "id": "dl-de-zero-2.0",
+        "url": "https://www.govdata.de/dl-de/zero-2-0"
+      },
+      "process": {
+        "id_field": "brwid",
+        "sort": "area_desc"
+      },
+      "style": {
+        "kind": "step",
+        "property": "brw",
+        "unit": "€/m²",
+        "breaks": [10, 100, 250, 500, 1000, 2500, 5000, 10000],
+        "colors": ["#f3efe6", "#e7dcc4", "#dbc29a", "#d2a574", "#c4814f", "#a85a3a", "#82382f", "#5a1f2a", "#34111d"],
+        "fill_opacity": 0.78,
+        "outline": "#2a2a2a"
+      },
+      "popup": {
+        "title": {"key": "brw", "format": "eur"},
+        "fields": [
+          {"key": "stichtag", "label": "Reference date (Stichtag)", "format": "date"},
+          {"key": "nutzung", "label": "Use (Art der Nutzung)"},
+          {"key": "gfz", "label": "Floor-area ratio (wertrelevante GFZ)", "format": "number"},
+          {"key": "bezirk", "label": "District (Bezirk)"},
+          {"key": "brwid", "label": "Zone no. (Bodenrichtwertnummer)"},
+          {"key": "beitragszustand", "label": "Contribution status (Beitragsrechtlicher Zustand)"},
+          {"key": "anwert", "label": "Redevelopment supplement (Sanierungs-/Entwicklungszusatz)"},
+          {"key": "verfahrensart", "label": "Procedure (Verfahrensart)"},
+          {"key": "lumnum", "label": "GFZ conversion coefficients", "format": "link", "link_text": "Gutachterausschuss"}
+        ]
+      }
+    },
+    {
+      "id": "bplan_festgesetzt",
+      "title": "B-Pläne, festgesetzt",
+      "enabled": false,
+      "phase": 2,
+      "source": {
+        "type": "wfs",
+        "base_url": "https://gdi.berlin.de/services/wfs/bplan",
+        "version": "2.0.0",
+        "type_name": "bplan:b_bp_fs",
+        "output_format": "application/json",
+        "srs_name": "EPSG:4326"
+      },
+      "notes": "Not implemented. Verified: service responds, 2846 features, attributes planid, planname, planartname, verfahrensart, bezirk, bp_rechtsstand, festsg_am, url_www, scan_www, inhalt, among others. Geometry type declared as generic GeometryPropertyType; license and style still to be checked.",
+      "process": {"id_field": "planid", "sort": "area_desc"}
+    }
+  ]
+}

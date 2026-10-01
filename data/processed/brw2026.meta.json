@@ -1,0 +1,53 @@
+{
+  "layer_id": "brw2026",
+  "title": "Bodenrichtwerte 01.01.2026",
+  "processed_utc": "2026-10-01T08:09:44Z",
+  "feature_count": 1623,
+  "skipped": {},
+  "warnings": [],
+  "stats": {
+    "property": "brw",
+    "min": 0.6,
+    "max": 60000,
+    "median": 480,
+    "p05": 3.8,
+    "p95": 4000
+  },
+  "output_bytes": 5475609,
+  "provenance": {
+    "layer_id": "brw2026",
+    "title": "Bodenrichtwerte 01.01.2026",
+    "retrieved_utc": "20261001T080942Z",
+    "request_urls": {
+      "capabilities": "https://gdi.berlin.de/services/wfs/brw2026?service=WFS&version=2.0.0&request=GetCapabilities",
+      "hits": "https://gdi.berlin.de/services/wfs/brw2026?service=WFS&version=2.0.0&request=GetFeature&typeNames=brw2026:brw2026_vector&resultType=hits",
+      "data": "https://gdi.berlin.de/services/wfs/brw2026?service=WFS&version=2.0.0&request=GetFeature&typeNames=brw2026:brw2026_vector&outputFormat=application/json&srsName=EPSG:4326"
+    },
+    "service_base_url": "https://gdi.berlin.de/services/wfs/brw2026",
+    "type_name": "brw2026:brw2026_vector",
+    "wfs_version": "2.0.0",
+    "requested_srs": "EPSG:4326",
+    "response_crs": {
+      "type": "name",
+      "properties": {
+        "name": "urn:ogc:def:crs:EPSG::4326"
+      }
+    },
+    "feature_count": 1623,
+    "raw_file": "brw2026_20261001T080942Z.geojson",
+    "raw_bytes": 6548110,
+    "raw_sha256": "03dc5ec22a3ceeaa71cfbb921a8fc152b7effa3e9c956294045c07bd641a4b38",
+    "service_server_timestamp": "2026-10-01T08:09:44.368Z",
+    "service_title": "Bodenrichtwerte 01.01.2026",
+    "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+    "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen.",
+    "dataset_page": "https://daten.berlin.de/datensaetze/bodenrichtwerte-01-01-2026-wfs-0933be9c",
+    "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+    "license": {
+      "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+      "id": "dl-de-zero-2.0",
+      "url": "https://www.govdata.de/dl-de/zero-2-0"
+    }
+  },
+  "provenance_file": "brw2026_20261001T080942Z.provenance.json"
+}

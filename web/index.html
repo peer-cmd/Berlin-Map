@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Berlin Research Map</title>
+<link rel="stylesheet" href="vendor/maplibre-gl.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="map"></div>
+<aside id="panel">
+  <h1>Berlin Research Map</h1>
+  <section>
+    <h2>Layers</h2>
+    <div id="toggles"></div>
+  </section>
+  <section id="legend-section" hidden>
+    <h2 id="legend-title"></h2>
+    <div id="legend-unit"></div>
+    <div id="legend"></div>
+  </section>
+  <section id="source">
+    <h2>Source</h2>
+    <div id="source-text"></div>
+  </section>
+</aside>
+<div id="banner" role="alert" hidden></div>
+<script src="vendor/maplibre-gl.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
