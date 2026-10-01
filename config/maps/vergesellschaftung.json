@@ -1,8 +1,8 @@
 {
-  "id": "research",
+  "id": "vergesellschaftung",
   "title": {
-    "de": "Berlin – Forschungskarte",
-    "en": "Berlin Research Map"
+    "de": "Vergesellschaftung – Karte",
+    "en": "Socialisation – map"
   },
   "lang": "de",
   "view": {
@@ -28,29 +28,6 @@
   "groups": [
     {
       "title": {
-        "de": "Bodenwerte und Wohnungsmarkt",
-        "en": "Land values and housing market"
-      },
-      "layers": [
-        {
-          "source": "brw2026",
-          "views": [
-            "brw",
-            "nutzung",
-            "gfz"
-          ],
-          "visible": true,
-          "opacity": 0.78
-        },
-        {
-          "source": "wohnatlas2022",
-          "visible": false,
-          "opacity": 0.85
-        }
-      ]
-    },
-    {
-      "title": {
         "de": "Eigentum",
         "en": "Ownership"
       },
@@ -65,7 +42,7 @@
             "jur_pers",
             "sozvermiet"
           ],
-          "visible": false,
+          "visible": true,
           "opacity": 0.85
         },
         {
@@ -84,7 +61,7 @@
         {
           "source": "erhaltungsgebiete",
           "render": "outline",
-          "visible": false
+          "visible": true
         },
         {
           "source": "vorkaufsrecht",
@@ -110,8 +87,8 @@
     },
     {
       "title": {
-        "de": "Stadtentwicklungsplanung",
-        "en": "Urban development planning"
+        "de": "Wohnungsbau",
+        "en": "Housing construction"
       },
       "layers": [
         {
@@ -123,6 +100,27 @@
           "source": "step_wohnen_quartiere",
           "visible": false,
           "opacity": 0.8
+        }
+      ]
+    },
+    {
+      "title": {
+        "de": "Wohnungsmarkt",
+        "en": "Housing market"
+      },
+      "layers": [
+        {
+          "source": "wohnatlas2022",
+          "visible": false,
+          "opacity": 0.85
+        },
+        {
+          "source": "brw2026",
+          "views": [
+            "brw"
+          ],
+          "visible": false,
+          "opacity": 0.78
         }
       ]
     },

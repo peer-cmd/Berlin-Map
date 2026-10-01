@@ -1,0 +1,60 @@
+{
+  "layer_id": "mss2025",
+  "title": "Monitoring Soziale Stadtentwicklung 2025",
+  "retrieved_utc": "20261001T095204Z",
+  "wfs_version": "2.0.0",
+  "requested_srs": "EPSG:4326",
+  "request_urls": {
+    "capabilities": "https://gdi.berlin.de/services/wfs/mss_2025?service=WFS&version=2.0.0&request=GetCapabilities",
+    "hits": "https://gdi.berlin.de/services/wfs/mss_2025?service=WFS&version=2.0.0&request=GetFeature&typeNames=mss_2025:mss2025_indizes_542&resultType=hits",
+    "data": "https://gdi.berlin.de/services/wfs/mss_2025?service=WFS&version=2.0.0&request=GetFeature&typeNames=mss_2025:mss2025_indizes_542&outputFormat=application/json&srsName=EPSG:4326"
+  },
+  "service_base_url": "https://gdi.berlin.de/services/wfs/mss_2025",
+  "type_name": "mss_2025:mss2025_indizes_542",
+  "response_crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:EPSG::4326"
+    }
+  },
+  "feature_count": 542,
+  "raw_file": "mss2025_20261001T095204Z.geojson",
+  "raw_bytes": 5393580,
+  "raw_sha256": "9c3438d86d2f173ec55af509e8de503070e51e4d73080f391e487babe15966e8",
+  "service_server_timestamp": "2026-10-01T09:52:07.820Z",
+  "service_title": "Monitoring Soziale Stadtentwicklung (MSS) 2025",
+  "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+  "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen.",
+  "parts": [
+    {
+      "request_urls": {
+        "capabilities": "https://gdi.berlin.de/services/wfs/mss_2025?service=WFS&version=2.0.0&request=GetCapabilities",
+        "hits": "https://gdi.berlin.de/services/wfs/mss_2025?service=WFS&version=2.0.0&request=GetFeature&typeNames=mss_2025:mss2025_indizes_542&resultType=hits",
+        "data": "https://gdi.berlin.de/services/wfs/mss_2025?service=WFS&version=2.0.0&request=GetFeature&typeNames=mss_2025:mss2025_indizes_542&outputFormat=application/json&srsName=EPSG:4326"
+      },
+      "service_base_url": "https://gdi.berlin.de/services/wfs/mss_2025",
+      "type_name": "mss_2025:mss2025_indizes_542",
+      "response_crs": {
+        "type": "name",
+        "properties": {
+          "name": "urn:ogc:def:crs:EPSG::4326"
+        }
+      },
+      "feature_count": 542,
+      "raw_file": "mss2025_20261001T095204Z.geojson",
+      "raw_bytes": 5393580,
+      "raw_sha256": "9c3438d86d2f173ec55af509e8de503070e51e4d73080f391e487babe15966e8",
+      "service_server_timestamp": "2026-10-01T09:52:07.820Z",
+      "service_title": "Monitoring Soziale Stadtentwicklung (MSS) 2025",
+      "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+      "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen."
+    }
+  ],
+  "dataset_page": "https://gdi.berlin.de/services/wfs/mss_2025?request=GetCapabilities&service=WFS",
+  "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+  "license": {
+    "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+    "id": "dl-de-zero-2.0",
+    "url": "https://www.govdata.de/dl-de/zero-2-0"
+  }
+}

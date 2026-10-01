@@ -1,0 +1,107 @@
+{
+  "layer_id": "entwicklungsbereiche",
+  "title": "Entwicklungsbereiche § 165 BauGB",
+  "geometry": "polygon",
+  "processed_utc": "2026-10-01T09:53:12Z",
+  "feature_count": 16,
+  "skipped": {},
+  "warnings": [],
+  "stats": {},
+  "output_bytes": 82262,
+  "processing": {
+    "precision": 6,
+    "simplify_m": 1,
+    "combine": {
+      "mode": "concat",
+      "field": "status"
+    }
+  },
+  "files": {
+    "geojson": "entwicklungsbereiche.geojson",
+    "csv": "entwicklungsbereiche.csv"
+  },
+  "provenance": {
+    "layer_id": "entwicklungsbereiche",
+    "title": "Entwicklungsbereiche § 165 BauGB",
+    "retrieved_utc": "20261001T095152Z",
+    "wfs_version": "2.0.0",
+    "requested_srs": "EPSG:4326",
+    "request_urls": {
+      "capabilities": "https://gdi.berlin.de/services/wfs/entwicklungsbereiche?service=WFS&version=2.0.0&request=GetCapabilities",
+      "hits": "https://gdi.berlin.de/services/wfs/entwicklungsbereiche?service=WFS&version=2.0.0&request=GetFeature&typeNames=entwicklungsbereiche:a_entwicklungsbereiche&resultType=hits",
+      "data": "https://gdi.berlin.de/services/wfs/entwicklungsbereiche?service=WFS&version=2.0.0&request=GetFeature&typeNames=entwicklungsbereiche:a_entwicklungsbereiche&outputFormat=application/json&srsName=EPSG:4326"
+    },
+    "service_base_url": "https://gdi.berlin.de/services/wfs/entwicklungsbereiche",
+    "type_name": "entwicklungsbereiche:a_entwicklungsbereiche",
+    "response_crs": {
+      "type": "name",
+      "properties": {
+        "name": "urn:ogc:def:crs:EPSG::4326"
+      }
+    },
+    "feature_count": 4,
+    "raw_file": "entwicklungsbereiche_20261001T095152Z.0.geojson",
+    "raw_bytes": 131504,
+    "raw_sha256": "d7e46580525b5155f93e358efd5fcefb3239f42145bd7c1f20a682954635b592",
+    "service_server_timestamp": "2026-10-01T09:51:55.494Z",
+    "service_title": "Entwicklungsbereiche und Stand ihrer Entlassung aus dem Entwicklungsrecht",
+    "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+    "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen.",
+    "parts": [
+      {
+        "request_urls": {
+          "capabilities": "https://gdi.berlin.de/services/wfs/entwicklungsbereiche?service=WFS&version=2.0.0&request=GetCapabilities",
+          "hits": "https://gdi.berlin.de/services/wfs/entwicklungsbereiche?service=WFS&version=2.0.0&request=GetFeature&typeNames=entwicklungsbereiche:a_entwicklungsbereiche&resultType=hits",
+          "data": "https://gdi.berlin.de/services/wfs/entwicklungsbereiche?service=WFS&version=2.0.0&request=GetFeature&typeNames=entwicklungsbereiche:a_entwicklungsbereiche&outputFormat=application/json&srsName=EPSG:4326"
+        },
+        "service_base_url": "https://gdi.berlin.de/services/wfs/entwicklungsbereiche",
+        "type_name": "entwicklungsbereiche:a_entwicklungsbereiche",
+        "response_crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG::4326"
+          }
+        },
+        "feature_count": 4,
+        "raw_file": "entwicklungsbereiche_20261001T095152Z.0.geojson",
+        "raw_bytes": 131504,
+        "raw_sha256": "d7e46580525b5155f93e358efd5fcefb3239f42145bd7c1f20a682954635b592",
+        "service_server_timestamp": "2026-10-01T09:51:55.494Z",
+        "service_title": "Entwicklungsbereiche und Stand ihrer Entlassung aus dem Entwicklungsrecht",
+        "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+        "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen."
+      },
+      {
+        "request_urls": {
+          "capabilities": "https://gdi.berlin.de/services/wfs/entwicklungsbereiche?service=WFS&version=2.0.0&request=GetCapabilities",
+          "hits": "https://gdi.berlin.de/services/wfs/entwicklungsbereiche?service=WFS&version=2.0.0&request=GetFeature&typeNames=entwicklungsbereiche:b_entwicklungsbereiche_entl&resultType=hits",
+          "data": "https://gdi.berlin.de/services/wfs/entwicklungsbereiche?service=WFS&version=2.0.0&request=GetFeature&typeNames=entwicklungsbereiche:b_entwicklungsbereiche_entl&outputFormat=application/json&srsName=EPSG:4326"
+        },
+        "service_base_url": "https://gdi.berlin.de/services/wfs/entwicklungsbereiche",
+        "type_name": "entwicklungsbereiche:b_entwicklungsbereiche_entl",
+        "response_crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG::4326"
+          }
+        },
+        "feature_count": 12,
+        "raw_file": "entwicklungsbereiche_20261001T095152Z.1.geojson",
+        "raw_bytes": 218871,
+        "raw_sha256": "66e068241fcdec432bbfba212f785817ba366e77ea72643f4b46d0e2104a37a0",
+        "service_server_timestamp": "2026-10-01T09:51:57.312Z",
+        "service_title": "Entwicklungsbereiche und Stand ihrer Entlassung aus dem Entwicklungsrecht",
+        "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+        "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen."
+      }
+    ],
+    "dataset_page": "https://gdi.berlin.de/services/wfs/entwicklungsbereiche?request=GetCapabilities&service=WFS",
+    "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+    "license": {
+      "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+      "id": "dl-de-zero-2.0",
+      "url": "https://www.govdata.de/dl-de/zero-2-0"
+    }
+  },
+  "provenance_file": "entwicklungsbereiche_20261001T095152Z.provenance.json"
+}

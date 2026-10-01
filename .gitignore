@@ -1,2 +1,6 @@
 __pycache__/
 *.pyc
+
+# Raw WFS downloads are large; their provenance files (URLs, SHA-256) stay in git.
+data/raw/*.geojson
+data/raw/*.capabilities.xml

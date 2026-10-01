@@ -1,0 +1,177 @@
+﻿fid,schluessel,bezirk,gebietsname,f_gvbl_dat,f_in_kraft,ae_gvbldat,ae_inkraft,fl_ha,erhaltungsziel,area_m2
+0,EM0105,Mitte,Sparrplatz,24.05.2016,25.05.2016,,,51.3,Zusammensetzung der Wohnbevölkerung (Milieuschutz),508980
+1,EM0106,Mitte,Leopoldplatz,24.05.2016,25.05.2016,,,62.1,Zusammensetzung der Wohnbevölkerung (Milieuschutz),616189
+2,EM0107,Mitte,Waldstraße,24.05.2016,25.05.2016,,,72.6,Zusammensetzung der Wohnbevölkerung (Milieuschutz),719860
+3,EM0108,Mitte,Birkenstraße,24.05.2016,25.05.2016,,,81.6,Zusammensetzung der Wohnbevölkerung (Milieuschutz),809589
+4,EM0109,Mitte,Seestraße,24.05.2016,25.05.2016,,,48.6,Zusammensetzung der Wohnbevölkerung (Milieuschutz),482478
+5,EM0110,Mitte,Kattegatstraße,18.09.2018,19.09.2018,,,14.0,Zusammensetzung der Wohnbevölkerung (Milieuschutz),138676
+6,EM0111,Mitte,Reinickendorfer Straße,29.10.2021,30.10.2021,,,41.0,Zusammensetzung der Wohnbevölkerung (Milieuschutz),407033
+7,EM0112,Mitte,Humboldthain Nord-West,15.12.2018,16.12.2018,29.10.2021,30.10.2021,15.8,Zusammensetzung der Wohnbevölkerung (Milieuschutz),157201
+8,EM0113,Mitte,Soldiner Straße,27.11.2018,28.11.2018,29.10.2021,30.10.2021,54.8,Zusammensetzung der Wohnbevölkerung (Milieuschutz),543613
+9,EM0114,Mitte,Thomasiusstraße,15.12.2018,16.12.2018,,,16.8,Zusammensetzung der Wohnbevölkerung (Milieuschutz),166203
+10,EM0115,Mitte,Tiergarten-Süd,15.12.2018,16.12.2018,,,72.0,Zusammensetzung der Wohnbevölkerung (Milieuschutz),714127
+11,EM0116,Mitte,Alexanderplatzviertel,27.03.2019,28.03.2019,,,21.9,Zusammensetzung der Wohnbevölkerung (Milieuschutz),217333
+12,EM0117,Mitte,Müllerstraße Nord,26.11.2022,27.11.2022,,,85.6,Zusammensetzung der Wohnbevölkerung (Milieuschutz),850068
+13,EM0118,Mitte,Badstraße,26.11.2022,27.11.2022,,,48.5,Zusammensetzung der Wohnbevölkerung (Milieuschutz),481557
+14,EM0201,Friedrichshain-Kreuzberg,Graefestraße,18.03.2022,19.03.2022,,,67.3,Zusammensetzung der Wohnbevölkerung (Milieuschutz),666859
+15,EM0202,Friedrichshain-Kreuzberg,Luisenstadt,29.07.2023,30.07.2023,,,246.9,Zusammensetzung der Wohnbevölkerung (Milieuschutz),2447418
+16,EM0203,Friedrichshain-Kreuzberg,Bergmannstraße Nord,18.03.2022,19.03.2022,,,66.6,Zusammensetzung der Wohnbevölkerung (Milieuschutz),659643
+17,EM0204,Friedrichshain-Kreuzberg,Hornstraße,20.02.2026,21.02.2026,,,63.8,Zusammensetzung der Wohnbevölkerung (Milieuschutz),631859
+18,EM0205,Friedrichshain-Kreuzberg,Chamissoplatz,12.06.2024,13.06.2024,,,24.4,Zusammensetzung der Wohnbevölkerung (Milieuschutz),241305
+19,EM0206,Friedrichshain-Kreuzberg,Boxhagener Platz,23.04.2021,24.04.2021,,,142.0,Zusammensetzung der Wohnbevölkerung (Milieuschutz),1407723
+20,EM0207,Friedrichshain-Kreuzberg,Petersburger Straße,21.12.2013,22.12.2013,,,86.4,Zusammensetzung der Wohnbevölkerung (Milieuschutz),856367
+21,EM0208,Friedrichshain-Kreuzberg,Weberwiese,18.03.2022,19.03.2022,,,53.5,Zusammensetzung der Wohnbevölkerung (Milieuschutz),530189
+22,EM0209,Friedrichshain-Kreuzberg,Kreuzberg-Nord,14.01.2026,15.01.2026,,,217.1,Zusammensetzung der Wohnbevölkerung (Milieuschutz),2151931
+23,EM0210,Friedrichshain-Kreuzberg,Stralauer Kiez,09.07.2019,10.07.2019,,,29.2,Zusammensetzung der Wohnbevölkerung (Milieuschutz),289301
+24,EM0211,Friedrichshain-Kreuzberg,Samariterviertel,19.02.2021,20.02.2021,,,55.1,Zusammensetzung der Wohnbevölkerung (Milieuschutz),546478
+25,EM0301,Pankow,Falkplatz,18.12.1997,23.03.1997,,,28.2,Zusammensetzung der Wohnbevölkerung (Milieuschutz),280111
+26,EM0308,Pankow,Arnimplatz,03.04.1999,04.04.1999,,,50.6,Zusammensetzung der Wohnbevölkerung (Milieuschutz),502193
+27,EM0309,Pankow,Humannplatz,04.11.2000,05.11.2000,30.11.2017,01.12.2017,57.2,Zusammensetzung der Wohnbevölkerung (Milieuschutz),567690
+28,EM0310,Pankow,Ostseestraße / Grellstraße,02.04.2003,03.04.2003,,,63.5,Zusammensetzung der Wohnbevölkerung (Milieuschutz),630099
+29,EM0312,Pankow,Pankow Zentrum,16.03.2000,17.03.2000,09.10.2013,10.10.2013,121.1,Zusammensetzung der Wohnbevölkerung (Milieuschutz),1202138
+30,EM0313,Pankow,Teutoburger Platz,01.07.2014,02.07.2014,,,52.0,Zusammensetzung der Wohnbevölkerung (Milieuschutz),515569
+31,EM0314,Pankow,Kollwitzplatz,01.07.2014,02.07.2014,,,74.6,Zusammensetzung der Wohnbevölkerung (Milieuschutz),740160
+32,EM0315,Pankow,Helmholtzplatz,01.07.2014,02.07.2014,,,67.9,Zusammensetzung der Wohnbevölkerung (Milieuschutz),673550
+33,EM0316,Pankow,Bötzowstraße,01.07.2014,02.07.2014,30.11.2017,01.12.2017,53.0,Zusammensetzung der Wohnbevölkerung (Milieuschutz),525967
+34,EM0317,Pankow,Winsstraße,01.07.2014,02.07.2014,,,63.8,Zusammensetzung der Wohnbevölkerung (Milieuschutz),633099
+35,EM0318,Pankow,Pankow-Süd,30.11.2017,01.12.2017,,,30.3,Zusammensetzung der Wohnbevölkerung (Milieuschutz),300807
+36,EM0319,Pankow,Langhansstraße,30.11.2017,01.12.2017,,,109.7,Zusammensetzung der Wohnbevölkerung (Milieuschutz),1088873
+37,EM0320,Pankow,Komponistenviertel,30.11.2017,01.12.2017,,,41.3,Zusammensetzung der Wohnbevölkerung (Milieuschutz),409462
+38,EM0321,Pankow,Danziger Straße Ost,30.07.2021,31.07.2021,,,20.0,Zusammensetzung der Wohnbevölkerung (Milieuschutz),197921
+39,EM0401,Charlottenburg-Wilmersdorf,Mierendorff-Insel,31.08.2018,01.09.2018,,,56.8,Zusammensetzung der Wohnbevölkerung (Milieuschutz),563406
+40,EM0402,Charlottenburg-Wilmersdorf,Gierkeplatz,31.08.2018,01.09.2018,,,28.5,Zusammensetzung der Wohnbevölkerung (Milieuschutz),282944
+41,EM0403,Charlottenburg-Wilmersdorf,Klausenerplatz,11.01.2020,12.01.2020,,,54.6,Zusammensetzung der Wohnbevölkerung (Milieuschutz),541000
+42,EM0404,Charlottenburg-Wilmersdorf,Jungfernheide,22.06.2021,23.06.2021,,,49.2,Zusammensetzung der Wohnbevölkerung (Milieuschutz),488126
+43,EM0405,Charlottenburg-Wilmersdorf,Alt-Lietzow,22.06.2021,23.06.2021,,,46.0,Zusammensetzung der Wohnbevölkerung (Milieuschutz),455806
+44,EM0406,Charlottenburg-Wilmersdorf,Richard-Wagner-Straße,22.06.2021,23.06.2021,,,28.1,Zusammensetzung der Wohnbevölkerung (Milieuschutz),278413
+45,EM0407,Charlottenburg-Wilmersdorf,Karl-August-Platz,22.06.2021,23.06.2021,,,55.8,Zusammensetzung der Wohnbevölkerung (Milieuschutz),552856
+46,EM0408,Charlottenburg-Wilmersdorf,Brabanter Platz,18.03.2023,19.03.2023,,,28.1,Zusammensetzung der Wohnbevölkerung (Milieuschutz),278714
+47,EM0409,Charlottenburg-Wilmersdorf,Hochmeisterplatz,18.03.2023,19.03.2023,,,50.1,Zusammensetzung der Wohnbevölkerung (Milieuschutz),496551
+48,EM0501,Spandau,Wilhelmstadt,03.07.2020,04.07.2020,,,118.7,Zusammensetzung der Wohnbevölkerung (Milieuschutz),1177492
+49,EM0502,Spandau,Spandauer Neustadt,03.07.2020,04.07.2020,,,86.7,Zusammensetzung der Wohnbevölkerung (Milieuschutz),860484
+50,EM0503,Spandau,Stresow,13.08.2025,14.08.2025,,,22.1,Zusammensetzung der Wohnbevölkerung (Milieuschutz),218986
+51,EM0601,Steglitz-Zehlendorf,Feuerbachstraße,09.02.2024,10.02.2024,,,63.4,Zusammensetzung der Wohnbevölkerung (Milieuschutz),627820
+52,EM0602,Steglitz-Zehlendorf,Gritznerstraße Nord,09.02.2024,10.02.2024,,,23.7,Zusammensetzung der Wohnbevölkerung (Milieuschutz),234936
+53,EM0603,Steglitz-Zehlendorf,Mittelstraße,09.02.2024,10.02.2024,,,34.0,Zusammensetzung der Wohnbevölkerung (Milieuschutz),336934
+54,EM0701,Tempelhof-Schöneberg,Barbarossaplatz / Bayerischer Platz,10.09.2014,11.09.2014,,,72.8,Zusammensetzung der Wohnbevölkerung (Milieuschutz),721719
+55,EM0702,Tempelhof-Schöneberg,Bautzener Straße,10.09.2014,11.09.2014,,,18.5,Zusammensetzung der Wohnbevölkerung (Milieuschutz),183378
+56,EM0703,Tempelhof-Schöneberg,Kaiser-Wilhelm-Platz,10.09.2014,11.09.2014,08.07.2016,09.07.2016,19.8,Zusammensetzung der Wohnbevölkerung (Milieuschutz),195979
+57,EM0704,Tempelhof-Schöneberg,Schöneberger Insel,30.06.2015,01.07.2015,24.09.2021,25.09.2021,38.5,Zusammensetzung der Wohnbevölkerung (Milieuschutz),381556
+58,EM0705,Tempelhof-Schöneberg,Schöneberger Norden,10.03.2018,11.03.2018,11.10.2018,12.10.2018,112.7,Zusammensetzung der Wohnbevölkerung (Milieuschutz),1117521
+59,EM0706,Tempelhof-Schöneberg,Schöneberger Süden,10.03.2018,11.03.2018,,,106.4,Zusammensetzung der Wohnbevölkerung (Milieuschutz),1054602
+60,EM0707,Tempelhof-Schöneberg,Tempelhof,07.04.2018,08.04.2018,,,154.6,Zusammensetzung der Wohnbevölkerung (Milieuschutz),1530855
+61,EM0708,Tempelhof-Schöneberg,Grazer Platz,11.10.2018,12.10.2018,,,48.1,Zusammensetzung der Wohnbevölkerung (Milieuschutz),476772
+62,EM0709,Tempelhof-Schöneberg,Mariendorf,18.03.2023,19.03.2023,,,141.7,Zusammensetzung der Wohnbevölkerung (Milieuschutz),1403007
+63,EM0710,Tempelhof-Schöneberg,Wittenbergplatz,18.03.2023,19.03.2023,,,29.3,Zusammensetzung der Wohnbevölkerung (Milieuschutz),290782
+64,EM0801,Neukölln,Schillerpromenade,28.06.2016,29.06.2016,,,92.5,Zusammensetzung der Wohnbevölkerung (Milieuschutz),915957
+65,EM0802,Neukölln,Reuterplatz,28.06.2016,29.06.2016,,,66.0,Zusammensetzung der Wohnbevölkerung (Milieuschutz),654425
+66,EM0803,Neukölln,Flughafenstraße / Donaustraße,26.07.2016,27.07.2016,27.03.2019,28.03.2019,89.4,Zusammensetzung der Wohnbevölkerung (Milieuschutz),885963
+67,EM0804,Neukölln,Rixdorf,26.07.2016,27.07.2016,,,85.9,Zusammensetzung der Wohnbevölkerung (Milieuschutz),851446
+68,EM0805,Neukölln,Körnerpark,26.07.2016,27.07.2016,27.03.2019,28.03.2019,91.3,Zusammensetzung der Wohnbevölkerung (Milieuschutz),904919
+69,EM0806,Neukölln,Silbersteinstraße / Glasower Straße,05.08.2017,06.08.2017,,,73.0,Zusammensetzung der Wohnbevölkerung (Milieuschutz),722677
+70,EM0807,Neukölln,Hertzbergplatz / Treptower Straße,05.08.2017,06.08.2017,,,75.0,Zusammensetzung der Wohnbevölkerung (Milieuschutz),743408
+71,EM0808,Neukölln,Germaniapromenade,03.03.2020,04.03.2020,,,34.8,Zusammensetzung der Wohnbevölkerung (Milieuschutz),345035
+72,EM0809,Neukölln,Britz,03.03.2020,04.03.2020,,,71.8,Zusammensetzung der Wohnbevölkerung (Milieuschutz),710720
+73,EM0810,Neukölln,Gropiusstadt,14.11.2020,15.11.2020,,,160.8,Zusammensetzung der Wohnbevölkerung (Milieuschutz),1591144
+74,EM0902,Treptow-Köpenick,Alt-Treptow,26.05.2020,27.05.2020,,,42.7,Zusammensetzung der Wohnbevölkerung (Milieuschutz),422676
+75,EM0903,Treptow-Köpenick,Niederschöneweide,25.02.2023,26.02.2023,,,26.6,Zusammensetzung der Wohnbevölkerung (Milieuschutz),262949
+76,EM0904,Treptow-Köpenick,Oberschöneweide,25.02.2023,26.02.2023,,,51.1,Zusammensetzung der Wohnbevölkerung (Milieuschutz),506549
+77,EM1101,Lichtenberg,Kaskelstraße,21.07.2017,22.07.2017,,,28.2,Zusammensetzung der Wohnbevölkerung (Milieuschutz),279936
+78,EM1102,Lichtenberg,Weitlingstraße,21.06.2018,22.06.2018,,,88.0,Zusammensetzung der Wohnbevölkerung (Milieuschutz),872173
+79,EM1103,Lichtenberg,Fanningerstraße,17.08.2021,18.08.2021,,,30.7,Zusammensetzung der Wohnbevölkerung (Milieuschutz),304591
+80,EM1201,Reinickendorf,Letteplatz,29.12.2018,30.12.2018,,,89.8,Zusammensetzung der Wohnbevölkerung (Milieuschutz),891853
+81,EM1202,Reinickendorf,Scharnweberstraße/Klixstraße,29.10.2021,30.10.2021,,,60.0,Zusammensetzung der Wohnbevölkerung (Milieuschutz),595589
+82,ES0101,Mitte,Poststadion,30.12.1988,31.12.1988,,,53.2,Städtebauliche Eigenart,528543
+83,ES0102,Mitte,Spandauer Vorstadt,25.06.1993,26.06.1993,,,109.1,Städtebauliche Eigenart,1082456
+84,ES0103,Mitte,Südliche Brunnenstraße Teile der Rosenthaler Vorstadt,09.12.1995,10.12.1995,,,18.8,Städtebauliche Eigenart,186521
+85,ES0104,Mitte,Friedrich-Wilhelm-Stadt,31.08.1996,01.09.1996,,,69.5,Städtebauliche Eigenart,690036
+86,ES0105,Mitte,"Dorotheenstadt, Friedrichstadt",10.04.1997,11.04.1997,,,98.7,Städtebauliche Eigenart,979382
+87,ES0106,Mitte,Karl-Marx-Allee II. Bauabschnitt,07.11.2015,08.11.2015,,,58.7,Städtebauliche Eigenart,582685
+88,ES0107,Mitte,erweitertes Gebiet südliche Brunnenstraße Teile der Rosenthaler Vorstadt,14.12.2000,15.12.2000,,,57.8,Städtebauliche Eigenart,573904
+89,ES0108,Mitte,Heinrich-Heine-Siedlung,25.01.2001,26.01.2001,,,12.6,Städtebauliche Eigenart,125365
+90,ES0109,Mitte,westliches Ergänzungsgebiet südliche Brunnenstraße,28.02.2004,29.02.2004,,,16.8,Städtebauliche Eigenart,166975
+91,ES0110,Mitte,Köllnischer Park mit Umgebung,28.10.2006,29.10.2006,,,22.0,Städtebauliche Eigenart,218955
+92,ES0111,Mitte,Luisenstädtischer Kanal mit Umfeld,28.10.2006,29.10.2006,,,26.3,Städtebauliche Eigenart,261303
+93,ES0112,Mitte,Stephankiez,07.11.1991,08.11.1991,,,30.7,Städtebauliche Eigenart,305243
+94,ES0113,Mitte,Huttenkiez,10.12.1993,11.12.1993,,,4.8,Städtebauliche Eigenart,47837
+95,ES0115,Mitte,Wilhelmstraße,19.04.2018,20.04.2018,,,7.6,Städtebauliche Eigenart,76170
+96,ES0116,Mitte,Nikolaiviertel,07.06.2018,08.06.2018,,,5.1,Städtebauliche Eigenart,51329
+97,ES0117,Mitte,Hansaviertel,30.01.2020,31.01.2020,,,54.3,Städtebauliche Eigenart,538184
+98,ES0118,Mitte,Leipziger Straße,24.07.2020,25.07.2020,26.01.2022,27.01.2022,10.4,Städtebauliche Eigenart,103027
+99,ES0119,Mitte,Erste Erweiterung Friedrichstadt,07.12.2022,08.12.2022,,,2.0,Städtebauliche Eigenart,19866
+100,ES0203,Friedrichshain-Kreuzberg,Urbanhafen / Südstern,10.02.2011,11.02.2011,,,48.5,Städtebauliche Eigenart,480762
+101,ES0204,Friedrichshain-Kreuzberg,Graefestraße,18.03.2022,19.03.2022,,,67.3,Städtebauliche Eigenart,666859
+102,ES0205,Friedrichshain-Kreuzberg,Luisenstadt,29.07.2023,30.07.2023,,,268.8,Städtebauliche Eigenart,2664983
+103,ES0206,Friedrichshain-Kreuzberg,Weberwiese,18.03.2022,19.03.2022,,,28.7,Städtebauliche Eigenart,284313
+104,ES0207,Friedrichshain-Kreuzberg,Karl-Marx-Allee/Frankfurter Allee (ehemals Stalinallee) und deren flankierende Bereiche,27.02.2021,28.02.2021,,,121.8,Städtebauliche Eigenart,1207614
+105,ES0208,Friedrichshain-Kreuzberg,IBA 87 - Südliche Friedrichstadt,18.03.2022,19.03.2022,,,69.4,Städtebauliche Eigenart,688163
+106,ES0301,Pankow,Weißenseer Spitze,16.11.1996,17.11.1996,,,28.9,Städtebauliche Eigenart,287171
+107,ES0302,Pankow,Weißensee Süd,16.11.1996,17.11.1996,,,85.1,Städtebauliche Eigenart,844614
+108,ES0303,Pankow,Dorf Blankenfelde,25.02.1998,26.02.1998,,,52.1,Städtebauliche Eigenart,518155
+109,ES0304,Pankow,Stadtrandsiedlung Malchow,29.07.1998,30.07.1998,,,56.9,Städtebauliche Eigenart,565510
+110,ES0305,Pankow,Stadtrandsiedlung Karow / Am Kappgraben,29.07.1998,30.07.1998,,,38.7,Städtebauliche Eigenart,385546
+111,ES0306,Pankow,Teutoburger Platz,11.04.2007,12.04.2007,,,52.7,Städtebauliche Eigenart,523358
+112,ES0307,Pankow,Ostseestraße / Grellstraße,08.10.2003,09.10.2003,,,58.8,Städtebauliche Eigenart,584376
+113,ES0308,Pankow,Humannplatz,30.09.2009,01.10.2009,,,85.0,Städtebauliche Eigenart,843559
+114,ES0401,Charlottenburg-Wilmersdorf,Schmargendorf,28.10.1989,29.10.1989,,,0.4,Städtebauliche Eigenart,4885
+115,ES0402,Charlottenburg-Wilmersdorf,Alt-Charlottenburg,05.07.1990,06.07.1990,,,22.9,Städtebauliche Eigenart,227105
+116,ES0403,Charlottenburg-Wilmersdorf,Klausenerplatz,31.07.1996,01.08.1996,,,69.6,Städtebauliche Eigenart,689762
+117,ES0404,Charlottenburg-Wilmersdorf,Kurfürstendamm,23.12.2000,11.06.2000,,,77.7,Städtebauliche Eigenart,770754
+118,ES0405,Charlottenburg-Wilmersdorf,Westend,23.12.2000,24.12.2000,,,46.1,Städtebauliche Eigenart,457872
+119,ES0406,Charlottenburg-Wilmersdorf,B-Plan IX-153,28.10.2000,29.10.2000,,,0.6,Städtebauliche Eigenart,5494
+120,ES0407,Charlottenburg-Wilmersdorf,B-Plan IX-B10,28.10.2000,29.10.2000,,,2.8,Städtebauliche Eigenart,27648
+121,ES0408,Charlottenburg-Wilmersdorf,B-Plan IX-B11,28.10.2000,29.10.2000,,,1.4,Städtebauliche Eigenart,13687
+122,ES0409,Charlottenburg-Wilmersdorf,B-Plan IX-B12,28.10.2000,29.10.2000,,,6.6,Städtebauliche Eigenart,65719
+123,ES0502,Spandau,Altstadt Spandau,15.06.2016,16.06.2016,,,57.7,Städtebauliche Eigenart,573315
+124,ES0601,Steglitz-Zehlendorf,Lichterfelde-West,19.11.1991,20.11.1991,,,204.9,Städtebauliche Eigenart,2028722
+125,ES0602,Steglitz-Zehlendorf,Fichtenberg,19.11.1991,20.11.1991,,,48.4,Städtebauliche Eigenart,479972
+126,ES0603,Steglitz-Zehlendorf,Lichterfelde-Ost,20.07.1996,21.07.1996,,,162.0,Städtebauliche Eigenart,1603544
+127,ES0604,Steglitz-Zehlendorf,Siedlung Zinnowweg,04.05.2005,05.05.2005,,,9.8,Städtebauliche Eigenart,97158
+128,ES0605,Steglitz-Zehlendorf,B-Plan X-6-1,16.06.1994,17.06.1994,,,3.8,Städtebauliche Eigenart,33766
+129,ES0606,Steglitz-Zehlendorf,B-Plan X-B 1c,10.11.2012,11.11.2012,,,36.8,Städtebauliche Eigenart,255837
+130,ES0607,Steglitz-Zehlendorf,B-Plan X-B 2c,27.09.2016,28.09.2016,,,41.3,Städtebauliche Eigenart,264144
+131,ES0608,Steglitz-Zehlendorf,B-Plan X-B 2e,30.12.2011,31.12.2011,,,45.8,Städtebauliche Eigenart,222812
+132,ES0609,Steglitz-Zehlendorf,B-Plan X-B 7,07.07.2006,08.07.2006,,,43.5,Städtebauliche Eigenart,261806
+133,ES0610,Steglitz-Zehlendorf,B-Plan X-B 8,05.07.2005,06.07.2005,,,36.8,Städtebauliche Eigenart,277593
+134,ES0611,Steglitz-Zehlendorf,B-Plan X-B 9,02.12.2005,03.12.2005,,,37.0,Städtebauliche Eigenart,174244
+135,ES0612,Steglitz-Zehlendorf,B-Plan X-B 10,02.12.2005,03.12.2005,,,47.1,Städtebauliche Eigenart,240944
+136,ES0613,Steglitz-Zehlendorf,B-Plan X-B 11,07.07.2006,08.07.2006,,,44.7,Städtebauliche Eigenart,170144
+137,ES0614,Steglitz-Zehlendorf,B-Plan X-B 12,07.07.2006,08.07.2006,,,54.3,Städtebauliche Eigenart,334224
+138,ES0615,Steglitz-Zehlendorf,B-Plan X-B 16,10.03.2012,11.03.2012,,,26.9,Städtebauliche Eigenart,147650
+139,ES0616,Steglitz-Zehlendorf,B-Plan X-B 18,23.11.2017,24.11.2017,,,48.5,Städtebauliche Eigenart,304618
+140,ES0617,Steglitz-Zehlendorf,B-Plan X-B 21,30.10.2003,31.10.2004,,,17.3,Städtebauliche Eigenart,86756
+141,ES0618,Steglitz-Zehlendorf,B-Plan 6-34 B,30.01.2020,31.01.2020,,,27.5,Städtebauliche Eigenart,185964
+142,ES0701,Tempelhof-Schöneberg,Friedenau,24.07.1986,25.07.1986,06.10.1988,07.10.1988,51.5,Städtebauliche Eigenart,510836
+143,ES0702,Tempelhof-Schöneberg,Neu-Tempelhof,11.09.1991,12.09.1991,,,99.1,Städtebauliche Eigenart,982238
+144,ES0703,Tempelhof-Schöneberg,Alt-Lichtenrade,15.07.1995,16.07.1995,,,1.4,Städtebauliche Eigenart,14335
+145,ES0704,Tempelhof-Schöneberg,Abendrotsiedlung,13.11.1996,14.11.1996,,,6.4,Städtebauliche Eigenart,63298
+146,ES0705,Tempelhof-Schöneberg,Wolframsiedlung,16.09.2000,17.09.2000,,,6.2,Städtebauliche Eigenart,61603
+147,ES0706,Tempelhof-Schöneberg,"Stadtrandsiedlung Marienfelde I, II und III",16.06.2001,17.06.2001,,,37.4,Städtebauliche Eigenart,370509
+148,ES0707,Tempelhof-Schöneberg,Maaßenstraße,06.11.2010,07.11.2010,,,3.0,Städtebauliche Eigenart,30009
+149,ES0708,Tempelhof-Schöneberg,Alt-Lichtenrade,24.03.1981,25.03.1981,,,3.5,Städtebauliche Eigenart,35081
+150,ES0801,Neukölln,Rixdorf,29.11.1986,30.11.1986,15.06.1989,16.06.1989,8.4,Städtebauliche Eigenart,83678
+151,ES0802,Neukölln,Schillerpromenade,09.07.1996,10.07.1996,06.10.2001,07.10.2001,42.6,Städtebauliche Eigenart,422440
+152,ES0803,Neukölln,Krugpfuhlsiedlung,01.11.2008,02.11.2008,,,15.6,Städtebauliche Eigenart,154465
+153,ES0804,Neukölln,Ortskern Rudow,01.11.2008,02.11.2008,,,15.8,Städtebauliche Eigenart,156952
+154,ES0901,Treptow-Köpenick,Altstadt Köpenick,12.03.1993,13.03.1993,,,18.7,Städtebauliche Eigenart,185491
+155,ES0902,Treptow-Köpenick,Kietz-Vorstadt,12.03.1993,13.03.1993,,,6.4,Städtebauliche Eigenart,63660
+156,ES0903,Treptow-Köpenick,Friedrichshagen,12.03.1993,13.03.1993,,,95.5,Städtebauliche Eigenart,946029
+157,ES0904,Treptow-Köpenick,Oberschöneweide,22.12.2004,23.12.2004,,,89.8,Städtebauliche Eigenart,889904
+158,ES0905,Treptow-Köpenick,Hirschgarten,27.07.1999,28.07.1999,,,14.6,Städtebauliche Eigenart,144739
+159,ES0906,Treptow-Köpenick,Alter Dorfkern Rahnsdorf,25.01.2001,26.01.2001,,,5.8,Städtebauliche Eigenart,57883
+160,ES0907,Treptow-Köpenick,Teilbereich Hessenwinkel,21.04.2001,22.04.2001,,,39.8,Städtebauliche Eigenart,394814
+161,ES0908,Treptow-Köpenick,Wilhelmshagen,21.04.2001,22.04.2001,,,40.8,Städtebauliche Eigenart,404132
+162,ES0909,Treptow-Köpenick,Pflanzgartensiedlung,16.11.2004,17.11.2004,,,14.7,Städtebauliche Eigenart,145702
+163,ES0910,Treptow-Köpenick,Wohnanlage Dammweg,20.09.2007,21.09.2007,,,1.5,Städtebauliche Eigenart,15732
+164,ES0911,Treptow-Köpenick,Dorfkern Alt-Müggelheim,06.03.2008,07.03.2008,,,7.0,Städtebauliche Eigenart,69665
+165,ES0912,Treptow-Köpenick,Mahlsdorfer Straße 54 bis 61 und Genovevastraße 2,24.12.2020,25.12.2020,,,0.9,Städtebauliche Eigenart,8625
+166,ES1101,Lichtenberg,Dorf Malchow,09.11.1993,10.11.1993,06.11.2018,07.11.2018,47.4,Städtebauliche Eigenart,471559
+167,ES1102,Lichtenberg,Dorf Wartenberg,09.11.1993,10.11.1993,,,26.7,Städtebauliche Eigenart,265282
+168,ES1103,Lichtenberg,Dorf Falkenberg,09.11.1993,10.11.1993,,,34.9,Städtebauliche Eigenart,347413
+169,ES1104,Lichtenberg,Kaskelstraße / Viktoriastadt,04.11.1997,05.11.1997,22.12.2004,23.12.2004,28.1,Städtebauliche Eigenart,278975
+170,ES1105,Lichtenberg,Seen- / Prinzenviertel,26.03.1999,27.03.1999,,,34.3,Städtebauliche Eigenart,340540
+171,ES1106,Lichtenberg,Siedlung Paul-Koenig-Straße / Titastraße,01.06.2001,02.06.2001,,,4.5,Städtebauliche Eigenart,45015
+172,ES1201,Reinickendorf,Frohnau,17.05.1997,18.05.1997,,,783.8,Städtebauliche Eigenart,7794376
+173,ES1202,Reinickendorf,B-Plan XX-187,04.11.2000,05.11.2000,,,1.1,Städtebauliche Eigenart,10447
+174,ES1203,Reinickendorf,B-Plan XX-247,31.03.2001,01.04.2001,,,1.9,Städtebauliche Eigenart,18514
+175,ES1204,Reinickendorf,B-Plan XX-240a-g,04.07.2002,05.07.2002,,,26.8,Städtebauliche Eigenart,266803

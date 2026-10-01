@@ -10,6 +10,7 @@ MapLibre map of Berlin for architectural and urban research. The data core is pr
 - `python scripts/process.py [--layer ID | --map ID]` writes `data/processed/<id>.geojson`, `<id>.csv` (attribute table) and `<id>.meta.json`.
 - `python scripts/serve.py` serves the repo root; the map is at `/web/?map=<id>` (`&lang=en`, `&embed=1`, `&layers=id:view,...`).
 - `python tests/smoke.py` runs the pipeline against a mock WFS in a temporary folder; `data/` is not touched.
+- Multi-type sources: `source.parts` (each may have its own `base_url`, `rename`, `value`) with `process.combine` = `join` (on `key`) or `concat` (adds `field`). Raw GeoJSON is git-ignored; provenance files are committed.
 - Python standard library only. MapLibre 5.24 is vendored in `web/vendor/`.
 
 ## Rules
@@ -26,3 +27,6 @@ MapLibre map of Berlin for architectural and urban research. The data core is pr
 - B-Plan WFS: `https://gdi.berlin.de/services/wfs/bplan`, types `bplan:b_bp_fs` (2846), `a_bp_iv`, `c_bp_ak`.
 - Basemap: OpenFreeMap positron style (no key), configured in `config/sources.json` → `basemaps`. Do not use CARTO.
 - Catalogue: CSW `https://gdi.berlin.de/geonetwork/srv/ger/csw` lists 663 WFS services. Verified for later steps (all dl-de-zero-2.0 unless noted): `eigentumstruktur` (6 types, 542 PLR, field `plr_schl`), `lwu` (`lwu:lwu_fls`, 5544 parcels), `erhaltungsverordnungsgebiete` (`erhaltgeb_em` 82, `erhaltgeb_es` 94), `vorkaufsrechtsverordnungen` (5), `grosssiedlungen` (83), `wa_01/04/05/07/10_*` (Wohnatlas, 58–60 Prognoseräume, one type per year), `mss_2025` (542 PLR, field `plr_id`), `lor_2021` (CC-BY 3.0, Amt für Statistik), `sanier`, `entwicklungsbereiche`, `denkmale` (9578), `fnp_2025` (6641), `step_wo_2040`, `brw2002`–`brw2025`.
+- Eigentumskonzentration shares are % of parcel area of residential/mixed land per PLR (not dwellings); municipal companies and cooperatives are subsets of legal persons (Datenformatbeschreibung SenSBW 2025).
+- StEP Wohnen 2040 "Neue Stadtquartiere" geometry is schematic: circles of ~900 m radius.
+- Wohnatlas 2022 uses 58 Prognoseräume (LOR 2021); earlier years use 60, so years cannot be joined by key.

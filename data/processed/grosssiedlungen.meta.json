@@ -1,0 +1,80 @@
+{
+  "layer_id": "grosssiedlungen",
+  "title": "Großsiedlungen",
+  "geometry": "polygon",
+  "processed_utc": "2026-10-01T09:53:12Z",
+  "feature_count": 83,
+  "skipped": {},
+  "warnings": [],
+  "stats": {},
+  "output_bytes": 167672,
+  "processing": {
+    "precision": 6,
+    "simplify_m": 1
+  },
+  "files": {
+    "geojson": "grosssiedlungen.geojson",
+    "csv": "grosssiedlungen.csv"
+  },
+  "provenance": {
+    "layer_id": "grosssiedlungen",
+    "title": "Großsiedlungen",
+    "retrieved_utc": "20261001T095156Z",
+    "wfs_version": "2.0.0",
+    "requested_srs": "EPSG:4326",
+    "request_urls": {
+      "capabilities": "https://gdi.berlin.de/services/wfs/grosssiedlungen?service=WFS&version=2.0.0&request=GetCapabilities",
+      "hits": "https://gdi.berlin.de/services/wfs/grosssiedlungen?service=WFS&version=2.0.0&request=GetFeature&typeNames=grosssiedlungen:c_grosssiedlungen&resultType=hits",
+      "data": "https://gdi.berlin.de/services/wfs/grosssiedlungen?service=WFS&version=2.0.0&request=GetFeature&typeNames=grosssiedlungen:c_grosssiedlungen&outputFormat=application/json&srsName=EPSG:4326"
+    },
+    "service_base_url": "https://gdi.berlin.de/services/wfs/grosssiedlungen",
+    "type_name": "grosssiedlungen:c_grosssiedlungen",
+    "response_crs": {
+      "type": "name",
+      "properties": {
+        "name": "urn:ogc:def:crs:EPSG::4326"
+      }
+    },
+    "feature_count": 83,
+    "raw_file": "grosssiedlungen_20261001T095156Z.geojson",
+    "raw_bytes": 782849,
+    "raw_sha256": "f618faffc5df88eb61ef0e1cdb7cae262448a19c6a09519f646d1069bbb1c20f",
+    "service_server_timestamp": "2026-10-01T09:51:59.335Z",
+    "service_title": "Großsiedlungen - Gesamtkulisse",
+    "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+    "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen.",
+    "parts": [
+      {
+        "request_urls": {
+          "capabilities": "https://gdi.berlin.de/services/wfs/grosssiedlungen?service=WFS&version=2.0.0&request=GetCapabilities",
+          "hits": "https://gdi.berlin.de/services/wfs/grosssiedlungen?service=WFS&version=2.0.0&request=GetFeature&typeNames=grosssiedlungen:c_grosssiedlungen&resultType=hits",
+          "data": "https://gdi.berlin.de/services/wfs/grosssiedlungen?service=WFS&version=2.0.0&request=GetFeature&typeNames=grosssiedlungen:c_grosssiedlungen&outputFormat=application/json&srsName=EPSG:4326"
+        },
+        "service_base_url": "https://gdi.berlin.de/services/wfs/grosssiedlungen",
+        "type_name": "grosssiedlungen:c_grosssiedlungen",
+        "response_crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG::4326"
+          }
+        },
+        "feature_count": 83,
+        "raw_file": "grosssiedlungen_20261001T095156Z.geojson",
+        "raw_bytes": 782849,
+        "raw_sha256": "f618faffc5df88eb61ef0e1cdb7cae262448a19c6a09519f646d1069bbb1c20f",
+        "service_server_timestamp": "2026-10-01T09:51:59.335Z",
+        "service_title": "Großsiedlungen - Gesamtkulisse",
+        "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+        "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen."
+      }
+    ],
+    "dataset_page": "https://gdi.berlin.de/services/wfs/grosssiedlungen?request=GetCapabilities&service=WFS",
+    "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+    "license": {
+      "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+      "id": "dl-de-zero-2.0",
+      "url": "https://www.govdata.de/dl-de/zero-2-0"
+    }
+  },
+  "provenance_file": "grosssiedlungen_20261001T095156Z.provenance.json"
+}

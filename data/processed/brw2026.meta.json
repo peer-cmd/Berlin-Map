@@ -2,7 +2,7 @@
   "layer_id": "brw2026",
   "title": "Bodenrichtwerte 01.01.2026",
   "geometry": "polygon",
-  "processed_utc": "2026-10-01T09:28:38Z",
+  "processed_utc": "2026-10-01T09:48:53Z",
   "feature_count": 1623,
   "skipped": {},
   "warnings": [
@@ -27,6 +27,7 @@
     }
   },
   "output_bytes": 5475609,
+  "processing": {},
   "files": {
     "geojson": "brw2026.geojson",
     "csv": "brw2026.csv"

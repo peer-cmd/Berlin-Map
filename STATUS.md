@@ -2,18 +2,22 @@
 
 ## Last completed (2026-10-01)
 
-- Steps 0–2 of the plan: config split into `config/sources.json` (catalogue) and `config/maps/research.json`; pipeline writes GeoJSON + CSV + meta; `--map` option; smoke test isolated in a temp folder.
-- Viewer: map definitions, DE/EN, grouped layer list, view selector, stepped and categorical styles, points and lines, legend per visible layer, download links, embed mode, `layers=` parameter, OpenFreeMap with fallback, website colour tokens and IBM Plex fonts.
-- Colours: values use the brown `earth` ramp (one colour family); categories use Grootens-style named colours (pink, plum, violet, yellow, orange, olive, green) in `config/sources.json` → `palette`. Category views can set their own opacity.
+- Steps 0–2: catalogue `config/sources.json` + map definitions `config/maps/`; viewer with DE/EN, grouped layers, view selector, stepped/categorical styles, points, legend, downloads, embed mode, OpenFreeMap.
+- Colours: values use one-family ramps (earth = money, violet = ownership, plum = social, ink = density); categories use Grootens-style named colours. Land-use view colours not final (Peer: "leave it for now").
+- Step 3: 13 new sources acquired and processed (all verified live): Eigentumskonzentration 2025 (6 types joined on `plr_schl`), LWU parcels, Erhaltungsgebiete (Milieuschutz + städtebauliche Eigenart), Vorkaufsrecht, Sanierungsgebiete, Entwicklungsbereiche, Großsiedlungen, StEP Wohnen 2040 quarters + housing-potential points, MSS 2025, Wohnatlas 2022 (5 services joined on `prognoseraum_nummer`), Einwohnerdichte 2025, LOR planning areas.
+- Pipeline: multi-part sources (`parts`, `process.combine` join/concat), key aliases (`plr_id`, `pgr_id`), `simplify_m`, `precision`, `keep_fields` (CSV keeps all fields). Raw GeoJSON no longer in git; provenance files are.
+- Viewer: lazy loading (GeoJSON fetched when a layer is first shown), `render: "outline"` for planning-law areas, point size by category, notes per source, stacking points > outlines > fills.
+- Maps: `?map=vergesellschaftung` (website) and `?map=research` (all layers).
 
 ## Next
 
-3. Socialisation sources into `config/sources.json` (verified list in `CLAUDE.md` → Known facts) and `config/maps/vergesellschaftung.json`; acquire, process, check sizes. Normalise planning-area keys (`plr_schl` / `plr_id`).
 4. Website: `02_Vergesellschaftung/karte.html` with nav entry on all pages.
-5. Later: `config/maps/tempelhofer-feld.json` (BRW series, B-Pläne, FNP 2025, Grünanlagen, Klimaanalyse 2022, Einwohnerdichte, StEP Wohnen) — verify each service first.
+5. Tempelhofer Feld map (`config/maps/tempelhofer-feld.json`): BRW time series, B-Pläne, FNP 2025 (mixed polygon/point geometry, needs handling), Grünanlagen, Klimaanalyse 2022, StEP Wohnen. Verify each service first.
 
 ## Open
 
-- How is the website published (GitHub Pages / other host / CMS)? Decides whether `karte.html` points to `../web/` or the map is copied into the site.
-- Publishing: exclude `02_Vergesellschaftung/archive/` and `pdf/` (third-party PDFs) from the public site?
-- Raw downloads (~6.5 MB each) are committed to git; consider keeping only provenance files in git, as the Actions workflow already does.
+- How is the website published? Decides whether `karte.html` points to `../web/` or the map is copied into the site.
+- Publishing: exclude `02_Vergesellschaftung/archive/` and `pdf/` from the public site?
+- Einwohnerdichte GeoJSON is 12.5 MB (26,613 blocks); loads only on demand. Vector tiles if it feels slow.
+- Panel is long with 15 layers; collapsible groups would help.
+- Not yet included: Denkmale (9,578), FNP 2025, Wohnatlas time series (geometry changed 2022: 58 vs 60 areas), StEP Vorrangkulisse Innenentwicklung.

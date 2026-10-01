@@ -116,19 +116,32 @@
     }
   }
 
+  // Metadata (small) for every layer up front; GeoJSON only when a layer is first shown.
   await Promise.all(items.map(async (it) => {
     try {
-      const [g, m] = await Promise.all([
-        fetch(`../data/processed/${it.src.id}.geojson`), fetch(`../data/processed/${it.src.id}.meta.json`),
-      ]);
-      if (!g.ok) throw new Error("HTTP " + g.status);
-      it.geojson = await g.json();
-      it.meta = m.ok ? await m.json() : null;
+      const m = await fetch(`../data/processed/${it.src.id}.meta.json`);
+      if (!m.ok) throw new Error("HTTP " + m.status);
+      it.meta = await m.json();
     } catch (e) {
       it.failed = true;
-      banner(`${esc(t(it.src.title))}: ${UI.noData} (${esc(e.message)}). ${UI.runUpdate}.`);
+      console.error(it.src.id, e);
     }
   }));
+  const missing = items.filter((it) => it.failed);
+  if (missing.length) banner(`${missing.map((it) => esc(t(it.src.title))).join(", ")}: ${UI.noData}. ${UI.runUpdate}.`);
+  const ready = items.filter((it) => !it.failed);
+
+  async function ensureData(it) {
+    if (it.geojson) return true;
+    if (!it.loading) {
+      it.loading = fetch(`../data/processed/${it.src.id}.geojson`)
+        .then((r) => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+        .then((g) => { it.geojson = g; if (map.getSource(it.src.id)) map.getSource(it.src.id).setData(g); return true; })
+        .catch((e) => { banner(`${esc(t(it.src.title))}: ${UI.noData} (${esc(e.message)}). ${UI.runUpdate}.`); it.loading = null; return false; });
+    }
+    return it.loading;
+  }
+  const initial = Promise.all(ready.filter((it) => it.visible).map(ensureData));
   await mapReady;
 
   // Data goes below the first label layer of the basemap; the rest of the basemap is "base".
@@ -138,14 +151,19 @@
   const labelIds = styleLayers.filter((l) => l.type === "symbol").map((l) => l.id);
 
   // ---------- styling ----------
-  // Colours may be palette names from config/sources.json → palette ("vermilion", or "heat" for a ramp).
+  // Colours may be palette names from config/sources.json → palette ("pink", or "earth" for a ramp).
   const PAL = catalogue.palette || { named: {}, sequential: {} };
   const col = (c) => PAL.named[c] || c;
-  const ramp = (cs) => (typeof cs === "string" ? PAL.sequential[cs] : cs).map(col);
+  // A ramp with more colours than the view has classes is sampled evenly, so one ramp serves any class count.
+  function ramp(cs, n) {
+    const all = (typeof cs === "string" ? PAL.sequential[cs] : cs).map(col);
+    if (!n || n >= all.length) return all;
+    return Array.from({ length: n }, (_, i) => all[Math.round((i * (all.length - 1)) / (n - 1))]);
+  }
   function colorExpr(style) {
     const value = ["get", style.property];
     if (style.kind === "step") {
-      const colors = ramp(style.colors);
+      const colors = ramp(style.colors, style.breaks.length + 1);
       const expr = ["step", ["to-number", value], colors[0]];
       style.breaks.forEach((b, i) => expr.push(b, colors[i + 1]));
       return ["case", ["==", ["typeof", value], "number"], expr, col(style.missing_color || "grey")];
@@ -158,18 +176,26 @@
     }
     return col(style.color || "violet");
   }
-  const currentStyle = (it) => (it.view ? it.src.views[it.view].style : { kind: "single", color: it.def.color || "#4a6fa5" });
+  const currentStyle = (it) => (it.view ? it.src.views[it.view].style : { kind: "single", color: it.def.color || "violet" });
   const opacityOf = (it) => currentStyle(it).opacity ?? it.opacity;
   const hover = (a, b) => ["case", ["boolean", ["feature-state", "hover"], false], a, b];
+  const fillOpacity = (it) => (it.def.render === "outline" ? hover(0.22, 0.06) : hover(Math.min(1, opacityOf(it) + 0.17), opacityOf(it)));
+  function sizeExpr(size) {
+    const expr = ["match", ["to-string", ["get", size.property]]];
+    for (const [k, r] of Object.entries(size.values)) expr.push(k, r);
+    expr.push(size.default || 4);
+    return expr;
+  }
 
   function addItem(it) {
     const id = it.src.id, color = colorExpr(currentStyle(it)), vis = it.visible ? "visible" : "none";
-    map.addSource(id, { type: "geojson", data: it.geojson, tolerance: 0.2 });
+    map.addSource(id, { type: "geojson", data: it.geojson || { type: "FeatureCollection", features: [] }, tolerance: 0.2 });
     if (it.kind === "point") {
+      const r = it.src.size ? sizeExpr(it.src.size) : 4;
       map.addLayer({ id: id + "-main", type: "circle", source: id, layout: { visibility: vis }, paint: {
-        "circle-color": color, "circle-opacity": Math.min(1, it.opacity + 0.1),
-        "circle-radius": ["interpolate", ["linear"], ["zoom"], 9, 2.5, 15, 6],
-        "circle-stroke-color": "#14171a", "circle-stroke-width": hover(1.5, 0.4),
+        "circle-color": color, "circle-opacity": Math.min(1, opacityOf(it) + 0.1),
+        "circle-radius": ["interpolate", ["linear"], ["zoom"], 9, ["*", 0.75, r], 15, ["*", 1.6, r]],
+        "circle-stroke-color": "#14171a", "circle-stroke-width": hover(1.5, 0.5),
       } }, firstSymbol);
       it.layerIds = [id + "-main"];
       it.colorProps = [[id + "-main", "circle-color"]];
@@ -181,16 +207,20 @@
       it.layerIds = [id + "-main"];
       it.colorProps = [[id + "-main", "line-color"]];
     } else {
+      const outline = it.def.render === "outline";
       map.addLayer({ id: id + "-main", type: "fill", source: id, layout: { visibility: vis }, paint: {
-        "fill-color": color, "fill-opacity": hover(Math.min(1, opacityOf(it) + 0.17), opacityOf(it)),
+        "fill-color": color, "fill-opacity": fillOpacity(it),
       } }, firstSymbol);
-      map.addLayer({ id: id + "-line", type: "line", source: id, layout: { visibility: vis }, paint: {
+      map.addLayer({ id: id + "-line", type: "line", source: id, layout: { visibility: vis }, paint: outline ? {
+        "line-color": color, "line-opacity": 0.95,
+        "line-width": ["interpolate", ["linear"], ["zoom"], 9, hover(2.5, 1.4 * (it.def.weight ?? 1)), 15, hover(4.5, 3 * (it.def.weight ?? 1))],
+      } : {
         "line-color": hover("#14171a", col(it.def.outline || def.outline || "#14171a")),
         "line-opacity": hover(0.95, 0.28),
         "line-width": ["interpolate", ["linear"], ["zoom"], 9, hover(1.2, 0.2), 15, hover(2.2, 0.8)],
       } }, firstSymbol);
       it.layerIds = [id + "-main", id + "-line"];
-      it.colorProps = [[id + "-main", "fill-color"]];
+      it.colorProps = [[id + "-main", "fill-color"]].concat(outline ? [[id + "-line", "line-color"]] : []);
     }
 
     let hovered = null;
@@ -207,9 +237,10 @@
     map.on("mouseleave", id + "-main", () => { map.getCanvas().style.cursor = ""; setHover(null); });
   }
 
-  const ready = items.filter((it) => !it.failed);
-  // Listed first = drawn on top: add bottom-up.
-  [...ready].reverse().forEach(addItem);
+  // Stacking: points above outlines above area fills; within each tier, listed first = drawn on top.
+  const tier = (it) => (it.kind === "point" ? 2 : it.kind === "line" || it.def.render === "outline" ? 1 : 0);
+  [...ready].reverse().sort((x, y) => tier(x) - tier(y)).forEach(addItem);
+  await initial;
 
   // ---------- popup ----------
   function featureHtml(it, p) {
@@ -238,6 +269,7 @@
       new maplibregl.Popup({ maxWidth: "340px" })
         .setLngLat(e.lngLat)
         .setHTML(head + feats.slice(0, 20).map((f) => featureHtml(it, f.properties)).join("") +
+                 (it.src.note ? `<div class="pop-note">${esc(t(it.src.note))}</div>` : "") +
                  `<div class="pop-src">${UI.source}: ${sourceLine(it)}</div>`)
         .addTo(map);
       return;
@@ -251,14 +283,20 @@
     let rows = "", unit = "";
     if (st.kind === "step") {
       unit = st.unit ? `<div class="legend-unit">${esc(st.unit)}</div>` : "";
-      rows = ramp(st.colors).map((c, i) => {
+      rows = ramp(st.colors, st.breaks.length + 1).map((c, i) => {
         const lo = i === 0 ? null : st.breaks[i - 1], hi = i === st.breaks.length ? null : st.breaks[i];
         return sw(c, lo == null ? `< ${num(hi)}` : hi == null ? `≥ ${num(lo)}` : `${num(lo)} – ${num(hi)}`);
       }).join("");
+      const noValue = it.geojson && it.geojson.features.some((f) => typeof f.properties[st.property] !== "number");
+      if (noValue && col(st.missing_color || "grey") !== col("none")) rows += sw(col(st.missing_color || "grey"), UI.noValue);
     } else if (st.kind === "categorical") {
       rows = st.categories.map((c) => sw(col(c.color), esc(t(c.label)))).join("");
     } else {
       rows = sw(col(st.color || "violet"), esc(t(it.src.title)));
+    }
+    if (it.kind === "point" && it.src.size) {
+      rows += `<div class="legend-unit legend-sub">${esc(t(it.src.size.label))}</div>` + Object.entries(it.src.size.values).map(([k, r]) =>
+        `<div class="legend-row"><i class="sw-size" style="width:${2 * r}px;height:${2 * r}px"></i><span>${esc(k)}</span></div>`).join("");
     }
     const viewLabel = it.view && it.views.length > 1 ? ` · ${esc(t(it.src.views[it.view].label))}` : "";
     return `<div class="legend-block"><div class="legend-title">${esc(t(it.src.title))}${viewLabel}</div>${unit}${rows}</div>`;
@@ -288,7 +326,12 @@
     }
     const row = document.createElement("div");
     row.className = "layer-row";
-    row.appendChild(checkbox(t(it.src.title), it.visible, (on) => { it.visible = on; setVis(it.layerIds, on); renderLegend(); }));
+    row.appendChild(checkbox(t(it.src.title), it.visible, async (on) => {
+      it.visible = on;
+      setVis(it.layerIds, on);
+      if (on) await ensureData(it);
+      renderLegend();
+    }));
     if (it.views.length > 1) {
       const sel = document.createElement("select");
       sel.setAttribute("aria-label", UI.view);
@@ -297,7 +340,7 @@
         it.view = sel.value;
         const c = colorExpr(currentStyle(it));
         it.colorProps.forEach(([lid, prop]) => map.setPaintProperty(lid, prop, c));
-        if (it.kind === "polygon") map.setPaintProperty(it.src.id + "-main", "fill-opacity", hover(Math.min(1, opacityOf(it) + 0.17), opacityOf(it)));
+        if (it.kind === "polygon") map.setPaintProperty(it.src.id + "-main", "fill-opacity", fillOpacity(it));
         renderLegend();
       });
       row.appendChild(sel);
@@ -317,7 +360,8 @@
     const w = m && m.warnings && m.warnings.length ? ` · <span title="${esc(m.warnings.join("\n"))}">${m.warnings.length} ${UI.warnings}</span>` : "";
     const dl = ` · ${UI.download}: <a href="../data/processed/${esc(it.src.id)}.geojson" download>GeoJSON</a>` +
       (m && m.files && m.files.csv ? `, <a href="../data/processed/${esc(m.files.csv)}" download>CSV</a>` : "");
-    return `<p>${sourceLine(it)}${n}${w}${dl}</p>`;
+    const note = it.src.note ? `<br><span class="src-note">${esc(t(it.src.note))}</span>` : "";
+    return `<p>${sourceLine(it)}${n}${w}${dl}${note}</p>`;
   }).join("") + `<p>${UI.basemap}: ${bm.attribution}</p>`;
 
   window.__map = map; // for debugging in the console

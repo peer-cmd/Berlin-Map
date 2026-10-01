@@ -143,27 +143,122 @@ def attribute_csv(features, kind):
     return buf.getvalue()
 
 
+def simplify_ring(ring, tol_m):
+    """Douglas-Peucker in metres (local equirectangular scale). Keeps the ring closed; returns
+    the input if simplification would leave fewer than 4 points."""
+    if tol_m <= 0 or len(ring) <= 4:
+        return ring
+    kx, ky = M_PER_DEG_LON_AT_52_5, M_PER_DEG_LAT
+    pts = [(x * kx, y * ky) for x, y in ring]
+    keep = [False] * len(pts)
+    keep[0] = keep[-1] = True
+    stack = [(0, len(pts) - 1)]
+    while stack:
+        i, j = stack.pop()
+        (x1, y1), (x2, y2) = pts[i], pts[j]
+        dx, dy = x2 - x1, y2 - y1
+        norm = math.hypot(dx, dy)
+        best, idx = 0.0, None
+        for k in range(i + 1, j):
+            px, py = pts[k]
+            d = abs(dy * (px - x1) - dx * (py - y1)) / norm if norm else math.hypot(px - x1, py - y1)
+            if d > best:
+                best, idx = d, k
+        if idx is not None and best > tol_m:
+            keep[idx] = True
+            stack += [(i, idx), (idx, j)]
+    out = [p for p, k in zip(ring, keep) if k]
+    return out if len(out) >= 4 else ring
+
+
+def simplify_geometry(geom, tol_m):
+    if not tol_m or geom["type"] != "MultiPolygon":
+        return geom
+    return {"type": "MultiPolygon",
+            "coordinates": [[simplify_ring(r, tol_m) for r in poly] for poly in geom["coordinates"]]}
+
+
+def combine_parts(parts, combine, warnings):
+    """parts: list of (part_config, features). Returns one feature list.
+    join:   geometry from the first part; attributes of the other parts added by key.
+    concat: all features of all parts; combine["field"] records which part each came from."""
+    for cfg, feats in parts:
+        for f in feats:
+            props = f.get("properties") or {}
+            for old, new in (cfg.get("rename") or {}).items():
+                if old in props:
+                    props[new] = props.pop(old)
+            f["properties"] = props
+    if len(parts) == 1:
+        return parts[0][1]
+    mode = (combine or {}).get("mode")
+    if mode == "concat":
+        field = combine["field"]
+        out = []
+        for cfg, feats in parts:
+            for f in feats:
+                f["properties"][field] = cfg.get("value", cfg["type_name"])
+                out.append(f)
+        return out
+    if mode == "join":
+        key = combine["key"]
+        base = parts[0][1]
+        for cfg, feats in parts[1:]:
+            k = cfg.get("key", key)
+            index = {}
+            for f in feats:
+                index.setdefault(f["properties"].get(k), f["properties"])
+            unmatched = 0
+            for f in base:
+                other = index.get(f["properties"].get(key))
+                if other is None:
+                    unmatched += 1
+                    continue
+                for name, val in other.items():
+                    f["properties"].setdefault(name, val)
+            if unmatched:
+                warnings.append(f"{unmatched} features without a match in {cfg['type_name']} on {key}")
+        return base
+    sys.exit("ERROR: source has several parts but no process.combine mode (join or concat)")
+
+
 def process(layer):
     lid = layer["id"]
     opts = layer.get("process", {})
     kind = layer.get("geometry", "polygon")
+    global PRECISION
+    PRECISION = opts.get("precision", 6)
     prov_path = latest_provenance(lid)
     prov = json.loads(prov_path.read_text(encoding="utf-8"))
-    raw_path = RAW_DIR / prov["raw_file"]
-    raw_bytes = raw_path.read_bytes()
-    if hashlib.sha256(raw_bytes).hexdigest() != prov["raw_sha256"]:
-        sys.exit(f"ERROR [{lid}]: {raw_path.name} does not match its recorded SHA-256. Re-run acquire.py.")
-    data = json.loads(raw_bytes)
-    print(f"[{lid}] {raw_path.name}: {len(data['features'])} features")
+    part_cfgs = layer["source"].get("parts") or [{"type_name": layer["source"]["type_name"]}]
+    records = prov.get("parts") or [prov]
+    if len(records) != len(part_cfgs):
+        sys.exit(f"ERROR [{lid}]: {prov_path.name} has {len(records)} parts, config has {len(part_cfgs)}. Re-run acquire.py.")
+    warnings = []
+    parts = []
+    for cfg, rec in zip(part_cfgs, records):
+        raw_path = RAW_DIR / rec["raw_file"]
+        raw_bytes = raw_path.read_bytes()
+        if hashlib.sha256(raw_bytes).hexdigest() != rec["raw_sha256"]:
+            sys.exit(f"ERROR [{lid}]: {raw_path.name} does not match its recorded SHA-256. Re-run acquire.py.")
+        feats = json.loads(raw_bytes)["features"]
+        print(f"[{lid}] {raw_path.name}: {len(feats)} features")
+        parts.append((cfg, feats))
+    raw_features = combine_parts(parts, opts.get("combine"), warnings)
+
+    for new, old in (opts.get("alias") or {}).items():
+        for f in raw_features:
+            if new not in f["properties"] and old in f["properties"]:
+                f["properties"][new] = f["properties"][old]
 
     skipped = Counter()
     kept = []
-    for f in data["features"]:
+    for f in raw_features:
         geom, info = clean_geometry(f.get("geometry"), kind)
         if geom is None:
             skipped[info] += 1
             continue
-        kept.append((info, f.get("properties") or {}, geom))
+        kept.append((info, f.get("properties") or {}, simplify_geometry(geom, opts.get("simplify_m"))))
 
     if opts.get("sort") == "area_desc":
         kept.sort(key=lambda k: -k[0])
@@ -174,7 +269,6 @@ def process(layer):
     ]
 
     # Validation report (warnings only; nothing is altered).
-    warnings = []
     id_field = opts.get("id_field")
     if id_field:
         dup = [k for k, n in Counter(p.get(id_field) for _, p, _ in kept).items() if n > 1]
@@ -201,9 +295,13 @@ def process(layer):
 
     PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
     out_path = PROCESSED_DIR / f"{lid}.geojson"
+    csv_text = attribute_csv([(f, k[0]) for f, k in zip(features, kept)], kind)
+    keep_fields = opts.get("keep_fields")  # GeoJSON for the web may carry fewer fields; the CSV keeps all
+    if keep_fields:
+        for f in features:
+            f["properties"] = {k: v for k, v in f["properties"].items() if k in keep_fields}
     payload = json.dumps({"type": "FeatureCollection", "features": features},
                          ensure_ascii=False, separators=(",", ":"))
-    csv_text = attribute_csv([(f, k[0]) for f, k in zip(features, kept)], kind)
     for path, text in ((out_path, payload), (PROCESSED_DIR / f"{lid}.csv", csv_text)):
         tmp = path.with_name(path.name + ".part")
         tmp.write_text(text, encoding="utf-8-sig" if path.suffix == ".csv" else "utf-8", newline="")
@@ -219,6 +317,7 @@ def process(layer):
         "warnings": warnings,
         "stats": stats,
         "output_bytes": len(payload.encode("utf-8")),
+        "processing": {k: opts[k] for k in ("precision", "simplify_m", "keep_fields", "combine", "alias") if k in opts},
         "files": {"geojson": out_path.name, "csv": f"{lid}.csv"},
         "provenance": prov,
         "provenance_file": prov_path.name,

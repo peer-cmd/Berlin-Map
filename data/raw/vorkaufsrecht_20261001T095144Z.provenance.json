@@ -1,0 +1,60 @@
+{
+  "layer_id": "vorkaufsrecht",
+  "title": "Vorkaufsrechtsverordnungen § 25 BauGB",
+  "retrieved_utc": "20261001T095144Z",
+  "wfs_version": "2.0.0",
+  "requested_srs": "EPSG:4326",
+  "request_urls": {
+    "capabilities": "https://gdi.berlin.de/services/wfs/vorkaufsrechtsverordnungen?service=WFS&version=2.0.0&request=GetCapabilities",
+    "hits": "https://gdi.berlin.de/services/wfs/vorkaufsrechtsverordnungen?service=WFS&version=2.0.0&request=GetFeature&typeNames=vorkaufsrechtsverordnungen:vorkaufsrechtsverordnungen&resultType=hits",
+    "data": "https://gdi.berlin.de/services/wfs/vorkaufsrechtsverordnungen?service=WFS&version=2.0.0&request=GetFeature&typeNames=vorkaufsrechtsverordnungen:vorkaufsrechtsverordnungen&outputFormat=application/json&srsName=EPSG:4326"
+  },
+  "service_base_url": "https://gdi.berlin.de/services/wfs/vorkaufsrechtsverordnungen",
+  "type_name": "vorkaufsrechtsverordnungen:vorkaufsrechtsverordnungen",
+  "response_crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:EPSG::4326"
+    }
+  },
+  "feature_count": 5,
+  "raw_file": "vorkaufsrecht_20261001T095144Z.geojson",
+  "raw_bytes": 83098,
+  "raw_sha256": "353c32111bd65690dc7f0b15c7de9984f402d038bd1160397a55839c3cd01def",
+  "service_server_timestamp": "2026-10-01T09:51:47.449Z",
+  "service_title": "Vorkaufsrechtsverordnungen auf Grund § 25 Abs. 1 Satz 1 Nr. 2 BauGB",
+  "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+  "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen",
+  "parts": [
+    {
+      "request_urls": {
+        "capabilities": "https://gdi.berlin.de/services/wfs/vorkaufsrechtsverordnungen?service=WFS&version=2.0.0&request=GetCapabilities",
+        "hits": "https://gdi.berlin.de/services/wfs/vorkaufsrechtsverordnungen?service=WFS&version=2.0.0&request=GetFeature&typeNames=vorkaufsrechtsverordnungen:vorkaufsrechtsverordnungen&resultType=hits",
+        "data": "https://gdi.berlin.de/services/wfs/vorkaufsrechtsverordnungen?service=WFS&version=2.0.0&request=GetFeature&typeNames=vorkaufsrechtsverordnungen:vorkaufsrechtsverordnungen&outputFormat=application/json&srsName=EPSG:4326"
+      },
+      "service_base_url": "https://gdi.berlin.de/services/wfs/vorkaufsrechtsverordnungen",
+      "type_name": "vorkaufsrechtsverordnungen:vorkaufsrechtsverordnungen",
+      "response_crs": {
+        "type": "name",
+        "properties": {
+          "name": "urn:ogc:def:crs:EPSG::4326"
+        }
+      },
+      "feature_count": 5,
+      "raw_file": "vorkaufsrecht_20261001T095144Z.geojson",
+      "raw_bytes": 83098,
+      "raw_sha256": "353c32111bd65690dc7f0b15c7de9984f402d038bd1160397a55839c3cd01def",
+      "service_server_timestamp": "2026-10-01T09:51:47.449Z",
+      "service_title": "Vorkaufsrechtsverordnungen auf Grund § 25 Abs. 1 Satz 1 Nr. 2 BauGB",
+      "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+      "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen"
+    }
+  ],
+  "dataset_page": "https://gdi.berlin.de/services/wfs/vorkaufsrechtsverordnungen?request=GetCapabilities&service=WFS",
+  "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+  "license": {
+    "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+    "id": "dl-de-zero-2.0",
+    "url": "https://www.govdata.de/dl-de/zero-2-0"
+  }
+}

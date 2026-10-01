@@ -1,0 +1,543 @@
+﻿fid,plr_id,plr_name,bzr_id,bzr_name,pgr_id,pgr_name,bez,finhalt,stadtraum_id,stadtraum_name,stand,area_m2
+0,01100101,Stülerstraße,011001,Tiergarten Süd,0110,Zentrum,01 - Mitte,366933.115218165,1,Innere Stadt,01.01.2021,363590
+1,01100102,Großer Tiergarten,011001,Tiergarten Süd,0110,Zentrum,01 - Mitte,3919852.2150883,1,Innere Stadt,01.12.2021,3886505
+2,01100103,Lützowstraße,011001,Tiergarten Süd,0110,Zentrum,01 - Mitte,547183.230126262,1,Innere Stadt,01.12.2021,542491
+3,01100104,Körnerstraße,011001,Tiergarten Süd,0110,Zentrum,01 - Mitte,338513.949893406,1,Innere Stadt,01.12.2021,335648
+4,01100205,Wilhelmstraße,011002,Regierungsviertel,0110,Zentrum,01 - Mitte,634656.820037667,1,Innere Stadt,01.01.2021,629163
+5,01100206,Unter den Linden,011002,Regierungsviertel,0110,Zentrum,01 - Mitte,1297220.38181321,1,Innere Stadt,01.01.2021,1286513
+6,01100207,Leipziger Straße,011002,Regierungsviertel,0110,Zentrum,01 - Mitte,763632.865378861,1,Innere Stadt,01.01.2021,757137
+7,01100308,Charitéviertel,011003,Alexanderplatz,0110,Zentrum,01 - Mitte,1682630.37427837,1,Innere Stadt,01.01.2021,1668924
+8,01100309,Oranienburger Straße,011003,Alexanderplatz,0110,Zentrum,01 - Mitte,1011360.27857427,1,Innere Stadt,01.01.2021,1003164
+9,01100310,Alexanderplatzviertel,011003,Alexanderplatz,0110,Zentrum,01 - Mitte,1365179.01601925,1,Innere Stadt,01.01.2021,1353917
+10,01100311,Karl-Marx-Allee,011003,Alexanderplatz,0110,Zentrum,01 - Mitte,807969.278710965,1,Innere Stadt,01.01.2021,801306
+11,01100312,Heine-Viertel West,011003,Alexanderplatz,0110,Zentrum,01 - Mitte,643620.271756336,1,Innere Stadt,01.01.2021,638318
+12,01100313,Heine-Viertel Ost,011003,Alexanderplatz,0110,Zentrum,01 - Mitte,718074.515912567,1,Innere Stadt,01.01.2021,711925
+13,01100414,Nordbahnhof,011004,Brunnenstraße Süd,0110,Zentrum,01 - Mitte,373032.144192809,1,Innere Stadt,01.01.2021,369950
+14,01100415,Invalidenstraße,011004,Brunnenstraße Süd,0110,Zentrum,01 - Mitte,780156.011107893,1,Innere Stadt,01.01.2021,773891
+15,01100416,Arkonaplatz,011004,Brunnenstraße Süd,0110,Zentrum,01 - Mitte,602008.977962987,1,Innere Stadt,01.01.2021,597157
+16,01200517,Huttenkiez,012005,Moabit West,0120,Moabit,01 - Mitte,2484997.1232159,1,Innere Stadt,01.01.2021,2465227
+17,01200518,Beusselkiez,012005,Moabit West,0120,Moabit,01 - Mitte,236852.699724636,1,Innere Stadt,01.01.2021,234943
+18,01200519,Emdener Straße,012005,Moabit West,0120,Moabit,01 - Mitte,347161.158077068,1,Innere Stadt,01.01.2021,344393
+19,01200520,Bremer Straße,012005,Moabit West,0120,Moabit,01 - Mitte,429962.467700496,1,Innere Stadt,01.01.2021,426536
+20,01200521,Zwinglistraße,012005,Moabit West,0120,Moabit,01 - Mitte,166607.916953289,1,Innere Stadt,01.01.2021,165270
+21,01200522,Elberfelder Straße,012005,Moabit West,0120,Moabit,01 - Mitte,639464.563380913,1,Innere Stadt,01.01.2021,634250
+22,01200623,Stephankiez,012006,Moabit Ost,0120,Moabit,01 - Mitte,896488.235593471,1,Innere Stadt,01.01.2021,889456
+23,01200624,Heidestraße,012006,Moabit Ost,0120,Moabit,01 - Mitte,688003.289101341,1,Innere Stadt,01.01.2021,682463
+24,01200625,Lübecker Straße,012006,Moabit Ost,0120,Moabit,01 - Mitte,325107.549022341,1,Innere Stadt,01.01.2021,322435
+25,01200626,Thomasiusstraße,012006,Moabit Ost,0120,Moabit,01 - Mitte,552849.435824671,1,Innere Stadt,01.01.2021,548316
+26,01200627,Zillesiedlung,012006,Moabit Ost,0120,Moabit,01 - Mitte,174355.308465732,1,Innere Stadt,01.01.2021,172891
+27,01200628,Lüneburger Straße,012006,Moabit Ost,0120,Moabit,01 - Mitte,745620.771300933,1,Innere Stadt,01.01.2021,739428
+28,01200629,Hansaviertel,012006,Moabit Ost,0120,Moabit,01 - Mitte,533332.60205473,1,Innere Stadt,01.12.2021,528904
+29,01300730,Drontheimer Straße,013007,Osloer Straße,0130,Gesundbrunnen,01 - Mitte,452957.4169404,1,Innere Stadt,01.01.2021,449580
+30,01300731,Koloniestraße,013007,Osloer Straße,0130,Gesundbrunnen,01 - Mitte,666936.949939871,2,Äußere Stadt,01.01.2021,661942
+31,01300732,Soldiner Straße,013007,Osloer Straße,0130,Gesundbrunnen,01 - Mitte,588082.699111124,1,Innere Stadt,01.01.2021,583818
+32,01300733,Gesundbrunnen,013007,Osloer Straße,0130,Gesundbrunnen,01 - Mitte,658295.463897916,1,Innere Stadt,01.01.2021,653404
+33,01300834,Brunnenstraße,013008,Brunnenstraße Nord,0130,Gesundbrunnen,01 - Mitte,775000.102879389,1,Innere Stadt,01.01.2021,769140
+34,01300835,Humboldthain Süd,013008,Brunnenstraße Nord,0130,Gesundbrunnen,01 - Mitte,1103905.65313212,1,Innere Stadt,01.01.2021,1095195
+35,01300836,Humboldthain Nordwest,013008,Brunnenstraße Nord,0130,Gesundbrunnen,01 - Mitte,1441462.63645628,1,Innere Stadt,01.01.2021,1430332
+36,01400937,Afrikanische Straße,014009,Parkviertel,0140,Wedding,01 - Mitte,3674275.0140492,2,Äußere Stadt,01.01.2021,3646387
+37,01400938,Kameruner Straße,014009,Parkviertel,0140,Wedding,01 - Mitte,1196162.42616192,2,Äußere Stadt,01.01.2021,1186904
+38,01400939,Glasgower Straße,014009,Parkviertel,0140,Wedding,01 - Mitte,364634.092793032,2,Äußere Stadt,01.01.2021,362030
+39,01400940,Schillerpark,014009,Parkviertel,0140,Wedding,01 - Mitte,917917.736176068,2,Äußere Stadt,01.01.2021,911133
+40,01400941,Londoner Straße,014009,Parkviertel,0140,Wedding,01 - Mitte,450354.616413265,2,Äußere Stadt,01.01.2021,446903
+41,01400942,Westliche Müllerstraße,014009,Parkviertel,0140,Wedding,01 - Mitte,531514.430547307,1,Innere Stadt,01.01.2021,527273
+42,01401043,Antonstraße,014010,Wedding Zentrum,0140,Wedding,01 - Mitte,298923.102190643,1,Innere Stadt,01.01.2021,296524
+43,01401044,Uferstraße,014010,Wedding Zentrum,0140,Wedding,01 - Mitte,491569.06464209,1,Innere Stadt,01.01.2021,487781
+44,01401045,Schwedenstraße,014010,Wedding Zentrum,0140,Wedding,01 - Mitte,267818.863860992,1,Innere Stadt,01.01.2021,265866
+45,01401046,Nordufer,014010,Wedding Zentrum,0140,Wedding,01 - Mitte,325061.740008579,1,Innere Stadt,01.01.2021,322585
+46,01401047,Sparrplatz,014010,Wedding Zentrum,0140,Wedding,01 - Mitte,309180.472079959,1,Innere Stadt,01.01.2021,306843
+47,01401048,Leopoldplatz,014010,Wedding Zentrum,0140,Wedding,01 - Mitte,408312.082296704,1,Innere Stadt,01.01.2021,405326
+48,01401049,Schulstraße,014010,Wedding Zentrum,0140,Wedding,01 - Mitte,404133.529450141,1,Innere Stadt,01.01.2021,401114
+49,02100101,Askanischer Platz,021001,Südliche  Friedrichstadt,0210,Kreuzberg Nord,02 - Friedrichshain-Kreuzberg,710740.219236485,1,Innere Stadt,01.01.2021,704828
+50,02100102,Mehringplatz,021001,Südliche  Friedrichstadt,0210,Kreuzberg Nord,02 - Friedrichshain-Kreuzberg,624470.274066668,1,Innere Stadt,01.01.2021,618910
+51,02100103,Am Berlin Museum,021001,Südliche  Friedrichstadt,0210,Kreuzberg Nord,02 - Friedrichshain-Kreuzberg,413267.466259751,1,Innere Stadt,01.01.2021,409661
+52,02100104,Moritzplatz,021001,Südliche  Friedrichstadt,0210,Kreuzberg Nord,02 - Friedrichshain-Kreuzberg,380552.816915142,1,Innere Stadt,01.01.2021,377329
+53,02100105,Prinzenstraße,021001,Südliche  Friedrichstadt,0210,Kreuzberg Nord,02 - Friedrichshain-Kreuzberg,423364.742960237,1,Innere Stadt,01.01.2021,419534
+54,02100106,Wassertorplatz,021001,Südliche  Friedrichstadt,0210,Kreuzberg Nord,02 - Friedrichshain-Kreuzberg,388956.591537472,1,Innere Stadt,01.01.2021,385551
+55,02200207,Gleisdreieck,022002,Tempelhofer Vorstadt,0220,Kreuzberg Süd,02 - Friedrichshain-Kreuzberg,746235.794900589,1,Innere Stadt,01.01.2021,739632
+56,02200208,Rathaus Yorckstraße,022002,Tempelhofer Vorstadt,0220,Kreuzberg Süd,02 - Friedrichshain-Kreuzberg,428891.211352772,1,Innere Stadt,01.01.2021,425068
+57,02200209,Viktoriapark,022002,Tempelhofer Vorstadt,0220,Kreuzberg Süd,02 - Friedrichshain-Kreuzberg,693588.87852818,1,Innere Stadt,01.01.2021,687234
+58,02200210,Urbanstraße,022002,Tempelhofer Vorstadt,0220,Kreuzberg Süd,02 - Friedrichshain-Kreuzberg,916813.083900046,1,Innere Stadt,01.01.2021,908732
+59,02200211,Chamissokiez,022002,Tempelhofer Vorstadt,0220,Kreuzberg Süd,02 - Friedrichshain-Kreuzberg,977115.397609138,1,Innere Stadt,01.01.2021,968448
+60,02200212,Graefekiez Süd,022002,Tempelhofer Vorstadt,0220,Kreuzberg Süd,02 - Friedrichshain-Kreuzberg,391152.06198126,1,Innere Stadt,01.01.2021,387557
+61,02200213,Graefekiez Nord,022002,Tempelhofer Vorstadt,0220,Kreuzberg Süd,02 - Friedrichshain-Kreuzberg,592508.020086605,1,Innere Stadt,01.01.2021,587155
+62,02300314,Oranienplatz,023003,Nördliche Luisenstadt,0230,Kreuzberg Ost,02 - Friedrichshain-Kreuzberg,443945.413019492,1,Innere Stadt,01.01.2021,440041
+63,02300315,Lausitzer Platz,023003,Nördliche Luisenstadt,0230,Kreuzberg Ost,02 - Friedrichshain-Kreuzberg,350912.758939174,1,Innere Stadt,01.01.2021,347936
+64,02300316,Köpenicker Straße,023003,Nördliche Luisenstadt,0230,Kreuzberg Ost,02 - Friedrichshain-Kreuzberg,471428.877812151,1,Innere Stadt,01.01.2021,467372
+65,02300417,Reichenberger Straße West,023004,Südliche Luisenstadt,0230,Kreuzberg Ost,02 - Friedrichshain-Kreuzberg,369696.089089002,1,Innere Stadt,01.01.2021,366471
+66,02300418,Reichenberger Straße Ost,023004,Südliche Luisenstadt,0230,Kreuzberg Ost,02 - Friedrichshain-Kreuzberg,599772.684141838,1,Innere Stadt,01.01.2021,594395
+67,02300419,Wrangelkiez,023004,Südliche Luisenstadt,0230,Kreuzberg Ost,02 - Friedrichshain-Kreuzberg,526711.174956779,1,Innere Stadt,01.01.2021,521977
+68,02400520,Barnimkiez,024005,Karl-Marx-Allee Nord,0240,Friedrichshain West,02 - Friedrichshain-Kreuzberg,941574.663185666,1,Innere Stadt,01.01.2021,933793
+69,02400521,Friedenstraße,024005,Karl-Marx-Allee Nord,0240,Friedrichshain West,02 - Friedrichshain-Kreuzberg,731469.750654864,1,Innere Stadt,01.01.2021,725499
+70,02400522,Richard-Sorge-Viertel,024005,Karl-Marx-Allee Nord,0240,Friedrichshain West,02 - Friedrichshain-Kreuzberg,554546.144139574,1,Innere Stadt,01.01.2021,549980
+71,02400623,Andreasviertel,024006,Karl-Marx-Allee Süd,0240,Friedrichshain West,02 - Friedrichshain-Kreuzberg,921730.462048979,1,Innere Stadt,01.01.2021,914017
+72,02400624,Weberwiese,024006,Karl-Marx-Allee Süd,0240,Friedrichshain West,02 - Friedrichshain-Kreuzberg,564679.733374335,1,Innere Stadt,01.01.2021,560145
+73,02400625,Wriezener Bahnhof,024006,Karl-Marx-Allee Süd,0240,Friedrichshain West,02 - Friedrichshain-Kreuzberg,864404.99556498,1,Innere Stadt,01.01.2021,856805
+74,02500726,Hausburgviertel,025007,Frankfurter Allee Nord,0250,Friedrichshain Ost,02 - Friedrichshain-Kreuzberg,309450.362961009,1,Innere Stadt,01.01.2021,306986
+75,02500727,Forckenbeckplatz,025007,Frankfurter Allee Nord,0250,Friedrichshain Ost,02 - Friedrichshain-Kreuzberg,338018.538936947,1,Innere Stadt,01.01.2021,335288
+76,02500728,Samariterviertel,025007,Frankfurter Allee Nord,0250,Friedrichshain Ost,02 - Friedrichshain-Kreuzberg,310612.43520615,1,Innere Stadt,01.01.2021,308118
+77,02500729,Pettenkofer Straße,025007,Frankfurter Allee Nord,0250,Friedrichshain Ost,02 - Friedrichshain-Kreuzberg,322479.824369812,1,Innere Stadt,01.01.2021,319856
+78,02500830,Niederbarnimstraße,025008,Frankfurter Allee Süd FK,0250,Friedrichshain Ost,02 - Friedrichshain-Kreuzberg,165474.092398907,1,Innere Stadt,01.01.2021,163969
+79,02500831,Wismarplatz,025008,Frankfurter Allee Süd FK,0250,Friedrichshain Ost,02 - Friedrichshain-Kreuzberg,248991.830677309,1,Innere Stadt,01.01.2021,246854
+80,02500832,Traveplatz,025008,Frankfurter Allee Süd FK,0250,Friedrichshain Ost,02 - Friedrichshain-Kreuzberg,369572.692539753,1,Innere Stadt,01.01.2021,366469
+81,02500833,Boxhagener Platz,025008,Frankfurter Allee Süd FK,0250,Friedrichshain Ost,02 - Friedrichshain-Kreuzberg,340152.798705412,1,Innere Stadt,01.01.2021,337290
+82,02500834,Revaler Straße,025008,Frankfurter Allee Süd FK,0250,Friedrichshain Ost,02 - Friedrichshain-Kreuzberg,494580.918346436,1,Innere Stadt,01.01.2021,490166
+83,02500835,Stralauer Kiez,025008,Frankfurter Allee Süd FK,0250,Friedrichshain Ost,02 - Friedrichshain-Kreuzberg,1355179.8402491,1,Innere Stadt,01.01.2021,1343492
+84,02500836,Stralauer Halbinsel,025008,Frankfurter Allee Süd FK,0250,Friedrichshain Ost,02 - Friedrichshain-Kreuzberg,1117019.9294647,1,Innere Stadt,01.01.2021,1106886
+85,03100101,Bucher Forst,031001,Buch,0310,Buch,03 - Pankow,18376942.2425265,2,Äußere Stadt,01.12.2021,18274808
+86,03100102,Klinikum Buch,031001,Buch,0310,Buch,03 - Pankow,2732342.62781567,2,Äußere Stadt,01.01.2021,2716983
+87,03100103,Karower Chaussee,031001,Buch,0310,Buch,03 - Pankow,1876525.31912261,2,Äußere Stadt,01.12.2021,1865740
+88,03200204,Blankenfelde,032002,Blankenfelde/Niederschönhausen,0320,Nördliches Pankow,03 - Pankow,13068045.6244937,2,Äußere Stadt,01.01.2021,12990228
+89,03200205,Uhlandstraße,032002,Blankenfelde/Niederschönhausen,0320,Nördliches Pankow,03 - Pankow,2411910.65488375,2,Äußere Stadt,01.01.2021,2396046
+90,03200206,Pastor-Niemöller-Platz,032002,Blankenfelde/Niederschönhausen,0320,Nördliches Pankow,03 - Pankow,1104560.53755372,2,Äußere Stadt,01.01.2021,1096760
+91,03200207,Herthaplatz,032002,Blankenfelde/Niederschönhausen,0320,Nördliches Pankow,03 - Pankow,3080857.52800317,2,Äußere Stadt,01.01.2021,3060439
+92,03200308,Nisbléstraße,032003,Buchholz,0320,Nördliches Pankow,03 - Pankow,1134328.37017776,2,Äußere Stadt,01.01.2021,1126996
+93,03200309,Eddastraße,032003,Buchholz,0320,Nördliches Pankow,03 - Pankow,3067594.74734636,2,Äußere Stadt,01.01.2021,3048000
+94,03200310,Krugpfuhl,032003,Buchholz,0320,Nördliches Pankow,03 - Pankow,2267519.80138974,2,Äußere Stadt,01.01.2021,2253285
+95,03300411,Karow Nord,033004,Karow,0330,Nördliches Weißensee,03 - Pankow,1668495.19658034,2,Äußere Stadt,01.12.2021,1658195
+96,03300412,Karow Bahnhof,033004,Karow,0330,Nördliches Weißensee,03 - Pankow,3078366.40997071,2,Äußere Stadt,01.01.2021,3059328
+97,03300413,Karow Ost,033004,Karow,0330,Nördliches Weißensee,03 - Pankow,1864295.02035482,2,Äußere Stadt,01.01.2021,1852395
+98,03300514,Blankenburg,033005,Blankenburg/Heinersdorf/Märchenland,0330,Nördliches Weißensee,03 - Pankow,4720036.8479692,2,Äußere Stadt,01.01.2021,4689063
+99,03300515,Blankenburger Süden,033005,Blankenburg/Heinersdorf/Märchenland,0330,Nördliches Weißensee,03 - Pankow,1162758.43319686,2,Äußere Stadt,01.01.2021,1154659
+100,03300516,Heinersdorf,033005,Blankenburg/Heinersdorf/Märchenland,0330,Nördliches Weißensee,03 - Pankow,3906851.67449751,2,Äußere Stadt,01.01.2021,3879011
+101,03300517,Märchenland,033005,Blankenburg/Heinersdorf/Märchenland,0330,Nördliches Weißensee,03 - Pankow,5824604.19911688,2,Äußere Stadt,01.01.2021,5784752
+102,03400618,Rosenthal,034006,Schönholz/Wilhelmsruh/Rosenthal,0340,Südliches Pankow,03 - Pankow,1798409.62895322,2,Äußere Stadt,01.01.2021,1786415
+103,03400619,Wilhelmsruh,034006,Schönholz/Wilhelmsruh/Rosenthal,0340,Südliches Pankow,03 - Pankow,2169621.21373436,2,Äußere Stadt,01.01.2021,2154900
+104,03400620,Schönholz,034006,Schönholz/Wilhelmsruh/Rosenthal,0340,Südliches Pankow,03 - Pankow,1909863.91565169,2,Äußere Stadt,01.01.2021,1896532
+105,03400721,Florakiez,034007,Pankow Zentrum,0340,Südliches Pankow,03 - Pankow,794230.258296016,1,Innere Stadt,01.01.2021,788603
+106,03400722,Parkstraße,034007,Pankow Zentrum,0340,Südliches Pankow,03 - Pankow,509698.783429287,2,Äußere Stadt,01.01.2021,505984
+107,03400723,Garbátyplatz,034007,Pankow Zentrum,0340,Südliches Pankow,03 - Pankow,608004.195993096,2,Äußere Stadt,01.01.2021,603868
+108,03400724,Wolfshagener Straße,034007,Pankow Zentrum,0340,Südliches Pankow,03 - Pankow,770111.6535475,2,Äußere Stadt,01.01.2021,764682
+109,03400725,Schlosspark,034007,Pankow Zentrum,0340,Südliches Pankow,03 - Pankow,1259169.8499095,2,Äußere Stadt,01.01.2021,1250494
+110,03400826,Tiroler Viertel,034008,Pankow Süd,0340,Südliches Pankow,03 - Pankow,658974.262152813,1,Innere Stadt,01.01.2021,654149
+111,03400827,Trelleborger Viertel,034008,Pankow Süd,0340,Südliches Pankow,03 - Pankow,413280.588318506,1,Innere Stadt,01.01.2021,410220
+112,03400828,Spiekermann Straße,034008,Pankow Süd,0340,Südliches Pankow,03 - Pankow,364485.517682292,2,Äußere Stadt,01.01.2021,361730
+113,03400829,Arnold-Zweig-Straße,034008,Pankow Süd,0340,Südliches Pankow,03 - Pankow,400608.319129962,2,Äußere Stadt,01.01.2021,397694
+114,03400830,Kissingenviertel,034008,Pankow Süd,0340,Südliches Pankow,03 - Pankow,659329.175906155,2,Äußere Stadt,01.01.2021,654531
+115,03400831,Pankower Tor,034008,Pankow Süd,0340,Südliches Pankow,03 - Pankow,534838.197071856,2,Äußere Stadt,01.01.2021,530908
+116,03500932,Bühringstraße,035009,Weißensee,0350,Südliches Weißensee,03 - Pankow,992560.310266936,2,Äußere Stadt,01.01.2021,985207
+117,03500933,Weißer See,035009,Weißensee,0350,Südliches Weißensee,03 - Pankow,1055244.34605921,2,Äußere Stadt,01.01.2021,1047457
+118,03500934,Weißenseer Spitze,035009,Weißensee,0350,Südliches Weißensee,03 - Pankow,627296.984422498,1,Innere Stadt,01.01.2021,622492
+119,03500935,Behaimstraße,035009,Weißensee,0350,Südliches Weißensee,03 - Pankow,439061.471365473,1,Innere Stadt,01.01.2021,435666
+120,03500936,Komponistenviertel Weißensee,035009,Weißensee,0350,Südliches Weißensee,03 - Pankow,1119830.05764978,1,Innere Stadt,01.01.2021,1111232
+121,03501037,Rathaus Weißensee,035010,Weißensee Ost,0350,Südliches Weißensee,03 - Pankow,1745042.94804259,2,Äußere Stadt,01.01.2021,1732209
+122,03501038,Hansastraße,035010,Weißensee Ost,0350,Südliches Weißensee,03 - Pankow,1964403.80757673,2,Äußere Stadt,01.01.2021,1949905
+123,03601139,Norweger Viertel,036011,Prenzlauer Berg Nordwest,0360,Nördlicher Prenzlauer Berg,03 - Pankow,454226.832994974,1,Innere Stadt,01.01.2021,450708
+124,03601140,Malmöer Straße,036011,Prenzlauer Berg Nordwest,0360,Nördlicher Prenzlauer Berg,03 - Pankow,280597.872786118,1,Innere Stadt,01.01.2021,278408
+125,03601141,Arnimplatz,036011,Prenzlauer Berg Nordwest,0360,Nördlicher Prenzlauer Berg,03 - Pankow,286793.887284236,1,Innere Stadt,01.01.2021,284633
+126,03601142,Falkplatz,036011,Prenzlauer Berg Nordwest,0360,Nördlicher Prenzlauer Berg,03 - Pankow,907522.202270397,1,Innere Stadt,01.01.2021,900631
+127,03601243,Rodenbergstraße,036012,Prenzlauer Berg Nord,0360,Nördlicher Prenzlauer Berg,03 - Pankow,329700.294819563,1,Innere Stadt,01.01.2021,327112
+128,03601244,Humannplatz,036012,Prenzlauer Berg Nord,0360,Nördlicher Prenzlauer Berg,03 - Pankow,364163.007496404,1,Innere Stadt,01.01.2021,361478
+129,03601245,Ostseestraße,036012,Prenzlauer Berg Nord,0360,Nördlicher Prenzlauer Berg,03 - Pankow,966061.550871141,1,Innere Stadt,01.01.2021,958557
+130,03601346,Gethsemanekirche,036013,Helmholtzplatz,0360,Nördlicher Prenzlauer Berg,03 - Pankow,193540.710733055,1,Innere Stadt,01.01.2021,192098
+131,03601347,Helmholtzplatz,036013,Helmholtzplatz,0360,Nördlicher Prenzlauer Berg,03 - Pankow,297844.195759502,1,Innere Stadt,01.01.2021,295476
+132,03601348,Senefelderstraße,036013,Helmholtzplatz,0360,Nördlicher Prenzlauer Berg,03 - Pankow,219925.284497711,1,Innere Stadt,01.01.2021,218247
+133,03601449,Michelangelostraße,036014,Prenzlauer Berg Ost,0360,Nördlicher Prenzlauer Berg,03 - Pankow,858334.997582235,1,Innere Stadt,01.01.2021,851641
+134,03601450,Volkspark Prenzlauer Berg,036014,Prenzlauer Berg Ost,0360,Nördlicher Prenzlauer Berg,03 - Pankow,1212042.08315322,2,Äußere Stadt,01.01.2021,1202389
+135,03601451,Anton-Saefkow-Park,036014,Prenzlauer Berg Ost,0360,Nördlicher Prenzlauer Berg,03 - Pankow,546897.389129498,1,Innere Stadt,01.01.2021,542640
+136,03601452,Velodrom,036014,Prenzlauer Berg Ost,0360,Nördlicher Prenzlauer Berg,03 - Pankow,552171.157196044,1,Innere Stadt,01.01.2021,547597
+137,03601453,Alter Schlachthof,036014,Prenzlauer Berg Ost,0360,Nördlicher Prenzlauer Berg,03 - Pankow,577296.876215286,1,Innere Stadt,01.01.2021,572429
+138,03701554,Teutoburger Platz,037015,Prenzlauer Berg Südwest,0370,Südlicher Prenzlauer Berg,03 - Pankow,548494.312274155,1,Innere Stadt,01.01.2021,544129
+139,03701555,Sredzkistraße,037015,Prenzlauer Berg Südwest,0370,Südlicher Prenzlauer Berg,03 - Pankow,314596.550303332,1,Innere Stadt,01.01.2021,312019
+140,03701556,Kollwitzplatz,037015,Prenzlauer Berg Südwest,0370,Südlicher Prenzlauer Berg,03 - Pankow,507074.866831751,1,Innere Stadt,01.01.2021,503111
+141,03701657,Thälmannpark,037016,Prenzlauer Berg Süd,0370,Südlicher Prenzlauer Berg,03 - Pankow,441349.674993427,1,Innere Stadt,01.01.2021,437907
+142,03701658,Christburger Straße,037016,Prenzlauer Berg Süd,0370,Südlicher Prenzlauer Berg,03 - Pankow,232831.186680912,1,Innere Stadt,01.01.2021,231049
+143,03701659,Immanuelkirchstraße,037016,Prenzlauer Berg Süd,0370,Südlicher Prenzlauer Berg,03 - Pankow,411516.726178393,1,Innere Stadt,01.12.2021,408167
+144,03701660,Bötzowstraße,037016,Prenzlauer Berg Süd,0370,Südlicher Prenzlauer Berg,03 - Pankow,575252.240138648,1,Innere Stadt,01.12.2021,570803
+145,04100101,Jungfernheide/Plötzensee,041001,Charlottenburg Nord,0410,Charlottenburg Nord,04 - Charlottenburg-Wilmersdorf,5250552.27538539,2,Äußere Stadt,01.01.2021,5209419
+146,04100102,Paul-Hertz-Siedlung,041001,Charlottenburg Nord,0410,Charlottenburg Nord,04 - Charlottenburg-Wilmersdorf,537869.774418184,2,Äußere Stadt,01.01.2021,533717
+147,04200203,Olympiagelände,042002,Heerstraße,0420,Charlottenburg West,04 - Charlottenburg-Wilmersdorf,3264447.30853792,2,Äußere Stadt,01.01.2021,3237304
+148,04200204,Angerburger Allee,042002,Heerstraße,0420,Charlottenburg West,04 - Charlottenburg-Wilmersdorf,361441.626785334,2,Äußere Stadt,01.01.2021,358351
+149,04200205,Flatowallee,042002,Heerstraße,0420,Charlottenburg West,04 - Charlottenburg-Wilmersdorf,977784.80121399,2,Äußere Stadt,01.01.2021,969711
+150,04200206,Kranzallee,042002,Heerstraße,0420,Charlottenburg West,04 - Charlottenburg-Wilmersdorf,1485568.26391524,2,Äußere Stadt,01.01.2021,1472804
+151,04200207,Eichkamp,042002,Heerstraße,0420,Charlottenburg West,04 - Charlottenburg-Wilmersdorf,17441108.8957713,2,Äußere Stadt,01.01.2021,17283570
+152,04200308,Branitzer Platz,042003,Westend,0420,Charlottenburg West,04 - Charlottenburg-Wilmersdorf,2755154.22151321,2,Äußere Stadt,01.01.2021,2732701
+153,04200309,Neu Westend,042003,Westend,0420,Charlottenburg West,04 - Charlottenburg-Wilmersdorf,677517.510290459,2,Äußere Stadt,01.01.2021,671758
+154,04200310,Fürstenplatz,042003,Westend,0420,Charlottenburg West,04 - Charlottenburg-Wilmersdorf,931615.152455732,2,Äußere Stadt,01.01.2021,923713
+155,04200311,Königin-Elisabeth-Straße,042003,Westend,0420,Charlottenburg West,04 - Charlottenburg-Wilmersdorf,1555819.71064957,2,Äußere Stadt,01.01.2021,1542696
+156,04300412,Schlossgarten,043004,Schloss Charlottenburg,0430,Charlottenburg Zentrum,04 - Charlottenburg-Wilmersdorf,1261046.83877911,1,Innere Stadt,01.01.2021,1250644
+157,04300413,Klausenerplatz,043004,Schloss Charlottenburg,0430,Charlottenburg Zentrum,04 - Charlottenburg-Wilmersdorf,478704.318060625,1,Innere Stadt,01.01.2021,474719
+158,04300414,Schloßstraße,043004,Schloss Charlottenburg,0430,Charlottenburg Zentrum,04 - Charlottenburg-Wilmersdorf,562558.699635075,1,Innere Stadt,01.01.2021,557694
+159,04300415,Lietzensee,043004,Schloss Charlottenburg,0430,Charlottenburg Zentrum,04 - Charlottenburg-Wilmersdorf,633140.386904119,1,Innere Stadt,01.01.2021,627766
+160,04300416,Amtsgerichtsplatz,043004,Schloss Charlottenburg,0430,Charlottenburg Zentrum,04 - Charlottenburg-Wilmersdorf,580698.477199635,1,Innere Stadt,01.01.2021,575673
+161,04300517,Tegeler Weg,043005,Mierendorffplatz,0430,Charlottenburg Zentrum,04 - Charlottenburg-Wilmersdorf,519156.098719232,1,Innere Stadt,01.01.2021,514902
+162,04300518,Kaiserin-Augusta-Allee,043005,Mierendorffplatz,0430,Charlottenburg Zentrum,04 - Charlottenburg-Wilmersdorf,1376647.59783192,1,Innere Stadt,01.01.2021,1365474
+163,04300619,Alt-Lietzow,043006,Otto-Suhr-Allee/Kantstraße,0430,Charlottenburg Zentrum,04 - Charlottenburg-Wilmersdorf,536736.096280815,1,Innere Stadt,01.01.2021,532233
+164,04300620,Spreestadt,043006,Otto-Suhr-Allee/Kantstraße,0430,Charlottenburg Zentrum,04 - Charlottenburg-Wilmersdorf,715525.607040407,1,Innere Stadt,01.01.2021,709780
+165,04300621,Richard-Wagner-Straße,043006,Otto-Suhr-Allee/Kantstraße,0430,Charlottenburg Zentrum,04 - Charlottenburg-Wilmersdorf,550741.725394853,1,Innere Stadt,01.01.2021,546152
+166,04300622,Ernst-Reuter-Platz,043006,Otto-Suhr-Allee/Kantstraße,0430,Charlottenburg Zentrum,04 - Charlottenburg-Wilmersdorf,959939.508217273,1,Innere Stadt,01.01.2021,951796
+167,04300623,Karl-August-Platz,043006,Otto-Suhr-Allee/Kantstraße,0430,Charlottenburg Zentrum,04 - Charlottenburg-Wilmersdorf,582736.824553762,1,Innere Stadt,01.01.2021,577835
+168,04300624,Savignyplatz,043006,Otto-Suhr-Allee/Kantstraße,0430,Charlottenburg Zentrum,04 - Charlottenburg-Wilmersdorf,534645.693168128,1,Innere Stadt,01.01.2021,530106
+169,04400725,Güterbahnhof Grunewald,044007,Grunewald,0440,Wilmersdorf Süd,04 - Charlottenburg-Wilmersdorf,543676.590121046,2,Äußere Stadt,01.01.2021,538803
+170,04400726,Bismarckallee,044007,Grunewald,0440,Wilmersdorf Süd,04 - Charlottenburg-Wilmersdorf,1428456.17584613,2,Äußere Stadt,01.01.2021,1415836
+171,04400727,Flinsberger Platz,044007,Grunewald,0440,Wilmersdorf Süd,04 - Charlottenburg-Wilmersdorf,914968.147478539,2,Äußere Stadt,01.01.2021,906625
+172,04400728,Hagenplatz,044007,Grunewald,0440,Wilmersdorf Süd,04 - Charlottenburg-Wilmersdorf,943671.378633734,2,Äußere Stadt,01.01.2021,935111
+173,04400729,Hundekehle,044007,Grunewald,0440,Wilmersdorf Süd,04 - Charlottenburg-Wilmersdorf,3754531.35250377,2,Äußere Stadt,01.01.2021,3719872
+174,04400830,Forckenbeckstraße,044008,Schmargendorf,0440,Wilmersdorf Süd,04 - Charlottenburg-Wilmersdorf,1494617.63538615,2,Äußere Stadt,01.01.2021,1480782
+175,04400831,Messelpark,044008,Schmargendorf,0440,Wilmersdorf Süd,04 - Charlottenburg-Wilmersdorf,544711.083094959,2,Äußere Stadt,01.01.2021,539677
+176,04400832,Breite Straße,044008,Schmargendorf,0440,Wilmersdorf Süd,04 - Charlottenburg-Wilmersdorf,667165.711430666,2,Äußere Stadt,01.01.2021,660946
+177,04400833,Schlangenbader Straße,044008,Schmargendorf,0440,Wilmersdorf Süd,04 - Charlottenburg-Wilmersdorf,353214.024542491,2,Äußere Stadt,01.01.2021,349900
+178,04400834,Binger Straße,044008,Schmargendorf,0440,Wilmersdorf Süd,04 - Charlottenburg-Wilmersdorf,423128.881897241,2,Äußere Stadt,01.01.2021,419212
+179,04400835,Rüdesheimer Platz,044008,Schmargendorf,0440,Wilmersdorf Süd,04 - Charlottenburg-Wilmersdorf,600215.999607757,1,Innere Stadt,01.01.2021,594558
+180,04500936,Droysenstraße,045009,Halensee,0450,Wilmersdorf Zentrum,04 - Charlottenburg-Wilmersdorf,273549.104911801,1,Innere Stadt,01.01.2021,271157
+181,04500937,Halensee,045009,Halensee,0450,Wilmersdorf Zentrum,04 - Charlottenburg-Wilmersdorf,709444.641976306,1,Innere Stadt,01.01.2021,703284
+182,04500938,Hochmeisterplatz,045009,Halensee,0450,Wilmersdorf Zentrum,04 - Charlottenburg-Wilmersdorf,517765.244207646,1,Innere Stadt,01.01.2021,513098
+183,04500939,Eisenzahnstraße,045009,Halensee,0450,Wilmersdorf Zentrum,04 - Charlottenburg-Wilmersdorf,757153.319080218,1,Innere Stadt,01.01.2021,750459
+184,04501040,Hindemithplatz,045010,Lietzenburger Straße,0450,Wilmersdorf Zentrum,04 - Charlottenburg-Wilmersdorf,303199.964543717,1,Innere Stadt,01.01.2021,300565
+185,04501041,George-Grosz-Platz,045010,Lietzenburger Straße,0450,Wilmersdorf Zentrum,04 - Charlottenburg-Wilmersdorf,464764.913496641,1,Innere Stadt,01.01.2021,460715
+186,04501042,Breitscheidplatz,045010,Lietzenburger Straße,0450,Wilmersdorf Zentrum,04 - Charlottenburg-Wilmersdorf,603720.235131161,1,Innere Stadt,01.01.2021,598550
+187,04501043,Preußenpark,045010,Lietzenburger Straße,0450,Wilmersdorf Zentrum,04 - Charlottenburg-Wilmersdorf,625799.225339649,1,Innere Stadt,01.01.2021,620326
+188,04501044,Ludwigkirchplatz,045010,Lietzenburger Straße,0450,Wilmersdorf Zentrum,04 - Charlottenburg-Wilmersdorf,314921.755447404,1,Innere Stadt,01.01.2021,312124
+189,04501045,Schaperstraße,045010,Lietzenburger Straße,0450,Wilmersdorf Zentrum,04 - Charlottenburg-Wilmersdorf,590824.230434702,1,Innere Stadt,01.01.2021,585604
+190,04501146,Barstraße,045011,Volkspark Wilmersdorf,0450,Wilmersdorf Zentrum,04 - Charlottenburg-Wilmersdorf,668506.010058492,1,Innere Stadt,01.01.2021,662446
+191,04501147,Leon-Jessel-Platz,045011,Volkspark Wilmersdorf,0450,Wilmersdorf Zentrum,04 - Charlottenburg-Wilmersdorf,248612.379180959,1,Innere Stadt,01.01.2021,246385
+192,04501148,Brabanter Platz,045011,Volkspark Wilmersdorf,0450,Wilmersdorf Zentrum,04 - Charlottenburg-Wilmersdorf,420103.248460499,1,Innere Stadt,01.01.2021,416260
+193,04501149,Nikolsburger Platz,045011,Volkspark Wilmersdorf,0450,Wilmersdorf Zentrum,04 - Charlottenburg-Wilmersdorf,441484.873724149,1,Innere Stadt,01.01.2021,437612
+194,04501150,Wilhelmsaue,045011,Volkspark Wilmersdorf,0450,Wilmersdorf Zentrum,04 - Charlottenburg-Wilmersdorf,294737.341300529,1,Innere Stadt,01.01.2021,292110
+195,04501151,Hildegardstraße,045011,Volkspark Wilmersdorf,0450,Wilmersdorf Zentrum,04 - Charlottenburg-Wilmersdorf,323683.418744774,1,Innere Stadt,01.01.2021,320678
+196,04501152,Prager Platz,045011,Volkspark Wilmersdorf,0450,Wilmersdorf Zentrum,04 - Charlottenburg-Wilmersdorf,349867.467935833,1,Innere Stadt,01.01.2021,346789
+197,04501153,Babelsberger Straße,045011,Volkspark Wilmersdorf,0450,Wilmersdorf Zentrum,04 - Charlottenburg-Wilmersdorf,586119.809741665,1,Innere Stadt,01.01.2021,580656
+198,05100101,Hakenfelde Nord,051001,Hakenfelde,0510,Spandau Mitte / Nord,05 - Spandau,16168986.5715294,2,Äußere Stadt,01.01.2021,16056458
+199,05100102,Am Forstacker,051001,Hakenfelde,0510,Spandau Mitte / Nord,05 - Spandau,320909.154800064,2,Äußere Stadt,01.01.2021,318594
+200,05100103,Mertensstraße,051001,Hakenfelde,0510,Spandau Mitte / Nord,05 - Spandau,719129.828933593,2,Äußere Stadt,01.01.2021,713975
+201,05100104,Maselake,051001,Hakenfelde,0510,Spandau Mitte / Nord,05 - Spandau,559356.301198665,2,Äußere Stadt,01.01.2021,555246
+202,05100105,Amorbacher Weg,051001,Hakenfelde,0510,Spandau Mitte / Nord,05 - Spandau,2202605.78808968,2,Äußere Stadt,01.01.2021,2185964
+203,05100206,Griesingerstraße,051002,Falkenhagener Feld,0510,Spandau Mitte / Nord,05 - Spandau,1938181.26598604,2,Äußere Stadt,01.01.2021,1923612
+204,05100207,An der Tränke,051002,Falkenhagener Feld,0510,Spandau Mitte / Nord,05 - Spandau,592575.819594643,2,Äußere Stadt,01.01.2021,587970
+205,05100208,Im Spektefeld,051002,Falkenhagener Feld,0510,Spandau Mitte / Nord,05 - Spandau,1765428.02922657,2,Äußere Stadt,01.01.2021,1752107
+206,05100209,Westerwaldstraße,051002,Falkenhagener Feld,0510,Spandau Mitte / Nord,05 - Spandau,747060.927218516,2,Äußere Stadt,01.01.2021,741446
+207,05100210,Germersheimer Platz,051002,Falkenhagener Feld,0510,Spandau Mitte / Nord,05 - Spandau,544798.861027764,2,Äußere Stadt,01.01.2021,540622
+208,05100211,An der Kappe,051002,Falkenhagener Feld,0510,Spandau Mitte / Nord,05 - Spandau,1402798.31480867,2,Äußere Stadt,01.01.2021,1391829
+209,05100312,Eckschanze,051003,Spandau Mitte,0510,Spandau Mitte / Nord,05 - Spandau,332714.2687553,2,Äußere Stadt,01.01.2021,330210
+210,05100313,Eiswerder,051003,Spandau Mitte,0510,Spandau Mitte / Nord,05 - Spandau,1665455.6405142,2,Äußere Stadt,01.01.2021,1652623
+211,05100314,Kurstraße,051003,Spandau Mitte,0510,Spandau Mitte / Nord,05 - Spandau,475100.954033116,2,Äußere Stadt,01.01.2021,471512
+212,05100315,Ackerstraße,051003,Spandau Mitte,0510,Spandau Mitte / Nord,05 - Spandau,489154.525513757,2,Äußere Stadt,01.01.2021,485458
+213,05100316,Carl-Schurz-Straße,051003,Spandau Mitte,0510,Spandau Mitte / Nord,05 - Spandau,1377543.8293128,2,Äußere Stadt,01.01.2021,1366651
+214,05100317,Freiheit,051003,Spandau Mitte,0510,Spandau Mitte / Nord,05 - Spandau,2278736.27276842,2,Äußere Stadt,01.01.2021,2260360
+215,05200418,Isenburger Weg,052004,Brunsbütteler Damm,0520,Wilhelmstadt / Staaken,05 - Spandau,1284644.93935583,2,Äußere Stadt,01.01.2021,1274841
+216,05200419,Am Heideberg,052004,Brunsbütteler Damm,0520,Wilhelmstadt / Staaken,05 - Spandau,422284.075547926,2,Äußere Stadt,01.01.2021,418927
+217,05200420,Staakener Straße,052004,Brunsbütteler Damm,0520,Wilhelmstadt / Staaken,05 - Spandau,2627543.88107968,2,Äußere Stadt,01.01.2021,2606503
+218,05200421,Spandauer Straße,052004,Brunsbütteler Damm,0520,Wilhelmstadt / Staaken,05 - Spandau,720077.48311938,2,Äußere Stadt,01.01.2021,714261
+219,05200422,Werkstraße,052004,Brunsbütteler Damm,0520,Wilhelmstadt / Staaken,05 - Spandau,1187927.35753514,2,Äußere Stadt,01.01.2021,1178380
+220,05200423,Magistratsweg,052004,Brunsbütteler Damm,0520,Wilhelmstadt / Staaken,05 - Spandau,640368.951151488,2,Äußere Stadt,01.01.2021,635390
+221,05200524,Döberitzer Weg,052005,Heerstraße,0520,Wilhelmstadt / Staaken,05 - Spandau,1660886.45438645,2,Äußere Stadt,01.01.2021,1647391
+222,05200525,Pillnitzer Weg,052005,Heerstraße,0520,Wilhelmstadt / Staaken,05 - Spandau,1475133.02315814,2,Äußere Stadt,01.01.2021,1463042
+223,05200526,Rudolf-Wissell-Großsiedlung,052005,Heerstraße,0520,Wilhelmstadt / Staaken,05 - Spandau,379183.616224967,2,Äußere Stadt,01.01.2021,376030
+224,05200527,Maulbeerallee,052005,Heerstraße,0520,Wilhelmstadt / Staaken,05 - Spandau,1311844.31020929,2,Äußere Stadt,01.01.2021,1300972
+225,05200528,Weinmeisterhornweg,052005,Heerstraße,0520,Wilhelmstadt / Staaken,05 - Spandau,2738298.69849582,2,Äußere Stadt,01.01.2021,2715094
+226,05200629,Borkumer Straße,052006,Wilhelmstadt,0520,Wilhelmstadt / Staaken,05 - Spandau,1325582.05496061,2,Äußere Stadt,01.01.2021,1314911
+227,05200630,Wilhelmstadt West,052006,Wilhelmstadt,0520,Wilhelmstadt / Staaken,05 - Spandau,909121.870704463,2,Äußere Stadt,01.01.2021,901733
+228,05200631,Wilhelmstadt Ost,052006,Wilhelmstadt,0520,Wilhelmstadt / Staaken,05 - Spandau,542138.375031389,2,Äußere Stadt,01.01.2021,537744
+229,05200632,Tiefwerder,052006,Wilhelmstadt,0520,Wilhelmstadt / Staaken,05 - Spandau,1565012.11494676,2,Äußere Stadt,01.01.2021,1552231
+230,05200633,Graetschelsteig,052006,Wilhelmstadt,0520,Wilhelmstadt / Staaken,05 - Spandau,491051.807678225,2,Äußere Stadt,01.01.2021,486833
+231,05200634,Börnicker Straße,052006,Wilhelmstadt,0520,Wilhelmstadt / Staaken,05 - Spandau,3734160.02956567,2,Äußere Stadt,01.01.2021,3702042
+232,05300735,Haveleck,053007,Haselhorst,0530,Haselhorst / Siemensstadt,05 - Spandau,1032894.00975511,2,Äußere Stadt,01.01.2021,1025249
+233,05300736,Zitadellenweg,053007,Haselhorst,0530,Haselhorst / Siemensstadt,05 - Spandau,2619004.6747898,2,Äußere Stadt,01.01.2021,2598734
+234,05300737,Gartenfelder Straße,053007,Haselhorst,0530,Haselhorst / Siemensstadt,05 - Spandau,1041752.60480133,2,Äußere Stadt,01.01.2021,1033578
+235,05300838,Gartenfeld,053008,Siemensstadt,0530,Haselhorst / Siemensstadt,05 - Spandau,934743.08764678,2,Äußere Stadt,01.01.2021,927511
+236,05300839,Rohrdamm,053008,Siemensstadt,0530,Haselhorst / Siemensstadt,05 - Spandau,1217881.93064887,2,Äußere Stadt,01.01.2021,1208212
+237,05300840,Nonnendammallee,053008,Siemensstadt,0530,Haselhorst / Siemensstadt,05 - Spandau,3274879.00277276,2,Äußere Stadt,01.01.2021,3248845
+238,05300841,Siemensdamm,053008,Siemensstadt,0530,Haselhorst / Siemensstadt,05 - Spandau,268024.361029139,2,Äußere Stadt,01.01.2021,265851
+239,05400942,Alt-Gatow,054009,Gatow/Kladow,0540,Gatow / Kladow,05 - Spandau,11509827.3255819,2,Äußere Stadt,01.01.2021,11404688
+240,05400943,Jägerallee,054009,Gatow/Kladow,0540,Gatow / Kladow,05 - Spandau,7332065.96221154,2,Äußere Stadt,01.01.2021,7262724
+241,05400944,Kladower Damm,054009,Gatow/Kladow,0540,Gatow / Kladow,05 - Spandau,4312231.54057731,2,Äußere Stadt,01.01.2021,4270762
+242,05400945,Kafkastraße,054009,Gatow/Kladow,0540,Gatow / Kladow,05 - Spandau,1737259.23895414,2,Äußere Stadt,01.01.2021,1719971
+243,06100101,Fichtenberg,061001,Schloßstraße,0610,Steglitz,06 - Steglitz-Zehlendorf,989983.706400964,2,Äußere Stadt,01.01.2021,980529
+244,06100102,Schloßstraße,061001,Schloßstraße,0610,Steglitz,06 - Steglitz-Zehlendorf,488818.415196637,1,Innere Stadt,01.01.2021,484046
+245,06100103,Markelstraße,061001,Schloßstraße,0610,Steglitz,06 - Steglitz-Zehlendorf,461311.55196138,1,Innere Stadt,01.01.2021,456977
+246,06100204,Munsterdamm,061002,Albrechtstraße,0610,Steglitz,06 - Steglitz-Zehlendorf,1115963.34419474,2,Äußere Stadt,01.01.2021,1105134
+247,06100205,Südende,061002,Albrechtstraße,0610,Steglitz,06 - Steglitz-Zehlendorf,850878.727386489,2,Äußere Stadt,01.01.2021,842408
+248,06100206,Stadtpark,061002,Albrechtstraße,0610,Steglitz,06 - Steglitz-Zehlendorf,710879.749845234,2,Äußere Stadt,01.01.2021,703974
+249,06100207,Mittelstraße,061002,Albrechtstraße,0610,Steglitz,06 - Steglitz-Zehlendorf,679697.383662553,2,Äußere Stadt,01.01.2021,672943
+250,06100208,Bergstraße,061002,Albrechtstraße,0610,Steglitz,06 - Steglitz-Zehlendorf,620627.59306593,2,Äußere Stadt,01.01.2021,614499
+251,06100209,Feuerbachstraße,061002,Albrechtstraße,0610,Steglitz,06 - Steglitz-Zehlendorf,633843.806935918,2,Äußere Stadt,01.01.2021,627802
+252,06100210,Bismarckstraße,061002,Albrechtstraße,0610,Steglitz,06 - Steglitz-Zehlendorf,235557.209856875,2,Äußere Stadt,01.01.2021,233387
+253,06200311,Alt-Lankwitz,062003,Lankwitz,0620,Lankwitz/Lichterfelde Ost,06 - Steglitz-Zehlendorf,993766.725403724,2,Äußere Stadt,01.01.2021,983749
+254,06200312,Komponistenviertel Lankwitz,062003,Lankwitz,0620,Lankwitz/Lichterfelde Ost,06 - Steglitz-Zehlendorf,1237860.94043873,2,Äußere Stadt,01.01.2021,1225343
+255,06200313,Lankwitz Kirche,062003,Lankwitz,0620,Lankwitz/Lichterfelde Ost,06 - Steglitz-Zehlendorf,698883.661788114,2,Äußere Stadt,01.01.2021,691871
+256,06200314,Kaiser-Wilhelm-Straße,062003,Lankwitz,0620,Lankwitz/Lichterfelde Ost,06 - Steglitz-Zehlendorf,733788.620702743,2,Äußere Stadt,01.01.2021,726108
+257,06200315,Gallwitzallee,062003,Lankwitz,0620,Lankwitz/Lichterfelde Ost,06 - Steglitz-Zehlendorf,1175532.48981687,2,Äußere Stadt,01.01.2021,1163323
+258,06200316,Belßstraße,062003,Lankwitz,0620,Lankwitz/Lichterfelde Ost,06 - Steglitz-Zehlendorf,671770.327425492,2,Äußere Stadt,01.01.2021,664904
+259,06200317,Lankwitz Süd,062003,Lankwitz,0620,Lankwitz/Lichterfelde Ost,06 - Steglitz-Zehlendorf,1481614.011911,2,Äußere Stadt,01.01.2021,1466230
+260,06200418,Landweg,062004,Ostpreußendamm,0620,Lankwitz/Lichterfelde Ost,06 - Steglitz-Zehlendorf,1105447.20949756,2,Äußere Stadt,01.01.2021,1093501
+261,06200419,Thermometersiedlung,062004,Ostpreußendamm,0620,Lankwitz/Lichterfelde Ost,06 - Steglitz-Zehlendorf,321221.102052364,2,Äußere Stadt,01.01.2021,317798
+262,06200420,Lichterfelde Süd,062004,Ostpreußendamm,0620,Lankwitz/Lichterfelde Ost,06 - Steglitz-Zehlendorf,1370743.8664689,2,Äußere Stadt,01.01.2021,1356195
+263,06200421,Königsberger Straße,062004,Ostpreußendamm,0620,Lankwitz/Lichterfelde Ost,06 - Steglitz-Zehlendorf,2035778.68135461,2,Äußere Stadt,01.01.2021,2015019
+264,06200422,Oberhofer Platz,062004,Ostpreußendamm,0620,Lankwitz/Lichterfelde Ost,06 - Steglitz-Zehlendorf,1367524.05832899,2,Äußere Stadt,01.01.2021,1353292
+265,06200423,Schütte-Lanz-Straße,062004,Ostpreußendamm,0620,Lankwitz/Lichterfelde Ost,06 - Steglitz-Zehlendorf,1741852.20257653,2,Äußere Stadt,01.01.2021,1723078
+266,06300524,Berlepschstraße,063005,Teltower Damm,0630,Zehlendorf Süd/Lichterfelde West,06 - Steglitz-Zehlendorf,1745613.63180441,2,Äußere Stadt,01.01.2021,1727661
+267,06300525,Zehlendorf Süd,063005,Teltower Damm,0630,Zehlendorf Süd/Lichterfelde West,06 - Steglitz-Zehlendorf,1313492.84870233,2,Äußere Stadt,01.01.2021,1299358
+268,06300526,Zehlendorf Mitte,063005,Teltower Damm,0630,Zehlendorf Süd/Lichterfelde West,06 - Steglitz-Zehlendorf,905355.720563096,2,Äußere Stadt,01.01.2021,896008
+269,06300527,Sundgauer Straße,063005,Teltower Damm,0630,Zehlendorf Süd/Lichterfelde West,06 - Steglitz-Zehlendorf,979998.285458314,2,Äußere Stadt,01.01.2021,970022
+270,06300528,Teltower Damm,063005,Teltower Damm,0630,Zehlendorf Süd/Lichterfelde West,06 - Steglitz-Zehlendorf,3119504.57712147,2,Äußere Stadt,01.01.2021,3086864
+271,06300629,Botanischer Garten,063006,Drakestraße,0630,Zehlendorf Süd/Lichterfelde West,06 - Steglitz-Zehlendorf,1416801.20687918,2,Äußere Stadt,01.01.2021,1402670
+272,06300630,Hindenburgdamm,063006,Drakestraße,0630,Zehlendorf Süd/Lichterfelde West,06 - Steglitz-Zehlendorf,744838.466545579,2,Äußere Stadt,01.01.2021,737418
+273,06300631,Goerzwerke,063006,Drakestraße,0630,Zehlendorf Süd/Lichterfelde West,06 - Steglitz-Zehlendorf,1783648.79960103,2,Äußere Stadt,01.01.2021,1765042
+274,06300632,Schweizer Viertel,063006,Drakestraße,0630,Zehlendorf Süd/Lichterfelde West,06 - Steglitz-Zehlendorf,3085929.05207481,2,Äußere Stadt,01.01.2021,3053576
+275,06300633,Augustaplatz,063006,Drakestraße,0630,Zehlendorf Süd/Lichterfelde West,06 - Steglitz-Zehlendorf,1667908.73983697,2,Äußere Stadt,01.01.2021,1651188
+276,06300634,Lichterfelde West,063006,Drakestraße,0630,Zehlendorf Süd/Lichterfelde West,06 - Steglitz-Zehlendorf,1584148.58551733,2,Äußere Stadt,01.01.2021,1568168
+277,06400735,Wannsee,064007,Zehlendorf Südwest,0640,Zehlendorf Nord/Wannsee,06 - Steglitz-Zehlendorf,23735232.2532287,2,Äußere Stadt,01.01.2021,23485983
+278,06400736,Düppel,064007,Zehlendorf Südwest,0640,Zehlendorf Nord/Wannsee,06 - Steglitz-Zehlendorf,3130559.84068581,2,Äußere Stadt,01.01.2021,3097359
+279,06400737,Nikolassee,064007,Zehlendorf Südwest,0640,Zehlendorf Nord/Wannsee,06 - Steglitz-Zehlendorf,16490502.1908372,2,Äußere Stadt,01.01.2021,16327698
+280,06400838,Krumme Lanke,064008,Zehlendorf Nord,0640,Zehlendorf Nord/Wannsee,06 - Steglitz-Zehlendorf,6419300.10847391,2,Äußere Stadt,01.01.2021,6355830
+281,06400839,Fischerhüttenstraße,064008,Zehlendorf Nord,0640,Zehlendorf Nord/Wannsee,06 - Steglitz-Zehlendorf,1832755.70604469,2,Äußere Stadt,01.01.2021,1814241
+282,06400840,Fischtal,064008,Zehlendorf Nord,0640,Zehlendorf Nord/Wannsee,06 - Steglitz-Zehlendorf,1385412.90684856,2,Äußere Stadt,01.01.2021,1371777
+283,06400841,Zehlendorf Eiche,064008,Zehlendorf Nord,0640,Zehlendorf Nord/Wannsee,06 - Steglitz-Zehlendorf,1102154.00615148,2,Äußere Stadt,01.01.2021,1091033
+284,06400842,Hüttenweg,064008,Zehlendorf Nord,0640,Zehlendorf Nord/Wannsee,06 - Steglitz-Zehlendorf,2975008.66978465,2,Äußere Stadt,01.01.2021,2946615
+285,06400843,Thielallee,064008,Zehlendorf Nord,0640,Zehlendorf Nord/Wannsee,06 - Steglitz-Zehlendorf,2111270.45866882,2,Äußere Stadt,01.01.2021,2090604
+286,06400844,Dahlem,064008,Zehlendorf Nord,0640,Zehlendorf Nord/Wannsee,06 - Steglitz-Zehlendorf,3308763.8413227,2,Äußere Stadt,01.01.2021,3276976
+287,07100101,Wittenbergplatz,071001,Schöneberg Nordwest,0710,Schöneberg Nord,07 - Tempelhof-Schöneberg,621012.036670268,1,Innere Stadt,01.01.2021,615703
+288,07100102,Kalckreuthstraße,071001,Schöneberg Nordwest,0710,Schöneberg Nord,07 - Tempelhof-Schöneberg,516607.540747458,1,Innere Stadt,01.01.2021,512057
+289,07100103,Frobenstraße,071001,Schöneberg Nordwest,0710,Schöneberg Nord,07 - Tempelhof-Schöneberg,342048.439799593,1,Innere Stadt,01.01.2021,339112
+290,07100204,Barbarossaplatz,071002,Schöneberg Nordost,0710,Schöneberg Nord,07 - Tempelhof-Schöneberg,515158.774147653,1,Innere Stadt,01.01.2021,510537
+291,07100205,Alvenslebenstraße,071002,Schöneberg Nordost,0710,Schöneberg Nord,07 - Tempelhof-Schöneberg,317589.240638653,1,Innere Stadt,01.01.2021,314720
+292,07100206,Großgörschenstraße,071002,Schöneberg Nordost,0710,Schöneberg Nord,07 - Tempelhof-Schöneberg,534763.034904324,1,Innere Stadt,01.01.2021,529950
+293,07200307,Bayerischer Platz,072003,Schöneberg Südwest,0720,Schöneberg Süd,07 - Tempelhof-Schöneberg,523942.870188146,1,Innere Stadt,01.01.2021,519315
+294,07200308,Volkspark (Rudolph-Wilde-Park),072003,Schöneberg Südwest,0720,Schöneberg Süd,07 - Tempelhof-Schöneberg,626745.836695038,1,Innere Stadt,01.01.2021,621009
+295,07200409,Belziger Straße,072004,Schöneberg Südost,0720,Schöneberg Süd,07 - Tempelhof-Schöneberg,530593.058919584,1,Innere Stadt,01.01.2021,525831
+296,07200410,Feurigstraße,072004,Schöneberg Südost,0720,Schöneberg Süd,07 - Tempelhof-Schöneberg,250443.735751615,1,Innere Stadt,01.01.2021,248217
+297,07200411,Julius-Leber-Brücke,072004,Schöneberg Südost,0720,Schöneberg Süd,07 - Tempelhof-Schöneberg,135106.963233143,1,Innere Stadt,01.01.2021,133842
+298,07200412,Schöneberger Linse,072004,Schöneberg Südost,0720,Schöneberg Süd,07 - Tempelhof-Schöneberg,231297.526074588,1,Innere Stadt,01.01.2021,229135
+299,07200413,Cheruskerstraße,072004,Schöneberg Südost,0720,Schöneberg Süd,07 - Tempelhof-Schöneberg,797229.76870914,1,Innere Stadt,01.01.2021,789873
+300,07200414,Hohenfriedbergstraße,072004,Schöneberg Südost,0720,Schöneberg Süd,07 - Tempelhof-Schöneberg,263437.114988373,1,Innere Stadt,01.01.2021,261227
+301,07300515,Taunusstraße,073005,Friedenau West,0730,Friedenau,07 - Tempelhof-Schöneberg,367069.396470078,1,Innere Stadt,01.01.2021,363661
+302,07300516,Odenwaldstraße,073005,Friedenau West,0730,Friedenau,07 - Tempelhof-Schöneberg,458723.170056858,1,Innere Stadt,01.01.2021,454366
+303,07300517,Perelsplatz,073005,Friedenau West,0730,Friedenau,07 - Tempelhof-Schöneberg,636686.260409769,1,Innere Stadt,01.01.2021,630742
+304,07300618,Ceciliengärten,073006,Friedenau Ost,0730,Friedenau,07 - Tempelhof-Schöneberg,567664.288865149,1,Innere Stadt,01.01.2021,562526
+305,07300619,Grazer Platz,073006,Friedenau Ost,0730,Friedenau,07 - Tempelhof-Schöneberg,2573809.5142842,2,Äußere Stadt,01.01.2021,2549601
+306,07400720,Gontermannstraße,074007,Tempelhof Nord,0740,Tempelhof,07 - Tempelhof-Schöneberg,1184468.61284346,1,Innere Stadt,01.01.2021,1173604
+307,07400721,Paradestraße,074007,Tempelhof Nord,0740,Tempelhof,07 - Tempelhof-Schöneberg,4281177.31631675,1,Innere Stadt,01.01.2021,4241119
+308,07400822,Lindenhofsiedlung,074008,Tempelhof Südwest,0740,Tempelhof,07 - Tempelhof-Schöneberg,1453448.74228912,2,Äußere Stadt,01.01.2021,1439219
+309,07400823,Wittekindstraße,074008,Tempelhof Südwest,0740,Tempelhof,07 - Tempelhof-Schöneberg,805351.223200331,2,Äußere Stadt,01.01.2021,797864
+310,07400824,Bosepark,074008,Tempelhof Südwest,0740,Tempelhof,07 - Tempelhof-Schöneberg,636909.395557162,2,Äußere Stadt,01.01.2021,630793
+311,07400825,Friedrich-Karl-Straße,074008,Tempelhof Südwest,0740,Tempelhof,07 - Tempelhof-Schöneberg,418525.210891217,2,Äußere Stadt,01.01.2021,414568
+312,07400826,Marienhöhe,074008,Tempelhof Südwest,0740,Tempelhof,07 - Tempelhof-Schöneberg,1169649.58941242,2,Äußere Stadt,01.01.2021,1158343
+313,07400927,Rathaus Tempelhof,074009,Tempelhof Südost,0740,Tempelhof,07 - Tempelhof-Schöneberg,3059338.23131731,2,Äußere Stadt,01.01.2021,3029861
+314,07400928,Germaniagarten,074009,Tempelhof Südost,0740,Tempelhof,07 - Tempelhof-Schöneberg,660319.240020065,2,Äußere Stadt,01.01.2021,653970
+315,07501029,Ringstraße,075010,Mariendorf Nord,0750,Mariendorf,07 - Tempelhof-Schöneberg,1441993.97441761,2,Äußere Stadt,01.01.2021,1427665
+316,07501030,Machonstraße,075010,Mariendorf Nord,0750,Mariendorf,07 - Tempelhof-Schöneberg,597120.686266552,2,Äußere Stadt,01.01.2021,591115
+317,07501031,Eisenacher Straße,075010,Mariendorf Nord,0750,Mariendorf,07 - Tempelhof-Schöneberg,1542290.43639486,2,Äußere Stadt,01.01.2021,1527056
+318,07501032,Imbrosweg,075010,Mariendorf Nord,0750,Mariendorf,07 - Tempelhof-Schöneberg,1232173.92635369,2,Äußere Stadt,01.01.2021,1219907
+319,07501133,Fritz-Werner-Straße,075011,Mariendorf Süd,0750,Mariendorf,07 - Tempelhof-Schöneberg,1756185.26344924,2,Äußere Stadt,01.01.2021,1738005
+320,07501134,Hundsteinweg,075011,Mariendorf Süd,0750,Mariendorf,07 - Tempelhof-Schöneberg,2253607.84461929,2,Äußere Stadt,01.01.2021,2230657
+321,07501135,Birnhornweg,075011,Mariendorf Süd,0750,Mariendorf,07 - Tempelhof-Schöneberg,555583.554175074,2,Äußere Stadt,01.01.2021,549781
+322,07601236,Marienfelder Allee Nordwest,076012,Marienfelde Nord,0760,Marienfelde / Lichtenrade,07 - Tempelhof-Schöneberg,1147192.59435727,2,Äußere Stadt,01.01.2021,1135116
+323,07601237,Kirchstraße,076012,Marienfelde Nord,0760,Marienfelde / Lichtenrade,07 - Tempelhof-Schöneberg,1235702.40694983,2,Äußere Stadt,01.01.2021,1222664
+324,07601238,Marienfelde Nordost,076012,Marienfelde Nord,0760,Marienfelde / Lichtenrade,07 - Tempelhof-Schöneberg,1985033.15236305,2,Äußere Stadt,01.01.2021,1964102
+325,07601339,Tirschenreuther Ring West,076013,Marienfelde Süd,0760,Marienfelde / Lichtenrade,07 - Tempelhof-Schöneberg,453772.111879675,2,Äußere Stadt,01.01.2021,448755
+326,07601340,Tirschenreuther Ring Ost,076013,Marienfelde Süd,0760,Marienfelde / Lichtenrade,07 - Tempelhof-Schöneberg,413975.410375616,2,Äußere Stadt,01.01.2021,409478
+327,07601341,Diedersdorfer Weg,076013,Marienfelde Süd,0760,Marienfelde / Lichtenrade,07 - Tempelhof-Schöneberg,3913482.86835091,2,Äußere Stadt,01.01.2021,3870722
+328,07601442,Kettinger Straße,076014,Lichtenrade Nord,0760,Marienfelde / Lichtenrade,07 - Tempelhof-Schöneberg,2348240.7744756,2,Äußere Stadt,01.01.2021,2322728
+329,07601443,Töpchiner Weg,076014,Lichtenrade Nord,0760,Marienfelde / Lichtenrade,07 - Tempelhof-Schöneberg,1986717.04649367,2,Äußere Stadt,01.01.2021,1965184
+330,07601544,John-Locke-Straße,076015,Lichtenrade Süd,0760,Marienfelde / Lichtenrade,07 - Tempelhof-Schöneberg,1123882.5344094,2,Äußere Stadt,01.01.2021,1111318
+331,07601545,Nahariyastraße,076015,Lichtenrade Süd,0760,Marienfelde / Lichtenrade,07 - Tempelhof-Schöneberg,900471.305930948,2,Äußere Stadt,01.01.2021,890343
+332,07601546,Franziusweg,076015,Lichtenrade Süd,0760,Marienfelde / Lichtenrade,07 - Tempelhof-Schöneberg,1774369.43474534,2,Äußere Stadt,01.01.2021,1754846
+333,07601547,Horstwalder Straße,076015,Lichtenrade Süd,0760,Marienfelde / Lichtenrade,07 - Tempelhof-Schöneberg,941447.213625742,2,Äußere Stadt,01.01.2021,930767
+334,07601548,Wittelsbacherstraße,076015,Lichtenrade Süd,0760,Marienfelde / Lichtenrade,07 - Tempelhof-Schöneberg,968275.299425828,2,Äußere Stadt,01.01.2021,957364
+335,08100101,Hasenheide,081001,Schillerpromenade,0810,Neukölln,08 - Neukölln,866365.316999214,1,Innere Stadt,01.01.2021,858539
+336,08100102,Schillerpromenade Nord,081001,Schillerpromenade,0810,Neukölln,08 - Neukölln,589651.675696879,1,Innere Stadt,01.01.2021,584232
+337,08100103,Schillerpromenade Süd,081001,Schillerpromenade,0810,Neukölln,08 - Neukölln,479083.845366455,1,Innere Stadt,01.01.2021,474742
+338,08100104,Wartheplatz,081001,Schillerpromenade,0810,Neukölln,08 - Neukölln,551192.078970352,1,Innere Stadt,01.01.2021,546035
+339,08100105,Silbersteinstraße,081001,Schillerpromenade,0810,Neukölln,08 - Neukölln,463913.240857832,1,Innere Stadt,01.01.2021,459389
+340,08100206,Flughafenstraße,081002,Neuköllner Mitte/Zentrum,0810,Neukölln,08 - Neukölln,421634.543174897,1,Innere Stadt,01.01.2021,417843
+341,08100207,Rollberg,081002,Neuköllner Mitte/Zentrum,0810,Neukölln,08 - Neukölln,371779.33808875,1,Innere Stadt,01.01.2021,368289
+342,08100208,Körnerpark,081002,Neuköllner Mitte/Zentrum,0810,Neukölln,08 - Neukölln,553859.981564729,1,Innere Stadt,01.01.2021,548497
+343,08100209,Glasower Straße,081002,Neuköllner Mitte/Zentrum,0810,Neukölln,08 - Neukölln,589240.089112138,1,Innere Stadt,01.01.2021,583700
+344,08100310,Maybachufer,081003,Reuterstraße,0810,Neukölln,08 - Neukölln,254734.128759779,1,Innere Stadt,01.01.2021,252574
+345,08100311,Reuterplatz,081003,Reuterstraße,0810,Neukölln,08 - Neukölln,259583.292713047,1,Innere Stadt,01.01.2021,257228
+346,08100312,Weichselplatz,081003,Reuterstraße,0810,Neukölln,08 - Neukölln,515951.994919203,1,Innere Stadt,01.01.2021,511308
+347,08100313,Bouchéstraße,081003,Reuterstraße,0810,Neukölln,08 - Neukölln,140059.907337273,1,Innere Stadt,01.01.2021,138784
+348,08100314,Donaustraße,081003,Reuterstraße,0810,Neukölln,08 - Neukölln,255921.890416954,1,Innere Stadt,01.01.2021,253541
+349,08100415,Ganghoferstraße,081004,Rixdorf,0810,Neukölln,08 - Neukölln,255376.344066665,1,Innere Stadt,01.01.2021,252992
+350,08100416,Alt-Rixdorf,081004,Rixdorf,0810,Neukölln,08 - Neukölln,334335.880082019,1,Innere Stadt,01.01.2021,331195
+351,08100417,Braunschweiger Straße,081004,Rixdorf,0810,Neukölln,08 - Neukölln,412653.092503783,1,Innere Stadt,01.01.2021,408848
+352,08100418,Hertzbergplatz,081004,Rixdorf,0810,Neukölln,08 - Neukölln,640255.375317849,1,Innere Stadt,01.01.2021,634510
+353,08100419,Treptower Straße Nord,081004,Rixdorf,0810,Neukölln,08 - Neukölln,430621.967706335,1,Innere Stadt,01.01.2021,426761
+354,08100520,Weiße Siedlung,081005,Köllnische Heide,0810,Neukölln,08 - Neukölln,1120634.468414,2,Äußere Stadt,01.01.2021,1110302
+355,08100521,Schulenburgpark,081005,Köllnische Heide,0810,Neukölln,08 - Neukölln,2197575.98412739,2,Äußere Stadt,01.01.2021,2176810
+356,08200622,Jahnstraße,082006,Britz Nord,0820,Britz/Buckow,08 - Neukölln,667047.983100595,2,Äußere Stadt,01.01.2021,660802
+357,08200623,Park am Buschkrug,082006,Britz Nord,0820,Britz/Buckow,08 - Neukölln,1179332.48918194,2,Äußere Stadt,01.01.2021,1167951
+358,08200624,Tempelhofer Weg,082006,Britz Nord,0820,Britz/Buckow,08 - Neukölln,1189617.27939222,2,Äußere Stadt,01.01.2021,1178131
+359,08200725,Mohriner Allee Nord,082007,Britz,0820,Britz/Buckow,08 - Neukölln,1629952.01480186,2,Äußere Stadt,01.01.2021,1613873
+360,08200726,Hufeisensiedlung,082007,Britz,0820,Britz/Buckow,08 - Neukölln,988545.003980082,2,Äußere Stadt,01.01.2021,978826
+361,08200727,Parchimer Allee Süd,082007,Britz,0820,Britz/Buckow,08 - Neukölln,1156789.48461189,2,Äußere Stadt,01.01.2021,1144960
+362,08200728,Ortolanweg,082007,Britz,0820,Britz/Buckow,08 - Neukölln,1186466.74216479,2,Äußere Stadt,01.01.2021,1174886
+363,08200729,Britzer Garten,082007,Britz,0820,Britz/Buckow,08 - Neukölln,3152365.99831307,2,Äußere Stadt,01.01.2021,3120171
+364,08200730,Handwerker-Siedlung,082007,Britz,0820,Britz/Buckow,08 - Neukölln,1376467.36730717,2,Äußere Stadt,01.01.2021,1362394
+365,08200831,Buckow West,082008,Buckow,0820,Britz/Buckow,08 - Neukölln,1457782.97783725,2,Äußere Stadt,01.01.2021,1442249
+366,08200832,Buckow Mitte,082008,Buckow,0820,Britz/Buckow,08 - Neukölln,2032601.08430088,2,Äußere Stadt,01.01.2021,2011288
+367,08200833,Buckow Ost,082008,Buckow,0820,Britz/Buckow,08 - Neukölln,1106992.25604434,2,Äußere Stadt,01.01.2021,1095566
+368,08300934,Gropiusstadt Nord-West,083009,Gropiusstadt West,0830,Gropiusstadt,08 - Neukölln,847625.391506893,2,Äußere Stadt,01.01.2021,838907
+369,08300935,Gropiusstadt Süd-West,083009,Gropiusstadt West,0830,Gropiusstadt,08 - Neukölln,677342.290854699,2,Äußere Stadt,01.01.2021,670368
+370,08301036,Gropiusstadt Mitte,083010,Gropiusstadt Ost,0830,Gropiusstadt,08 - Neukölln,695028.219522249,2,Äußere Stadt,01.01.2021,687736
+371,08301037,Gropiusstadt Süd-Ost,083010,Gropiusstadt Ost,0830,Gropiusstadt,08 - Neukölln,437945.864273161,2,Äußere Stadt,01.01.2021,433478
+372,08401138,Goldhähnchenweg,084011,Buckow Nord,0840,Buckow Nord/Rudow,08 - Neukölln,133644.000446964,2,Äußere Stadt,01.01.2021,132293
+373,08401139,Vogelviertel Süd,084011,Buckow Nord,0840,Buckow Nord/Rudow,08 - Neukölln,826773.034832734,2,Äußere Stadt,01.01.2021,818389
+374,08401140,Vogelviertel Nord,084011,Buckow Nord,0840,Buckow Nord/Rudow,08 - Neukölln,440895.90381311,2,Äußere Stadt,01.01.2021,436410
+375,08401241,Blumenviertel,084012,Rudow,0840,Buckow Nord/Rudow,08 - Neukölln,2120055.04605117,2,Äußere Stadt,01.01.2021,2098393
+376,08401242,Zittauer Straße,084012,Rudow,0840,Buckow Nord/Rudow,08 - Neukölln,1922494.46355788,2,Äußere Stadt,01.01.2021,1902103
+377,08401243,Alt-Rudow,084012,Rudow,0840,Buckow Nord/Rudow,08 - Neukölln,2508182.70593589,2,Äußere Stadt,01.01.2021,2482003
+378,08401244,Waßmannsdorfer Chaussee,084012,Rudow,0840,Buckow Nord/Rudow,08 - Neukölln,2776853.83880223,2,Äußere Stadt,01.01.2021,2746658
+379,08401245,Frauenviertel,084012,Rudow,0840,Buckow Nord/Rudow,08 - Neukölln,471894.553506832,2,Äußere Stadt,01.01.2021,466551
+380,08401246,Waltersdorfer Chaussee Ost,084012,Rudow,0840,Buckow Nord/Rudow,08 - Neukölln,2245178.4768639,2,Äußere Stadt,01.01.2021,2221405
+381,09100101,Alt-Treptow,091001,Alt-Treptow,0910,Treptow-Köpenick 1,09 - Treptow-Köpenick,2314193.0960501,1,Innere Stadt,01.01.2021,2293738
+382,09100202,Plänterwald West,091002,Plänterwald,0910,Treptow-Köpenick 1,09 - Treptow-Köpenick,854071.543055369,2,Äußere Stadt,01.01.2021,845986
+383,09100203,Plänterwald Ost,091002,Plänterwald,0910,Treptow-Köpenick 1,09 - Treptow-Köpenick,2145041.58155237,2,Äußere Stadt,01.01.2021,2125255
+384,09100304,Baumschulenweg West,091003,Baumschulenweg,0910,Treptow-Köpenick 1,09 - Treptow-Köpenick,1613850.31148947,2,Äußere Stadt,01.01.2021,1598659
+385,09100305,Baumschulenweg Ost,091003,Baumschulenweg,0910,Treptow-Köpenick 1,09 - Treptow-Köpenick,496809.952826834,2,Äußere Stadt,01.01.2021,492158
+386,09100306,Späthsfelde,091003,Baumschulenweg,0910,Treptow-Köpenick 1,09 - Treptow-Köpenick,2722811.57591795,2,Äußere Stadt,01.01.2021,2695626
+387,09100407,Johannisthal West,091004,Johannisthal,0910,Treptow-Köpenick 1,09 - Treptow-Köpenick,3247238.22395756,2,Äußere Stadt,01.01.2021,3215345
+388,09100408,Johannisthal Ost,091004,Johannisthal,0910,Treptow-Köpenick 1,09 - Treptow-Köpenick,766688.366815203,2,Äußere Stadt,01.01.2021,759166
+389,09100409,Landschaftspark Adlershof,091004,Johannisthal,0910,Treptow-Köpenick 1,09 - Treptow-Köpenick,2988058.72425701,2,Äußere Stadt,01.01.2021,2957947
+390,09200510,Helmholtz-Kiez,092005,Oberschöneweide,0920,Treptow-Köpenick 2,09 - Treptow-Köpenick,2330981.37099652,2,Äußere Stadt,01.01.2021,2309036
+391,09200511,Griechischer Park,092005,Oberschöneweide,0920,Treptow-Köpenick 2,09 - Treptow-Köpenick,1358649.90000527,2,Äußere Stadt,01.01.2021,1345570
+392,09200512,Wuhlheide,092005,Oberschöneweide,0920,Treptow-Köpenick 2,09 - Treptow-Köpenick,4246822.58320706,2,Äußere Stadt,01.01.2021,4206389
+393,09200613,Bahnhof Schöneweide,092006,Niederschöneweide,0920,Treptow-Köpenick 2,09 - Treptow-Köpenick,1905396.3584271,2,Äußere Stadt,01.01.2021,1886761
+394,09200614,Oberspree,092006,Niederschöneweide,0920,Treptow-Köpenick 2,09 - Treptow-Köpenick,1072410.62958294,2,Äußere Stadt,01.01.2021,1061880
+395,09200715,Wista,092007,Adlershof,0920,Treptow-Köpenick 2,09 - Treptow-Köpenick,2671216.51876348,2,Äußere Stadt,01.01.2021,2643699
+396,09200716,Dörpfeldstraße West,092007,Adlershof,0920,Treptow-Köpenick 2,09 - Treptow-Köpenick,947786.026432398,2,Äußere Stadt,01.01.2021,938252
+397,09200717,Dörpfeldstraße Ost,092007,Adlershof,0920,Treptow-Köpenick 2,09 - Treptow-Köpenick,2545953.51391353,2,Äußere Stadt,01.01.2021,2520102
+398,09200818,Spindlersfeld,092008,Köllnische Vorstadt/Spindlersfeld,0920,Treptow-Köpenick 2,09 - Treptow-Köpenick,571618.773607398,2,Äußere Stadt,01.01.2021,566098
+399,09200819,Köllnische Vorstadt,092008,Köllnische Vorstadt/Spindlersfeld,0920,Treptow-Köpenick 2,09 - Treptow-Köpenick,1551737.67124765,2,Äußere Stadt,01.01.2021,1535926
+400,09300920,Dorf Altglienicke,093009,Altglienicke,0930,Treptow-Köpenick 3,09 - Treptow-Köpenick,4304731.1446772,2,Äußere Stadt,01.01.2021,4259129
+401,09300921,Preußen Siedlung,093009,Altglienicke,0930,Treptow-Köpenick 3,09 - Treptow-Köpenick,1462086.41976595,2,Äußere Stadt,01.01.2021,1446503
+402,09300922,Kosmos Viertel,093009,Altglienicke,0930,Treptow-Köpenick 3,09 - Treptow-Köpenick,380874.587659656,2,Äußere Stadt,01.01.2021,376737
+403,09300923,Kölner Viertel,093009,Altglienicke,0930,Treptow-Köpenick 3,09 - Treptow-Köpenick,1566633.3699062,2,Äußere Stadt,01.01.2021,1549640
+404,09301024,Falkenberg,093010,Bohnsdorf,0930,Treptow-Köpenick 3,09 - Treptow-Köpenick,1148579.8849454,2,Äußere Stadt,01.01.2021,1136122
+405,09301025,Alt-Bohnsdorf,093010,Bohnsdorf,0930,Treptow-Köpenick 3,09 - Treptow-Köpenick,5534396.99307023,2,Äußere Stadt,01.01.2021,5473147
+406,09301126,Grünau,093011,Grünau,0930,Treptow-Köpenick 3,09 - Treptow-Köpenick,9172900.41421456,2,Äußere Stadt,01.01.2021,9073342
+407,09301227,Karolinenhof,093012,Schmöckwitz,0930,Treptow-Köpenick 3,09 - Treptow-Köpenick,2356854.90831846,2,Äußere Stadt,01.01.2021,2330705
+408,09301228,Schmöckwitz/Rauchfangswerder,093012,Schmöckwitz,0930,Treptow-Köpenick 3,09 - Treptow-Köpenick,14763147.9654662,2,Äußere Stadt,01.01.2021,14591980
+409,09401329,Kietzer Feld/Nachtheide,094013,Köpenick Süd,0940,Treptow-Köpenick 4,09 - Treptow-Köpenick,17025168.5047213,2,Äußere Stadt,01.01.2021,16848613
+410,09401330,Wendenschloß,094013,Köpenick Süd,0940,Treptow-Köpenick 4,09 - Treptow-Köpenick,964279.487421028,2,Äußere Stadt,01.01.2021,954028
+411,09401431,Allende I,094014,Allende-Viertel,0940,Treptow-Köpenick 4,09 - Treptow-Köpenick,513553.563410097,2,Äußere Stadt,01.01.2021,508471
+412,09401432,Siedlung Kämmereiheide,094014,Allende-Viertel,0940,Treptow-Köpenick 4,09 - Treptow-Köpenick,938683.280789112,2,Äußere Stadt,01.01.2021,929357
+413,09401433,Allende II,094014,Allende-Viertel,0940,Treptow-Köpenick 4,09 - Treptow-Köpenick,1991509.26905295,2,Äußere Stadt,01.01.2021,1971176
+414,09401534,Altstadt Köpenick,094015,Altstadt Köpenick,0940,Treptow-Köpenick 4,09 - Treptow-Köpenick,796824.425122671,2,Äußere Stadt,01.01.2021,788920
+415,09401635,Müggelheim,094016,Müggelheim,0940,Treptow-Köpenick 4,09 - Treptow-Köpenick,22214881.4175786,2,Äußere Stadt,01.01.2021,21975374
+416,09501736,Hirschgarten,095017,Friedrichshagen,0950,Treptow-Köpenick 5,09 - Treptow-Köpenick,2873108.21919901,2,Äußere Stadt,01.01.2021,2845220
+417,09501737,Alt-Friedrichshagen,095017,Friedrichshagen,0950,Treptow-Köpenick 5,09 - Treptow-Köpenick,11170531.9984628,2,Äußere Stadt,01.01.2021,11062753
+418,09501838,Rahnsdorf,095018,Rahnsdorf,0950,Treptow-Köpenick 5,09 - Treptow-Köpenick,21450907.8766405,2,Äußere Stadt,01.01.2021,21236959
+419,09501939,Bahnhofstraße,095019,Dammvorstadt,0950,Treptow-Köpenick 5,09 - Treptow-Köpenick,1142573.41886073,2,Äußere Stadt,01.01.2021,1131415
+420,09501940,Güterbahnhof Köpenick,095019,Dammvorstadt,0950,Treptow-Köpenick 5,09 - Treptow-Köpenick,596181.437011506,2,Äußere Stadt,01.01.2021,590367
+421,09501941,Friedrichshagener Straße,095019,Dammvorstadt,0950,Treptow-Köpenick 5,09 - Treptow-Köpenick,1045853.46874607,2,Äußere Stadt,01.01.2021,1035607
+422,09502042,Mittelheide,095020,Köpenick Nord,0950,Treptow-Köpenick 5,09 - Treptow-Köpenick,3196209.76648091,2,Äußere Stadt,01.01.2021,3166112
+423,09502043,Dammheide,095020,Köpenick Nord,0950,Treptow-Köpenick 5,09 - Treptow-Köpenick,4774928.70861789,2,Äußere Stadt,01.01.2021,4730072
+424,10100101,Marzahn West,101001,Marzahn Nord,1010,Marzahn,10 - Marzahn-Hellersdorf,695714.88530032,2,Äußere Stadt,01.01.2021,690795
+425,10100102,Rosenbecker Straße,101001,Marzahn Nord,1010,Marzahn,10 - Marzahn-Hellersdorf,327917.015984989,2,Äußere Stadt,01.01.2021,325474
+426,10100103,Wittenberger Straße,101001,Marzahn Nord,1010,Marzahn,10 - Marzahn-Hellersdorf,686667.623566538,2,Äußere Stadt,01.01.2021,681687
+427,10100104,Golliner Straße,101001,Marzahn Nord,1010,Marzahn,10 - Marzahn-Hellersdorf,885247.24449089,2,Äußere Stadt,01.01.2021,878737
+428,10100205,Gewerbegebiet Bitterfelder Straße,101002,Marzahn Mitte,1010,Marzahn,10 - Marzahn-Hellersdorf,3601367.77395424,2,Äußere Stadt,01.01.2021,3574025
+429,10100206,Wuhletalstraße,101002,Marzahn Mitte,1010,Marzahn,10 - Marzahn-Hellersdorf,845801.210430842,2,Äußere Stadt,01.01.2021,839376
+430,10100207,Ahrensfelder Berge,101002,Marzahn Mitte,1010,Marzahn,10 - Marzahn-Hellersdorf,1099145.8950181,2,Äußere Stadt,01.01.2021,1090912
+431,10100208,Bürgerpark,101002,Marzahn Mitte,1010,Marzahn,10 - Marzahn-Hellersdorf,811095.319299924,2,Äußere Stadt,01.01.2021,805013
+432,10100209,Lea-Grundig-Straße,101002,Marzahn Mitte,1010,Marzahn,10 - Marzahn-Hellersdorf,678242.866338434,2,Äußere Stadt,01.01.2021,673170
+433,10100210,Marzahner Promenade,101002,Marzahn Mitte,1010,Marzahn,10 - Marzahn-Hellersdorf,882950.753950385,2,Äußere Stadt,01.01.2021,876313
+434,10100311,Marzahner Chaussee,101003,Marzahn Süd,1010,Marzahn,10 - Marzahn-Hellersdorf,3993481.54993193,2,Äußere Stadt,01.01.2021,3960839
+435,10100312,Springpfuhl,101003,Marzahn Süd,1010,Marzahn,10 - Marzahn-Hellersdorf,1210423.66854271,2,Äußere Stadt,01.01.2021,1200632
+436,10100313,Alt-Marzahn,101003,Marzahn Süd,1010,Marzahn,10 - Marzahn-Hellersdorf,1098932.22764354,2,Äußere Stadt,01.01.2021,1090363
+437,10100314,Auersbergstraße,101003,Marzahn Süd,1010,Marzahn,10 - Marzahn-Hellersdorf,470912.255606279,2,Äußere Stadt,01.01.2021,467079
+438,10100315,Bärenstein,101003,Marzahn Süd,1010,Marzahn,10 - Marzahn-Hellersdorf,646671.731086305,2,Äußere Stadt,01.01.2021,641684
+439,10100316,Landsberger Tor,101003,Marzahn Süd,1010,Marzahn,10 - Marzahn-Hellersdorf,1608763.92379646,2,Äußere Stadt,01.01.2021,1596116
+440,10200417,Zossener Straße,102004,Hellersdorf Nord,1020,Hellersdorf,10 - Marzahn-Hellersdorf,450580.620128259,2,Äußere Stadt,01.01.2021,447114
+441,10200418,Kyritzer Straße,102004,Hellersdorf Nord,1020,Hellersdorf,10 - Marzahn-Hellersdorf,642573.786261321,2,Äußere Stadt,01.01.2021,637609
+442,10200419,Havelländer Ring,102004,Hellersdorf Nord,1020,Hellersdorf,10 - Marzahn-Hellersdorf,203553.546382186,2,Äußere Stadt,01.01.2021,201997
+443,10200420,Gut Hellersdorf,102004,Hellersdorf Nord,1020,Hellersdorf,10 - Marzahn-Hellersdorf,768081.280355959,2,Äußere Stadt,01.01.2021,761918
+444,10200421,Helle Mitte,102004,Hellersdorf Nord,1020,Hellersdorf,10 - Marzahn-Hellersdorf,163854.012263772,2,Äußere Stadt,01.01.2021,162494
+445,10200422,Hellersdorfer Promenade,102004,Hellersdorf Nord,1020,Hellersdorf,10 - Marzahn-Hellersdorf,451816.110998961,2,Äußere Stadt,01.01.2021,448202
+446,10200423,Böhlener Straße,102004,Hellersdorf Nord,1020,Hellersdorf,10 - Marzahn-Hellersdorf,920819.973316582,2,Äußere Stadt,01.01.2021,913637
+447,10200524,Adele-Sandrock-Straße,102005,Hellersdorf Ost,1020,Hellersdorf,10 - Marzahn-Hellersdorf,1111336.74445171,2,Äußere Stadt,01.01.2021,1102528
+448,10200525,Schleipfuhl,102005,Hellersdorf Ost,1020,Hellersdorf,10 - Marzahn-Hellersdorf,475948.156085713,2,Äußere Stadt,01.01.2021,472135
+449,10200526,Boulevard Kastanienallee,102005,Hellersdorf Ost,1020,Hellersdorf,10 - Marzahn-Hellersdorf,526615.918724364,2,Äußere Stadt,01.01.2021,522426
+450,10200627,Am Kienberg,102006,Hellersdorf Süd,1020,Hellersdorf,10 - Marzahn-Hellersdorf,533195.274239181,2,Äußere Stadt,01.01.2021,528993
+451,10200628,Neue Grottkauer Straße,102006,Hellersdorf Süd,1020,Hellersdorf,10 - Marzahn-Hellersdorf,498615.646473246,2,Äußere Stadt,01.01.2021,494523
+452,10200629,Teterower Ring,102006,Hellersdorf Süd,1020,Hellersdorf,10 - Marzahn-Hellersdorf,999285.262986552,2,Äußere Stadt,01.01.2021,990960
+453,10200630,Cecilienplatz,102006,Hellersdorf Süd,1020,Hellersdorf,10 - Marzahn-Hellersdorf,377293.28022673,2,Äußere Stadt,01.01.2021,374278
+454,10300731,Oberfeldstraße,103007,Biesdorf,1030,Biesdorf,10 - Marzahn-Hellersdorf,2741532.3543865,2,Äußere Stadt,01.01.2021,2719122
+455,10300732,Buckower Ring,103007,Biesdorf,1030,Biesdorf,10 - Marzahn-Hellersdorf,2059702.79029553,2,Äußere Stadt,01.01.2021,2042847
+456,10300733,Alt-Biesdorf,103007,Biesdorf,1030,Biesdorf,10 - Marzahn-Hellersdorf,2398150.98255225,2,Äußere Stadt,01.01.2021,2377424
+457,10300734,Biesdorf Süd,103007,Biesdorf,1030,Biesdorf,10 - Marzahn-Hellersdorf,5205281.03696882,2,Äußere Stadt,01.01.2021,5159094
+458,10400835,Kaulsdorf Nord,104008,Kaulsdorf,1040,Kaulsdorf/Mahlsdorf,10 - Marzahn-Hellersdorf,2552521.64038964,2,Äußere Stadt,01.01.2021,2531110
+459,10400836,Alt-Kaulsdorf,104008,Kaulsdorf,1040,Kaulsdorf/Mahlsdorf,10 - Marzahn-Hellersdorf,1349184.12923181,2,Äußere Stadt,01.01.2021,1337720
+460,10400837,Kaulsdorf Süd,104008,Kaulsdorf,1040,Kaulsdorf/Mahlsdorf,10 - Marzahn-Hellersdorf,4869700.12039022,2,Äußere Stadt,01.01.2021,4826320
+461,10400938,Mahlsdorf Nord,104009,Mahlsdorf,1040,Kaulsdorf/Mahlsdorf,10 - Marzahn-Hellersdorf,4221854.23342045,2,Äußere Stadt,01.01.2021,4187007
+462,10400939,Alt-Mahlsdorf,104009,Mahlsdorf,1040,Kaulsdorf/Mahlsdorf,10 - Marzahn-Hellersdorf,1898886.89245077,2,Äußere Stadt,01.01.2021,1882771
+463,10400940,Elsensee,104009,Mahlsdorf,1040,Kaulsdorf/Mahlsdorf,10 - Marzahn-Hellersdorf,3163910.83398599,2,Äußere Stadt,01.01.2021,3135825
+464,10400941,Pilgramer Straße,104009,Mahlsdorf,1040,Kaulsdorf/Mahlsdorf,10 - Marzahn-Hellersdorf,3691049.7825017,2,Äußere Stadt,01.01.2021,3657712
+465,11100101,Dörfer Malchow-Wartenberg,111001,"Malchow, Wartenberg und Falkenberg",1110,Hohenschönhausen Nord,11 - Lichtenberg,8450764.88900189,2,Äußere Stadt,01.01.2021,8392818
+466,11100102,Dorf Falkenberg,111001,"Malchow, Wartenberg und Falkenberg",1110,Hohenschönhausen Nord,11 - Lichtenberg,3056876.87137519,2,Äußere Stadt,01.01.2021,3035164
+467,11100203,Falkenberg Ost,111002,Neu-Hohenschönhausen Nord,1110,Hohenschönhausen Nord,11 - Lichtenberg,909974.140664831,2,Äußere Stadt,01.01.2021,903356
+468,11100204,Falkenberg West,111002,Neu-Hohenschönhausen Nord,1110,Hohenschönhausen Nord,11 - Lichtenberg,776059.119265766,2,Äußere Stadt,01.01.2021,770600
+469,11100205,Wartenberg Süd,111002,Neu-Hohenschönhausen Nord,1110,Hohenschönhausen Nord,11 - Lichtenberg,455965.438016098,2,Äußere Stadt,01.01.2021,452655
+470,11100206,Wartenberg Nord,111002,Neu-Hohenschönhausen Nord,1110,Hohenschönhausen Nord,11 - Lichtenberg,659172.08825533,2,Äußere Stadt,01.01.2021,654315
+471,11100307,Zingster Straße Ost,111003,Neu-Hohenschönhausen Süd,1110,Hohenschönhausen Nord,11 - Lichtenberg,730353.16246568,2,Äußere Stadt,01.01.2021,725246
+472,11100308,Zingster Straße West,111003,Neu-Hohenschönhausen Süd,1110,Hohenschönhausen Nord,11 - Lichtenberg,903502.771428446,2,Äußere Stadt,01.01.2021,897036
+473,11100309,Mühlengrund,111003,Neu-Hohenschönhausen Süd,1110,Hohenschönhausen Nord,11 - Lichtenberg,706053.633565326,2,Äußere Stadt,01.01.2021,700776
+474,11200410,Malchower Weg,112004,Alt-Hohenschönhausen Nord,1120,Hohenschönhausen Süd,11 - Lichtenberg,2232986.3605311,2,Äußere Stadt,01.01.2021,2216091
+475,11200411,Hauptstraße,112004,Alt-Hohenschönhausen Nord,1120,Hohenschönhausen Süd,11 - Lichtenberg,2521370.18056679,2,Äußere Stadt,01.01.2021,2502116
+476,11200512,Orankesee,112005,Alt-Hohenschönhausen Süd,1120,Hohenschönhausen Süd,11 - Lichtenberg,1936974.98014509,2,Äußere Stadt,01.01.2021,1921843
+477,11200513,Große-Leege-Straße,112005,Alt-Hohenschönhausen Süd,1120,Hohenschönhausen Süd,11 - Lichtenberg,688251.111924606,2,Äußere Stadt,01.01.2021,682899
+478,11200514,Landsberger Allee,112005,Alt-Hohenschönhausen Süd,1120,Hohenschönhausen Süd,11 - Lichtenberg,940066.360355364,2,Äußere Stadt,01.01.2021,932565
+479,11200515,Weiße Taube,112005,Alt-Hohenschönhausen Süd,1120,Hohenschönhausen Süd,11 - Lichtenberg,1033897.67062919,2,Äußere Stadt,01.01.2021,1025785
+480,11300616,Hohenschönhauser Straße,113006,Fennpfuhl,1130,Lichtenberg Nord,11 - Lichtenberg,416969.284468287,2,Äußere Stadt,01.01.2021,413724
+481,11300617,Fennpfuhlpark,113006,Fennpfuhl,1130,Lichtenberg Nord,11 - Lichtenberg,474771.800517155,2,Äußere Stadt,01.01.2021,471048
+482,11300618,Storkower Bogen,113006,Fennpfuhl,1130,Lichtenberg Nord,11 - Lichtenberg,321194.179438968,2,Äußere Stadt,01.01.2021,318434
+483,11300619,Rudolf-Seiffert-Park,113006,Fennpfuhl,1130,Lichtenberg Nord,11 - Lichtenberg,372628.96076372,2,Äußere Stadt,01.01.2021,369468
+484,11300620,Fennpfuhl Ost,113006,Fennpfuhl,1130,Lichtenberg Nord,11 - Lichtenberg,556765.217789386,2,Äußere Stadt,01.01.2021,552280
+485,11300721,Herzbergstraße,113007,Alt-Lichtenberg,1130,Lichtenberg Nord,11 - Lichtenberg,3863062.30368082,2,Äußere Stadt,01.01.2021,3831810
+486,11300722,Rathaus Lichtenberg,113007,Alt-Lichtenberg,1130,Lichtenberg Nord,11 - Lichtenberg,889756.055448527,1,Innere Stadt,01.01.2021,882354
+487,11300723,Bornitzstraße,113007,Alt-Lichtenberg,1130,Lichtenberg Nord,11 - Lichtenberg,497944.01061838,2,Äußere Stadt,01.01.2021,493827
+488,11300724,Roedeliusplatz,113007,Alt-Lichtenberg,1130,Lichtenberg Nord,11 - Lichtenberg,411278.352095346,1,Innere Stadt,01.01.2021,407950
+489,11300725,Nibelungenviertel,113007,Alt-Lichtenberg,1130,Lichtenberg Nord,11 - Lichtenberg,683430.149945445,1,Innere Stadt,01.01.2021,677606
+490,11300826,Frankfurter Allee Süd,113008,Frankfurter Allee Süd,1130,Lichtenberg Nord,11 - Lichtenberg,1053307.20288191,1,Innere Stadt,01.01.2021,1044389
+491,11400927,Victoriastadt,114009,Neu-Lichtenberg,1140,Lichtenberg Mitte,11 - Lichtenberg,374097.782201089,1,Innere Stadt,01.01.2021,370933
+492,11400928,Nöldnerplatz,114009,Neu-Lichtenberg,1140,Lichtenberg Mitte,11 - Lichtenberg,584244.400967165,2,Äußere Stadt,01.01.2021,579176
+493,11400929,Weitlingkiez,114009,Neu-Lichtenberg,1140,Lichtenberg Mitte,11 - Lichtenberg,842268.609864729,1,Innere Stadt,01.01.2021,834933
+494,11400930,Zachertstraße,114009,Neu-Lichtenberg,1140,Lichtenberg Mitte,11 - Lichtenberg,404082.07070791,2,Äußere Stadt,01.01.2021,400700
+495,11400931,Massower Straße,114009,Neu-Lichtenberg,1140,Lichtenberg Mitte,11 - Lichtenberg,415400.756034397,2,Äußere Stadt,01.01.2021,411662
+496,11401032,Rosenfelder Ring,114010,Friedrichsfelde Nord,1140,Lichtenberg Mitte,11 - Lichtenberg,567624.53419452,2,Äußere Stadt,01.01.2021,562767
+497,11401033,Gensinger Straße,114010,Friedrichsfelde Nord,1140,Lichtenberg Mitte,11 - Lichtenberg,453282.10905641,2,Äußere Stadt,01.01.2021,449350
+498,11401034,Tierpark,114010,Friedrichsfelde Nord,1140,Lichtenberg Mitte,11 - Lichtenberg,1733256.91692913,2,Äußere Stadt,01.01.2021,1718280
+499,11401135,Dolgenseestraße,114011,Friedrichsfelde Süd,1140,Lichtenberg Mitte,11 - Lichtenberg,699977.682998005,2,Äußere Stadt,01.01.2021,693803
+500,11401136,Volkradstraße,114011,Friedrichsfelde Süd,1140,Lichtenberg Mitte,11 - Lichtenberg,797329.719411236,2,Äußere Stadt,01.01.2021,790155
+501,11401137,Erieseering,114011,Friedrichsfelde Süd,1140,Lichtenberg Mitte,11 - Lichtenberg,718040.735150433,2,Äußere Stadt,01.01.2021,711920
+502,11501238,Rummelsburg,115012,Rummelsburger Bucht,1150,Lichtenberg Süd,11 - Lichtenberg,2401538.85255622,2,Äußere Stadt,01.01.2021,2380216
+503,11501339,Karlshorst West,115013,Karlshorst,1150,Lichtenberg Süd,11 - Lichtenberg,994199.339822137,2,Äußere Stadt,01.01.2021,985208
+504,11501340,Karlshorst Nord,115013,Karlshorst,1150,Lichtenberg Süd,11 - Lichtenberg,3297929.68965107,2,Äußere Stadt,01.01.2021,3268007
+505,11501341,Karlshorst Süd,115013,Karlshorst,1150,Lichtenberg Süd,11 - Lichtenberg,2294053.90379473,2,Äußere Stadt,01.01.2021,2273197
+506,12100101,Letteplatz,121001,Ost 1 - Reginhardstraße,1210,Reinickendorf Ost,12 - Reinickendorf,780573.784725283,2,Äußere Stadt,01.01.2021,774754
+507,12100102,Hausotterplatz,121001,Ost 1 - Reginhardstraße,1210,Reinickendorf Ost,12 - Reinickendorf,809958.816768412,2,Äußere Stadt,01.01.2021,804163
+508,12100103,Breitkopfbecken,121001,Ost 1 - Reginhardstraße,1210,Reinickendorf Ost,12 - Reinickendorf,720528.839408898,2,Äußere Stadt,01.01.2021,715489
+509,12100204,Schäfersee,121002,Ost 2 - Alt-Reinickendorf,1210,Reinickendorf Ost,12 - Reinickendorf,1115710.25378704,2,Äußere Stadt,01.01.2021,1107483
+510,12100205,Teichstraße,121002,Ost 2 - Alt-Reinickendorf,1210,Reinickendorf Ost,12 - Reinickendorf,3374911.36408927,2,Äußere Stadt,01.01.2021,3351647
+511,12100206,Humboldtstraße,121002,Ost 2 - Alt-Reinickendorf,1210,Reinickendorf Ost,12 - Reinickendorf,759322.702091607,2,Äußere Stadt,01.01.2021,753875
+512,12200307,Reinickes Hof,122003,West 4 - Auguste-Viktoria-Allee,1220,Tegel,12 - Reinickendorf,532927.761790617,2,Äußere Stadt,01.01.2021,529187
+513,12200308,Meller Bogen,122003,West 4 - Auguste-Viktoria-Allee,1220,Tegel,12 - Reinickendorf,527632.326961191,2,Äußere Stadt,01.12.2021,523813
+514,12200309,Scharnweberstraße,122003,West 4 - Auguste-Viktoria-Allee,1220,Tegel,12 - Reinickendorf,707714.717474142,2,Äußere Stadt,01.01.2021,702535
+515,12200310,Klixstraße,122003,West 4 - Auguste-Viktoria-Allee,1220,Tegel,12 - Reinickendorf,819522.562949862,2,Äußere Stadt,01.01.2021,813715
+516,12200411,Schumacher-Quartier,122004,West 1 - Tegel-Süd/Flughafensee,1220,Tegel,12 - Reinickendorf,670393.396020637,2,Äußere Stadt,01.01.2021,665527
+517,12200412,Waldidyll/Flughafensee,122004,West 1 - Tegel-Süd/Flughafensee,1220,Tegel,12 - Reinickendorf,5947955.504608,2,Äußere Stadt,01.01.2021,5905038
+518,12200413,Tegel Süd,122004,West 1 - Tegel-Süd/Flughafensee,1220,Tegel,12 - Reinickendorf,755172.715841571,2,Äußere Stadt,01.01.2021,749911
+519,12200414,TXL,122004,West 1 - Tegel-Süd/Flughafensee,1220,Tegel,12 - Reinickendorf,5987707.88043027,2,Äußere Stadt,01.01.2021,5943649
+520,12200515,Alt-Tegel,122005,West 5 - Tegel,1220,Tegel,12 - Reinickendorf,2392511.01805433,2,Äußere Stadt,01.01.2021,2376511
+521,12400616,Konradshöhe/Tegelort,124006,West 2 - Heiligensee/Konradshöhe,1240,Grüner Norden,12 - Reinickendorf,2336441.71163219,2,Äußere Stadt,01.01.2021,2320369
+522,12400617,Alt-Heiligensee,124006,West 2 - Heiligensee/Konradshöhe,1240,Grüner Norden,12 - Reinickendorf,5358375.30070252,2,Äußere Stadt,01.01.2021,5324772
+523,12400618,Heiligensee Nord,124006,West 2 - Heiligensee/Konradshöhe,1240,Grüner Norden,12 - Reinickendorf,3247189.9513132,2,Äußere Stadt,01.01.2021,3228052
+524,12400619,Heiligensee,124006,West 2 - Heiligensee/Konradshöhe,1240,Grüner Norden,12 - Reinickendorf,17921160.4141124,2,Äußere Stadt,01.01.2021,17803203
+525,12400720,Frohnau West,124007,Nord 1 - Frohnau/Hermsdorf,1240,Grüner Norden,12 - Reinickendorf,2749814.61684171,2,Äußere Stadt,01.01.2021,2733782
+526,12400721,Frohnau Ost,124007,Nord 1 - Frohnau/Hermsdorf,1240,Grüner Norden,12 - Reinickendorf,5090083.83238347,2,Äußere Stadt,01.01.2021,5062046
+527,12400722,Hermsdorf West,124007,Nord 1 - Frohnau/Hermsdorf,1240,Grüner Norden,12 - Reinickendorf,3158215.99028356,2,Äußere Stadt,01.01.2021,3138389
+528,12400723,Hermsdorf Ost/Waldsee,124007,Nord 1 - Frohnau/Hermsdorf,1240,Grüner Norden,12 - Reinickendorf,2900186.51796102,2,Äußere Stadt,01.01.2021,2882714
+529,12500824,Ziekowstraße/Freie Scholle,125008,West 3 - Borsigwalde/Freie Scholle,1250,Wittenau/Borsigwalde,12 - Reinickendorf,2228029.55684434,2,Äußere Stadt,01.01.2021,2213250
+530,12500825,Borsigwalde,125008,West 3 - Borsigwalde/Freie Scholle,1250,Wittenau/Borsigwalde,12 - Reinickendorf,1849169.70085514,2,Äußere Stadt,01.01.2021,1836507
+531,12500926,Wittenau Mitte,125009,Nord 2 - Waidmannslust/Wittenau/Lübars,1250,Wittenau/Borsigwalde,12 - Reinickendorf,947532.078960952,2,Äußere Stadt,01.12.2021,941020
+532,12500927,Wittenau Nord,125009,Nord 2 - Waidmannslust/Wittenau/Lübars,1250,Wittenau/Borsigwalde,12 - Reinickendorf,2494710.3658336,2,Äußere Stadt,01.01.2021,2478280
+533,12500928,Waidmannslust,125009,Nord 2 - Waidmannslust/Wittenau/Lübars,1250,Wittenau/Borsigwalde,12 - Reinickendorf,1731930.97979109,2,Äußere Stadt,01.01.2021,1720779
+534,12500929,Lübars,125009,Nord 2 - Waidmannslust/Wittenau/Lübars,1250,Wittenau/Borsigwalde,12 - Reinickendorf,5011478.33970588,2,Äußere Stadt,01.01.2021,4980805
+535,12500930,Wittenau Süd,125009,Nord 2 - Waidmannslust/Wittenau/Lübars,1250,Wittenau/Borsigwalde,12 - Reinickendorf,1613739.19019261,2,Äußere Stadt,01.12.2021,1602751
+536,12601031,Lübarser Straße,126010,Rollbergesiedlung,1260,Märkisches Viertel,12 - Reinickendorf,1134134.84482115,2,Äußere Stadt,01.01.2021,1127049
+537,12601032,Rollbergesiedlung,126010,Rollbergesiedlung,1260,Märkisches Viertel,12 - Reinickendorf,501325.04364201,2,Äußere Stadt,01.01.2021,498177
+538,12601133,Treuenbrietzener Straße,126011,MV Nord,1260,Märkisches Viertel,12 - Reinickendorf,918343.995518065,2,Äußere Stadt,01.01.2021,912538
+539,12601134,Märkisches Zentrum,126011,MV Nord,1260,Märkisches Viertel,12 - Reinickendorf,1127871.02414778,2,Äußere Stadt,01.01.2021,1120516
+540,12601235,Dannenwalder Weg,126012,MV Süd,1260,Märkisches Viertel,12 - Reinickendorf,523442.562457162,2,Äußere Stadt,01.01.2021,519919
+541,12601236,Schorfheidestraße,126012,MV Süd,1260,Märkisches Viertel,12 - Reinickendorf,578285.026396936,2,Äußere Stadt,01.01.2021,574439

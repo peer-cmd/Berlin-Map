@@ -1,0 +1,80 @@
+{
+  "layer_id": "lor_planungsraeume",
+  "title": "LOR-Planungsräume 2021",
+  "geometry": "polygon",
+  "processed_utc": "2026-10-01T09:53:19Z",
+  "feature_count": 542,
+  "skipped": {},
+  "warnings": [],
+  "stats": {},
+  "output_bytes": 860623,
+  "processing": {
+    "precision": 5,
+    "simplify_m": 2
+  },
+  "files": {
+    "geojson": "lor_planungsraeume.geojson",
+    "csv": "lor_planungsraeume.csv"
+  },
+  "provenance": {
+    "layer_id": "lor_planungsraeume",
+    "title": "LOR-Planungsräume 2021",
+    "retrieved_utc": "20261001T095259Z",
+    "wfs_version": "2.0.0",
+    "requested_srs": "EPSG:4326",
+    "request_urls": {
+      "capabilities": "https://gdi.berlin.de/services/wfs/lor_2021?service=WFS&version=2.0.0&request=GetCapabilities",
+      "hits": "https://gdi.berlin.de/services/wfs/lor_2021?service=WFS&version=2.0.0&request=GetFeature&typeNames=lor_2021:a_lor_plr_2021&resultType=hits",
+      "data": "https://gdi.berlin.de/services/wfs/lor_2021?service=WFS&version=2.0.0&request=GetFeature&typeNames=lor_2021:a_lor_plr_2021&outputFormat=application/json&srsName=EPSG:4326"
+    },
+    "service_base_url": "https://gdi.berlin.de/services/wfs/lor_2021",
+    "type_name": "lor_2021:a_lor_plr_2021",
+    "response_crs": {
+      "type": "name",
+      "properties": {
+        "name": "urn:ogc:def:crs:EPSG::4326"
+      }
+    },
+    "feature_count": 542,
+    "raw_file": "lor_planungsraeume_20261001T095259Z.geojson",
+    "raw_bytes": 5419363,
+    "raw_sha256": "11f1e80d14bba37337bb8efd704df3a83eec89d3d92551cf34ccc8d4da40c43f",
+    "service_server_timestamp": "2026-10-01T09:53:02.375Z",
+    "service_title": "Lebensweltlich orientierte Räume (LOR) (01.01.2021)",
+    "service_fees": "Der Datenbestand wird unter der Lizenz CC-BY-3.0-Namensnennung veröffentlicht (vgl. https://creativecommons.org/licenses/by/3.0/de/). Als Urheber ist dabei zu nennen: Amt für Statistik Berlin-Brandenburg",
+    "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen.",
+    "parts": [
+      {
+        "request_urls": {
+          "capabilities": "https://gdi.berlin.de/services/wfs/lor_2021?service=WFS&version=2.0.0&request=GetCapabilities",
+          "hits": "https://gdi.berlin.de/services/wfs/lor_2021?service=WFS&version=2.0.0&request=GetFeature&typeNames=lor_2021:a_lor_plr_2021&resultType=hits",
+          "data": "https://gdi.berlin.de/services/wfs/lor_2021?service=WFS&version=2.0.0&request=GetFeature&typeNames=lor_2021:a_lor_plr_2021&outputFormat=application/json&srsName=EPSG:4326"
+        },
+        "service_base_url": "https://gdi.berlin.de/services/wfs/lor_2021",
+        "type_name": "lor_2021:a_lor_plr_2021",
+        "response_crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG::4326"
+          }
+        },
+        "feature_count": 542,
+        "raw_file": "lor_planungsraeume_20261001T095259Z.geojson",
+        "raw_bytes": 5419363,
+        "raw_sha256": "11f1e80d14bba37337bb8efd704df3a83eec89d3d92551cf34ccc8d4da40c43f",
+        "service_server_timestamp": "2026-10-01T09:53:02.375Z",
+        "service_title": "Lebensweltlich orientierte Räume (LOR) (01.01.2021)",
+        "service_fees": "Der Datenbestand wird unter der Lizenz CC-BY-3.0-Namensnennung veröffentlicht (vgl. https://creativecommons.org/licenses/by/3.0/de/). Als Urheber ist dabei zu nennen: Amt für Statistik Berlin-Brandenburg",
+        "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen."
+      }
+    ],
+    "dataset_page": "https://gdi.berlin.de/services/wfs/lor_2021?request=GetCapabilities&service=WFS",
+    "publisher": "Amt für Statistik Berlin-Brandenburg",
+    "license": {
+      "name": "Creative Commons Namensnennung 3.0 Deutschland",
+      "id": "CC-BY-3.0-DE",
+      "url": "https://creativecommons.org/licenses/by/3.0/de/"
+    }
+  },
+  "provenance_file": "lor_planungsraeume_20261001T095259Z.provenance.json"
+}

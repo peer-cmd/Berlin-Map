@@ -1,0 +1,84 @@
+﻿fid,gisid,fl_in_ha,gebietsname,gebietstyp,area_m2
+0,GG0501,140.7,Falkenhagener Feld,Sauberkeit und Sicherheitsempfinden in Berliner Großsiedlungen,1396848
+1,GG0502,100.1,Heerstraße,Sauberkeit und Sicherheitsempfinden in Berliner Großsiedlungen,993518
+2,GG0704,79.1,Tirschenreuther Ring,Sauberkeit und Sicherheitsempfinden in Berliner Großsiedlungen,782755
+3,GG0802,32.8,Sonnenallee,Sauberkeit und Sicherheitsempfinden in Berliner Großsiedlungen,325101
+4,GG0804,227.3,Gropiusstadt,Sauberkeit und Sicherheitsempfinden in Berliner Großsiedlungen,2249552
+5,GG0903,36.3,Altglienicke,Sauberkeit und Sicherheitsempfinden in Berliner Großsiedlungen,359124
+6,GG1101,182.7,Fennpfuhl,Sauberkeit und Sicherheitsempfinden in Berliner Großsiedlungen,1812826
+7,GG1203,24.4,Zabel-Krüger-Damm,Sauberkeit und Sicherheitsempfinden in Berliner Großsiedlungen,242861
+8,GO0101,31.6,Heinrich-Heine-Viertel,Großsiedlungen,314183
+9,GO0102,65.4,Karl-Marx-Allee-West,Großsiedlungen,649398
+10,GO0201,113.9,Karl-Marx-Allee-Nord und Süd,Großsiedlungen,1130274
+11,GO0301,77.9,Greifswalder Straße,Großsiedlungen,773435
+12,GO0302,54.1,Weißensee Ost,Großsiedlungen,537800
+13,GO0303,51.7,Neumannstraße,Großsiedlungen,513701
+14,GO0304,80.0,Buch,Großsiedlungen,796128
+15,GO0901,61.8,Allende I+II,Großsiedlungen,612181
+16,GO0902,38.0,Köllnische Vorstadt,Großsiedlungen,376305
+17,GO0903,36.3,Altglienicke,Großsiedlungen,359124
+18,GO1001,798.1,Marzahn,Großsiedlungen,7921062
+19,GO1002,723.7,Hellersdorf,Großsiedlungen,7179637
+20,GO1101,182.7,Fennpfuhl,Großsiedlungen,1812826
+21,GO1102,43.1,Frankfurter Allee Süd,Großsiedlungen,427875
+22,GO1103,293.3,Friedrichsfelde,Großsiedlungen,2908263
+23,GO1104,75.0,Hohenschönhausen Süd,Großsiedlungen,744379
+24,GO1105,383.4,Hohenschönhausen 1-6,Großsiedlungen,3807232
+25,GS0105,27.9,Schillerhöhe,Stärkung Berliner Großsiedlungen,277583
+26,GS0301,77.9,Greifswalder Straße,Stärkung Berliner Großsiedlungen,773435
+27,GS0302,54.1,Weißensee Ost,Stärkung Berliner Großsiedlungen,537800
+28,GS0303,51.7,Neumannstraße,Stärkung Berliner Großsiedlungen,513701
+29,GS0304,80.0,Buch,Stärkung Berliner Großsiedlungen,796128
+30,GS0401,45.4,Paul-Hertz-Siedlung,Stärkung Berliner Großsiedlungen,451238
+31,GS0402,17.4,Schlangenbader Straße,Stärkung Berliner Großsiedlungen,172492
+32,GS0503,61.9,Hakenfelde,Stärkung Berliner Großsiedlungen,615068
+33,GS0504,71.9,Louise-Schroeder-Siedlung,Stärkung Berliner Großsiedlungen,714062
+34,GS0602,33.2,Kamenzer Damm,Stärkung Berliner Großsiedlungen,329064
+35,GS0704,79.1,Tirschenreuther Ring,Stärkung Berliner Großsiedlungen,782755
+36,GS0705,41.6,John-Locke-Siedlung,Stärkung Berliner Großsiedlungen,411972
+37,GS0806,45.4,Buckower Damm,Stärkung Berliner Großsiedlungen,449270
+38,GS0807,73.2,Ortolanweg / Britz-Süd,Stärkung Berliner Großsiedlungen,725219
+39,GS0808,57.9,Buckow,Stärkung Berliner Großsiedlungen,573244
+40,GS0901,61.8,Allende I+II,Stärkung Berliner Großsiedlungen,612181
+41,GS0902,38.0,Köllnische Vorstadt,Stärkung Berliner Großsiedlungen,376305
+42,GS1001,595.2,Marzahn,Stärkung Berliner Großsiedlungen,5906094
+43,GS1002,490.5,Hellersdorf,Stärkung Berliner Großsiedlungen,4865605
+44,GS1101,182.7,Fennpfuhl,Stärkung Berliner Großsiedlungen,1812826
+45,GS1102,43.1,Frankfurter Allee Süd,Stärkung Berliner Großsiedlungen,427875
+46,GS1103,293.3,Friedrichsfelde,Stärkung Berliner Großsiedlungen,2908263
+47,GS1104,75.0,Hohenschönhausen Süd,Stärkung Berliner Großsiedlungen,744379
+48,GS1105,383.4,Hohenschönhausen 1-6,Stärkung Berliner Großsiedlungen,3807232
+49,GW0101,39.3,Wollankstraße,Großsiedlungen,390390
+50,GW0102,59.4,Brunnenstraße,Großsiedlungen,589636
+51,GW0103,29.5,Ackerstraße,Großsiedlungen,293312
+52,GW0104,9.8,Heinrich-Zille-Siedlung,Großsiedlungen,97315
+53,GW0105,27.9,Schillerhöhe,Großsiedlungen,277583
+54,GW0201,5.4,Werner-Düttmann-Platz,Großsiedlungen,54211
+55,GW0202,9.5,Mariannenplatz,Großsiedlungen,94263
+56,GW0203,36.5,Wassertorplatz,Großsiedlungen,362548
+57,GW0204,16.9,Mehringplatz,Großsiedlungen,167997
+58,GW0205,1.6,Neues Kreuzberger Zentrum,Großsiedlungen,16835
+59,GW0401,45.4,Paul-Hertz-Siedlung,Großsiedlungen,451238
+60,GW0402,17.4,Schlangenbader Straße,Großsiedlungen,172492
+61,GW0501,140.7,Falkenhagener Feld,Großsiedlungen,1396848
+62,GW0502,100.1,Heerstraße,Großsiedlungen,993518
+63,GW0503,61.9,Hakenfelde,Großsiedlungen,615068
+64,GW0504,71.9,Louise-Schroeder-Siedlung,Großsiedlungen,714062
+65,GW0601,28.9,Thermometersiedlung,Großsiedlungen,286323
+66,GW0602,33.2,Kamenzer Damm,Großsiedlungen,329064
+67,GW0701,3.0,Wak “Sozialpalast“ / Pallasseum,Großsiedlungen,30339
+68,GW0702,69.0,Bülowstraße,Großsiedlungen,684728
+69,GW0703,4.1,Terrassen Schöneberg,Großsiedlungen,41247
+70,GW0704,79.1,Tirschenreuther Ring,Großsiedlungen,782755
+71,GW0705,41.6,John-Locke-Siedlung,Großsiedlungen,411972
+72,GW0801,21.3,Rollbergsiedlung,Großsiedlungen,211700
+73,GW0802,32.8,Sonnenallee,Großsiedlungen,325101
+74,GW0803,14.9,Dammweg-Siedlung ,Großsiedlungen,147751
+75,GW0804,227.3,Gropiusstadt,Großsiedlungen,2249552
+76,GW0805,28.9,Rungiusstraße,Großsiedlungen,286518
+77,GW0806,45.4,Buckower Damm,Großsiedlungen,449270
+78,GW0807,73.2,Ortolanweg / Britz-Süd,Großsiedlungen,725219
+79,GW0808,57.9,Buckow,Großsiedlungen,573244
+80,GW1201,212.3,Märkisches Viertel,Großsiedlungen,2110104
+81,GW1202,84.7,Auguste-Victoria-Allee,Großsiedlungen,841881
+82,GW1203,24.4,Zabel-Krüger-Damm,Großsiedlungen,242861

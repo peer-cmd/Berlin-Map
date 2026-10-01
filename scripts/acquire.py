@@ -55,12 +55,16 @@ def xml_text(xml, tag):
     return m.group(1).strip() if m else None
 
 
-def acquire(layer, base_url_override, timeout):
-    src = layer["source"]
-    base = base_url_override or src["base_url"]
-    lid = layer["id"]
-    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    print(f"[{lid}] {base}")
+def parts_of(src):
+    """A source is one WFS feature type or several ("parts"), each optionally on its own service."""
+    if src.get("parts"):
+        return [{"base_url": src.get("base_url"), **p} for p in src["parts"]]
+    return [{"base_url": src["base_url"], "type_name": src["type_name"]}]
+
+
+def acquire_part(src, part, base, timeout, stem):
+    """Download one feature type. Returns its provenance record."""
+    tn = part["type_name"]
 
     # 1. Capabilities: confirms the service answers and records its stated terms.
     cap_url = wfs_url(src, base, request="GetCapabilities")
@@ -68,20 +72,20 @@ def acquire(layer, base_url_override, timeout):
     cap_xml = cap.decode("utf-8", "replace")
     if "<WFS_Capabilities" not in cap_xml and ":WFS_Capabilities" not in cap_xml:
         raise RuntimeError(f"GetCapabilities did not return a WFS capabilities document:\n{cap_xml[:300]}")
-    if src["type_name"] not in cap_xml:
-        raise RuntimeError(f"feature type {src['type_name']} not listed in capabilities")
+    if tn not in cap_xml:
+        raise RuntimeError(f"feature type {tn} not listed in capabilities")
 
     # 2. Expected feature count.
-    hits_url = wfs_url(src, base, request="GetFeature", typeNames=src["type_name"], resultType="hits")
+    hits_url = wfs_url(src, base, request="GetFeature", typeNames=tn, resultType="hits")
     hits, _ = http_get(hits_url, timeout)
     m = re.search(r'numberMatched="(\d+)"', hits.decode("utf-8", "replace"))
     if not m:
         raise RuntimeError("could not read numberMatched from resultType=hits response")
     expected = int(m.group(1))
-    print(f"  service reports {expected} features")
+    print(f"  {tn}: service reports {expected} features")
 
     # 3. The data itself.
-    get_url = wfs_url(src, base, request="GetFeature", typeNames=src["type_name"],
+    get_url = wfs_url(src, base, request="GetFeature", typeNames=tn,
                       outputFormat=src["output_format"], srsName=src["srs_name"])
     body, ctype = http_get(get_url, timeout * 4)
     if not body.lstrip().startswith(b"{"):
@@ -97,24 +101,17 @@ def acquire(layer, base_url_override, timeout):
         raise RuntimeError(f"received {got} features but service reports {expected} (server limit or truncation)")
     print(f"  received {got} features, {len(body) / 1e6:.1f} MB")
 
-    # 4. Write raw + provenance (atomic rename so a failed run never leaves a partial file).
+    # 4. Write raw files (atomic rename so a failed run never leaves a partial file).
     RAW_DIR.mkdir(parents=True, exist_ok=True)
-    stem = RAW_DIR / f"{lid}_{stamp}"
-    raw_path = stem.with_suffix(".geojson")
-    for path, content in ((raw_path, body), (stem.with_suffix(".capabilities.xml"), cap)):
+    raw_path = stem.with_name(stem.name + ".geojson")
+    for path, content in ((raw_path, body), (stem.with_name(stem.name + ".capabilities.xml"), cap)):
         tmp = path.with_name(path.name + ".part")
         tmp.write_bytes(content)
         tmp.replace(path)
-
-    prov = {
-        "layer_id": lid,
-        "title": title(layer),
-        "retrieved_utc": stamp,
+    return {
         "request_urls": {"capabilities": cap_url, "hits": hits_url, "data": get_url},
         "service_base_url": base,
-        "type_name": src["type_name"],
-        "wfs_version": src["version"],
-        "requested_srs": src["srs_name"],
+        "type_name": tn,
         "response_crs": data.get("crs"),
         "feature_count": got,
         "raw_file": raw_path.name,
@@ -124,15 +121,39 @@ def acquire(layer, base_url_override, timeout):
         "service_title": xml_text(cap_xml, "Title"),
         "service_fees": xml_text(cap_xml, "Fees"),
         "service_access_constraints": xml_text(cap_xml, "AccessConstraints"),
+    }
+
+
+def acquire(layer, base_url_override, timeout):
+    src = layer["source"]
+    lid = layer["id"]
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    parts = parts_of(src)
+    print(f"[{lid}] {len(parts)} feature type(s)")
+    records = []
+    for k, part in enumerate(parts):
+        stem = RAW_DIR / (f"{lid}_{stamp}" if len(parts) == 1 else f"{lid}_{stamp}.{k}")
+        records.append(acquire_part(src, part, base_url_override or part["base_url"], timeout, stem))
+        print(f"  wrote {records[-1]['raw_file']} (+ capabilities)")
+
+    # Provenance: the first part's fields at top level (single-type sources), all parts in "parts".
+    prov = {
+        "layer_id": lid,
+        "title": title(layer),
+        "retrieved_utc": stamp,
+        "wfs_version": src["version"],
+        "requested_srs": src["srs_name"],
+        **records[0],
+        "parts": records,
         "dataset_page": src.get("dataset_page"),
         "publisher": layer.get("publisher"),
         "license": layer.get("license"),
     }
-    prov_path = stem.with_suffix(".provenance.json")
+    prov_path = RAW_DIR / f"{lid}_{stamp}.provenance.json"
     tmp = prov_path.with_name(prov_path.name + ".part")
     tmp.write_text(json.dumps(prov, indent=2, ensure_ascii=False), encoding="utf-8")
     tmp.replace(prov_path)
-    print(f"  wrote {raw_path.name} (+ capabilities, provenance)")
+    print(f"  wrote {prov_path.name}")
 
 
 def main():

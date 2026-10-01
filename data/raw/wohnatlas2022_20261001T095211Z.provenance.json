@@ -1,0 +1,152 @@
+{
+  "layer_id": "wohnatlas2022",
+  "title": "Wohnatlas Berlin 2022",
+  "retrieved_utc": "20261001T095211Z",
+  "wfs_version": "2.0.0",
+  "requested_srs": "EPSG:4326",
+  "request_urls": {
+    "capabilities": "https://gdi.berlin.de/services/wfs/wa_01_angebotsmieten?service=WFS&version=2.0.0&request=GetCapabilities",
+    "hits": "https://gdi.berlin.de/services/wfs/wa_01_angebotsmieten?service=WFS&version=2.0.0&request=GetFeature&typeNames=wa_01_angebotsmieten:wa_01_2022&resultType=hits",
+    "data": "https://gdi.berlin.de/services/wfs/wa_01_angebotsmieten?service=WFS&version=2.0.0&request=GetFeature&typeNames=wa_01_angebotsmieten:wa_01_2022&outputFormat=application/json&srsName=EPSG:4326"
+  },
+  "service_base_url": "https://gdi.berlin.de/services/wfs/wa_01_angebotsmieten",
+  "type_name": "wa_01_angebotsmieten:wa_01_2022",
+  "response_crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:EPSG::4326"
+    }
+  },
+  "feature_count": 58,
+  "raw_file": "wohnatlas2022_20261001T095211Z.0.geojson",
+  "raw_bytes": 1850371,
+  "raw_sha256": "109ca1459a8efafebcba469b10f205efada1c57918ce031a9b4e11dd4d4366fb",
+  "service_server_timestamp": "2026-10-01T09:52:14.730Z",
+  "service_title": "Wohnatlas Berlin - Angebotsmieten (in €/m² monatlich, netto kalt)",
+  "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+  "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen.",
+  "parts": [
+    {
+      "request_urls": {
+        "capabilities": "https://gdi.berlin.de/services/wfs/wa_01_angebotsmieten?service=WFS&version=2.0.0&request=GetCapabilities",
+        "hits": "https://gdi.berlin.de/services/wfs/wa_01_angebotsmieten?service=WFS&version=2.0.0&request=GetFeature&typeNames=wa_01_angebotsmieten:wa_01_2022&resultType=hits",
+        "data": "https://gdi.berlin.de/services/wfs/wa_01_angebotsmieten?service=WFS&version=2.0.0&request=GetFeature&typeNames=wa_01_angebotsmieten:wa_01_2022&outputFormat=application/json&srsName=EPSG:4326"
+      },
+      "service_base_url": "https://gdi.berlin.de/services/wfs/wa_01_angebotsmieten",
+      "type_name": "wa_01_angebotsmieten:wa_01_2022",
+      "response_crs": {
+        "type": "name",
+        "properties": {
+          "name": "urn:ogc:def:crs:EPSG::4326"
+        }
+      },
+      "feature_count": 58,
+      "raw_file": "wohnatlas2022_20261001T095211Z.0.geojson",
+      "raw_bytes": 1850371,
+      "raw_sha256": "109ca1459a8efafebcba469b10f205efada1c57918ce031a9b4e11dd4d4366fb",
+      "service_server_timestamp": "2026-10-01T09:52:14.730Z",
+      "service_title": "Wohnatlas Berlin - Angebotsmieten (in €/m² monatlich, netto kalt)",
+      "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+      "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen."
+    },
+    {
+      "request_urls": {
+        "capabilities": "https://gdi.berlin.de/services/wfs/wa_04_anteil_sozwohng?service=WFS&version=2.0.0&request=GetCapabilities",
+        "hits": "https://gdi.berlin.de/services/wfs/wa_04_anteil_sozwohng?service=WFS&version=2.0.0&request=GetFeature&typeNames=wa_04_anteil_sozwohng:wa_04_2022&resultType=hits",
+        "data": "https://gdi.berlin.de/services/wfs/wa_04_anteil_sozwohng?service=WFS&version=2.0.0&request=GetFeature&typeNames=wa_04_anteil_sozwohng:wa_04_2022&outputFormat=application/json&srsName=EPSG:4326"
+      },
+      "service_base_url": "https://gdi.berlin.de/services/wfs/wa_04_anteil_sozwohng",
+      "type_name": "wa_04_anteil_sozwohng:wa_04_2022",
+      "response_crs": {
+        "type": "name",
+        "properties": {
+          "name": "urn:ogc:def:crs:EPSG::4326"
+        }
+      },
+      "feature_count": 58,
+      "raw_file": "wohnatlas2022_20261001T095211Z.1.geojson",
+      "raw_bytes": 1850394,
+      "raw_sha256": "db5f86a4971a36914ad842f06f5cf23b598015411c8d955c5046c068d60378f9",
+      "service_server_timestamp": "2026-10-01T09:52:18.192Z",
+      "service_title": "Wohnatlas Berlin – Anteil Sozialmietwohnungen am Wohnungsbestand",
+      "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+      "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen."
+    },
+    {
+      "request_urls": {
+        "capabilities": "https://gdi.berlin.de/services/wfs/wa_05_anteil_staedtwbg?service=WFS&version=2.0.0&request=GetCapabilities",
+        "hits": "https://gdi.berlin.de/services/wfs/wa_05_anteil_staedtwbg?service=WFS&version=2.0.0&request=GetFeature&typeNames=wa_05_anteil_staedtwbg:wa_05_2022&resultType=hits",
+        "data": "https://gdi.berlin.de/services/wfs/wa_05_anteil_staedtwbg?service=WFS&version=2.0.0&request=GetFeature&typeNames=wa_05_anteil_staedtwbg:wa_05_2022&outputFormat=application/json&srsName=EPSG:4326"
+      },
+      "service_base_url": "https://gdi.berlin.de/services/wfs/wa_05_anteil_staedtwbg",
+      "type_name": "wa_05_anteil_staedtwbg:wa_05_2022",
+      "response_crs": {
+        "type": "name",
+        "properties": {
+          "name": "urn:ogc:def:crs:EPSG::4326"
+        }
+      },
+      "feature_count": 58,
+      "raw_file": "wohnatlas2022_20261001T095211Z.2.geojson",
+      "raw_bytes": 1850483,
+      "raw_sha256": "31c403318e39639f622b282392e99538dcaa607124649a81a8ccfb5b4528a0b6",
+      "service_server_timestamp": "2026-10-01T09:52:21.632Z",
+      "service_title": "Wohnatlas Berlin - Anteil städt. Wohnungsbaugesell. am Wohnungsbestand",
+      "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+      "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen."
+    },
+    {
+      "request_urls": {
+        "capabilities": "https://gdi.berlin.de/services/wfs/wa_07_whg_umwandlungp?service=WFS&version=2.0.0&request=GetCapabilities",
+        "hits": "https://gdi.berlin.de/services/wfs/wa_07_whg_umwandlungp?service=WFS&version=2.0.0&request=GetFeature&typeNames=wa_07_whg_umwandlungp:wa_07_2017_22&resultType=hits",
+        "data": "https://gdi.berlin.de/services/wfs/wa_07_whg_umwandlungp?service=WFS&version=2.0.0&request=GetFeature&typeNames=wa_07_whg_umwandlungp:wa_07_2017_22&outputFormat=application/json&srsName=EPSG:4326"
+      },
+      "service_base_url": "https://gdi.berlin.de/services/wfs/wa_07_whg_umwandlungp",
+      "type_name": "wa_07_whg_umwandlungp:wa_07_2017_22",
+      "response_crs": {
+        "type": "name",
+        "properties": {
+          "name": "urn:ogc:def:crs:EPSG::4326"
+        }
+      },
+      "feature_count": 58,
+      "raw_file": "wohnatlas2022_20261001T095211Z.3.geojson",
+      "raw_bytes": 1850618,
+      "raw_sha256": "021d52002efac43dd88c9f316697ebfc1216ff0b997cabbc1af1895fec5d7c35",
+      "service_server_timestamp": "2026-10-01T09:52:25.245Z",
+      "service_title": "Wohnatlas Berlin - Umgewandelte Wohnungen innerhalb von 5 Jahren pro 1.000 Wohnungen",
+      "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+      "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen."
+    },
+    {
+      "request_urls": {
+        "capabilities": "https://gdi.berlin.de/services/wfs/wa_10_whg_verkaufp?service=WFS&version=2.0.0&request=GetCapabilities",
+        "hits": "https://gdi.berlin.de/services/wfs/wa_10_whg_verkaufp?service=WFS&version=2.0.0&request=GetFeature&typeNames=wa_10_whg_verkaufp:wa_10_2017_22&resultType=hits",
+        "data": "https://gdi.berlin.de/services/wfs/wa_10_whg_verkaufp?service=WFS&version=2.0.0&request=GetFeature&typeNames=wa_10_whg_verkaufp:wa_10_2017_22&outputFormat=application/json&srsName=EPSG:4326"
+      },
+      "service_base_url": "https://gdi.berlin.de/services/wfs/wa_10_whg_verkaufp",
+      "type_name": "wa_10_whg_verkaufp:wa_10_2017_22",
+      "response_crs": {
+        "type": "name",
+        "properties": {
+          "name": "urn:ogc:def:crs:EPSG::4326"
+        }
+      },
+      "feature_count": 58,
+      "raw_file": "wohnatlas2022_20261001T095211Z.4.geojson",
+      "raw_bytes": 1850612,
+      "raw_sha256": "df20f0e153b0d0a399b46ba40cd6d8f8115c89363aa1a096f847c19271d9cacd",
+      "service_server_timestamp": "2026-10-01T09:52:29.770Z",
+      "service_title": "Wohnatlas Berlin - Wohnungsverkäufe pro 1.000 Wohnungen (5-Jahreszeitraum)",
+      "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+      "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen."
+    }
+  ],
+  "dataset_page": "https://gdi.berlin.de/services/wfs/wa_01_angebotsmieten?request=GetCapabilities&service=WFS",
+  "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+  "license": {
+    "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+    "id": "dl-de-zero-2.0",
+    "url": "https://www.govdata.de/dl-de/zero-2-0"
+  }
+}

@@ -1,0 +1,258 @@
+{
+  "layer_id": "eigentum2025",
+  "title": "Eigentumskonzentration 2025",
+  "geometry": "polygon",
+  "processed_utc": "2026-10-01T09:53:11Z",
+  "feature_count": 542,
+  "skipped": {},
+  "warnings": [
+    "3 features without numeric nat_pers",
+    "3 features without numeric jur_pers",
+    "3 features without numeric jp_ohn_swg",
+    "3 features without numeric stwbg",
+    "3 features without numeric genossen",
+    "3 features without numeric sozvermiet"
+  ],
+  "stats": {
+    "nat_pers": {
+      "min": 0,
+      "max": 98,
+      "median": 59,
+      "p05": 7,
+      "p95": 92,
+      "count": 539
+    },
+    "jur_pers": {
+      "min": 1,
+      "max": 100,
+      "median": 38,
+      "p05": 5,
+      "p95": 91,
+      "count": 539
+    },
+    "jp_ohn_swg": {
+      "min": 0,
+      "max": 85,
+      "median": 18.24,
+      "p05": 1,
+      "p95": 52.44,
+      "count": 539
+    },
+    "stwbg": {
+      "min": 0,
+      "max": 96,
+      "median": 5.4,
+      "p05": 0,
+      "p95": 56.95,
+      "count": 539
+    },
+    "genossen": {
+      "min": 0,
+      "max": 100,
+      "median": 1.44,
+      "p05": 0,
+      "p95": 34.16,
+      "count": 539
+    },
+    "sozvermiet": {
+      "min": 0,
+      "max": 100,
+      "median": 15.72,
+      "p05": 1,
+      "p95": 78.1,
+      "count": 539
+    }
+  },
+  "output_bytes": 810036,
+  "processing": {
+    "precision": 5,
+    "simplify_m": 2,
+    "combine": {
+      "mode": "join",
+      "key": "plr_schl"
+    },
+    "alias": {
+      "plr_id": "plr_schl"
+    }
+  },
+  "files": {
+    "geojson": "eigentum2025.geojson",
+    "csv": "eigentum2025.csv"
+  },
+  "provenance": {
+    "layer_id": "eigentum2025",
+    "title": "Eigentumskonzentration 2025",
+    "retrieved_utc": "20261001T095046Z",
+    "wfs_version": "2.0.0",
+    "requested_srs": "EPSG:4326",
+    "request_urls": {
+      "capabilities": "https://gdi.berlin.de/services/wfs/eigentumstruktur?service=WFS&version=2.0.0&request=GetCapabilities",
+      "hits": "https://gdi.berlin.de/services/wfs/eigentumstruktur?service=WFS&version=2.0.0&request=GetFeature&typeNames=eigentumstruktur:a_eigentum_einzel_2025&resultType=hits",
+      "data": "https://gdi.berlin.de/services/wfs/eigentumstruktur?service=WFS&version=2.0.0&request=GetFeature&typeNames=eigentumstruktur:a_eigentum_einzel_2025&outputFormat=application/json&srsName=EPSG:4326"
+    },
+    "service_base_url": "https://gdi.berlin.de/services/wfs/eigentumstruktur",
+    "type_name": "eigentumstruktur:a_eigentum_einzel_2025",
+    "response_crs": {
+      "type": "name",
+      "properties": {
+        "name": "urn:ogc:def:crs:EPSG::4326"
+      }
+    },
+    "feature_count": 542,
+    "raw_file": "eigentum2025_20261001T095046Z.0.geojson",
+    "raw_bytes": 5261116,
+    "raw_sha256": "4120d25193705942c66099e1dd4484681a3b9d7a03236c1b3f7855b989884ab0",
+    "service_server_timestamp": "2026-10-01T09:50:53.095Z",
+    "service_title": "Eigentumskonzentration Berlin 2025",
+    "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+    "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen.",
+    "parts": [
+      {
+        "request_urls": {
+          "capabilities": "https://gdi.berlin.de/services/wfs/eigentumstruktur?service=WFS&version=2.0.0&request=GetCapabilities",
+          "hits": "https://gdi.berlin.de/services/wfs/eigentumstruktur?service=WFS&version=2.0.0&request=GetFeature&typeNames=eigentumstruktur:a_eigentum_einzel_2025&resultType=hits",
+          "data": "https://gdi.berlin.de/services/wfs/eigentumstruktur?service=WFS&version=2.0.0&request=GetFeature&typeNames=eigentumstruktur:a_eigentum_einzel_2025&outputFormat=application/json&srsName=EPSG:4326"
+        },
+        "service_base_url": "https://gdi.berlin.de/services/wfs/eigentumstruktur",
+        "type_name": "eigentumstruktur:a_eigentum_einzel_2025",
+        "response_crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG::4326"
+          }
+        },
+        "feature_count": 542,
+        "raw_file": "eigentum2025_20261001T095046Z.0.geojson",
+        "raw_bytes": 5261116,
+        "raw_sha256": "4120d25193705942c66099e1dd4484681a3b9d7a03236c1b3f7855b989884ab0",
+        "service_server_timestamp": "2026-10-01T09:50:53.095Z",
+        "service_title": "Eigentumskonzentration Berlin 2025",
+        "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+        "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen."
+      },
+      {
+        "request_urls": {
+          "capabilities": "https://gdi.berlin.de/services/wfs/eigentumstruktur?service=WFS&version=2.0.0&request=GetCapabilities",
+          "hits": "https://gdi.berlin.de/services/wfs/eigentumstruktur?service=WFS&version=2.0.0&request=GetFeature&typeNames=eigentumstruktur:b_eigentum_jurist_privat_2025&resultType=hits",
+          "data": "https://gdi.berlin.de/services/wfs/eigentumstruktur?service=WFS&version=2.0.0&request=GetFeature&typeNames=eigentumstruktur:b_eigentum_jurist_privat_2025&outputFormat=application/json&srsName=EPSG:4326"
+        },
+        "service_base_url": "https://gdi.berlin.de/services/wfs/eigentumstruktur",
+        "type_name": "eigentumstruktur:b_eigentum_jurist_privat_2025",
+        "response_crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG::4326"
+          }
+        },
+        "feature_count": 542,
+        "raw_file": "eigentum2025_20261001T095046Z.1.geojson",
+        "raw_bytes": 5264894,
+        "raw_sha256": "5615822f34adfd206c5c6caa9465e35d1057f0d579e74cff29241ea7f62d7c46",
+        "service_server_timestamp": "2026-10-01T09:51:01.319Z",
+        "service_title": "Eigentumskonzentration Berlin 2025",
+        "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+        "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen."
+      },
+      {
+        "request_urls": {
+          "capabilities": "https://gdi.berlin.de/services/wfs/eigentumstruktur?service=WFS&version=2.0.0&request=GetCapabilities",
+          "hits": "https://gdi.berlin.de/services/wfs/eigentumstruktur?service=WFS&version=2.0.0&request=GetFeature&typeNames=eigentumstruktur:f_eigentum_jurist_2025&resultType=hits",
+          "data": "https://gdi.berlin.de/services/wfs/eigentumstruktur?service=WFS&version=2.0.0&request=GetFeature&typeNames=eigentumstruktur:f_eigentum_jurist_2025&outputFormat=application/json&srsName=EPSG:4326"
+        },
+        "service_base_url": "https://gdi.berlin.de/services/wfs/eigentumstruktur",
+        "type_name": "eigentumstruktur:f_eigentum_jurist_2025",
+        "response_crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG::4326"
+          }
+        },
+        "feature_count": 542,
+        "raw_file": "eigentum2025_20261001T095046Z.2.geojson",
+        "raw_bytes": 5263368,
+        "raw_sha256": "972d76a5bdc450bcfcd995e0531bdfe2a11da33a7e75aaf29ed8db2086b8a022",
+        "service_server_timestamp": "2026-10-01T09:51:09.438Z",
+        "service_title": "Eigentumskonzentration Berlin 2025",
+        "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+        "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen."
+      },
+      {
+        "request_urls": {
+          "capabilities": "https://gdi.berlin.de/services/wfs/eigentumstruktur?service=WFS&version=2.0.0&request=GetCapabilities",
+          "hits": "https://gdi.berlin.de/services/wfs/eigentumstruktur?service=WFS&version=2.0.0&request=GetFeature&typeNames=eigentumstruktur:c_eigentum_stadtwohn_2025&resultType=hits",
+          "data": "https://gdi.berlin.de/services/wfs/eigentumstruktur?service=WFS&version=2.0.0&request=GetFeature&typeNames=eigentumstruktur:c_eigentum_stadtwohn_2025&outputFormat=application/json&srsName=EPSG:4326"
+        },
+        "service_base_url": "https://gdi.berlin.de/services/wfs/eigentumstruktur",
+        "type_name": "eigentumstruktur:c_eigentum_stadtwohn_2025",
+        "response_crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG::4326"
+          }
+        },
+        "feature_count": 542,
+        "raw_file": "eigentum2025_20261001T095046Z.3.geojson",
+        "raw_bytes": 5262031,
+        "raw_sha256": "719b11d2a652bc1cec3d1c6047673959b5ccf29c195b95b25c5b68bb42d2603f",
+        "service_server_timestamp": "2026-10-01T09:51:15.998Z",
+        "service_title": "Eigentumskonzentration Berlin 2025",
+        "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+        "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen."
+      },
+      {
+        "request_urls": {
+          "capabilities": "https://gdi.berlin.de/services/wfs/eigentumstruktur?service=WFS&version=2.0.0&request=GetCapabilities",
+          "hits": "https://gdi.berlin.de/services/wfs/eigentumstruktur?service=WFS&version=2.0.0&request=GetFeature&typeNames=eigentumstruktur:d_eigentum_genossen_2025&resultType=hits",
+          "data": "https://gdi.berlin.de/services/wfs/eigentumstruktur?service=WFS&version=2.0.0&request=GetFeature&typeNames=eigentumstruktur:d_eigentum_genossen_2025&outputFormat=application/json&srsName=EPSG:4326"
+        },
+        "service_base_url": "https://gdi.berlin.de/services/wfs/eigentumstruktur",
+        "type_name": "eigentumstruktur:d_eigentum_genossen_2025",
+        "response_crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG::4326"
+          }
+        },
+        "feature_count": 542,
+        "raw_file": "eigentum2025_20261001T095046Z.4.geojson",
+        "raw_bytes": 5262670,
+        "raw_sha256": "690e43f8ee7631703861cb5f865f31779bc4f470e905d33e1dd266639fec09af",
+        "service_server_timestamp": "2026-10-01T09:51:23.188Z",
+        "service_title": "Eigentumskonzentration Berlin 2025",
+        "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+        "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen."
+      },
+      {
+        "request_urls": {
+          "capabilities": "https://gdi.berlin.de/services/wfs/eigentumstruktur?service=WFS&version=2.0.0&request=GetCapabilities",
+          "hits": "https://gdi.berlin.de/services/wfs/eigentumstruktur?service=WFS&version=2.0.0&request=GetFeature&typeNames=eigentumstruktur:e_eigentum_gemeinwohl_2025&resultType=hits",
+          "data": "https://gdi.berlin.de/services/wfs/eigentumstruktur?service=WFS&version=2.0.0&request=GetFeature&typeNames=eigentumstruktur:e_eigentum_gemeinwohl_2025&outputFormat=application/json&srsName=EPSG:4326"
+        },
+        "service_base_url": "https://gdi.berlin.de/services/wfs/eigentumstruktur",
+        "type_name": "eigentumstruktur:e_eigentum_gemeinwohl_2025",
+        "response_crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG::4326"
+          }
+        },
+        "feature_count": 542,
+        "raw_file": "eigentum2025_20261001T095046Z.5.geojson",
+        "raw_bytes": 5265485,
+        "raw_sha256": "0f81e7d2a2aeb98630f1e903acd9c76d669a9b00837c33dafc7526005ab5b5e6",
+        "service_server_timestamp": "2026-10-01T09:51:29.942Z",
+        "service_title": "Eigentumskonzentration Berlin 2025",
+        "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+        "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen."
+      }
+    ],
+    "dataset_page": "https://www.berlin.de/sen/wohnen/service/berliner-wohnungsmarkt/eigentuemerstruktur-in-berlin/",
+    "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+    "license": {
+      "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+      "id": "dl-de-zero-2.0",
+      "url": "https://www.govdata.de/dl-de/zero-2-0"
+    }
+  },
+  "provenance_file": "eigentum2025_20261001T095046Z.provenance.json"
+}

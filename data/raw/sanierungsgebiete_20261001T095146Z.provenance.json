@@ -1,0 +1,106 @@
+{
+  "layer_id": "sanierungsgebiete",
+  "title": "Sanierungsgebiete",
+  "retrieved_utc": "20261001T095146Z",
+  "wfs_version": "2.0.0",
+  "requested_srs": "EPSG:4326",
+  "request_urls": {
+    "capabilities": "https://gdi.berlin.de/services/wfs/sanier?service=WFS&version=2.0.0&request=GetCapabilities",
+    "hits": "https://gdi.berlin.de/services/wfs/sanier?service=WFS&version=2.0.0&request=GetFeature&typeNames=sanier:a_sanier_umfassend&resultType=hits",
+    "data": "https://gdi.berlin.de/services/wfs/sanier?service=WFS&version=2.0.0&request=GetFeature&typeNames=sanier:a_sanier_umfassend&outputFormat=application/json&srsName=EPSG:4326"
+  },
+  "service_base_url": "https://gdi.berlin.de/services/wfs/sanier",
+  "type_name": "sanier:a_sanier_umfassend",
+  "response_crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:EPSG::4326"
+    }
+  },
+  "feature_count": 9,
+  "raw_file": "sanierungsgebiete_20261001T095146Z.0.geojson",
+  "raw_bytes": 93472,
+  "raw_sha256": "1d57d7fe4290647208dfb75a793ce36c6247c7c08e9f83d1764a7ad13c56291d",
+  "service_server_timestamp": "2026-10-01T09:51:49.843Z",
+  "service_title": "Sanierungsgebiete",
+  "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+  "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen",
+  "parts": [
+    {
+      "request_urls": {
+        "capabilities": "https://gdi.berlin.de/services/wfs/sanier?service=WFS&version=2.0.0&request=GetCapabilities",
+        "hits": "https://gdi.berlin.de/services/wfs/sanier?service=WFS&version=2.0.0&request=GetFeature&typeNames=sanier:a_sanier_umfassend&resultType=hits",
+        "data": "https://gdi.berlin.de/services/wfs/sanier?service=WFS&version=2.0.0&request=GetFeature&typeNames=sanier:a_sanier_umfassend&outputFormat=application/json&srsName=EPSG:4326"
+      },
+      "service_base_url": "https://gdi.berlin.de/services/wfs/sanier",
+      "type_name": "sanier:a_sanier_umfassend",
+      "response_crs": {
+        "type": "name",
+        "properties": {
+          "name": "urn:ogc:def:crs:EPSG::4326"
+        }
+      },
+      "feature_count": 9,
+      "raw_file": "sanierungsgebiete_20261001T095146Z.0.geojson",
+      "raw_bytes": 93472,
+      "raw_sha256": "1d57d7fe4290647208dfb75a793ce36c6247c7c08e9f83d1764a7ad13c56291d",
+      "service_server_timestamp": "2026-10-01T09:51:49.843Z",
+      "service_title": "Sanierungsgebiete",
+      "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+      "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen"
+    },
+    {
+      "request_urls": {
+        "capabilities": "https://gdi.berlin.de/services/wfs/sanier?service=WFS&version=2.0.0&request=GetCapabilities",
+        "hits": "https://gdi.berlin.de/services/wfs/sanier?service=WFS&version=2.0.0&request=GetFeature&typeNames=sanier:b_sanier_einfach&resultType=hits",
+        "data": "https://gdi.berlin.de/services/wfs/sanier?service=WFS&version=2.0.0&request=GetFeature&typeNames=sanier:b_sanier_einfach&outputFormat=application/json&srsName=EPSG:4326"
+      },
+      "service_base_url": "https://gdi.berlin.de/services/wfs/sanier",
+      "type_name": "sanier:b_sanier_einfach",
+      "response_crs": {
+        "type": "name",
+        "properties": {
+          "name": "urn:ogc:def:crs:EPSG::4326"
+        }
+      },
+      "feature_count": 5,
+      "raw_file": "sanierungsgebiete_20261001T095146Z.1.geojson",
+      "raw_bytes": 44483,
+      "raw_sha256": "316b7e29728ab3ee50c0c1c5badb526b62a88632f6dcb3a189c4aa02a492908e",
+      "service_server_timestamp": "2026-10-01T09:51:51.856Z",
+      "service_title": "Sanierungsgebiete",
+      "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+      "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen"
+    },
+    {
+      "request_urls": {
+        "capabilities": "https://gdi.berlin.de/services/wfs/sanier?service=WFS&version=2.0.0&request=GetCapabilities",
+        "hits": "https://gdi.berlin.de/services/wfs/sanier?service=WFS&version=2.0.0&request=GetFeature&typeNames=sanier:c_sanier_aufgehoben&resultType=hits",
+        "data": "https://gdi.berlin.de/services/wfs/sanier?service=WFS&version=2.0.0&request=GetFeature&typeNames=sanier:c_sanier_aufgehoben&outputFormat=application/json&srsName=EPSG:4326"
+      },
+      "service_base_url": "https://gdi.berlin.de/services/wfs/sanier",
+      "type_name": "sanier:c_sanier_aufgehoben",
+      "response_crs": {
+        "type": "name",
+        "properties": {
+          "name": "urn:ogc:def:crs:EPSG::4326"
+        }
+      },
+      "feature_count": 31,
+      "raw_file": "sanierungsgebiete_20261001T095146Z.2.geojson",
+      "raw_bytes": 290484,
+      "raw_sha256": "cf6ac5901d9395d12d7662d90864dec527a5769e88aa4514462468242c8307c7",
+      "service_server_timestamp": "2026-10-01T09:51:53.508Z",
+      "service_title": "Sanierungsgebiete",
+      "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+      "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen"
+    }
+  ],
+  "dataset_page": "https://gdi.berlin.de/services/wfs/sanier?request=GetCapabilities&service=WFS",
+  "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+  "license": {
+    "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+    "id": "dl-de-zero-2.0",
+    "url": "https://www.govdata.de/dl-de/zero-2-0"
+  }
+}
