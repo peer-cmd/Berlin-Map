@@ -155,3 +155,12 @@ Auf Wunsch als eigenständiges fünftes Preset umgesetzt (Alternative zu Update 
 - Hosting: Strato, Upload des Ordners per SFTP.
 
 **Offen:** Datenschutzerklärung muss die Kachelabrufe bei `tiles.openfreemap.org` nennen; Impressum für die öffentliche Seite.
+
+## 2026-10-01 (Teil 2) — Website: nur Kompaktmodell, Seite „Hintergrund", Impressum, Datenschutz
+
+- Navigation: Übersicht · Modell (`modell-kompakt.html`) · Hintergrund · Die Zahlen erklärt · Glossar · Karte. `vergesellschaftung-modell-v37.html` bleibt im Ordner, wird aber nicht mehr verlinkt und nicht hochgeladen; alle Links zeigen auf `modell-kompakt.html`.
+- `hintergrund.html` — die Hintergrundspalte aus v37: Rechtlicher Rahmen, Wie das Modell rechnet (inkl. nicht abgebildeter Faktoren, Ertragswert/Vergleichswert, Bestand, Entschädigungsspanne, Bernt & Holm), Bericht des Landesrechnungshofs, Quellen. Einführung/Zeitlicher Ablauf (schon auf `index.html`) und Glossar (schon `glossar.html`) nicht doppelt.
+- `impressum.html` (§ 5 DDG, § 18 Abs. 2 MStV) und `datenschutz.html` (Hosting STRATO, OpenFreeMap auf der Karte, E-Mail, Betroffenenrechte), verlinkt im Seitenfuß aller Seiten und im Kartenpanel. Die alten Impressum-Zeilen (§ 5 TMG/RStV, Gmail-Adresse) im Modell entfernt.
+- Google Fonts und Chart.js 4.4.0 lokal (`fonts/`, `vendor/`); einzige Fremdanfrage ist die Grundkarte auf `karte.html`.
+
+**Offen:** STRATO-Firmenname (GmbH) und E-Mail-Domain `peerfrantzen.com` prüfen; Auftragsverarbeitungsvertrag mit STRATO im Kundenlogin abschließen (die Datenschutzerklärung setzt ihn voraus). `index.html` und `zahlen.html` verweisen noch auf `pdf/`, `quellenbelege.md` und `entwicklungsprotokoll.md`, die nicht hochgeladen werden.

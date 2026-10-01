@@ -15,10 +15,10 @@ Re-run `update_data.bat` whenever the data should be refreshed. Each download is
 The map is published as `02_Vergesellschaftung/karte.html`, linked as "Karte" in the site navigation. Strato serves static files only, so the map assets are copied into the site folder:
 
 1. `update_data.bat` ends with `scripts/export_site.py`, which writes `02_Vergesellschaftung/karte/` (app, MapLibre, `layers.json`, GeoJSON, `meta.json`). The folder is build output and not tracked in git. The export refuses mock data from `tests/smoke.py`.
-2. Upload the contents of `02_Vergesellschaftung/` by SFTP (e.g. FileZilla, host and login from the Strato customer area), including `.htaccess` and the `karte/` folder. `pdf/`, `archive/` and the `.md` files are not needed on the server.
+2. Upload the contents of `02_Vergesellschaftung/` by SFTP (e.g. FileZilla, host and login from the Strato customer area), including `.htaccess`, `fonts/`, `vendor/` and `karte/`. Do not upload `vergesellschaftung-modell-v37.html` (replaced by `modell-kompakt.html` plus `hintergrund.html`), `archive/`, `pdf/`, `Bibliography/`, the `.bib` file and the `.md` files.
 3. Check after the first upload: the GeoJSON response should carry `Content-Encoding: gzip` (set in `.htaccess`, about 1 MB instead of 5.4 MB).
 
-Visitors' browsers load basemap tiles from `tiles.openfreemap.org`; the site's privacy statement should name this.
+Fonts and Chart.js are served from the site itself (`fonts/`, `vendor/`). The only third-party request is the basemap on `karte.html` (`tiles.openfreemap.org`), declared in `datenschutz.html`. `impressum.html` and `datenschutz.html` are linked from every page footer and from the map panel.
 
 ## Layout
 

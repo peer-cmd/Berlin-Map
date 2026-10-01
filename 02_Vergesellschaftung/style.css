@@ -574,3 +574,6 @@ td:first-child,th:first-child{text-align:left;color:var(--muted);}
 /* ---------- Karte (karte.html): nav on top, map fills the rest ---------- */
 body.map-page{display:flex;flex-direction:column;height:100vh;height:100dvh;overflow:hidden;}
 .map-wrap{position:relative;flex:1;min-height:0;}
+.map-page #panel .legal{font-size:11px;color:var(--muted);}
+.map-page #panel .legal a{color:inherit;}
+.colophon a{color:inherit;}
