@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Die Zahlen erklärt — Vergesellschaftung großer Wohnungsunternehmen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+  <nav class="site-nav">
+    <a href="index.html">Übersicht</a>
+    <a href="vergesellschaftung-modell-v37.html">Modell</a>
+    <a href="modell-kompakt.html">Modell (kompakt)</a>
+    <a href="zahlen.html" class="active">Die Zahlen erklärt</a>
+    <a href="glossar.html">Glossar</a>
+  </nav>
+
+  <div class="masthead">
+    <div>
+      <h1>Die Zahlen erklärt</h1>
+      <p>Woher die Zahlen im Modell kommen, was sie bedeuten, und wo Quellen sich widersprechen oder unklar sind.</p>
+    </div>
+    <div class="meta">Volle Belege: quellenbelege.md</div>
+  </div>
+
+  <div class="bg-page">
+
+    <p class="lead">Diese Seite erklärt die wichtigsten Zahlen im <a href="vergesellschaftung-modell-v37.html">Modell</a> in normaler Sprache, mit knappem Quellenverweis. Für die vollständige Beleglage — jede Zahl mit Datei und Seitenzahl — siehe <code>quellenbelege.md</code> im Projektordner.</p>
+
+    <div class="jump-nav">
+      <a href="#bestand">Bestand</a>
+      <a href="#kosten">Kosten</a>
+      <a href="#mieten">Mieten</a>
+      <a href="#verkehrswert">Verkehrswert</a>
+      <a href="#recht">Recht</a>
+      <a href="#gegenmodell">Gegenmodell</a>
+      <a href="#offen">Offene Punkte</a>
+    </div>
+
+    <h2 id="bestand">Wie viele Wohnungen? — 240.000</h2>
+    <p>Alle relevanten Quellen — die Initiative DWE, das IW-Köln-Gutachten der Banken und die amtliche Kostenschätzung des Senats — rechnen mit derselben Bestandsgröße: rund 240.000 Wohnungen bei Unternehmen mit mehr als 3.000 Berliner Einheiten.<sup class="src">DWE 2022, S. 8f/45/112; IW Köln/Empirica 2026, S. 8/16; BBU-Sodan 2019, S. 54</sup> Das ist damit keine strittige Zahl — die 240.000 im Modell-Default sind der Konsens aller Lager.</p>
+
+    <h2 id="kosten">Warum schwanken die Gesamtkosten so stark? — 8 Mrd. bis 39 Mrd. €</h2>
+    <p>Die zitierten Gesamtsummen reichen von rund 8 Mrd. € bis knapp 40 Mrd. €. Das liegt nicht an unterschiedlichen Immobilienwerten, sondern an der politischen Grundfrage: <strong>wie viel Prozent des Verkehrswerts soll überhaupt gezahlt werden?</strong> Das Modell trägt dem jetzt Rechnung, indem es einen einheitlichen Verkehrswert (2.085 €/m²) verwendet und nur die Entschädigungsquote zwischen den fünf Positionen variiert.</p>
+    <table>
+      <thead><tr><th>Position</th><th>Betrag</th><th>Bedeutet</th></tr></thead>
+      <tbody>
+        <tr><td>Faire-Mieten-Modell (DWE)</td><td>≈ 14 Mrd. €<sup class="src">Modell-Preset</sup> (im IW-Gutachten zitiert als 8–11 Mrd. €<sup class="src">IW Köln/Empirica, S. 8</sup>)</td><td>≈ 43 % vom Verkehrswert</td></tr>
+        <tr><td>DWE-Gesetzentwurf 2025 (Sachwertverfahren)</td><td>14,5–17,0 Mrd. €<sup class="src">PwC-Whitepaper (Heim/Hackelberg), Fn. 1–2, zitiert Gesetzentwurf u. Factsheet</sup></td><td>40–60 % vom Verkehrswert (Modell: 50 %); 220.000 statt 240.000 Wohnungen, Zahlung über 100-jährige Schuldverschreibungen statt Bankkredit</td></tr>
+        <tr><td>Bernt/Holm (Ist-Miete)</td><td>≈ 24 Mrd. €</td><td>≈ 74 % vom Verkehrswert</td></tr>
+        <tr><td>Amtliche Kostenschätzung (Senat 2019) — Entschädigung allein</td><td>28,8–36 Mrd. €<sup class="src">BBU-Sodan, S. 9/68/70/102</sup></td><td>≈ 100 % (verkehrswertnah)</td></tr>
+        <tr><td>Amtliche Kostenschätzung — inkl. Erwerbsnebenkosten</td><td>30–39 Mrd. €<sup class="src">BBU-Sodan, S. 68</sup></td><td>dieselbe Entschädigung + 1,5–2,9 Mrd. € Nebenkosten</td></tr>
+      </tbody>
+    </table>
+    <p>Die 29–36 vs. 29–39 Mrd. €, die an verschiedenen Stellen kursieren, sind also kein Widerspruch — es ist derselbe Senatswert, einmal ohne und einmal mit Nebenkosten gerechnet. Im Modelltext ist das aktuell nicht auseinandergehalten; das wäre die nächste Präzisierung.</p>
+    <p>Der Rechnungshof-Bericht (20.02.2024) ist inzwischen verifiziert (Web-Fetch statt lokalem PDF, siehe <code>quellenbelege.md</code> Abschnitt 7). Dabei zeigte sich: Das S.-23-Zitat zur 11-Mrd.-Schwelle sitzt tatsächlich auf S. 16, mit leicht anderem Wortlaut; der „700 Mio. €"-Zuschussbedarf ist die untere Grenze einer 700-Mio.–1-Mrd.-€-Spanne über zehn Jahre, kein fixer Wert; und die im Modell zuvor zitierten 2,20 €/m²/Monat Bewirtschaftungskosten finden sich im Bericht nicht — dort stehen stattdessen 17,18 €/m² Instandhaltung und 3,60 €/m² Betriebskosten, beide pro Jahr. Alle drei Punkte sind jetzt im Modelltext korrigiert.</p>
+
+    <h2 id="mieten">Welche Miete wird zugrunde gelegt?</h2>
+    <ul>
+      <li><strong>3,70 €/m²</strong> — Zielmiete des Faire-Mieten-Modells (DWE): so niedrig kalkuliert, dass sie an der Armutsgrenze bezahlbar bleibt.<sup class="src">DWE 2022, S. 117</sup></li>
+      <li><strong>6,29 €/m²</strong> — durchschnittliche Nettokaltmiete der landeseigenen Wohnungsgesellschaften; Referenzwert für „was ist real möglich, wenn man wie das Land wirtschaftet".<sup class="src">Bernt/Holm-Studie, S. 12/22</sup></li>
+      <li><strong>7,63 €/m²</strong> — durchschnittliche Nettokaltmiete der sechs größten privaten Konzerne (≈ 222.000 Wohnungen); Ausgangsmiete im Gegenmodell, weil dort keine Mietsenkung unterstellt wird.<sup class="src">Bernt/Holm-Studie, S. 12/22</sup></li>
+    </ul>
+    <p>Bernt &amp; Holm (Rosa-Luxemburg-Stiftung, 2023) kommen unabhängig zu dem Ergebnis, dass eine Vergesellschaftung die Miete für ~200.000 Haushalte im Schnitt um 16 % senken könnte — dieselbe 16-%-Zahl findet sich auch im Abschlussbericht der Expertenkommission.<sup class="src">Bernt/Holm-Studie, S. 22f; Expertenkommission 2023, S. 60</sup></p>
+
+    <h2 id="verkehrswert">Woher kommt der Verkehrswert von 2.085 €/m²?</h2>
+    <p>Rechtlich maßgeblich für vermietete Bestände ist das <strong>Ertragswertverfahren</strong>: Wert = kapitalisierte Nettomiete, nicht der Preis für eine leerstehende Eigentumswohnung. Der Gutachterausschuss für Grundstückswerte in Berlin weist für 2022–2024 einen mittleren Kaufpreis von 2.644 €/m² Wohn-/Nutzfläche aus, mit einer 5–95-Perzentil-Bandbreite von 1.634–4.247 €/m².<sup class="src">Gutachterausschuss, Liegenschaftszinssätze 2025, S. 16</sup> Der Modellwert 2.085 €/m² liegt in dieser Bandbreite, leicht unter dem Mittelwert — passend zu „verkehrswertnah bei regulierten Bestandsmieten". Die konkreten 897 / 1.538 / 2.085 €/m², die vor der jüngsten Korrektur je Modell unterschiedlich verwendet wurden, waren keine eigenständig zitierten Werte, sondern aus den Gesamtsummen zurückgerechnet — deshalb war es ein Fehler, sie als unterschiedliche „Verkehrswerte" zu behandeln, statt als unterschiedliche Entschädigungsquoten auf denselben Verkehrswert.</p>
+
+    <h2 id="recht">Der Rechtsstreit: wie viel Prozent muss gezahlt werden?</h2>
+    <p>Die Expertenkommission war hier gespalten. Die <strong>Mehrheit</strong> hält eine Entschädigung unterhalb des vollen Verkehrswerts für zulässig. Ein <strong>Sondervotum von drei der 13 Mitglieder</strong> (Durner, Eichberger, Waldhoff) widerspricht — allerdings genauer, als es oft zusammengefasst wird: Sie fordern nicht schlicht den vollen Verkehrswert, sondern dass der Verkehrswert der zwingende <em>Ausgangspunkt</em> jeder Berechnung sein muss, mit nur engem Spielraum für Abschläge (etwa wegen Sozialbindung).<sup class="src">Expertenkommission 2023, S. 16, 124f.</sup> Das ist ein feinerer Unterschied als „100 % oder weniger" — er betrifft die Methode, nicht nur die Quote.</p>
+    <p>Interessant für die Einordnung des Rechnungshof-Berichts: Die Expertenkommission hat dessen Prognosen bereits 2023 ausdrücklich als methodisch nicht überzeugend zurückgewiesen — die Rechnungshof-Präsidentin sei von einem unrealistisch niedrigen, zeitlich starren Mietniveau ausgegangen.<sup class="src">Expertenkommission 2023, S. 60</sup> Der Rechnungshof gilt im Modell als vergleichsweise unabhängige Quelle — das ist mit dieser Kritik im Hinterkopf zu lesen: unabhängig als Institution heißt nicht automatisch, dass die zugrunde liegenden Annahmen von den Fachleuten der Kommission geteilt werden.</p>
+
+    <h2 id="gegenmodell">Wer steht hinter dem „Gegenmodell"?</h2>
+    <p>Das im Modell als „IW Köln/Empirica (2026)" bezeichnete Gegenmodell ist ein reales, im Projektordner vorliegendes Gutachten: Dr. Philipp Deschermeier und Prof. Dr. Michael Voigtländer (Institut der deutschen Wirtschaft Köln), im Auftrag von Berliner Sparkasse, Berliner Volksbank, Deutscher Kreditbank (DKB) und Investitionsbank Berlin (IBB).<sup class="src">IW Köln/Empirica-Gutachten, Titelseite, S. 1</sup> Kernargument: Eine Entschädigung unterhalb des Marktwerts löse einen Vertrauensbruch aus, auf den Kapitalmärkte mit höheren Risikoprämien reagieren würden — das begründet im Modell den Zinsaufschlag dieses Presets.</p>
+
+    <h2 id="offen">Offene Punkte</h2>
+    <p>Stand dieser Seite: Alle vier zuvor hier gelisteten Punkte (29–36-vs.-29–39-Klärung, Sondervotum-Formulierung, Rechnungshof-Zitate, Kommissionskritik am Rechnungshof) sind im Modelltext korrigiert bzw. ergänzt. Verbleibend offen: Der Rechnungshof-Bericht liegt weiterhin nicht als lokale PDF-Datei im Projektordner vor, nur als geprüfte Web-Fetch-Extraktion (<code>pdf/markdown/Rechnungshof_2024_Beratungsbericht-Vergesellschaftung.extract.md</code>) — für belastbare Einzelzitate ggf. gegen das Original nachprüfen.</p>
+    <p>Vollständige Zitate, Seitenzahlen und die Einordnung jeder einzelnen Quelle: <code>quellenbelege.md</code>.</p>
+
+  </div>
+
+  <div class="colophon">Die Zahlen erklärt — Vergesellschaftung großer Wohnungsunternehmen</div>
+
+</div>
+</body>
+</html>

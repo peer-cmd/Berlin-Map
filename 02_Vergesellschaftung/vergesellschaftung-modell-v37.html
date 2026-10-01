@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kosten- und Finanzierungsmodell der Vergesellschaftung Berlin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+  <nav class="site-nav">
+    <a href="index.html">Übersicht</a>
+    <a href="vergesellschaftung-modell-v37.html" class="active">Modell</a>
+    <a href="modell-kompakt.html">Modell (kompakt)</a>
+    <a href="zahlen.html">Die Zahlen erklärt</a>
+    <a href="glossar.html">Glossar</a>
+  </nav>
+
+  <div class="masthead">
+    <div>
+      <h1>Kosten- und Finanzierungsmodell der Vergesellschaftung großer Wohnungsunternehmen</h1>
+    </div>
+  </div>
+
+  <div class="layout">
+
+    <aside class="controls">
+
+      <div class="group">
+        <p class="group-title">Voreinstellungen</p>
+        <div class="field">
+          <button class="preset-btn" data-preset="linke">Faire-Mieten-Modell (DWE)</button>
+          <button class="preset-btn" data-preset="holm">Bernt/Holm (empirisch)</button>
+          <button class="preset-btn" data-preset="rechnungshof">Rechnungshof (verkehrswertnah)</button>
+          <button class="preset-btn" data-preset="gegenmodell">Gegenmodell (IW/Empirica)</button>
+          <button class="preset-btn" data-preset="dwe2025">DWE-Gesetzentwurf 2025</button>
+        </div>
+      </div>
+
+      <div class="group">
+        <p class="group-title">Zeithorizont</p>
+        <div class="field">
+          <div class="field-row"><label>Betrachtungszeitraum</label><span class="val" id="v-horizon">30 Jahre</span></div>
+          <input type="range" id="horizon" min="10" max="50" step="1" value="30">
+          <div class="hint">Nettoergebnis verläuft nicht linear: Solange der Kredit läuft (Tilgungsdauer), verschlechtert sich der kumulierte Cashflow von Jahr zu Jahr. Erst nach vollständiger Tilgung entfällt der Schuldendienst und der Cashflow dreht kräftig ins Plus — je nach Horizont kann das Nettoergebnis diesen Rückgang ganz, teilweise oder gar nicht mehr aufholen.</div>
+        </div>
+      </div>
+
+      <div class="group">
+        <p class="group-title">Bestand &amp; Entschädigung</p>
+        <div class="field">
+          <div class="field-row"><label>Anzahl Wohnungen</label><span class="val" id="v-units">240.000</span></div>
+          <input type="range" id="units" min="50000" max="400000" step="5000" value="240000">
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Ø Wohnungsgröße</label><span class="val" id="v-avgSize">65 m²</span></div>
+          <input type="range" id="avgSize" min="40" max="100" step="1" value="65">
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Verkehrswert/m²</label><span class="val" id="v-price">2.085 €/m²</span></div>
+          <input type="range" id="price" min="500" max="5000" step="20" value="2085">
+          <div class="hint">Gesamtwert = Wohnungen × Größe × Verkehrswert/m² → <span id="v-totalDerived">32,5 Mrd €</span></div>
+          <div class="linked-row">
+            <label class="linked-label">≈ pro Wohnung</label>
+            <input type="number" class="linked-input" id="pricePerUnit" step="1000">
+            <span class="linked-suffix">€ (Verkehrswert einer Whg.)</span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Entschädigungsquote (vom Verkehrswert)</label><span class="val" id="v-purchaseFactor">100 %</span></div>
+          <input type="range" id="purchaseFactor" min="40" max="100" step="5" value="100">
+          <div class="hint">Tatsächlicher Kaufpreis: <span id="v-effectivePrice">2.085 €/m² · 32,5 Mrd €</span></div>
+        </div>
+      </div>
+
+      <div class="group">
+        <p class="group-title">Finanzierung</p>
+        <div class="field">
+          <div class="field-row"><label>Modus</label></div>
+          <div class="seg" id="seg-financing">
+            <button data-val="kredit" class="active">Kredit</button>
+            <button data-val="eigen">Eigenmittel</button>
+          </div>
+        </div>
+        <div class="field" id="wrap-rate">
+          <div class="field-row"><label>Zinssatz</label><span class="val" id="v-rate">3,5 %</span></div>
+          <input type="range" id="rate" min="0" max="7" step="0.1" value="3.5">
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Risikoprämie ab Ankündigung</label><span class="val" id="v-riskPremium">0,0 pp</span></div>
+          <input type="range" id="riskPremium" min="0" max="2" step="0.1" value="0">
+          <div class="hint">Sofortiger Zinsaufschlag ab Jahr 1 durch Marktreaktion (These IW Köln/Empirica 2026)</div>
+        </div>
+        <div class="field" id="wrap-term">
+          <div class="field-row"><label>Tilgungsdauer</label><span class="val" id="v-term">30 J.</span></div>
+          <input type="range" id="term" min="5" max="100" step="1" value="30">
+        </div>
+        <div class="field" id="wrap-reset">
+          <div class="field-row"><label>Zinsbindung</label><span class="val" id="v-rateResetYears">10 J.</span></div>
+          <input type="range" id="rateResetYears" min="5" max="100" step="1" value="10">
+          <div class="hint">Nach Ablauf: Anschlussfinanzierung zum Aufschlagszins</div>
+        </div>
+        <div class="field" id="wrap-increment">
+          <div class="field-row"><label>Zinsaufschlag danach</label><span class="val" id="v-rateIncrement">+1,0 pp</span></div>
+          <input type="range" id="rateIncrement" min="0" max="3" step="0.1" value="1.0">
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Einmalige Kosten</label><span class="val" id="v-onceCosts">405 Mio €</span></div>
+          <input type="range" id="onceCosts" min="0" max="1500" step="5" value="405">
+          <div class="hint">Transaktion, Aufbau, Recht (Jahr 0)</div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Integrationskosten</label><span class="val" id="v-integrationCosts">2,0 %</span></div>
+          <input type="range" id="integrationCosts" min="0" max="10" step="0.5" value="2">
+          <div class="hint">% des Kaufpreises, Jahr 0. Kosten der Zusammenführung vieler getrennter Bestände in eine Anstalt (IT, Verwaltung, Recht).</div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Sanierungsstau pro Wohnung</label><span class="val" id="v-maintBacklog">20.000 €</span></div>
+          <input type="range" id="maintBacklog" min="0" max="30000" step="500" value="20000">
+          <div class="hint">Einmaliger Nachholbedarf bei Übernahme (These Bernt/Holm: private Konzerne unterinvestieren). Illustrativ, keine belastbare Einzelschätzung je Bestand.</div>
+        </div>
+      </div>
+
+      <div class="group">
+        <p class="group-title">Miete &amp; Bewirtschaftung</p>
+        <div class="field">
+          <div class="field-row"><label>Ausgangsmiete</label><span class="val" id="v-baseRent">7,63 €/m²</span></div>
+          <input type="range" id="baseRent" min="3" max="20" step="0.1" value="7.63">
+          <div class="hint">Ø Nettokaltmiete der 6 größten privaten Wohnungskonzerne, exakt der Vergesellschaftungs-Bestand (Bernt/Holm 2023, Rosa-Luxemburg-Stiftung)</div>
+          <div class="linked-row">
+            <label class="linked-label">≈ pro Wohnung</label>
+            <input type="number" class="linked-input" id="baseRentPerUnit" step="5">
+            <span class="linked-suffix">€/Monat</span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Mietsteigerung p.a.</label><span class="val" id="v-rentGrowth">1,5 %</span></div>
+          <input type="range" id="rentGrowth" min="0" max="4" step="0.1" value="1.5">
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Kosteninflation p.a.</label><span class="val" id="v-costInflation">2,5 %</span></div>
+          <input type="range" id="costInflation" min="0" max="6" step="0.1" value="2.5">
+          <div class="hint">Bewirtschaftungskosten, unabhängig von der Miete</div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Bewirtschaftungskosten-Modus</label></div>
+          <div class="seg" id="seg-opexmode">
+            <button data-val="percent" class="active">% der Miete</button>
+            <button data-val="absolute">Absolut €/m²</button>
+          </div>
+        </div>
+        <div class="field" id="wrap-opex-percent">
+          <div class="field-row"><label>Bewirtschaftungskosten</label><span class="val" id="v-opex">40 %</span></div>
+          <input type="range" id="opex" min="20" max="60" step="1" value="40">
+        </div>
+        <div class="field" id="wrap-opex-absolute" style="display:none;">
+          <div class="field-row"><label>Bewirtschaftungskosten absolut</label><span class="val" id="v-opexAbsolute">2,20 €/m²</span></div>
+          <input type="range" id="opexAbsolute" min="1" max="5" step="0.05" value="2.2">
+          <div class="hint">Fixbetrag/Monat, unabhängig von der Miete (Ansatz Rechnungshof Berlin 2024, S. 25)</div>
+          <div class="linked-row">
+            <label class="linked-label">≈ pro Wohnung</label>
+            <input type="number" class="linked-input" id="opexAbsolutePerUnit" step="5">
+            <span class="linked-suffix">€/Monat</span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Referenz: freier Markt</label><span class="val" id="v-freeMarketRent">15,80 €/m²</span></div>
+          <input type="range" id="freeMarketRent" min="8" max="25" step="0.1" value="15.8">
+          <div class="hint">Neuvertragsmiete Berlin, Wachstum fix 3,0 %/Jahr angenommen (Berlin Hyp/CBRE 2026)</div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Referenz: kommunale WoGes.</label><span class="val" id="v-munizRent">6,29 €/m²</span></div>
+          <input type="range" id="munizRent" min="4" max="12" step="0.1" value="6.29">
+          <div class="hint">Ø Nettokaltmiete landeseigene Gesellschaften (Bernt/Holm 2023); Wachstum fix 2,0 %/Jahr angenommen</div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Referenz: Verbraucherpreise (CPI)</label><span class="val" id="v-cpiGrowth">2,0 %/J.</span></div>
+          <input type="range" id="cpiGrowth" min="0" max="5" step="0.1" value="2.0">
+          <div class="hint">Ab Ausgangsmiete indexiert — These IW Köln: Bestandsmiete wächst wie CPI</div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Referenz: Haushaltseinkommen</label><span class="val" id="v-incomeGrowth">3,0 %/J.</span></div>
+          <input type="range" id="incomeGrowth" min="0" max="6" step="0.1" value="3.0">
+          <div class="hint">Ab Ausgangsmiete indexiert — Vergleichsmaßstab: wächst Einkommen schneller als Miete?</div>
+        </div>
+      </div>
+
+      <div class="group">
+        <p class="group-title">Verwendung des Überschusses</p>
+        <div class="field">
+          <select id="mode">
+            <option value="none">Keine Reinvestition</option>
+            <option value="neubau">Neubau — Bestand wächst</option>
+            <option value="sozial">Umwandlung in Sozialwohnungen</option>
+          </select>
+        </div>
+
+        <div class="subpanel" id="panel-neubau">
+          <div class="field">
+            <div class="field-row"><label>Baukosten Neubau</label><span class="val" id="v-buildCost">3.500 €/m²</span></div>
+            <input type="range" id="buildCost" min="1500" max="6000" step="100" value="3500">
+            <div class="linked-row">
+              <label class="linked-label">≈ pro Wohnung</label>
+              <input type="number" class="linked-input" id="buildCostPerUnit" step="1000">
+              <span class="linked-suffix">€ (Baukosten je Whg.)</span>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-row"><label>Reinvestitionsquote</label><span class="val" id="v-reinvestQuota1">100 %</span></div>
+            <input type="range" id="reinvestQuota1" min="0" max="100" step="5" value="100">
+          </div>
+        </div>
+
+        <div class="subpanel" id="panel-sozial">
+          <div class="field">
+            <div class="field-row"><label>Sozialmiete</label><span class="val" id="v-sozialRent">6,50 €/m²</span></div>
+            <input type="range" id="sozialRent" min="3" max="10" step="0.1" value="6.5">
+            <div class="hint" id="hint-sozialRentCap" style="display:none;color:var(--red);">Sozialmiete liegt über der Ausgangsmiete — im Modell auf die Ausgangsmiete gedeckelt (Sozialmiete kann Marktmiete nicht übersteigen).</div>
+            <div class="linked-row">
+              <label class="linked-label">≈ pro Wohnung</label>
+              <input type="number" class="linked-input" id="sozialRentPerUnit" step="5">
+              <span class="linked-suffix">€/Monat</span>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-row"><label>Umwandlungskosten</label><span class="val" id="v-convCost">1.200 €/m²</span></div>
+            <input type="range" id="convCost" min="300" max="3000" step="50" value="1200">
+            <div class="hint">× Ø Wohnungsgröße = Kosten pro umgewandelter Einheit</div>
+            <div class="linked-row">
+              <label class="linked-label">≈ pro Wohnung</label>
+              <input type="number" class="linked-input" id="convCostPerUnit" step="1000">
+              <span class="linked-suffix">€ (Kosten je Whg.)</span>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-row"><label>Umwandlungstempo</label></div>
+            <div class="seg" id="seg-sozialpace">
+              <button data-val="surplus" class="active">Aus Überschuss</button>
+              <button data-val="fixed">Fester Zeitplan</button>
+            </div>
+            <div class="hint">„Aus Überschuss": Umwandlung nur soweit der Cashflow reicht (Reinvestitionsquote unten). „Fester Zeitplan": Umwandlung Jahr für Jahr in festem Tempo — schrittweise, nicht alle Wohnungen auf einmal — unabhängig vom Cashflow; die Kosten mindern den Cashflow des jeweiligen Jahres.</div>
+          </div>
+          <div class="field" id="wrap-reinvestQuota2">
+            <div class="field-row"><label>Reinvestitionsquote</label><span class="val" id="v-reinvestQuota2">100 %</span></div>
+            <input type="range" id="reinvestQuota2" min="0" max="100" step="5" value="100">
+          </div>
+          <div class="field" id="wrap-sozialPaceRate" style="display:none;">
+            <div class="field-row"><label>Umwandlungstempo</label><span class="val" id="v-sozialPaceRate">3,3 %/Jahr</span></div>
+            <input type="range" id="sozialPaceRate" min="0.5" max="20" step="0.1" value="3.3">
+            <div class="hint">Anteil des Gesamtbestands, der pro Jahr zusätzlich umgewandelt wird — bei 3,3 %/Jahr ist der gesamte Bestand nach rund 30 Jahren umgewandelt.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="group">
+        <p class="group-title">Szenario-Vergleich</p>
+        <div class="field">
+          <label style="font-size:11px;">Aktuelle Einstellung sichern als:</label>
+        </div>
+        <div class="field" style="display:flex;gap:6px;">
+          <input type="text" id="labelA" placeholder="Name Szenario A" maxlength="18"
+            style="flex:1;padding:6px 7px;border:1px solid var(--line-strong);font-family:'IBM Plex Sans',sans-serif;font-size:11px;">
+          <button class="snap-btn" id="saveA">A speichern</button>
+        </div>
+        <div class="field" style="display:flex;gap:6px;">
+          <input type="text" id="labelB" placeholder="Name Szenario B" maxlength="18"
+            style="flex:1;padding:6px 7px;border:1px solid var(--line-strong);font-family:'IBM Plex Sans',sans-serif;font-size:11px;">
+          <button class="snap-btn" id="saveB">B speichern</button>
+        </div>
+        <div class="hint">Vergleichstabelle erscheint unten in den Ergebnissen, sobald A oder B gespeichert ist.</div>
+      </div>
+
+      <div class="reset-row">
+        <button class="reset-btn" id="resetBtn">Zurücksetzen</button>
+      </div>
+
+    </aside>
+
+    <main class="results">
+
+      <p class="group-title">Ergebnisse</p>
+
+      <div class="verdict" id="verdictBanner">
+        <span class="verdict-text" id="verdictText">–</span>
+        <button class="print-btn" id="printBtn">Ergebnisse drucken</button>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="label">Entschädigungsquote</div>
+          <div class="value" id="s-kaufpreis">–</div>
+          <div class="sub" id="s-kaufpreis-sub">–</div>
+        </div>
+        <div class="stat">
+          <div class="label">Break-even</div>
+          <div class="value" id="s-breakeven">–</div>
+          <div class="sub">Jahr, kum. Cashflow &gt; 0</div>
+        </div>
+        <div class="stat">
+          <div class="label">Nettoergebnis</div>
+          <div class="value" id="s-netto">–</div>
+          <div class="sub" id="s-netto-sub">nach Horizont</div>
+        </div>
+        <div class="stat">
+          <div class="label">Bestandseffekt</div>
+          <div class="value" id="s-bestand">–</div>
+          <div class="sub" id="s-bestand-sub">–</div>
+        </div>
+      </div>
+
+      <p class="group-title">Geld-Seite</p>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Jahres-Cashflow</h2>
+          <span class="caption" id="cf-caption">nach Schuldendienst</span>
+        </div>
+        <p class="panel-sub">Jährlicher Cashflow nach Schuldendienst. Zeigt, in welchem Jahr die laufende Bewirtschaftung in den Überschuss dreht.</p>
+        <canvas id="chartCashflow" height="70"></canvas>
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--green)"></i>Jahres-Cashflow positiv</span>
+          <span><i class="swatch" style="background:var(--red)"></i>Jahres-Cashflow negativ</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Kumulierter Cashflow</h2>
+          <span class="caption">Nettoergebnis-Verlauf</span>
+        </div>
+        <p class="panel-sub">Kumulierter Cashflow seit Übernahme, inkl. Einmalkosten in Jahr 1. Der Endwert entspricht dem Nettoergebnis oben. Zeigt, in welchem Jahr — falls überhaupt — sich der Bestand insgesamt rechnet (Break-even).</p>
+        <canvas id="chartCumulative" height="70"></canvas>
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--blue)"></i>kumulierter Cashflow</span>
+        </div>
+      </div>
+
+      <div class="panel" id="balancePanelWrap">
+        <div class="panel-head">
+          <h2>Restschuld-Verlauf</h2>
+          <span class="caption" id="balance-caption">Basis-Szenario</span>
+        </div>
+        <p class="panel-sub">Verbleibende Kreditsumme über die Zeit. Der Knick markiert das Ende der Zinsbindung, danach Anschlussfinanzierung zum Aufschlagszins.</p>
+        <canvas id="chartBalance" height="70"></canvas>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Kapitalposition Berlins</h2>
+          <span class="caption">Nettovermögensposition</span>
+        </div>
+        <p class="panel-sub">Verkehrswert des gehaltenen Bestands, abzüglich Restschuld, zuzüglich kumuliertem Cashflow aus dem laufenden Betrieb (inkl. Kosten für Neubau/Sozialumwandlung). Zeigt, wie sich das Landesvermögen insgesamt entwickelt — schnellere Umwandlungstempi oder Neubau schlagen sich hier als reale Kosten nieder, nicht nur im Cashflow-Chart oben.</p>
+        <canvas id="chartCapital" height="70"></canvas>
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--blue-light)"></i>Vermögenswert Bestand</span>
+          <span><i class="swatch" style="background:var(--red)"></i>Restschuld</span>
+          <span><i class="swatch" style="background:#A9762C"></i>Kumulierter Cashflow</span>
+          <span><i class="swatch" style="background:var(--green)"></i>Nettoposition</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Szenario-Übersicht</h2>
+          <span class="caption">4 Voreinstellungen im Vergleich</span>
+        </div>
+        <p class="panel-sub">Kaufpreis und Nettoergebnis nach Horizont (links, Mrd €) sowie Break-even-Jahr (rechts) für die vier Voreinstellungen aus Abschnitt 00 — unabhängig von den aktuellen Reglereinstellungen.</p>
+        <canvas id="chartScenarios" height="80"></canvas>
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--blue-light)"></i>Kaufpreis</span>
+          <span><i class="swatch" style="background:var(--green)"></i>Nettoergebnis positiv</span>
+          <span><i class="swatch" style="background:var(--red)"></i>Nettoergebnis negativ</span>
+          <span><i class="swatch" style="background:var(--ink)"></i>Break-even (rechte Achse)</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Zinssensitivität des Zuschussbedarfs</h2>
+          <span class="caption">bei aktuellen Reglereinstellungen</span>
+        </div>
+        <p class="panel-sub">Ø jährlicher Zuschussbedarf aus dem Landeshaushalt (Fehlbetrag über den Horizont geglättet) in Abhängigkeit vom Zinssatz, alle übrigen Regler auf aktuellem Stand. Markierung zeigt den aktuell eingestellten Zinssatz.</p>
+        <canvas id="chartRateSens" height="70"></canvas>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Sensitivität der Entschädigungsquote</h2>
+          <span class="caption">bei aktuellen Reglereinstellungen</span>
+        </div>
+        <p class="panel-sub">Nettoergebnis nach Horizont (links, Mrd €) und Break-even-Jahr (rechts) in Abhängigkeit von der Entschädigungsquote, alle übrigen Regler auf aktuellem Stand. Markierung zeigt die aktuell eingestellte Quote.</p>
+        <canvas id="chartCompSens" height="70"></canvas>
+      </div>
+
+      <p class="group-title">Soziale Seite</p>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Mietniveau des Bestands</h2>
+          <span class="caption">Modellergebnis</span>
+        </div>
+        <p class="panel-sub">Ø Nettokaltmiete im übernommenen Bestand (Modell) im Vergleich zu freiem Markt, landeseigenen Gesellschaften, Verbraucherpreisen und Haushaltseinkommen.</p>
+        <canvas id="chartRent" height="70"></canvas>
+        <div class="legend">
+          <span><i class="swatch" style="background:#B23A34"></i>Freier Markt</span>
+          <span><i class="swatch" style="background:#A9762C"></i>Kommunale WoGes.</span>
+          <span><i class="swatch" style="background:#6B6B63"></i>CPI (indexiert)</span>
+          <span><i class="swatch" style="background:#3A7D44"></i>Einkommen (indexiert)</span>
+          <span><i class="swatch" style="background:var(--blue)"></i>Ø Miete Bestand (Modell)</span>
+        </div>
+      </div>
+
+      <div class="panel" id="stockPanelWrap" style="display:none;">
+        <div class="panel-head">
+          <h2 id="stock-title">Bestandsentwicklung</h2>
+          <span class="caption">Modellergebnis</span>
+        </div>
+        <p class="panel-sub" id="stock-sub">Entwicklung des Wohnungsbestands durch Reinvestition des jährlichen Cashflow-Überschusses gemäß Abschnitt 04.</p>
+        <canvas id="chartStock" height="70"></canvas>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Zunahme Sozialwohnungen</h2>
+          <span class="caption" id="sozial-caption">Vergleichsrechnung</span>
+        </div>
+        <p class="panel-sub">Zahl der Einheiten, die bei vollständiger Reinvestition des Cashflow-Überschusses in Sozialumwandlung (Parameter aus Abschnitt 04) entstünden — unabhängig vom aktuell gewählten Reinvestitionsmodus, zum Vergleich.</p>
+        <canvas id="chartSozial" height="70"></canvas>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Mieteinsparung für Mieter</h2>
+          <span class="caption" id="tenant-caption">kumuliert, Vergleichsrechnung</span>
+        </div>
+        <p class="panel-sub">Kumulierte Differenz zwischen Marktmiete-Pfad und tatsächlich gezahlter Sozialmiete, multipliziert mit der Zahl der umgewandelten Wohnungen aus der Sozialumwandlungs-Vergleichsrechnung oben (Abschnitt 04-Parameter, unabhängig vom aktuell gewählten Modus). Operationalisiert das Argument „Vergesellschaftung senkt die Miete" (Bernt/Holm, Rosa-Luxemburg-Stiftung 2023) als Zahl: was Mieter über den Betrachtungszeitraum gegenüber dem Marktmiete-Szenario einsparen.</p>
+        <canvas id="chartTenantSavings" height="70"></canvas>
+      </div>
+
+      <details class="panel">
+        <summary>Jahr-für-Jahr</summary>
+        <div class="table-wrap">
+          <table id="dataTable">
+            <thead>
+              <tr>
+                <th>Jahr</th><th>Modell-Ausgangsmiete €/m²</th><th>Ø Miete Bestand €/m²</th><th>Mieteinnahmen</th><th>NOI</th>
+                <th>Annuität</th><th>Cashflow</th><th>Kumuliert</th><th>Bestand/Sozial</th>
+              </tr>
+            </thead>
+            <tbody id="dataTableBody"></tbody>
+          </table>
+        </div>
+      </details>
+
+      <div class="panel" id="comparePanel" style="display:none;">
+        <div class="panel-head">
+          <h2>Szenario-Vergleich</h2>
+          <span class="caption">Aktuelle Einstellung je Snapshot</span>
+        </div>
+        <div class="table-wrap" style="max-height:none;">
+          <table id="compareTable">
+            <thead>
+              <tr id="compareHeadRow">
+                <th style="text-align:left;">Kennzahl</th>
+                <th>Aktuell</th>
+              </tr>
+            </thead>
+            <tbody id="compareBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+
+  <div class="bg-col"><div class="bg-page">
+
+    <p class="group-title">Hintergründen</p>
+
+    <div class="jump-nav">
+      <a href="#section-einfuehrung">Einführung</a>
+      <a href="#section-modelle">Modelle</a>
+      <a href="#section-glossar">Glossar</a>
+    </div>
+
+    <h2 id="section-einfuehrung">Einführung</h2>
+    <p class="lead">Der Volksentscheid „Deutsche Wohnen &amp; Co enteignen" (26. September 2021) sprach sich mit 56,4 % Ja-Stimmen dafür aus, Wohnungsunternehmen mit mehr als 3.000 Berliner Wohnungen im Bestand zu vergesellschaften. Der Senat setzte daraufhin eine Expertenkommission ein; das Abgeordnetenhaus hat bislang kein Umsetzungsgesetz beschlossen. Dieses Modell rechnet durch, was ein solches Gesetz finanziell bedeuten würde — unter verschiedenen Annahmen zu Entschädigung, Finanzierung und Mietniveau.</p>
+    <h3>Zeitlicher Ablauf</h3>
+    <div data-include="timeline-content.html" class="timeline-p"></div>
+
+    <h3>Rechtlicher Rahmen</h3>
+    <p>Anders als die Enteignung nach Art. 14 Abs. 3 GG (Einzelfall, im öffentlichen Interesse, gegen Entschädigung) erlaubt Art. 15 GG die Vergesellschaftung ganzer Wirtschaftszweige — Grund und Boden, Naturschätze, Produktionsmittel — in Gemeineigentum, „durch ein Gesetz, das Art und Ausmaß der Entschädigung bestimmt". Art. 15 GG wurde seit 1949 noch nie angewendet; es gibt daher keine Rechtsprechung, die die Entschädigungshöhe konkretisiert. Zentraler Streitpunkt: Muss die Entschädigung dem vollen Verkehrswert entsprechen (wie bei Art. 14 GG üblich), oder erlaubt Art. 15 GG als eigenständige Kategorie eine geringere Entschädigung, weil sie strukturell anders angelegt ist als die klassische Enteignung? Die Expertenkommission war hier gespalten; eine verbindliche gerichtliche Klärung steht aus.</p>
+
+    <h2>Wie das Modell rechnet</h2>
+    <p>Der Kaufpreis (Verkehrswert × Entschädigungsquote) wird entweder über ein Annuitätendarlehen finanziert (Zins + Tilgung, mit Zinsbindung und Anschlussfinanzierungs-Risiko) oder aus Eigenmitteln des Landeshaushalts. Die laufenden Mieteinnahmen abzüglich Bewirtschaftungskosten (Nettobetriebsergebnis, NOI) müssen den Schuldendienst tragen. Positive Überschüsse können reinvestiert werden — in Neubau (Bestand wächst) oder in die Umwandlung weiterer Einheiten in Sozialwohnungen (Mietniveau sinkt für einen wachsenden Anteil).</p>
+    <h3>Nicht abgebildete Faktoren</h3>
+    <ul>
+      <li>Diskontierung/Barwert — alle Werte sind nominal aufsummiert, nicht auf heutigen Wert abgezinst</li>
+      <li>Leerstand/Mietausfall — es wird 100 % Vermietung unterstellt</li>
+      <li>Mietpreisbremse/Kappungsgrenze als rechtliche Deckelung der Mietsteigerung</li>
+      <li>Instandhaltungsstau und energetische Pflichtsanierung (GEG) als eigener Kostenblock</li>
+      <li>Rückkopplung auf Berlins Gesamtbonität und Zinskosten bestehender Landesschulden</li>
+      <li>Politisches/rechtliches Verzögerungsrisiko bis zu einer verfassungsgerichtlichen Klärung</li>
+    </ul>
+
+    <h3>Ertragswertverfahren vs. Vergleichswertverfahren</h3>
+    <p>Für vermietete Mehrfamilienhäuser mit Bestandsmieter:innen ist rechtlich das Ertragswertverfahren einschlägig: Wert = kapitalisierter Reinertrag (Miete abzüglich Bewirtschaftungskosten), abgezinst mit dem amtlichen Liegenschaftszins des Gutachterausschusses Berlin — der laut Gutachterausschuss ausdrücklich auch „zur Bemessung von Enteignungsentschädigungen" dient. Das ergibt bei den heutigen, oft regulierten Bestandsmieten (~7 €/m²) deutlich niedrigere Werte (rund 1.500–2.500 €/m²) als der Vergleichswert für leerstehende Eigentumswohnungen (~5.000–5.700 €/m², Gutachterausschuss H1/2025).</p>
+
+    <h3>Betroffener Bestand</h3>
+    <p>Rund 240.000 Wohnungen bei Unternehmen mit &gt;3.000 Berliner Einheiten (u. a. Deutsche Wohnen, Vonovia-Bestände, Akelius u. a.) — Berechnungsgrundlage des Rechnungshof-Berichts 2024 und der ursprünglichen Landesschätzung von 2019.</p>
+    <h3 id="section-modelle">Entschädigungsspanne 29–36 Mrd. €</h3>
+    <p>Diese Spanne stammt aus der offiziellen Kostenschätzung des Landes Berlin (2019, BBU-Einordnung) und gilt als „verkehrswertnah" — sie basiert auf einem Ertragswertverfahren (siehe oben), nicht auf Vergleichspreisen für leerstehende Eigentumswohnungen. 28,8–36 Mrd. € ist dabei die Entschädigung allein; rechnet man die Erwerbsnebenkosten (1,5–2,9 Mrd. €) hinzu, kommt dieselbe Schätzung auf 29–39 Mrd. € Gesamtkosten — kein Widerspruch zu den „29–39 Mrd. €", die DWE-Buch und IW-Gutachten zitieren, sondern derselbe Wert mit und ohne Nebenkosten (BBU-Sodan-Gutachten, S. 9, 68, 70, 102). Andere Modelle kommen zu deutlich anderen Zahlen:</p>
+    <ul>
+      <li><strong>Faire-Mieten-Modell (DWE-Initiative, Gerhardt/Holm)</strong> — ≈ 14 Mrd. €. Entschädigung finanzierbar bei Miete 3,70 €/m² (Mietbelastung an der Armutsgrenze, 30 % des Einkommens).</li>
+      <li><strong>Ist-Miete-Modell (Bernt/Holm 2023)</strong> — ≈ 24 Mrd. €. Entschädigung finanzierbar bei Ist-Miete auf Landeseigenen-Niveau, 6,29 €/m².</li>
+      <li><strong>Landesschätzung / BBU 2019</strong> — ≈ 29–36 Mrd. €. Ertragswertverfahren, verkehrswertnah.</li>
+      <li><strong>Volle Verkehrswert-Position (Sondervotum)</strong> — &gt; 36 Mrd. €. Vergleichswert-orientiert, ggf. mit Abschlägen. Nicht offiziell beziffert.</li>
+    </ul>
+
+    <h3>Bernt &amp; Holm (2023): Vergesellschaftung senkt die Miete</h3>
+    <p>Die Studie von Matthias Bernt und Andrej Holm (Rosa-Luxemburg-Stiftung, Januar 2023) vergleicht die Bewirtschaftungspraxis der sechs größten privaten Wohnungskonzerne (~222.000 Wohnungen) mit der der landeseigenen Gesellschaften. Kernbefunde:</p>
+    <ul>
+      <li>Ø Nettokaltmiete große Private: 7,63 €/m² — Ø Landeseigene: 6,29 €/m²</li>
+      <li>Vergesellschaftung könnte die Miete für ~200.000 Haushalte im Schnitt um 16 % senken</li>
+      <li>Landeseigene erwirtschaften trotz niedrigerer Miete einen Überschuss im dreistelligen Millionenbereich — Kernargument, dass niedrigere Miete wirtschaftliche Tragfähigkeit nicht ausschließt</li>
+      <li>Weitere Befunde: bessere Instandhaltung als bei den Konzernen zu erwarten, mehr Sozialwohnungen, wirkt räumlicher Segregation entgegen (private Bestände konzentrieren sich in teuren Innenstadtlagen, landeseigene eher am Stadtrand)</li>
+    </ul>
+    <p>Diese Zahlen bilden die Grundlage für die Ausgangsmiete (7,63 €/m²) und die Referenzlinie „Kommunale Wohnungsgesellschaften" (6,29 €/m²) im Modell-Tab.</p>
+
+    <h2>Der Bericht des Landesrechnungshofs</h2>
+    <p>Der Berliner Rechnungshof veröffentlichte am 20.02.2024 einen Beratungsbericht (nach § 88 Abs. 2 LHO) zu den „Auswirkungen einer Vergesellschaftung großer Wohnungsunternehmen auf den Landeshaushalt". Der Rechnungshof entscheidet nicht über die Entschädigungshöhe; diese obliegt dem Gesetzgeber. Der Bericht rechnet vier exogen übernommene Szenarien durch: 8, 11, 29 und 36 Mrd. € für 240.000 Wohnungen — Werte aus der Initiative bzw. der amtlichen Senatsschätzung, keine eigene Bewertung des Rechnungshofs ("Der Rechnungshof hat sich nicht mit einer angemessenen Entschädigungssumme beschäftigt.", § 2.1). Finanzierungsannahme: 80/20 Fremd-/Eigenkapital.</p>
+    <p>Auf S. 23 hält der Bericht fest: „Das vom Rechnungshof entwickelte Berechnungsmodell hat ergeben, dass bereits Entschädigungssummen über 11 Mrd. € wegen der hohen Finanzierungskosten unweigerlich zu Defiziten bei der Bewirtschaftung der zu vergesellschaftenden Bestände durch eine AöR führen." Ebenfalls auf S. 23 beziffert der Bericht den jährlichen Zuschussbedarf für die ersten zehn Jahre konkret je Szenario: rund 700 Mio. € bei einer verkehrswertorientierten Entschädigung von 29 Mrd. €, rund 1 Mrd. € bei 36 Mrd. €.</p>
+    <p>Der Bericht nennt auf S. 25 f. jährliche Bewirtschaftungskosten von 343,69 €/Wohneinheit (Verwaltung), 17,18 €/m² (Instandhaltung) und 3,60 €/m² (Betriebskosten) als Absolutbeträge — nicht als Prozentsatz der Miete wie in der Standardeinstellung dieses Tools. Auf einen gemeinsamen Monatswert pro m² umgerechnet (Ø 61 m² laut Rechnungshof) ergibt das in Summe rund 2,20 €/m²/Monat — der Default dieses Tools im Modus „Absolut €/m²", umstellbar unter „Bewirtschaftungskosten-Modus", um näher am Rechnungshof-Ansatz zu rechnen.</p>
+    <p>Von allen zitierten Quellen ist der Rechnungshof am ehesten unabhängig — aber nicht ergebnisoffen im Sinne von „ohne Tendenz". Seine Kernaufgabe ist Haushaltskonsolidierung und Risikovermeidung; Präsidentin Karin Klingen äußerte öffentlich, sie sehe „keine Möglichkeit, eine Vergesellschaftung mit vertretbaren Risiken umzusetzen" — eine Einschätzung, die auch die Schlussfolgerung des Berichts trägt (§ 4, S. 22): „Eine Vergesellschaftung kann nur verhältnismäßig sein, wenn dadurch die Mieten gesenkt oder zumindest entdynamisiert werden." Das ist eine andere Motivation als bei IW/Empirica (marktliberal) oder Bernt/Holm (umverteilungsorientiert), führt aber in eine ähnliche Richtung wie die Bankenstudie — aus einer schuldenbremsen-fokussierten statt marktideologischen Perspektive. Zur Einordnung: Die Expertenkommission hat die methodischen Grundannahmen des Rechnungshofs bereits 2023 explizit zurückgewiesen — sie hält seine Prognosen für „auf wenig überzeugenden faktischen Grundannahmen" beruhend, weil sie von einem „gegriffen niedrigen und zudem in der Zeit unflexiblen Mietniveau" ausgingen (Expertenkommission-Abschlussbericht, S. 60, § 202). Unabhängigkeit der Institution heißt also nicht, dass die Fachleute der Kommission die zugrunde liegenden Annahmen teilen.</p>
+
+    <h2 id="section-glossar">Glossar</h2>
+    <div data-include="glossary-content.html"></div>
+
+    <h2>Quellen</h2>
+    <ul class="source-list">
+      <li>Berliner Rechnungshof (20.02.2024) — Beratungsbericht „Auswirkungen einer Vergesellschaftung großer Wohnungsunternehmen auf den Landeshaushalt" (§ 88 Abs. 2 LHO)</li>
+      <li>Expertenkommission Vergesellschaftung Berlin (2023) — Abschlussbericht, Mehrheits- und Sondervotum</li>
+      <li>BBU Verband Berlin-Brandenburgischer Wohnungsunternehmen — Kostenschätzung Land Berlin 2019</li>
+      <li>Matthias Bernt &amp; Andrej Holm (2023) — „Vergesellschaftung senkt die Miete", Rosa-Luxemburg-Stiftung</li>
+      <li>Deutsche Wohnen &amp; Co enteignen — „Was kostet Vergesellschaftung" (Berechnungsgrundlage Holm et al.)</li>
+      <li>IW Köln &amp; Empirica (2026) — „Auswirkungen der Vergesellschaftung privater Wohnungsunternehmen in Berlin" (Deschermeier/Voigtländer, Simons), im Auftrag Berliner Sparkasse/Volksbank/DKB/IBB</li>
+      <li>Gutachterausschuss für Grundstückswerte in Berlin — Liegenschaftszinssätze 2025, Kaufpreisstatistik H1/2025</li>
+      <li>Berlin Hyp / CBRE — Wohnmarktreport Berlin 2026</li>
+      <li>BKI / Statistisches Bundesamt (Destatis) — Baupreisindex Wohngebäude 2025/26</li>
+      <li>Marktdaten Baufinanzierung (Finanztip, Dr. Klein, Baufi24) — Bauzinsen Stand Juli 2026</li>
+      <li>IW Köln — Gutachten zu Refinanzierungsrisiken einer Vergesellschaftung</li>
+    </ul>
+    <p>Alle Parameter sind Modellannahmen, keine amtlichen Festlegungen. Die Entschädigungshöhe für eine Vergesellschaftung nach Art. 15 GG ist rechtlich ungeklärt (BVerfG-Klärung steht aus). Referenzwerte (Stand: Juli 2026): Bestandsmiete landeseigene Wohnungsgesellschaften Berlin &lt;7,50 €/m², Neuvertragsmiete ⌀15,80 €/m² (Berlin Hyp/CBRE Wohnmarktreport 2026); Baukosten Neubau 3.300–3.800 €/m² (BKI/Destatis 2025); Bauzinsen 10 Jahre fest 3,6–4,0 % (Marktdaten Juli 2026). Finanzierungskorridor 10–17 Mrd. € (Holm/Thonke, DWE Nov. 2025); Sanierungskosten-Bandbreite 660–1.600 €/m² (IW Consult 2024). Integrationskosten-Größenordnung ist eine grobe Analogie aus allgemeiner M&amp;A-Literatur, nicht wohnungswirtschaftsspezifisch belegt.</p>
+
+  </div></div>
+  </div>
+
+  <div class="impressum" id="impressum">
+    <p><strong>Impressum</strong> — Angaben gemäß § 5 TMG: Peer Frantzen, Kirchstr. 19, 10557 Berlin · Kontakt: <a href="mailto:peerfrantzen@gmail.com">peerfrantzen@gmail.com</a> · Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV: Peer Frantzen (Anschrift wie oben).</p>
+  </div>
+
+  <div class="colophon">Modell-Stand: Juli 2026</div>
+
+</div>
+
+<script src="model-calc.js"></script>
+</body>
+</html>

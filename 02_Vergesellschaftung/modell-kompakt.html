@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kosten- und Finanzierungsmodell der Vergesellschaftung Berlin — kompakt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+  <nav class="site-nav">
+    <a href="index.html">Übersicht</a>
+    <a href="vergesellschaftung-modell-v37.html">Modell</a>
+    <a href="modell-kompakt.html" class="active">Modell (kompakt)</a>
+    <a href="zahlen.html">Die Zahlen erklärt</a>
+    <a href="glossar.html">Glossar</a>
+  </nav>
+
+  <div class="masthead">
+    <div>
+      <h1>Kosten- und Finanzierungsmodell der Vergesellschaftung großer Wohnungsunternehmen</h1>
+      <p>Kompaktansicht ohne Hintergrundtext — identische Rechenlogik wie das <a href="vergesellschaftung-modell-v37.html">vollständige Modell</a>, nur ohne die linke Spalte.</p>
+    </div>
+  </div>
+
+  <div class="layout no-bg">
+
+    <aside class="controls">
+
+      <div class="group">
+        <p class="group-title">Voreinstellungen</p>
+        <div class="field">
+          <button class="preset-btn" data-preset="linke">Faire-Mieten-Modell (DWE)</button>
+          <button class="preset-btn" data-preset="holm">Bernt/Holm (empirisch)</button>
+          <button class="preset-btn" data-preset="rechnungshof">Rechnungshof (verkehrswertnah)</button>
+          <button class="preset-btn" data-preset="gegenmodell">Gegenmodell (IW/Empirica)</button>
+          <button class="preset-btn" data-preset="dwe2025">DWE-Gesetzentwurf 2025</button>
+        </div>
+      </div>
+
+      <div class="group">
+        <p class="group-title">Zeithorizont</p>
+        <div class="field">
+          <div class="field-row"><label>Betrachtungszeitraum</label><span class="val" id="v-horizon">30 Jahre</span></div>
+          <input type="range" id="horizon" min="10" max="50" step="1" value="30">
+          <div class="hint">Nettoergebnis verläuft nicht linear: Solange der Kredit läuft (Tilgungsdauer), verschlechtert sich der kumulierte Cashflow von Jahr zu Jahr. Erst nach vollständiger Tilgung entfällt der Schuldendienst und der Cashflow dreht kräftig ins Plus — je nach Horizont kann das Nettoergebnis diesen Rückgang ganz, teilweise oder gar nicht mehr aufholen.</div>
+        </div>
+      </div>
+
+      <div class="group">
+        <p class="group-title">Bestand &amp; Entschädigung</p>
+        <div class="field">
+          <div class="field-row"><label>Anzahl Wohnungen</label><span class="val" id="v-units">240.000</span></div>
+          <input type="range" id="units" min="50000" max="400000" step="5000" value="240000">
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Ø Wohnungsgröße</label><span class="val" id="v-avgSize">65 m²</span></div>
+          <input type="range" id="avgSize" min="40" max="100" step="1" value="65">
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Verkehrswert/m²</label><span class="val" id="v-price">2.085 €/m²</span></div>
+          <input type="range" id="price" min="500" max="5000" step="20" value="2085">
+          <div class="hint">Gesamtwert = Wohnungen × Größe × Verkehrswert/m² → <span id="v-totalDerived">32,5 Mrd €</span></div>
+          <div class="linked-row">
+            <label class="linked-label">≈ pro Wohnung</label>
+            <input type="number" class="linked-input" id="pricePerUnit" step="1000">
+            <span class="linked-suffix">€ (Verkehrswert einer Whg.)</span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Entschädigungsquote (vom Verkehrswert)</label><span class="val" id="v-purchaseFactor">100 %</span></div>
+          <input type="range" id="purchaseFactor" min="40" max="100" step="5" value="100">
+          <div class="hint">Tatsächlicher Kaufpreis: <span id="v-effectivePrice">2.085 €/m² · 32,5 Mrd €</span></div>
+        </div>
+      </div>
+
+      <div class="group">
+        <p class="group-title">Finanzierung</p>
+        <div class="field">
+          <div class="field-row"><label>Modus</label></div>
+          <div class="seg" id="seg-financing">
+            <button data-val="kredit" class="active">Kredit</button>
+            <button data-val="eigen">Eigenmittel</button>
+          </div>
+        </div>
+        <div class="field" id="wrap-rate">
+          <div class="field-row"><label>Zinssatz</label><span class="val" id="v-rate">3,5 %</span></div>
+          <input type="range" id="rate" min="0" max="7" step="0.1" value="3.5">
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Risikoprämie ab Ankündigung</label><span class="val" id="v-riskPremium">0,0 pp</span></div>
+          <input type="range" id="riskPremium" min="0" max="2" step="0.1" value="0">
+          <div class="hint">Sofortiger Zinsaufschlag ab Jahr 1 durch Marktreaktion (These IW Köln/Empirica 2026)</div>
+        </div>
+        <div class="field" id="wrap-term">
+          <div class="field-row"><label>Tilgungsdauer</label><span class="val" id="v-term">30 J.</span></div>
+          <input type="range" id="term" min="5" max="100" step="1" value="30">
+        </div>
+        <div class="field" id="wrap-reset">
+          <div class="field-row"><label>Zinsbindung</label><span class="val" id="v-rateResetYears">10 J.</span></div>
+          <input type="range" id="rateResetYears" min="5" max="100" step="1" value="10">
+          <div class="hint">Nach Ablauf: Anschlussfinanzierung zum Aufschlagszins</div>
+        </div>
+        <div class="field" id="wrap-increment">
+          <div class="field-row"><label>Zinsaufschlag danach</label><span class="val" id="v-rateIncrement">+1,0 pp</span></div>
+          <input type="range" id="rateIncrement" min="0" max="3" step="0.1" value="1.0">
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Einmalige Kosten</label><span class="val" id="v-onceCosts">405 Mio €</span></div>
+          <input type="range" id="onceCosts" min="0" max="1500" step="5" value="405">
+          <div class="hint">Transaktion, Aufbau, Recht (Jahr 0)</div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Integrationskosten</label><span class="val" id="v-integrationCosts">2,0 %</span></div>
+          <input type="range" id="integrationCosts" min="0" max="10" step="0.5" value="2">
+          <div class="hint">% des Kaufpreises, Jahr 0. Kosten der Zusammenführung vieler getrennter Bestände in eine Anstalt (IT, Verwaltung, Recht).</div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Sanierungsstau pro Wohnung</label><span class="val" id="v-maintBacklog">20.000 €</span></div>
+          <input type="range" id="maintBacklog" min="0" max="30000" step="500" value="20000">
+          <div class="hint">Einmaliger Nachholbedarf bei Übernahme (These Bernt/Holm: private Konzerne unterinvestieren). Illustrativ, keine belastbare Einzelschätzung je Bestand.</div>
+        </div>
+      </div>
+
+      <div class="group">
+        <p class="group-title">Miete &amp; Bewirtschaftung</p>
+        <div class="field">
+          <div class="field-row"><label>Ausgangsmiete</label><span class="val" id="v-baseRent">7,63 €/m²</span></div>
+          <input type="range" id="baseRent" min="3" max="20" step="0.1" value="7.63">
+          <div class="hint">Ø Nettokaltmiete der 6 größten privaten Wohnungskonzerne, exakt der Vergesellschaftungs-Bestand (Bernt/Holm 2023, Rosa-Luxemburg-Stiftung)</div>
+          <div class="linked-row">
+            <label class="linked-label">≈ pro Wohnung</label>
+            <input type="number" class="linked-input" id="baseRentPerUnit" step="5">
+            <span class="linked-suffix">€/Monat</span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Mietsteigerung p.a.</label><span class="val" id="v-rentGrowth">1,5 %</span></div>
+          <input type="range" id="rentGrowth" min="0" max="4" step="0.1" value="1.5">
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Kosteninflation p.a.</label><span class="val" id="v-costInflation">2,5 %</span></div>
+          <input type="range" id="costInflation" min="0" max="6" step="0.1" value="2.5">
+          <div class="hint">Bewirtschaftungskosten, unabhängig von der Miete</div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Bewirtschaftungskosten-Modus</label></div>
+          <div class="seg" id="seg-opexmode">
+            <button data-val="percent" class="active">% der Miete</button>
+            <button data-val="absolute">Absolut €/m²</button>
+          </div>
+        </div>
+        <div class="field" id="wrap-opex-percent">
+          <div class="field-row"><label>Bewirtschaftungskosten</label><span class="val" id="v-opex">40 %</span></div>
+          <input type="range" id="opex" min="20" max="60" step="1" value="40">
+        </div>
+        <div class="field" id="wrap-opex-absolute" style="display:none;">
+          <div class="field-row"><label>Bewirtschaftungskosten absolut</label><span class="val" id="v-opexAbsolute">2,20 €/m²</span></div>
+          <input type="range" id="opexAbsolute" min="1" max="5" step="0.05" value="2.2">
+          <div class="hint">Fixbetrag/Monat, unabhängig von der Miete (Ansatz Rechnungshof Berlin 2024, S. 25)</div>
+          <div class="linked-row">
+            <label class="linked-label">≈ pro Wohnung</label>
+            <input type="number" class="linked-input" id="opexAbsolutePerUnit" step="5">
+            <span class="linked-suffix">€/Monat</span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Referenz: freier Markt</label><span class="val" id="v-freeMarketRent">15,80 €/m²</span></div>
+          <input type="range" id="freeMarketRent" min="8" max="25" step="0.1" value="15.8">
+          <div class="hint">Neuvertragsmiete Berlin, Wachstum fix 3,0 %/Jahr angenommen (Berlin Hyp/CBRE 2026)</div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Referenz: kommunale WoGes.</label><span class="val" id="v-munizRent">6,29 €/m²</span></div>
+          <input type="range" id="munizRent" min="4" max="12" step="0.1" value="6.29">
+          <div class="hint">Ø Nettokaltmiete landeseigene Gesellschaften (Bernt/Holm 2023); Wachstum fix 2,0 %/Jahr angenommen</div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Referenz: Verbraucherpreise (CPI)</label><span class="val" id="v-cpiGrowth">2,0 %/J.</span></div>
+          <input type="range" id="cpiGrowth" min="0" max="5" step="0.1" value="2.0">
+          <div class="hint">Ab Ausgangsmiete indexiert — These IW Köln: Bestandsmiete wächst wie CPI</div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Referenz: Haushaltseinkommen</label><span class="val" id="v-incomeGrowth">3,0 %/J.</span></div>
+          <input type="range" id="incomeGrowth" min="0" max="6" step="0.1" value="3.0">
+          <div class="hint">Ab Ausgangsmiete indexiert — Vergleichsmaßstab: wächst Einkommen schneller als Miete?</div>
+        </div>
+      </div>
+
+      <div class="group">
+        <p class="group-title">Verwendung des Überschusses</p>
+        <div class="field">
+          <select id="mode">
+            <option value="none">Keine Reinvestition</option>
+            <option value="neubau">Neubau — Bestand wächst</option>
+            <option value="sozial">Umwandlung in Sozialwohnungen</option>
+          </select>
+        </div>
+
+        <div class="subpanel" id="panel-neubau">
+          <div class="field">
+            <div class="field-row"><label>Baukosten Neubau</label><span class="val" id="v-buildCost">3.500 €/m²</span></div>
+            <input type="range" id="buildCost" min="1500" max="6000" step="100" value="3500">
+            <div class="linked-row">
+              <label class="linked-label">≈ pro Wohnung</label>
+              <input type="number" class="linked-input" id="buildCostPerUnit" step="1000">
+              <span class="linked-suffix">€ (Baukosten je Whg.)</span>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-row"><label>Reinvestitionsquote</label><span class="val" id="v-reinvestQuota1">100 %</span></div>
+            <input type="range" id="reinvestQuota1" min="0" max="100" step="5" value="100">
+          </div>
+        </div>
+
+        <div class="subpanel" id="panel-sozial">
+          <div class="field">
+            <div class="field-row"><label>Sozialmiete</label><span class="val" id="v-sozialRent">6,50 €/m²</span></div>
+            <input type="range" id="sozialRent" min="3" max="10" step="0.1" value="6.5">
+            <div class="hint" id="hint-sozialRentCap" style="display:none;color:var(--red);">Sozialmiete liegt über der Ausgangsmiete — im Modell auf die Ausgangsmiete gedeckelt (Sozialmiete kann Marktmiete nicht übersteigen).</div>
+            <div class="linked-row">
+              <label class="linked-label">≈ pro Wohnung</label>
+              <input type="number" class="linked-input" id="sozialRentPerUnit" step="5">
+              <span class="linked-suffix">€/Monat</span>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-row"><label>Umwandlungskosten</label><span class="val" id="v-convCost">1.200 €/m²</span></div>
+            <input type="range" id="convCost" min="300" max="3000" step="50" value="1200">
+            <div class="hint">× Ø Wohnungsgröße = Kosten pro umgewandelter Einheit</div>
+            <div class="linked-row">
+              <label class="linked-label">≈ pro Wohnung</label>
+              <input type="number" class="linked-input" id="convCostPerUnit" step="1000">
+              <span class="linked-suffix">€ (Kosten je Whg.)</span>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-row"><label>Umwandlungstempo</label></div>
+            <div class="seg" id="seg-sozialpace">
+              <button data-val="surplus" class="active">Aus Überschuss</button>
+              <button data-val="fixed">Fester Zeitplan</button>
+            </div>
+            <div class="hint">„Aus Überschuss": Umwandlung nur soweit der Cashflow reicht (Reinvestitionsquote unten). „Fester Zeitplan": Umwandlung Jahr für Jahr in festem Tempo — schrittweise, nicht alle Wohnungen auf einmal — unabhängig vom Cashflow; die Kosten mindern den Cashflow des jeweiligen Jahres.</div>
+          </div>
+          <div class="field" id="wrap-reinvestQuota2">
+            <div class="field-row"><label>Reinvestitionsquote</label><span class="val" id="v-reinvestQuota2">100 %</span></div>
+            <input type="range" id="reinvestQuota2" min="0" max="100" step="5" value="100">
+          </div>
+          <div class="field" id="wrap-sozialPaceRate" style="display:none;">
+            <div class="field-row"><label>Umwandlungstempo</label><span class="val" id="v-sozialPaceRate">3,3 %/Jahr</span></div>
+            <input type="range" id="sozialPaceRate" min="0.5" max="20" step="0.1" value="3.3">
+            <div class="hint">Anteil des Gesamtbestands, der pro Jahr zusätzlich umgewandelt wird — bei 3,3 %/Jahr ist der gesamte Bestand nach rund 30 Jahren umgewandelt.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="group">
+        <p class="group-title">Szenario-Vergleich</p>
+        <div class="field">
+          <label style="font-size:11px;">Aktuelle Einstellung sichern als:</label>
+        </div>
+        <div class="field" style="display:flex;gap:6px;">
+          <input type="text" id="labelA" placeholder="Name Szenario A" maxlength="18"
+            style="flex:1;padding:6px 7px;border:1px solid var(--line-strong);font-family:'IBM Plex Sans',sans-serif;font-size:11px;">
+          <button class="snap-btn" id="saveA">A speichern</button>
+        </div>
+        <div class="field" style="display:flex;gap:6px;">
+          <input type="text" id="labelB" placeholder="Name Szenario B" maxlength="18"
+            style="flex:1;padding:6px 7px;border:1px solid var(--line-strong);font-family:'IBM Plex Sans',sans-serif;font-size:11px;">
+          <button class="snap-btn" id="saveB">B speichern</button>
+        </div>
+        <div class="hint">Vergleichstabelle erscheint unten in den Ergebnissen, sobald A oder B gespeichert ist.</div>
+      </div>
+
+      <div class="reset-row">
+        <button class="reset-btn" id="resetBtn">Zurücksetzen</button>
+      </div>
+
+    </aside>
+
+    <main class="results">
+
+      <p class="group-title">Ergebnisse</p>
+
+      <div class="verdict" id="verdictBanner">
+        <span class="verdict-text" id="verdictText">–</span>
+        <button class="print-btn" id="printBtn">Ergebnisse drucken</button>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="label">Entschädigungsquote</div>
+          <div class="value" id="s-kaufpreis">–</div>
+          <div class="sub" id="s-kaufpreis-sub">–</div>
+        </div>
+        <div class="stat">
+          <div class="label">Break-even</div>
+          <div class="value" id="s-breakeven">–</div>
+          <div class="sub">Jahr, kum. Cashflow &gt; 0</div>
+        </div>
+        <div class="stat">
+          <div class="label">Nettoergebnis</div>
+          <div class="value" id="s-netto">–</div>
+          <div class="sub" id="s-netto-sub">nach Horizont</div>
+        </div>
+        <div class="stat">
+          <div class="label">Bestandseffekt</div>
+          <div class="value" id="s-bestand">–</div>
+          <div class="sub" id="s-bestand-sub">–</div>
+        </div>
+      </div>
+
+      <p class="group-title">Geld-Seite</p>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Jahres-Cashflow</h2>
+          <span class="caption" id="cf-caption">nach Schuldendienst</span>
+        </div>
+        <p class="panel-sub">Jährlicher Cashflow nach Schuldendienst. Zeigt, in welchem Jahr die laufende Bewirtschaftung in den Überschuss dreht.</p>
+        <canvas id="chartCashflow" height="70"></canvas>
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--green)"></i>Jahres-Cashflow positiv</span>
+          <span><i class="swatch" style="background:var(--red)"></i>Jahres-Cashflow negativ</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Kumulierter Cashflow</h2>
+          <span class="caption">Nettoergebnis-Verlauf</span>
+        </div>
+        <p class="panel-sub">Kumulierter Cashflow seit Übernahme, inkl. Einmalkosten in Jahr 1. Der Endwert entspricht dem Nettoergebnis oben. Zeigt, in welchem Jahr — falls überhaupt — sich der Bestand insgesamt rechnet (Break-even).</p>
+        <canvas id="chartCumulative" height="70"></canvas>
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--blue)"></i>kumulierter Cashflow</span>
+        </div>
+      </div>
+
+      <div class="panel" id="balancePanelWrap">
+        <div class="panel-head">
+          <h2>Restschuld-Verlauf</h2>
+          <span class="caption" id="balance-caption">Basis-Szenario</span>
+        </div>
+        <p class="panel-sub">Verbleibende Kreditsumme über die Zeit. Der Knick markiert das Ende der Zinsbindung, danach Anschlussfinanzierung zum Aufschlagszins.</p>
+        <canvas id="chartBalance" height="70"></canvas>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Kapitalposition Berlins</h2>
+          <span class="caption">Nettovermögensposition</span>
+        </div>
+        <p class="panel-sub">Verkehrswert des gehaltenen Bestands, abzüglich Restschuld, zuzüglich kumuliertem Cashflow aus dem laufenden Betrieb (inkl. Kosten für Neubau/Sozialumwandlung). Zeigt, wie sich das Landesvermögen insgesamt entwickelt — schnellere Umwandlungstempi oder Neubau schlagen sich hier als reale Kosten nieder, nicht nur im Cashflow-Chart oben.</p>
+        <canvas id="chartCapital" height="70"></canvas>
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--blue-light)"></i>Vermögenswert Bestand</span>
+          <span><i class="swatch" style="background:var(--red)"></i>Restschuld</span>
+          <span><i class="swatch" style="background:#A9762C"></i>Kumulierter Cashflow</span>
+          <span><i class="swatch" style="background:var(--green)"></i>Nettoposition</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Szenario-Übersicht</h2>
+          <span class="caption">4 Voreinstellungen im Vergleich</span>
+        </div>
+        <p class="panel-sub">Kaufpreis und Nettoergebnis nach Horizont (links, Mrd €) sowie Break-even-Jahr (rechts) für die vier Voreinstellungen aus Abschnitt 00 — unabhängig von den aktuellen Reglereinstellungen.</p>
+        <canvas id="chartScenarios" height="80"></canvas>
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--blue-light)"></i>Kaufpreis</span>
+          <span><i class="swatch" style="background:var(--green)"></i>Nettoergebnis positiv</span>
+          <span><i class="swatch" style="background:var(--red)"></i>Nettoergebnis negativ</span>
+          <span><i class="swatch" style="background:var(--ink)"></i>Break-even (rechte Achse)</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Zinssensitivität des Zuschussbedarfs</h2>
+          <span class="caption">bei aktuellen Reglereinstellungen</span>
+        </div>
+        <p class="panel-sub">Ø jährlicher Zuschussbedarf aus dem Landeshaushalt (Fehlbetrag über den Horizont geglättet) in Abhängigkeit vom Zinssatz, alle übrigen Regler auf aktuellem Stand. Markierung zeigt den aktuell eingestellten Zinssatz.</p>
+        <canvas id="chartRateSens" height="70"></canvas>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Sensitivität der Entschädigungsquote</h2>
+          <span class="caption">bei aktuellen Reglereinstellungen</span>
+        </div>
+        <p class="panel-sub">Nettoergebnis nach Horizont (links, Mrd €) und Break-even-Jahr (rechts) in Abhängigkeit von der Entschädigungsquote, alle übrigen Regler auf aktuellem Stand. Markierung zeigt die aktuell eingestellte Quote.</p>
+        <canvas id="chartCompSens" height="70"></canvas>
+      </div>
+
+      <p class="group-title">Soziale Seite</p>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Mietniveau des Bestands</h2>
+          <span class="caption">Modellergebnis</span>
+        </div>
+        <p class="panel-sub">Ø Nettokaltmiete im übernommenen Bestand (Modell) im Vergleich zu freiem Markt, landeseigenen Gesellschaften, Verbraucherpreisen und Haushaltseinkommen.</p>
+        <canvas id="chartRent" height="70"></canvas>
+        <div class="legend">
+          <span><i class="swatch" style="background:#B23A34"></i>Freier Markt</span>
+          <span><i class="swatch" style="background:#A9762C"></i>Kommunale WoGes.</span>
+          <span><i class="swatch" style="background:#6B6B63"></i>CPI (indexiert)</span>
+          <span><i class="swatch" style="background:#3A7D44"></i>Einkommen (indexiert)</span>
+          <span><i class="swatch" style="background:var(--blue)"></i>Ø Miete Bestand (Modell)</span>
+        </div>
+      </div>
+
+      <div class="panel" id="stockPanelWrap" style="display:none;">
+        <div class="panel-head">
+          <h2 id="stock-title">Bestandsentwicklung</h2>
+          <span class="caption">Modellergebnis</span>
+        </div>
+        <p class="panel-sub" id="stock-sub">Entwicklung des Wohnungsbestands durch Reinvestition des jährlichen Cashflow-Überschusses gemäß Abschnitt 04.</p>
+        <canvas id="chartStock" height="70"></canvas>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Zunahme Sozialwohnungen</h2>
+          <span class="caption" id="sozial-caption">Vergleichsrechnung</span>
+        </div>
+        <p class="panel-sub">Zahl der Einheiten, die bei vollständiger Reinvestition des Cashflow-Überschusses in Sozialumwandlung (Parameter aus Abschnitt 04) entstünden — unabhängig vom aktuell gewählten Reinvestitionsmodus, zum Vergleich.</p>
+        <canvas id="chartSozial" height="70"></canvas>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Mieteinsparung für Mieter</h2>
+          <span class="caption" id="tenant-caption">kumuliert, Vergleichsrechnung</span>
+        </div>
+        <p class="panel-sub">Kumulierte Differenz zwischen Marktmiete-Pfad und tatsächlich gezahlter Sozialmiete, multipliziert mit der Zahl der umgewandelten Wohnungen aus der Sozialumwandlungs-Vergleichsrechnung oben (Abschnitt 04-Parameter, unabhängig vom aktuell gewählten Modus). Operationalisiert das Argument „Vergesellschaftung senkt die Miete" (Bernt/Holm, Rosa-Luxemburg-Stiftung 2023) als Zahl: was Mieter über den Betrachtungszeitraum gegenüber dem Marktmiete-Szenario einsparen.</p>
+        <canvas id="chartTenantSavings" height="70"></canvas>
+      </div>
+
+      <details class="panel">
+        <summary>Jahr-für-Jahr</summary>
+        <div class="table-wrap">
+          <table id="dataTable">
+            <thead>
+              <tr>
+                <th>Jahr</th><th>Modell-Ausgangsmiete €/m²</th><th>Ø Miete Bestand €/m²</th><th>Mieteinnahmen</th><th>NOI</th>
+                <th>Annuität</th><th>Cashflow</th><th>Kumuliert</th><th>Bestand/Sozial</th>
+              </tr>
+            </thead>
+            <tbody id="dataTableBody"></tbody>
+          </table>
+        </div>
+      </details>
+
+      <div class="panel" id="comparePanel" style="display:none;">
+        <div class="panel-head">
+          <h2>Szenario-Vergleich</h2>
+          <span class="caption">Aktuelle Einstellung je Snapshot</span>
+        </div>
+        <div class="table-wrap" style="max-height:none;">
+          <table id="compareTable">
+            <thead>
+              <tr id="compareHeadRow">
+                <th style="text-align:left;">Kennzahl</th>
+                <th>Aktuell</th>
+              </tr>
+            </thead>
+            <tbody id="compareBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <div class="impressum" id="impressum">
+    <p><strong>Impressum</strong> — Angaben gemäß § 5 TMG: Peer Frantzen, Kirchstr. 19, 10557 Berlin · Kontakt: <a href="mailto:peerfrantzen@gmail.com">peerfrantzen@gmail.com</a> · Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV: Peer Frantzen (Anschrift wie oben).</p>
+  </div>
+
+  <div class="colophon">Modell-Stand: Juli 2026</div>
+
+</div>
+
+<script src="model-calc.js"></script>
+</body>
+</html>

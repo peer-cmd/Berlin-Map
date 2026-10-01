@@ -1,0 +1,1238 @@
+{
+  "generated_by": "corpus_search.py",
+  "keywords_used": [
+    "Vergesellschaftung",
+    "Art. 15 GG",
+    "Artikel 15 GG",
+    "Art 15 GG",
+    "Art. 14 GG",
+    "Sozialisierung",
+    "Enteignung",
+    "Entschädigung",
+    "Entschädigungsquote",
+    "Sozialbindung",
+    "Belegungsbindung",
+    "Kappungsgrenze",
+    "Rekommunalisierung",
+    "Vergesellschaftungsgesetz",
+    "Gemeinwirtschaft",
+    "Gemeinwohlorientierung",
+    "Wohnungsunternehmen",
+    "Wohnungspolitik",
+    "Wohnraumversorgung",
+    "AöR",
+    "Anstalt öffentlichen Rechts",
+    "Deutsche Wohnen enteignen",
+    "DWE",
+    "Expertenkommission Vergesellschaftung",
+    "Mietendeckel",
+    "Bestandsmiete",
+    "Neuvertragsmiete",
+    "Nettobetriebsergebnis",
+    "NOI",
+    "Genossenschaft",
+    "gemeinnützig",
+    "Wohngemeinnützigkeit",
+    "socialization of housing",
+    "Bernt/Holm",
+    "Andrej Holm",
+    "Matthias Bernt",
+    "Rosa-Luxemburg-Stiftung",
+    "Voigtländer",
+    "Deschermeier",
+    "Institut der deutschen Wirtschaft Köln",
+    "IW Köln",
+    "Gutachterausschuss für Grundstückswerte",
+    "Rechnungshof Berlin",
+    "Ertragswertverfahren",
+    "Vergleichswertverfahren",
+    "Liegenschaftszins",
+    "Kapitalisierungszins",
+    "Diskontierungszins",
+    "Diskontsatz",
+    "Immobilienbewertung",
+    "Immobilienökonomie",
+    "Wohnungsmarktökonomie",
+    "Bodenwert",
+    "Bodenrichtwert",
+    "Grundstückswert",
+    "ImmoWertV",
+    "Risikoprämie",
+    "Kapitalflucht",
+    "regulatory taking",
+    "expropriation risk premium",
+    "political risk premium",
+    "sovereign risk",
+    "just compensation",
+    "eminent domain",
+    "expropriation",
+    "nationalization",
+    "nationalisation",
+    "rent control",
+    "Mietregulierung",
+    "social discount rate",
+    "gesellschaftlicher Diskontsatz",
+    "Kommunalkredit",
+    "Staatsverschuldung",
+    "öffentliche Investitionen",
+    "Sozialisierungsgesetz",
+    "Sozialisierung 1919",
+    "Kohlesozialisierung",
+    "Verstaatlichung Kohle",
+    "Rätebewegung",
+    "Bodenreform",
+    "Lastenausgleich",
+    "municipalization",
+    "municipalisation",
+    "Gemeindebau",
+    "Rotes Wien",
+    "council housing",
+    "public housing",
+    "social housing",
+    "New Deal",
+    "urban renewal",
+    "Parlamentarischer Rat",
+    "Grundgesetz Entstehungsgeschichte",
+    "housing market",
+    "housing markets",
+    "housing policy",
+    "housing institutions",
+    "housing affordability",
+    "real estate market",
+    "real estate markets",
+    "housing finance",
+    "housing crisis",
+    "cooperative housing",
+    "housing cooperative",
+    "worker cooperative",
+    "worker co-operative",
+    "Mondragon",
+    "Rochdale"
+  ],
+  "bib_paths": [
+    "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib"
+  ],
+  "theorie_root": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE",
+  "project_pdf_dir": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/pdf",
+  "counts": {
+    "bib_matches": 30,
+    "filename_sweep_matches": 10,
+    "total": 40,
+    "already_in_project_pdf_dir": 1
+  },
+  "results": [
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "techreport",
+      "key": "Deschermeier",
+      "title": "Auswirkungen der Vergesellschaftung privater Wohnungsunternehmen in Berlin",
+      "author": "Deschermeier, Philipp and Voigtl{\\\"{a}}nder, Michael",
+      "year": "2026",
+      "journal": "",
+      "matched_keywords": [
+        "Deschermeier",
+        "Vergesellschaftung",
+        "Wohnungsunternehmen"
+      ],
+      "matched_fields": {
+        "title": [
+          "Vergesellschaftung",
+          "Wohnungsunternehmen"
+        ],
+        "author": [
+          "Deschermeier"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/Vergesellschaftung/Gutachten-Auswirkungen-der-Vergesellschaftung-privater-Wohnungsunternehmen-in-Berlin.pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/Vergesellschaftung/Gutachten-Auswirkungen-der-Vergesellschaftung-privater-Wohnungsunternehmen-in-Berlin.pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": true
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "book",
+      "key": "HousingMarketsandHousingInstit",
+      "title": "Housing Markets and Housing Institutions An International Comparison",
+      "author": "H{\\aa}rsman, Bj{\\\"{o}}rn and Quigley, John M",
+      "year": "",
+      "journal": "",
+      "matched_keywords": [
+        "housing institutions",
+        "housing markets"
+      ],
+      "matched_fields": {
+        "title": [
+          "housing markets",
+          "housing institutions"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/Disciplines/Urbanism/Housing Markets and Housing Institutions An International Comparison (Bj{\\\"{o}}rn H{\\aa}rsman, John M. Quigley (auth.) etc.) (Z-Library).pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/Disciplines/Urbanism/Housing Markets and Housing Institutions An International Comparison (Bj{/\"{o}}rn H{/aa}rsman, John M. Quigley (auth.) etc.) (Z-Library).pdf"
+      ],
+      "file_exists": [
+        false
+      ],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "misc",
+      "key": "abschlussberichtvergesellschaf",
+      "title": "Vergesellschaftung gro\\sser Wohnungsunternehmen – Expertenkommission zum Volksentscheid – Abschlussbericht",
+      "author": "{KOMMISSION ZUM VOLKSENTSCHEID}",
+      "year": "",
+      "journal": "",
+      "matched_keywords": [
+        "Vergesellschaftung",
+        "Wohnungsunternehmen"
+      ],
+      "matched_fields": {
+        "title": [
+          "Vergesellschaftung",
+          "Wohnungsunternehmen"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/Vergesellschaftung/abschlussbericht_vergesellschaftung-grosser-wohnungsunternehmen-230627.pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/Vergesellschaftung/abschlussbericht_vergesellschaftung-grosser-wohnungsunternehmen-230627.pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "article",
+      "key": "Adler1989",
+      "title": "Making Mondragon: The Growth and Dynamics of the Worker Cooperative Complex.",
+      "author": "Adler, Patricia A and Adler, Peter and Whyte, William Foote and Whyte, Kathleen King",
+      "year": "1989",
+      "journal": "Administrative Science Quarterly",
+      "matched_keywords": [
+        "Mondragon",
+        "worker cooperative"
+      ],
+      "matched_fields": {
+        "title": [
+          "worker cooperative",
+          "Mondragon"
+        ],
+        "abstract": [
+          "worker cooperative",
+          "Mondragon"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/Gewerkschaft/Cooperatives/2019 - Making Mondragon. The Growth and Dynamics of The Worker Cooperative Complex.pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/Gewerkschaft/Cooperatives/2019 - Making Mondragon. The Growth and Dynamics of The Worker Cooperative Complex.pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "filename_sweep",
+      "key": null,
+      "title": "Housing Markets and Housing Institutions An International Comparison (Björn Hårsman, John M. Quigley (auth.) etc.) (Z-Library).pdf",
+      "author": "",
+      "year": "",
+      "matched_keywords": [
+        "housing markets",
+        "housing institutions"
+      ],
+      "matched_fields": {
+        "filename": [
+          "housing markets",
+          "housing institutions"
+        ]
+      },
+      "file_paths_raw": [],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/Disciplines/Urbanism/Housing Markets and Housing Institutions An International Comparison (Björn Hårsman, John M. Quigley (auth.) etc.) (Z-Library).pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "book",
+      "key": "Paul2021_163",
+      "title": "HOUSING POLICY IN EUROPE This",
+      "author": "Balchin, Paul",
+      "year": "2021",
+      "journal": "",
+      "matched_keywords": [
+        "housing policy"
+      ],
+      "matched_fields": {
+        "title": [
+          "housing policy"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/_Z-Library/Housing Policy In Europe (Paul Balchin) (Z-Library).pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/_Z-Library/Housing Policy In Europe (Paul Balchin) (Z-Library).pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "book",
+      "key": "FromtheNewDealtotheNewRightRac",
+      "title": "From the New Deal to the New Right Race and the Southern Origins of Modern Conservatism",
+      "author": "Lowndes, Joseph E",
+      "year": "",
+      "journal": "",
+      "matched_keywords": [
+        "New Deal"
+      ],
+      "matched_fields": {
+        "title": [
+          "New Deal"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/_Z-Library/From the New Deal to the New Right Race and the Southern Origins of Modern Conservatism (Joseph E. Lowndes) (Z-Library).pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/_Z-Library/From the New Deal to the New Right Race and the Southern Origins of Modern Conservatism (Joseph E. Lowndes) (Z-Library).pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "book",
+      "key": "Samuel2021_131",
+      "title": "Manhattan Projects: The Rise and Fall of Urban Renewal in Cold War New York",
+      "author": "Zipp, Samuel",
+      "year": "2010",
+      "journal": "",
+      "matched_keywords": [
+        "urban renewal"
+      ],
+      "matched_fields": {
+        "title": [
+          "urban renewal"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/Disciplines/Urbanism/Manhattan Projects The Rise and Fall of Urban Renewal in Cold War New York (Samuel Zipp) (Z-Library).pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/Disciplines/Urbanism/Manhattan Projects The Rise and Fall of Urban Renewal in Cold War New York (Samuel Zipp) (Z-Library).pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "book",
+      "key": "Johnson2",
+      "title": "Resolving the Housing Crisis: Government Policy, Decontrol, and the Public Interest",
+      "author": "",
+      "year": "",
+      "journal": "",
+      "matched_keywords": [
+        "housing crisis"
+      ],
+      "matched_fields": {
+        "title": [
+          "housing crisis"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/_ToSort/Resolving the housing crisis government policy, decontrol, and the public interest , None (None, None, Johnson etc.) (z-library.sk, 1lib.sk, z-lib.sk).pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/_ToSort/Resolving the housing crisis government policy, decontrol, and the public interest , None (None, None, Johnson etc.) (z-library.sk, 1lib.sk, z-lib.sk).pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "book",
+      "key": "UnderstandingAffordabilityTheE",
+      "title": "Understanding Affordability The Economics of Housing Markets",
+      "author": "Whitehead, Geoffrey Meen Christine",
+      "year": "",
+      "journal": "",
+      "matched_keywords": [
+        "housing markets"
+      ],
+      "matched_fields": {
+        "title": [
+          "housing markets"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/Disciplines/Economy/Understanding Affordability The Economics of Housing Markets (Geoffrey Meen Christine Whitehead) (Z-Library).pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/Disciplines/Economy/Understanding Affordability The Economics of Housing Markets (Geoffrey Meen Christine Whitehead) (Z-Library).pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "book",
+      "key": "Xiao2016",
+      "title": "Springer Geography Urban Morphology and Housing Market",
+      "author": "Xiao, Yang",
+      "year": "2016",
+      "journal": "",
+      "matched_keywords": [
+        "housing market"
+      ],
+      "matched_fields": {
+        "title": [
+          "housing market"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/Disciplines/Urbanism/Urban Morphology and Housing Market (Yang Xiao) (Z-Library).pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/Disciplines/Urbanism/Urban Morphology and Housing Market (Yang Xiao) (Z-Library).pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "article",
+      "key": "Bode2021",
+      "title": "Wie funktioniert eine Genossenschaft?",
+      "author": "Bode, Bernd",
+      "year": "2021",
+      "journal": "",
+      "matched_keywords": [
+        "Genossenschaft"
+      ],
+      "matched_fields": {
+        "title": [
+          "Genossenschaft"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/Gewerkschaft/Recht/Rechtsformen/Genossenschaft/wie_funktioniert_eine_genossenschaft_teil_1.pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/Gewerkschaft/Recht/Rechtsformen/Genossenschaft/wie_funktioniert_eine_genossenschaft_teil_1.pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "book",
+      "key": "Stavrides2016",
+      "title": "Common Space: The City as Commons",
+      "author": "Stavrides, Stavros",
+      "year": "2016",
+      "journal": "Common Space: the City as Commons",
+      "matched_keywords": [
+        "social housing"
+      ],
+      "matched_fields": {
+        "abstract": [
+          "social housing"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/_ToSort/C_5 Stavrides-Stavros_Common-Space-The-City-as-Commons.pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/_ToSort/C_5 Stavrides-Stavros_Common-Space-The-City-as-Commons.pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "book",
+      "key": "GlobalhousingrealestatemarketsOrph1",
+      "title": "Global housing real estate markets, crises, policies, and institutions",
+      "author": "Bardhan, Ashok Deo Kroll",
+      "year": "2012",
+      "journal": "",
+      "matched_keywords": [
+        "real estate markets"
+      ],
+      "matched_fields": {
+        "title": [
+          "real estate markets"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/Disciplines/Urbanism/Global housing real estate markets, crises, policies, and institutions (Bardhan, Ashok Deo Kroll etc.) (Z-Library).pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/Disciplines/Urbanism/Global housing real estate markets, crises, policies, and institutions (Bardhan, Ashok Deo Kroll etc.) (Z-Library).pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "book",
+      "key": "Goetz2021_162",
+      "title": "New Deal Ruins",
+      "author": "Goetz, Edward G.;",
+      "year": "2021",
+      "journal": "",
+      "matched_keywords": [
+        "New Deal"
+      ],
+      "matched_fields": {
+        "title": [
+          "New Deal"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/Disciplines/Urbanism/New Deal ruins race, economic justice, and public housing policy (Goetz, Edward Glenn) (Z-Library).pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/Disciplines/Urbanism/New Deal ruins race, economic justice, and public housing policy (Goetz, Edward Glenn) (Z-Library).pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "book",
+      "key": "FromNewEratoNewDealHerbertHoov",
+      "title": "From New Era to New Deal Herbert Hoover, the Economists, and American Economic Policy, 1921-1933",
+      "author": "Barber, William J",
+      "year": "",
+      "journal": "",
+      "matched_keywords": [
+        "New Deal"
+      ],
+      "matched_fields": {
+        "title": [
+          "New Deal"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/Disciplines/Economy/From New Era to New Deal Herbert Hoover, the Economists, and American Economic Policy, 1921-1933 (William J. Barber) (Z-Library).pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/Disciplines/Economy/From New Era to New Deal Herbert Hoover, the Economists, and American Economic Policy, 1921-1933 (William J. Barber) (Z-Library).pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "misc",
+      "key": "Broto",
+      "title": "Innovative Public Housing",
+      "author": "Broto, Carles",
+      "year": "",
+      "journal": "",
+      "matched_keywords": [
+        "public housing"
+      ],
+      "matched_fields": {
+        "title": [
+          "public housing"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/Architecture/Typologie/Housing/Innovative Public Housing (Architectural Design) (Carles Broto) (Z-Library).pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/Architecture/Typologie/Housing/Innovative Public Housing (Architectural Design) (Carles Broto) (Z-Library).pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "article",
+      "key": "King2006",
+      "title": "Choice and the End of Social Housing",
+      "author": "King",
+      "year": "2006",
+      "journal": "",
+      "matched_keywords": [
+        "social housing"
+      ],
+      "matched_fields": {
+        "title": [
+          "social housing"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/_Z-Library/Choice And the End of Social Housing (Peter King) (Z-Library).pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/_Z-Library/Choice And the End of Social Housing (Peter King) (Z-Library).pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "book",
+      "key": "Couch1990",
+      "title": "Urban Renewal Theory and Practice",
+      "author": "Couch, Chris",
+      "year": "1990",
+      "journal": "MACMILLAN EDUCATION LTD Houndmills, Basingstoke, Hampshire RG21 2XS",
+      "matched_keywords": [
+        "urban renewal"
+      ],
+      "matched_fields": {
+        "title": [
+          "urban renewal"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/Disciplines/Urbanism/Urban Renewal Theory and Practice (Chris Couch (auth.)) (Z-Library).pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/Disciplines/Urbanism/Urban Renewal Theory and Practice (Chris Couch (auth.)) (Z-Library).pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "oversized_fields_skipped": [
+        "abstract"
+      ],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "book",
+      "key": "Tsenkova2021",
+      "title": "Cities and affordable housing: Planning, design and policy nexus",
+      "author": "Tsenkova, Sasha",
+      "year": "2021",
+      "journal": "Cities and Affordable Housing: Planning, Design and Policy Nexus",
+      "matched_keywords": [
+        "public housing"
+      ],
+      "matched_fields": {
+        "keywords": [
+          "public housing"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/_Z-Library/Cities and Affordable Housing Planning, Design and Policy Nexus (Sasha Tsenkova) (Z-Library).pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/_Z-Library/Cities and Affordable Housing Planning, Design and Policy Nexus (Sasha Tsenkova) (Z-Library).pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "book",
+      "key": "Goodlad1996",
+      "title": "Housing policy in the 1990s - Birchall,J",
+      "author": "Goodlad, R",
+      "year": "1996",
+      "journal": "Political Studies",
+      "matched_keywords": [
+        "housing policy"
+      ],
+      "matched_fields": {
+        "title": [
+          "housing policy"
+        ],
+        "abstract": [
+          "housing policy"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/Disciplines/Urbanism/Housing Policy in the 1990s (J. Birchall) (Z-Library).pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/Disciplines/Urbanism/Housing Policy in the 1990s (J. Birchall) (Z-Library).pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "book",
+      "key": "GoingBigFDRsLegacyBidensNewDea",
+      "title": "Going Big FDR's Legacy, Biden's New Deal, and the Struggle to Save Democracy",
+      "author": "Kuttner, Robert",
+      "year": "",
+      "journal": "",
+      "matched_keywords": [
+        "New Deal"
+      ],
+      "matched_fields": {
+        "title": [
+          "New Deal"
+        ]
+      },
+      "file_paths_raw": [],
+      "file_paths_local": [],
+      "file_exists": [],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "article",
+      "key": "Lynn1998",
+      "title": "Folds, bodies & blobs : collected essays",
+      "author": "Lynn, Greg",
+      "year": "1998",
+      "journal": "Books-by-architects",
+      "matched_keywords": [
+        "expropriation"
+      ],
+      "matched_fields": {
+        "abstract": [
+          "expropriation"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/IGTG/Semiotik - Cybernetiks_02/Greg Lynn/kupdf.net_greg-lynn-folds-bodies-blobs-collected-essabookfiorg.pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/IGTG/Semiotik - Cybernetiks_02/Greg Lynn/kupdf.net_greg-lynn-folds-bodies-blobs-collected-essabookfiorg.pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "book",
+      "key": "Rosenof1997",
+      "title": "Modern Housing for America: Policy Struggles in the New Deal Era.",
+      "author": "Rosenof, Theodore and Radford, Gail",
+      "year": "1997",
+      "journal": "The Journal of American History",
+      "matched_keywords": [
+        "New Deal"
+      ],
+      "matched_fields": {
+        "title": [
+          "New Deal"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/Disciplines/Urbanism/Modern Housing for America Policy Struggles in the New Deal Era (Historical Studies of Urban America) (Gail Radford) (Z-Library).pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/Disciplines/Urbanism/Modern Housing for America Policy Struggles in the New Deal Era (Historical Studies of Urban America) (Gail Radford) (Z-Library).pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "oversized_fields_skipped": [
+        "abstract"
+      ],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "book",
+      "key": "DieEntstehungderGovernancederh",
+      "title": "Die Entstehung der Governance der hybriden Organisationsform Genossenschaft Eine empirische Untersuchung am Beispiel von\\ldots",
+      "author": "M{\\\"{u}}ller, Jakob R",
+      "year": "",
+      "journal": "",
+      "matched_keywords": [
+        "Genossenschaft"
+      ],
+      "matched_fields": {
+        "title": [
+          "Genossenschaft"
+        ]
+      },
+      "file_paths_raw": [],
+      "file_paths_local": [],
+      "file_exists": [],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "book",
+      "key": "DieRechnungslegungderGenossens",
+      "title": "Die Rechnungslegung der Genossenschaft Kommentar (Sonderausgabe der Kommentierung der Rechnungslegung aus LangWeidm\\\"uller,\\ldots",
+      "author": "Schaffland, Egon Metz Hans-J{\\\"{u}}rgen",
+      "year": "",
+      "journal": "",
+      "matched_keywords": [
+        "Genossenschaft"
+      ],
+      "matched_fields": {
+        "title": [
+          "Genossenschaft"
+        ]
+      },
+      "file_paths_raw": [],
+      "file_paths_local": [],
+      "file_exists": [],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "book",
+      "key": "SoziettenNetzwerkeKommunikatio",
+      "title": "Soziet\\\"aten, Netzwerke, Kommunikation Neue Forschungen zur Vergesellschaftung im Jahrhundert der Aufkl\\\"arung",
+      "author": "",
+      "year": "2003",
+      "journal": "",
+      "matched_keywords": [
+        "Vergesellschaftung"
+      ],
+      "matched_fields": {
+        "title": [
+          "Vergesellschaftung"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/_Z-Library/Soziet{\\\"{a}}ten, Netzwerke, Kommunikation Neue Forschungen zur Vergesellschaftung im Jahrhundert der Aufkl{\\\"{a}}rung ( etc.) (Z-Library).pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/_Z-Library/Soziet{/\"{a}}ten, Netzwerke, Kommunikation Neue Forschungen zur Vergesellschaftung im Jahrhundert der Aufkl{/\"{a}}rung ( etc.) (Z-Library).pdf"
+      ],
+      "file_exists": [
+        false
+      ],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "book",
+      "key": "Kroll_401",
+      "title": "Global Housing Markets",
+      "author": "{Kroll Cynthia A.}, Edelstein Robert H Bardhan Ashok Deo",
+      "year": "",
+      "journal": "",
+      "matched_keywords": [
+        "housing markets"
+      ],
+      "matched_fields": {
+        "title": [
+          "housing markets"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/Disciplines/Urbanism/Global housing real estate markets, crises, policies, and institutions (Bardhan, Ashok Deo Kroll etc.) (Z-Library).pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/Disciplines/Urbanism/Global housing real estate markets, crises, policies, and institutions (Bardhan, Ashok Deo Kroll etc.) (Z-Library).pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "book",
+      "key": "OpenArchitectureMigrationCitiz",
+      "title": "Open Architecture Migration, Citizenship and the Urban Renewal of Berlin-Kreuzberg by IBA 198487",
+      "author": "Akcan, Esra",
+      "year": "",
+      "journal": "",
+      "matched_keywords": [
+        "urban renewal"
+      ],
+      "matched_fields": {
+        "title": [
+          "urban renewal"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/Architecture/General/Open Architecture Migration, Citizenship and the Urban Renewal of Berlin-Kreuzberg by IBA 198487 (Esra Akcan) (Z-Library).pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/Architecture/General/Open Architecture Migration, Citizenship and the Urban Renewal of Berlin-Kreuzberg by IBA 198487 (Esra Akcan) (Z-Library).pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "article",
+      "key": "Mare2008",
+      "title": "The porous city as a model for urban renewal",
+      "author": "Mar{\\'{e}}, Estelle Alma",
+      "year": "2008",
+      "journal": "",
+      "matched_keywords": [
+        "urban renewal"
+      ],
+      "matched_fields": {
+        "title": [
+          "urban renewal"
+        ],
+        "abstract": [
+          "urban renewal"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/_ToSort/d2f112a20f4bad41328fd581076d86eeac9b.pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/_ToSort/d2f112a20f4bad41328fd581076d86eeac9b.pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "bib",
+      "bib_file": "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/08_Vergesellschaftung/My Collection_All.bib",
+      "entry_type": "article",
+      "key": "Fairbairn1994",
+      "title": "The meaning of Rochdale: The Rochdale pioneers and the co-operative principles",
+      "author": "Fairbairn, B",
+      "year": "1994",
+      "journal": "Occasional Papers",
+      "matched_keywords": [
+        "Rochdale"
+      ],
+      "matched_fields": {
+        "title": [
+          "Rochdale"
+        ],
+        "abstract": [
+          "Rochdale"
+        ]
+      },
+      "file_paths_raw": [
+        "C:/07_THEORIE/Gewerkschaft/Cooperatives/1994 - The meaning of Rochdale The Rochdale pioneers and the co-operative principles.pdf"
+      ],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/Gewerkschaft/Cooperatives/1994 - The meaning of Rochdale The Rochdale pioneers and the co-operative principles.pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "oversized_fields_skipped": [],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "filename_sweep",
+      "key": null,
+      "title": "Social Housing Definitions and Design Exemplars (Paul Karakusevic, Abigail Batchelor) (Z-Library).pdf",
+      "author": "",
+      "year": "",
+      "matched_keywords": [
+        "social housing"
+      ],
+      "matched_fields": {
+        "filename": [
+          "social housing"
+        ]
+      },
+      "file_paths_raw": [],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/Architecture/Typologie/Housing/Social Housing Definitions and Design Exemplars (Paul Karakusevic, Abigail Batchelor) (Z-Library).pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "filename_sweep",
+      "key": null,
+      "title": "Going Big FDR’s Legacy, Biden’s New Deal, and the Struggle to Save Democracy (Robert Kuttner) (Z-Library).pdf",
+      "author": "",
+      "year": "",
+      "matched_keywords": [
+        "New Deal"
+      ],
+      "matched_fields": {
+        "filename": [
+          "New Deal"
+        ]
+      },
+      "file_paths_raw": [],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/Disciplines/Urbanism/Going Big FDR’s Legacy, Biden’s New Deal, and the Struggle to Save Democracy (Robert Kuttner) (Z-Library).pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "filename_sweep",
+      "key": null,
+      "title": "2019 - Cooperation at Work. The Mondragon Experience.pdf",
+      "author": "",
+      "year": "",
+      "matched_keywords": [
+        "Mondragon"
+      ],
+      "matched_fields": {
+        "filename": [
+          "Mondragon"
+        ]
+      },
+      "file_paths_raw": [],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/Gewerkschaft/Cooperatives/2019 - Cooperation at Work. The Mondragon Experience.pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "filename_sweep",
+      "key": null,
+      "title": "Global housing real estate markets, crises, policies, and institutions (Bardhan, Ashok Deo Kroll etc.) (Z-Library).pdf",
+      "author": "",
+      "year": "",
+      "matched_keywords": [
+        "real estate markets"
+      ],
+      "matched_fields": {
+        "filename": [
+          "real estate markets"
+        ]
+      },
+      "file_paths_raw": [],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/_DUPLICATES_TO_DELETE/Duplicates/Housing Politics/Global housing real estate markets, crises, policies, and institutions (Bardhan, Ashok Deo Kroll etc.) (Z-Library).pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "filename_sweep",
+      "key": null,
+      "title": "Die Entstehung der Governance der hybriden Organisationsform Genossenschaft Eine empirische Untersuchung am Beispiel von… (Jakob R. Müller) (z-library.sk, 1lib.sk, z-lib.sk).pdf",
+      "author": "",
+      "year": "",
+      "matched_keywords": [
+        "Genossenschaft"
+      ],
+      "matched_fields": {
+        "filename": [
+          "Genossenschaft"
+        ]
+      },
+      "file_paths_raw": [],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/_Z-Library/Die Entstehung der Governance der hybriden Organisationsform Genossenschaft Eine empirische Untersuchung am Beispiel von… (Jakob R. Müller) (z-library.sk, 1lib.sk, z-lib.sk).pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "filename_sweep",
+      "key": null,
+      "title": "Die Rechnungslegung der Genossenschaft Kommentar (Sonderausgabe der Kommentierung der Rechnungslegung aus LangWeidmüller,… (Egon Metz Hans-Jürgen Schaffland) (z-library.sk, 1lib.sk, z-lib.sk).pdf",
+      "author": "",
+      "year": "",
+      "matched_keywords": [
+        "Genossenschaft"
+      ],
+      "matched_fields": {
+        "filename": [
+          "Genossenschaft"
+        ]
+      },
+      "file_paths_raw": [],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/_Z-Library/Die Rechnungslegung der Genossenschaft Kommentar (Sonderausgabe der Kommentierung der Rechnungslegung aus LangWeidmüller,… (Egon Metz Hans-Jürgen Schaffland) (z-library.sk, 1lib.sk, z-lib.sk).pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "filename_sweep",
+      "key": null,
+      "title": "Die Restrukturierung des Raumes Stadterneuerung der 90er Jahre in Ostberlin Interessen und Machtverhältnisse (Andrej Holm) (Z-Library).pdf",
+      "author": "",
+      "year": "",
+      "matched_keywords": [
+        "Andrej Holm"
+      ],
+      "matched_fields": {
+        "filename": [
+          "Andrej Holm"
+        ]
+      },
+      "file_paths_raw": [],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/_Z-Library/Die Restrukturierung des Raumes Stadterneuerung der 90er Jahre in Ostberlin Interessen und Machtverhältnisse (Andrej Holm) (Z-Library).pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "filename_sweep",
+      "key": null,
+      "title": "Sozietäten, Netzwerke, Kommunikation Neue Forschungen zur Vergesellschaftung im Jahrhundert der Aufklärung ( etc.) (Z-Library).pdf",
+      "author": "",
+      "year": "",
+      "matched_keywords": [
+        "Vergesellschaftung"
+      ],
+      "matched_fields": {
+        "filename": [
+          "Vergesellschaftung"
+        ]
+      },
+      "file_paths_raw": [],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/_Z-Library/Sozietäten, Netzwerke, Kommunikation Neue Forschungen zur Vergesellschaftung im Jahrhundert der Aufklärung ( etc.) (Z-Library).pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "already_in_project_pdf_dir": false
+    },
+    {
+      "source": "filename_sweep",
+      "key": null,
+      "title": "Stadterneuerung in der Berliner Republik Modernisierung in Berlin-Prenzlauer Berg (Hartmut Häußermann, Andrej Holm etc.) (Z-Library).pdf",
+      "author": "",
+      "year": "",
+      "matched_keywords": [
+        "Andrej Holm"
+      ],
+      "matched_fields": {
+        "filename": [
+          "Andrej Holm"
+        ]
+      },
+      "file_paths_raw": [],
+      "file_paths_local": [
+        "/sessions/rcw-01v8qbdecg4hdve36pcfvzlv/mnt/07_THEORIE/_Z-Library/Stadterneuerung in der Berliner Republik Modernisierung in Berlin-Prenzlauer Berg (Hartmut Häußermann, Andrej Holm etc.) (Z-Library).pdf"
+      ],
+      "file_exists": [
+        true
+      ],
+      "already_in_project_pdf_dir": false
+    }
+  ]
+}
