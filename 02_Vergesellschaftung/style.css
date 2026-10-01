@@ -570,3 +570,7 @@ td:first-child,th:first-child{text-align:left;color:var(--muted);}
   .stats{break-inside:avoid;}
   canvas{max-width:100%;}
 }
+
+/* ---------- Karte (karte.html): nav on top, map fills the rest ---------- */
+body.map-page{display:flex;flex-direction:column;height:100vh;height:100dvh;overflow:hidden;}
+.map-wrap{position:relative;flex:1;min-height:0;}

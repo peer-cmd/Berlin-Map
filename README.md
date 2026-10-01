@@ -10,6 +10,16 @@ Browser map of Berlin built with MapLibre GL JS 5.24 (vendored in `web/vendor`, 
 
 Re-run `update_data.bat` whenever the data should be refreshed. Each download is kept in `data/raw/` with a provenance file.
 
+## Website (Strato)
+
+The map is published as `02_Vergesellschaftung/karte.html`, linked as "Karte" in the site navigation. Strato serves static files only, so the map assets are copied into the site folder:
+
+1. `update_data.bat` ends with `scripts/export_site.py`, which writes `02_Vergesellschaftung/karte/` (app, MapLibre, `layers.json`, GeoJSON, `meta.json`). The folder is build output and not tracked in git. The export refuses mock data from `tests/smoke.py`.
+2. Upload the contents of `02_Vergesellschaftung/` by SFTP (e.g. FileZilla, host and login from the Strato customer area), including `.htaccess` and the `karte/` folder. `pdf/`, `archive/` and the `.md` files are not needed on the server.
+3. Check after the first upload: the GeoJSON response should carry `Content-Encoding: gzip` (set in `.htaccess`, about 1 MB instead of 5.4 MB).
+
+Visitors' browsers load basemap tiles from `tiles.openfreemap.org`; the site's privacy statement should name this.
+
 ## Layout
 
 | Path | Role |
@@ -18,6 +28,7 @@ Re-run `update_data.bat` whenever the data should be refreshed. Each download is
 | `scripts/acquire.py` | WFS download, count check, raw file plus provenance (URLs, SHA-256, licence text from the service) |
 | `scripts/process.py` | Validation, coordinate rounding, size-ordered features, output to `data/processed/` |
 | `scripts/serve.py` | Local web server |
+| `scripts/export_site.py` | Copies the map into `02_Vergesellschaftung/karte/` for upload |
 | `web/` | Frontend, reads only `config/` and `data/processed/` |
 | `tests/` | Mock WFS and `smoke.py` (offline pipeline test; writes mock files into `data/`, so run `update_data.bat` afterwards) |
 
@@ -26,7 +37,7 @@ Re-run `update_data.bat` whenever the data should be refreshed. Each download is
 - Service: `https://gdi.berlin.de/services/wfs/brw2026`, WFS 2.0.0, feature type `brw2026:brw2026_vector`, 1623 features, MultiPolygon, native CRS EPSG:25833. The scripts request `srsName=EPSG:4326`, so the server reprojects and GDAL is not needed.
 - Attributes: `bezirk, brw (€/m²), nutzung, stichtag, anwert, verfahrensart, gfz, beitragszustand, lumnum, brwid`.
 - Licence: Datenlizenz Deutschland – Zero – 2.0 (dl-de-zero-2.0), no access restrictions per the service capabilities. Publisher: Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin.
-- Basemap: CARTO light raster tiles (OpenStreetMap data), attribution shown on the map. Replace the tile URLs in `config/layers.json` to change provider.
+- Basemap: OpenFreeMap positron vector style (OpenMapTiles, OpenStreetMap data), no key. Attribution comes with the style. Change `basemap.style` in `config/layers.json` to switch provider.
 
 ## Phase 2: B-Pläne (not implemented)
 

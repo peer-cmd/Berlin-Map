@@ -7,24 +7,9 @@
     "maxBounds": [[12.6, 52.1], [14.2, 52.9]]
   },
   "basemap": {
-    "background": "#f2f1ed",
-    "base": {
-      "id": "carto-light-nolabels",
-      "tiles": ["https://a.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png",
-                "https://b.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png",
-                "https://c.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png"],
-      "tileSize": 256,
-      "maxzoom": 20
-    },
-    "labels": {
-      "id": "carto-light-labels",
-      "tiles": ["https://a.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png",
-                "https://b.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png",
-                "https://c.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png"],
-      "tileSize": 256,
-      "maxzoom": 20
-    },
-    "attribution": "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap contributors</a> &copy; <a href=\"https://carto.com/attributions\">CARTO</a>"
+    "style": "https://tiles.openfreemap.org/styles/positron",
+    "tile_host": "tiles.openfreemap.org",
+    "attribution": "<a href=\"https://openfreemap.org\" target=\"_blank\" rel=\"noopener\">OpenFreeMap</a> &copy; <a href=\"https://www.openmaptiles.org/\" target=\"_blank\" rel=\"noopener\">OpenMapTiles</a> Daten von <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener\">OpenStreetMap</a>"
   },
   "layers": [
     {
@@ -63,15 +48,15 @@
       "popup": {
         "title": {"key": "brw", "format": "eur"},
         "fields": [
-          {"key": "stichtag", "label": "Reference date (Stichtag)", "format": "date"},
-          {"key": "nutzung", "label": "Use (Art der Nutzung)"},
-          {"key": "gfz", "label": "Floor-area ratio (wertrelevante GFZ)", "format": "number"},
-          {"key": "bezirk", "label": "District (Bezirk)"},
-          {"key": "brwid", "label": "Zone no. (Bodenrichtwertnummer)"},
-          {"key": "beitragszustand", "label": "Contribution status (Beitragsrechtlicher Zustand)"},
-          {"key": "anwert", "label": "Redevelopment supplement (Sanierungs-/Entwicklungszusatz)"},
-          {"key": "verfahrensart", "label": "Procedure (Verfahrensart)"},
-          {"key": "lumnum", "label": "GFZ conversion coefficients", "format": "link", "link_text": "Gutachterausschuss"}
+          {"key": "stichtag", "label": "Stichtag", "format": "date"},
+          {"key": "nutzung", "label": "Art der Nutzung"},
+          {"key": "gfz", "label": "Wertrelevante GFZ", "format": "number"},
+          {"key": "bezirk", "label": "Bezirk"},
+          {"key": "brwid", "label": "Bodenrichtwertnummer"},
+          {"key": "beitragszustand", "label": "Beitragsrechtlicher Zustand"},
+          {"key": "anwert", "label": "Sanierungs-/Entwicklungszusatz"},
+          {"key": "verfahrensart", "label": "Verfahrensart"},
+          {"key": "lumnum", "label": "GFZ-Umrechnungskoeffizienten", "format": "link", "link_text": "Gutachterausschuss"}
         ]
       }
     },

@@ -146,3 +146,12 @@ Auf Wunsch als eigenständiges fünftes Preset umgesetzt (Alternative zu Update 
 - DWE-Factsheet weiterhin nicht im `pdf/`-Ordner (nur per URL referenziert).
 - `2026_beratungsbericht_zuwendungen_senkultgz_gesamt.pdf` — vermutlich versehentlich hinzugefügtes, themenfremdes PDF — noch mit Peer abzuklären.
 - Sichttest im echten Browser (Regler bewegen, Charts prüfen) seit dem Include-Refactor (2026-09-06) weiterhin ausstehend.
+
+## 2026-10-01 — Neue Seite „Karte" (Bodenrichtwerte 2026)
+
+- `karte.html` — Bodenrichtwerte 01.01.2026 als interaktive Karte (MapLibre), in der Navigation aller Seiten als „Karte" verlinkt. Daten: WFS `brw2026` der Senatsverwaltung, dl-de-zero-2.0; Grundkarte OpenFreeMap.
+- `karte/` — Build-Ausgabe von `scripts/export_site.py` im Repo-Wurzelordner (nicht in git). Wird nach jeder Datenaktualisierung neu erzeugt (`update_data.bat`).
+- `.htaccess` — gzip und Cache-Header für Strato; `style.css` um `.map-page`/`.map-wrap` ergänzt.
+- Hosting: Strato, Upload des Ordners per SFTP.
+
+**Offen:** Datenschutzerklärung muss die Kachelabrufe bei `tiles.openfreemap.org` nennen; Impressum für die öffentliche Seite.

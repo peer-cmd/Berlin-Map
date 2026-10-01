@@ -8,6 +8,8 @@ MapLibre map of Berlin for architectural and urban research. Phase 1 (Bodenricht
 - `python scripts/acquire.py` downloads the WFS into `data/raw/` with a provenance file. Needs network access to `gdi.berlin.de`.
 - `python scripts/process.py` writes `data/processed/<id>.geojson` and `<id>.meta.json`.
 - `python scripts/serve.py` serves the repo root; the map is at `/web/`.
+- `python scripts/export_site.py` copies app, vendor, config and processed data into `02_Vergesellschaftung/karte/` (gitignored) for `karte.html`. The website is static and hosted on Strato (SFTP upload of `02_Vergesellschaftung/`).
+- `web/app.js` reads its paths from `<body data-config data-data>`; one file serves `web/` and the website. UI language is German.
 - `python tests/smoke.py` runs the pipeline against a mock WFS and overwrites `data/` with mock output. Run acquire and process again afterwards.
 - Python standard library only. MapLibre 5.24 is vendored in `web/vendor/`.
 

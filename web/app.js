@@ -1,16 +1,20 @@
-/* Berlin Research Map. Layers, styles and popups are driven by ../config/layers.json. */
+/* Berlin Research Map. Layers, styles and popups are driven by layers.json.
+   Paths come from <body data-config data-data>: ../config/layers.json and ../data/processed/ under web/,
+   karte/layers.json and karte/ in the exported website (scripts/export_site.py). */
 (async function () {
+  const CONFIG_URL = document.body.dataset.config || "../config/layers.json";
+  const DATA_DIR = document.body.dataset.data || "../data/processed/";
   const $ = (id) => document.getElementById(id);
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const banner = (msg) => { const b = $("banner"); b.innerHTML = msg; b.hidden = !msg; };
 
   let cfg;
   try {
-    const r = await fetch("../config/layers.json");
+    const r = await fetch(CONFIG_URL);
     if (!r.ok) throw new Error("HTTP " + r.status);
     cfg = await r.json();
   } catch (e) {
-    banner("Cannot load config/layers.json (" + esc(e.message) + "). Start the map with run.bat; opening index.html directly does not work.");
+    banner("Konfiguration nicht ladbar (" + esc(e.message) + "). Die Karte muss über einen Webserver geöffnet werden, lokal mit run.bat.");
     return;
   }
 
@@ -26,21 +30,11 @@
 
   // ---------- basemap ----------
   const bm = cfg.basemap;
-  const rasterSrc = (s) => ({ type: "raster", tiles: s.tiles, tileSize: s.tileSize, maxzoom: s.maxzoom, attribution: bm.attribution });
   const map = new maplibregl.Map({
-    container: "map",
+    container: "map", style: bm.style,
     center: cfg.map.center, zoom: cfg.map.zoom, minZoom: cfg.map.minZoom, maxZoom: cfg.map.maxZoom,
     maxBounds: cfg.map.maxBounds, hash: true, dragRotate: false, pitchWithRotate: false,
-    attributionControl: { compact: false },
-    style: {
-      version: 8,
-      sources: { base: rasterSrc(bm.base), labels: rasterSrc(bm.labels) },
-      layers: [
-        { id: "background", type: "background", paint: { "background-color": bm.background } },
-        { id: "base", type: "raster", source: "base", paint: { "raster-saturation": -1, "raster-opacity": 0.9 } },
-        { id: "labels", type: "raster", source: "labels", paint: { "raster-opacity": 0.85 } },
-      ],
-    },
+    attributionControl: { compact: false }, // the style's tile source carries its own attribution
   });
   const mapReady = new Promise((res) => map.once("style.load", res));
   map.touchZoomRotate.disableRotation();
@@ -50,9 +44,10 @@
   let tileErrors = 0;
   map.on("error", (e) => {
     const url = (e && e.error && (e.error.url || e.error.message)) || "";
-    if (!/basemaps\.cartocdn\.com/.test(url)) console.error("map error:", e.error);
-    if (/basemaps\.cartocdn\.com/.test(url) && ++tileErrors === 3)
-      banner("Basemap tiles are not loading (offline or blocked). Land-value layers still work. Adjust config/layers.json → basemap to change the provider.");
+    const isBase = url.includes(bm.tile_host);
+    if (!isBase) console.error("map error:", e.error);
+    if (isBase && ++tileErrors === 3)
+      banner("Die Grundkarte lädt nicht (offline oder blockiert). Die Bodenrichtwerte bleiben sichtbar.");
   });
 
   // ---------- data layers ----------
@@ -60,16 +55,21 @@
   const dataLayers = cfg.layers.filter((l) => l.enabled);
   const loaded = await Promise.all(dataLayers.map(loadLayer));
   await mapReady;
+  // Basemap layers split into labels (symbol) and the rest; data layers go below the first label layer.
+  const baseLayers = map.getStyle().layers;
+  const labelIds = baseLayers.filter((l) => l.type === "symbol").map((l) => l.id);
+  const groundIds = baseLayers.filter((l) => l.type !== "symbol" && l.type !== "background").map((l) => l.id);
+  const beforeId = labelIds[0];
 
   async function loadLayer(layer) {
     try {
       const [g, m] = await Promise.all([
-        fetch(`../data/processed/${layer.id}.geojson`), fetch(`../data/processed/${layer.id}.meta.json`),
+        fetch(`${DATA_DIR}${layer.id}.geojson`), fetch(`${DATA_DIR}${layer.id}.meta.json`),
       ]);
       if (!g.ok) throw new Error("HTTP " + g.status);
       return { layer, geojson: await g.json(), meta: m.ok ? await m.json() : null };
     } catch (e) {
-      banner(`Data for “${esc(layer.title)}” not found (${esc(e.message)}). Run update_data.bat, then reload.`);
+      banner(`Daten für „${esc(layer.title)}“ nicht gefunden (${esc(e.message)}).`);
       return null;
     }
   }
@@ -90,7 +90,7 @@
         "fill-color": stepColor(st),
         "fill-opacity": ["case", ["boolean", ["feature-state", "hover"], false], Math.min(1, st.fill_opacity + 0.17), st.fill_opacity],
       },
-    }, "labels");
+    }, beforeId);
     map.addLayer({
       id: layer.id + "-line", type: "line", source: layer.id,
       paint: {
@@ -100,7 +100,7 @@
           9, ["case", ["boolean", ["feature-state", "hover"], false], 1.2, 0.2],
           15, ["case", ["boolean", ["feature-state", "hover"], false], 2.2, 0.8]],
       },
-    }, "labels");
+    }, beforeId);
 
     let hovered = null;
     const setHover = (id) => {
@@ -128,7 +128,7 @@
   function sourceLine(entry) {
     const { layer, meta } = entry;
     const prov = meta && meta.provenance;
-    const got = prov ? " · retrieved " + prov.retrieved_utc.slice(0, 8).replace(/(\d{4})(\d\d)(\d\d)/, "$3.$2.$1") : "";
+    const got = prov ? " · abgerufen " + prov.retrieved_utc.slice(0, 8).replace(/(\d{4})(\d\d)(\d\d)/, "$3.$2.$1") : "";
     return `${esc(layer.publisher)}, ${esc(layer.title)} · <a href="${esc(layer.license.url)}" target="_blank" rel="noopener">${esc(layer.license.id)}</a>${got}`;
   }
   map.on("click", (e) => {
@@ -138,11 +138,11 @@
       const seen = new Set();
       const feats = map.queryRenderedFeatures(e.point, { layers: [ids] }).filter((f) => !seen.has(f.id) && seen.add(f.id));
       if (!feats.length) continue;
-      const head = feats.length > 1 ? `<div class="pop-head">${feats.length} zones at this point</div>` : "";
+      const head = feats.length > 1 ? `<div class="pop-head">${feats.length} Zonen an dieser Stelle</div>` : "";
       new maplibregl.Popup({ maxWidth: "340px", closeButton: true })
         .setLngLat(e.lngLat)
         .setHTML(head + feats.map((f) => zoneHtml(entry.layer, f.properties)).join("") +
-                 `<div class="pop-src">Source: ${sourceLine(entry)}</div>`)
+                 `<div class="pop-src">Quelle: ${sourceLine(entry)}</div>`)
         .addTo(map);
       return;
     }
@@ -165,7 +165,7 @@
     toggle(d.layer.title, true, (on) => d.visibleIds.forEach((id) => setVis(id, on)));
 
     const st = d.layer.style, f = (n) => Number(n).toLocaleString("de-DE");
-    $("legend-title").textContent = d.layer.title; $("legend-unit").textContent = "Class limits in " + st.unit;
+    $("legend-title").textContent = d.layer.title; $("legend-unit").textContent = "Klassengrenzen in " + st.unit;
     const rows = st.colors.map((c, i) => {
       const lo = i === 0 ? null : st.breaks[i - 1], hi = i === st.breaks.length ? null : st.breaks[i];
       const text = lo == null ? `< ${f(hi)}` : hi == null ? `≥ ${f(lo)}` : `${f(lo)} – ${f(hi)}`;
@@ -174,13 +174,13 @@
     $("legend").innerHTML = rows.join("");
     $("legend-section").hidden = false;
   }
-  toggle("Basemap", true, (on) => setVis("base", on));
-  toggle("Place labels", true, (on) => setVis("labels", on));
+  toggle("Grundkarte", true, (on) => groundIds.forEach((id) => setVis(id, on)));
+  toggle("Beschriftungen", true, (on) => labelIds.forEach((id) => setVis(id, on)));
 
   $("source-text").innerHTML = entries.map((e) => {
-    const m = e.meta, w = m && m.warnings && m.warnings.length ? ` <em>(${m.warnings.length} processing warning${m.warnings.length > 1 ? "s" : ""}, see data/processed/${e.layer.id}.meta.json)</em>` : "";
-    return `<p>${sourceLine(e)}${m ? ` · ${m.feature_count} zones` : ""}${w}</p>`;
-  }).join("") + `<p>Basemap: ${bm.attribution}</p>`;
+    const m = e.meta, w = m && m.warnings && m.warnings.length ? ` <em>(${m.warnings.length} Verarbeitungshinweis${m.warnings.length > 1 ? "e" : ""}, siehe ${e.layer.id}.meta.json)</em>` : "";
+    return `<p>${sourceLine(e)}${m ? ` · ${m.feature_count.toLocaleString("de-DE")} Zonen` : ""}${w}</p>`;
+  }).join("") + `<p>Grundkarte: ${bm.attribution}</p>`;
 
   window.__map = map; // for debugging in the console
 })();

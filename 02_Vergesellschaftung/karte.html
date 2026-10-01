@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karte — Bodenrichtwerte Berlin 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="karte/vendor/maplibre-gl.css">
+<link rel="stylesheet" href="karte/map.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="map-page" data-config="karte/layers.json" data-data="karte/">
+
+  <nav class="site-nav">
+    <a href="index.html">Übersicht</a>
+    <a href="vergesellschaftung-modell-v37.html">Modell</a>
+    <a href="modell-kompakt.html">Modell (kompakt)</a>
+    <a href="zahlen.html">Die Zahlen erklärt</a>
+    <a href="glossar.html">Glossar</a>
+    <a href="karte.html" class="active">Karte</a>
+  </nav>
+
+  <div class="map-wrap">
+    <div id="map"></div>
+    <aside id="panel">
+      <h1>Bodenrichtwerte Berlin</h1>
+      <section>
+        <h2>Ebenen</h2>
+        <div id="toggles"></div>
+      </section>
+      <section id="legend-section" hidden>
+        <h2 id="legend-title"></h2>
+        <div id="legend-unit"></div>
+        <div id="legend"></div>
+      </section>
+      <section id="source">
+        <h2>Quelle</h2>
+        <div id="source-text"></div>
+      </section>
+    </aside>
+    <div id="banner" role="alert" hidden></div>
+  </div>
+
+<script src="karte/vendor/maplibre-gl.js"></script>
+<script src="karte/app.js"></script>
+</body>
+</html>

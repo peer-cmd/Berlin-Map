@@ -1,0 +1,17 @@
+# Strato (Apache). GeoJSON is ~5 MB raw, ~1 MB compressed.
+AddType application/geo+json .geojson
+AddType application/json .json
+AddDefaultCharset UTF-8
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json application/geo+json
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType application/geo+json "access plus 1 day"
+  ExpiresByType application/json "access plus 1 day"
+  ExpiresByType text/javascript "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+  ExpiresByType text/css "access plus 1 week"
+</IfModule>
