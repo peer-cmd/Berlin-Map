@@ -1,27 +1,29 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Berlin Research Map</title>
+<title>Berlin – Forschungskarte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="vendor/maplibre-gl.css">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div id="map"></div>
+<button id="panel-toggle" type="button" hidden></button>
 <aside id="panel">
-  <h1>Berlin Research Map</h1>
+  <h1 id="map-title"></h1>
   <section>
-    <h2>Layers</h2>
+    <h2 id="h-layers"></h2>
     <div id="toggles"></div>
   </section>
   <section id="legend-section" hidden>
-    <h2 id="legend-title"></h2>
-    <div id="legend-unit"></div>
+    <h2 id="h-legend"></h2>
     <div id="legend"></div>
   </section>
   <section id="source">
-    <h2>Source</h2>
+    <h2 id="h-sources"></h2>
     <div id="source-text"></div>
   </section>
 </aside>

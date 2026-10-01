@@ -3,6 +3,7 @@
 Usage:
     python scripts/acquire.py                  # all enabled WFS layers
     python scripts/acquire.py --layer brw2026
+    python scripts/acquire.py --map research   # sources used by config/maps/research.json
     python scripts/acquire.py --base-url http://127.0.0.1:8099/wfs   # test against a mock
 
 Each run writes three files per layer, stamped with the UTC retrieval time:
@@ -22,7 +23,7 @@ import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 
-from common import RAW_DIR, load_config, select_layers
+from common import RAW_DIR, load_config, select_layers, title
 
 UA = "berlin-map-research/1.0 (local research tool)"
 
@@ -107,7 +108,7 @@ def acquire(layer, base_url_override, timeout):
 
     prov = {
         "layer_id": lid,
-        "title": layer.get("title"),
+        "title": title(layer),
         "retrieved_utc": stamp,
         "request_urls": {"capabilities": cap_url, "hits": hits_url, "data": get_url},
         "service_base_url": base,
@@ -136,12 +137,13 @@ def acquire(layer, base_url_override, timeout):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--layer", help="layer id from config/layers.json (default: all enabled WFS layers)")
+    ap.add_argument("--layer", help="source id from config/sources.json (default: all enabled WFS sources)")
+    ap.add_argument("--map", help="only the sources used by config/maps/<MAP>.json")
     ap.add_argument("--base-url", help="override the WFS base URL (testing)")
     ap.add_argument("--timeout", type=int, default=60, help="seconds per request (default 60)")
     args = ap.parse_args()
 
-    layers = select_layers(load_config(), args.layer)
+    layers = select_layers(load_config(), args.layer, args.map)
     if not layers:
         sys.exit("No enabled WFS layers in config.")
     failed = 0

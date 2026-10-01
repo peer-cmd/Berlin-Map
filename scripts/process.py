@@ -3,14 +3,18 @@
 Usage:
     python scripts/process.py                  # all enabled WFS layers
     python scripts/process.py --layer brw2026
+    python scripts/process.py --map research
 
 Steps: validate geometry and attributes, round coordinates to 6 decimals (about 0.1 m),
-drop empty or degenerate geometry, assign numeric feature ids, order features by
-descending area so small zones draw above large ones, write compact GeoJSON plus a
+drop empty or degenerate geometry, assign numeric feature ids, order polygons by
+descending area so small zones draw above large ones, write compact GeoJSON, an
+attribute table <id>.csv (for spreadsheets, joins and other projects) and a
 <id>.meta.json holding provenance, statistics and attribution for the frontend.
 Features are never edited or created by hand; attributes pass through unchanged.
 """
 import argparse
+import csv
+import io
 import hashlib
 import json
 import math
@@ -18,7 +22,7 @@ import sys
 from collections import Counter
 from datetime import datetime, timezone
 
-from common import PROCESSED_DIR, RAW_DIR, load_config, select_layers
+from common import PROCESSED_DIR, RAW_DIR, load_config, select_layers, title
 
 PRECISION = 6
 M_PER_DEG_LAT = 110_540.0
@@ -60,15 +64,42 @@ def clean_polygon(rings):
     return [cleaned[0]] + holes, max(area, 0.0)
 
 
-def clean_geometry(geom):
-    """Normalise to MultiPolygon. Returns (geometry, area_m2) or (None, reason)."""
+def clean_point(p):
+    return [round(p[0], PRECISION), round(p[1], PRECISION)]
+
+
+def clean_line(line):
+    out = [clean_point(p) for p in line]
+    dedup = [out[0]] if out else []
+    for p in out[1:]:
+        if p != dedup[-1]:
+            dedup.append(p)
+    return dedup if len(dedup) >= 2 else None
+
+
+def clean_geometry(geom, kind="polygon"):
+    """Normalise to MultiPolygon, MultiPoint or MultiLineString according to the source's
+    declared geometry kind. Returns (geometry, area_m2) or (None, reason)."""
     if not geom:
         return None, "null geometry"
     t = geom.get("type")
+    c = geom.get("coordinates")
+    if kind == "point":
+        pts = [c] if t == "Point" else c if t == "MultiPoint" else None
+        if pts is None:
+            return None, f"unsupported geometry type {t}"
+        pts = [clean_point(p) for p in pts if p]
+        return ({"type": "MultiPoint", "coordinates": pts}, 0.0) if pts else (None, "degenerate geometry")
+    if kind == "line":
+        lines = [c] if t == "LineString" else c if t == "MultiLineString" else None
+        if lines is None:
+            return None, f"unsupported geometry type {t}"
+        lines = [l for l in (clean_line(x) for x in lines) if l]
+        return ({"type": "MultiLineString", "coordinates": lines}, 0.0) if lines else (None, "degenerate geometry")
     if t == "Polygon":
-        polys = [geom["coordinates"]]
+        polys = [c]
     elif t == "MultiPolygon":
-        polys = geom["coordinates"]
+        polys = c
     else:
         return None, f"unsupported geometry type {t}"
     out, total = [], 0.0
@@ -82,10 +113,40 @@ def clean_geometry(geom):
     return {"type": "MultiPolygon", "coordinates": out}, total
 
 
+def numeric_stats(kept, prop):
+    vals = sorted(p[prop] for _, p, _ in kept if isinstance(p.get(prop), (int, float)))
+    if not vals:
+        return None, len(kept)
+    q = lambda x: vals[int(x * (len(vals) - 1))]
+    return {"min": vals[0], "max": vals[-1], "median": q(0.5), "p05": q(0.05), "p95": q(0.95),
+            "count": len(vals)}, len(kept) - len(vals)
+
+
+def attribute_csv(features, kind):
+    """One row per feature: id, attributes, plus area (polygons) or coordinates (points)."""
+    keys = []
+    for f, _ in features:
+        for k in f["properties"]:
+            if k not in keys:
+                keys.append(k)
+    extra = ["area_m2"] if kind == "polygon" else ["lon", "lat"] if kind == "point" else []
+    buf = io.StringIO()
+    w = csv.writer(buf, lineterminator="\n")
+    w.writerow(["fid"] + keys + extra)
+    for f, area in features:
+        row = [f["id"]] + [f["properties"].get(k) for k in keys]
+        if kind == "polygon":
+            row.append(round(area))
+        elif kind == "point":
+            row += f["geometry"]["coordinates"][0]
+        w.writerow(["" if v is None else v for v in row])
+    return buf.getvalue()
+
+
 def process(layer):
     lid = layer["id"]
     opts = layer.get("process", {})
-    style = layer.get("style", {})
+    kind = layer.get("geometry", "polygon")
     prov_path = latest_provenance(lid)
     prov = json.loads(prov_path.read_text(encoding="utf-8"))
     raw_path = RAW_DIR / prov["raw_file"]
@@ -98,7 +159,7 @@ def process(layer):
     skipped = Counter()
     kept = []
     for f in data["features"]:
-        geom, info = clean_geometry(f.get("geometry"))
+        geom, info = clean_geometry(f.get("geometry"), kind)
         if geom is None:
             skipped[info] += 1
             continue
@@ -120,16 +181,21 @@ def process(layer):
         if dup:
             warnings.append(f"{len(dup)} duplicate {id_field} values (e.g. {dup[:3]})")
     stats = {}
-    prop = style.get("property")
-    if prop:
-        vals = sorted(p[prop] for _, p, _ in kept if isinstance(p.get(prop), (int, float)))
-        missing = len(kept) - len(vals)
-        if missing:
-            warnings.append(f"{missing} features without numeric {prop}")
-        if vals:
-            q = lambda x: vals[int(x * (len(vals) - 1))]
-            stats = {"property": prop, "min": vals[0], "max": vals[-1],
-                     "median": q(0.5), "p05": q(0.05), "p95": q(0.95)}
+    for view in layer.get("views", {}).values():
+        st = view.get("style", {})
+        prop = st.get("property")
+        if st.get("kind") == "step" and prop and prop not in stats:
+            s, missing = numeric_stats(kept, prop)
+            if s:
+                stats[prop] = s
+            if missing:
+                warnings.append(f"{missing} features without numeric {prop}")
+        elif st.get("kind") == "categorical" and prop:
+            known = {v for c in st.get("categories", []) for v in c.get("values", [])}
+            other = Counter(p.get(prop) for _, p, _ in kept if p.get(prop) not in known)
+            if other:
+                warnings.append(f"{sum(other.values())} features with {prop} outside the styled categories: "
+                                f"{dict(other.most_common(5))}")
     if skipped:
         warnings.append(f"skipped features: {dict(skipped)}")
 
@@ -137,39 +203,44 @@ def process(layer):
     out_path = PROCESSED_DIR / f"{lid}.geojson"
     payload = json.dumps({"type": "FeatureCollection", "features": features},
                          ensure_ascii=False, separators=(",", ":"))
-    tmp = out_path.with_name(out_path.name + ".part")
-    tmp.write_text(payload, encoding="utf-8")
-    tmp.replace(out_path)
+    csv_text = attribute_csv([(f, k[0]) for f, k in zip(features, kept)], kind)
+    for path, text in ((out_path, payload), (PROCESSED_DIR / f"{lid}.csv", csv_text)):
+        tmp = path.with_name(path.name + ".part")
+        tmp.write_text(text, encoding="utf-8-sig" if path.suffix == ".csv" else "utf-8", newline="")
+        tmp.replace(path)
 
     meta = {
         "layer_id": lid,
-        "title": layer.get("title"),
+        "title": title(layer),
+        "geometry": kind,
         "processed_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "feature_count": len(features),
         "skipped": dict(skipped),
         "warnings": warnings,
         "stats": stats,
         "output_bytes": len(payload.encode("utf-8")),
+        "files": {"geojson": out_path.name, "csv": f"{lid}.csv"},
         "provenance": prov,
         "provenance_file": prov_path.name,
     }
     (PROCESSED_DIR / f"{lid}.meta.json").write_text(
         json.dumps(meta, indent=2, ensure_ascii=False), encoding="utf-8")
 
-    print(f"  wrote {out_path.name}: {len(features)} features, {meta['output_bytes'] / 1e6:.1f} MB")
-    if stats:
-        print(f"  {prop}: min {stats['min']}, median {stats['median']}, max {stats['max']}")
+    print(f"  wrote {out_path.name} ({meta['output_bytes'] / 1e6:.1f} MB) and {lid}.csv: {len(features)} features")
+    for prop, st in stats.items():
+        print(f"  {prop}: min {st['min']}, median {st['median']}, max {st['max']}")
     for w in warnings:
         print(f"  WARNING: {w}")
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--layer", help="layer id (default: all enabled WFS layers)")
+    ap.add_argument("--layer", help="source id (default: all enabled WFS sources)")
+    ap.add_argument("--map", help="only the sources used by config/maps/<MAP>.json")
     args = ap.parse_args()
-    layers = select_layers(load_config(), args.layer)
+    layers = select_layers(load_config(), args.layer, args.map)
     if not layers:
-        sys.exit("No enabled WFS layers in config.")
+        sys.exit("No enabled WFS sources in config.")
     for layer in layers:
         process(layer)
 

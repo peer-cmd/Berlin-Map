@@ -1,19 +1,36 @@
 {
   "layer_id": "brw2026",
   "title": "Bodenrichtwerte 01.01.2026",
-  "processed_utc": "2026-10-01T08:09:44Z",
+  "geometry": "polygon",
+  "processed_utc": "2026-10-01T09:28:38Z",
   "feature_count": 1623,
   "skipped": {},
-  "warnings": [],
+  "warnings": [
+    "672 features without numeric gfz"
+  ],
   "stats": {
-    "property": "brw",
-    "min": 0.6,
-    "max": 60000,
-    "median": 480,
-    "p05": 3.8,
-    "p95": 4000
+    "brw": {
+      "min": 0.6,
+      "max": 60000,
+      "median": 480,
+      "p05": 3.8,
+      "p95": 4000,
+      "count": 1623
+    },
+    "gfz": {
+      "min": 0.1,
+      "max": 4.5,
+      "median": 1,
+      "p05": 0.2,
+      "p95": 3.5,
+      "count": 951
+    }
   },
   "output_bytes": 5475609,
+  "files": {
+    "geojson": "brw2026.geojson",
+    "csv": "brw2026.csv"
+  },
   "provenance": {
     "layer_id": "brw2026",
     "title": "Bodenrichtwerte 01.01.2026",

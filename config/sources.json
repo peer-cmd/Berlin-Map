@@ -1,0 +1,116 @@
+{
+  "basemaps": {
+    "positron": {
+      "style": "https://tiles.openfreemap.org/styles/positron",
+      "attribution": "<a href=\"https://openfreemap.org\" target=\"_blank\" rel=\"noopener\">OpenFreeMap</a> &copy; <a href=\"https://www.openmaptiles.org/\" target=\"_blank\" rel=\"noopener\">OpenMapTiles</a> Data from <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener\">OpenStreetMap</a>"
+    }
+  },
+  "sources": [
+    {
+      "id": "brw2026",
+      "enabled": true,
+      "title": {"de": "Bodenrichtwerte 01.01.2026", "en": "Standard land values 01.01.2026"},
+      "unit_label": {"de": "Zonen", "en": "zones"},
+      "geometry": "polygon",
+      "source": {
+        "type": "wfs",
+        "base_url": "https://gdi.berlin.de/services/wfs/brw2026",
+        "version": "2.0.0",
+        "type_name": "brw2026:brw2026_vector",
+        "output_format": "application/json",
+        "srs_name": "EPSG:4326",
+        "dataset_page": "https://daten.berlin.de/datensaetze/bodenrichtwerte-01-01-2026-wfs-0933be9c"
+      },
+      "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+      "license": {
+        "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+        "id": "dl-de-zero-2.0",
+        "url": "https://www.govdata.de/dl-de/zero-2-0"
+      },
+      "process": {"id_field": "brwid", "sort": "area_desc"},
+      "fields": [
+        {"key": "brw", "label": {"de": "Bodenrichtwert", "en": "Standard land value"}, "format": "number", "unit": "€/m²"},
+        {"key": "stichtag", "label": {"de": "Stichtag", "en": "Reference date"}, "format": "date"},
+        {"key": "nutzung", "label": {"de": "Art der Nutzung", "en": "Use"}},
+        {"key": "gfz", "label": {"de": "Wertrelevante GFZ", "en": "Floor-area ratio (GFZ)"}, "format": "number"},
+        {"key": "bezirk", "label": {"de": "Bezirk", "en": "District"}},
+        {"key": "brwid", "label": {"de": "Bodenrichtwertnummer", "en": "Zone no."}},
+        {"key": "beitragszustand", "label": {"de": "Beitragsrechtlicher Zustand", "en": "Contribution status"}},
+        {"key": "anwert", "label": {"de": "Sanierungs-/Entwicklungszusatz", "en": "Redevelopment supplement"}},
+        {"key": "verfahrensart", "label": {"de": "Verfahrensart", "en": "Procedure"}},
+        {"key": "lumnum", "label": {"de": "GFZ-Umrechnungskoeffizienten", "en": "GFZ conversion coefficients"}, "format": "link", "link_text": "Gutachterausschuss"}
+      ],
+      "popup_title": "brw",
+      "views": {
+        "brw": {
+          "label": {"de": "Bodenrichtwert", "en": "Land value"},
+          "style": {
+            "kind": "step",
+            "property": "brw",
+            "unit": "€/m²",
+            "breaks": [10, 100, 250, 500, 1000, 2500, 5000, 10000],
+            "colors": ["#f3efe6", "#e7dcc4", "#dbc29a", "#d2a574", "#c4814f", "#a85a3a", "#82382f", "#5a1f2a", "#34111d"]
+          }
+        },
+        "nutzung": {
+          "label": {"de": "Art der Nutzung", "en": "Use"},
+          "style": {
+            "kind": "categorical",
+            "property": "nutzung",
+            "categories": [
+              {"label": {"de": "Wohnen", "en": "Residential"}, "color": "#c4814f",
+               "values": ["W - Wohngebiet", "W-EFH - Wohnbaufläche - Ein- und Zweifamilienhäuser"]},
+              {"label": {"de": "Kern- und Mischgebiet", "en": "Core and mixed use"}, "color": "#82382f",
+               "values": ["M1 - Kerngebiet", "M2 - Mischgebiet"]},
+              {"label": {"de": "Gewerbe", "en": "Commercial"}, "color": "#4a6fa5",
+               "values": ["G - Gewerbe", "G - Gewerbliche Baufläche", "Gp - Gewerbe produzierend",
+                          "G-GD - Gewerbliche Baufläche - Handel und dienstleistungsorientiertes Gewerbe",
+                          "G-FZT - Gewerbliche Baufläche - Freizeit und Touristik"]},
+              {"label": {"de": "Gemeinbedarf", "en": "Public facilities"}, "color": "#a9762c",
+               "values": ["GB - Gemeinbedarf"]},
+              {"label": {"de": "Sonderbauflächen", "en": "Special building land"}, "color": "#93aecb",
+               "values": ["S-WO - Sonderbaufläche - Wochenendhäuser", "S-FZT - Sonderbaufläche - Freizeit und Touristik"]},
+              {"label": {"de": "Sonstige Flächen", "en": "Other land"}, "color": "#9fb59a",
+               "values": ["SF-SN - Sonstige Flächen - Sondernutzungsfläche", "SF-KGA - Sonstige Flächen - Kleingartenfläche",
+                          "SF-FH - Sonstige Flächen - Friedhof", "SF-SPO - Sonstige Flächen - Sportfläche",
+                          "SF-CA - Sonstige Flächen - Campingplatz"]},
+              {"label": {"de": "Land- und Forstwirtschaft", "en": "Agriculture and forestry"}, "color": "#2f7d46",
+               "values": ["LF-F - Flächen der Land-o. Forstwirtschaft - forstwirtschaftliche Fläche",
+                          "LF-A - Flächen der Land-o. Forstwirtschaft - Acker",
+                          "LF-GR - Flächen der Land-o. Forstwirtschaft - Grünland",
+                          "LF-EGA - Flächen der Land-o. Forstwirtschaft - Erwerbsgartenbaufläche"]}
+            ],
+            "other_color": "#dadad2"
+          }
+        },
+        "gfz": {
+          "label": {"de": "Wertrelevante GFZ", "en": "Floor-area ratio (GFZ)"},
+          "style": {
+            "kind": "step",
+            "property": "gfz",
+            "unit": "GFZ",
+            "breaks": [0.4, 0.8, 1.2, 2.0, 3.0, 4.5],
+            "colors": ["#f3efe6", "#dbc29a", "#c4814f", "#a85a3a", "#82382f", "#5a1f2a", "#34111d"],
+            "missing_color": "rgba(0,0,0,0)"
+          }
+        }
+      }
+    },
+    {
+      "id": "bplan_festgesetzt",
+      "enabled": false,
+      "title": {"de": "Bebauungspläne, festgesetzt", "en": "Binding land-use plans (B-Pläne), adopted"},
+      "geometry": "polygon",
+      "source": {
+        "type": "wfs",
+        "base_url": "https://gdi.berlin.de/services/wfs/bplan",
+        "version": "2.0.0",
+        "type_name": "bplan:b_bp_fs",
+        "output_format": "application/json",
+        "srs_name": "EPSG:4326"
+      },
+      "notes": "Not implemented. Verified: service responds, 2846 features, attributes planid, planname, planartname, verfahrensart, bezirk, bp_rechtsstand, festsg_am, url_www, scan_www, inhalt, among others. Geometry type declared as generic GeometryPropertyType; license and style still to be checked.",
+      "process": {"id_field": "planid", "sort": "area_desc"}
+    }
+  ]
+}
