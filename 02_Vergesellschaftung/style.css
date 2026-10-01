@@ -80,6 +80,9 @@ body{
 }
 
 /* ---------- Background/context page & standalone content pages ---------- */
+/* standalone pages (index, zahlen, glossar): masthead text aligns with the body column */
+.masthead:has(+ .bg-page){padding-left:max(32px, calc((100% - var(--content-width))/2 + 32px));padding-right:max(32px, calc((100% - var(--content-width))/2 + 32px));}
+.app > .bg-page p{text-align:justify;hyphens:auto;-webkit-hyphens:auto;}
 .bg-page{
   max-width:var(--content-width);
   margin:0 auto;
