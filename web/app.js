@@ -138,20 +138,25 @@
   const labelIds = styleLayers.filter((l) => l.type === "symbol").map((l) => l.id);
 
   // ---------- styling ----------
+  // Colours may be palette names from config/sources.json → palette ("vermilion", or "heat" for a ramp).
+  const PAL = catalogue.palette || { named: {}, sequential: {} };
+  const col = (c) => PAL.named[c] || c;
+  const ramp = (cs) => (typeof cs === "string" ? PAL.sequential[cs] : cs).map(col);
   function colorExpr(style) {
     const value = ["get", style.property];
     if (style.kind === "step") {
-      const expr = ["step", ["to-number", value], style.colors[0]];
-      style.breaks.forEach((b, i) => expr.push(b, style.colors[i + 1]));
-      return ["case", ["==", ["typeof", value], "number"], expr, style.missing_color || "#dadad2"];
+      const colors = ramp(style.colors);
+      const expr = ["step", ["to-number", value], colors[0]];
+      style.breaks.forEach((b, i) => expr.push(b, colors[i + 1]));
+      return ["case", ["==", ["typeof", value], "number"], expr, col(style.missing_color || "grey")];
     }
     if (style.kind === "categorical") {
       const expr = ["match", ["to-string", value]];
-      for (const c of style.categories) expr.push(c.values.length === 1 ? c.values[0] : c.values, c.color);
-      expr.push(style.other_color || "#dadad2");
+      for (const c of style.categories) expr.push(c.values.length === 1 ? c.values[0] : c.values, col(c.color));
+      expr.push(col(style.other_color || "grey"));
       return expr;
     }
-    return style.color || "#4a6fa5";
+    return col(style.color || "ultramarine");
   }
   const currentStyle = (it) => (it.view ? it.src.views[it.view].style : { kind: "single", color: it.def.color || "#4a6fa5" });
   const hover = (a, b) => ["case", ["boolean", ["feature-state", "hover"], false], a, b];
@@ -179,9 +184,9 @@
         "fill-color": color, "fill-opacity": hover(Math.min(1, it.opacity + 0.17), it.opacity),
       } }, firstSymbol);
       map.addLayer({ id: id + "-line", type: "line", source: id, layout: { visibility: vis }, paint: {
-        "line-color": it.def.outline || "#14171a",
-        "line-opacity": hover(0.95, 0.28),
-        "line-width": ["interpolate", ["linear"], ["zoom"], 9, hover(1.2, 0.2), 15, hover(2.2, 0.8)],
+        "line-color": hover("#14171a", col(it.def.outline || def.outline || "#14171a")),
+        "line-opacity": hover(0.95, 0.6),
+        "line-width": ["interpolate", ["linear"], ["zoom"], 9, hover(1.2, 0.3), 15, hover(2.2, 1)],
       } }, firstSymbol);
       it.layerIds = [id + "-main", id + "-line"];
       it.colorProps = [[id + "-main", "fill-color"]];
@@ -245,14 +250,14 @@
     let rows = "", unit = "";
     if (st.kind === "step") {
       unit = st.unit ? `<div class="legend-unit">${esc(st.unit)}</div>` : "";
-      rows = st.colors.map((c, i) => {
+      rows = ramp(st.colors).map((c, i) => {
         const lo = i === 0 ? null : st.breaks[i - 1], hi = i === st.breaks.length ? null : st.breaks[i];
         return sw(c, lo == null ? `< ${num(hi)}` : hi == null ? `≥ ${num(lo)}` : `${num(lo)} – ${num(hi)}`);
       }).join("");
     } else if (st.kind === "categorical") {
-      rows = st.categories.map((c) => sw(c.color, esc(t(c.label)))).join("");
+      rows = st.categories.map((c) => sw(col(c.color), esc(t(c.label)))).join("");
     } else {
-      rows = sw(st.color, esc(t(it.src.title)));
+      rows = sw(col(st.color || "ultramarine"), esc(t(it.src.title)));
     }
     const viewLabel = it.view && it.views.length > 1 ? ` · ${esc(t(it.src.views[it.view].label))}` : "";
     return `<div class="legend-block"><div class="legend-title">${esc(t(it.src.title))}${viewLabel}</div>${unit}${rows}</div>`;

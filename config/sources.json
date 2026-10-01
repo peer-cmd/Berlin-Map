@@ -1,4 +1,15 @@
 {
+  "palette": {
+    "note": "Flat, saturated colours after Joost Grootens' atlases. Views refer to these names; change a colour here and every map follows.",
+    "named": {
+      "vermilion": "#f2553a", "orange": "#ff8a1e", "yellow": "#ffcc1f", "pink": "#f0509c",
+      "magenta": "#c42a8a", "green": "#19a35c", "mint": "#8fdcb0", "cyan": "#00a6d6",
+      "ultramarine": "#2f4bd9", "violet": "#6a3fc8", "grey": "#d4d4cc", "none": "rgba(0,0,0,0)"
+    },
+    "sequential": {
+      "heat": ["#fff4b8", "#ffe24d", "#ffc21f", "#ff8a1e", "#f85a2a", "#e83a3a", "#d42a6b", "#8e2a9c", "#2f2a8f"]
+    }
+  },
   "basemaps": {
     "positron": {
       "style": "https://tiles.openfreemap.org/styles/positron",
@@ -49,7 +60,7 @@
             "property": "brw",
             "unit": "€/m²",
             "breaks": [10, 100, 250, 500, 1000, 2500, 5000, 10000],
-            "colors": ["#f3efe6", "#e7dcc4", "#dbc29a", "#d2a574", "#c4814f", "#a85a3a", "#82382f", "#5a1f2a", "#34111d"]
+            "colors": "heat"
           }
         },
         "nutzung": {
@@ -58,29 +69,29 @@
             "kind": "categorical",
             "property": "nutzung",
             "categories": [
-              {"label": {"de": "Wohnen", "en": "Residential"}, "color": "#c4814f",
+              {"label": {"de": "Wohnen", "en": "Residential"}, "color": "vermilion",
                "values": ["W - Wohngebiet", "W-EFH - Wohnbaufläche - Ein- und Zweifamilienhäuser"]},
-              {"label": {"de": "Kern- und Mischgebiet", "en": "Core and mixed use"}, "color": "#82382f",
+              {"label": {"de": "Kern- und Mischgebiet", "en": "Core and mixed use"}, "color": "pink",
                "values": ["M1 - Kerngebiet", "M2 - Mischgebiet"]},
-              {"label": {"de": "Gewerbe", "en": "Commercial"}, "color": "#4a6fa5",
+              {"label": {"de": "Gewerbe", "en": "Commercial"}, "color": "ultramarine",
                "values": ["G - Gewerbe", "G - Gewerbliche Baufläche", "Gp - Gewerbe produzierend",
                           "G-GD - Gewerbliche Baufläche - Handel und dienstleistungsorientiertes Gewerbe",
                           "G-FZT - Gewerbliche Baufläche - Freizeit und Touristik"]},
-              {"label": {"de": "Gemeinbedarf", "en": "Public facilities"}, "color": "#a9762c",
+              {"label": {"de": "Gemeinbedarf", "en": "Public facilities"}, "color": "yellow",
                "values": ["GB - Gemeinbedarf"]},
-              {"label": {"de": "Sonderbauflächen", "en": "Special building land"}, "color": "#93aecb",
+              {"label": {"de": "Sonderbauflächen", "en": "Special building land"}, "color": "cyan",
                "values": ["S-WO - Sonderbaufläche - Wochenendhäuser", "S-FZT - Sonderbaufläche - Freizeit und Touristik"]},
-              {"label": {"de": "Sonstige Flächen", "en": "Other land"}, "color": "#9fb59a",
+              {"label": {"de": "Sonstige Flächen", "en": "Other land"}, "color": "mint",
                "values": ["SF-SN - Sonstige Flächen - Sondernutzungsfläche", "SF-KGA - Sonstige Flächen - Kleingartenfläche",
                           "SF-FH - Sonstige Flächen - Friedhof", "SF-SPO - Sonstige Flächen - Sportfläche",
                           "SF-CA - Sonstige Flächen - Campingplatz"]},
-              {"label": {"de": "Land- und Forstwirtschaft", "en": "Agriculture and forestry"}, "color": "#2f7d46",
+              {"label": {"de": "Land- und Forstwirtschaft", "en": "Agriculture and forestry"}, "color": "green",
                "values": ["LF-F - Flächen der Land-o. Forstwirtschaft - forstwirtschaftliche Fläche",
                           "LF-A - Flächen der Land-o. Forstwirtschaft - Acker",
                           "LF-GR - Flächen der Land-o. Forstwirtschaft - Grünland",
                           "LF-EGA - Flächen der Land-o. Forstwirtschaft - Erwerbsgartenbaufläche"]}
             ],
-            "other_color": "#dadad2"
+            "other_color": "grey"
           }
         },
         "gfz": {
@@ -90,8 +101,8 @@
             "property": "gfz",
             "unit": "GFZ",
             "breaks": [0.4, 0.8, 1.2, 2.0, 3.0, 4.5],
-            "colors": ["#f3efe6", "#dbc29a", "#c4814f", "#a85a3a", "#82382f", "#5a1f2a", "#34111d"],
-            "missing_color": "rgba(0,0,0,0)"
+            "colors": ["#fff4b8", "#ffc21f", "#ff8a1e", "#f85a2a", "#d42a6b", "#8e2a9c", "#2f2a8f"],
+            "missing_color": "none"
           }
         }
       }

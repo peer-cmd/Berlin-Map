@@ -1,21 +1,49 @@
 {
   "id": "research",
-  "title": {"de": "Berlin – Forschungskarte", "en": "Berlin Research Map"},
+  "title": {
+    "de": "Berlin – Forschungskarte",
+    "en": "Berlin Research Map"
+  },
   "lang": "de",
   "view": {
-    "center": [13.405, 52.52],
+    "center": [
+      13.405,
+      52.52
+    ],
     "zoom": 10.3,
     "minZoom": 8.5,
     "maxZoom": 19,
-    "maxBounds": [[12.6, 52.1], [14.2, 52.9]]
+    "maxBounds": [
+      [
+        12.6,
+        52.1
+      ],
+      [
+        14.2,
+        52.9
+      ]
+    ]
   },
   "basemap": "positron",
   "groups": [
     {
-      "title": {"de": "Bodenwerte", "en": "Land values"},
+      "title": {
+        "de": "Bodenwerte",
+        "en": "Land values"
+      },
       "layers": [
-        {"source": "brw2026", "views": ["brw", "nutzung", "gfz"], "visible": true, "opacity": 0.78}
+        {
+          "source": "brw2026",
+          "views": [
+            "brw",
+            "nutzung",
+            "gfz"
+          ],
+          "visible": true,
+          "opacity": 0.88
+        }
       ]
     }
-  ]
+  ],
+  "outline": "#ffffff"
 }
