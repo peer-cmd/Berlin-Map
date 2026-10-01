@@ -128,8 +128,8 @@ body{
   color:var(--muted);
   margin-bottom:28px;
 }
-.bg-page table{width:100%;border-collapse:collapse;font-size:12.5px;margin:12px 0 16px;table-layout:fixed;}
-.bg-page th, .bg-page td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;word-wrap:break-word;}
+.bg-page table{width:100%;border-collapse:collapse;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;margin:12px 0 16px;table-layout:fixed;}
+.bg-page th, .bg-page td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;white-space:normal;word-wrap:break-word;}
 .bg-page th{
   font-family:'IBM Plex Mono',monospace;
   font-size:10px;
@@ -159,6 +159,7 @@ body{
   font-family:'IBM Plex Mono',monospace;
   font-size:9.5px;
   color:var(--faint);
+  line-height:0;
   cursor:default;
 }
 .bg-page .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 8px;}
