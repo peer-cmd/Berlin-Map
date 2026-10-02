@@ -1,7 +1,7 @@
 // Hover explanations for [data-term] elements. The text is the first sentence
 // of the matching glossary entry in content.js (SITE_INCLUDES.glossary), so each
 // definition exists only once. Matching: data-term against each <dt>, split at
-// " / " and " vs. ", with and without its bracketed part, case-insensitive.
+// " / " (outside brackets) and " vs. ", with and without its bracketed part, case-insensitive.
 (function(){
   "use strict";
   var html = (window.SITE_INCLUDES || {}).glossary;
@@ -14,7 +14,7 @@
     var dd = dt.nextElementSibling;
     if(!dd) return;
     var text = dd.textContent.trim();
-    dt.textContent.split(/ \/ | vs\. /).forEach(function(part, i){
+    dt.textContent.split(/ \/ (?![^(]*\))| vs\. /).forEach(function(part, i){
       [part, part.replace(/\s*\(.*?\)/g, ''), (part.match(/\((.*?)\)/) || [])[1]].forEach(function(k){
         if(k) entries[k.trim().toLowerCase()] = {text: text, main: i === 0};
       });
