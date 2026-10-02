@@ -95,8 +95,8 @@ window.SITE_INCLUDES = {
       </dl>
       <h3 class="gl-letter">U</h3>
       <dl>
-        <div><dt>Umwandlungskosten</dt> <dd>Kosten je m² Wohnfläche, um eine bestehende Wohnung in eine Sozialwohnung umzuwandeln; × Ø Wohnungsgröße ergibt die Kosten je Wohnung.</dd></div>
-        <div><dt>Umwandlungstempo</dt> <dd>Legt fest, wie schnell Wohnungen in Sozialwohnungen umgewandelt werden. „Aus Überschuss": nur soweit der Cashflow nach Reinvestitionsquote reicht. „Fester Zeitplan": ein fester Anteil des Gesamtbestands pro Jahr, unabhängig vom Cashflow; die Kosten mindern den Cashflow des jeweiligen Jahres. Bei 3,3 %/Jahr ist der gesamte Bestand nach rund 30 Jahren umgewandelt.</dd></div>
+        <div><dt>Umwandlungskosten</dt> <dd>Einmalige Kosten je m² Wohnfläche, wenn eine Wohnung in eine Sozialwohnung umgewandelt wird; × Ø Wohnungsgröße ergibt die Kosten je Wohnung. Standardwert 0: Im öffentlichen Eigentum ist die Umwandlung eine Entscheidung über die Miete, ihre Kosten sind die entgangenen Mieteinnahmen, die das Modell über die Sozialmiete bereits erfasst. Ein Wert über 0 bildet zusätzliche Kosten ab, etwa für Verwaltung oder Modernisierung.</dd></div>
+        <div><dt>Umwandlungstempo</dt> <dd>Legt fest, wie schnell Wohnungen in Sozialwohnungen umgewandelt werden. „Sofort": der gesamte Bestand trägt ab Jahr 1 die Sozialmiete. „Aus Überschuss": jedes Jahr so viele Wohnungen, wie der Überschuss (nach Reinvestitionsquote) an entgangener Miete und Umwandlungskosten trägt; der Cashflow bleibt dadurch etwa bei null. „Fester Zeitplan": ein fester Anteil des Gesamtbestands pro Jahr, unabhängig vom Cashflow; die Kosten mindern den Cashflow des jeweiligen Jahres. Bei 3,3 %/Jahr ist der gesamte Bestand nach rund 30 Jahren umgewandelt.</dd></div>
       </dl>
       <h3 class="gl-letter">V</h3>
       <dl>

@@ -312,3 +312,13 @@ Rot `#B23A34` → `#E0435C` (zum Pink hin), Grün `#2F7D46` und `#3A7D44` → `#
 ## 2026-10-02 — Die Zahlen: Tabellen im Raster
 
 `zahlen.html` erhält `class="zahlen-page"`; dort haben alle Tabellenzellen einen Rahmen, die Kopfzeile steht in Space Grotesk fett (600) statt IBM Plex Mono in Versalien, auf hellgrauem Grund.
+
+## 2026-10-02 — Modell: Sozialwohnungen sofort oder schrittweise
+
+**Problem:** Die Grafik „Die Sozialwohnungen" zeigte nur den Pfad „aus Überschuss", unabhängig vom gewählten Modus, und rechnete mit Umwandlungskosten von 1.200 €/m² (≈ 78.000 € je Wohnung). Im öffentlichen Eigentum ist die Umwandlung eine Mietentscheidung; das Modell zahlte also an sich selbst und erfasste zusätzlich die entgangene Miete.
+
+**Änderung:**
+- Neues Umwandlungstempo „Sofort": der gesamte Bestand trägt ab Jahr 1 die Sozialmiete (fester Zeitplan mit 100 %).
+- „Aus Überschuss" wandelt jedes Jahr so viele Wohnungen um, wie der Überschuss an entgangener Miete (Modellmiete − Sozialmiete) und Umwandlungskosten trägt; der Cashflow bleibt dadurch etwa bei null.
+- Umwandlungskosten: Standard 0 €/m², Regler ab 0; Glossar erklärt, wofür ein Wert über 0 steht.
+- Panel „Die Sozialwohnungen": drei Pfade (sofort, fester Zeitplan, aus Überschuss) als Anteil am Bestand und darunter als kumulierter Cashflow; „Die Ersparnis der Mieter" zeigt dieselben drei Pfade.
