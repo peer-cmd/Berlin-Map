@@ -2,8 +2,9 @@
 
 quellenbelege.md stays the source; run this script after editing it:
     python3 build_quellenbelege.py
-Supports the Markdown the file uses: headings, paragraphs, bullet lists
-(one nesting level), numbered lists, pipe tables, **bold**, *italic*, `code`.
+Layout as on the Glossar page: '## year' becomes a letter head, '### document'
+with its paragraph a glossary entry, '- **Lead:** text' an indented point.
+Inline: **bold**, *italic*, `code`, [links](url).
 """
 import html
 import re
@@ -18,9 +19,9 @@ PAGE = """<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Die Quellen — Vergesellschaftung großer Wohnungsunternehmen</title>
+<title>Die Chronologie — Vergesellschaftung großer Wohnungsunternehmen</title>
 <link rel="stylesheet" href="fonts/fonts.css">
-<link rel="stylesheet" href="style.css?v=20261002m">
+<link rel="stylesheet" href="style.css?v=20261002n">
 </head>
 <body>
 <!-- Generated from quellenbelege.md by build_quellenbelege.py. Do not edit by hand. -->
@@ -32,7 +33,7 @@ PAGE = """<!DOCTYPE html>
     <a href="hintergrund.html">Hintergrund</a>
     <a href="zahlen.html">Die Zahlen</a>
     <a href="glossar.html">Glossar</a>
-    <a href="quellenbelege.html" class="active">Die Quellen</a>
+    <a href="quellenbelege.html" class="active">Die Chronologie</a>
     <a href="karte.html">Karte</a>
   </nav>
 
@@ -46,7 +47,7 @@ PAGE = """<!DOCTYPE html>
 {body}
   </div>
 
-  <div class="colophon">Die Quellen — Vergesellschaftung großer Wohnungsunternehmen</div>
+  <div class="colophon">Die Chronologie — Vergesellschaftung großer Wohnungsunternehmen</div>
 
 </div>
 </body>
@@ -63,59 +64,55 @@ def inline(text):
     return text
 
 
-def cells(row):
-    return [c.strip() for c in row.strip().strip("|").split("|")]
+def entry(term, text):
+    return f"<div><dt>{inline(term)}</dt> <dd>{inline(text)}</dd></div>"
 
 
 def convert(lines):
-    out, title, i = [], "Die Quellen", 0
+    """Intro paragraph, then glossary-style blocks: '## year' is a letter head,
+    '### document' plus its paragraph is an entry, '- **Lead:** text' a point."""
+    out, title, i, opened = [], "Die Chronologie", 0, False
     while i < len(lines):
         line = lines[i]
         if not line.strip():
             i += 1
             continue
-        m = re.match(r"(#{1,3}) (.*)", line)
-        if m:
-            level = len(m.group(1))
-            if level == 1:
-                title = inline(m.group(2))
-            else:
-                out.append(f"<h{level}>{inline(m.group(2))}</h{level}>")
+        if line.startswith("# "):
+            title = inline(line[2:])
             i += 1
             continue
-        if line.startswith("|"):
-            rows = []
-            while i < len(lines) and lines[i].startswith("|"):
-                rows.append(lines[i])
-                i += 1
-            head = "".join(f"<th>{inline(c)}</th>" for c in cells(rows[0]))
-            body = "".join(
-                "<tr>" + "".join(f"<td>{inline(c)}</td>" for c in cells(r)) + "</tr>"
-                for r in rows[2:]
-            )
-            out.append(f"<table><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table>")
+        if line.startswith("## "):
+            if not opened:
+                out.append('<div class="glossary chronik">')
+                opened = True
+            out.append(f'<div class="gl-letter">{inline(line[3:])}</div>')
+            i += 1
             continue
-        if re.match(r"(- |\d+\. )", line):
-            tag = "ul" if line.startswith("- ") else "ol"
-            items = []
-            while i < len(lines) and re.match(r"(\s*- |\d+\. )", lines[i]):
-                item = lines[i]
-                if item.startswith("  "):
-                    items[-1][1].append(inline(item.strip()[2:]))
-                else:
-                    items.append([inline(re.sub(r"^(- |\d+\. )", "", item)), []])
+        if line.startswith("### "):
+            term, i = line[4:], i + 1
+            while i < len(lines) and not lines[i].strip():
                 i += 1
-            lis = []
-            for text, subs in items:
-                sub = "<ul>" + "".join(f"<li>{s}</li>" for s in subs) + "</ul>" if subs else ""
-                lis.append(f"<li>{text}{sub}</li>")
-            out.append(f"<{tag}>" + "".join(lis) + f"</{tag}>")
+            para = []
+            while i < len(lines) and lines[i].strip() and not re.match(r"(#{1,3} |- )", lines[i]):
+                para.append(lines[i].strip())
+                i += 1
+            out.append(f"<dl>{entry(term, ' '.join(para))}</dl>")
+            continue
+        if line.startswith("- "):
+            items = []
+            while i < len(lines) and lines[i].startswith("- "):
+                m = re.match(r"- \*\*(.+?)\*\*\s*(.*)", lines[i])
+                items.append(entry(m.group(1), m.group(2)) if m else f"<div><dd>{inline(lines[i][2:])}</dd></div>")
+                i += 1
+            out.append('<dl class="gl-points">' + "".join(items) + "</dl>")
             continue
         para = []
-        while i < len(lines) and lines[i].strip() and not re.match(r"(#{1,3} |\||- |\d+\. )", lines[i]):
+        while i < len(lines) and lines[i].strip() and not re.match(r"(#{1,3} |- )", lines[i]):
             para.append(lines[i].strip())
             i += 1
-        out.append(f"<p>{inline(' '.join(para))}</p>")
+        out.append(f'<p class="lead">{inline(" ".join(para))}</p>')
+    if opened:
+        out.append("</div>")
     return title, "\n".join("    " + o for o in out)
 
 

@@ -276,3 +276,11 @@ Fließtext und Listen auf den Inhaltsseiten im Flattersatz mit Silbentrennung (v
 ## 2026-10-02 — Fließtext einheitlich 14,5 px
 
 Fließtext auf allen Inhaltsseiten (`.bg-page p`, Listen, Zeitleiste, Hinweiskästen) in 14,5 px wie der Einleitungsabsatz der Übersicht; vorher 12,5–13 px. Glossar, Tabellen, Quellenliste und Fußnotenliste behalten ihre kleineren Größen. Überschriften damit über der Textgröße: `h2` 16 px, `h3` 14,5 px (vorher je 13 px); Diagrammüberschrift auf „Die Zahlen" wie `h2`. Fußnotenzeichen 10,5 px. Versionsparameter auf `?v=20261002m`.
+
+## 2026-10-02 — „Die Chronologie"
+
+Die Seite „Die Quellen" (`quellenbelege.md`/`.html`) heißt jetzt „Die Chronologie" und ordnet die Dokumente nach Erscheinungsdatum, das jüngste zuerst: IW Köln/Empirica (23.06.2026), PwC (undatiert, jüngstes Abrufdatum 05.05.2026), DWE-Gesetzentwurf (26.09.2025), Gutachterausschuss (Amtsblatt 19.09.2025), Rechnungshof (2024), Bernt/Holm (Online-Studie 1/2023) nach der Expertenkommission (Juni 2023), DWE-Buch (2022), BBU-Sodan (2019). „Weitere Quellen" und „Nicht geprüfte Quellen" bleiben am Ende, innerhalb ebenfalls nach Jahr geordnet. Navigation auf allen Seiten, Seitentitel in `build_quellenbelege.py` und Beschreibung auf der Startseite angepasst. Die Abschnitte „Die Quellen" in `hintergrund.html` und auf der Modellseite (Literaturliste) bleiben unverändert. Dateinamen bleiben unverändert.
+
+## 2026-10-02 — „Die Chronologie" im Glossar-Layout
+
+„Die Chronologie" ist gesetzt wie das Glossar: zweispaltig, Jahre als türkise Köpfe (statt Buchstaben), je Dokument ein Eintrag mit violettem Titel (Urheber und Titel des Dokuments) und Kurzbeschreibung, die Fundstellen als eingerückte Einträge mit fettem Stichwort statt Aufzählungspunkten (`.chronik .gl-points` in `style.css`). Dateinamen der PDFs und Ordnerpfade sind aus dem Text entfernt; jedes Dokument steht mit Titel, Datum und Umfang. „Weitere Quellen" sind in die Jahre einsortiert (Becker 2024, OECD 2024, Stoll 2022); die OECD-Angabe korrigiert: Zitierangabe „OECD (2024)", vorher irrtümlich Juli 2023. Autorenname im PwC-Whitepaper laut Titelseite: Prof. Dr. Florian Hackelberg. `build_quellenbelege.py` erzeugt die Glossar-Struktur (`##` Jahr, `###` Dokument, `- **Stichwort:**` Fundstelle). Versionsparameter auf `?v=20261002n`.

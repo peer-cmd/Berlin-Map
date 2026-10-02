@@ -11,7 +11,7 @@ MapLibre map of Berlin for architectural and urban research. The data core is pr
 - `python scripts/serve.py` serves the repo root; the map is at `/web/?map=<id>` (`&lang=en`, `&embed=1`, `&layers=id:view,...`).
 - `python tests/smoke.py` runs the pipeline against a mock WFS in a temporary folder; `data/` is not touched.
 - Multi-type sources: `source.parts` (each may have its own `base_url`, `rename`, `value`) with `process.combine` = `join` (on `key`) or `concat` (adds `field`). Raw GeoJSON is git-ignored; provenance files are committed.
-- `python scripts/export_site.py [--map vergesellschaftung]` copies viewer, vendor, catalogue, map definition and the processed data that map uses into `02_Vergesellschaftung/karte/` (gitignored) for `karte.html`; `--zip` also writes `website-upload.zip`. The website is static and hosted on Strato (upload of `02_Vergesellschaftung/`).
+- `python scripts/export_site.py [--map vergesellschaftung]` copies viewer, vendor, catalogue, map definition and the processed data that map uses into `02_Vergesellschaftung/karte/` (gitignored) for `karte.html`; `--zip` also writes `website-upload.zip`. The website is published with GitHub Pages from `main`: https://peer-cmd.github.io/Berlin-Map/02_Vergesellschaftung/index.html. Merge changes into `main` so the site updates.
 - `web/app.js` reads its paths from `<body data-base data-data data-map>`; one file serves `web/` and the website.
 - Python standard library only. MapLibre 5.24 is vendored in `web/vendor/`.
 
@@ -44,4 +44,4 @@ Static site: cost and financing model for the socialisation of large Berlin hous
 - Hover explanations on the model pages: `data-term="<glossary term>"` on a label; `tooltips.js` shows the first sentence of the matching glossary entry. Add new terms to the glossary in `content.js`, not as hints in the controls.
 - Pages load `style.css`, `model-calc.js`, `content.js` (and on the model pages `tooltips.js`) with `?v=YYYYMMDD` so browsers fetch new versions; after changing one of these files, update the tag in all pages and both build scripts.
 - Chart.js 4.4.0 is vendored in `vendor/`. Primary sources are PDFs in `pdf/` with Markdown extractions in `pdf/markdown/`.
-- Every number needs a source with page, in the footnotes of `zahlen.html` or in `quellenbelege.md` (page "Die Quellen", ordered by document); quote verbatim only from the original PDF. Log changes in `entwicklungsprotokoll.md`.
+- Every number needs a source with page, in the footnotes of `zahlen.html` or in `quellenbelege.md` (page "Die Chronologie", documents ordered by date, newest first); quote verbatim only from the original PDF. Log changes in `entwicklungsprotokoll.md`.
