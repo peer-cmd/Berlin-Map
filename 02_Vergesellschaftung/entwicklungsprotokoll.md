@@ -224,3 +224,7 @@ Die acht Fußnotenblöcke nach den Abschnitten sind zu einer Liste „Anmerkunge
 ## 2026-10-02 — Modellseite: Spalten in Fensterhöhe, sichtbare Scrollbalken
 
 Ab 1161 px Breite füllt das Layout die Fensterhöhe unterhalb von Navigation und Kopf; Regler-, Ergebnis- (und in v37 Hintergrund-)Spalte scrollen jeweils für sich und enden am unteren Fensterrand (vorher je 100vh hoch, also unten abgeschnitten, solange die Seite nicht mitgescrollt war). Dafür `<body class="model-page">` in v37; `build_kompakt.py` an den neuen Body-Tag angepasst. Scrollbalken der Spalten und der Vergleichstabelle sind dauerhaft sichtbar gestaltet (`::-webkit-scrollbar`, Fallback `scrollbar-color`). Druck und schmale Bildschirme unverändert.
+
+## 2026-10-02 — Versionsparameter gegen veraltete Browser-Caches
+
+Alle Seiten laden `style.css`, `model-calc.js` und `content.js` jetzt mit `?v=20261002` (auch in beiden Build-Skripten). Anlass: Die Layoutänderung der Modellseite war deployt, im Browser wirkte aber noch die zwischengespeicherte alte `style.css`. Bei künftigen Änderungen an diesen Dateien den Parameter erhöhen.
