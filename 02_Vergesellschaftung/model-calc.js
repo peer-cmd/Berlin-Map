@@ -704,7 +704,7 @@
     chartCompSens.data.labels = pfSteps.map(pf=>pf+' %');
     chartCompSens.data.datasets[0].data = pfResults.map(r=>r.netResult);
     chartCompSens.data.datasets[1].data = pfResults.map(r=>r.breakEvenYear);
-    // Range derived from all four presets (at current Zeithorizont/Bestand) rather than a
+    // Range derived from all presets (at current Zeithorizont/Bestand) rather than a
     // fixed constant, so the axis stays stable when switching presets but still adapts
     // correctly if Zeithorizont, Bestandsgröße etc. are changed.
     let compLo = 0, compHi = 0;

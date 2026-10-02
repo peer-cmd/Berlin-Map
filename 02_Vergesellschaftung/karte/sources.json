@@ -1,0 +1,2256 @@
+{
+ "palette": {
+  "note": "Sequential ramps stay within one colour family (values): earth for money, violet for ownership, plum for social data, ink for density. If a view has fewer classes than a ramp has colours, the viewer samples the ramp evenly. Named colours follow Joost Grootens' atlases and are for categories.",
+  "named": {
+   "pink": "#f2668b",
+   "rose": "#f8cdd8",
+   "magenta": "#ff2fc0",
+   "plum": "#8e1f6b",
+   "violet": "#6e62d6",
+   "yellow": "#ffe500",
+   "orange": "#ff8a1e",
+   "olive": "#c3c93a",
+   "green": "#1f6b3f",
+   "grey": "#d4d4cc",
+   "none": "rgba(0,0,0,0)"
+  },
+  "sequential": {
+   "earth": [
+    "#f3efe6",
+    "#e7dcc4",
+    "#dbc29a",
+    "#d2a574",
+    "#c4814f",
+    "#a85a3a",
+    "#82382f",
+    "#5a1f2a",
+    "#34111d"
+   ],
+   "earth7": [
+    "#f3efe6",
+    "#dbc29a",
+    "#c4814f",
+    "#a85a3a",
+    "#82382f",
+    "#5a1f2a",
+    "#34111d"
+   ],
+   "violet": [
+    "#f0effa",
+    "#d9d6f3",
+    "#b8b2e8",
+    "#948cdb",
+    "#6e62d6",
+    "#5245b0",
+    "#382f85",
+    "#221c57"
+   ],
+   "plum": [
+    "#f8eef2",
+    "#f1d3df",
+    "#e6aec4",
+    "#d684a6",
+    "#c05a88",
+    "#9c3a6c",
+    "#74234f",
+    "#4a1233"
+   ],
+   "ink": [
+    "#f2f2ef",
+    "#dcdcd6",
+    "#bdbdb5",
+    "#9a9a92",
+    "#75756e",
+    "#52524c",
+    "#33332f",
+    "#171715"
+   ]
+  }
+ },
+ "basemaps": {
+  "positron": {
+   "style": "https://tiles.openfreemap.org/styles/positron",
+   "attribution": "<a href=\"https://openfreemap.org\" target=\"_blank\" rel=\"noopener\">OpenFreeMap</a> &copy; <a href=\"https://www.openmaptiles.org/\" target=\"_blank\" rel=\"noopener\">OpenMapTiles</a> Data from <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener\">OpenStreetMap</a>"
+  }
+ },
+ "sources": [
+  {
+   "id": "eigentum2025",
+   "enabled": true,
+   "title": {
+    "de": "Eigentumskonzentration 2025",
+    "en": "Ownership concentration 2025"
+   },
+   "unit_label": {
+    "de": "Planungsräume",
+    "en": "planning areas"
+   },
+   "geometry": "polygon",
+   "source": {
+    "type": "wfs",
+    "base_url": "https://gdi.berlin.de/services/wfs/eigentumstruktur",
+    "version": "2.0.0",
+    "output_format": "application/json",
+    "srs_name": "EPSG:4326",
+    "parts": [
+     {
+      "type_name": "eigentumstruktur:a_eigentum_einzel_2025"
+     },
+     {
+      "type_name": "eigentumstruktur:b_eigentum_jurist_privat_2025"
+     },
+     {
+      "type_name": "eigentumstruktur:f_eigentum_jurist_2025"
+     },
+     {
+      "type_name": "eigentumstruktur:c_eigentum_stadtwohn_2025"
+     },
+     {
+      "type_name": "eigentumstruktur:d_eigentum_genossen_2025"
+     },
+     {
+      "type_name": "eigentumstruktur:e_eigentum_gemeinwohl_2025"
+     }
+    ],
+    "dataset_page": "https://www.berlin.de/sen/wohnen/service/berliner-wohnungsmarkt/eigentuemerstruktur-in-berlin/"
+   },
+   "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+   "license": {
+    "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+    "id": "dl-de-zero-2.0",
+    "url": "https://www.govdata.de/dl-de/zero-2-0"
+   },
+   "note": {
+    "de": "Anteile am Grund und Boden (Flurstücksfläche) der Wohn- und Mischflächen je Planungsraum, Liegenschaftskataster Stand Oktober 2025. Keine Aussage über Wohnungen oder Gebäude. Städtische WBG und Genossenschaften sind Teilmengen der juristischen Personen; Wohnungseigentümergemeinschaften zählen zu den natürlichen Personen. Quelle: Datenformatbeschreibung SenSBW.",
+    "en": "Shares of land (parcel area) in residential and mixed use per planning area, land register as of October 2025. Says nothing about dwellings or buildings. Municipal companies and cooperatives are subsets of legal persons; condominium owners count as private individuals."
+   },
+   "process": {
+    "id_field": "plr_schl",
+    "combine": {
+     "mode": "join",
+     "key": "plr_schl"
+    },
+    "alias": {
+     "plr_id": "plr_schl"
+    },
+    "precision": 5,
+    "simplify_m": 2
+   },
+   "fields": [
+    {
+     "key": "plrname",
+     "label": {
+      "de": "Planungsraum",
+      "en": "Planning area"
+     }
+    },
+    {
+     "key": "plr_schl",
+     "label": {
+      "de": "Planungsraum-Schlüssel",
+      "en": "Planning area key"
+     }
+    },
+    {
+     "key": "nat_pers",
+     "label": {
+      "de": "Einzeleigentümer/innen (natürliche Personen)",
+      "en": "Private individuals"
+     },
+     "format": "number",
+     "unit": "%"
+    },
+    {
+     "key": "jur_pers",
+     "label": {
+      "de": "Juristische Personen des privaten Rechts",
+      "en": "Legal persons under private law"
+     },
+     "format": "number",
+     "unit": "%"
+    },
+    {
+     "key": "jp_ohn_swg",
+     "label": {
+      "de": "Juristische Personen ohne städt. WBG und Genossenschaften",
+      "en": "Legal persons excl. municipal companies and cooperatives"
+     },
+     "format": "number",
+     "unit": "%"
+    },
+    {
+     "key": "stwbg",
+     "label": {
+      "de": "Städtische Wohnungsbaugesellschaften",
+      "en": "Municipal housing companies"
+     },
+     "format": "number",
+     "unit": "%"
+    },
+    {
+     "key": "genossen",
+     "label": {
+      "de": "Genossenschaften",
+      "en": "Cooperatives"
+     },
+     "format": "number",
+     "unit": "%"
+    },
+    {
+     "key": "sozvermiet",
+     "label": {
+      "de": "Gemeinwohlorientierte Eigentümer/innen",
+      "en": "Public-interest owners"
+     },
+     "format": "number",
+     "unit": "%"
+    },
+    {
+     "key": "wohmi_fl",
+     "label": {
+      "de": "Wohn- und Mischfläche",
+      "en": "Residential and mixed-use area"
+     },
+     "format": "number",
+     "unit": "m²"
+    }
+   ],
+   "popup_title": "plrname",
+   "views": {
+    "nat_pers": {
+     "label": {
+      "de": "Einzeleigentümer/innen (natürliche Personen)",
+      "en": "Private individuals"
+     },
+     "style": {
+      "kind": "step",
+      "property": "nat_pers",
+      "unit": "% der Wohn- und Mischfläche",
+      "breaks": [
+       10,
+       20,
+       30,
+       40,
+       50,
+       60,
+       80
+      ],
+      "colors": "violet"
+     }
+    },
+    "jur_pers": {
+     "label": {
+      "de": "Juristische Personen des privaten Rechts",
+      "en": "Legal persons under private law"
+     },
+     "style": {
+      "kind": "step",
+      "property": "jur_pers",
+      "unit": "% der Wohn- und Mischfläche",
+      "breaks": [
+       10,
+       20,
+       30,
+       40,
+       50,
+       60,
+       80
+      ],
+      "colors": "violet"
+     }
+    },
+    "jp_ohn_swg": {
+     "label": {
+      "de": "Juristische Personen ohne städt. WBG und Genossenschaften",
+      "en": "Legal persons excl. municipal companies and cooperatives"
+     },
+     "style": {
+      "kind": "step",
+      "property": "jp_ohn_swg",
+      "unit": "% der Wohn- und Mischfläche",
+      "breaks": [
+       10,
+       20,
+       30,
+       40,
+       50,
+       60,
+       80
+      ],
+      "colors": "violet"
+     }
+    },
+    "stwbg": {
+     "label": {
+      "de": "Städtische Wohnungsbaugesellschaften",
+      "en": "Municipal housing companies"
+     },
+     "style": {
+      "kind": "step",
+      "property": "stwbg",
+      "unit": "% der Wohn- und Mischfläche",
+      "breaks": [
+       10,
+       20,
+       30,
+       40,
+       50,
+       60,
+       80
+      ],
+      "colors": "violet"
+     }
+    },
+    "genossen": {
+     "label": {
+      "de": "Genossenschaften",
+      "en": "Cooperatives"
+     },
+     "style": {
+      "kind": "step",
+      "property": "genossen",
+      "unit": "% der Wohn- und Mischfläche",
+      "breaks": [
+       10,
+       20,
+       30,
+       40,
+       50,
+       60,
+       80
+      ],
+      "colors": "violet"
+     }
+    },
+    "sozvermiet": {
+     "label": {
+      "de": "Gemeinwohlorientierte Eigentümer/innen",
+      "en": "Public-interest owners"
+     },
+     "style": {
+      "kind": "step",
+      "property": "sozvermiet",
+      "unit": "% der Wohn- und Mischfläche",
+      "breaks": [
+       10,
+       20,
+       30,
+       40,
+       50,
+       60,
+       80
+      ],
+      "colors": "violet"
+     }
+    }
+   }
+  },
+  {
+   "id": "lwu",
+   "enabled": true,
+   "title": {
+    "de": "Wohnungsbestand der landeseigenen Wohnungsunternehmen",
+    "en": "Housing stock of the state-owned housing companies"
+   },
+   "unit_label": {
+    "de": "Flurstücke",
+    "en": "parcels"
+   },
+   "geometry": "polygon",
+   "source": {
+    "type": "wfs",
+    "base_url": "https://gdi.berlin.de/services/wfs/lwu",
+    "version": "2.0.0",
+    "output_format": "application/json",
+    "srs_name": "EPSG:4326",
+    "type_name": "lwu:lwu_fls",
+    "dataset_page": "https://gdi.berlin.de/services/wfs/lwu?request=GetCapabilities&service=WFS"
+   },
+   "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+   "license": {
+    "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+    "id": "dl-de-zero-2.0",
+    "url": "https://www.govdata.de/dl-de/zero-2-0"
+   },
+   "process": {
+    "id_field": "gisid",
+    "precision": 6,
+    "simplify_m": 0.5
+   },
+   "fields": [
+    {
+     "key": "typ",
+     "label": {
+      "de": "Typ",
+      "en": "Type"
+     }
+    },
+    {
+     "key": "gisid",
+     "label": {
+      "de": "Flurstückskennzeichen",
+      "en": "Parcel id"
+     }
+    }
+   ],
+   "views": {
+    "bestand": {
+     "label": {
+      "de": "Bestand",
+      "en": "Stock"
+     },
+     "style": {
+      "kind": "single",
+      "color": "violet"
+     }
+    }
+   }
+  },
+  {
+   "id": "erhaltungsgebiete",
+   "enabled": true,
+   "title": {
+    "de": "Erhaltungsverordnungsgebiete § 172 BauGB",
+    "en": "Preservation areas § 172 BauGB"
+   },
+   "unit_label": {
+    "de": "Gebiete",
+    "en": "areas"
+   },
+   "geometry": "polygon",
+   "source": {
+    "type": "wfs",
+    "base_url": "https://gdi.berlin.de/services/wfs/erhaltungsverordnungsgebiete",
+    "version": "2.0.0",
+    "output_format": "application/json",
+    "srs_name": "EPSG:4326",
+    "parts": [
+     {
+      "type_name": "erhaltungsverordnungsgebiete:erhaltgeb_em",
+      "value": "Zusammensetzung der Wohnbevölkerung (Milieuschutz)"
+     },
+     {
+      "type_name": "erhaltungsverordnungsgebiete:erhaltgeb_es",
+      "value": "Städtebauliche Eigenart",
+      "rename": {
+       "fl_in_ha": "fl_ha"
+      }
+     }
+    ],
+    "dataset_page": "https://gdi.berlin.de/services/wfs/erhaltungsverordnungsgebiete?request=GetCapabilities&service=WFS"
+   },
+   "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+   "license": {
+    "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+    "id": "dl-de-zero-2.0",
+    "url": "https://www.govdata.de/dl-de/zero-2-0"
+   },
+   "note": {
+    "de": "Rechtsverbindlich ist ausschließlich die Veröffentlichung im Gesetz- und Verordnungsblatt (GVBl).",
+    "en": "Only the publication in the official gazette (GVBl) is legally binding."
+   },
+   "process": {
+    "id_field": "schluessel",
+    "combine": {
+     "mode": "concat",
+     "field": "erhaltungsziel"
+    },
+    "precision": 6,
+    "simplify_m": 1
+   },
+   "fields": [
+    {
+     "key": "gebietsname",
+     "label": {
+      "de": "Gebiet",
+      "en": "Area"
+     }
+    },
+    {
+     "key": "erhaltungsziel",
+     "label": {
+      "de": "Erhaltungsziel",
+      "en": "Purpose"
+     }
+    },
+    {
+     "key": "bezirk",
+     "label": {
+      "de": "Bezirk",
+      "en": "District"
+     }
+    },
+    {
+     "key": "f_in_kraft",
+     "label": {
+      "de": "In Kraft seit",
+      "en": "In force since"
+     }
+    },
+    {
+     "key": "f_gvbl_dat",
+     "label": {
+      "de": "GVBl vom",
+      "en": "Gazette date"
+     }
+    },
+    {
+     "key": "ae_inkraft",
+     "label": {
+      "de": "Änderung in Kraft",
+      "en": "Amendment in force"
+     }
+    },
+    {
+     "key": "fl_ha",
+     "label": {
+      "de": "Fläche",
+      "en": "Area"
+     },
+     "format": "number",
+     "unit": "ha"
+    },
+    {
+     "key": "schluessel",
+     "label": {
+      "de": "Schlüssel",
+      "en": "Key"
+     }
+    }
+   ],
+   "popup_title": "gebietsname",
+   "views": {
+    "ziel": {
+     "label": {
+      "de": "Erhaltungsziel",
+      "en": "Purpose"
+     },
+     "style": {
+      "kind": "categorical",
+      "property": "erhaltungsziel",
+      "categories": [
+       {
+        "label": {
+         "de": "Milieuschutz (Zusammensetzung der Wohnbevölkerung)",
+         "en": "Social preservation (Milieuschutz)"
+        },
+        "color": "pink",
+        "values": [
+         "Zusammensetzung der Wohnbevölkerung (Milieuschutz)"
+        ]
+       },
+       {
+        "label": {
+         "de": "Städtebauliche Eigenart",
+         "en": "Townscape character"
+        },
+        "color": "olive",
+        "values": [
+         "Städtebauliche Eigenart"
+        ]
+       }
+      ],
+      "other_color": "grey"
+     }
+    }
+   }
+  },
+  {
+   "id": "vorkaufsrecht",
+   "enabled": true,
+   "title": {
+    "de": "Vorkaufsrechtsverordnungen § 25 BauGB",
+    "en": "Pre-emption rights ordinances § 25 BauGB"
+   },
+   "unit_label": {
+    "de": "Gebiete",
+    "en": "areas"
+   },
+   "geometry": "polygon",
+   "source": {
+    "type": "wfs",
+    "base_url": "https://gdi.berlin.de/services/wfs/vorkaufsrechtsverordnungen",
+    "version": "2.0.0",
+    "output_format": "application/json",
+    "srs_name": "EPSG:4326",
+    "type_name": "vorkaufsrechtsverordnungen:vorkaufsrechtsverordnungen",
+    "dataset_page": "https://gdi.berlin.de/services/wfs/vorkaufsrechtsverordnungen?request=GetCapabilities&service=WFS"
+   },
+   "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+   "license": {
+    "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+    "id": "dl-de-zero-2.0",
+    "url": "https://www.govdata.de/dl-de/zero-2-0"
+   },
+   "note": {
+    "de": "Rechtsverbindlich ist ausschließlich die Veröffentlichung im GVBl.",
+    "en": "Only the publication in the official gazette (GVBl) is legally binding."
+   },
+   "process": {
+    "id_field": "schluessel"
+   },
+   "fields": [
+    {
+     "key": "gebietsname",
+     "label": {
+      "de": "Gebiet",
+      "en": "Area"
+     }
+    },
+    {
+     "key": "bezirk",
+     "label": {
+      "de": "Bezirk",
+      "en": "District"
+     }
+    },
+    {
+     "key": "datum_in_kraft",
+     "label": {
+      "de": "In Kraft seit",
+      "en": "In force since"
+     }
+    },
+    {
+     "key": "fl_in_ha",
+     "label": {
+      "de": "Fläche",
+      "en": "Area"
+     },
+     "format": "number",
+     "unit": "ha"
+    },
+    {
+     "key": "gvbl_link",
+     "label": {
+      "de": "GVBl",
+      "en": "Gazette"
+     },
+     "format": "link",
+     "link_text": "PDF"
+    },
+    {
+     "key": "weitere_link",
+     "label": {
+      "de": "Weitere Informationen",
+      "en": "More information"
+     },
+     "format": "link",
+     "link_text": "berlin.de"
+    },
+    {
+     "key": "schluessel",
+     "label": {
+      "de": "Schlüssel",
+      "en": "Key"
+     }
+    }
+   ],
+   "popup_title": "gebietsname",
+   "views": {
+    "gebiet": {
+     "label": {
+      "de": "Geltungsbereich",
+      "en": "Area"
+     },
+     "style": {
+      "kind": "single",
+      "color": "orange"
+     }
+    }
+   }
+  },
+  {
+   "id": "sanierungsgebiete",
+   "enabled": true,
+   "title": {
+    "de": "Sanierungsgebiete",
+    "en": "Redevelopment areas"
+   },
+   "unit_label": {
+    "de": "Gebiete",
+    "en": "areas"
+   },
+   "geometry": "polygon",
+   "source": {
+    "type": "wfs",
+    "base_url": "https://gdi.berlin.de/services/wfs/sanier",
+    "version": "2.0.0",
+    "output_format": "application/json",
+    "srs_name": "EPSG:4326",
+    "parts": [
+     {
+      "type_name": "sanier:a_sanier_umfassend",
+      "value": "Umfassendes Verfahren"
+     },
+     {
+      "type_name": "sanier:b_sanier_einfach",
+      "value": "Vereinfachtes Verfahren"
+     },
+     {
+      "type_name": "sanier:c_sanier_aufgehoben",
+      "value": "Aufgehoben (ab 2002)"
+     }
+    ],
+    "dataset_page": "https://gdi.berlin.de/services/wfs/sanier?request=GetCapabilities&service=WFS"
+   },
+   "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+   "license": {
+    "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+    "id": "dl-de-zero-2.0",
+    "url": "https://www.govdata.de/dl-de/zero-2-0"
+   },
+   "note": {
+    "de": "Rechtsverbindlich ist ausschließlich die Veröffentlichung im GVBl.",
+    "en": "Only the publication in the official gazette (GVBl) is legally binding."
+   },
+   "process": {
+    "id_field": "schluessel",
+    "combine": {
+     "mode": "concat",
+     "field": "status"
+    },
+    "precision": 6,
+    "simplify_m": 1
+   },
+   "fields": [
+    {
+     "key": "gebietsname",
+     "label": {
+      "de": "Gebiet",
+      "en": "Area"
+     }
+    },
+    {
+     "key": "status",
+     "label": {
+      "de": "Status",
+      "en": "Status"
+     }
+    },
+    {
+     "key": "bezirk",
+     "label": {
+      "de": "Bezirk",
+      "en": "District"
+     }
+    },
+    {
+     "key": "f_in_kraft",
+     "label": {
+      "de": "Festgelegt, in Kraft",
+      "en": "In force since"
+     }
+    },
+    {
+     "key": "au_inkraft",
+     "label": {
+      "de": "Aufhebung in Kraft",
+      "en": "Repeal in force"
+     }
+    },
+    {
+     "key": "fl_in_ha",
+     "label": {
+      "de": "Fläche",
+      "en": "Area"
+     },
+     "format": "number",
+     "unit": "ha"
+    },
+    {
+     "key": "schluessel",
+     "label": {
+      "de": "Schlüssel",
+      "en": "Key"
+     }
+    }
+   ],
+   "popup_title": "gebietsname",
+   "views": {
+    "status": {
+     "label": {
+      "de": "Status",
+      "en": "Status"
+     },
+     "style": {
+      "kind": "categorical",
+      "property": "status",
+      "categories": [
+       {
+        "label": {
+         "de": "Umfassendes Verfahren",
+         "en": "Comprehensive procedure"
+        },
+        "color": "plum",
+        "values": [
+         "Umfassendes Verfahren"
+        ]
+       },
+       {
+        "label": {
+         "de": "Vereinfachtes Verfahren",
+         "en": "Simplified procedure"
+        },
+        "color": "pink",
+        "values": [
+         "Vereinfachtes Verfahren"
+        ]
+       },
+       {
+        "label": {
+         "de": "Aufgehoben (ab 2002)",
+         "en": "Repealed (since 2002)"
+        },
+        "color": "grey",
+        "values": [
+         "Aufgehoben (ab 2002)"
+        ]
+       }
+      ],
+      "other_color": "grey"
+     }
+    }
+   }
+  },
+  {
+   "id": "entwicklungsbereiche",
+   "enabled": true,
+   "title": {
+    "de": "Entwicklungsbereiche § 165 BauGB",
+    "en": "Development areas § 165 BauGB"
+   },
+   "unit_label": {
+    "de": "Gebiete",
+    "en": "areas"
+   },
+   "geometry": "polygon",
+   "source": {
+    "type": "wfs",
+    "base_url": "https://gdi.berlin.de/services/wfs/entwicklungsbereiche",
+    "version": "2.0.0",
+    "output_format": "application/json",
+    "srs_name": "EPSG:4326",
+    "parts": [
+     {
+      "type_name": "entwicklungsbereiche:a_entwicklungsbereiche",
+      "value": "Entwicklungsbereich"
+     },
+     {
+      "type_name": "entwicklungsbereiche:b_entwicklungsbereiche_entl",
+      "value": "Aus dem Entwicklungsrecht entlassen"
+     }
+    ],
+    "dataset_page": "https://gdi.berlin.de/services/wfs/entwicklungsbereiche?request=GetCapabilities&service=WFS"
+   },
+   "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+   "license": {
+    "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+    "id": "dl-de-zero-2.0",
+    "url": "https://www.govdata.de/dl-de/zero-2-0"
+   },
+   "process": {
+    "id_field": "gisid",
+    "combine": {
+     "mode": "concat",
+     "field": "status"
+    },
+    "precision": 6,
+    "simplify_m": 1
+   },
+   "fields": [
+    {
+     "key": "name",
+     "label": {
+      "de": "Gebiet",
+      "en": "Area"
+     }
+    },
+    {
+     "key": "status",
+     "label": {
+      "de": "Status",
+      "en": "Status"
+     }
+    },
+    {
+     "key": "bezirk",
+     "label": {
+      "de": "Bezirk",
+      "en": "District"
+     }
+    },
+    {
+     "key": "f_in_kraft",
+     "label": {
+      "de": "Festgelegt, in Kraft",
+      "en": "In force since"
+     }
+    },
+    {
+     "key": "e_in_kraft",
+     "label": {
+      "de": "Entlassung in Kraft",
+      "en": "Release in force"
+     }
+    },
+    {
+     "key": "f_gvbl",
+     "label": {
+      "de": "GVBl",
+      "en": "Gazette"
+     }
+    }
+   ],
+   "popup_title": "name",
+   "views": {
+    "status": {
+     "label": {
+      "de": "Status",
+      "en": "Status"
+     },
+     "style": {
+      "kind": "categorical",
+      "property": "status",
+      "categories": [
+       {
+        "label": {
+         "de": "Entwicklungsbereich",
+         "en": "Development area"
+        },
+        "color": "violet",
+        "values": [
+         "Entwicklungsbereich"
+        ]
+       },
+       {
+        "label": {
+         "de": "Entlassen",
+         "en": "Released"
+        },
+        "color": "grey",
+        "values": [
+         "Aus dem Entwicklungsrecht entlassen"
+        ]
+       }
+      ],
+      "other_color": "grey"
+     }
+    }
+   }
+  },
+  {
+   "id": "grosssiedlungen",
+   "enabled": true,
+   "title": {
+    "de": "Großsiedlungen",
+    "en": "Large housing estates"
+   },
+   "unit_label": {
+    "de": "Gebiete",
+    "en": "areas"
+   },
+   "geometry": "polygon",
+   "source": {
+    "type": "wfs",
+    "base_url": "https://gdi.berlin.de/services/wfs/grosssiedlungen",
+    "version": "2.0.0",
+    "output_format": "application/json",
+    "srs_name": "EPSG:4326",
+    "type_name": "grosssiedlungen:c_grosssiedlungen",
+    "dataset_page": "https://gdi.berlin.de/services/wfs/grosssiedlungen?request=GetCapabilities&service=WFS"
+   },
+   "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+   "license": {
+    "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+    "id": "dl-de-zero-2.0",
+    "url": "https://www.govdata.de/dl-de/zero-2-0"
+   },
+   "process": {
+    "id_field": "gisid",
+    "precision": 6,
+    "simplify_m": 1
+   },
+   "fields": [
+    {
+     "key": "gebietsname",
+     "label": {
+      "de": "Gebiet",
+      "en": "Area"
+     }
+    },
+    {
+     "key": "gebietstyp",
+     "label": {
+      "de": "Programmkulisse",
+      "en": "Programme"
+     }
+    },
+    {
+     "key": "fl_in_ha",
+     "label": {
+      "de": "Fläche",
+      "en": "Area"
+     },
+     "format": "number",
+     "unit": "ha"
+    }
+   ],
+   "popup_title": "gebietsname",
+   "views": {
+    "typ": {
+     "label": {
+      "de": "Programmkulisse",
+      "en": "Programme"
+     },
+     "style": {
+      "kind": "categorical",
+      "property": "gebietstyp",
+      "categories": [
+       {
+        "label": {
+         "de": "Großsiedlung",
+         "en": "Large estate"
+        },
+        "color": "yellow",
+        "values": [
+         "Großsiedlungen"
+        ]
+       },
+       {
+        "label": {
+         "de": "Stärkung Berliner Großsiedlungen",
+         "en": "Strengthening large estates"
+        },
+        "color": "orange",
+        "values": [
+         "Stärkung Berliner Großsiedlungen"
+        ]
+       },
+       {
+        "label": {
+         "de": "Sauberkeit und Sicherheitsempfinden",
+         "en": "Cleanliness and safety"
+        },
+        "color": "pink",
+        "values": [
+         "Sauberkeit und Sicherheitsempfinden in Berliner Großsiedlungen"
+        ]
+       }
+      ],
+      "other_color": "grey"
+     }
+    }
+   }
+  },
+  {
+   "id": "step_wohnen_potenziale",
+   "enabled": true,
+   "title": {
+    "de": "StEP Wohnen 2040: Wohnungsbaupotenziale",
+    "en": "StEP Housing 2040: housing potentials"
+   },
+   "unit_label": {
+    "de": "Standorte",
+    "en": "sites"
+   },
+   "geometry": "point",
+   "source": {
+    "type": "wfs",
+    "base_url": "https://gdi.berlin.de/services/wfs/step_wo_2040",
+    "version": "2.0.0",
+    "output_format": "application/json",
+    "srs_name": "EPSG:4326",
+    "parts": [
+     {
+      "type_name": "step_wo_2040:h_step_wo_2040_wobau_fertig"
+     },
+     {
+      "type_name": "step_wo_2040:i_step_wo_2040_wobau_gemeinw"
+     }
+    ],
+    "dataset_page": "https://gdi.berlin.de/services/wfs/step_wo_2040?request=GetCapabilities&service=WFS"
+   },
+   "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+   "license": {
+    "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+    "id": "dl-de-zero-2.0",
+    "url": "https://www.govdata.de/dl-de/zero-2-0"
+   },
+   "process": {
+    "id_field": "gisid",
+    "combine": {
+     "mode": "join",
+     "key": "gisid"
+    }
+   },
+   "fields": [
+    {
+     "key": "bez",
+     "label": {
+      "de": "Standort",
+      "en": "Site"
+     }
+    },
+    {
+     "key": "we_kat",
+     "label": {
+      "de": "Wohneinheiten",
+      "en": "Dwellings"
+     }
+    },
+    {
+     "key": "leg_fertig",
+     "label": {
+      "de": "Fertigstellungshorizont",
+      "en": "Completion horizon"
+     }
+    },
+    {
+     "key": "leg_gemeinw",
+     "label": {
+      "de": "Gemeinwohlorientierung",
+      "en": "Public-interest orientation"
+     }
+    },
+    {
+     "key": "gisid",
+     "label": {
+      "de": "Nr.",
+      "en": "No."
+     }
+    }
+   ],
+   "popup_title": "bez",
+   "size": {
+    "property": "we_kat",
+    "values": {
+     "200 - 499 Wohneinheiten": 4,
+     "500 - 999 Wohneinheiten": 6,
+     "1000 - 1999 Wohneinheiten": 8.5,
+     "2000 und mehr Wohneinheiten": 11
+    },
+    "default": 4,
+    "label": {
+     "de": "Wohneinheiten",
+     "en": "Dwellings"
+    }
+   },
+   "views": {
+    "fertig": {
+     "label": {
+      "de": "Fertigstellungshorizont",
+      "en": "Completion horizon"
+     },
+     "style": {
+      "kind": "categorical",
+      "property": "leg_fertig",
+      "categories": [
+       {
+        "label": {
+         "de": "Im Bau",
+         "en": "Im Bau"
+        },
+        "color": "#4a1233",
+        "values": [
+         "Im Bau"
+        ]
+       },
+       {
+        "label": {
+         "de": "Kurzfristiges Potenzial",
+         "en": "Kurzfristiges Potenzial"
+        },
+        "color": "#9c3a6c",
+        "values": [
+         "Kurzfristiges Potenzial"
+        ]
+       },
+       {
+        "label": {
+         "de": "Mittelfristiges Potenzial",
+         "en": "Mittelfristiges Potenzial"
+        },
+        "color": "#d684a6",
+        "values": [
+         "Mittelfristiges Potenzial"
+        ]
+       },
+       {
+        "label": {
+         "de": "Langfristiges Potenzial",
+         "en": "Langfristiges Potenzial"
+        },
+        "color": "#f1d3df",
+        "values": [
+         "Langfristiges Potenzial"
+        ]
+       }
+      ],
+      "other_color": "grey"
+     }
+    },
+    "gemeinwohl": {
+     "label": {
+      "de": "Gemeinwohlorientierung",
+      "en": "Public-interest orientation"
+     },
+     "style": {
+      "kind": "categorical",
+      "property": "leg_gemeinw",
+      "categories": [
+       {
+        "label": {
+         "de": "Potenzial für gemeinwohlorientierten Wohnungsbau",
+         "en": "Potential for public-interest housing"
+        },
+        "color": "violet",
+        "values": [
+         "Potenziale für gemeinwohlorientierten Wohnungsbau"
+        ]
+       },
+       {
+        "label": {
+         "de": "Sonstiges Wohnungsbaupotenzial",
+         "en": "Other housing potential"
+        },
+        "color": "grey",
+        "values": [
+         "Sonstige Wohnungsbaupotenziale"
+        ]
+       }
+      ],
+      "other_color": "grey"
+     }
+    }
+   },
+   "note": {
+    "de": "Punktstandorte; Größe nach Wohneinheiten-Klasse des StEP Wohnen 2040.",
+    "en": "Point sites; size by the StEP Housing 2040 dwelling class."
+   }
+  },
+  {
+   "id": "step_wohnen_quartiere",
+   "enabled": true,
+   "title": {
+    "de": "StEP Wohnen 2040: Neue Stadtquartiere",
+    "en": "StEP Housing 2040: new urban quarters"
+   },
+   "unit_label": {
+    "de": "Quartiere",
+    "en": "quarters"
+   },
+   "geometry": "polygon",
+   "source": {
+    "type": "wfs",
+    "base_url": "https://gdi.berlin.de/services/wfs/step_wo_2040",
+    "version": "2.0.0",
+    "output_format": "application/json",
+    "srs_name": "EPSG:4326",
+    "type_name": "step_wo_2040:j_step_wo_2040_neustadtquar",
+    "dataset_page": "https://gdi.berlin.de/services/wfs/step_wo_2040?request=GetCapabilities&service=WFS"
+   },
+   "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+   "license": {
+    "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+    "id": "dl-de-zero-2.0",
+    "url": "https://www.govdata.de/dl-de/zero-2-0"
+   },
+   "process": {
+    "id_field": "gisid"
+   },
+   "fields": [
+    {
+     "key": "bez",
+     "label": {
+      "de": "Quartier",
+      "en": "Quarter"
+     }
+    },
+    {
+     "key": "kat",
+     "label": {
+      "de": "Realisierung",
+      "en": "Completion"
+     }
+    },
+    {
+     "key": "gisid",
+     "label": {
+      "de": "Nr.",
+      "en": "No."
+     }
+    }
+   ],
+   "popup_title": "bez",
+   "views": {
+    "kat": {
+     "label": {
+      "de": "Realisierung",
+      "en": "Completion"
+     },
+     "style": {
+      "kind": "categorical",
+      "property": "kat",
+      "categories": [
+       {
+        "label": {
+         "de": "Größtenteils abgeschlossen",
+         "en": "Größtenteils abgeschlossen"
+        },
+        "color": "#221c57",
+        "values": [
+         "Größtenteils abgeschlossen"
+        ]
+       },
+       {
+        "label": {
+         "de": "Im Bau",
+         "en": "Im Bau"
+        },
+        "color": "#382f85",
+        "values": [
+         "Im Bau"
+        ]
+       },
+       {
+        "label": {
+         "de": "Bis 2026",
+         "en": "Bis 2026"
+        },
+        "color": "#5245b0",
+        "values": [
+         "Bis 2026"
+        ]
+       },
+       {
+        "label": {
+         "de": "2027 - 2031",
+         "en": "2027 - 2031"
+        },
+        "color": "#6e62d6",
+        "values": [
+         "2027 - 2031"
+        ]
+       },
+       {
+        "label": {
+         "de": "2032 - 2040",
+         "en": "2032 - 2040"
+        },
+        "color": "#948cdb",
+        "values": [
+         "2032 - 2040"
+        ]
+       },
+       {
+        "label": {
+         "de": "2032 - 2040 (in Vorbereitung)",
+         "en": "2032 - 2040 (in Vorbereitung)"
+        },
+        "color": "#b8b2e8",
+        "values": [
+         "2032 - 2040 (in Vorbereitung)"
+        ]
+       }
+      ],
+      "other_color": "grey"
+     }
+    }
+   },
+   "note": {
+    "de": "Schematische Darstellung: Der Dienst liefert Kreise von etwa 900 m Radius um den Standort, keine Gebietsgrenzen.",
+    "en": "Schematic: the service delivers circles of about 900 m radius around each site, not area boundaries."
+   }
+  },
+  {
+   "id": "wohnatlas2022",
+   "enabled": true,
+   "title": {
+    "de": "Wohnatlas Berlin 2022",
+    "en": "Berlin housing atlas 2022"
+   },
+   "unit_label": {
+    "de": "Prognoseräume",
+    "en": "forecast areas"
+   },
+   "geometry": "polygon",
+   "source": {
+    "type": "wfs",
+    "base_url": "https://gdi.berlin.de/services/wfs/wa_01_angebotsmieten",
+    "version": "2.0.0",
+    "output_format": "application/json",
+    "srs_name": "EPSG:4326",
+    "parts": [
+     {
+      "base_url": "https://gdi.berlin.de/services/wfs/wa_01_angebotsmieten",
+      "type_name": "wa_01_angebotsmieten:wa_01_2022"
+     },
+     {
+      "base_url": "https://gdi.berlin.de/services/wfs/wa_04_anteil_sozwohng",
+      "type_name": "wa_04_anteil_sozwohng:wa_04_2022"
+     },
+     {
+      "base_url": "https://gdi.berlin.de/services/wfs/wa_05_anteil_staedtwbg",
+      "type_name": "wa_05_anteil_staedtwbg:wa_05_2022"
+     },
+     {
+      "base_url": "https://gdi.berlin.de/services/wfs/wa_07_whg_umwandlungp",
+      "type_name": "wa_07_whg_umwandlungp:wa_07_2017_22"
+     },
+     {
+      "base_url": "https://gdi.berlin.de/services/wfs/wa_10_whg_verkaufp",
+      "type_name": "wa_10_whg_verkaufp:wa_10_2017_22"
+     }
+    ],
+    "dataset_page": "https://gdi.berlin.de/services/wfs/wa_01_angebotsmieten?request=GetCapabilities&service=WFS"
+   },
+   "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+   "license": {
+    "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+    "id": "dl-de-zero-2.0",
+    "url": "https://www.govdata.de/dl-de/zero-2-0"
+   },
+   "note": {
+    "de": "Jahrgang 2022; Umwandlungen und Verkäufe als Summe 2017–2022. 58 Prognoseräume (LOR 2021).",
+    "en": "Year 2022; conversions and sales summed over 2017–2022. 58 forecast areas (LOR 2021)."
+   },
+   "process": {
+    "id_field": "prognoseraum_nummer",
+    "combine": {
+     "mode": "join",
+     "key": "prognoseraum_nummer"
+    },
+    "alias": {
+     "pgr_id": "prognoseraum_nummer"
+    },
+    "precision": 5,
+    "simplify_m": 2
+   },
+   "fields": [
+    {
+     "key": "prognoseraum_bezeichnung",
+     "label": {
+      "de": "Prognoseraum",
+      "en": "Forecast area"
+     }
+    },
+    {
+     "key": "bezirk",
+     "label": {
+      "de": "Bezirk",
+      "en": "District"
+     }
+    },
+    {
+     "key": "angebotsmieten",
+     "label": {
+      "de": "Angebotsmiete (netto kalt)",
+      "en": "Asking rent (net, cold)"
+     },
+     "format": "number",
+     "unit": "€/m²"
+    },
+    {
+     "key": "anteil_sozwohng",
+     "label": {
+      "de": "Anteil Sozialmietwohnungen",
+      "en": "Share of social housing"
+     },
+     "format": "number",
+     "unit": "%"
+    },
+    {
+     "key": "anteil_staedtwbg",
+     "label": {
+      "de": "Anteil städtische Wohnungsbaugesellschaften",
+      "en": "Share of municipal companies"
+     },
+     "format": "number",
+     "unit": "%"
+    },
+    {
+     "key": "wohnung_umwandp",
+     "label": {
+      "de": "Umwandlungen in Eigentumswohnungen je 1.000 Wohnungen (2017–2022)",
+      "en": "Conversions to condominiums per 1,000 dwellings (2017–2022)"
+     },
+     "format": "number"
+    },
+    {
+     "key": "wohnungverkaufp",
+     "label": {
+      "de": "Wohnungsverkäufe je 1.000 Wohnungen (2017–2022)",
+      "en": "Flat sales per 1,000 dwellings (2017–2022)"
+     },
+     "format": "number"
+    },
+    {
+     "key": "prognoseraum_nummer",
+     "label": {
+      "de": "Prognoseraum-Nr.",
+      "en": "Forecast area no."
+     }
+    }
+   ],
+   "popup_title": "prognoseraum_bezeichnung",
+   "views": {
+    "angebotsmieten": {
+     "label": {
+      "de": "Angebotsmiete",
+      "en": "Asking rent"
+     },
+     "style": {
+      "kind": "step",
+      "property": "angebotsmieten",
+      "unit": "€/m² netto kalt",
+      "breaks": [
+       9,
+       10,
+       11,
+       12,
+       13,
+       14,
+       16,
+       18
+      ],
+      "colors": "earth"
+     }
+    },
+    "anteil_sozwohng": {
+     "label": {
+      "de": "Anteil Sozialmietwohnungen",
+      "en": "Share of social housing"
+     },
+     "style": {
+      "kind": "step",
+      "property": "anteil_sozwohng",
+      "unit": "%",
+      "breaks": [
+       1,
+       2,
+       4,
+       6,
+       8,
+       10,
+       15
+      ],
+      "colors": "plum"
+     }
+    },
+    "anteil_staedtwbg": {
+     "label": {
+      "de": "Anteil städt. Wohnungsbaugesellschaften",
+      "en": "Share of municipal companies"
+     },
+     "style": {
+      "kind": "step",
+      "property": "anteil_staedtwbg",
+      "unit": "%",
+      "breaks": [
+       5,
+       10,
+       15,
+       20,
+       30,
+       40,
+       50
+      ],
+      "colors": "violet"
+     }
+    },
+    "wohnung_umwandp": {
+     "label": {
+      "de": "Umwandlungen 2017–2022",
+      "en": "Conversions 2017–2022"
+     },
+     "style": {
+      "kind": "step",
+      "property": "wohnung_umwandp",
+      "unit": "je 1.000 Wohnungen",
+      "breaks": [
+       5,
+       10,
+       20,
+       40,
+       60,
+       80,
+       100
+      ],
+      "colors": "plum"
+     }
+    },
+    "wohnungverkaufp": {
+     "label": {
+      "de": "Wohnungsverkäufe 2017–2022",
+      "en": "Flat sales 2017–2022"
+     },
+     "style": {
+      "kind": "step",
+      "property": "wohnungverkaufp",
+      "unit": "je 1.000 Wohnungen",
+      "breaks": [
+       10,
+       20,
+       30,
+       40,
+       50,
+       60,
+       70
+      ],
+      "colors": "plum"
+     }
+    }
+   }
+  },
+  {
+   "id": "brw2026",
+   "enabled": true,
+   "title": {
+    "de": "Bodenrichtwerte 01.01.2026",
+    "en": "Standard land values 01.01.2026"
+   },
+   "unit_label": {
+    "de": "Zonen",
+    "en": "zones"
+   },
+   "geometry": "polygon",
+   "source": {
+    "type": "wfs",
+    "base_url": "https://gdi.berlin.de/services/wfs/brw2026",
+    "version": "2.0.0",
+    "type_name": "brw2026:brw2026_vector",
+    "output_format": "application/json",
+    "srs_name": "EPSG:4326",
+    "dataset_page": "https://daten.berlin.de/datensaetze/bodenrichtwerte-01-01-2026-wfs-0933be9c"
+   },
+   "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+   "license": {
+    "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+    "id": "dl-de-zero-2.0",
+    "url": "https://www.govdata.de/dl-de/zero-2-0"
+   },
+   "process": {
+    "id_field": "brwid",
+    "sort": "area_desc"
+   },
+   "fields": [
+    {
+     "key": "brw",
+     "label": {
+      "de": "Bodenrichtwert",
+      "en": "Standard land value"
+     },
+     "format": "number",
+     "unit": "€/m²"
+    },
+    {
+     "key": "stichtag",
+     "label": {
+      "de": "Stichtag",
+      "en": "Reference date"
+     },
+     "format": "date"
+    },
+    {
+     "key": "nutzung",
+     "label": {
+      "de": "Art der Nutzung",
+      "en": "Use"
+     }
+    },
+    {
+     "key": "gfz",
+     "label": {
+      "de": "Wertrelevante GFZ",
+      "en": "Floor-area ratio (GFZ)"
+     },
+     "format": "number"
+    },
+    {
+     "key": "bezirk",
+     "label": {
+      "de": "Bezirk",
+      "en": "District"
+     }
+    },
+    {
+     "key": "brwid",
+     "label": {
+      "de": "Bodenrichtwertnummer",
+      "en": "Zone no."
+     }
+    },
+    {
+     "key": "beitragszustand",
+     "label": {
+      "de": "Beitragsrechtlicher Zustand",
+      "en": "Contribution status"
+     }
+    },
+    {
+     "key": "anwert",
+     "label": {
+      "de": "Sanierungs-/Entwicklungszusatz",
+      "en": "Redevelopment supplement"
+     }
+    },
+    {
+     "key": "verfahrensart",
+     "label": {
+      "de": "Verfahrensart",
+      "en": "Procedure"
+     }
+    },
+    {
+     "key": "lumnum",
+     "label": {
+      "de": "GFZ-Umrechnungskoeffizienten",
+      "en": "GFZ conversion coefficients"
+     },
+     "format": "link",
+     "link_text": "Gutachterausschuss"
+    }
+   ],
+   "popup_title": "brw",
+   "views": {
+    "brw": {
+     "label": {
+      "de": "Bodenrichtwert",
+      "en": "Land value"
+     },
+     "style": {
+      "kind": "step",
+      "property": "brw",
+      "unit": "€/m²",
+      "breaks": [
+       10,
+       100,
+       250,
+       500,
+       1000,
+       2500,
+       5000,
+       10000
+      ],
+      "colors": "earth"
+     }
+    },
+    "nutzung": {
+     "label": {
+      "de": "Art der Nutzung",
+      "en": "Use"
+     },
+     "style": {
+      "kind": "categorical",
+      "property": "nutzung",
+      "opacity": 0.92,
+      "categories": [
+       {
+        "label": {
+         "de": "Wohnen",
+         "en": "Residential"
+        },
+        "color": "pink",
+        "values": [
+         "W - Wohngebiet",
+         "W-EFH - Wohnbaufläche - Ein- und Zweifamilienhäuser"
+        ]
+       },
+       {
+        "label": {
+         "de": "Kern- und Mischgebiet",
+         "en": "Core and mixed use"
+        },
+        "color": "plum",
+        "values": [
+         "M1 - Kerngebiet",
+         "M2 - Mischgebiet"
+        ]
+       },
+       {
+        "label": {
+         "de": "Gewerbe",
+         "en": "Commercial"
+        },
+        "color": "violet",
+        "values": [
+         "G - Gewerbe",
+         "G - Gewerbliche Baufläche",
+         "Gp - Gewerbe produzierend",
+         "G-GD - Gewerbliche Baufläche - Handel und dienstleistungsorientiertes Gewerbe",
+         "G-FZT - Gewerbliche Baufläche - Freizeit und Touristik"
+        ]
+       },
+       {
+        "label": {
+         "de": "Gemeinbedarf",
+         "en": "Public facilities"
+        },
+        "color": "orange",
+        "values": [
+         "GB - Gemeinbedarf"
+        ]
+       },
+       {
+        "label": {
+         "de": "Sonderbauflächen",
+         "en": "Special building land"
+        },
+        "color": "yellow",
+        "values": [
+         "S-WO - Sonderbaufläche - Wochenendhäuser",
+         "S-FZT - Sonderbaufläche - Freizeit und Touristik"
+        ]
+       },
+       {
+        "label": {
+         "de": "Sonstige Flächen",
+         "en": "Other land"
+        },
+        "color": "olive",
+        "values": [
+         "SF-SN - Sonstige Flächen - Sondernutzungsfläche",
+         "SF-KGA - Sonstige Flächen - Kleingartenfläche",
+         "SF-FH - Sonstige Flächen - Friedhof",
+         "SF-SPO - Sonstige Flächen - Sportfläche",
+         "SF-CA - Sonstige Flächen - Campingplatz"
+        ]
+       },
+       {
+        "label": {
+         "de": "Land- und Forstwirtschaft",
+         "en": "Agriculture and forestry"
+        },
+        "color": "green",
+        "values": [
+         "LF-F - Flächen der Land-o. Forstwirtschaft - forstwirtschaftliche Fläche",
+         "LF-A - Flächen der Land-o. Forstwirtschaft - Acker",
+         "LF-GR - Flächen der Land-o. Forstwirtschaft - Grünland",
+         "LF-EGA - Flächen der Land-o. Forstwirtschaft - Erwerbsgartenbaufläche"
+        ]
+       }
+      ],
+      "other_color": "grey"
+     }
+    },
+    "gfz": {
+     "label": {
+      "de": "Wertrelevante GFZ",
+      "en": "Floor-area ratio (GFZ)"
+     },
+     "style": {
+      "kind": "step",
+      "property": "gfz",
+      "unit": "GFZ",
+      "breaks": [
+       0.4,
+       0.8,
+       1.2,
+       2.0,
+       3.0,
+       4.5
+      ],
+      "colors": "earth7",
+      "missing_color": "none"
+     }
+    }
+   }
+  },
+  {
+   "id": "mss2025",
+   "enabled": true,
+   "title": {
+    "de": "Monitoring Soziale Stadtentwicklung 2025",
+    "en": "Social urban development monitoring 2025"
+   },
+   "unit_label": {
+    "de": "Planungsräume",
+    "en": "planning areas"
+   },
+   "geometry": "polygon",
+   "source": {
+    "type": "wfs",
+    "base_url": "https://gdi.berlin.de/services/wfs/mss_2025",
+    "version": "2.0.0",
+    "output_format": "application/json",
+    "srs_name": "EPSG:4326",
+    "type_name": "mss_2025:mss2025_indizes_542",
+    "dataset_page": "https://gdi.berlin.de/services/wfs/mss_2025?request=GetCapabilities&service=WFS"
+   },
+   "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+   "license": {
+    "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+    "id": "dl-de-zero-2.0",
+    "url": "https://www.govdata.de/dl-de/zero-2-0"
+   },
+   "note": {
+    "de": "Indizes auf Basis von Daten zum 31.12.2024 (Feld zeit). Planungsräume mit weniger als 300 Einwohner/innen sind ohne Zuordnung.",
+    "en": "Indices based on data as of 31.12.2024 (field zeit). Planning areas with fewer than 300 residents are not classified."
+   },
+   "process": {
+    "id_field": "plr_id",
+    "precision": 5,
+    "simplify_m": 2
+   },
+   "fields": [
+    {
+     "key": "plr_name",
+     "label": {
+      "de": "Planungsraum",
+      "en": "Planning area"
+     }
+    },
+    {
+     "key": "si_v",
+     "label": {
+      "de": "Status-Index",
+      "en": "Status index"
+     }
+    },
+    {
+     "key": "di_v",
+     "label": {
+      "de": "Dynamik-Index",
+      "en": "Dynamics index"
+     }
+    },
+    {
+     "key": "sdi_v",
+     "label": {
+      "de": "Status/Dynamik",
+      "en": "Status/dynamics"
+     }
+    },
+    {
+     "key": "ew",
+     "label": {
+      "de": "Einwohner/innen",
+      "en": "Residents"
+     },
+     "format": "number"
+    },
+    {
+     "key": "kom",
+     "label": {
+      "de": "Gültigkeit",
+      "en": "Validity"
+     }
+    },
+    {
+     "key": "plr_id",
+     "label": {
+      "de": "Planungsraum-Schlüssel",
+      "en": "Planning area key"
+     }
+    }
+   ],
+   "popup_title": "plr_name",
+   "views": {
+    "status": {
+     "label": {
+      "de": "Status-Index",
+      "en": "Status index"
+     },
+     "style": {
+      "kind": "categorical",
+      "property": "si_v",
+      "categories": [
+       {
+        "label": {
+         "de": "hoch",
+         "en": "high"
+        },
+        "color": "#f1d3df",
+        "values": [
+         "hoch"
+        ]
+       },
+       {
+        "label": {
+         "de": "mittel",
+         "en": "medium"
+        },
+        "color": "#d684a6",
+        "values": [
+         "mittel"
+        ]
+       },
+       {
+        "label": {
+         "de": "niedrig",
+         "en": "low"
+        },
+        "color": "#9c3a6c",
+        "values": [
+         "niedrig"
+        ]
+       },
+       {
+        "label": {
+         "de": "sehr niedrig",
+         "en": "very low"
+        },
+        "color": "#4a1233",
+        "values": [
+         "sehr niedrig"
+        ]
+       },
+       {
+        "label": {
+         "de": "ohne Zuordnung (unter 300 EW)",
+         "en": "not classified (under 300 residents)"
+        },
+        "color": "grey",
+        "values": [
+         "Planungsraum ohne Zuordnung"
+        ]
+       }
+      ],
+      "other_color": "grey"
+     }
+    },
+    "dynamik": {
+     "label": {
+      "de": "Dynamik-Index",
+      "en": "Dynamics index"
+     },
+     "style": {
+      "kind": "categorical",
+      "property": "di_v",
+      "categories": [
+       {
+        "label": {
+         "de": "positiv",
+         "en": "positive"
+        },
+        "color": "violet",
+        "values": [
+         "positiv"
+        ]
+       },
+       {
+        "label": {
+         "de": "stabil",
+         "en": "stable"
+        },
+        "color": "#e8e6df",
+        "values": [
+         "stabil"
+        ]
+       },
+       {
+        "label": {
+         "de": "negativ",
+         "en": "negative"
+        },
+        "color": "pink",
+        "values": [
+         "negativ"
+        ]
+       },
+       {
+        "label": {
+         "de": "ohne Zuordnung (unter 300 EW)",
+         "en": "not classified (under 300 residents)"
+        },
+        "color": "grey",
+        "values": [
+         "Planungsraum ohne Zuordnung"
+        ]
+       }
+      ],
+      "other_color": "grey"
+     }
+    }
+   }
+  },
+  {
+   "id": "einwohnerdichte2025",
+   "enabled": true,
+   "title": {
+    "de": "Einwohnerdichte 2025",
+    "en": "Population density 2025"
+   },
+   "unit_label": {
+    "de": "Blöcke",
+    "en": "blocks"
+   },
+   "geometry": "polygon",
+   "source": {
+    "type": "wfs",
+    "base_url": "https://gdi.berlin.de/services/wfs/ua_einwohnerdichte_2025",
+    "version": "2.0.0",
+    "output_format": "application/json",
+    "srs_name": "EPSG:4326",
+    "type_name": "ua_einwohnerdichte_2025:ua_einwohnerdichte_2025",
+    "dataset_page": "https://gdi.berlin.de/services/wfs/ua_einwohnerdichte_2025?request=GetCapabilities&service=WFS"
+   },
+   "publisher": "Amt für Statistik Berlin-Brandenburg / Einwohnerdichte 2025 (Umweltatlas)",
+   "license": {
+    "name": "Creative Commons Namensnennung 3.0 Deutschland",
+    "id": "CC-BY-3.0-DE",
+    "url": "https://creativecommons.org/licenses/by/3.0/de/"
+   },
+   "process": {
+    "id_field": "schluessel",
+    "precision": 5,
+    "simplify_m": 1.5,
+    "keep_fields": [
+     "schluessel",
+     "ew2025",
+     "ew_ha_2025",
+     "typklar"
+    ]
+   },
+   "fields": [
+    {
+     "key": "ew_ha_2025",
+     "label": {
+      "de": "Einwohner/innen je Hektar",
+      "en": "Residents per hectare"
+     },
+     "format": "number",
+     "unit": "EW/ha"
+    },
+    {
+     "key": "ew2025",
+     "label": {
+      "de": "Einwohner/innen",
+      "en": "Residents"
+     },
+     "format": "number"
+    },
+    {
+     "key": "typklar",
+     "label": {
+      "de": "Stadtstrukturtyp",
+      "en": "Urban structure type"
+     }
+    },
+    {
+     "key": "schluessel",
+     "label": {
+      "de": "Block-Schlüssel",
+      "en": "Block key"
+     }
+    }
+   ],
+   "popup_title": "ew_ha_2025",
+   "views": {
+    "dichte": {
+     "label": {
+      "de": "Einwohner/innen je Hektar",
+      "en": "Residents per hectare"
+     },
+     "style": {
+      "kind": "step",
+      "property": "ew_ha_2025",
+      "unit": "EW/ha",
+      "breaks": [
+       1,
+       50,
+       100,
+       150,
+       200,
+       300,
+       400
+      ],
+      "colors": "ink",
+      "missing_color": "none"
+     }
+    }
+   }
+  },
+  {
+   "id": "lor_planungsraeume",
+   "enabled": true,
+   "title": {
+    "de": "LOR-Planungsräume 2021",
+    "en": "LOR planning areas 2021"
+   },
+   "unit_label": {
+    "de": "Planungsräume",
+    "en": "planning areas"
+   },
+   "geometry": "polygon",
+   "source": {
+    "type": "wfs",
+    "base_url": "https://gdi.berlin.de/services/wfs/lor_2021",
+    "version": "2.0.0",
+    "output_format": "application/json",
+    "srs_name": "EPSG:4326",
+    "type_name": "lor_2021:a_lor_plr_2021",
+    "dataset_page": "https://gdi.berlin.de/services/wfs/lor_2021?request=GetCapabilities&service=WFS"
+   },
+   "publisher": "Amt für Statistik Berlin-Brandenburg",
+   "license": {
+    "name": "Creative Commons Namensnennung 3.0 Deutschland",
+    "id": "CC-BY-3.0-DE",
+    "url": "https://creativecommons.org/licenses/by/3.0/de/"
+   },
+   "process": {
+    "id_field": "plr_id",
+    "precision": 5,
+    "simplify_m": 2
+   },
+   "fields": [
+    {
+     "key": "plr_name",
+     "label": {
+      "de": "Planungsraum",
+      "en": "Planning area"
+     }
+    },
+    {
+     "key": "plr_id",
+     "label": {
+      "de": "Schlüssel",
+      "en": "Key"
+     }
+    },
+    {
+     "key": "bzr_name",
+     "label": {
+      "de": "Bezirksregion",
+      "en": "District region"
+     }
+    },
+    {
+     "key": "pgr_name",
+     "label": {
+      "de": "Prognoseraum",
+      "en": "Forecast area"
+     }
+    },
+    {
+     "key": "bez",
+     "label": {
+      "de": "Bezirk",
+      "en": "District"
+     }
+    },
+    {
+     "key": "stadtraum_name",
+     "label": {
+      "de": "Stadtraum",
+      "en": "Urban zone"
+     }
+    }
+   ],
+   "popup_title": "plr_name",
+   "views": {
+    "grenzen": {
+     "label": {
+      "de": "Grenzen",
+      "en": "Boundaries"
+     },
+     "style": {
+      "kind": "single",
+      "color": "#14171a"
+     }
+    }
+   }
+  }
+ ]
+}

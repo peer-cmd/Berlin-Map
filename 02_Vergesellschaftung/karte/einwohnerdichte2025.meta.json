@@ -1,0 +1,95 @@
+{
+  "layer_id": "einwohnerdichte2025",
+  "title": "Einwohnerdichte 2025",
+  "geometry": "polygon",
+  "processed_utc": "2026-10-01T09:53:18Z",
+  "feature_count": 26613,
+  "skipped": {},
+  "warnings": [],
+  "stats": {
+    "ew_ha_2025": {
+      "min": 0,
+      "max": 1080.54,
+      "median": 19.26,
+      "p05": 0,
+      "p95": 390.12,
+      "count": 26613
+    }
+  },
+  "output_bytes": 12538389,
+  "processing": {
+    "precision": 5,
+    "simplify_m": 1.5,
+    "keep_fields": [
+      "schluessel",
+      "ew2025",
+      "ew_ha_2025",
+      "typklar"
+    ]
+  },
+  "files": {
+    "geojson": "einwohnerdichte2025.geojson",
+    "csv": "einwohnerdichte2025.csv"
+  },
+  "provenance": {
+    "layer_id": "einwohnerdichte2025",
+    "title": "Einwohnerdichte 2025",
+    "retrieved_utc": "20261001T095230Z",
+    "wfs_version": "2.0.0",
+    "requested_srs": "EPSG:4326",
+    "request_urls": {
+      "capabilities": "https://gdi.berlin.de/services/wfs/ua_einwohnerdichte_2025?service=WFS&version=2.0.0&request=GetCapabilities",
+      "hits": "https://gdi.berlin.de/services/wfs/ua_einwohnerdichte_2025?service=WFS&version=2.0.0&request=GetFeature&typeNames=ua_einwohnerdichte_2025:ua_einwohnerdichte_2025&resultType=hits",
+      "data": "https://gdi.berlin.de/services/wfs/ua_einwohnerdichte_2025?service=WFS&version=2.0.0&request=GetFeature&typeNames=ua_einwohnerdichte_2025:ua_einwohnerdichte_2025&outputFormat=application/json&srsName=EPSG:4326"
+    },
+    "service_base_url": "https://gdi.berlin.de/services/wfs/ua_einwohnerdichte_2025",
+    "type_name": "ua_einwohnerdichte_2025:ua_einwohnerdichte_2025",
+    "response_crs": {
+      "type": "name",
+      "properties": {
+        "name": "urn:ogc:def:crs:EPSG::4326"
+      }
+    },
+    "feature_count": 26613,
+    "raw_file": "einwohnerdichte2025_20261001T095230Z.geojson",
+    "raw_bytes": 27105960,
+    "raw_sha256": "792d59a23175f52a58365145eb75a7982b01a8fdf99b6e8579f0086421e8872a",
+    "service_server_timestamp": "2026-10-01T09:52:34.721Z",
+    "service_title": "Einwohnerdichte 2025 (Umweltatlas)",
+    "service_fees": "Der Datenbestand wird unter der Lizenz CC-BY-3.0-Namensnennung veröffentlicht (vgl. https://creativecommons.org/licenses/by/3.0/de/). Der Quellenvermerk gemäß Abschnitt 3a der Lizenz lautet \"Amt für Statistik Berlin-Brandenburg / Einwohnerdichte 2025 (Umweltatlas)\".",
+    "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen.",
+    "parts": [
+      {
+        "request_urls": {
+          "capabilities": "https://gdi.berlin.de/services/wfs/ua_einwohnerdichte_2025?service=WFS&version=2.0.0&request=GetCapabilities",
+          "hits": "https://gdi.berlin.de/services/wfs/ua_einwohnerdichte_2025?service=WFS&version=2.0.0&request=GetFeature&typeNames=ua_einwohnerdichte_2025:ua_einwohnerdichte_2025&resultType=hits",
+          "data": "https://gdi.berlin.de/services/wfs/ua_einwohnerdichte_2025?service=WFS&version=2.0.0&request=GetFeature&typeNames=ua_einwohnerdichte_2025:ua_einwohnerdichte_2025&outputFormat=application/json&srsName=EPSG:4326"
+        },
+        "service_base_url": "https://gdi.berlin.de/services/wfs/ua_einwohnerdichte_2025",
+        "type_name": "ua_einwohnerdichte_2025:ua_einwohnerdichte_2025",
+        "response_crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG::4326"
+          }
+        },
+        "feature_count": 26613,
+        "raw_file": "einwohnerdichte2025_20261001T095230Z.geojson",
+        "raw_bytes": 27105960,
+        "raw_sha256": "792d59a23175f52a58365145eb75a7982b01a8fdf99b6e8579f0086421e8872a",
+        "service_server_timestamp": "2026-10-01T09:52:34.721Z",
+        "service_title": "Einwohnerdichte 2025 (Umweltatlas)",
+        "service_fees": "Der Datenbestand wird unter der Lizenz CC-BY-3.0-Namensnennung veröffentlicht (vgl. https://creativecommons.org/licenses/by/3.0/de/). Der Quellenvermerk gemäß Abschnitt 3a der Lizenz lautet \"Amt für Statistik Berlin-Brandenburg / Einwohnerdichte 2025 (Umweltatlas)\".",
+        "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen."
+      }
+    ],
+    "dataset_page": "https://gdi.berlin.de/services/wfs/ua_einwohnerdichte_2025?request=GetCapabilities&service=WFS",
+    "publisher": "Amt für Statistik Berlin-Brandenburg / Einwohnerdichte 2025 (Umweltatlas)",
+    "license": {
+      "name": "Creative Commons Namensnennung 3.0 Deutschland",
+      "id": "CC-BY-3.0-DE",
+      "url": "https://creativecommons.org/licenses/by/3.0/de/"
+    }
+  },
+  "provenance_file": "einwohnerdichte2025_20261001T095230Z.provenance.json"
+}

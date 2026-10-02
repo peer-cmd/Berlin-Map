@@ -1,0 +1,59 @@
+﻿fid,bezirk,prognoseraum_bezeichnung,prognoseraum_nummer,angebotsmieten,anteil_sozwohng,anteil_staedtwbg,wohnung_umwandp,wohnungverkaufp,pgr_id,area_m2
+0,Mitte,Zentrum,0110,19.52,1.51,16.79,77.35,46.96,0110,15719597
+1,Mitte,Moabit,0120,15.98,7.19,5.22,113.32,52.7,0120,8154513
+2,Mitte,Gesundbrunnen,0130,10.7,19.82,20.54,64.94,25.86,0130,5643410
+3,Mitte,Wedding,0140,11.42,7.25,15.64,90.14,39.17,0140,9566669
+4,Friedrichshain/Kreuzberg,Kreuzberg Nord,0210,9.64,24.02,37.06,54.44,18.53,0210,2915813
+5,Friedrichshain/Kreuzberg,Kreuzberg Süd,0220,15.82,7.16,6.53,105.16,48.88,0220,4703828
+6,Friedrichshain/Kreuzberg,Kreuzberg Ost,0230,13.63,4,10.82,85.13,37.07,0230,2738192
+7,Friedrichshain/Kreuzberg,Friedrichshain West,0240,14.61,1.23,37.54,87.38,55.13,0240,4540239
+8,Friedrichshain/Kreuzberg,Friedrichshain Ost,0250,15.81,4.95,8.72,138.22,77.32,0250,5325375
+9,Pankow,Buch,0310,7.85,0.18,45.02,2.82,4.29,0310,22857532
+10,Pankow,Nördliches Pankow,0320,11.61,9.07,3.77,55.29,17.53,0320,25971755
+11,Pankow,Nördliches Weißensee,0330,11.61,0.68,7.48,10.33,0.57,0330,22077403
+12,Pankow,Südliches Pankow,0340,12.94,1.67,20.4,58.37,28.76,0340,12760707
+13,Pankow,Südliches Weißensee,0350,13.42,1.62,21.06,60.76,19.02,0350,7884167
+14,Pankow,Nördl. Prenzlauer Berg,0360,13.74,0.67,15.35,85.91,52.89,0360,7984044
+15,Pankow,Südl. Prenzlauer Berg,0370,15.98,1.78,12.76,102.81,54.17,0370,3007185
+16,Charlottenburg/Wilmersdorf,Charlottenburg Nord,0410,6.79,12.1,47.13,0,13.96,0410,5743135
+17,Charlottenburg/Wilmersdorf,Charlottenburg West,0420,11.87,2.02,3.57,32.48,55.51,0420,29192608
+18,Charlottenburg/Wilmersdorf,Charlottenburg Zentrum,0430,14.4,4.77,8.68,130.01,66.12,0430,9214775
+19,Charlottenburg/Wilmersdorf,Wilmersdorf Süd,0440,16.18,7.07,9.52,41.64,52.95,0440,11561321
+20,Charlottenburg/Wilmersdorf,Wilmersdorf Zentrum,0450,16.49,4.03,3.42,127.32,67.24,0450,8418818
+21,Spandau,Spandau Mitte/Nord,0510,9.32,5.35,16.09,21.03,25.64,0510,33334638
+22,Spandau,Wilhelmstadt/Staaken,0520,8.12,7.73,20,21.26,25.2,0520,22826326
+23,Spandau,Haselhorst/Siemensstadt,0530,8.75,10.29,40.41,26.13,29.62,0530,10307980
+24,Spandau,Gatow/Kladow,0540,8.67,6.36,1.77,12.76,10.38,0540,24658145
+25,Steglitz/Zehlendorf,Steglitz,0610,13.14,1.96,1.66,73.08,57.01,0610,6721699
+26,Steglitz/Zehlendorf,Lankwitz/Lichterfelde Ost,0620,9.47,6.84,13.2,38.98,27.68,0620,14780412
+27,Steglitz/Zehlendorf,Zehlendorf Süd/Lichterfelde West,0630,12.41,2.82,3,36.77,36.07,0630,18157975
+28,Steglitz/Zehlendorf,Zehlendorf Nord/Wannsee,0640,13.36,3.35,2.07,24.98,23.19,0640,61858117
+29,Tempelhof/Schöneberg,Schöneberg Nord,0710,12.09,10.27,18.63,67.61,46.16,0710,2822079
+30,Tempelhof/Schöneberg,Schöneberg Süd,0720,13.22,4.41,9.63,99.69,53.84,0720,3328450
+31,Tempelhof/Schöneberg,Friedenau,0730,13.86,2.01,2.9,82.48,64.24,0730,4560897
+32,Tempelhof/Schöneberg,Tempelhof,0740,11.42,3.47,12.69,37.39,35.84,0740,13539342
+33,Tempelhof/Schöneberg,Mariendorf,0750,8.68,11.95,11.11,24.45,33.22,0750,9284187
+34,Tempelhof/Schöneberg,Marienfelde/Lichtenrade,0760,8.36,7.28,22.01,17.96,18.04,0760,18983385
+35,Neukölln,Neukölln,0810,11.89,6.08,11.83,114.18,36.47,0810,11596119
+36,Neukölln,Britz/Buckow,0820,8.85,11.68,15.17,29.88,18.3,0820,16951096
+37,Neukölln,Gropiusstadt,0830,7.16,5.85,30.79,6.99,19.97,0830,2630489
+38,Neukölln,Buckow Nord/Rudow,0840,7.88,9.3,9.77,13.59,10.66,0840,13304204
+39,Treptow/Köpenick,Treptow-Köpenick 1,0910,12.88,0.71,18.85,31.96,36.23,0910,16983881
+40,Treptow/Köpenick,Treptow-Köpenick 2,0920,11.88,3.74,26.85,43.24,38.55,0920,19013713
+41,Treptow/Köpenick,Treptow-Köpenick 3,0930,11.45,7.26,25.73,9.65,3.94,0930,40237304
+42,Treptow/Köpenick,Treptow-Köpenick 4,0940,9.22,2.98,26.76,16.96,10.02,0940,43975940
+43,Treptow/Köpenick,Treptow-Köpenick 5,0950,12.27,2.72,15.04,28.89,18.89,0950,45798505
+44,Marzahn/Hellersdorf,Marzahn,1010,7.36,1.35,35.95,23.75,3.5,1010,19392214
+45,Marzahn/Hellersdorf,Hellersdorf,1020,9.78,2.76,41.45,0,5.17,1020,8058816
+46,Marzahn/Hellersdorf,Biesdorf,1030,11.54,4.13,15.23,25.22,3.37,1030,12298486
+47,Marzahn/Hellersdorf,Kaulsdorf/Mahlsdorf,1040,11.25,1.79,0.74,4.26,2.16,1040,21558465
+48,Lichtenberg/Hohenschönhausen,Hohenschönhausen Nord,1110,7.32,0.8,54.18,1.26,8.44,1110,16531965
+49,Lichtenberg/Hohenschönhausen,Hohenschönhausen Süd,1120,9.47,3,37.34,8.07,9.89,1120,9281299
+50,Lichtenberg/Hohenschönhausen,Lichtenberg Nord,1130,9.43,1.83,36.76,14.93,6.55,1130,9462889
+51,Lichtenberg/Hohenschönhausen,Lichtenberg Mitte,1140,10.12,2.74,31.63,46.76,17.42,1140,7523676
+52,Lichtenberg/Hohenschönhausen,Lichtenberg Süd,1150,12.16,1.76,25.05,56.31,25.49,1150,8906628
+53,Reinickendorf,Reinickendorf Ost,1210,9.4,5.23,6.93,45.2,32.01,1210,7507410
+54,Reinickendorf,Tegel,1220,9.13,3.99,18.54,34.91,35.3,1220,18209887
+55,Reinickendorf,Grüner Norden,1240,11.06,2.04,1.57,9.26,13.12,1240,42493326
+56,Reinickendorf,Wittenau/Borsigwalde,1250,10.95,2.04,8.88,30.77,23.56,1250,15773392
+57,Reinickendorf,Märkisches Viertel,1260,6.26,3.31,84.76,0.14,3.99,1260,4752639

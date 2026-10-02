@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<!-- Generated from vergesellschaftung-modell-v37.html by build_kompakt.py. Do not edit by hand. -->
 <div class="app">
 
   <nav class="site-nav">
@@ -17,6 +18,7 @@
     <a href="hintergrund.html">Hintergrund</a>
     <a href="zahlen.html">Die Zahlen erklärt</a>
     <a href="glossar.html">Glossar</a>
+    <a href="quellenbelege.html">Quellenbelege</a>
     <a href="karte.html">Karte</a>
   </nav>
 
@@ -63,7 +65,7 @@
         </div>
         <div class="field">
           <div class="field-row"><label>Verkehrswert/m²</label><span class="val" id="v-price">2.085 €/m²</span></div>
-          <input type="range" id="price" min="500" max="5000" step="20" value="2085">
+          <input type="range" id="price" min="500" max="5000" step="5" value="2085">
           <div class="hint">Gesamtwert = Wohnungen × Größe × Verkehrswert/m² → <span id="v-totalDerived">32,5 Mrd €</span></div>
           <div class="linked-row">
             <label class="linked-label">≈ pro Wohnung</label>
@@ -171,7 +173,7 @@
         <div class="field">
           <div class="field-row"><label>Referenz: freier Markt</label><span class="val" id="v-freeMarketRent">15,80 €/m²</span></div>
           <input type="range" id="freeMarketRent" min="8" max="25" step="0.1" value="15.8">
-          <div class="hint">Neuvertragsmiete Berlin, Wachstum fix 3,0 %/Jahr angenommen (Berlin Hyp/CBRE 2026)</div>
+          <div class="hint">Neuvertragsmiete Berlin, Wachstum fix 3,0 %/Jahr angenommen (Berlin Hyp/CBRE 2026; Quelle nicht im Projektordner, Wert nicht geprüft)</div>
         </div>
         <div class="field">
           <div class="field-row"><label>Referenz: kommunale WoGes.</label><span class="val" id="v-munizRent">6,29 €/m²</span></div>
@@ -367,9 +369,9 @@
       <div class="panel">
         <div class="panel-head">
           <h2>Szenario-Übersicht</h2>
-          <span class="caption">4 Voreinstellungen im Vergleich</span>
+          <span class="caption">5 Voreinstellungen im Vergleich</span>
         </div>
-        <p class="panel-sub">Kaufpreis und Nettoergebnis nach Horizont (links, Mrd €) sowie Break-even-Jahr (rechts) für die vier Voreinstellungen aus Abschnitt 00 — unabhängig von den aktuellen Reglereinstellungen.</p>
+        <p class="panel-sub">Kaufpreis und Nettoergebnis nach Horizont (links, Mrd €) sowie Break-even-Jahr (rechts) für die fünf Voreinstellungen aus Abschnitt 00 — unabhängig von den aktuellen Reglereinstellungen.</p>
         <canvas id="chartScenarios" height="80"></canvas>
         <div class="legend">
           <span><i class="swatch" style="background:var(--blue-light)"></i>Kaufpreis</span>
@@ -479,8 +481,7 @@
 
   </div>
 
-
-  <div class="colophon">Modell-Stand: Juli 2026 · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></div>
+  <div class="colophon">Modell-Stand: September 2026 · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></div>
 
 </div>
 

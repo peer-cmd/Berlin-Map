@@ -1,0 +1,73 @@
+/* Tokens follow 02_Vergesellschaftung/style.css so the map sits inside that site without a visual break. */
+:root {
+  --paper: #ffffff; --ink: #14171a; --muted: #6b6b63; --faint: #9a9a90;
+  --line: #dadad2; --line-strong: #b9b8ae; --blue: #1e3a5f; --hover: #f3f6fa;
+  --sans: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  font: 12px/1.45 var(--sans);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; color: var(--ink); background: var(--paper); }
+#map { position: absolute; inset: 0; }
+h1, h2, h3 { font-family: var(--mono); font-weight: 500; letter-spacing: .05em; text-transform: uppercase; }
+h1 { font-size: 11px; margin: 0 0 12px; color: var(--ink); }
+h2 { font-size: 10px; color: var(--muted); margin: 0 0 6px; }
+h3 { font-size: 9.5px; color: var(--faint); margin: 10px 0 4px; }
+h3:first-child { margin-top: 0; }
+#panel {
+  position: absolute; top: 12px; left: 12px; width: 264px; max-height: calc(100% - 24px); overflow: auto;
+  background: var(--paper); border: 1px solid var(--line-strong); padding: 12px;
+}
+#panel section { border-top: 1px solid var(--line); padding-top: 10px; margin-top: 10px; }
+.toggle { display: flex; gap: 8px; align-items: center; padding: 2px 0; cursor: pointer; }
+.toggle input { margin: 0; accent-color: var(--blue); }
+.layer-row { padding: 2px 0; }
+.layer-row select {
+  display: block; width: calc(100% - 21px); margin: 2px 0 4px 21px; padding: 2px 4px;
+  font: inherit; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 0;
+}
+.legend-block + .legend-block { margin-top: 10px; }
+.legend-title { font-weight: 500; margin-bottom: 4px; }
+.legend-unit { color: var(--muted); font-size: 11px; margin-bottom: 4px; }
+.legend-row { display: grid; grid-template-columns: 22px 1fr; gap: 8px; align-items: center; min-height: 18px; }
+.legend-row i { display: block; height: 10px; border: 1px solid var(--line); }
+.legend-row i.sw-point { width: 10px; border-radius: 50%; justify-self: center; }
+.legend-row i.sw-line { height: 3px; border: 0; }
+.legend-row span { font-variant-numeric: tabular-nums; }
+#source-text { color: var(--muted); font-size: 11px; }
+#source-text p { margin: 0 0 6px; }
+#source-text a, .maplibregl-popup a { color: inherit; }
+#banner {
+  position: absolute; left: 50%; top: 12px; transform: translateX(-50%); max-width: min(560px, 92vw);
+  background: var(--paper); border: 1px solid var(--ink); padding: 8px 12px; z-index: 3;
+}
+#panel-toggle {
+  position: absolute; top: 12px; left: 12px; z-index: 2; padding: 6px 10px; cursor: pointer;
+  font: 500 10.5px var(--mono); letter-spacing: .05em; text-transform: uppercase;
+  color: var(--ink); background: var(--paper); border: 1px solid var(--line-strong);
+}
+#panel-toggle:hover { background: var(--hover); color: var(--blue); }
+.embed #panel { top: 48px; max-height: calc(100% - 60px); }
+.embed h1 { display: none; }
+.maplibregl-popup-content {
+  border-radius: 0; padding: 12px; background: var(--paper); border: 1px solid var(--ink);
+  box-shadow: none; font: inherit; min-width: 260px; max-width: 320px; max-height: 60vh; overflow: auto;
+}
+.maplibregl-popup-tip { display: none; }
+.maplibregl-popup-close-button { font-size: 16px; padding: 0 6px; }
+.zone + .zone { border-top: 1px solid var(--line); margin-top: 10px; padding-top: 10px; }
+.zone-layer { font: 500 9.5px var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.zone-value { font-size: 20px; font-weight: 600; font-variant-numeric: tabular-nums; margin-bottom: 6px; }
+.zone dl { display: grid; grid-template-columns: 136px 1fr; gap: 3px 10px; margin: 0; }
+.zone dt { color: var(--muted); hyphens: auto; }
+.zone dd { margin: 0; overflow-wrap: anywhere; }
+.pop-head { color: var(--muted); margin-bottom: 8px; }
+.pop-src { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
+.maplibregl-ctrl-attrib { background: rgba(255,255,255,.85) !important; font-size: 11px; }
+@media (max-width: 600px) { #panel { width: calc(100% - 24px); max-height: 45%; } }
+.embed #panel > section:first-of-type { border-top: 0; margin-top: 0; padding-top: 0; }
+.legend-row i.sw-size { border-radius: 50%; justify-self: center; background: transparent; border: 1px solid var(--ink); }
+.legend-sub { margin-top: 6px; }
+.pop-note { margin-top: 10px; color: var(--muted); font-size: 11px; }
+.src-note { display: block; margin-top: 2px; color: var(--faint); }
+#toggles h3 + .layer-row { margin-top: 0; }

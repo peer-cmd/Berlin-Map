@@ -5,6 +5,5 @@ __pycache__/
 data/raw/*.geojson
 data/raw/*.capabilities.xml
 
-# Build output of scripts/export_site.py
-02_Vergesellschaftung/karte/
+# 02_Vergesellschaftung/karte/ is build output of scripts/export_site.py; it is committed so GitHub Pages can serve karte.html.
 website-upload.zip

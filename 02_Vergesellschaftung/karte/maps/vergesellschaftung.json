@@ -1,0 +1,160 @@
+{
+  "id": "vergesellschaftung",
+  "title": {
+    "de": "Vergesellschaftung – Karte",
+    "en": "Socialisation – map"
+  },
+  "lang": "de",
+  "view": {
+    "center": [
+      13.405,
+      52.52
+    ],
+    "zoom": 10.3,
+    "minZoom": 8.5,
+    "maxZoom": 19,
+    "maxBounds": [
+      [
+        12.6,
+        52.1
+      ],
+      [
+        14.2,
+        52.9
+      ]
+    ]
+  },
+  "basemap": "positron",
+  "groups": [
+    {
+      "title": {
+        "de": "Eigentum",
+        "en": "Ownership"
+      },
+      "layers": [
+        {
+          "source": "eigentum2025",
+          "views": [
+            "jp_ohn_swg",
+            "stwbg",
+            "genossen",
+            "nat_pers",
+            "jur_pers",
+            "sozvermiet"
+          ],
+          "visible": true,
+          "opacity": 0.85
+        },
+        {
+          "source": "lwu",
+          "visible": false,
+          "opacity": 0.85
+        }
+      ]
+    },
+    {
+      "title": {
+        "de": "Planungsrecht und Förderkulissen",
+        "en": "Planning law and programmes"
+      },
+      "layers": [
+        {
+          "source": "erhaltungsgebiete",
+          "render": "outline",
+          "visible": true
+        },
+        {
+          "source": "vorkaufsrecht",
+          "render": "outline",
+          "visible": false
+        },
+        {
+          "source": "sanierungsgebiete",
+          "render": "outline",
+          "visible": false
+        },
+        {
+          "source": "entwicklungsbereiche",
+          "render": "outline",
+          "visible": false
+        },
+        {
+          "source": "grosssiedlungen",
+          "render": "outline",
+          "visible": false
+        }
+      ]
+    },
+    {
+      "title": {
+        "de": "Wohnungsbau",
+        "en": "Housing construction"
+      },
+      "layers": [
+        {
+          "source": "step_wohnen_potenziale",
+          "visible": false,
+          "opacity": 0.9
+        },
+        {
+          "source": "step_wohnen_quartiere",
+          "visible": false,
+          "opacity": 0.8
+        }
+      ]
+    },
+    {
+      "title": {
+        "de": "Wohnungsmarkt",
+        "en": "Housing market"
+      },
+      "layers": [
+        {
+          "source": "wohnatlas2022",
+          "visible": false,
+          "opacity": 0.85
+        },
+        {
+          "source": "brw2026",
+          "views": [
+            "brw"
+          ],
+          "visible": false,
+          "opacity": 0.78
+        }
+      ]
+    },
+    {
+      "title": {
+        "de": "Soziales und Bevölkerung",
+        "en": "Social data and population"
+      },
+      "layers": [
+        {
+          "source": "mss2025",
+          "visible": false,
+          "opacity": 0.85
+        },
+        {
+          "source": "einwohnerdichte2025",
+          "visible": false,
+          "opacity": 0.85
+        }
+      ]
+    },
+    {
+      "title": {
+        "de": "Bezugsräume",
+        "en": "Reference areas"
+      },
+      "layers": [
+        {
+          "source": "lor_planungsraeume",
+          "render": "outline",
+          "visible": false,
+          "weight": 0.35
+        }
+      ]
+    }
+  ]
+}

@@ -164,3 +164,27 @@ Auf Wunsch als eigenständiges fünftes Preset umgesetzt (Alternative zu Update 
 - Google Fonts und Chart.js 4.4.0 lokal (`fonts/`, `vendor/`); einzige Fremdanfrage ist die Grundkarte auf `karte.html`.
 
 **Offen:** STRATO-Firmenname (GmbH) und E-Mail-Domain `peerfrantzen.com` prüfen; Auftragsverarbeitungsvertrag mit STRATO im Kundenlogin abschließen (die Datenschutzerklärung setzt ihn voraus). `index.html` und `zahlen.html` verweisen noch auf `pdf/`, `quellenbelege.md` und `entwicklungsprotokoll.md`, die nicht hochgeladen werden.
+
+## 2026-10-01 — Layout und Inhalt „Die Zahlen erklärt"; Includes ohne fetch; Quellenbelege als Seite
+
+**Geändert:**
+- `style.css` — Tabellen in `.bg-page` umbrechen wieder (globale `th,td`-Regeln mit `nowrap` griffen durch); Masthead auf Index, Zahlen, Glossar an der Textspalte ausgerichtet; Fließtext dieser Seiten im Blocksatz mit Silbentrennung; `sup.src` durch nummerierte Fußnoten (`sup.fn` + `ol.source-list`) ersetzt.
+- `zahlen.html` — Fußnoten je Abschnitt; Kostentabelle zeigt jetzt die fünf Modell-Presets (Betrag, Quote, Hintergrund), Senatsschätzung 28,8–36 / 30–39 Mrd. € als Text darunter; eigener Abschnitt Rechnungshof mit den am Original-PDF geprüften Angaben (S. 23: 11-Mrd.-Schwelle, 700 Mio. € bei 29 Mrd. €, 1 Mrd. € bei 36 Mrd. €; S. 25: Bewirtschaftungskosten, 2,20 €/m² als Umrechnung); Arbeitsprotokoll-Formulierungen entfernt; „Offene Punkte" nennt die inhaltlich offenen Fragen aus `quellenbelege.md` Abschnitt 9/10.
+- Masthead-Untertitel auf Index, Zahlen, Glossar, Modell (kompakt) entfernt.
+- `glossary-content.html`, `timeline-content.html` → `content.js` (`window.SITE_INCLUDES`); `include.js` liest daraus statt per `fetch()`. Seiten funktionieren damit auch per Doppelklick (file://). v37 lud `include.js` bisher gar nicht — Zeitlicher Ablauf und Glossar blieben dort leer; jetzt eingebunden.
+- `build_quellenbelege.py` (neu) erzeugt `quellenbelege.html` aus `quellenbelege.md`. Nach jeder Änderung an der .md erneut ausführen. Verlinkt von Zahlen, Index, Glossar.
+
+**Noch offen:**
+- `quellenbelege.md` Abschnitt 2 meldet „noch in v37 zu präzisieren" für 29–36 vs. 29–39; v37 trennt beides inzwischen (Abschnitt „Entschädigungsspanne"). Status in der .md nachziehen.
+
+## 2026-10-01 (Teil 2) — Aufräumen: Modelltext, Seitenstruktur, Quellenbelege, Dateien
+
+**Geändert:**
+- v37: Szenario-Übersicht „5 Voreinstellungen"/„fünf"; Liste „Entschädigungsspanne" um DWE-Gesetzentwurf 2025 ergänzt; Sondervotum wie in Glossar/Zahlen beschrieben (Verkehrswert als Ausgangspunkt, enge Abschläge; „> 36 Mrd. €, vergleichswertorientiert" entfernt, da ohne Beleg); Spaltenlabel „Hintergründen" → „Hintergrund"; Neuvertragsmiete 15,80 €/m² und „IW Köln — Refinanzierungsrisiken" als ungeprüft gekennzeichnet; Modell-Stand September 2026. Die Kommissionskritik am Rechnungshof stand bereits im Modelltext (Status in `quellenbelege.md` war veraltet).
+- `build_kompakt.py` (neu) erzeugt `modell-kompakt.html` aus v37 (ohne Hintergrundspalte). Nur noch v37 bearbeiten, dann Skript ausführen.
+- Chart.js 4.4.0 lokal unter `vendor/chart.umd.js` (MIT, Lizenz in `vendor/chart.js-LICENSE.md`), statt CDN.
+- Navigation auf allen Seiten um „Quellenbelege" ergänzt; Übersicht listet alle Seiten; Stand Oktober 2026.
+- `quellenbelege.md` auf Belege reduziert. Entfernte Prüfstatus-Notizen (alle erledigt): 29–36/29–39 in v37 getrennt; Sondervotum in v37 präzisiert; Kommissionskritik in v37 vorhanden; Rechnungshof-Zitate S. 23 am Original-PDF bestätigt (die Web-Fetch-Fassung hatte S. 16 und S. 23 vermischt — wörtliche Zitate nur aus Original-PDFs übernehmen); 897/1.538 €/m² durch einheitlich 2.085 €/m² ersetzt.
+- Gelöscht: `pdf/test_write.txt`, themenfremder Rechnungshof-Bericht `pdf/2026_beratungsbericht_zuwendungen_senkultgz_gesamt.pdf` samt Markdown-Extraktion.
+- `My Collection_All.bib` bleibt im Projektordner (Pfad in `Bibliography/scripts/corpus_search.py` erwartet).
+- Regler Verkehrswert: Schrittweite 20 → 5 €/m². Bei Schritt 20 (ab 500) rastete 2.085 auf 2.080 ein; alle Presets rechneten dadurch mit 2.080 statt 2.085 €/m² (32,45 statt 32,53 Mrd. € bei 100 %).

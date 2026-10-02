@@ -1,0 +1,46 @@
+﻿fid,gisid,schluessel,gebietsname,bezirk,verordnung,f_gvbl_dat,f_in_kraft,ae_gvbldat,ae_inkraft,verfahren,au_gvbldat,au_inkraft,fl_in_ha,status,area_m2
+0,S0151B,S0151B,Wedding/Müllerstraße,Mitte,12.,31.03.2011,01.04.2011,,,umfassend,,,85.3,Umfassendes Verfahren,846851
+1,S0152,S0152,Turmstraße,Mitte,12.,31.03.2011,01.04.2011,,,umfassend,,,92.7,Umfassendes Verfahren,919824
+2,S0153,S0153,Nördliche Luisenstadt,Mitte,12.,31.03.2011,01.04.2011,,,umfassend,,,25.2,Umfassendes Verfahren,249755
+3,S0154,S0154,Badstraße/Pankstraße,Mitte,14.,24.12.2021,25.12.2021,,,umfassend,,,16.1,Umfassendes Verfahren,160134
+4,S0319,S0319,Langhansstraße,Pankow,15.,24.12.2021,25.12.2021,,,umfassend,,,90.6,Umfassendes Verfahren,898980
+5,S0551B,S0551B,Wilhelmstadt,Spandau,12.,31.03.2011,01.04.2011,,,umfassend,,,39.6,Umfassendes Verfahren,393063
+6,S0851B,S0851B,Karl-Marx-Straße/Sonnenallee,Neukölln,12.,31.03.2011,01.04.2011,,,umfassend,,,52.1,Umfassendes Verfahren,516375
+7,S1151,S1151,Frankfurter Allee Nord,Lichtenberg,12.,31.03.2011,01.04.2011,,,umfassend,,,25.9,Umfassendes Verfahren,256528
+8,S1509B,S1509B,Niederschöneweide,Treptow-Köpenick,10.,03.12.1994,04.12.1994,02.03.2022,03.03.2022,umfassend,,,7.4,Umfassendes Verfahren,72883
+9,S0151A,S0151A,Wedding/Müllerstraße,Mitte,12.,31.03.2011,01.04.2011,,,vereinfacht,,,22.9,Vereinfachtes Verfahren,227042
+10,S0251,S0251,Südliche Friedrichstadt,Friedrichshain-Kreuzberg,12.,31.03.2011,01.04.2011,,,vereinfacht,,,63.6,Vereinfachtes Verfahren,630184
+11,S0551A,S0551A,Wilhelmstadt,Spandau,12.,31.03.2011,01.04.2011,,,vereinfacht,,,63.7,Vereinfachtes Verfahren,631625
+12,S0851A,S0851A,Karl-Marx-Straße/Sonnenallee,Neukölln,12.,31.03.2011,01.04.2011,,,vereinfacht,,,68.4,Vereinfachtes Verfahren,678027
+13,S1509A,S1509A,Niederschöneweide,Treptow-Köpenick,10.,03.12.1994,04.12.1994,02.03.2022,03.03.2022,vereinfacht,,,4.1,Vereinfachtes Verfahren,40359
+14,S0110,S0110,Spandauer Vorstadt,Mitte,09.,08.10.1993,09.10.1993,,,,09.02.2008,10.02.2008,67.1,Aufgehoben (ab 2002),665651
+15,S0111,S0111,Rosenthaler Vorstadt,Mitte,10.,03.12.1994,04.12.1994,,,,27.01.2009,28.01.2009,37.6,Aufgehoben (ab 2002),373223
+16,S0211,S0211,Beusselstraße,Mitte,10.,03.12.1994,04.12.1994,,,,20.02.2007,21.02.2007,10.6,Aufgehoben (ab 2002),104926
+17,S0212,S0212,Stephankiez,Mitte,11.,09.11.1995,10.11.1995,,,,20.02.2007,21.02.2007,6.3,Aufgehoben (ab 2002),62463
+18,S0308,S0308,Exerzierstraße,Mitte,07.,07.02.1985,08.02.1985,,,,10.09.2003,11.09.2003,3.5,Aufgehoben (ab 2002),34926
+19,S0309,S0309,Koloniestraße,Mitte,07.,07.02.1985,08.02.1985,,,,10.09.2003,11.09.2003,3,Aufgehoben (ab 2002),29617
+20,S0310,S0310,Biesentaler Straße,Mitte,07.,07.02.1985,08.02.1985,,,,08.04.2004,09.04.2004,4.8,Aufgehoben (ab 2002),47289
+21,S0311,S0311,Stettiner Straße,Mitte,07.,07.02.1985,08.02.1985,,,,08.04.2004,09.04.2004,7.4,Aufgehoben (ab 2002),73057
+22,S0312,S0312,Schulstraße,Mitte,07.,07.02.1985,08.02.1985,,,,08.04.2004,09.04.2004,8,Aufgehoben (ab 2002),79633
+23,S0318,S0318,Soldiner Straße,Mitte,11.,09.11.1995,10.11.1995,,,,20.02.2007,21.02.2007,1.9,Aufgehoben (ab 2002),18662
+24,S0416,S0416,Helmholtzplatz,Pankow,09.,08.10.1993,09.10.1993,,,,07.02.2015,08.02.2015,81.9,Aufgehoben (ab 2002),812375
+25,S0417,S0417,Kollwitzplatz,Pankow,09.,08.10.1993,09.10.1993,,,,27.01.2009,28.01.2009,60.7,Aufgehoben (ab 2002),602221
+26,S0418,S0418,Teutoburger Platz,Pankow,10.,03.12.1994,04.12.1994,,,,12.03.2013,13.03.2013,49.8,Aufgehoben (ab 2002),493939
+27,S0419,S0419,Winsstraße,Pankow,10.,03.12.1994,04.12.1994,,,,27.04.2011,28.04.2011,34.8,Aufgehoben (ab 2002),344925
+28,S0420,S0420,Bötzowstraße,Pankow,11.,09.11.1995,10.11.1995,,,,27.04.2011,28.04.2011,29.1,Aufgehoben (ab 2002),288287
+29,S0517,S0517,Samariterviertel,Friedrichshain-Kreuzberg,09.,08.10.1993,09.10.1993,,,,09.02.2008,10.02.2008,33.9,Aufgehoben (ab 2002),335983
+30,S0519,S0519,Warschauer Straße,Friedrichshain-Kreuzberg,10.,03.12.1994,04.12.1994,,,,27.04.2011,28.04.2011,38.1,Aufgehoben (ab 2002),377738
+31,S0520,S0520,Traveplatz-Ostkreuz,Friedrichshain-Kreuzberg,10.,03.12.1994,04.12.1994,,,,10.07.2010,11.07.2010,35.1,Aufgehoben (ab 2002),347507
+32,S0601,S0601,Kottbusser Tor,Friedrichshain-Kreuzberg,01.,28.07.1972,29.07.1972,,,,27.06.2002,28.06.2002,105.6,Aufgehoben (ab 2002),1047047
+33,S0605,S0605,Chamissoplatz,Friedrichshain-Kreuzberg,04.,04.12.1979,06.12.1979,,,,10.09.2003,11.09.2003,23.5,Aufgehoben (ab 2002),232798
+34,S1101,S1101,Bülowstraße,Tempelhof-Schöneberg,01.,28.07.1972,29.07.1972,,,,29.06.1999,30.06.1999,63.3,Aufgehoben (ab 2002),627164
+35,S1104,S1104,Kolonnenstraße,Tempelhof-Schöneberg,06.,24.10.1984,25.10.1984,,,,10.09.2003,11.09.2003,7.6,Aufgehoben (ab 2002),75359
+36,S1410,S1410,Kottbusser Damm Ost,Neukölln,11.,09.11.1995,10.11.1995,,,,20.02.2007,21.02.2007,2.5,Aufgehoben (ab 2002),24390
+37,S1411,S1411,Wederstraße,Neukölln,11.,09.11.1995,10.11.1995,,,,10.07.2010,11.07.2010,24.6,Aufgehoben (ab 2002),243213
+38,S1509C,S1509C,Niederschöneweide,Treptow-Köpenick,10.,03.12.1994,04.12.1994,,,,02.03.2022,03.03.2022,26,Aufgehoben (ab 2002),257409
+39,S1612,S1612,Altstadt/Kietz-Vorstadt,Treptow-Köpenick,09.,08.10.1993,09.10.1993,,,,20.02.2007,21.02.2007,29.1,Aufgehoben (ab 2002),288111
+40,S1613,S1613,Oberschöneweide,Treptow-Köpenick,11.,09.11.1995,10.11.1995,,,,10.07.2010,11.07.2010,41.9,Aufgehoben (ab 2002),414681
+41,S1706,S1706,Kaskelstraße,Lichtenberg,10.,03.12.1994,04.12.1994,,,,09.02.2008,10.02.2008,22.1,Aufgehoben (ab 2002),219581
+42,S1707,S1707,Weitlingstraße,Lichtenberg,10.,03.12.1994,04.12.1994,,,,27.01.2009,28.01.2009,50.3,Aufgehoben (ab 2002),498191
+43,S1805,S1805,Komponistenviertel,Pankow,10.,03.12.1994,04.12.1994,,,,10.07.2010,11.07.2010,49.7,Aufgehoben (ab 2002),492867
+44,S1907,S1907,Wollankstraße,Pankow,10.,03.12.1994,04.12.1994,,,,27.04.2011,28.04.2011,68.5,Aufgehoben (ab 2002),680163

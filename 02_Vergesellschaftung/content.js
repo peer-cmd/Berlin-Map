@@ -1,3 +1,14 @@
+// Shared HTML fragments for [data-include] elements (see include.js).
+// Kept in a script so the pages also work when opened directly from disk
+// (file://), where fetch() of a local file is blocked.
+window.SITE_INCLUDES = {
+"timeline": `
+2021 — Volksentscheid, 56,4 % Zustimmung (nicht rechtlich bindend, politischer Auftrag an den Senat)<br>
+2021–2023 — Expertenkommission „Vergesellschaftung" tagt, prüft Rechtsfragen und Kostenrahmen<br>
+2023 — Abschlussbericht: Mehrheitsvotum hält Vergesellschaftung für verfassungsrechtlich möglich, auch mit Entschädigung unterhalb des Verkehrswerts; ein Sondervotum (3 von 13 Mitgliedern) sieht den Verkehrswert als zwingenden Ausgangspunkt mit nur engem Spielraum für Abschläge<br>
+2024 — Berliner Rechnungshof veröffentlicht Beratungsbericht (20.02.2024) mit vier Kostenszenarien (8/11/29/36 Mrd. €) für den Landeshaushalt<br>
+2026 — IW Köln/Empirica-Gutachten im Auftrag Berliner Banken (Gegenposition)`,
+"glossary": `
     <dl class="glossary">
       <dt>Art. 15 GG vs. Art. 14 GG</dt><dd>Art. 14 Abs. 3 GG regelt die Enteignung im Einzelfall gegen Entschädigung. Art. 15 GG erlaubt die Vergesellschaftung ganzer Wirtschaftszweige in Gemeineigentum; er wurde seit 1949 nie angewendet, daher ungeklärt, ob die Entschädigung dem vollen Verkehrswert entsprechen muss oder geringer ausfallen darf.</dd>
       <dt>Sondervotum / Mehrheitsvotum</dt><dd>Stimmt eine Kommission nicht einstimmig ab, hält der Abschlussbericht die Position der Mehrheit (Mehrheitsvotum) und die der überstimmten Minderheit (Sondervotum) getrennt fest. Bei der Expertenkommission Vergesellschaftung vertraten 3 von 13 Mitgliedern ein Sondervotum zur Entschädigung: Verkehrswert als zwingender Ausgangspunkt, nur enger Spielraum für Abschläge — nicht schlicht „voller Verkehrswert".</dd>
@@ -24,4 +35,5 @@
       <dt>Nettoposition</dt><dd>Vermögenswert des Bestands (Verkehrswert × Bestandsgröße) abzüglich Restschuld, zuzüglich kumuliertem Cashflow aus dem laufenden Betrieb. Zeigt die Gesamtvermögensposition des Landes, nicht nur den laufenden Cashflow.</dd>
       <dt>Integrationskosten</dt><dd>Einmalige Kosten der Zusammenführung vieler getrennter Bestände in eine Anstalt (IT, Verwaltung, Recht), Jahr 0, als % des Kaufpreises. Von IW Köln 2026 als im DWE-Modell fehlend kritisiert. Kein wohnungswirtschaftsspezifischer Wert bekannt; 2 % ist eine grobe Analogie zur allgemeinen M&amp;A-Literatur (typ. niedriger einstelliger Prozentbereich), keine belastbare Schätzung.</dd>
       <dt>Sanierungsstau</dt><dd>Einmaliger Nachholbedarf bei Übernahme (These Bernt/Holm: private Konzerne unterinvestieren). Default grob hergeleitet aus Berliner Sanierungsbedarf-Schätzungen für Bestandsbauten (Größenordnung 20.000–30.000 €/Whg. bei Teilmodernisierung; energetische Vollsanierung nach IW-Consult-Kostensätzen 660–1.600 €/m² liegt deutlich höher, 40.000+ €/Whg.). Illustrativ, keine belastbare Einzelschätzung je Bestand.</dd>
-    </dl>
+    </dl>`
+};

@@ -1,0 +1,239 @@
+﻿fid,gisid,bez,we_kat,leg_fertig,leg_gemeinw,lon,lat
+0,S1,Steinstraße / Bahnhofstraße,200 - 499 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.397472,52.38777
+1,S10,Lützowstraße,200 - 499 Wohneinheiten,Im Bau,Sonstige Wohnungsbaupotenziale,13.369862,52.501423
+2,S100,Falkenberger Chaussee,200 - 499 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.521716,52.568258
+3,S101,Genslerstraße / Freienwalder Straße,200 - 499 Wohneinheiten,Langfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.49899,52.541529
+4,S102,Friedhof Frieden-Himmelfahrt,200 - 499 Wohneinheiten,Langfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.403769,52.594946
+5,S103,Frühlingstraße,200 - 499 Wohneinheiten,Langfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.378962,52.574423
+6,S104,HMH-Siedlung,200 - 499 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.4366,52.417924
+7,S105,Westfalenring,200 - 499 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.306377,52.406869
+8,S106,Pankower Allee / Residenzstraße / Simmelstraße,200 - 499 Wohneinheiten,Langfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.365932,52.56465
+9,S107,Ehem. BEHALA-Areal,200 - 499 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.430559,52.507249
+10,S108,Wiener Straße / Reichenberger Straße,200 - 499 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.441655,52.493356
+11,S109,Buch III,200 - 499 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.495598,52.631889
+12,S11,Oderstraße,200 - 499 Wohneinheiten,Im Bau,Sonstige Wohnungsbaupotenziale,13.420539,52.466441
+13,S110,Erholungsanlage Schildow-Waldeck,200 - 499 Wohneinheiten,Langfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.380313,52.629796
+14,S111,Marienfelder Allee,200 - 499 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.361809,52.410289
+15,S112,Hoeppnerstraße / Tempelhofer Damm,200 - 499 Wohneinheiten,Langfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.384781,52.471219
+16,S113,Areal Berliner Stadtmission,200 - 499 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.36319,52.526429
+17,S114,Kirchhof V Jerusalems- und Neue Kirche,200 - 499 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.424362,52.470799
+18,S115,Wildmeisterdamm,200 - 499 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.449432,52.424195
+19,S116,Ostburger Weg,200 - 499 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.509583,52.411846
+20,S117,Vulkanstraße / Elli-Vogt-Straße,200 - 499 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.484678,52.529634
+21,S118,Schöneberger Linse - Baufeld 8 westlich,200 - 499 Wohneinheiten,Langfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.357567,52.477364
+22,S119,Lindenberger Weg / Klagenfurter Straße,200 - 499 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.472221,52.595713
+23,S12,Marchwitzastraße,200 - 499 Wohneinheiten,Im Bau,Sonstige Wohnungsbaupotenziale,13.54425,52.523539
+24,S120,Gropiusstadt - südwestlicher Bereich,200 - 499 Wohneinheiten,Langfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.454681,52.425307
+25,S121,Saatwinkler Damm / Küsterstraße,200 - 499 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.245474,52.546619
+26,S122,Gropiusstadt - nordwestlicher Bereich,200 - 499 Wohneinheiten,Langfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.464199,52.428535
+27,S123,Molkenmarkt,200 - 499 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.409715,52.517101
+28,S124,Fürstenwalder Allee,200 - 499 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.721703,52.429505
+29,S125,Mohriner Allee Ost / Koppelweg,200 - 499 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.42851,52.443646
+30,S126,Urbanes Zentrum Neu-Hohenschönhausen,200 - 499 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.510128,52.565663
+31,S127,Invalidenstraße,200 - 499 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.363612,52.524185
+32,S128,Karower Damm / Lindenberger Weg,500 - 999 Wohneinheiten,Langfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.46512,52.593549
+33,S129,Neue Mitte Tempelhof,500 - 999 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.388617,52.463879
+34,S13,Golgatha-Friedhof - West,200 - 499 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.34686,52.564218
+35,S130,An der Trabrennbahn,500 - 999 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.525544,52.473174
+36,S131,Projektverbund Karow-Süd - An der Laake,500 - 999 Wohneinheiten,Langfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.486562,52.601882
+37,S132,Oberweißbacher Straße,500 - 999 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.570908,52.556945
+38,S133,Merler Weg / Allee der Kosmonauten - West,500 - 999 Wohneinheiten,Langfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.530331,52.524402
+39,S134,Buch IV,500 - 999 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.489759,52.627752
+40,S135,Storkower Straße / Max-Brunnow-Straße,500 - 999 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.460911,52.525814
+41,S136,nördlich Treskowstraße,1000 - 1999 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.430795,52.563492
+42,S137,TXL Nord,1000 - 1999 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.301377,52.565074
+43,S138,Michelangelostraße,1000 - 1999 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.449112,52.543319
+44,S139,Projektverbund Karow-Süd - Karower Kreuz,1000 - 1999 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.469117,52.604715
+45,S14,Quartier Mollnerweg,200 - 499 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.446323,52.418607
+46,S140,Cité Pasteur,1000 - 1999 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.303226,52.554867
+47,S141,Ehemaliger Güterbahnhof Köpenick,1000 - 1999 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.591671,52.457816
+48,S142,Alte Schäferei - Bucher Straße / Baltrumstraße,1000 - 1999 Wohneinheiten,Langfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.434851,52.615166
+49,S143,Alte Schäferei - Schönerlinder Straße,2000 und mehr Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.426386,52.620203
+50,S144,Stadteingang West,2000 und mehr Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.271709,52.495302
+51,S145,Dreieck Späthsfelde,2000 und mehr Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.467531,52.454375
+52,S146,Ehemaliger Rangierbahnhof Pankow,2000 und mehr Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.421366,52.570984
+53,S147,Projektverbund Karow-Süd - Am Teichberg,2000 und mehr Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.490639,52.60759
+54,S148,Lichterfelde Süd,2000 und mehr Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.315202,52.408988
+55,S149,Siemensstadt Square,2000 und mehr Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.253531,52.542059
+56,S15,Heisenbergstraße / Schlesingerstraße,200 - 499 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.325146,52.523663
+57,S150,Buch - Am Sandhaus,2000 und mehr Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.483523,52.637396
+58,S151,Elisabeth-Aue,2000 und mehr Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.407887,52.608392
+59,S152,Blankenburger Süden,2000 und mehr Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.454251,52.579536
+60,S153,Schumacher Quartier,2000 und mehr Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.317669,52.560936
+61,S154,Kiehlufer,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.452494,52.482186
+62,S155,Etkar-André-Straße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.593523,52.530014
+63,S156,Möllendorfstraße / Storkower Straße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.47837,52.52258
+64,S157,Bürgerstraße / Provinzstraße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.380754,52.570872
+65,S158,Wiesbadener Straße / Helgolandstraße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.301786,52.472492
+66,S159,Blankenburger Straße / Grumbkowstraße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.426138,52.584894
+67,S16,Wasserstadt B-Oberhavel - Am Maselakepark,200 - 499 Wohneinheiten,Im Bau,Sonstige Wohnungsbaupotenziale,13.21435,52.556159
+68,S160,Wasserstadt B-Oberhavel - Carossaquartier Nord,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.212209,52.559464
+69,S161,Schöneberger Linse - Baufeld 6,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.359264,52.478396
+70,S162,Firlstraße / Kottmeierstraße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.5285,52.462587
+71,S163,Ehem. Bock-Brauerei,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.389654,52.486332
+72,S164,Wilhelmstraße / Friedrich-Stampfer-Straße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.389754,52.499639
+73,S165,Ehem. Zapf-Areal,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.436254,52.504501
+74,S166,Sachtlebenstraße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.250645,52.406477
+75,S167,Hildburghauser Straße / Luckeweg,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.356297,52.412549
+76,S168,Heinrich-Heine-Straße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.415446,52.509129
+77,S169,Wolfgang-Heinz-Straße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.495278,52.629635
+78,S17,Ehem. Tacheles,200 - 499 Wohneinheiten,Im Bau,Sonstige Wohnungsbaupotenziale,13.390215,52.52478
+79,S170,Blankenburger Straße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.419258,52.58378
+80,S171,Werneuchener Straße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.49716,52.540503
+81,S172,Schwarzmeerstraße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.513206,52.501864
+82,S173,Rienzistraße / Tannhäuserstraße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.515984,52.490782
+83,S174,Walderseer Straße / Markstraße / Holländerstraße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.362604,52.561618
+84,S175,Cité Foch - Hallenbad,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.321078,52.599873
+85,S176,Otto-Suhr-Allee / Warburgzeile,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.310447,52.516979
+86,S177,Florian-Geyer-Straße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.545755,52.4379
+87,S178,Europacity - Bestand westl. Heidestraße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.367035,52.530673
+88,S179,Idunastraße / Neukirchstraße - West,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.431311,52.574879
+89,S18,Eichbuschallee,200 - 499 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.481215,52.472067
+90,S180,Chemnitzer Straße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.579733,52.503636
+91,S181,Neuendorfer Straße / Askanierring,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.205568,52.553285
+92,S182,Weder-Kiez Süd,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.43708,52.461375
+93,S183,Weißenseer Weg,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.47416,52.537293
+94,S184,Treffurter Straße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.517997,52.53625
+95,S185,Alfred-Kowalke-Straße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.515645,52.504667
+96,S186,Zwieseler Straße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.541404,52.497175
+97,S187,Markstraße / Residenzstraße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.366176,52.5614
+98,S188,Treuenbrietzener Straße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.361442,52.599357
+99,S189,Freienwalder Straße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.497746,52.541774
+100,S19,Wasserstadt B-Oberhavel - Ufer Daumstr. Süd,200 - 499 Wohneinheiten,Im Bau,Sonstige Wohnungsbaupotenziale,13.224115,52.550736
+101,S190,Lichterfelder Ring,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.343917,52.410548
+102,S191,Nördliche Bernauer Straße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.278779,52.577068
+103,S192,Wattstraße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.507967,52.468326
+104,S193,Ehem. Haus der Statistik,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.419178,52.523207
+105,S194,Mühlenstraße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.445939,52.504249
+106,S195,Buckower Damm / Zimmererweg,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.435801,52.433969
+107,S196,Alexanderplatz - Baufeld D4,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.415518,52.521944
+108,S197,Müggellandstraße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.658603,52.417399
+109,S198,Waldowallee,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.535802,52.484034
+110,S199,Hohensaatener Straße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.577971,52.549873
+111,S2,Wasserstadt B-Oberhavel - Kl. Eiswerderstraße,200 - 499 Wohneinheiten,Im Bau,Sonstige Wohnungsbaupotenziale,13.224757,52.549284
+112,S20,Alexanderplatz - Baufeld D3,200 - 499 Wohneinheiten,Im Bau,Sonstige Wohnungsbaupotenziale,13.414093,52.522385
+113,S200,Jan-Petersen-Straße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.564913,52.549027
+114,S201,Holzmarktstraße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.426083,52.512807
+115,S202,Staakener Feldstraße / Nennhauser Damm,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.138786,52.535759
+116,S203,St.-Johannes-Evangelist-Kirchhof,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.352749,52.560697
+117,S204,Detlevstraße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.524325,52.552943
+118,S205,Alte Jakobstraße / Franz-Künstler-Straße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.399647,52.502263
+119,S206,Dickensweg / Scottsweg / Swiftweg,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.234817,52.509173
+120,S207,Ehem. Schulgelände Wollenberger Straße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.511082,52.547557
+121,S208,Wasserstadt B-Oberhavel - Daumstraße,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.228713,52.550585
+122,S209,Dragoner-Areal,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.386908,52.495118
+123,S21,Mittenwalder Straße,200 - 499 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.597728,52.545854
+124,S210,Georgen-Parochial III Friedhof - Nord,200 - 499 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.445827,52.55643
+125,S211,Ehem. Sport- und Erholungszentrum (SEZ),500 - 999 Wohneinheiten,Mittelfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.445357,52.526761
+126,S212,Am Gartenstadtweg - Falkenberg,500 - 999 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.563076,52.408368
+127,S213,Hellersdorfer Straße,500 - 999 Wohneinheiten,Mittelfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.58689,52.52441
+128,S214,Bohnsdorfer Weg,500 - 999 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.552183,52.408063
+129,S215,Ziekowstraße Süd,500 - 999 Wohneinheiten,Mittelfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.29304,52.58892
+130,S216,Köpenicker Allee,500 - 999 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.538897,52.481477
+131,S217,Theaterplatz / Schkeuditzer Straße,500 - 999 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.620733,52.54089
+132,S218,Karl-Bonhoeffer-Nervenklinik,500 - 999 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.324718,52.582131
+133,S219,Alte Gärtnerei Heinersdorf,500 - 999 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.440108,52.570061
+134,S22,Stresowplatz,200 - 499 Wohneinheiten,Im Bau,Sonstige Wohnungsbaupotenziale,13.204144,52.533474
+135,S220,Am Spreebord,500 - 999 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.312948,52.522055
+136,S221,Schulze-Boysen-Straße / Coppistraße,500 - 999 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.4824,52.509071
+137,S222,Hennigsdorfer Straße,500 - 999 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.22394,52.626728
+138,S223,Ludwig-Quidde-Straße (Südost),500 - 999 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.442806,52.599229
+139,S224,Ehem. Güterbahnhof Neukölln,500 - 999 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.438986,52.468184
+140,S225,Emmausfriedhof West,500 - 999 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.425178,52.462537
+141,S226,Griesingerstraße,500 - 999 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.151195,52.563731
+142,S227,Marienhöfe (Röblingstraße),500 - 999 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.360603,52.4517
+143,S228,Weißenseer Weg (Ehem. BVG-Parkplatz),500 - 999 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.4712,52.536698
+144,S229,Wollenberger Straße / Wartenberger Straße,500 - 999 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.510342,52.548789
+145,S23,Schöneberger Linse - Baufeld 2/3,200 - 499 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.361212,52.475835
+146,S230,Hertzallee Nord,500 - 999 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.33224,52.509902
+147,S231,Friedrichshagener Straße,500 - 999 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.589352,52.450637
+148,S232,Ehem. RIAS-Gelände,500 - 999 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.431873,52.448575
+149,S233,Iranische Straße,500 - 999 Wohneinheiten,Mittelfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.367989,52.555442
+150,S234,Landsberger Allee (Erweiterung Weiße Taube - Süd),1000 - 1999 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.508285,52.535973
+151,S235,Ahrensfelder Chaussee (Mein Falkenberg),1000 - 1999 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.560212,52.573398
+152,S236,Georg-Knorr-Park,1000 - 1999 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.538066,52.542755
+153,S237,Johannisthal / Adlershof - Segelfliegerdamm,1000 - 1999 Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.512362,52.443108
+154,S238,Das Neue Gartenfeld,2000 und mehr Wohneinheiten,Mittelfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.241867,52.552915
+155,S24,Anne-Frank-Straße / Hassoweg,200 - 499 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.538391,52.40956
+156,S25,Schloßstraße (Steglitzer Kreisel),200 - 499 Wohneinheiten,Im Bau,Sonstige Wohnungsbaupotenziale,13.320302,52.455852
+157,S26,Wasserstadt B-Oberhavel - Rauchstraße,200 - 499 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.220645,52.560459
+158,S27,Markgrafendamm,200 - 499 Wohneinheiten,Im Bau,Sonstige Wohnungsbaupotenziale,13.466237,52.498787
+159,S28,Wilhelmine-Duncker-Straße - Falkenberg,200 - 499 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.560817,52.406027
+160,S29,Märkisches Zentrum,200 - 499 Wohneinheiten,Im Bau,Sonstige Wohnungsbaupotenziale,13.353942,52.598071
+161,S3,Fanny-Zobel-Straße,200 - 499 Wohneinheiten,Im Bau,Sonstige Wohnungsbaupotenziale,13.457082,52.496636
+162,S30,Alexanderplatz - Baufeld E1,200 - 499 Wohneinheiten,Im Bau,Sonstige Wohnungsbaupotenziale,13.415427,52.520128
+163,S31,Erweiterung Weiße Taube,200 - 499 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.510906,52.538466
+164,S32,Rummelsburger Bucht / Ostkreuz,200 - 499 Wohneinheiten,Im Bau,Sonstige Wohnungsbaupotenziale,13.470631,52.501675
+165,S33,Ehem. Postbank-Areal,200 - 499 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.384042,52.500359
+166,S34,Idunastraße / Neukirchstraße - Ost,200 - 499 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.435106,52.574028
+167,S35,Krautstraße,200 - 499 Wohneinheiten,Im Bau,Sonstige Wohnungsbaupotenziale,13.426965,52.51279
+168,S36,Pufendorfstraße / Landsberger Allee,200 - 499 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.438215,52.522641
+169,S37,Ostendstraße,200 - 499 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.53686,52.457813
+170,S38,Britzer Straße,200 - 499 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.410036,52.440308
+171,S39,Mariane-von-Rantzau-Straße / Mühlenstraße,200 - 499 Wohneinheiten,Im Bau,Sonstige Wohnungsbaupotenziale,13.439022,52.507256
+172,S4,Fischerinsel,200 - 499 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.406709,52.513969
+173,S40,Wasserstadt B-Oberhavel - Ufer Daumstr. Nord,200 - 499 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.22633,52.558683
+174,S41,Stadtgut Hellersdorf - Baufeld 5,200 - 499 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.597756,52.539892
+175,S42,Rhinstraße,500 - 999 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.51669,52.52438
+176,S43,Maximilians-Quartier,500 - 999 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.298181,52.480291
+177,S44,Sophie-Charlotten-Straße / Pulsstraße,500 - 999 Wohneinheiten,Im Bau,Sonstige Wohnungsbaupotenziale,13.286903,52.523771
+178,S45,Merler Weg / Allee der Kosmonauten - Ost,500 - 999 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.532613,52.524337
+179,S46,Märkische Allee / Trusetaler Straße,500 - 999 Wohneinheiten,Im Bau,Sonstige Wohnungsbaupotenziale,13.559053,52.561066
+180,S47,Johannisthal / Adlershof - Eisenhutweg,500 - 999 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.506994,52.430395
+181,S48,Buschkrugallee,500 - 999 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.444899,52.457945
+182,S49,Wendenschlossstraße (Ehem. Funkwerk),500 - 999 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.579351,52.436742
+183,S5,Gersdorfstraße / Ringstraße / Prühßstraße,200 - 499 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.377895,52.443751
+184,S50,Wasserstadt B-Oberhavel - Parkstraße,500 - 999 Wohneinheiten,Im Bau,Sonstige Wohnungsbaupotenziale,13.213938,52.550415
+185,S51,Regattaquartier,500 - 999 Wohneinheiten,Im Bau,Sonstige Wohnungsbaupotenziale,13.576365,52.425822
+186,S52,Europacity - Quartier Heidestraße,500 - 999 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.365517,52.532344
+187,S53,Wasserstadt B-Oberhavel - Rhenaniastraße,500 - 999 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.228589,52.552527
+188,S54,Ehem. BMHW,500 - 999 Wohneinheiten,Im Bau,Sonstige Wohnungsbaupotenziale,13.515492,52.457901
+189,S55,Wochenendsiedlung Gartenfreunde Siemensstadt,500 - 999 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.252522,52.545895
+190,S56,Wasserstadt Spindlersfeld,1000 - 1999 Wohneinheiten,Im Bau,Sonstige Wohnungsbaupotenziale,13.56502,52.450769
+191,S57,Parkstadt Karlshorst,1000 - 1999 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.508449,52.482533
+192,S58,Wendenschlossstraße (Marienhain),1000 - 1999 Wohneinheiten,Im Bau,Sonstige Wohnungsbaupotenziale,13.579781,52.43124
+193,S59,Wasserstadt B-Oberhavel - Carossaquartier Süd,1000 - 1999 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.211705,52.557527
+194,S6,Seehausener Straße,200 - 499 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.522551,52.561495
+195,S60,Ferdinand-Schultze-Straße / Landsberger Allee,1000 - 1999 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.51212,52.536564
+196,S61,Lissabonallee,200 - 499 Wohneinheiten,Kurzfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.226595,52.427852
+197,S62,Moissistraße,200 - 499 Wohneinheiten,Kurzfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.549219,52.433095
+198,S63,Hinter den Arcaden,200 - 499 Wohneinheiten,Kurzfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.187801,52.534879
+199,S64,Reichsstraße,200 - 499 Wohneinheiten,Kurzfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.251283,52.522678
+200,S65,Harzer Straße,200 - 499 Wohneinheiten,Kurzfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.449978,52.483959
+201,S66,Ilsestraße,200 - 499 Wohneinheiten,Kurzfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.517699,52.489271
+202,S67,Parkviertel Süd,200 - 499 Wohneinheiten,Kurzfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.154956,52.462821
+203,S68,Prinzregentenstraße / Waghäuseler Straße,200 - 499 Wohneinheiten,Kurzfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.333781,52.484226
+204,S69,Fischerhüttenstraße / Sven-Hedin-Straße,200 - 499 Wohneinheiten,Kurzfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.250923,52.440706
+205,S7,Boxhagener Straße,200 - 499 Wohneinheiten,Im Bau,Sonstige Wohnungsbaupotenziale,13.468361,52.507554
+206,S70,Damerowstraße,200 - 499 Wohneinheiten,Kurzfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.417973,52.571424
+207,S71,Quartier Stralauer Allee,200 - 499 Wohneinheiten,Kurzfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.457369,52.50095
+208,S72,Otto-Franke-Straße / Glienicker Weg,200 - 499 Wohneinheiten,Kurzfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.554807,52.433828
+209,S73,Cité Foch - nördliche Rue Montesquieu,200 - 499 Wohneinheiten,Kurzfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.318072,52.602654
+210,S74,Landsberger Straße,200 - 499 Wohneinheiten,Kurzfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.640455,52.518838
+211,S75,Spreestadt (westl. Hannah-Karminski-Straße),200 - 499 Wohneinheiten,Kurzfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.329288,52.517497
+212,S76,Prenzlauer Allee / Erich-Weinert-Straße,200 - 499 Wohneinheiten,Kurzfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.429176,52.545657
+213,S77,Parkviertel Nord,200 - 499 Wohneinheiten,Kurzfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.156202,52.468266
+214,S78,Glasower Straße Ost,200 - 499 Wohneinheiten,Kurzfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.440898,52.465115
+215,S79,Kietzer Feld,200 - 499 Wohneinheiten,Kurzfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.590273,52.424762
+216,S8,Pallasstraße,200 - 499 Wohneinheiten,Im Bau,Sonstige Wohnungsbaupotenziale,13.355951,52.494139
+217,S80,Waldhaus Alt-Buch / Zepernicker Straße,200 - 499 Wohneinheiten,Kurzfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.50546,52.63831
+218,S81,Cecilienstraße / Teterower Ring,200 - 499 Wohneinheiten,Kurzfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.584572,52.523726
+219,S82,Quedlinburger Straße / Wernigeroder Straße / Klaustaler Straße,200 - 499 Wohneinheiten,Kurzfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.312521,52.523748
+220,S83,Bruno-Taut-Straße,200 - 499 Wohneinheiten,Kurzfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.568513,52.413225
+221,S84,Wolfgang-Steinitz-Straße / Fahlenbergstraße,200 - 499 Wohneinheiten,Kurzfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.717321,52.430225
+222,S85,Wohnpark am Sportforum,200 - 499 Wohneinheiten,Kurzfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.479237,52.538478
+223,S86,Ehem. Krankenhaus Staaken,500 - 999 Wohneinheiten,Kurzfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.135766,52.532042
+224,S87,Anne-Frank-Straße,500 - 999 Wohneinheiten,Kurzfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.536746,52.408472
+225,S88,Erweiterung Ludwig-Hoffmann-Quartier,500 - 999 Wohneinheiten,Kurzfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.488284,52.64288
+226,S89,Buckower Felder,500 - 999 Wohneinheiten,Kurzfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.435677,52.416127
+227,S9,Pöhlbergstraße / Blumberger Damm,200 - 499 Wohneinheiten,Im Bau,Potenziale für gemeinwohlorientierten Wohnungsbau,13.570198,52.545172
+228,S90,Gartenstadt Karlshorst Süd,500 - 999 Wohneinheiten,Kurzfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.541963,52.483363
+229,S91,Ehem. Güterbahnhof Wilmersdorf,1000 - 1999 Wohneinheiten,Kurzfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.337406,52.477683
+230,S92,Halemweg,200 - 499 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.287957,52.53744
+231,S93,Nordhauser Straße / Quedlinburger Straße / Goslarer Ufer,200 - 499 Wohneinheiten,Langfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.314687,52.523866
+232,S94,Hohenstaufenstraße,200 - 499 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.347977,52.494665
+233,S95,Erfurter Straße,200 - 499 Wohneinheiten,Langfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.339924,52.479481
+234,S96,Kirchhof St. Jacobi II,200 - 499 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.423501,52.468231
+235,S97,Jahnstraße,200 - 499 Wohneinheiten,Langfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.438654,52.459815
+236,S98,Hellersdorfer Straße / Riesaer Straße,200 - 499 Wohneinheiten,Langfristiges Potenzial,Sonstige Wohnungsbaupotenziale,13.602975,52.535955
+237,S99,Parlerstraße / Großmannstraße,200 - 499 Wohneinheiten,Langfristiges Potenzial,Potenziale für gemeinwohlorientierten Wohnungsbau,13.608083,52.496404

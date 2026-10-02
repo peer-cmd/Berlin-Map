@@ -1,0 +1,77 @@
+{
+  "layer_id": "step_wohnen_quartiere",
+  "title": "StEP Wohnen 2040: Neue Stadtquartiere",
+  "geometry": "polygon",
+  "processed_utc": "2026-10-01T09:56:55Z",
+  "feature_count": 24,
+  "skipped": {},
+  "warnings": [],
+  "stats": {},
+  "output_bytes": 114689,
+  "processing": {},
+  "files": {
+    "geojson": "step_wohnen_quartiere.geojson",
+    "csv": "step_wohnen_quartiere.csv"
+  },
+  "provenance": {
+    "layer_id": "step_wohnen_quartiere",
+    "title": "StEP Wohnen 2040: Neue Stadtquartiere",
+    "retrieved_utc": "20261001T095158Z",
+    "wfs_version": "2.0.0",
+    "requested_srs": "EPSG:4326",
+    "request_urls": {
+      "capabilities": "https://gdi.berlin.de/services/wfs/step_wo_2040?service=WFS&version=2.0.0&request=GetCapabilities",
+      "hits": "https://gdi.berlin.de/services/wfs/step_wo_2040?service=WFS&version=2.0.0&request=GetFeature&typeNames=step_wo_2040:j_step_wo_2040_neustadtquar&resultType=hits",
+      "data": "https://gdi.berlin.de/services/wfs/step_wo_2040?service=WFS&version=2.0.0&request=GetFeature&typeNames=step_wo_2040:j_step_wo_2040_neustadtquar&outputFormat=application/json&srsName=EPSG:4326"
+    },
+    "service_base_url": "https://gdi.berlin.de/services/wfs/step_wo_2040",
+    "type_name": "step_wo_2040:j_step_wo_2040_neustadtquar",
+    "response_crs": {
+      "type": "name",
+      "properties": {
+        "name": "urn:ogc:def:crs:EPSG::4326"
+      }
+    },
+    "feature_count": 24,
+    "raw_file": "step_wohnen_quartiere_20261001T095158Z.geojson",
+    "raw_bytes": 137970,
+    "raw_sha256": "2ac1eb6c269f78cf3ea9fcae8f7a7a756be81ec0770878eabded0fb0c3a58684",
+    "service_server_timestamp": "2026-10-01T09:52:01.784Z",
+    "service_title": "Stadtentwicklungsplan (StEP) Wohnen 2040",
+    "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+    "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen.",
+    "parts": [
+      {
+        "request_urls": {
+          "capabilities": "https://gdi.berlin.de/services/wfs/step_wo_2040?service=WFS&version=2.0.0&request=GetCapabilities",
+          "hits": "https://gdi.berlin.de/services/wfs/step_wo_2040?service=WFS&version=2.0.0&request=GetFeature&typeNames=step_wo_2040:j_step_wo_2040_neustadtquar&resultType=hits",
+          "data": "https://gdi.berlin.de/services/wfs/step_wo_2040?service=WFS&version=2.0.0&request=GetFeature&typeNames=step_wo_2040:j_step_wo_2040_neustadtquar&outputFormat=application/json&srsName=EPSG:4326"
+        },
+        "service_base_url": "https://gdi.berlin.de/services/wfs/step_wo_2040",
+        "type_name": "step_wo_2040:j_step_wo_2040_neustadtquar",
+        "response_crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG::4326"
+          }
+        },
+        "feature_count": 24,
+        "raw_file": "step_wohnen_quartiere_20261001T095158Z.geojson",
+        "raw_bytes": 137970,
+        "raw_sha256": "2ac1eb6c269f78cf3ea9fcae8f7a7a756be81ec0770878eabded0fb0c3a58684",
+        "service_server_timestamp": "2026-10-01T09:52:01.784Z",
+        "service_title": "Stadtentwicklungsplan (StEP) Wohnen 2040",
+        "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+        "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen."
+      }
+    ],
+    "dataset_page": "https://gdi.berlin.de/services/wfs/step_wo_2040?request=GetCapabilities&service=WFS",
+    "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+    "license": {
+      "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+      "id": "dl-de-zero-2.0",
+      "url": "https://www.govdata.de/dl-de/zero-2-0"
+    }
+  },
+  "provenance_file": "step_wohnen_quartiere_20261001T095158Z.provenance.json"
+}

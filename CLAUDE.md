@@ -32,3 +32,14 @@ MapLibre map of Berlin for architectural and urban research. The data core is pr
 - Eigentumskonzentration shares are % of parcel area of residential/mixed land per PLR (not dwellings); municipal companies and cooperatives are subsets of legal persons (Datenformatbeschreibung SenSBW 2025).
 - StEP Wohnen 2040 "Neue Stadtquartiere" geometry is schematic: circles of ~900 m radius.
 - Wohnatlas 2022 uses 58 Prognoseräume (LOR 2021); earlier years use 60, so years cannot be joined by key.
+- Basemap: OpenFreeMap positron style (no key). CARTO tiles need an API key; do not use them.
+
+## 02_Vergesellschaftung (separate project)
+
+Static site: cost and financing model for the socialisation of large Berlin housing companies (Art. 15 GG). German-language content.
+
+- Edit `vergesellschaftung-modell-v37.html`, then run `python3 build_kompakt.py`; `modell-kompakt.html` is generated.
+- Edit `quellenbelege.md`, then run `python3 build_quellenbelege.py`; `quellenbelege.html` is generated.
+- Model logic and presets: `model-calc.js`. Shared glossary and timeline text: `content.js` (loaded by `include.js`, works from file://).
+- Chart.js 4.4.0 is vendored in `vendor/`. Primary sources are PDFs in `pdf/` with Markdown extractions in `pdf/markdown/`.
+- Every number needs a source with page in `quellenbelege.md`; quote verbatim only from the original PDF. Log changes in `entwicklungsprotokoll.md`.

@@ -1,0 +1,107 @@
+{
+  "layer_id": "erhaltungsgebiete",
+  "title": "Erhaltungsverordnungsgebiete § 172 BauGB",
+  "geometry": "polygon",
+  "processed_utc": "2026-10-01T09:53:12Z",
+  "feature_count": 176,
+  "skipped": {},
+  "warnings": [],
+  "stats": {},
+  "output_bytes": 286738,
+  "processing": {
+    "precision": 6,
+    "simplify_m": 1,
+    "combine": {
+      "mode": "concat",
+      "field": "erhaltungsziel"
+    }
+  },
+  "files": {
+    "geojson": "erhaltungsgebiete.geojson",
+    "csv": "erhaltungsgebiete.csv"
+  },
+  "provenance": {
+    "layer_id": "erhaltungsgebiete",
+    "title": "Erhaltungsverordnungsgebiete § 172 BauGB",
+    "retrieved_utc": "20261001T095139Z",
+    "wfs_version": "2.0.0",
+    "requested_srs": "EPSG:4326",
+    "request_urls": {
+      "capabilities": "https://gdi.berlin.de/services/wfs/erhaltungsverordnungsgebiete?service=WFS&version=2.0.0&request=GetCapabilities",
+      "hits": "https://gdi.berlin.de/services/wfs/erhaltungsverordnungsgebiete?service=WFS&version=2.0.0&request=GetFeature&typeNames=erhaltungsverordnungsgebiete:erhaltgeb_em&resultType=hits",
+      "data": "https://gdi.berlin.de/services/wfs/erhaltungsverordnungsgebiete?service=WFS&version=2.0.0&request=GetFeature&typeNames=erhaltungsverordnungsgebiete:erhaltgeb_em&outputFormat=application/json&srsName=EPSG:4326"
+    },
+    "service_base_url": "https://gdi.berlin.de/services/wfs/erhaltungsverordnungsgebiete",
+    "type_name": "erhaltungsverordnungsgebiete:erhaltgeb_em",
+    "response_crs": {
+      "type": "name",
+      "properties": {
+        "name": "urn:ogc:def:crs:EPSG::4326"
+      }
+    },
+    "feature_count": 82,
+    "raw_file": "erhaltungsgebiete_20261001T095139Z.0.geojson",
+    "raw_bytes": 558808,
+    "raw_sha256": "cf41d6361600fbe36b646403a4a6f1331341485db046e0f611b279b43d537ceb",
+    "service_server_timestamp": "2026-10-01T09:51:42.796Z",
+    "service_title": "Erhaltungsverordnungsgebiete § 172 BauGB",
+    "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+    "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen.",
+    "parts": [
+      {
+        "request_urls": {
+          "capabilities": "https://gdi.berlin.de/services/wfs/erhaltungsverordnungsgebiete?service=WFS&version=2.0.0&request=GetCapabilities",
+          "hits": "https://gdi.berlin.de/services/wfs/erhaltungsverordnungsgebiete?service=WFS&version=2.0.0&request=GetFeature&typeNames=erhaltungsverordnungsgebiete:erhaltgeb_em&resultType=hits",
+          "data": "https://gdi.berlin.de/services/wfs/erhaltungsverordnungsgebiete?service=WFS&version=2.0.0&request=GetFeature&typeNames=erhaltungsverordnungsgebiete:erhaltgeb_em&outputFormat=application/json&srsName=EPSG:4326"
+        },
+        "service_base_url": "https://gdi.berlin.de/services/wfs/erhaltungsverordnungsgebiete",
+        "type_name": "erhaltungsverordnungsgebiete:erhaltgeb_em",
+        "response_crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG::4326"
+          }
+        },
+        "feature_count": 82,
+        "raw_file": "erhaltungsgebiete_20261001T095139Z.0.geojson",
+        "raw_bytes": 558808,
+        "raw_sha256": "cf41d6361600fbe36b646403a4a6f1331341485db046e0f611b279b43d537ceb",
+        "service_server_timestamp": "2026-10-01T09:51:42.796Z",
+        "service_title": "Erhaltungsverordnungsgebiete § 172 BauGB",
+        "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+        "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen."
+      },
+      {
+        "request_urls": {
+          "capabilities": "https://gdi.berlin.de/services/wfs/erhaltungsverordnungsgebiete?service=WFS&version=2.0.0&request=GetCapabilities",
+          "hits": "https://gdi.berlin.de/services/wfs/erhaltungsverordnungsgebiete?service=WFS&version=2.0.0&request=GetFeature&typeNames=erhaltungsverordnungsgebiete:erhaltgeb_es&resultType=hits",
+          "data": "https://gdi.berlin.de/services/wfs/erhaltungsverordnungsgebiete?service=WFS&version=2.0.0&request=GetFeature&typeNames=erhaltungsverordnungsgebiete:erhaltgeb_es&outputFormat=application/json&srsName=EPSG:4326"
+        },
+        "service_base_url": "https://gdi.berlin.de/services/wfs/erhaltungsverordnungsgebiete",
+        "type_name": "erhaltungsverordnungsgebiete:erhaltgeb_es",
+        "response_crs": {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:EPSG::4326"
+          }
+        },
+        "feature_count": 94,
+        "raw_file": "erhaltungsgebiete_20261001T095139Z.1.geojson",
+        "raw_bytes": 692713,
+        "raw_sha256": "269fb10042bb06ca9eb5f8e412974a7770ff23a82a0b10f39758a477690bc069",
+        "service_server_timestamp": "2026-10-01T09:51:44.981Z",
+        "service_title": "Erhaltungsverordnungsgebiete § 172 BauGB",
+        "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+        "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen."
+      }
+    ],
+    "dataset_page": "https://gdi.berlin.de/services/wfs/erhaltungsverordnungsgebiete?request=GetCapabilities&service=WFS",
+    "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+    "license": {
+      "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+      "id": "dl-de-zero-2.0",
+      "url": "https://www.govdata.de/dl-de/zero-2-0"
+    }
+  },
+  "provenance_file": "erhaltungsgebiete_20261001T095139Z.provenance.json"
+}
