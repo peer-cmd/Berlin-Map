@@ -350,3 +350,7 @@ Die Umwandlung in Sozialwohnungen ist in allen Positionen das Ziel und keine Fra
 ## 2026-10-03 — Modell: Preset-Schaltflächen gelb
 
 Die fünf Preset-Schaltflächen werden beim Überfahren, beim Klicken und als gewähltes Preset gelb (`#FFE55C`, wie die Überschriften-Links); „Zurücksetzen" hebt die Auswahl auf.
+
+## 2026-10-03 — Modell: Beschriftungen „Modus" entfernt
+
+Die Beschriftungen „Modus" (Finanzierung) und „Bewirtschaftungskosten-Modus" über den Umschaltern sind entfernt; die Umschalter Kredit/Eigenmittel und % der Miete/Absolut €/m² bleiben. Verweis im Hintergrundtext angepasst.
