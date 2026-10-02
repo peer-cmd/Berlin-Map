@@ -529,18 +529,6 @@
     $('s-netto').className = 'value '+(result.netResult>=0?'pos':'neg');
     $('s-netto-sub').textContent = 'nach '+state.horizon+' Jahren';
 
-    if(state.mode==='neubau'){
-      const delta = result.finalUnits - state.units;
-      $('s-bestand').textContent = '+'+fmtInt(delta);
-      $('s-bestand-sub').textContent = 'neue Wohnungen';
-    } else if(state.mode==='sozial'){
-      const share = result.finalSozial/state.units*100;
-      $('s-bestand').textContent = share.toLocaleString('de-DE',{maximumFractionDigits:1})+' %';
-      $('s-bestand-sub').textContent = 'Sozialanteil';
-    } else {
-      $('s-bestand').textContent = '—';
-      $('s-bestand-sub').textContent = 'keine Reinvestition';
-    }
 
 
     // ---- Jahres-Cashflow (bars) ----
