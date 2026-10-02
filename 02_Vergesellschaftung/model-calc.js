@@ -35,6 +35,10 @@
   // Fixed axis width (px) so every "Jahr"-chart's plot area starts/ends at the same x-position.
   const AXIS_W = 100;
   function fixAxisWidth(scale){ scale.width = AXIS_W; }
+  // Year axis: label year 1 and every 5th year (every 10th beyond 60 years), so all "Jahr"-charts share the same ticks and the last year shows.
+  const YEAR_TICKS = { font:{family:'IBM Plex Mono',size:9}, autoSkip:false, maxRotation:0,
+    callback(v){ const t = Number(this.getLabelForValue(v)); const step = this.chart.data.labels.length>60 ? 10 : 5;
+      return (t===1 || t%step===0) ? t : ''; } };
 
   function fmtInt(n){ return Math.round(n).toLocaleString('de-DE'); }
   function fmtEUR(n){
@@ -301,8 +305,8 @@
           tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+fmtEUR(ctx.parsed.y) }}
         },
         scales:{
-          x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{display:false}, ticks:{font:{family:'IBM Plex Mono',size:9}, maxTicksLimit:15} },
-          y:{ position:'left', afterFit:fixAxisWidth, title:{display:true,text:'Jahres-Cashflow',font:{family:'IBM Plex Mono',size:9}}, ticks:{ font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v) }, grid:{color:'#EAEAE4'} }
+          x:{ offset:false, title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{display:false}, ticks:YEAR_TICKS },
+          y:{ position:'left', afterFit:fixAxisWidth, ticks:{ font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v) }, grid:{color:'#EAEAE4'} }
         }
       }
     });
@@ -317,13 +321,14 @@
         responsive:true,
         animation:{duration:250},
         interaction:{mode:'index', intersect:false},
+        layout:{padding:{right:AXIS_W}},
         plugins:{ legend:{display:false},
           tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+fmtEUR(ctx.parsed.y) }},
           vlineMarker:{ index:null, label:'' }
         },
         scales:{
-          x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{display:false}, ticks:{font:{family:'IBM Plex Mono',size:9}, maxTicksLimit:15} },
-          y:{ position:'left', afterFit:fixAxisWidth, title:{display:true,text:'Kumuliert',font:{family:'IBM Plex Mono',size:9}}, ticks:{ font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v) }, grid:{color:'#EAEAE4'} }
+          x:{ offset:false, title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{display:false}, ticks:YEAR_TICKS },
+          y:{ position:'left', afterFit:fixAxisWidth, ticks:{ font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v) }, grid:{color:'#EAEAE4'} }
         }
       }
     });
@@ -340,7 +345,7 @@
         layout:{padding:{right:AXIS_W}},
         plugins:{ legend:{display:false} },
         scales:{
-          x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:{font:{family:'IBM Plex Mono',size:9}, maxTicksLimit:15} },
+          x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:YEAR_TICKS },
           y:{ afterFit:fixAxisWidth, ticks:{font:{family:'IBM Plex Mono',size:9}}, grid:{color:'#EAEAE4'} }
         }
       }
@@ -365,7 +370,7 @@
           tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+ctx.parsed.y.toLocaleString('de-DE',{maximumFractionDigits:2})+' €/m²' }}
         },
         scales:{
-          x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:{font:{family:'IBM Plex Mono',size:9}, maxTicksLimit:15} },
+          x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:YEAR_TICKS },
           y:{ afterFit:fixAxisWidth, ticks:{font:{family:'IBM Plex Mono',size:9}, callback:v=>v.toLocaleString('de-DE',{maximumFractionDigits:1})+' €'}, grid:{color:'#EAEAE4'} }
         }
       }
@@ -387,7 +392,7 @@
           vlineMarker:{ index:null, label:'' }
         },
         scales:{
-          x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:{font:{family:'IBM Plex Mono',size:9}, maxTicksLimit:15} },
+          x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:YEAR_TICKS },
           y:{ afterFit:fixAxisWidth, ticks:{font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v)}, grid:{color:'#EAEAE4'} }
         }
       }
@@ -411,7 +416,7 @@
           tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+fmtEUR(ctx.parsed.y) }}
         },
         scales:{
-          x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:{font:{family:'IBM Plex Mono',size:9}, maxTicksLimit:15} },
+          x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:YEAR_TICKS },
           y:{ afterFit:fixAxisWidth, ticks:{font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v)}, grid:{color:'#EAEAE4'} }
         }
       }
@@ -431,7 +436,7 @@
           tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+fmtInt(ctx.parsed.y)+' Whg.' }}
         },
         scales:{
-          x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:{font:{family:'IBM Plex Mono',size:9}, maxTicksLimit:15} },
+          x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:YEAR_TICKS },
           y:{ afterFit:fixAxisWidth, ticks:{font:{family:'IBM Plex Mono',size:9}}, grid:{color:'#EAEAE4'} }
         }
       }
@@ -451,7 +456,7 @@
           tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+fmtEUR(ctx.parsed.y) }}
         },
         scales:{
-          x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:{font:{family:'IBM Plex Mono',size:9}, maxTicksLimit:15} },
+          x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:YEAR_TICKS },
           y:{ afterFit:fixAxisWidth, ticks:{font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v)}, grid:{color:'#EAEAE4'} }
         }
       }
@@ -469,13 +474,14 @@
         responsive:true,
         animation:{duration:250},
         interaction:{mode:'index', intersect:false},
+        layout:{padding:{right:AXIS_W}},
         plugins:{ legend:{display:false},
           tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+fmtEUR(ctx.parsed.y*1e6) }},
           vlineMarker:{ index:null, label:'' }
         },
         scales:{
           x:{ title:{display:true,text:'Zinssatz %',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:{font:{family:'IBM Plex Mono',size:9}} },
-          y:{ min:0, suggestedMax:1800, title:{display:true,text:'Mio €/Jahr',font:{family:'IBM Plex Mono',size:9}}, ticks:{font:{family:'IBM Plex Mono',size:9}}, grid:{color:'#EAEAE4'} }
+          y:{ min:0, suggestedMax:1800, afterFit:fixAxisWidth, ticks:{font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v*1e6)}, grid:{color:'#EAEAE4'} }
         }
       }
     });
@@ -496,8 +502,8 @@
         },
         scales:{
           x:{ title:{display:true,text:'Entschädigungsquote %',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:{font:{family:'IBM Plex Mono',size:9}} },
-          y:{ position:'left', suggestedMin:-45e9, suggestedMax:10e9, title:{display:true,text:'Nettoergebnis',font:{family:'IBM Plex Mono',size:9}}, ticks:{font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v)}, grid:{color:'#EAEAE4'} },
-          y1:{ position:'right', title:{display:true,text:'Break-even (Jahr)',font:{family:'IBM Plex Mono',size:9}}, ticks:{font:{family:'IBM Plex Mono',size:9}}, grid:{display:false} }
+          y:{ position:'left', suggestedMin:-45e9, suggestedMax:10e9, afterFit:fixAxisWidth, ticks:{font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v)}, grid:{color:'#EAEAE4'} },
+          y1:{ position:'right', afterFit:fixAxisWidth, ticks:{font:{family:'IBM Plex Mono',size:9}, callback:v=>'Jahr '+v}, grid:{display:false} }
         }
       }
     });
@@ -740,8 +746,8 @@
         },
         scales:{
           x:{ grid:{display:false}, ticks:{font:{family:'IBM Plex Mono',size:9}} },
-          y:{ position:'left', title:{display:true,text:'Kaufpreis / Nettoergebnis',font:{family:'IBM Plex Mono',size:9}}, ticks:{ font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v) }, grid:{color:'#EAEAE4'} },
-          y1:{ position:'right', title:{display:true,text:'Break-even (Jahr)',font:{family:'IBM Plex Mono',size:9}}, ticks:{ font:{family:'IBM Plex Mono',size:9} }, grid:{display:false} }
+          y:{ position:'left', ticks:{ font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v) }, grid:{color:'#EAEAE4'} },
+          y1:{ position:'right', ticks:{ font:{family:'IBM Plex Mono',size:9}, callback:v=>'Jahr '+v }, grid:{display:false} }
         }
       }
     });
