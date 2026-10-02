@@ -13,7 +13,10 @@
     baseRent:7.63, rentGrowth:1.5, costInflation:2.5, avgSize:65, opex:40, opexMode:'percent', opexAbsolute:2.2,
     freeMarketRent:15.8, munizRent:6.29, cpiGrowth:2.0, incomeGrowth:3.0,
     mode:'none', buildCost:3500, reinvestQuota1:100,
-    sozialRent:6.5, convCost:0, sozialImmediate:0, sozialPaceRate:0, reinvestQuota2:0,
+    sozialRent:6.5, convCost:0, sozialImmediate:0, sozialPaceRate:3.2, reinvestQuota2:0,
+    // sozialPaceRate 3,2 %/Jahr: Bernt/Holm 2023, S. 13–14 — 63 % der Neuvermietungen an WBS-Inhaber*innen
+    // (Quote der Landeseigenen) bei 5 % Fluktuation = 6.999 von 222.183 Wohnungen/Jahr ≈ 3,15 %.
+    // Die Presets setzen 0, damit ihre Ergebnisse unverändert bleiben.
     horizon:50
   };
   let state = Object.assign({}, defaults);
@@ -777,7 +780,7 @@
       price: 2085, purchaseFactor: 43.0,
       financing: 'kredit', rate: 3.5, riskPremium: 0, term: 30, rateResetYears: 30, rateIncrement: 0,
       baseRent: 3.70, rentGrowth: 0.5, costInflation: 2.5,
-      opexMode: 'percent', opex: 40, mode: 'none'
+      opexMode: 'percent', opex: 40, mode: 'none', sozialPaceRate: 0
     },
     holm: {
       // Bernt & Holm 2023: Ist-Miete-Modell, Mietsenkung auf Landeseigenen-Niveau 6,29 €/m².
@@ -786,21 +789,21 @@
       price: 2085, purchaseFactor: 73.8,
       financing: 'kredit', rate: 3.5, riskPremium: 0, term: 30, rateResetYears: 30, rateIncrement: 0,
       baseRent: 6.29, rentGrowth: 1.5, costInflation: 2.0,
-      opexMode: 'percent', opex: 35, mode: 'none'
+      opexMode: 'percent', opex: 35, mode: 'none', sozialPaceRate: 0
     },
     rechnungshof: {
       // Rechnungshof Berlin 2024: verkehrswertorientiert (~32,5 Mrd € bei 100% Entschädigungsquote), Bewirtschaftungskosten absolut 2,20 €/m²
       price: 2085, purchaseFactor: 100,
       financing: 'kredit', rate: 3.5, riskPremium: 0, term: 30, rateResetYears: 10, rateIncrement: 1.0,
       baseRent: 6.71, rentGrowth: 1.5, costInflation: 2.0,
-      opexMode: 'absolute', opexAbsolute: 2.20, mode: 'none'
+      opexMode: 'absolute', opexAbsolute: 2.20, mode: 'none', sozialPaceRate: 0
     },
     gegenmodell: {
       // IW Köln/Empirica 2026 (Bankengutachten): verkehrswertnah + Risikoprämie/Kapitalflucht-These
       price: 2085, purchaseFactor: 100,
       financing: 'kredit', rate: 3.5, riskPremium: 0.5, term: 30, rateResetYears: 5, rateIncrement: 2.0,
       baseRent: 7.63, rentGrowth: 1.5, costInflation: 3.0,
-      opexMode: 'percent', opex: 40, mode: 'none'
+      opexMode: 'percent', opex: 40, mode: 'none', sozialPaceRate: 0
     },
     dwe2025: {
       // DWE-Gesetzentwurf, Stand 26.09.2025 (§§ 12-18 VergG-E): Entschädigung nach Sachwertverfahren
@@ -816,7 +819,7 @@
       units: 220000, price: 2085, purchaseFactor: 50,
       financing: 'kredit', rate: 3.5, riskPremium: 0, term: 100, rateResetYears: 100, rateIncrement: 0,
       baseRent: 3.70, rentGrowth: 0.5, costInflation: 2.5,
-      opexMode: 'percent', opex: 40, mode: 'none'
+      opexMode: 'percent', opex: 40, mode: 'none', sozialPaceRate: 0
     }
   };
 

@@ -78,6 +78,7 @@ Kurzstudie zu den sozialen Effekten einer möglichen Vergesellschaftung von Wohn
 - **Mieten landeseigener Unternehmen:** Ø 6,29 €/m², Wachstum 1,6 % — S. 22 (Zeitreihentabelle), auch S. 10, 12.
 - **Mieten großer privater Konzerne:** Ø 7,63 €/m², Wachstum 3,9 % — S. 22, auch S. 10–12.
 - **Bestand der sechs größten Konzerne:** 222.183 Wohnungen — S. 12.
+- **Vergabe an WBS-Inhaber*innen:** S. 14: nach einer Vergesellschaftung würden "63 Prozent aller Neuvermietungen an WBS-Inhaber*innen erfolgen. Bei einer unterstellten Fluktuation von 5 Prozent pro Jahr beträfe das jährlich 6.999 Wohnungen." Fluktuationsrate 5 % als Mittel der untersuchten Bestände seit 2016 — S. 13. Im Modell Voreinstellung „Fester Zeitplan" 3,2 %/Jahr (6.999 / 222.183 ≈ 3,15 %).
 - **Nicht verwendet:** Vergleich von Instandhaltung, Sozialwohnungsanteil und räumlicher Verteilung (S. 22–23).
 
 ## 2022

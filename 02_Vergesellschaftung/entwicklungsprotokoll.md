@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-02 — Voreinstellung „Fester Zeitplan“ aus Bernt/Holm
+
+Der Regler „Fester Zeitplan“ (Die Sozialwohnungen) startet bei 3,2 %/Jahr statt 0. Quelle: Bernt/Holm 2023, S. 13–14: 63 % der Neuvermietungen an WBS-Inhaber*innen (Quote der Landeseigenen) bei 5 % Fluktuation = 6.999 Wohnungen/Jahr; 6.999 / 222.183 ≈ 3,15 %. „Sofort umgewandelt“ und „Aus Überschuss“ bleiben bei 0, da die Quelle die Vergabe nur bei Neuvermietung annimmt. Die fünf Presets setzen `sozialPaceRate: 0`, ihre Ergebnisse bleiben unverändert. Beleg in `quellenbelege.md`, Erläuterung im Glossar (Umwandlungstempo).
+
 ## 2026-07-20 — Fix: Verkehrswert vs. Entschädigungsquote
 
 **Fehler:** Die vier Modell-Presets (Faire-Mieten/DWE, Bernt/Holm, Rechnungshof, Gegenmodell) hatten unterschiedliche `price`-Werte (€/m² Verkehrswert) bei einheitlichem `purchaseFactor` (100 %). Das war konzeptionell falsch: Der Verkehrswert (§ 194 BauGB) ist eine objektive Bewertungsgröße und unterscheidet sich nicht je nach politischer Position. Was sich unterscheidet, ist die **Entschädigungsquote** — der Anteil des Verkehrswerts, der tatsächlich gezahlt werden soll. Das ist genau die im Abschlussbericht der Expertenkommission dokumentierte Streitfrage (Mehrheitsvotum: Entschädigung auch unterhalb des Verkehrswerts zulässig; Sondervotum: voller Verkehrswert erforderlich).
