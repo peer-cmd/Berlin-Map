@@ -42,4 +42,4 @@ Static site: cost and financing model for the socialisation of large Berlin hous
 - Edit `quellenbelege.md`, then run `python3 build_quellenbelege.py`; `quellenbelege.html` is generated.
 - Model logic and presets: `model-calc.js`. Shared glossary and timeline text: `content.js` (loaded by `include.js`, works from file://).
 - Chart.js 4.4.0 is vendored in `vendor/`. Primary sources are PDFs in `pdf/` with Markdown extractions in `pdf/markdown/`.
-- Every number needs a source with page in `quellenbelege.md`; quote verbatim only from the original PDF. Log changes in `entwicklungsprotokoll.md`.
+- Every number needs a source with page, in the footnotes of `zahlen.html` or in `quellenbelege.md` (page "Die Quellen", ordered by document); quote verbatim only from the original PDF. Log changes in `entwicklungsprotokoll.md`.
