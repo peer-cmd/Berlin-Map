@@ -362,3 +362,7 @@ Die Schaltfläche „Ergebnisse drucken" steht jetzt links unter „Zurücksetze
 ## 2026-10-03 — Modell: Preset-Schaltflächen grün, Markierung endet bei Änderung
 
 Hover und gewähltes Preset jetzt in `--green` (`#109A82`) mit weißer Schrift statt Gelb. Sobald ein Regler, ein Zahlenfeld, der Reinvestitionsmodus oder ein Umschalter geändert wird, verschwindet die Markierung, weil die Einstellung dann nicht mehr dem Preset entspricht; das Eintippen eines Szenarionamens zählt nicht.
+
+## 2026-10-03 — Modell: Sprung zwischen „Die Finanzen" und „Die Mieter"
+
+Rechts neben der Überschrift „Die Finanzen" steht „Die Mieter" als Link zum Abschnitt mit Mieten, Sozialwohnungen und Mieterersparnis; dort führt „Die Finanzen" zurück. Der aktuelle Abschnitt steht in Petrol, der andere grau unterstrichen, beim Überfahren grün; Bildlauf weich.
