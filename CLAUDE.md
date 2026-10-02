@@ -44,4 +44,4 @@ Static site: cost and financing model for the socialisation of large Berlin hous
 - Hover explanations on the model pages: `data-term="<glossary term>"` on a label; `tooltips.js` shows the first sentence of the matching glossary entry. Add new terms to the glossary in `content.js`, not as hints in the controls.
 - Pages load `style.css`, `model-calc.js`, `content.js` (and on the model pages `tooltips.js`) with `?v=YYYYMMDD` so browsers fetch new versions; after changing one of these files, update the tag in all pages and both build scripts.
 - Chart.js 4.4.0 is vendored in `vendor/`. Primary sources are PDFs in `pdf/` with Markdown extractions in `pdf/markdown/`.
-- Every number needs a source with page, in the footnotes of `zahlen.html` or in `quellenbelege.md` (page "Die Quellen", ordered by document); quote verbatim only from the original PDF. Log changes in `entwicklungsprotokoll.md`.
+- Every number needs a source with page, in the footnotes of `zahlen.html` or in `quellenbelege.md` (page "Die Chronologie", documents ordered by date, newest first); quote verbatim only from the original PDF. Log changes in `entwicklungsprotokoll.md`.

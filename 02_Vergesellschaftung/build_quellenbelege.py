@@ -18,7 +18,7 @@ PAGE = """<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Die Quellen — Vergesellschaftung großer Wohnungsunternehmen</title>
+<title>Die Chronologie — Vergesellschaftung großer Wohnungsunternehmen</title>
 <link rel="stylesheet" href="fonts/fonts.css">
 <link rel="stylesheet" href="style.css?v=20261002m">
 </head>
@@ -32,7 +32,7 @@ PAGE = """<!DOCTYPE html>
     <a href="hintergrund.html">Hintergrund</a>
     <a href="zahlen.html">Die Zahlen</a>
     <a href="glossar.html">Glossar</a>
-    <a href="quellenbelege.html" class="active">Die Quellen</a>
+    <a href="quellenbelege.html" class="active">Die Chronologie</a>
     <a href="karte.html">Karte</a>
   </nav>
 
@@ -46,7 +46,7 @@ PAGE = """<!DOCTYPE html>
 {body}
   </div>
 
-  <div class="colophon">Die Quellen — Vergesellschaftung großer Wohnungsunternehmen</div>
+  <div class="colophon">Die Chronologie — Vergesellschaftung großer Wohnungsunternehmen</div>
 
 </div>
 </body>
@@ -68,7 +68,7 @@ def cells(row):
 
 
 def convert(lines):
-    out, title, i = [], "Die Quellen", 0
+    out, title, i = [], "Die Chronologie", 0
     while i < len(lines):
         line = lines[i]
         if not line.strip():
