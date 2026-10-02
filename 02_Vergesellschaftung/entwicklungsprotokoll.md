@@ -268,3 +268,7 @@ Reglerknopf rund (`border-radius:50%`), Schiene 1 px schwarz (`var(--ink)`) stat
 ## 2026-10-02 — Ergebnisrahmen mit Titel, ohne Bestandseffekt
 
 Seitentitel, Urteilszeile („Bei diesen Annahmen: …", mit „Ergebnisse drucken") und die Kennzahlen stehen in einem gemeinsamen Rahmen (`section.summary`) oben in der Ergebnisspalte; der Titelkopf (`.masthead`) über den Spalten entfällt auf der Modellseite. Kachel „Bestandseffekt" entfernt (HTML und Zuweisung in `model-calc.js`), die drei übrigen Kennzahlen dreispaltig ohne Trennlinien. Positionsknöpfe (Faire-Mieten-Modell, Gegenmodell …) in 13 px statt 11,5 px. Versionsparameter auf `?v=20261002k`.
+
+## 2026-10-02 — „Die Zahlen" ruhiger gesetzt
+
+Fließtext und Listen auf den Inhaltsseiten im Flattersatz mit Silbentrennung (vorher Blocksatz mit breiten Lücken); nur die Einleitungsabsätze (`p.lead`, Übersicht) bleiben im Blocksatz. Sprungleiste (`.jump-nav`) als schlichte Textlinks in der Überschriftschrift statt umrandeter Knöpfe, gelb beim Überfahren. Abstand vor Abschnittsüberschriften 32 px statt 20 px. Das Diagramm „Die fünf Positionen im Modell" steht ohne Rahmen im Text. Regel `sup.fn + sup.fn::before` entfernt: Sie setzte vor Fußnotenzeichen ein Komma, sobald die vorige Fußnote im selben Absatz stand, auch mit Text dazwischen („Nebenkosten).,³"). Versionsparameter auf `?v=20261002l`.
