@@ -6,7 +6,7 @@
 <title>Kosten- und Finanzierungsmodell der Vergesellschaftung Berlin — kompakt</title>
 <link rel="stylesheet" href="fonts/fonts.css">
 <script src="vendor/chart.umd.js"></script>
-<link rel="stylesheet" href="style.css?v=20261002">
+<link rel="stylesheet" href="style.css?v=20261002b">
 </head>
 <body class="model-page">
 <!-- Generated from vergesellschaftung-modell-v37.html by build_kompakt.py. Do not edit by hand. -->
@@ -189,7 +189,7 @@
       </div>
 
       <div class="group">
-        <p class="group-title">Verwendung des Überschusses</p>
+        <p class="group-title">Der Überschuss</p>
         <div class="field">
           <select id="mode">
             <option value="none">Keine Reinvestition</option>
@@ -256,7 +256,7 @@
       </div>
 
       <div class="group">
-        <p class="group-title">Szenario-Vergleich</p>
+        <p class="group-title">Eigene Szenarien</p>
         <div class="field">
           <label style="font-size:11px;">Aktuelle Einstellung sichern als:</label>
         </div>
@@ -309,11 +309,11 @@
         </div>
       </div>
 
-      <p class="group-title">Geld-Seite</p>
+      <p class="group-title">Die Finanzen</p>
 
       <div class="panel">
         <div class="panel-head">
-          <h2>Jahres-Cashflow</h2>
+          <h2>Der Cashflow pro Jahr</h2>
           <span class="caption" id="cf-caption">nach Schuldendienst</span>
         </div>
         <p class="panel-sub">Jährlicher Cashflow nach Schuldendienst. Zeigt, in welchem Jahr die laufende Bewirtschaftung in den Überschuss dreht.</p>
@@ -326,7 +326,7 @@
 
       <div class="panel">
         <div class="panel-head">
-          <h2>Kumulierter Cashflow</h2>
+          <h2>Der Cashflow kumuliert</h2>
           <span class="caption">Nettoergebnis-Verlauf</span>
         </div>
         <p class="panel-sub">Kumulierter Cashflow seit Übernahme, inkl. Einmalkosten in Jahr 1. Der Endwert entspricht dem Nettoergebnis oben. Zeigt, in welchem Jahr — falls überhaupt — sich der Bestand insgesamt rechnet (Break-even). Das Nettoergebnis verläuft nicht linear: Solange der Kredit läuft (Tilgungsdauer), verschlechtert sich der kumulierte Cashflow von Jahr zu Jahr. Erst nach vollständiger Tilgung entfällt der Schuldendienst und der Cashflow dreht kräftig ins Plus — je nach Horizont kann das Nettoergebnis diesen Rückgang ganz, teilweise oder gar nicht mehr aufholen.</p>
@@ -338,7 +338,7 @@
 
       <div class="panel" id="balancePanelWrap">
         <div class="panel-head">
-          <h2>Restschuld-Verlauf</h2>
+          <h2>Die Restschuld</h2>
           <span class="caption" id="balance-caption">Basis-Szenario</span>
         </div>
         <p class="panel-sub">Verbleibende Kreditsumme über die Zeit. Der Knick markiert das Ende der Zinsbindung, danach Anschlussfinanzierung zum Aufschlagszins.</p>
@@ -347,7 +347,7 @@
 
       <div class="panel">
         <div class="panel-head">
-          <h2>Kapitalposition Berlins</h2>
+          <h2>Die Kapitalposition Berlins</h2>
           <span class="caption">Nettovermögensposition</span>
         </div>
         <p class="panel-sub">Verkehrswert des gehaltenen Bestands, abzüglich Restschuld, zuzüglich kumuliertem Cashflow aus dem laufenden Betrieb (inkl. Kosten für Neubau/Sozialumwandlung). Zeigt, wie sich das Landesvermögen insgesamt entwickelt — schnellere Umwandlungstempi oder Neubau schlagen sich hier als reale Kosten nieder, nicht nur im Cashflow-Chart oben.</p>
@@ -362,7 +362,7 @@
 
       <div class="panel">
         <div class="panel-head">
-          <h2>Zinssensitivität des Zuschussbedarfs</h2>
+          <h2>Der Zuschussbedarf je Zinssatz</h2>
           <span class="caption">bei aktuellen Reglereinstellungen</span>
         </div>
         <p class="panel-sub">Ø jährlicher Zuschussbedarf aus dem Landeshaushalt (Fehlbetrag über den Horizont geglättet) in Abhängigkeit vom Zinssatz, alle übrigen Regler auf aktuellem Stand. Markierung zeigt den aktuell eingestellten Zinssatz.</p>
@@ -371,18 +371,18 @@
 
       <div class="panel">
         <div class="panel-head">
-          <h2>Sensitivität der Entschädigungsquote</h2>
+          <h2>Das Ergebnis je Entschädigungsquote</h2>
           <span class="caption">bei aktuellen Reglereinstellungen</span>
         </div>
         <p class="panel-sub">Nettoergebnis nach Horizont (links, Mrd €) und Break-even-Jahr (rechts) in Abhängigkeit von der Entschädigungsquote, alle übrigen Regler auf aktuellem Stand. Markierung zeigt die aktuell eingestellte Quote.</p>
         <canvas id="chartCompSens" height="70"></canvas>
       </div>
 
-      <p class="group-title">Soziale Seite</p>
+      <p class="group-title">Die Mieter</p>
 
       <div class="panel">
         <div class="panel-head">
-          <h2>Mietniveau des Bestands</h2>
+          <h2>Die Mieten</h2>
           <span class="caption">Modellergebnis</span>
         </div>
         <p class="panel-sub">Ø Nettokaltmiete im übernommenen Bestand (Modell) im Vergleich zu freiem Markt, landeseigenen Gesellschaften, Verbraucherpreisen und Haushaltseinkommen.</p>
@@ -398,28 +398,28 @@
 
       <div class="panel" id="stockPanelWrap" style="display:none;">
         <div class="panel-head">
-          <h2 id="stock-title">Bestandsentwicklung</h2>
+          <h2 id="stock-title">Der Bestand</h2>
           <span class="caption">Modellergebnis</span>
         </div>
-        <p class="panel-sub" id="stock-sub">Entwicklung des Wohnungsbestands durch Reinvestition des jährlichen Cashflow-Überschusses gemäß Abschnitt 04.</p>
+        <p class="panel-sub" id="stock-sub">Entwicklung des Wohnungsbestands durch Reinvestition des jährlichen Cashflow-Überschusses gemäß den Einstellungen unter „Der Überschuss“.</p>
         <canvas id="chartStock" height="70"></canvas>
       </div>
 
       <div class="panel">
         <div class="panel-head">
-          <h2>Zunahme Sozialwohnungen</h2>
+          <h2>Die Sozialwohnungen</h2>
           <span class="caption" id="sozial-caption">Vergleichsrechnung</span>
         </div>
-        <p class="panel-sub">Zahl der Einheiten, die bei vollständiger Reinvestition des Cashflow-Überschusses in Sozialumwandlung (Parameter aus Abschnitt 04) entstünden — unabhängig vom aktuell gewählten Reinvestitionsmodus, zum Vergleich.</p>
+        <p class="panel-sub">Zahl der Einheiten, die bei vollständiger Reinvestition des Cashflow-Überschusses in Sozialumwandlung (Einstellungen unter „Der Überschuss“) entstünden — unabhängig vom aktuell gewählten Reinvestitionsmodus, zum Vergleich.</p>
         <canvas id="chartSozial" height="70"></canvas>
       </div>
 
       <div class="panel">
         <div class="panel-head">
-          <h2>Mieteinsparung für Mieter</h2>
+          <h2>Die Ersparnis der Mieter</h2>
           <span class="caption" id="tenant-caption">kumuliert, Vergleichsrechnung</span>
         </div>
-        <p class="panel-sub">Kumulierte Differenz zwischen Marktmiete-Pfad und tatsächlich gezahlter Sozialmiete, multipliziert mit der Zahl der umgewandelten Wohnungen aus der Sozialumwandlungs-Vergleichsrechnung oben (Abschnitt 04-Parameter, unabhängig vom aktuell gewählten Modus). Operationalisiert das Argument „Vergesellschaftung senkt die Miete" (Bernt/Holm, Rosa-Luxemburg-Stiftung 2023) als Zahl: was Mieter über den Betrachtungszeitraum gegenüber dem Marktmiete-Szenario einsparen.</p>
+        <p class="panel-sub">Kumulierte Differenz zwischen Marktmiete-Pfad und tatsächlich gezahlter Sozialmiete, multipliziert mit der Zahl der umgewandelten Wohnungen aus der Sozialumwandlungs-Vergleichsrechnung oben (Einstellungen unter „Der Überschuss“, unabhängig vom aktuell gewählten Modus). Operationalisiert das Argument „Vergesellschaftung senkt die Miete" (Bernt/Holm, Rosa-Luxemburg-Stiftung 2023) als Zahl: was Mieter über den Betrachtungszeitraum gegenüber dem Marktmiete-Szenario einsparen.</p>
         <canvas id="chartTenantSavings" height="70"></canvas>
       </div>
 
@@ -440,7 +440,7 @@
 
       <div class="panel" id="comparePanel" style="display:none;">
         <div class="panel-head">
-          <h2>Szenario-Vergleich</h2>
+          <h2>Der Szenario-Vergleich</h2>
           <span class="caption">Aktuelle Einstellung je Snapshot</span>
         </div>
         <div class="table-wrap" style="max-height:none;">
@@ -464,6 +464,6 @@
 
 </div>
 
-<script src="model-calc.js?v=20261002"></script>
+<script src="model-calc.js?v=20261002b"></script>
 </body>
 </html>

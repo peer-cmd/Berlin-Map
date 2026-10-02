@@ -571,10 +571,10 @@
     const showStock = state.mode!=='none';
     $('stockPanelWrap').style.display = showStock ? 'block' : 'none';
     if(showStock){
-      $('stock-title').textContent = state.mode==='neubau' ? 'Bestandsentwicklung (Neubau)' : 'Sozialanteil am Bestand';
+      $('stock-title').textContent = state.mode==='neubau' ? 'Der Bestand mit Neubau' : 'Der Sozialanteil am Bestand';
       $('stock-sub').textContent = state.mode==='neubau'
-        ? 'Wachstum des Wohnungsbestands durch Reinvestition des Cashflow-Überschusses in Neubau (Abschnitt 04).'
-        : 'Zunahme des mit Sozialmiete belegten Anteils am Bestand durch Reinvestition des Cashflow-Überschusses (Abschnitt 04).';
+        ? 'Wachstum des Wohnungsbestands durch Reinvestition des Cashflow-Überschusses in Neubau, eingestellt unter „Der Überschuss“.'
+        : 'Zunahme des mit Sozialmiete belegten Anteils am Bestand durch Reinvestition des Cashflow-Überschusses, eingestellt unter „Der Überschuss“.';
       chartStock.data.labels = labels;
       if(state.mode==='neubau'){
         chartStock.data.datasets[0].label = 'Wohnungen gesamt';

@@ -228,3 +228,7 @@ Ab 1161 px Breite füllt das Layout die Fensterhöhe unterhalb von Navigation un
 ## 2026-10-02 — Versionsparameter gegen veraltete Browser-Caches
 
 Alle Seiten laden `style.css`, `model-calc.js` und `content.js` jetzt mit `?v=20261002` (auch in beiden Build-Skripten). Anlass: Die Layoutänderung der Modellseite war deployt, im Browser wirkte aber noch die zwischengespeicherte alte `style.css`. Bei künftigen Änderungen an diesen Dateien den Parameter erhöhen.
+
+## 2026-10-02 — Einfache Überschriften auf der ganzen Website
+
+Überschriften als kurze Nominalgruppen mit Artikel, ohne Fragen und ohne Zahlen. „Die Zahlen": Der Bestand, Die Kosten im Vergleich, Die fünf Positionen im Modell, Der Rechnungshof, Die Mieten, Der Verkehrswert, Der Rechtsstreit, Das Gegenmodell, Die offenen Punkte, Die Anmerkungen. Hintergrund (und v37): Der rechtliche Rahmen, Der Rechenweg, Die Grenzen des Modells, Die Wertermittlung, Der Bestand, Die Entschädigungsspanne, Die Studie von Bernt und Holm, Der Rechnungshof, Die Quellen. Modell: Gruppen „Die Finanzen", „Die Mieter", „Der Überschuss", „Eigene Szenarien"; Diagramme z. B. „Der Cashflow pro Jahr", „Die Restschuld", „Die Ersparnis der Mieter"; Verweise auf „Abschnitt 04" ersetzt durch „Einstellungen unter ‚Der Überschuss'". „Die Quellen": Abschnitte nach Urheber und Jahr („Die Expertenkommission (2023)" usw.). Impressum und Datenschutz unverändert (rechtlich übliche Überschriften). Versionsparameter auf `?v=20261002b`.
