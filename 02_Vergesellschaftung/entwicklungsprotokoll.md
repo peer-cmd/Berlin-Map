@@ -288,3 +288,7 @@ Die Seite „Die Quellen" (`quellenbelege.md`/`.html`) heißt jetzt „Die Chron
 ## 2026-10-02 — „Die Chronologie" einspaltig
 
 Glossar-Layout für „Die Chronologie" zurückgenommen: eine Spalte, Fließtext in der üblichen Größe (14,5 px). Jahre als `h2`, Dokumente als `h3`, Fundstellen als Absätze mit fettem Stichwort, ohne Aufzählungspunkte. Regeln `.chronik` aus `style.css` entfernt. Versionsparameter auf `?v=20261002o`.
+
+## 2026-10-02 — Karte: Legende unten rechts, Quellen zum Aufklappen
+
+Die Legende steht nicht mehr im Ebenen-Panel, sondern in einem eigenen Kasten unten rechts über der Karte (`aside#legend-section`); sie erscheint, sobald eine Ebene sichtbar ist. Die Quellen sind im Panel zu einem aufklappbaren Eintrag „Quellen" (`details#source`) zusammengefasst und standardmäßig geschlossen. Gleiche Änderung in `web/index.html` und `web/style.css`; `karte/map.css` lädt mit `?v=20261002o`.

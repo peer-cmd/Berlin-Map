@@ -6,7 +6,7 @@
 <title>Karte — Eigentum, Planungsrecht und Wohnungsmarkt in Berlin</title>
 <link rel="stylesheet" href="fonts/fonts.css">
 <link rel="stylesheet" href="karte/vendor/maplibre-gl.css">
-<link rel="stylesheet" href="karte/map.css">
+<link rel="stylesheet" href="karte/map.css?v=20261002o">
 <link rel="stylesheet" href="style.css?v=20261002o">
 </head>
 <body class="map-page" data-base="karte/" data-data="karte/" data-map="vergesellschaftung">
@@ -30,15 +30,15 @@
         <h2 id="h-layers"></h2>
         <div id="toggles"></div>
       </section>
-      <section id="legend-section" hidden>
-        <h2 id="h-legend"></h2>
-        <div id="legend"></div>
-      </section>
-      <section id="source">
-        <h2 id="h-sources"></h2>
+      <details id="source">
+        <summary id="h-sources"></summary>
         <div id="source-text"></div>
-      </section>
+      </details>
       <section class="legal"><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></section>
+    </aside>
+    <aside id="legend-section" hidden>
+      <h2 id="h-legend"></h2>
+      <div id="legend"></div>
     </aside>
     <div id="banner" role="alert" hidden></div>
   </div>
