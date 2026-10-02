@@ -211,8 +211,8 @@
             </div>
           </div>
           <div class="field">
-            <div class="field-row"><label data-term="Umwandlungskosten">Umwandlungskosten</label><span class="val" id="v-convCost">1.200 €/m²</span></div>
-            <input type="range" id="convCost" min="300" max="3000" step="50" value="1200">
+            <div class="field-row"><label data-term="Umwandlungskosten">Umwandlungskosten</label><span class="val" id="v-convCost">0 €/m²</span></div>
+            <input type="range" id="convCost" min="0" max="3000" step="50" value="0">
             <div class="linked-row">
               <label class="linked-label">≈ pro Wohnung</label>
               <input type="number" class="linked-input" id="convCostPerUnit" step="1000">
@@ -222,8 +222,9 @@
           <div class="field">
             <div class="field-row"><label data-term="Umwandlungstempo">Umwandlungstempo</label></div>
             <div class="seg" id="seg-sozialpace">
-              <button data-val="surplus" class="active">Aus Überschuss</button>
+              <button data-val="immediate">Sofort</button>
               <button data-val="fixed">Fester Zeitplan</button>
+              <button data-val="surplus" class="active">Aus Überschuss</button>
             </div>
           </div>
           <div class="field" id="wrap-reinvestQuota2">
@@ -373,16 +374,27 @@
         <div class="panel-head">
           <h2>Die <span data-term="Sozialbindung">Sozialwohnungen</span></h2>
         </div>
-        <p class="panel-sub">Zahl der Einheiten, die bei vollständiger Reinvestition des Cashflow-Überschusses in Sozialumwandlung (Einstellungen unter „Der Überschuss“) entstünden — unabhängig vom aktuell gewählten Reinvestitionsmodus, zum Vergleich.</p>
+        <p class="panel-sub">Werden alle Wohnungen sofort zu Sozialwohnungen oder schrittweise? Drei Pfade im Vergleich, mit Sozialmiete, Umwandlungskosten und festem Zeitplan aus „Der Überschuss“, unabhängig vom dort gewählten Modus. Oben der Anteil der Wohnungen mit Sozialmiete am Bestand, unten der kumulierte Cashflow: Was die frühere Mietsenkung den Haushalt kostet.</p>
         <canvas id="chartSozial" height="70"></canvas>
+        <canvas id="chartSozialCum" height="70"></canvas>
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--blue)"></i>Sofort</span>
+          <span><i class="swatch" style="background:var(--amber)"></i>Fester Zeitplan</span>
+          <span><i class="swatch" style="background:var(--green)"></i>Aus Überschuss</span>
+        </div>
       </div>
 
       <div class="panel">
         <div class="panel-head">
           <h2>Die <span data-term="Mieterersparnis">Ersparnis der Mieter</span></h2>
         </div>
-        <p class="panel-sub">Kumulierte Differenz zwischen Marktmiete-Pfad und tatsächlich gezahlter Sozialmiete, multipliziert mit der Zahl der umgewandelten Wohnungen aus der Sozialumwandlungs-Vergleichsrechnung oben (Einstellungen unter „Der Überschuss“, unabhängig vom aktuell gewählten Modus). Operationalisiert das Argument „Vergesellschaftung senkt die Miete" (Bernt/Holm, Rosa-Luxemburg-Stiftung 2023) als Zahl: was Mieter über den Betrachtungszeitraum gegenüber dem Marktmiete-Szenario einsparen.</p>
+        <p class="panel-sub">Kumulierte Differenz zwischen Modellmiete und gezahlter Sozialmiete, multipliziert mit der Zahl der Wohnungen mit Sozialmiete, für dieselben drei Pfade wie oben. Operationalisiert das Argument „Vergesellschaftung senkt die Miete" (Bernt/Holm, Rosa-Luxemburg-Stiftung 2023) als Zahl: was Mieter über den Betrachtungszeitraum gegenüber dem Marktmiete-Szenario einsparen.</p>
         <canvas id="chartTenantSavings" height="70"></canvas>
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--blue)"></i>Sofort</span>
+          <span><i class="swatch" style="background:var(--amber)"></i>Fester Zeitplan</span>
+          <span><i class="swatch" style="background:var(--green)"></i>Aus Überschuss</span>
+        </div>
       </div>
 
       <details class="panel">
@@ -506,8 +518,8 @@
 
 </div>
 
-<script src="model-calc.js?v=20261002s"></script>
-<script src="content.js?v=20261002q"></script>
+<script src="model-calc.js?v=20261002u"></script>
+<script src="content.js?v=20261002u"></script>
 <script src="include.js"></script>
 <script src="tooltips.js?v=20261002q"></script>
 </body>

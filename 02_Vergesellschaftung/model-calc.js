@@ -9,7 +9,7 @@
     baseRent:7.63, rentGrowth:1.5, costInflation:2.5, avgSize:65, opex:40, opexMode:'percent', opexAbsolute:2.2,
     freeMarketRent:15.8, munizRent:6.29, cpiGrowth:2.0, incomeGrowth:3.0,
     mode:'none', buildCost:3500, reinvestQuota1:100,
-    sozialRent:6.5, convCost:1200, reinvestQuota2:100, sozialPace:'surplus', sozialPaceRate:3.3,
+    sozialRent:6.5, convCost:0, reinvestQuota2:100, sozialPace:'surplus', sozialPaceRate:3.3,
     horizon:50
   };
   let state = Object.assign({}, defaults);
@@ -84,11 +84,13 @@
       const sozialRent = Math.min(p.sozialRent, p.baseRent)*Math.pow(1+p.rentGrowth/100, t-1);
 
       // fixed-schedule conversion: happens at the start of the year, in fixed steps,
-      // independent of that year's cashflow (its cost then reduces this year's cashflow below)
+      // independent of that year's cashflow (its cost then reduces this year's cashflow below).
+      // "immediate" is the same schedule at 100 %: the whole stock carries the social rent from year 1.
       let fixedConversionCost = 0;
-      if(p.mode==='sozial' && p.sozialPace==='fixed'){
+      if(p.mode==='sozial' && (p.sozialPace==='fixed' || p.sozialPace==='immediate')){
         const capacityBefore = p.units - sozialUnits;
-        const newSozialFixed = Math.min(p.units*((p.sozialPaceRate||0)/100), Math.max(capacityBefore,0));
+        const paceRate = p.sozialPace==='immediate' ? 100 : (p.sozialPaceRate||0);
+        const newSozialFixed = Math.min(p.units*(paceRate/100), Math.max(capacityBefore,0));
         sozialUnits = sozialUnits + newSozialFixed;
         fixedConversionCost = newSozialFixed*p.convCost*p.avgSize;
       }
@@ -144,10 +146,15 @@
         const newUnits = buildSpend/(p.buildCost*p.avgSize);
         units = units + newUnits;
         cum -= buildSpend;
-      } else if(p.mode==='sozial' && p.sozialPace!=='fixed'){
+      } else if(p.mode==='sozial' && p.sozialPace==='surplus'){
+        // As many units as this year's surplus can carry: each new social unit costs its one-off
+        // conversion cost plus next year's rent loss (model rent − social rent), so the cash flow
+        // stays roughly at zero instead of turning negative.
         const capacity = p.units - sozialUnits;
         const convBudget = Math.max(cashflow,0)*(p.reinvestQuota2/100);
-        const newSozial = Math.min(convBudget/(p.convCost*p.avgSize), Math.max(capacity,0));
+        const rentLossNext = (p.baseRent - Math.min(p.sozialRent, p.baseRent))*Math.pow(1+p.rentGrowth/100, t)*p.avgSize*12;
+        const costPerUnit = p.convCost*p.avgSize + rentLossNext;
+        const newSozial = costPerUnit>0 ? Math.min(convBudget/costPerUnit, Math.max(capacity,0)) : Math.max(capacity,0);
         const actualSpend = newSozial*p.convCost*p.avgSize; // capped if capacity is reached
         sozialUnits = sozialUnits + newSozial;
         cum -= actualSpend;
@@ -232,7 +239,7 @@
     $('v-convCost').textContent = fmtInt(state.convCost)+' €/m²';
     $('v-reinvestQuota2').textContent = state.reinvestQuota2+' %';
     $('v-sozialPaceRate').textContent = state.sozialPaceRate.toLocaleString('de-DE',{minimumFractionDigits:1})+' %/Jahr';
-    $('wrap-reinvestQuota2').style.display = state.sozialPace==='fixed' ? 'none' : 'block';
+    $('wrap-reinvestQuota2').style.display = state.sozialPace==='surplus' ? 'block' : 'none';
     $('wrap-sozialPaceRate').style.display = state.sozialPace==='fixed' ? 'block' : 'none';
     $('v-horizon').textContent = state.horizon+' Jahre';
 
@@ -258,7 +265,7 @@
     $('panel-sozial').classList.toggle('show', state.mode==='sozial');
   }
 
-  let chartCashflow, chartCumulative, chartStock, chartRent, chartBalance, chartCapital, chartSozial, chartTenantSavings, chartScenarios, chartRateSens, chartCompSens;
+  let chartCashflow, chartCumulative, chartStock, chartRent, chartBalance, chartCapital, chartSozial, chartSozialCum, chartTenantSavings, chartScenarios, chartRateSens, chartCompSens;
 
   const vlinePlugin = {
     id: 'vlineMarker',
@@ -422,44 +429,44 @@
       }
     });
 
-    const ctx7 = $('chartSozial').getContext('2d');
-    chartSozial = new Chart(ctx7, {
-      type:'line',
-      data:{ labels:[], datasets:[
-        {label:'Sozialwohnungen', data:[], borderColor:'#A9762C', backgroundColor:'rgba(169,118,44,0.08)', borderWidth:2, pointRadius:0, fill:true, tension:0.15}
-      ]},
-      options:{
-        responsive:true,
-        animation:{duration:250},
-        layout:{padding:{right:AXIS_W}},
-        plugins:{ legend:{display:false},
-          tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+fmtInt(ctx.parsed.y)+' Whg.' }}
-        },
-        scales:{
-          x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:YEAR_TICKS },
-          y:{ afterFit:fixAxisWidth, ticks:{font:{family:'IBM Plex Mono',size:9}}, grid:{color:'#EAEAE4'} }
-        }
+    // Die drei Umwandlungspfade (sofort / fester Zeitplan / aus Überschuss) in denselben Linienstilen
+    // für Sozialanteil, kumulierten Cashflow und Mieterersparnis.
+    const pathSets = fill => [
+      {label:'Sofort', data:[], borderColor:'#1E3A5F', backgroundColor:'transparent', borderWidth:2.2, pointRadius:0, tension:0.15},
+      {label:'Fester Zeitplan', data:[], borderColor:'#A9762C', backgroundColor:'transparent', borderWidth:1.8, borderDash:[6,2], pointRadius:0, tension:0.15},
+      {label:'Aus Überschuss', data:[], borderColor:'#109A82', backgroundColor:fill, borderWidth:1.8, borderDash:[2,2], pointRadius:0, fill:fill!=='transparent', tension:0.15}
+    ];
+    const pathOptions = (fmtY, extraY) => ({
+      responsive:true,
+      animation:{duration:250},
+      layout:{padding:{right:AXIS_W}},
+      plugins:{ legend:{display:false},
+        tooltip:{mode:'index', intersect:false, callbacks:{ label: ctx => ctx.dataset.label+': '+fmtY(ctx.parsed.y) }}
+      },
+      scales:{
+        x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:YEAR_TICKS },
+        y:Object.assign({ afterFit:fixAxisWidth, ticks:{font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtY(v)}, grid:{color:'#EAEAE4'} }, extraY||{})
       }
     });
+    const fmtPct = v => v.toLocaleString('de-DE',{maximumFractionDigits:0})+' %';
 
-    const ctx7b = $('chartTenantSavings').getContext('2d');
-    chartTenantSavings = new Chart(ctx7b, {
+    chartSozial = new Chart($('chartSozial').getContext('2d'), {
+      type:'line', data:{ labels:[], datasets:pathSets('transparent') },
+      options:pathOptions(fmtPct, {min:0, max:100})
+    });
+
+    chartSozialCum = new Chart($('chartSozialCum').getContext('2d'), {
       type:'line',
-      data:{ labels:[], datasets:[
-        {label:'Kumulierte Mieteinsparung', data:[], borderColor:'#109A82', backgroundColor:'rgba(16,154,130,0.10)', borderWidth:2, pointRadius:0, fill:true, tension:0.15}
-      ]},
-      options:{
-        responsive:true,
-        animation:{duration:250},
-        layout:{padding:{right:AXIS_W}},
-        plugins:{ legend:{display:false},
-          tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+fmtEUR(ctx.parsed.y) }}
-        },
-        scales:{
-          x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:YEAR_TICKS },
-          y:{ afterFit:fixAxisWidth, ticks:{font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v)}, grid:{color:'#EAEAE4'} }
-        }
-      }
+      data:{ labels:[], datasets:pathSets('transparent').concat([
+        {label:'Null', data:[], borderColor:'#9A9A90', borderWidth:1, pointRadius:0, borderDash:[2,3]}
+      ])},
+      options:pathOptions(fmtEUR)
+    });
+    chartSozialCum.options.plugins.tooltip.filter = item => item.dataset.label!=='Null';
+
+    chartTenantSavings = new Chart($('chartTenantSavings').getContext('2d'), {
+      type:'line', data:{ labels:[], datasets:pathSets('transparent') },
+      options:pathOptions(fmtEUR)
     });
 
     if($('chartScenarios')) initScenarioChart();
@@ -556,7 +563,7 @@
       $('stock-title').textContent = state.mode==='neubau' ? 'Der Bestand mit Neubau' : 'Der Sozialanteil am Bestand';
       $('stock-sub').textContent = state.mode==='neubau'
         ? 'Wachstum des Wohnungsbestands durch Reinvestition des Cashflow-Überschusses in Neubau, eingestellt unter „Der Überschuss“.'
-        : 'Zunahme des mit Sozialmiete belegten Anteils am Bestand durch Reinvestition des Cashflow-Überschusses, eingestellt unter „Der Überschuss“.';
+        : 'Zahl der Wohnungen mit Sozialmiete im gewählten Umwandlungstempo, eingestellt unter „Der Überschuss“.';
       chartStock.data.labels = labels;
       if(state.mode==='neubau'){
         chartStock.data.datasets[0].label = 'Wohnungen gesamt';
@@ -600,24 +607,28 @@
     chartCapital.data.datasets[3].data = result.rows.map(r=>(state.price*state.avgSize*r.units)-(r.balance||0)+r.cumForChart);
     chartCapital.update('none');
 
-    // ---- chart Zunahme Sozialwohnungen (Vergleichsrechnung, unabhängig vom gewählten Modus) ----
-    const sozialParams = Object.assign({}, state, {mode:'sozial'});
-    const sozialResult = runScenario(state.price, sozialParams);
-    const sozialData = sozialResult.rows.map(r=>Math.round(r.sozialUnits));
-    chartSozial.data.labels = sozialResult.rows.map(r=>r.t);
-    chartSozial.data.datasets[0].data = sozialData;
-    chartSozial.options.scales.y.suggestedMax = state.units;
-    chartSozial.update('none');
-
-    // ---- chart Mieteinsparung für Mieter (kumuliert, aus derselben Sozial-Vergleichsrechnung) ----
-    let cumSavings = 0;
-    const savingsData = sozialResult.rows.map(r=>{
-      const savingPerYear = (r.rent - r.sozialRent) * r.sozialUnits * state.avgSize * 12;
-      cumSavings += savingPerYear;
-      return cumSavings;
+    // ---- Die Sozialwohnungen: drei Umwandlungspfade im Vergleich, unabhängig vom gewählten Modus ----
+    const paths = ['immediate','fixed','surplus'].map(pace=>runScenario(state.price, Object.assign({}, state, {mode:'sozial', sozialPace:pace})));
+    const pathLabels = paths[0].rows.map(r=>r.t);
+    chartSozial.data.labels = pathLabels;
+    chartSozialCum.data.labels = pathLabels;
+    chartTenantSavings.data.labels = pathLabels;
+    chartSozial.data.datasets[1].label = 'Fester Zeitplan ('+state.sozialPaceRate.toLocaleString('de-DE')+' %/Jahr)';
+    chartSozialCum.data.datasets[1].label = chartSozial.data.datasets[1].label;
+    chartTenantSavings.data.datasets[1].label = chartSozial.data.datasets[1].label;
+    paths.forEach((res,i)=>{
+      chartSozial.data.datasets[i].data = res.rows.map(r=>r.sozialUnits/state.units*100);
+      chartSozialCum.data.datasets[i].data = res.rows.map(r=>r.cumForChart);
+      // Mieterersparnis: Differenz Modellmiete − Sozialmiete × umgewandelte Wohnungen, kumuliert
+      let cumSavings = 0;
+      chartTenantSavings.data.datasets[i].data = res.rows.map(r=>{
+        cumSavings += (r.rent - r.sozialRent) * r.sozialUnits * state.avgSize * 12;
+        return cumSavings;
+      });
     });
-    chartTenantSavings.data.labels = sozialResult.rows.map(r=>r.t);
-    chartTenantSavings.data.datasets[0].data = savingsData;
+    chartSozialCum.data.datasets[3].data = pathLabels.map(()=>0);
+    chartSozial.update('none');
+    chartSozialCum.update('none');
     chartTenantSavings.update('none');
 
     if(chartScenarios) updateScenarioChart();
@@ -682,7 +693,7 @@
 
   function describeSnapshot(s){
     const finParts = [s.financing==='kredit' ? ('Kredit '+s.rate+'%') : 'Eigenmittel'];
-    const sozialPaceLabel = s.sozialPace==='fixed' ? (' (fest '+s.sozialPaceRate+'%/J.)') : ' (aus Überschuss)';
+    const sozialPaceLabel = s.sozialPace==='immediate' ? ' (sofort)' : (s.sozialPace==='fixed' ? (' (fest '+s.sozialPaceRate+'%/J.)') : ' (aus Überschuss)');
     const modeLabel = s.mode==='neubau' ? 'Neubau' : (s.mode==='sozial' ? ('Sozialumwandlung'+sozialPaceLabel) : 'keine Reinvest.');
     return finParts[0]+' · '+modeLabel+' · '+s.purchaseFactor+'% Kaufpreis';
   }
