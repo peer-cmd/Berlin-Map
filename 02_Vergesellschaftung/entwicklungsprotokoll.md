@@ -212,3 +212,7 @@ Gruppentitel „Voreinstellungen", „Zeithorizont" und „Ergebnisse" entfernt.
 ## 2026-10-02 — Szenario-Übersicht nach „Die Zahlen erklärt", Horizont-Hinweis zum kumulierten Cashflow
 
 Der Hinweis „Nettoergebnis verläuft nicht linear …" steht jetzt in der Unterzeile des Diagramms „Kumulierter Cashflow" (vorher unter dem Horizont-Regler). Das Diagramm „Szenario-Übersicht" ist von der Modellseite nach `zahlen.html` gewandert, direkt unter die Tabelle der fünf Positionen; es rechnet mit den Standardannahmen und 50 Jahren Horizont. `model-calc.js`: Aufbau und Aktualisierung des Diagramms als `initScenarioChart()`/`updateScenarioChart()`; `presets` vor die Event-Bindungen verschoben; auf Seiten ohne Regler zeichnet das Skript nur dieses Diagramm. `zahlen.html` lädt dafür `vendor/chart.umd.js` und `model-calc.js`.
+
+## 2026-10-02 — „Die Zahlen erklärt": Fußnoten am Seitenende
+
+Die acht Fußnotenblöcke nach den Abschnitten sind zu einer Liste „Anmerkungen" (Fn. 1–16) am Seitenende zusammengefasst. Der Link „Volle Belege: Quellenbelege" im Seitenkopf entfällt.
