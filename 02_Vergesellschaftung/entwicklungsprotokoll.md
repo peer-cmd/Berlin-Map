@@ -322,3 +322,7 @@ Rot `#B23A34` → `#E0435C` (zum Pink hin), Grün `#2F7D46` und `#3A7D44` → `#
 - „Aus Überschuss" wandelt jedes Jahr so viele Wohnungen um, wie der Überschuss an entgangener Miete (Modellmiete − Sozialmiete) und Umwandlungskosten trägt; der Cashflow bleibt dadurch etwa bei null.
 - Umwandlungskosten: Standard 0 €/m², Regler ab 0; Glossar erklärt, wofür ein Wert über 0 steht.
 - Panel „Die Sozialwohnungen": drei Pfade (sofort, fester Zeitplan, aus Überschuss) als Anteil am Bestand und darunter als kumulierter Cashflow; „Die Ersparnis der Mieter" zeigt dieselben drei Pfade.
+
+## 2026-10-02 — Fix: leere Diagramme nach dem Sozialwohnungs-Update
+
+Ein Browser mit zwischengespeicherter alter Seite lud das neue `model-calc.js`; dort fehlte die Zeichenfläche `chartSozialCum`, `getContext` auf `null` brach `initCharts` ab, und kein Diagramm wurde gezeichnet. `model-calc.js` überspringt die Grafik jetzt, wenn die Zeichenfläche fehlt. Mit alter Seite und neuem Skript nachgestellt und geprüft.

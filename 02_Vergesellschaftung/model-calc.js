@@ -455,14 +455,15 @@
       options:pathOptions(fmtPct, {min:0, max:100})
     });
 
-    chartSozialCum = new Chart($('chartSozialCum').getContext('2d'), {
+    // Guard: a cached older page has no chartSozialCum canvas; skip the chart instead of stopping all charts.
+    if($('chartSozialCum')) chartSozialCum = new Chart($('chartSozialCum').getContext('2d'), {
       type:'line',
       data:{ labels:[], datasets:pathSets('transparent').concat([
         {label:'Null', data:[], borderColor:'#9A9A90', borderWidth:1, pointRadius:0, borderDash:[2,3]}
       ])},
       options:pathOptions(fmtEUR)
     });
-    chartSozialCum.options.plugins.tooltip.filter = item => item.dataset.label!=='Null';
+    if(chartSozialCum) chartSozialCum.options.plugins.tooltip.filter = item => item.dataset.label!=='Null';
 
     chartTenantSavings = new Chart($('chartTenantSavings').getContext('2d'), {
       type:'line', data:{ labels:[], datasets:pathSets('transparent') },
@@ -610,15 +611,15 @@
     // ---- Die Sozialwohnungen: drei Umwandlungspfade im Vergleich, unabhängig vom gewählten Modus ----
     const paths = ['immediate','fixed','surplus'].map(pace=>runScenario(state.price, Object.assign({}, state, {mode:'sozial', sozialPace:pace})));
     const pathLabels = paths[0].rows.map(r=>r.t);
-    chartSozial.data.labels = pathLabels;
-    chartSozialCum.data.labels = pathLabels;
-    chartTenantSavings.data.labels = pathLabels;
-    chartSozial.data.datasets[1].label = 'Fester Zeitplan ('+state.sozialPaceRate.toLocaleString('de-DE')+' %/Jahr)';
-    chartSozialCum.data.datasets[1].label = chartSozial.data.datasets[1].label;
-    chartTenantSavings.data.datasets[1].label = chartSozial.data.datasets[1].label;
+    const fixedLabel = 'Fester Zeitplan ('+state.sozialPaceRate.toLocaleString('de-DE')+' %/Jahr)';
+    [chartSozial, chartSozialCum, chartTenantSavings].forEach(c=>{
+      if(!c) return;
+      c.data.labels = pathLabels;
+      c.data.datasets[1].label = fixedLabel;
+    });
     paths.forEach((res,i)=>{
       chartSozial.data.datasets[i].data = res.rows.map(r=>r.sozialUnits/state.units*100);
-      chartSozialCum.data.datasets[i].data = res.rows.map(r=>r.cumForChart);
+      if(chartSozialCum) chartSozialCum.data.datasets[i].data = res.rows.map(r=>r.cumForChart);
       // Mieterersparnis: Differenz Modellmiete − Sozialmiete × umgewandelte Wohnungen, kumuliert
       let cumSavings = 0;
       chartTenantSavings.data.datasets[i].data = res.rows.map(r=>{
@@ -626,9 +627,8 @@
         return cumSavings;
       });
     });
-    chartSozialCum.data.datasets[3].data = pathLabels.map(()=>0);
+    if(chartSozialCum){ chartSozialCum.data.datasets[3].data = pathLabels.map(()=>0); chartSozialCum.update('none'); }
     chartSozial.update('none');
-    chartSozialCum.update('none');
     chartTenantSavings.update('none');
 
     if(chartScenarios) updateScenarioChart();
