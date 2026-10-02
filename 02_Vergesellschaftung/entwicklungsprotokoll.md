@@ -284,3 +284,7 @@ Die Seite „Die Quellen" (`quellenbelege.md`/`.html`) heißt jetzt „Die Chron
 ## 2026-10-02 — „Die Chronologie" im Glossar-Layout
 
 „Die Chronologie" ist gesetzt wie das Glossar: zweispaltig, Jahre als türkise Köpfe (statt Buchstaben), je Dokument ein Eintrag mit violettem Titel (Urheber und Titel des Dokuments) und Kurzbeschreibung, die Fundstellen als eingerückte Einträge mit fettem Stichwort statt Aufzählungspunkten (`.chronik .gl-points` in `style.css`). Dateinamen der PDFs und Ordnerpfade sind aus dem Text entfernt; jedes Dokument steht mit Titel, Datum und Umfang. „Weitere Quellen" sind in die Jahre einsortiert (Becker 2024, OECD 2024, Stoll 2022); die OECD-Angabe korrigiert: Zitierangabe „OECD (2024)", vorher irrtümlich Juli 2023. Autorenname im PwC-Whitepaper laut Titelseite: Prof. Dr. Florian Hackelberg. `build_quellenbelege.py` erzeugt die Glossar-Struktur (`##` Jahr, `###` Dokument, `- **Stichwort:**` Fundstelle). Versionsparameter auf `?v=20261002n`.
+
+## 2026-10-02 — „Die Chronologie" einspaltig
+
+Glossar-Layout für „Die Chronologie" zurückgenommen: eine Spalte, Fließtext in der üblichen Größe (14,5 px). Jahre als `h2`, Dokumente als `h3`, Fundstellen als Absätze mit fettem Stichwort, ohne Aufzählungspunkte. Regeln `.chronik` aus `style.css` entfernt. Versionsparameter auf `?v=20261002o`.
