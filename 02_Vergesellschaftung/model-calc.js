@@ -337,7 +337,7 @@
     chartStock = new Chart(ctx2, {
       type:'line',
       data:{ labels:[], datasets:[
-        {label:'Bestand', data:[], borderColor:'#2F7D46', backgroundColor:'rgba(47,125,70,0.08)', borderWidth:2, pointRadius:0, fill:true, tension:0.15}
+        {label:'Bestand', data:[], borderColor:'#109A82', backgroundColor:'rgba(16,154,130,0.08)', borderWidth:2, pointRadius:0, fill:true, tension:0.15}
       ]},
       options:{
         responsive:true,
@@ -355,10 +355,10 @@
     chartRent = new Chart(ctx3, {
       type:'line',
       data:{ labels:[], datasets:[
-        {label:'Freier Markt', data:[], borderColor:'#B23A34', backgroundColor:'transparent', borderWidth:1.5, borderDash:[3,3], pointRadius:0, tension:0.15},
+        {label:'Freier Markt', data:[], borderColor:'#E0435C', backgroundColor:'transparent', borderWidth:1.5, borderDash:[3,3], pointRadius:0, tension:0.15},
         {label:'Kommunale Wohnungsgesellschaften', data:[], borderColor:'#A9762C', backgroundColor:'transparent', borderWidth:1.5, borderDash:[6,2], pointRadius:0, tension:0.15},
         {label:'Verbraucherpreise (CPI, indexiert)', data:[], borderColor:'#6B6B63', backgroundColor:'transparent', borderWidth:1.2, borderDash:[1,3], pointRadius:0, tension:0.15},
-        {label:'Haushaltseinkommen (indexiert)', data:[], borderColor:'#3A7D44', backgroundColor:'transparent', borderWidth:1.2, borderDash:[1,3], pointRadius:0, tension:0.15},
+        {label:'Haushaltseinkommen (indexiert)', data:[], borderColor:'#109A82', backgroundColor:'transparent', borderWidth:1.2, borderDash:[1,3], pointRadius:0, tension:0.15},
         {label:'Ø Miete im Bestand (Modell)', data:[], borderColor:'#1E3A5F', backgroundColor:'rgba(30,58,95,0.06)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.15}
       ]},
       options:{
@@ -403,9 +403,9 @@
       type:'line',
       data:{ labels:[], datasets:[
         {label:'Vermögenswert Bestand', data:[], borderColor:'#93AECB', backgroundColor:'transparent', borderWidth:1.5, borderDash:[3,3], pointRadius:0, tension:0.1},
-        {label:'Restschuld', data:[], borderColor:'#B23A34', backgroundColor:'transparent', borderWidth:1.5, borderDash:[6,2], pointRadius:0, tension:0.1},
+        {label:'Restschuld', data:[], borderColor:'#E0435C', backgroundColor:'transparent', borderWidth:1.5, borderDash:[6,2], pointRadius:0, tension:0.1},
         {label:'Kumulierter Cashflow', data:[], borderColor:'#A9762C', backgroundColor:'transparent', borderWidth:1.2, borderDash:[1,3], pointRadius:0, tension:0.1},
-        {label:'Nettoposition', data:[], borderColor:'#2F7D46', backgroundColor:'rgba(47,125,70,0.08)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.1}
+        {label:'Nettoposition', data:[], borderColor:'#109A82', backgroundColor:'rgba(16,154,130,0.08)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.1}
       ]},
       options:{
         responsive:true,
@@ -446,7 +446,7 @@
     chartTenantSavings = new Chart(ctx7b, {
       type:'line',
       data:{ labels:[], datasets:[
-        {label:'Kumulierte Mieteinsparung', data:[], borderColor:'#2F7D46', backgroundColor:'rgba(47,125,70,0.10)', borderWidth:2, pointRadius:0, fill:true, tension:0.15}
+        {label:'Kumulierte Mieteinsparung', data:[], borderColor:'#109A82', backgroundColor:'rgba(16,154,130,0.10)', borderWidth:2, pointRadius:0, fill:true, tension:0.15}
       ]},
       options:{
         responsive:true,
@@ -468,7 +468,7 @@
     chartRateSens = new Chart(ctx9, {
       type:'line',
       data:{ labels:[], datasets:[
-        {label:'Ø jährlicher Zuschussbedarf', data:[], borderColor:'#B23A34', backgroundColor:'rgba(178,58,52,0.08)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.2}
+        {label:'Ø jährlicher Zuschussbedarf', data:[], borderColor:'#E0435C', backgroundColor:'rgba(224,67,92,0.08)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.2}
       ]},
       options:{
         responsive:true,
@@ -533,7 +533,7 @@
     const cfValues = result.rows.map(r=>r.cashflow);
     chartCashflow.data.labels = labels;
     chartCashflow.data.datasets[0].data = cfValues;
-    chartCashflow.data.datasets[0].backgroundColor = cfValues.map(v=> v>=0 ? '#2F7D46' : '#B23A34');
+    chartCashflow.data.datasets[0].backgroundColor = cfValues.map(v=> v>=0 ? '#109A82' : '#E0435C');
     chartCashflow.data.datasets[1].data = labels.map(()=>0);
     chartCashflow.update('none');
 
@@ -755,7 +755,7 @@
     chartScenarios.data.labels = presetResults.map(r=>r.label);
     chartScenarios.data.datasets[0].data = presetResults.map(r=>r.principal);
     chartScenarios.data.datasets[1].data = presetResults.map(r=>r.netResult);
-    chartScenarios.data.datasets[1].backgroundColor = presetResults.map(r=>r.netResult>=0?'#2F7D46':'#B23A34');
+    chartScenarios.data.datasets[1].backgroundColor = presetResults.map(r=>r.netResult>=0?'#109A82':'#E0435C');
     chartScenarios.data.datasets[2].data = presetResults.map(r=>r.breakEvenYear);
     chartScenarios.update('none');
   }

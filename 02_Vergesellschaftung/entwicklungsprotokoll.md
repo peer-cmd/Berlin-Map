@@ -300,3 +300,11 @@ Senkrechte Achsentitel entfernt („Jahres-Cashflow", „Kumuliert", „Mio €/
 ## 2026-10-02 — Modell: Urteilszeile und Einzel-Legenden entfernt
 
 Die Urteilszeile im Ergebnisrahmen („Bei diesen Annahmen: Defizit von … nach … Jahren — …") entfällt (HTML und Zuweisung in `model-calc.js`); damit entfällt auch der dort angehängte Hinweis zum Bestandswachstum bzw. Sozialanteil im Modus „Neubau"/„Umwandlung". „Ergebnisse drucken" steht rechts neben dem Seitentitel. Legenden unter „Der Cashflow pro Jahr" („Jahres-Cashflow positiv/negativ") und „Der Cashflow kumuliert" („kumulierter Cashflow") entfernt. Versionsparameter auf `?v=20261002q`.
+
+## 2026-10-02 — Übersicht: „Der Ablauf seit 2021" in „Die Chronologie" aufgenommen
+
+Die Startseite hat nur noch einen Abschnitt „Die Chronologie": Einleitung und darunter eine Liste (links Datum und Name fett, rechts Kurzbeschreibung), das jüngste zuerst wie auf `quellenbelege.html`. Abgleich mit der Chronologie und den Quellen: Die Expertenkommission tagte ab 29.04.2022, nicht ab 2021 (Abschlussbericht S. 10, Übergabe 28.06.2023 S. 14). Der Volksentscheid erhielt 59,1 % der gültigen Stimmen (DWE-Hg 2022, S. 4); die bisherigen 56,4 % hatten keinen Beleg im Korpus, Beleg in `quellenbelege.md` ergänzt. Offen: `content.js` (Timeline, „2021–2023", „56,4 %") und der Einleitungstext in `vergesellschaftung-modell-v37.html` tragen noch die alten Angaben.
+
+## 2026-10-02 — Modell: frischere Signalfarben
+
+Rot `#B23A34` → `#E0435C` (zum Pink hin), Grün `#2F7D46` und `#3A7D44` → `#109A82` (zum Blaugrün hin), in `model-calc.js`, den CSS-Variablen `--red`/`--green` und den Legendenfeldern, damit Diagramme, Legenden und Zahlenseite übereinstimmen.
