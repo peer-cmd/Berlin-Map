@@ -1,24 +1,24 @@
 :root {
   --ink: #1d1d1b; --paper: #fbfaf7; --rule: rgba(29,29,27,.22); --mute: #6b6a66;
-  font: 12px/1.4 "Segoe UI", system-ui, -apple-system, Helvetica, Arial, sans-serif;
+  font: 14px/1.5 "Segoe UI", system-ui, -apple-system, Helvetica, Arial, sans-serif;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; height: 100%; color: var(--ink); }
 #map { position: absolute; inset: 0; }
-h1 { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; margin: 0 0 12px; }
-h2 { font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--mute); margin: 0 0 6px; }
+h1 { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; margin: 0 0 12px; }
+h2 { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--mute); margin: 0 0 6px; }
 #panel {
-  position: absolute; top: 12px; left: 12px; width: 248px; max-height: calc(100% - 24px); overflow: auto;
+  position: absolute; top: 12px; left: 12px; width: 288px; max-height: calc(100% - 24px); overflow: auto;
   background: var(--paper); border: 1px solid var(--rule); padding: 12px;
 }
 #panel section { border-top: 1px solid var(--rule); padding-top: 10px; margin-top: 10px; }
 #toggles label { display: flex; gap: 8px; align-items: center; padding: 2px 0; cursor: pointer; }
 #toggles input { margin: 0; accent-color: var(--ink); }
 #toggles .sub { color: var(--mute); }
-.legend-row { display: grid; grid-template-columns: 22px 1fr; gap: 8px; align-items: center; height: 18px; }
+.legend-row { display: grid; grid-template-columns: 22px 1fr; gap: 8px; align-items: center; height: 22px; }
 .legend-row i { display: block; height: 10px; border: 1px solid var(--rule); }
 .legend-row span { font-variant-numeric: tabular-nums; }
-#source-text { color: var(--mute); font-size: 11px; }
+#source-text { color: var(--mute); font-size: 12px; }
 #source-text a, .maplibregl-popup a { color: inherit; }
 #banner {
   position: absolute; left: 50%; top: 12px; transform: translateX(-50%); max-width: min(560px, 92vw);
@@ -26,17 +26,17 @@ h2 { font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: u
 }
 .maplibregl-popup-content {
   border-radius: 0; padding: 12px; background: var(--paper); border: 1px solid var(--ink);
-  box-shadow: none; font: inherit; min-width: 260px; max-width: 320px; max-height: 60vh; overflow: auto;
+  box-shadow: none; font: inherit; min-width: 300px; max-width: 360px; max-height: 60vh; overflow: auto;
 }
 .maplibregl-popup-tip { display: none; }
 .maplibregl-popup-close-button { font-size: 16px; padding: 0 6px; }
 .zone + .zone { border-top: 1px solid var(--rule); margin-top: 10px; padding-top: 10px; }
-.zone-value { font-size: 20px; font-weight: 600; font-variant-numeric: tabular-nums; margin-bottom: 6px; }
-.zone dl { display: grid; grid-template-columns: 112px 1fr; gap: 3px 10px; margin: 0; }
+.zone-value { font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; margin-bottom: 6px; }
+.zone dl { display: grid; grid-template-columns: 128px 1fr; gap: 4px 12px; margin: 0; }
 .zone dt { color: var(--mute); }
 .zone dd { margin: 0; overflow-wrap: anywhere; }
 .pop-head { color: var(--mute); margin-bottom: 8px; }
-.pop-src { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--rule); color: var(--mute); font-size: 11px; }
+.pop-src { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--rule); color: var(--mute); font-size: 12px; }
 .maplibregl-ctrl-attrib { background: rgba(251,250,247,.85) !important; font-size: 11px; }
 @media (max-width: 600px) { #panel { width: calc(100% - 24px); max-height: 40%; } }
-#legend-unit { color: var(--mute); font-size: 11px; margin-bottom: 6px; }
+#legend-unit { color: var(--mute); font-size: 12px; margin-bottom: 6px; }
