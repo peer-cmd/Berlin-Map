@@ -221,20 +221,16 @@
             </div>
           </div>
           <div class="field">
-            <div class="field-row"><label data-term="Umwandlungstempo">Umwandlungstempo</label></div>
-            <div class="seg" id="seg-sozialpace">
-              <button data-val="immediate">Sofort</button>
-              <button data-val="fixed">Fester Zeitplan</button>
-              <button data-val="surplus" class="active">Aus Überschuss</button>
-            </div>
+            <div class="field-row"><label data-term="Umwandlungstempo">Sofort umgewandelt</label><span class="val" id="v-sozialImmediate">0 %</span></div>
+            <input type="range" id="sozialImmediate" min="0" max="100" step="5" value="0">
           </div>
-          <div class="field" id="wrap-reinvestQuota2">
-            <div class="field-row"><label data-term="Reinvestitionsquote">Reinvestitionsquote</label><span class="val" id="v-reinvestQuota2">100 %</span></div>
+          <div class="field">
+            <div class="field-row"><label data-term="Umwandlungstempo">Fester Zeitplan</label><span class="val" id="v-sozialPaceRate">0,0 %/Jahr</span></div>
+            <input type="range" id="sozialPaceRate" min="0" max="20" step="0.1" value="0">
+          </div>
+          <div class="field">
+            <div class="field-row"><label data-term="Umwandlungstempo">Aus Überschuss</label><span class="val" id="v-reinvestQuota2">100 %</span></div>
             <input type="range" id="reinvestQuota2" min="0" max="100" step="5" value="100">
-          </div>
-          <div class="field" id="wrap-sozialPaceRate" style="display:none;">
-            <div class="field-row"><label data-term="Umwandlungstempo">Umwandlungstempo</label><span class="val" id="v-sozialPaceRate">3,3 %/Jahr</span></div>
-            <input type="range" id="sozialPaceRate" min="0.5" max="20" step="0.1" value="3.3">
           </div>
         </div>
       </div>
@@ -371,13 +367,12 @@
         <canvas id="chartStock" height="70"></canvas>
       </div>
 
-      <div class="panel">
+      <div class="panel" id="sozialPanelWrap" style="display:none;">
         <div class="panel-head">
           <h2>Die <span data-term="Sozialbindung">Sozialwohnungen</span></h2>
         </div>
-        <p class="panel-sub">Werden alle Wohnungen sofort zu Sozialwohnungen oder schrittweise? Drei Pfade im Vergleich, mit Sozialmiete, Umwandlungskosten und festem Zeitplan aus „Der Überschuss“, unabhängig vom dort gewählten Modus. Oben der Anteil der Wohnungen mit Sozialmiete am Bestand, unten der kumulierte Cashflow: Was die frühere Mietsenkung den Haushalt kostet.</p>
+        <p class="panel-sub">Anteil der Wohnungen mit Sozialmiete am Bestand, nach Herkunft: sofort umgewandelt, nach festem Zeitplan und aus dem Überschuss, eingestellt unter „Der Überschuss“.</p>
         <canvas id="chartSozial" height="70"></canvas>
-        <canvas id="chartSozialCum" height="70"></canvas>
         <div class="legend">
           <span><i class="swatch" style="background:var(--blue)"></i>Sofort</span>
           <span><i class="swatch" style="background:var(--amber)"></i>Fester Zeitplan</span>
@@ -385,17 +380,12 @@
         </div>
       </div>
 
-      <div class="panel">
+      <div class="panel" id="savingsPanelWrap" style="display:none;">
         <div class="panel-head">
           <h2>Die <span data-term="Mieterersparnis">Ersparnis der Mieter</span></h2>
         </div>
-        <p class="panel-sub">Kumulierte Differenz zwischen Modellmiete und gezahlter Sozialmiete, multipliziert mit der Zahl der Wohnungen mit Sozialmiete, für dieselben drei Pfade wie oben. Operationalisiert das Argument „Vergesellschaftung senkt die Miete" (Bernt/Holm, Rosa-Luxemburg-Stiftung 2023) als Zahl: was Mieter über den Betrachtungszeitraum gegenüber dem Marktmiete-Szenario einsparen.</p>
+        <p class="panel-sub">Kumulierte Differenz zwischen Modellmiete und gezahlter Sozialmiete, multipliziert mit der Zahl der Wohnungen mit Sozialmiete. Operationalisiert das Argument „Vergesellschaftung senkt die Miete" (Bernt/Holm, Rosa-Luxemburg-Stiftung 2023) als Zahl: was Mieter über den Betrachtungszeitraum gegenüber dem Marktmiete-Szenario einsparen.</p>
         <canvas id="chartTenantSavings" height="70"></canvas>
-        <div class="legend">
-          <span><i class="swatch" style="background:var(--blue)"></i>Sofort</span>
-          <span><i class="swatch" style="background:var(--amber)"></i>Fester Zeitplan</span>
-          <span><i class="swatch" style="background:var(--green)"></i>Aus Überschuss</span>
-        </div>
       </div>
 
       <details class="panel">
@@ -438,8 +428,8 @@
 
 </div>
 
-<script src="model-calc.js?v=20261002v"></script>
-<script src="content.js?v=20261002u"></script>
+<script src="model-calc.js?v=20261002w"></script>
+<script src="content.js?v=20261002w"></script>
 <script src="tooltips.js?v=20261002q"></script>
 </body>
 </html>
