@@ -3,11 +3,13 @@
 // (file://), where fetch() of a local file is blocked.
 window.SITE_INCLUDES = {
 "timeline": `
-2021 — Volksentscheid, 56,4 % Zustimmung (nicht rechtlich bindend, politischer Auftrag an den Senat)<br>
-2021–2023 — Expertenkommission „Vergesellschaftung" tagt, prüft Rechtsfragen und Kostenrahmen<br>
-2023 — Abschlussbericht: Mehrheitsvotum hält Vergesellschaftung für verfassungsrechtlich möglich, auch mit Entschädigung unterhalb des Verkehrswerts; ein Sondervotum (3 von 13 Mitgliedern) sieht den Verkehrswert als zwingenden Ausgangspunkt mit nur engem Spielraum für Abschläge<br>
-2024 — Berliner Rechnungshof veröffentlicht Beratungsbericht (20.02.2024) mit vier Kostenszenarien (8/11/29/36 Mrd. €) für den Landeshaushalt<br>
-2026 — IW Köln/Empirica-Gutachten im Auftrag Berliner Banken (Gegenposition)`,
+    <dl class="timeline">
+      <dt>2021</dt><dd>Volksentscheid „Deutsche Wohnen &amp; Co enteignen": 56,4 % Zustimmung. Der Beschluss ist rechtlich nicht bindend; er ist ein politischer Auftrag an den Senat.</dd>
+      <dt>2021–2023</dt><dd>Die Expertenkommission „Vergesellschaftung" tagt und prüft Rechtsfragen und Kostenrahmen.</dd>
+      <dt>2023</dt><dd>Abschlussbericht der Kommission. Das Mehrheitsvotum hält die Vergesellschaftung für verfassungsrechtlich möglich, auch mit einer Entschädigung unterhalb des Verkehrswerts. Ein Sondervotum (3 von 13 Mitgliedern) sieht den Verkehrswert als zwingenden Ausgangspunkt mit nur engem Spielraum für Abschläge.</dd>
+      <dt>2024</dt><dd>Der Berliner Rechnungshof veröffentlicht am 20.02.2024 einen Beratungsbericht mit vier Kostenszenarien für den Landeshaushalt: 8, 11, 29 und 36 Mrd. €.</dd>
+      <dt>2026</dt><dd>Gutachten von IW Köln/Empirica im Auftrag Berliner Banken, die Gegenposition.</dd>
+    </dl>`,
 "glossary": `
     <dl class="glossary">
       <dt>Art. 15 GG vs. Art. 14 GG</dt><dd>Art. 14 Abs. 3 GG regelt die Enteignung im Einzelfall gegen Entschädigung. Art. 15 GG erlaubt die Vergesellschaftung ganzer Wirtschaftszweige in Gemeineigentum; er wurde seit 1949 nie angewendet, daher ungeklärt, ob die Entschädigung dem vollen Verkehrswert entsprechen muss oder geringer ausfallen darf.</dd>

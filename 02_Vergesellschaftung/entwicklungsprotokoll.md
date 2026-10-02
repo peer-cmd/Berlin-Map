@@ -200,3 +200,7 @@ Die Zeile unter der Überschrift im `masthead` entfällt auf allen Seiten: `hint
 ## 2026-10-02 — Einleitungssätze gestrichen, Tabelle „Die Zahlen erklärt"
 
 Gestrichen: der Lead-Absatz auf `hintergrund.html` (Verweis auf Übersicht und Glossar) und der Lead-Absatz auf `zahlen.html` (Erklärung der Seite, Verweis auf die Quellenbelege). Tabelle der Entschädigungspositionen: `.bg-page table` ohne `table-layout:fixed`, damit die Spalten nach Inhalt breit werden statt vier gleich breiter Spalten; Betrag und Quote mit neuer Klasse `.num` rechtsbündig und ohne Umbruch. Betrifft auch die Tabelle in `quellenbelege.html`.
+
+## 2026-10-02 — Startseite: Überschriften, Seitenbeschreibungen, Zeitleiste
+
+`index.html`: Überschriften direkt formuliert („Der Volksentscheid", „Der Ablauf seit 2021", „Der rechtliche Rahmen", „Das Projekt"); die zwei Buttons unter dem Einleitungsabsatz und die Überschrift „Seiten" entfallen; Seitennamen mit Artikel („Das Modell" usw.) und ausführlicheren Beschreibungen. Die Kartenbeschreibung nennt jetzt alle Ebenen der Karte (vorher nur Bodenrichtwerte). Zeitleiste in `content.js` als `<dl class="timeline">` (Jahr | Text, zweispaltig mit Abstand); `.timeline-p` entfällt, gilt auch für v37/`modell-kompakt.html`.
