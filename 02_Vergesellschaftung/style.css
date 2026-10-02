@@ -380,6 +380,7 @@ select{
   cursor:pointer;
 }
 .print-btn:hover{background:var(--ink);color:#fff;}
+.reset-row .print-btn{width:100%;margin-top:8px;padding:9px;}
 
 .snap-btn{
   padding:6px 10px;
