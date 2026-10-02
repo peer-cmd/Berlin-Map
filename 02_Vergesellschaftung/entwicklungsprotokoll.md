@@ -354,3 +354,7 @@ Die fünf Preset-Schaltflächen werden beim Überfahren, beim Klicken und als ge
 ## 2026-10-03 — Modell: Beschriftungen „Modus" entfernt
 
 Die Beschriftungen „Modus" (Finanzierung) und „Bewirtschaftungskosten-Modus" über den Umschaltern sind entfernt; die Umschalter Kredit/Eigenmittel und % der Miete/Absolut €/m² bleiben. Verweis im Hintergrundtext angepasst.
+
+## 2026-10-03 — Modell: „Ergebnisse drucken" unter „Zurücksetzen"
+
+Die Schaltfläche „Ergebnisse drucken" steht jetzt links unter „Zurücksetzen", in derselben Breite; der leere Rahmen oben rechts im Kopf ist entfernt.
