@@ -13,7 +13,7 @@
     baseRent:7.63, rentGrowth:1.5, costInflation:2.5, avgSize:65, opex:40, opexMode:'percent', opexAbsolute:2.2,
     freeMarketRent:15.8, munizRent:6.29, cpiGrowth:2.0, incomeGrowth:3.0,
     mode:'none', buildCost:3500, reinvestQuota1:100,
-    sozialRent:6.5, convCost:0, sozialImmediate:0, sozialPaceRate:0, reinvestQuota2:100,
+    sozialRent:6.5, convCost:0, sozialImmediate:0, sozialPaceRate:0, reinvestQuota2:0,
     horizon:50
   };
   let state = Object.assign({}, defaults);
@@ -91,8 +91,9 @@
 
       // Umwandlung zu Jahresbeginn, unabhängig vom Cashflow des Jahres (die Kosten mindern ihn unten):
       // in Jahr 1 der sofort umgewandelte Anteil, danach jedes Jahr der feste Zeitplan auf den Rest.
+      // Die Umwandlung ist unabhängig vom Reinvestitionsmodus (Neubau/keine) immer aktiv.
       let fixedConversionCost = 0;
-      if(p.mode==='sozial'){
+      {
         if(t===1){
           const newImm = Math.min(p.units*((p.sozialImmediate||0)/100), Math.max(p.units - sozialUnits,0));
           sozImm += newImm; sozialUnits += newImm;
@@ -103,13 +104,8 @@
         fixedConversionCost += newFix*p.convCost*p.avgSize;
       }
 
-      let income;
-      if(p.mode==='sozial'){
-        const marketUnits = units - sozialUnits;
-        income = marketUnits*p.avgSize*rent*12 + sozialUnits*p.avgSize*sozialRent*12;
-      } else {
-        income = units*p.avgSize*rent*12;
-      }
+      // Neubauwohnungen bleiben bei der Modellmiete; umgewandelt wird nur der übernommene Bestand.
+      const income = (units - sozialUnits)*p.avgSize*rent*12 + sozialUnits*p.avgSize*sozialRent*12;
 
       const opexPerUnit = opexPerUnitBase*Math.pow(1+p.costInflation/100, t-1);
       const opexAmt = units*opexPerUnit;
@@ -149,17 +145,14 @@
       // reinvestment for next year -- spending is subtracted from the cash reserve (cum) so it is
       // counted exactly once (either as cash-on-hand, or converted into recorded asset/stock value),
       // never both. This also means it delays break-even/Kapitalposition, as real capex would.
-      if(p.mode==='neubau'){
-        const buildSpend = Math.max(cashflow,0)*(p.reinvestQuota1/100);
-        const newUnits = buildSpend/(p.buildCost*p.avgSize);
-        units = units + newUnits;
-        cum -= buildSpend;
-      } else if(p.mode==='sozial' && p.reinvestQuota2>0){
+      // Zuerst der Anteil „Aus Überschuss" für weitere Sozialwohnungen, danach Neubau aus dem Rest.
+      let surplusLeft = Math.max(cashflow,0);
+      if(p.reinvestQuota2>0){
         // As many units as this year's surplus can carry: each new social unit costs its one-off
         // conversion cost plus next year's rent loss (model rent − social rent), so the cash flow
         // stays roughly at zero instead of turning negative.
         const capacity = p.units - sozialUnits;
-        const convBudget = Math.max(cashflow,0)*(p.reinvestQuota2/100);
+        const convBudget = surplusLeft*(p.reinvestQuota2/100);
         const rentLossNext = (p.baseRent - Math.min(p.sozialRent, p.baseRent))*Math.pow(1+p.rentGrowth/100, t)*p.avgSize*12;
         const costPerUnit = p.convCost*p.avgSize + rentLossNext;
         const newSozial = costPerUnit>0 ? Math.min(convBudget/costPerUnit, Math.max(capacity,0)) : Math.max(capacity,0);
@@ -167,6 +160,13 @@
         sozialUnits = sozialUnits + newSozial;
         sozSur += newSozial;
         cum -= actualSpend;
+        surplusLeft -= Math.min(newSozial*costPerUnit, convBudget);
+      }
+      if(p.mode==='neubau'){
+        const buildSpend = surplusLeft*(p.reinvestQuota1/100);
+        const newUnits = buildSpend/(p.buildCost*p.avgSize);
+        units = units + newUnits;
+        cum -= buildSpend;
       }
     }
 
@@ -271,7 +271,6 @@
     $('rateIncrement').disabled = state.financing!=='kredit';
 
     $('panel-neubau').classList.toggle('show', state.mode==='neubau');
-    $('panel-sozial').classList.toggle('show', state.mode==='sozial');
   }
 
   let chartCashflow, chartCumulative, chartStock, chartRent, chartBalance, chartCapital, chartSozial, chartTenantSavings, chartScenarios, chartRateSens, chartCompSens;
@@ -612,10 +611,7 @@
     chartCapital.update('none');
 
     // ---- Die Sozialwohnungen und die Ersparnis der Mieter (nur bei Umwandlung in Sozialwohnungen) ----
-    const showSozial = state.mode==='sozial';
-    $('sozialPanelWrap').style.display = showSozial ? 'block' : 'none';
-    $('savingsPanelWrap').style.display = showSozial ? 'block' : 'none';
-    if(showSozial){
+    {
       chartSozial.data.labels = labels;
       chartSozial.data.datasets[0].data = result.rows.map(r=>r.sozImm/state.units*100);
       chartSozial.data.datasets[1].data = result.rows.map(r=>(r.sozImm+r.sozFix)/state.units*100);
@@ -681,7 +677,7 @@
     // ---- table ----
     const tbody = $('dataTableBody');
     tbody.innerHTML = result.rows.map(r=>{
-      const stockCell = state.mode==='sozial' ? fmtInt(r.sozialUnits) : (state.mode==='neubau' ? fmtInt(r.units) : '–');
+      const stockCell = (state.mode==='neubau' ? fmtInt(r.units) : fmtInt(state.units))+' / '+fmtInt(r.sozialUnits);
       return '<tr><td>'+r.t+'</td><td>'+r.rent.toLocaleString('de-DE',{maximumFractionDigits:2})+'</td>'+
         '<td>'+r.avgRent.toLocaleString('de-DE',{maximumFractionDigits:2})+'</td>'+
         '<td>'+fmtEUR(r.income)+'</td><td>'+fmtEUR(r.noi)+'</td><td>'+fmtEUR(r.annuity)+'</td>'+
@@ -693,9 +689,9 @@
 
   function describeSnapshot(s){
     const finParts = [s.financing==='kredit' ? ('Kredit '+s.rate+'%') : 'Eigenmittel'];
-    const sozialPaceLabel = ' (sofort '+s.sozialImmediate+' %, '+s.sozialPaceRate+' %/J., Überschuss '+s.reinvestQuota2+' %)';
-    const modeLabel = s.mode==='neubau' ? 'Neubau' : (s.mode==='sozial' ? ('Sozialumwandlung'+sozialPaceLabel) : 'keine Reinvest.');
-    return finParts[0]+' · '+modeLabel+' · '+s.purchaseFactor+'% Kaufpreis';
+    const modeLabel = s.mode==='neubau' ? 'Neubau' : 'keine Reinvest.';
+    const sozialLabel = 'Sozial: sofort '+s.sozialImmediate+' %, '+s.sozialPaceRate+' %/J., Überschuss '+s.reinvestQuota2+' %';
+    return finParts[0]+' · '+modeLabel+' · '+sozialLabel+' · '+s.purchaseFactor+'% Kaufpreis';
   }
 
   function renderCompareTable(){
@@ -719,9 +715,10 @@
       ['Break-even (Basis)', r=>fmtYear(r.r.breakEvenYear)],
       ['Nettoergebnis (Basis)', r=>fmtEUR(r.r.netResult)],
       ['Bestandseffekt (Basis)', r=>{
-        if(r.s.mode==='neubau') return '+'+fmtInt(r.r.finalUnits-r.s.units)+' Whg.';
-        if(r.s.mode==='sozial') return (r.r.finalSozial/r.s.units*100).toLocaleString('de-DE',{maximumFractionDigits:1})+'% sozial';
-        return '–';
+        const parts = [];
+        if(r.s.mode==='neubau') parts.push('+'+fmtInt(r.r.finalUnits-r.s.units)+' Whg.');
+        parts.push((r.r.finalSozial/r.s.units*100).toLocaleString('de-DE',{maximumFractionDigits:1})+'% sozial');
+        return parts.join(' · ');
       }]
     ];
 

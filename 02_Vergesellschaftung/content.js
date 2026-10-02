@@ -22,7 +22,7 @@ window.SITE_INCLUDES = {
       <h3 class="gl-letter">B</h3>
       <dl>
         <div><dt>Baukosten Neubau</dt> <dd>Kosten für die Errichtung einer neuen Wohnung je m² Wohnfläche. Bestimmt im Modus „Neubau", wie viele Wohnungen aus dem reinvestierten Überschuss entstehen (Baukosten × Ø Wohnungsgröße je Wohnung).</dd></div>
-        <div><dt>Bestandseffekt</dt> <dd>Was die Reinvestition des Überschusses bis zum Ende des Betrachtungszeitraums bewirkt: im Modus „Neubau" die Zahl neu gebauter Wohnungen, im Modus „Umwandlung" der Anteil der Sozialwohnungen am Bestand.</dd></div>
+        <div><dt>Bestandseffekt</dt> <dd>Was bis zum Ende des Betrachtungszeitraums erreicht ist: der Anteil der Sozialwohnungen am übernommenen Bestand und, im Modus „Neubau", die Zahl neu gebauter Wohnungen.</dd></div>
         <div><dt>Betrachtungszeitraum</dt> <dd>Zahl der Jahre, über die das Modell Mieteinnahmen, Kosten und Schulden fortschreibt. Nettoergebnis, Bestandseffekt und Nettoposition beziehen sich auf das Ende dieses Zeitraums.</dd></div>
         <div><dt>Bewirtschaftungskosten</dt> <dd>Laufende, nicht auf Mieter umlegbare Kosten der Immobilienverwaltung: Instandhaltung, Verwaltung, Mietausfallwagnis (<span class="src">ImmoWertV Anlage 3</span>).</dd></div>
         <div><dt>Break-even</dt> <dd>Erstes Jahr, in dem der kumulierte Cashflow (bzw. NOI abzüglich Kaufpreis) positiv wird.</dd></div>
@@ -77,7 +77,7 @@ window.SITE_INCLUDES = {
       </dl>
       <h3 class="gl-letter">R</h3>
       <dl>
-        <div><dt>Reinvestitionsquote</dt> <dd>Anteil des positiven Cashflows nach Schuldendienst, der in Neubau oder Umwandlung fließt, statt als Rücklage zu verbleiben.</dd></div>
+        <div><dt>Reinvestitionsquote</dt> <dd>Anteil des positiven Cashflows nach Schuldendienst, der in Neubau fließt, statt als Rücklage zu verbleiben. Ist unter „Die Sozialwohnungen" ein Anteil „Aus Überschuss" gesetzt, geht dieser zuerst in die Umwandlung; die Reinvestitionsquote bezieht sich auf den Rest.</dd></div>
         <div><dt>Restschuld</dt> <dd>Zu einem Zeitpunkt noch nicht getilgter Anteil der ursprünglichen Kreditsumme.</dd></div>
         <div><dt>Risikoprämie</dt> <dd>Zinsaufschlag ab dem Zeitpunkt der Ankündigung einer Vergesellschaftung, den Kreditgeber laut <span class="src">IW Köln/Empirica (2026)</span> wegen erhöhter wahrgenommener Risiken verlangen könnten (Kapitalflucht-These). Im Modell sofort ab Jahr 1 wirksam, unabhängig von der späteren Zinsbindung.</dd></div>
       </dl>
@@ -96,7 +96,7 @@ window.SITE_INCLUDES = {
       <h3 class="gl-letter">U</h3>
       <dl>
         <div><dt>Umwandlungskosten</dt> <dd>Einmalige Kosten je m² Wohnfläche, wenn eine Wohnung in eine Sozialwohnung umgewandelt wird; × Ø Wohnungsgröße ergibt die Kosten je Wohnung. Standardwert 0: Im öffentlichen Eigentum ist die Umwandlung eine Entscheidung über die Miete, ihre Kosten sind die entgangenen Mieteinnahmen, die das Modell über die Sozialmiete bereits erfasst. Ein Wert über 0 bildet zusätzliche Kosten ab, etwa für Verwaltung oder Modernisierung.</dd></div>
-        <div><dt>Umwandlungstempo</dt> <dd>Legt fest, wie schnell Wohnungen in Sozialwohnungen umgewandelt werden; die drei Regler wirken zusammen, bis der gesamte Bestand umgewandelt ist. „Sofort umgewandelt": Anteil des Bestands, der ab Jahr 1 die Sozialmiete trägt. „Fester Zeitplan": weiterer Anteil des Gesamtbestands pro Jahr, unabhängig vom Cashflow; die Kosten mindern den Cashflow des jeweiligen Jahres. Bei 3,3 %/Jahr ist der gesamte Bestand nach rund 30 Jahren umgewandelt. „Aus Überschuss": Anteil des jährlichen Überschusses, der weitere Umwandlungen trägt, gerechnet mit entgangener Miete und Umwandlungskosten je Wohnung; 0 % schaltet ihn ab.</dd></div>
+        <div><dt>Umwandlungstempo</dt> <dd>Legt fest, wie schnell Wohnungen in Sozialwohnungen umgewandelt werden; die drei Regler wirken zusammen, bis der gesamte übernommene Bestand umgewandelt ist, und gelten unabhängig vom Reinvestitionsmodus; Neubauwohnungen bleiben bei der Modellmiete. „Sofort umgewandelt": Anteil des Bestands, der ab Jahr 1 die Sozialmiete trägt. „Fester Zeitplan": weiterer Anteil des Gesamtbestands pro Jahr, unabhängig vom Cashflow; die Kosten mindern den Cashflow des jeweiligen Jahres. Bei 3,3 %/Jahr ist der gesamte Bestand nach rund 30 Jahren umgewandelt. „Aus Überschuss": Anteil des jährlichen Überschusses, der weitere Umwandlungen trägt, gerechnet mit entgangener Miete und Umwandlungskosten je Wohnung; 0 % schaltet ihn ab.</dd></div>
       </dl>
       <h3 class="gl-letter">V</h3>
       <dl>
