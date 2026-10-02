@@ -196,3 +196,7 @@ Die Zeile unter der Überschrift im `masthead` entfällt auf allen Seiten: `hint
 ## 2026-10-02 — Kein grauer Text
 
 `--muted` und `--faint` stehen in `style.css` und `web/style.css` jetzt auf der Textfarbe `--ink` (#14171A); beide Tokens färben nur Text. In `model-calc.js` setzt `Chart.defaults.color` Achsen- und Legendenschrift auf Schwarz, ebenso die Beschriftung der senkrechten Markierungslinie. Graue Linien in den Diagrammen (CPI, Nulllinie, Raster) bleiben.
+
+## 2026-10-02 — Einleitungssätze gestrichen, Tabelle „Die Zahlen erklärt"
+
+Gestrichen: der Lead-Absatz auf `hintergrund.html` (Verweis auf Übersicht und Glossar) und der Lead-Absatz auf `zahlen.html` (Erklärung der Seite, Verweis auf die Quellenbelege). Tabelle der Entschädigungspositionen: `.bg-page table` ohne `table-layout:fixed`, damit die Spalten nach Inhalt breit werden statt vier gleich breiter Spalten; Betrag und Quote mit neuer Klasse `.num` rechtsbündig und ohne Umbruch. Betrifft auch die Tabelle in `quellenbelege.html`.

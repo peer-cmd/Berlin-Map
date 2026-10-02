@@ -134,8 +134,9 @@ body{
   color:var(--muted);
   margin-bottom:28px;
 }
-.bg-page table{width:100%;border-collapse:collapse;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;margin:12px 0 16px;table-layout:fixed;}
+.bg-page table{width:100%;border-collapse:collapse;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;margin:12px 0 16px;}
 .bg-page th, .bg-page td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;white-space:normal;word-wrap:break-word;}
+.bg-page th.num, .bg-page td.num{text-align:right;white-space:nowrap;}
 .bg-page th{
   font-family:'IBM Plex Mono',monospace;
   font-size:10px;
