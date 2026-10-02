@@ -45,7 +45,7 @@ body{
   border-right:1px solid var(--line);
 }
 .site-nav a:hover{background:#F3F6FA;color:var(--blue);}
-.site-nav a.active{color:var(--ink);background:#F0EFEA;}
+.site-nav a.active{color:#fff;background:var(--blue);}
 
 /* ---------- Masthead ---------- */
 .masthead{
