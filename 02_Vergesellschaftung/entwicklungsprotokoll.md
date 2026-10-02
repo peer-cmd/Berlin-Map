@@ -220,3 +220,7 @@ Die acht Fußnotenblöcke nach den Abschnitten sind zu einer Liste „Anmerkunge
 ## 2026-10-02 — „Die Zahlen" und „Die Quellen"
 
 „Die Zahlen erklärt" heißt jetzt „Die Zahlen" und enthält den Zahlenabgleich aus den bisherigen Quellenbelegen: Tabelle der Bestandsangaben je Quelle, Tabelle aller Kostenschätzungen mit Fundstelle, Detailwerte zu Mietabsenkung und Gutachterausschuss, Offene Punkte zur Neuvertragsmiete und zur Abbildung des DWE-Gesetzentwurfs (neue Fn. 17). `quellenbelege.md`/`.html` heißt auf der Website „Die Quellen" und ist nach Dokumenten gegliedert (Datei, Herkunft, verwendete Fundstellen, Zitate, Reichweite); die Abschnitte 1–4, 9 und 10.1 sind in `zahlen.html` aufgegangen. `build_quellenbelege.py` versteht jetzt Markdown-Links. Navigation auf allen Seiten und Beschreibungen auf der Startseite angepasst. Dateinamen bleiben unverändert.
+
+## 2026-10-02 — Modellseite: Spalten in Fensterhöhe, sichtbare Scrollbalken
+
+Ab 1161 px Breite füllt das Layout die Fensterhöhe unterhalb von Navigation und Kopf; Regler-, Ergebnis- (und in v37 Hintergrund-)Spalte scrollen jeweils für sich und enden am unteren Fensterrand (vorher je 100vh hoch, also unten abgeschnitten, solange die Seite nicht mitgescrollt war). Dafür `<body class="model-page">` in v37; `build_kompakt.py` an den neuen Body-Tag angepasst. Scrollbalken der Spalten und der Vergleichstabelle sind dauerhaft sichtbar gestaltet (`::-webkit-scrollbar`, Fallback `scrollbar-color`). Druck und schmale Bildschirme unverändert.
