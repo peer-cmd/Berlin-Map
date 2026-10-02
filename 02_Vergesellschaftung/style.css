@@ -154,6 +154,8 @@ div.glossary{columns:2 280px;column-gap:32px;column-rule:1px solid var(--line);}
 .glossary dt{display:inline;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;color:var(--gl-violet);}
 .glossary dd{display:inline;margin:0 0 0 4px;color:var(--ink);}
 .glossary .src{color:var(--gl-turq);}
+.chronik .gl-points{margin:-4px 0 14px 1.2em;}
+.chronik .gl-points dt{font-size:12.5px;color:var(--ink);}
 .timeline{display:grid;grid-template-columns:6.5em 1fr;gap:14px 20px;margin:12px 0 24px;}
 .timeline dt{font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;}
 .timeline dd{margin:0;font-size:14.5px;line-height:1.6;}
