@@ -338,3 +338,7 @@ Entschädigungsquote, Break-even und Nettoergebnis stehen je auf zwei Zeilen: Be
 ## 2026-10-02 — Modell: Gesamtwert und Kaufpreis unter der Entschädigungsquote
 
 Die Hinweise „Gesamtwert = Wohnungen × Größe × Verkehrswert/m²" (unter dem Verkehrswert) und „Tatsächlicher Kaufpreis" (unter der Entschädigungsquote) sind zu einer Zeile unter der Entschädigungsquote zusammengefasst: „Kaufpreis 1.564 €/m² · 24,4 von 32,5 Mrd €". Das Feld „≈ pro Wohnung … € Verkehrswert" steht jetzt ebenfalls dort.
+
+## 2026-10-02 — Akzentfarbe Petrol statt Dunkelblau
+
+`--blue` und alle festen `#1E3A5F` (Überschriften, Navigation, Fußnotenlinks, Schaltflächen, Diagrammlinien in `model-calc.js`) sind jetzt `#00788C`, die Farbe der Buchstaben im Glossar.

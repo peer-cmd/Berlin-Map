@@ -330,7 +330,7 @@
     const ctx1b = $('chartCumulative').getContext('2d');
     chartCumulative = new Chart(ctx1b, {
       data:{ labels:[], datasets:[
-        {type:'line', label:'Kumuliert', data:[], borderColor:'#1E3A5F', backgroundColor:'transparent', borderWidth:2.2, pointRadius:0, tension:0.15, yAxisID:'y', order:1},
+        {type:'line', label:'Kumuliert', data:[], borderColor:'#00788C', backgroundColor:'transparent', borderWidth:2.2, pointRadius:0, tension:0.15, yAxisID:'y', order:1},
         {type:'line', label:'Null', data:[], borderColor:'#9A9A90', borderWidth:1, pointRadius:0, borderDash:[2,3], yAxisID:'y', order:3}
       ]},
       options:{
@@ -375,7 +375,7 @@
         {label:'Kommunale Wohnungsgesellschaften', data:[], borderColor:'#A9762C', backgroundColor:'transparent', borderWidth:1.5, borderDash:[6,2], pointRadius:0, tension:0.15},
         {label:'Verbraucherpreise (CPI, indexiert)', data:[], borderColor:'#6B6B63', backgroundColor:'transparent', borderWidth:1.2, borderDash:[1,3], pointRadius:0, tension:0.15},
         {label:'Haushaltseinkommen (indexiert)', data:[], borderColor:'#109A82', backgroundColor:'transparent', borderWidth:1.2, borderDash:[1,3], pointRadius:0, tension:0.15},
-        {label:'Ø Miete im Bestand (Modell)', data:[], borderColor:'#1E3A5F', backgroundColor:'rgba(30,58,95,0.06)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.15}
+        {label:'Ø Miete im Bestand (Modell)', data:[], borderColor:'#00788C', backgroundColor:'rgba(0,120,140,0.06)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.15}
       ]},
       options:{
         responsive:true,
@@ -396,7 +396,7 @@
     chartBalance = new Chart(ctx5, {
       type:'line',
       data:{ labels:[], datasets:[
-        {label:'Restschuld', data:[], borderColor:'#1E3A5F', backgroundColor:'rgba(30,58,95,0.06)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.1}
+        {label:'Restschuld', data:[], borderColor:'#00788C', backgroundColor:'rgba(0,120,140,0.06)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.1}
       ]},
       options:{
         responsive:true,
@@ -443,7 +443,7 @@
     chartSozial = new Chart($('chartSozial').getContext('2d'), {
       type:'line',
       data:{ labels:[], datasets:[
-        {label:'Sofort', data:[], borderColor:'#1E3A5F', backgroundColor:'rgba(30,58,95,0.35)', borderWidth:1.5, pointRadius:0, fill:'origin', tension:0.15},
+        {label:'Sofort', data:[], borderColor:'#00788C', backgroundColor:'rgba(0,120,140,0.35)', borderWidth:1.5, pointRadius:0, fill:'origin', tension:0.15},
         {label:'Fester Zeitplan', data:[], borderColor:'#A9762C', backgroundColor:'rgba(169,118,44,0.35)', borderWidth:1.5, pointRadius:0, fill:'-1', tension:0.15},
         {label:'Aus Überschuss', data:[], borderColor:'#109A82', backgroundColor:'rgba(16,154,130,0.35)', borderWidth:1.5, pointRadius:0, fill:'-1', tension:0.15}
       ]},
@@ -507,7 +507,7 @@
     const ctx10 = $('chartCompSens').getContext('2d');
     chartCompSens = new Chart(ctx10, {
       data:{ labels:[], datasets:[
-        {type:'line', label:'Nettoergebnis', data:[], borderColor:'#1E3A5F', backgroundColor:'rgba(30,58,95,0.06)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.15, yAxisID:'y'},
+        {type:'line', label:'Nettoergebnis', data:[], borderColor:'#00788C', backgroundColor:'rgba(0,120,140,0.06)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.15, yAxisID:'y'},
         {type:'line', label:'Break-even (Jahr)', data:[], borderColor:'#A9762C', backgroundColor:'transparent', borderWidth:1.5, borderDash:[4,2], pointRadius:0, tension:0.15, yAxisID:'y1'}
       ]},
       options:{

@@ -21,7 +21,7 @@ PAGE = """<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Die Chronologie — Vergesellschaftung großer Wohnungsunternehmen</title>
 <link rel="stylesheet" href="fonts/fonts.css">
-<link rel="stylesheet" href="style.css?v=20261002x">
+<link rel="stylesheet" href="style.css?v=20261002z">
 </head>
 <body>
 <!-- Generated from quellenbelege.md by build_quellenbelege.py. Do not edit by hand. -->
