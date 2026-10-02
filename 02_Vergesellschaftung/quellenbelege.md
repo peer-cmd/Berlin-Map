@@ -86,6 +86,7 @@ Kurzstudie zu den sozialen Effekten einer möglichen Vergesellschaftung von Wohn
 
 Sammelband der Initiative, 149 S.
 
+- **Volksentscheid:** am 26.09.2021 „59,1 % der gültigen Stimmen" für die Vergesellschaftung — S. 4 (Vorwort).
 - **Bestand:** ≈ 240.000 Wohnungen — S. 8, 9, 45–47, 77, 81, 112.
 - **Zielmiete 3,70 €/m²:** S. 117: "Die Berliner Initiative DW enteignen rechnet in ihrem sog. Faire-Mieten-Modell mit einer NKM von 3,70 €/m²."
 - **Kritik der Senatsschätzung:** „Anmerkungen zur Kostenschätzung des Senats", S. 134–137; im Modell nur pauschal zitiert.
