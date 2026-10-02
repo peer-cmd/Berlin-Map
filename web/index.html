@@ -4,10 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Berlin Research Map</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="vendor/maplibre-gl.css">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<nav class="site-nav">
+  <a href="../02_Vergesellschaftung/index.html">Übersicht</a>
+  <a href="../02_Vergesellschaftung/vergesellschaftung-modell-v37.html">Modell</a>
+  <a href="../02_Vergesellschaftung/modell-kompakt.html">Modell (kompakt)</a>
+  <a href="../02_Vergesellschaftung/zahlen.html">Die Zahlen erklärt</a>
+  <a href="../02_Vergesellschaftung/glossar.html">Glossar</a>
+  <a href="./" class="active">Karte</a>
+</nav>
+<main id="map-wrap">
 <div id="map"></div>
 <aside id="panel">
   <h1>Berlin Research Map</h1>
@@ -26,6 +36,7 @@
   </section>
 </aside>
 <div id="banner" role="alert" hidden></div>
+</main>
 <script src="vendor/maplibre-gl.js"></script>
 <script src="app.js"></script>
 </body>

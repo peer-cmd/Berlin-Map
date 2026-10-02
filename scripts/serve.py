@@ -26,7 +26,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
         if self.path in ("", "/"):
             self.send_response(302)
-            self.send_header("Location", "/web/")
+            self.send_header("Location", "/02_Vergesellschaftung/")
             self.end_headers()
             return
         super().do_GET()
