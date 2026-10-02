@@ -413,7 +413,7 @@ select{
   cursor:pointer;
 }
 .preset-btn:last-child{margin-bottom:0;}
-.preset-btn:hover, .preset-btn:active, .preset-btn.active{border-color:var(--ink);background:#FFE55C;}
+.preset-btn:hover, .preset-btn:active, .preset-btn.active{border-color:var(--green);background:var(--green);color:#fff;}
 
 /* ---------- Summary frame: title, verdict, key figures ---------- */
 .summary{border:1px solid var(--line-strong);background:var(--panel);padding:16px 18px;margin-bottom:20px;}
