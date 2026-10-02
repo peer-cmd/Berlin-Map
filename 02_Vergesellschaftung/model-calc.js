@@ -542,9 +542,6 @@
       $('s-bestand-sub').textContent = 'keine Reinvestition';
     }
 
-    $('cf-caption').textContent = state.financing==='kredit'
-      ? ('nach Schuldendienst · Zinsbindung '+state.rateResetYears+' J., danach +'+state.rateIncrement.toLocaleString('de-DE',{minimumFractionDigits:1})+' pp')
-      : 'kum. NOI − Kaufpreis';
 
     // ---- Jahres-Cashflow (bars) ----
     const labels = result.rows.map(r=>r.t);
@@ -599,7 +596,6 @@
     const showBalance = state.financing==='kredit';
     $('balancePanelWrap').style.display = showBalance ? 'block' : 'none';
     if(showBalance){
-      $('balance-caption').textContent = 'Zinsbindung '+state.rateResetYears+' J.';
       chartBalance.data.labels = labels;
       chartBalance.data.datasets[0].data = result.rows.map(r=>r.balance);
       if(state.rateResetYears < state.term && state.rateResetYears < state.horizon){
@@ -623,13 +619,9 @@
     const sozialParams = Object.assign({}, state, {mode:'sozial'});
     const sozialResult = runScenario(state.price, sozialParams);
     const sozialData = sozialResult.rows.map(r=>Math.round(r.sozialUnits));
-    const sozialMax = Math.max(...sozialData);
     chartSozial.data.labels = sozialResult.rows.map(r=>r.t);
     chartSozial.data.datasets[0].data = sozialData;
     chartSozial.options.scales.y.suggestedMax = state.units;
-    $('sozial-caption').textContent = sozialMax>0
-      ? ('bis zu '+fmtInt(sozialMax)+' Whg. bei vollständiger Reinvestition')
-      : 'kein Cashflow-Überschuss zur Reinvestition bei aktuellen Annahmen';
     chartSozial.update('none');
 
     // ---- chart Mieteinsparung für Mieter (kumuliert, aus derselben Sozial-Vergleichsrechnung) ----
@@ -641,10 +633,6 @@
     });
     chartTenantSavings.data.labels = sozialResult.rows.map(r=>r.t);
     chartTenantSavings.data.datasets[0].data = savingsData;
-    const totalSavings = savingsData[savingsData.length-1] || 0;
-    $('tenant-caption').textContent = totalSavings>0
-      ? (fmtEUR(totalSavings)+' Einsparung ggü. Marktmiete-Pfad über '+state.horizon+' Jahre')
-      : 'keine Einsparung (keine Umwandlung bei aktuellen Annahmen)';
     chartTenantSavings.update('none');
 
     if(chartScenarios) updateScenarioChart();

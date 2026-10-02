@@ -248,3 +248,7 @@ Die vier Kacheln über den Diagrammen (Entschädigungsquote, Break-even, Nettoer
 ## 2026-10-02 — Glossar: zwei Spalten, getrennte Einträge, Farbe
 
 Das Glossar ist überall zweispaltig mit Trennlinie, auch in der Hintergrundspalte der Modellseite (`div.glossary`, `columns:2 280px`; bei schmalem Fenster einspaltig). Jeder Eintrag ist ein eigener Absatz mit 8 px Abstand und bricht nicht über die Spalte. Stichwörter in Violett, Buchstabenköpfe größer in Türkis mit türkiser Linie, Quellenangaben weiter in Türkis. Versionsparameter auf `?v=20261002f`, damit Browser die neue `style.css` und `content.js` laden.
+
+## 2026-10-02 — Diagramme: keine Randnotizen, Erläuterung über volle Breite
+
+Die Kurzangaben rechts neben den Diagrammtiteln (`<span class="caption">`, z. B. „nach Schuldendienst · Zinsbindung 10 J., danach +1,0 pp", „Modellergebnis", „Vergleichsrechnung") entfernt, auf der Modellseite und in `zahlen.html`; die zugehörigen Zuweisungen in `model-calc.js` und die Regel `.panel-head .caption` in `style.css` entfallen. Die Erläuterung unter jedem Titel (`.panel-sub`) läuft über die volle Breite des Diagrammrahmens (vorher höchstens 74 Zeichen). Versionsparameter auf `?v=20261002g`.
