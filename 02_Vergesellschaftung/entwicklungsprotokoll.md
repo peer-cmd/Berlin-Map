@@ -308,3 +308,7 @@ Die Startseite hat nur noch einen Abschnitt „Die Chronologie": Einleitung und 
 ## 2026-10-02 — Modell: frischere Signalfarben
 
 Rot `#B23A34` → `#E0435C` (zum Pink hin), Grün `#2F7D46` und `#3A7D44` → `#109A82` (zum Blaugrün hin), in `model-calc.js`, den CSS-Variablen `--red`/`--green` und den Legendenfeldern, damit Diagramme, Legenden und Zahlenseite übereinstimmen.
+
+## 2026-10-02 — Die Zahlen: Tabellen im Raster
+
+`zahlen.html` erhält `class="zahlen-page"`; dort haben alle Tabellenzellen einen Rahmen, die Kopfzeile steht in Space Grotesk fett (600) statt IBM Plex Mono in Versalien, auf hellgrauem Grund.
