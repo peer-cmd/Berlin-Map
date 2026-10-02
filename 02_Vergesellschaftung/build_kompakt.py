@@ -27,7 +27,7 @@ def main():
     start = s.index(BG_START)
     end = s.index(BG_END, start) + len(BG_END)
     s = s[:start] + s[end:]
-    s = replace_once(s, '<script src="content.js?v=20261002b"></script>\n<script src="include.js"></script>\n', "")
+    s = replace_once(s, '<script src="include.js"></script>\n', "")
     s = s.replace('<body class="model-page">\n', '<body class="model-page">\n' "<!-- Generated from vergesellschaftung-modell-v37.html by build_kompakt.py. Do not edit by hand. -->\n", 1)
     OUT.write_text(s, encoding="utf-8")
     print(f"wrote {OUT.name}")
