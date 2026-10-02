@@ -330,3 +330,7 @@ Ein Browser mit zwischengespeicherter alter Seite lud das neue `model-calc.js`; 
 ## 2026-10-02 — Modell: Umwandlungstempo als kombinierbare Regler
 
 Die drei Pfade sind keine Vergleichsgrafik mehr, sondern Regler links unter „Der Überschuss" → „Umwandlung in Sozialwohnungen", die zusammenwirken: „Sofort umgewandelt" (Anteil ab Jahr 1, 0–100 %), „Fester Zeitplan" (0–20 %/Jahr des Gesamtbestands) und „Aus Überschuss" (Anteil des Überschusses, 0–100 %, ersetzt die Reinvestitionsquote dieses Modus). Standard 0 % / 0 %/Jahr / 100 % entspricht dem bisherigen Standard. „Die Sozialwohnungen" zeigt den Sozialanteil gestapelt nach Herkunft; die Cashflow-Grafik darunter entfällt. „Die Sozialwohnungen" und „Die Ersparnis der Mieter" erscheinen nur im Modus „Umwandlung in Sozialwohnungen"; die Bestandsgrafik nur noch bei Neubau. `$()` liefert für fehlende Elemente einen losgelösten Platzhalter, damit eine zwischengespeicherte ältere Seite das Skript nicht abbricht.
+
+## 2026-10-02 — Modell: Kennzahlen im Kopf auf zwei Zeilen
+
+Entschädigungsquote, Break-even und Nettoergebnis stehen je auf zwei Zeilen: Bezeichnung und Wert in der ersten, Erläuterung in der zweiten; die drei Spalten sind so breit wie ihr Inhalt. Ist der Kopfrahmen schmaler als 700 px (Container-Abfrage), stehen die drei Kennzahlen untereinander.
