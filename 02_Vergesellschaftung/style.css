@@ -417,6 +417,7 @@ select{
   border:1px solid var(--line-strong);
   font-family:'IBM Plex Sans',sans-serif;
   font-size:13px;
+  font-weight:700;
   color:var(--ink);
   cursor:pointer;
 }
