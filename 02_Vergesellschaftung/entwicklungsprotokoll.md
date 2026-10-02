@@ -216,3 +216,7 @@ Der Hinweis „Nettoergebnis verläuft nicht linear …" steht jetzt in der Unte
 ## 2026-10-02 — „Die Zahlen erklärt": Fußnoten am Seitenende
 
 Die acht Fußnotenblöcke nach den Abschnitten sind zu einer Liste „Anmerkungen" (Fn. 1–16) am Seitenende zusammengefasst. Der Link „Volle Belege: Quellenbelege" im Seitenkopf entfällt.
+
+## 2026-10-02 — „Die Zahlen" und „Die Quellen"
+
+„Die Zahlen erklärt" heißt jetzt „Die Zahlen" und enthält den Zahlenabgleich aus den bisherigen Quellenbelegen: Tabelle der Bestandsangaben je Quelle, Tabelle aller Kostenschätzungen mit Fundstelle, Detailwerte zu Mietabsenkung und Gutachterausschuss, Offene Punkte zur Neuvertragsmiete und zur Abbildung des DWE-Gesetzentwurfs (neue Fn. 17). `quellenbelege.md`/`.html` heißt auf der Website „Die Quellen" und ist nach Dokumenten gegliedert (Datei, Herkunft, verwendete Fundstellen, Zitate, Reichweite); die Abschnitte 1–4, 9 und 10.1 sind in `zahlen.html` aufgegangen. `build_quellenbelege.py` versteht jetzt Markdown-Links. Navigation auf allen Seiten und Beschreibungen auf der Startseite angepasst. Dateinamen bleiben unverändert.

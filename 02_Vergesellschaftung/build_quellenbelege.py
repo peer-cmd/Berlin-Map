@@ -18,7 +18,7 @@ PAGE = """<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quellenbelege — Vergesellschaftung großer Wohnungsunternehmen</title>
+<title>Die Quellen — Vergesellschaftung großer Wohnungsunternehmen</title>
 <link rel="stylesheet" href="fonts/fonts.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -30,9 +30,9 @@ PAGE = """<!DOCTYPE html>
     <a href="index.html">Übersicht</a>
     <a href="modell-kompakt.html">Modell</a>
     <a href="hintergrund.html">Hintergrund</a>
-    <a href="zahlen.html">Die Zahlen erklärt</a>
+    <a href="zahlen.html">Die Zahlen</a>
     <a href="glossar.html">Glossar</a>
-    <a href="quellenbelege.html" class="active">Quellenbelege</a>
+    <a href="quellenbelege.html" class="active">Die Quellen</a>
     <a href="karte.html">Karte</a>
   </nav>
 
@@ -46,7 +46,7 @@ PAGE = """<!DOCTYPE html>
 {body}
   </div>
 
-  <div class="colophon">Quellenbelege — Vergesellschaftung großer Wohnungsunternehmen</div>
+  <div class="colophon">Die Quellen — Vergesellschaftung großer Wohnungsunternehmen</div>
 
 </div>
 </body>
@@ -57,6 +57,7 @@ PAGE = """<!DOCTYPE html>
 def inline(text):
     text = html.escape(text, quote=False)
     text = re.sub(r"`([^`]+)`", r"<code>\1</code>", text)
+    text = re.sub(r"\[([^\]]+)\]\(([^)\s]+)\)", r'<a href="\2">\1</a>', text)
     text = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", text)
     text = re.sub(r"(?<![\w*])\*(?!\s)(.+?)(?<!\s)\*(?![\w*])", r"<em>\1</em>", text)
     return text
@@ -67,7 +68,7 @@ def cells(row):
 
 
 def convert(lines):
-    out, title, i = [], "Quellenbelege", 0
+    out, title, i = [], "Die Quellen", 0
     while i < len(lines):
         line = lines[i]
         if not line.strip():

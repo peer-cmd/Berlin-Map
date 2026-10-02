@@ -839,7 +839,7 @@
     }
   };
 
-  // Seiten ohne Regler (Die Zahlen erklärt) zeigen nur die Szenario-Übersicht.
+  // Seiten ohne Regler (Die Zahlen) zeigen nur die Szenario-Übersicht.
   if(!$('chartCashflow')){
     if($('chartScenarios')){ initScenarioChart(); updateScenarioChart(); }
     return;
