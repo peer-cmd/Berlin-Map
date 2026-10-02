@@ -17,7 +17,7 @@
 
 ## Open
 
-- Website is hosted on Strato (static). Upload: unpack `website-upload.zip` into the web root, replacing the old `karte/` folder completely (old `karte/layers.json` is no longer used).
+- Website: GitHub Pages from `main`, https://peer-cmd.github.io/Berlin-Map/02_Vergesellschaftung/index.html. Changes go live after merging into `main`.
 - Merge this branch into `main` (pull request) so parallel sessions start from the current state.
 - Einwohnerdichte GeoJSON is 12.5 MB (26,613 blocks); loads only on demand. Vector tiles if it feels slow.
 - Panel is long with 15 layers; collapsible groups would help.
