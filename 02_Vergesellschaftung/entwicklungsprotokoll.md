@@ -240,3 +240,7 @@ Definitionen unter den Reglern (Risikoprämie, Zinsbindung, Einmalige Kosten, In
 ## 2026-10-02 — Glossar im Wörterbuchsatz
 
 Glossar alphabetisch sortiert, mit violetten Buchstabenköpfen (A, B, C …). Jeder Eintrag beginnt mit dem fetten Stichwort, die Erklärung läuft in derselben Zeile weiter; Folgezeilen hängend eingezogen. Rechts- und Quellenangaben in den Einträgen (`<span class="src">`: § 194 BauGB, § 558 BGB, ImmoWertV, IW Köln/Empirica, Bernt/Holm, IW Consult, Expertenkommission, Art. 14 GG) in Türkis. `glossar.html` zweispaltig mit Trennlinie (`class="two-col"`, unter 640 px einspaltig); Hintergrundspalte der Modellseite einspaltig. `tooltips.js` trennt Stichwörter an „ / " nur noch außerhalb von Klammern (vorher fehlte die Erklärung zu „Modus"). Versionsparameter auf `?v=20261002d`.
+
+## 2026-10-02 — Kennzahlen-Kacheln: eine Schriftgröße
+
+Die vier Kacheln über den Diagrammen (Entschädigungsquote, Break-even, Nettoergebnis, Bestandseffekt) setzen Bezeichnung, Wert und Zusatzzeile in 12 px (vorher 9,5 / 20 / 10,5 px); Bezeichnung ohne Versalien, Wert fett. Innenabstand 8/12 px statt 14/16 px, die Kacheln sind dadurch etwa halb so hoch. Versionsparameter auf `?v=20261002e`.

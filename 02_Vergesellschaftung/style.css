@@ -440,28 +440,24 @@ select{
 }
 .stat{
   background:var(--panel);
-  padding:14px 16px;
+  padding:8px 12px;
+  font-size:12px;
+  line-height:1.35;
 }
+/* label, value and sub share one font size */
 .stat .label{
   font-family:'IBM Plex Mono',monospace;
-  font-size:9.5px;
-  letter-spacing:0.06em;
-  text-transform:uppercase;
   color:var(--muted);
-  margin-bottom:8px;
+  margin-bottom:2px;
 }
 .stat .value{
   font-family:'Space Grotesk',sans-serif;
-  font-size:20px;
   font-weight:600;
   font-variant-numeric:tabular-nums;
-  line-height:1.15;
 }
 .stat .sub{
   font-family:'IBM Plex Mono',monospace;
-  font-size:10.5px;
   color:var(--faint);
-  margin-top:4px;
 }
 .pos{color:var(--ink);}
 .neg{color:var(--ink);}
