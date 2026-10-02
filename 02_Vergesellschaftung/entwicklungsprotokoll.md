@@ -256,3 +256,7 @@ Die Kurzangaben rechts neben den Diagrammtiteln (`<span class="caption">`, z. B.
 ## 2026-10-02 — Übersicht: ein Abschnitt je Seite
 
 Die Seitenbeschreibungen auf `index.html` stehen nicht mehr als fortlaufende Liste (`dl.glossary`), sondern wie „Der Volksentscheid": je Seite eine Überschrift (`h2`) mit Link und ein Absatz (`p.lead`). Verlinkte Überschriften (`.bg-page h2 a`) in der Überschriftfarbe ohne Unterstreichung, beim Überfahren gelb hinterlegt (#FFE55C, wie die Begriffe auf der Modellseite). Versionsparameter auf `?v=20261002h`.
+
+## 2026-10-02 — Einleitungsabsätze größer
+
+`.bg-page .lead` in 14,5 px statt 13 px (Übersicht und weitere Seiten mit Einleitungsabsatz). Versionsparameter auf `?v=20261002i`.

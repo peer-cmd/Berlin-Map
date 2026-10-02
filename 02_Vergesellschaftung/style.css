@@ -131,7 +131,7 @@ body{
 .bg-page ul, .bg-page ol{margin:0 0 12px;padding-left:20px;font-size:13px;line-height:1.6;}
 .bg-page li{margin-bottom:5px;}
 .bg-page .lead{
-  font-size:13px;
+  font-size:14.5px;
   line-height:1.6;
   color:var(--muted);
   margin-bottom:28px;
