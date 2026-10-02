@@ -45,7 +45,6 @@
         <div class="field">
           <div class="field-row"><label>Betrachtungszeitraum</label><span class="val" id="v-horizon">50 Jahre</span></div>
           <input type="range" id="horizon" min="10" max="100" step="1" value="50">
-          <div class="hint">Nettoergebnis verläuft nicht linear: Solange der Kredit läuft (Tilgungsdauer), verschlechtert sich der kumulierte Cashflow von Jahr zu Jahr. Erst nach vollständiger Tilgung entfällt der Schuldendienst und der Cashflow dreht kräftig ins Plus — je nach Horizont kann das Nettoergebnis diesen Rückgang ganz, teilweise oder gar nicht mehr aufholen.</div>
         </div>
       </div>
 
@@ -329,7 +328,7 @@
           <h2>Kumulierter Cashflow</h2>
           <span class="caption">Nettoergebnis-Verlauf</span>
         </div>
-        <p class="panel-sub">Kumulierter Cashflow seit Übernahme, inkl. Einmalkosten in Jahr 1. Der Endwert entspricht dem Nettoergebnis oben. Zeigt, in welchem Jahr — falls überhaupt — sich der Bestand insgesamt rechnet (Break-even).</p>
+        <p class="panel-sub">Kumulierter Cashflow seit Übernahme, inkl. Einmalkosten in Jahr 1. Der Endwert entspricht dem Nettoergebnis oben. Zeigt, in welchem Jahr — falls überhaupt — sich der Bestand insgesamt rechnet (Break-even). Das Nettoergebnis verläuft nicht linear: Solange der Kredit läuft (Tilgungsdauer), verschlechtert sich der kumulierte Cashflow von Jahr zu Jahr. Erst nach vollständiger Tilgung entfällt der Schuldendienst und der Cashflow dreht kräftig ins Plus — je nach Horizont kann das Nettoergebnis diesen Rückgang ganz, teilweise oder gar nicht mehr aufholen.</p>
         <canvas id="chartCumulative" height="70"></canvas>
         <div class="legend">
           <span><i class="swatch" style="background:var(--blue)"></i>kumulierter Cashflow</span>
@@ -357,21 +356,6 @@
           <span><i class="swatch" style="background:var(--red)"></i>Restschuld</span>
           <span><i class="swatch" style="background:#A9762C"></i>Kumulierter Cashflow</span>
           <span><i class="swatch" style="background:var(--green)"></i>Nettoposition</span>
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="panel-head">
-          <h2>Szenario-Übersicht</h2>
-          <span class="caption">5 Voreinstellungen im Vergleich</span>
-        </div>
-        <p class="panel-sub">Kaufpreis und Nettoergebnis nach Horizont (links, Mrd €) sowie Break-even-Jahr (rechts) für die fünf Voreinstellungen aus Abschnitt 00 — unabhängig von den aktuellen Reglereinstellungen.</p>
-        <canvas id="chartScenarios" height="80"></canvas>
-        <div class="legend">
-          <span><i class="swatch" style="background:var(--blue-light)"></i>Kaufpreis</span>
-          <span><i class="swatch" style="background:var(--green)"></i>Nettoergebnis positiv</span>
-          <span><i class="swatch" style="background:var(--red)"></i>Nettoergebnis negativ</span>
-          <span><i class="swatch" style="background:var(--ink)"></i>Break-even (rechte Achse)</span>
         </div>
       </div>
 

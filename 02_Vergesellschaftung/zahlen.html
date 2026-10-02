@@ -6,6 +6,7 @@
 <title>Die Zahlen erklärt — Vergesellschaftung großer Wohnungsunternehmen</title>
 <link rel="stylesheet" href="fonts/fonts.css">
 <link rel="stylesheet" href="style.css">
+<script src="vendor/chart.umd.js"></script>
 </head>
 <body>
 <div class="app">
@@ -59,6 +60,20 @@
       </tbody>
     </table>
     <p>Die Beträge im Modell ergeben sich aus Wohnungen × 65 m² × 2.085 €/m² × Quote.</p>
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Szenario-Übersicht</h2>
+        <span class="caption">Die fünf Positionen im Vergleich</span>
+      </div>
+      <p class="panel-sub">Kaufpreis und Nettoergebnis nach Horizont (links, Mrd €) sowie Break-even-Jahr (rechts) für die fünf Positionen, jeweils mit den Standardannahmen des <a href="modell-kompakt.html">Modells</a> und einem Horizont von 50 Jahren.</p>
+      <canvas id="chartScenarios" height="80"></canvas>
+      <div class="legend">
+        <span><i class="swatch" style="background:var(--blue-light)"></i>Kaufpreis</span>
+        <span><i class="swatch" style="background:var(--green)"></i>Nettoergebnis positiv</span>
+        <span><i class="swatch" style="background:var(--red)"></i>Nettoergebnis negativ</span>
+        <span><i class="swatch" style="background:var(--ink)"></i>Break-even (rechte Achse)</span>
+      </div>
+    </div>
     <p>Die amtliche Kostenschätzung des Senats (2019) liegt im Bereich der beiden verkehrswertnahen Positionen: 28,8–36 Mrd. € für die Entschädigung allein, 30–39 Mrd. € einschließlich 1,5–2,9 Mrd. € Erwerbsnebenkosten.<sup class="fn"><a href="#fn3">3</a></sup> Die Angaben „29–36 Mrd. €" und „29–39 Mrd. €", die an verschiedenen Stellen kursieren, bezeichnen also denselben Senatswert, einmal ohne und einmal mit Nebenkosten.</p>
     <ol class="source-list" start="2">
       <li id="fn2">IW Köln/Empirica 2026, S. 8.</li>
@@ -125,5 +140,6 @@
   <div class="colophon">Die Zahlen erklärt — Vergesellschaftung großer Wohnungsunternehmen · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></div>
 
 </div>
+<script src="model-calc.js"></script>
 </body>
 </html>

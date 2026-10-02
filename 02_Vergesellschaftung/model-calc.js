@@ -457,26 +457,7 @@
       }
     });
 
-    const ctx8 = $('chartScenarios').getContext('2d');
-    chartScenarios = new Chart(ctx8, {
-      data:{ labels:[], datasets:[
-        {type:'bar', label:'Kaufpreis', data:[], backgroundColor:'#93AECB', yAxisID:'y', order:2},
-        {type:'bar', label:'Nettoergebnis', data:[], backgroundColor:[], yAxisID:'y', order:2},
-        {type:'line', label:'Break-even (Jahr)', data:[], borderColor:'#14171A', backgroundColor:'#14171A', borderWidth:1.5, pointRadius:4, pointBackgroundColor:'#14171A', showLine:false, yAxisID:'y1', order:1}
-      ]},
-      options:{
-        responsive:true,
-        animation:{duration:250},
-        plugins:{ legend:{display:false},
-          tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+(ctx.dataset.label==='Break-even (Jahr)' ? (ctx.parsed.y===null?'kein Break-even':('Jahr '+ctx.parsed.y)) : fmtEUR(ctx.parsed.y)) }}
-        },
-        scales:{
-          x:{ grid:{display:false}, ticks:{font:{family:'IBM Plex Mono',size:9}} },
-          y:{ position:'left', title:{display:true,text:'Kaufpreis / Nettoergebnis',font:{family:'IBM Plex Mono',size:9}}, ticks:{ font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v) }, grid:{color:'#EAEAE4'} },
-          y1:{ position:'right', title:{display:true,text:'Break-even (Jahr)',font:{family:'IBM Plex Mono',size:9}}, ticks:{ font:{family:'IBM Plex Mono',size:9} }, grid:{display:false} }
-        }
-      }
-    });
+    if($('chartScenarios')) initScenarioChart();
 
     const ctx9 = $('chartRateSens').getContext('2d');
     chartRateSens = new Chart(ctx9, {
@@ -666,19 +647,7 @@
       : 'keine Einsparung (keine Umwandlung bei aktuellen Annahmen)';
     chartTenantSavings.update('none');
 
-    // ---- chart Szenario-Übersicht (4 Voreinstellungen, unabhängig von aktuellen Reglern) ----
-    const presetOrder = [['linke','Faire-Mieten'],['holm','Holm'],['rechnungshof','Rechnungshof'],['gegenmodell','Gegenmodell'],['dwe2025','DWE 2025']];
-    const presetResults = presetOrder.map(([key,label])=>{
-      const p = Object.assign({}, defaults, presets[key]);
-      const r = runScenario(p.price, p);
-      return {label, principal:r.principal, netResult:r.netResult, breakEvenYear:r.breakEvenYear};
-    });
-    chartScenarios.data.labels = presetResults.map(r=>r.label);
-    chartScenarios.data.datasets[0].data = presetResults.map(r=>r.principal);
-    chartScenarios.data.datasets[1].data = presetResults.map(r=>r.netResult);
-    chartScenarios.data.datasets[1].backgroundColor = presetResults.map(r=>r.netResult>=0?'#2F7D46':'#B23A34');
-    chartScenarios.data.datasets[2].data = presetResults.map(r=>r.breakEvenYear);
-    chartScenarios.update('none');
+    if(chartScenarios) updateScenarioChart();
 
     // ---- chart Zinssensitivität (bei aktuellen Reglereinstellungen, Zins variiert) ----
     const rateSteps = [];
@@ -779,6 +748,103 @@
     }).join('');
   }
 
+  function initScenarioChart(){
+    const ctx8 = $('chartScenarios').getContext('2d');
+    chartScenarios = new Chart(ctx8, {
+      data:{ labels:[], datasets:[
+        {type:'bar', label:'Kaufpreis', data:[], backgroundColor:'#93AECB', yAxisID:'y', order:2},
+        {type:'bar', label:'Nettoergebnis', data:[], backgroundColor:[], yAxisID:'y', order:2},
+        {type:'line', label:'Break-even (Jahr)', data:[], borderColor:'#14171A', backgroundColor:'#14171A', borderWidth:1.5, pointRadius:4, pointBackgroundColor:'#14171A', showLine:false, yAxisID:'y1', order:1}
+      ]},
+      options:{
+        responsive:true,
+        animation:{duration:250},
+        plugins:{ legend:{display:false},
+          tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+(ctx.dataset.label==='Break-even (Jahr)' ? (ctx.parsed.y===null?'kein Break-even':('Jahr '+ctx.parsed.y)) : fmtEUR(ctx.parsed.y)) }}
+        },
+        scales:{
+          x:{ grid:{display:false}, ticks:{font:{family:'IBM Plex Mono',size:9}} },
+          y:{ position:'left', title:{display:true,text:'Kaufpreis / Nettoergebnis',font:{family:'IBM Plex Mono',size:9}}, ticks:{ font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v) }, grid:{color:'#EAEAE4'} },
+          y1:{ position:'right', title:{display:true,text:'Break-even (Jahr)',font:{family:'IBM Plex Mono',size:9}}, ticks:{ font:{family:'IBM Plex Mono',size:9} }, grid:{display:false} }
+        }
+      }
+    });
+  }
+
+  // Szenario-Übersicht: die fünf Voreinstellungen, unabhängig von den aktuellen Reglern
+  function updateScenarioChart(){
+    const presetOrder = [['linke','Faire-Mieten'],['holm','Holm'],['rechnungshof','Rechnungshof'],['gegenmodell','Gegenmodell'],['dwe2025','DWE 2025']];
+    const presetResults = presetOrder.map(([key,label])=>{
+      const p = Object.assign({}, defaults, presets[key]);
+      const r = runScenario(p.price, p);
+      return {label, principal:r.principal, netResult:r.netResult, breakEvenYear:r.breakEvenYear};
+    });
+    chartScenarios.data.labels = presetResults.map(r=>r.label);
+    chartScenarios.data.datasets[0].data = presetResults.map(r=>r.principal);
+    chartScenarios.data.datasets[1].data = presetResults.map(r=>r.netResult);
+    chartScenarios.data.datasets[1].backgroundColor = presetResults.map(r=>r.netResult>=0?'#2F7D46':'#B23A34');
+    chartScenarios.data.datasets[2].data = presetResults.map(r=>r.breakEvenYear);
+    chartScenarios.update('none');
+  }
+
+  const presets = {
+    linke: {
+      // Faire-Mieten-Modell (Holm et al. / DWE-Papier): Entschädigung deutlich unter Verkehrswert,
+      // ~14 Mrd € bei 3,70 €/m² Zielmiete. Verkehrswert einheitlich 2.085 €/m² (s. Rechnungshof) —
+      // der Unterschied zu den anderen Modellen liegt in der Entschädigungsquote, nicht im Verkehrswert
+      // (897/2085 ≈ 43,0 % vom Verkehrswert, entspricht ca. 14 Mrd € Gesamtkompensation).
+      price: 2085, purchaseFactor: 43.0,
+      financing: 'kredit', rate: 3.5, riskPremium: 0, term: 30, rateResetYears: 30, rateIncrement: 0,
+      baseRent: 3.70, rentGrowth: 0.5, costInflation: 2.5,
+      opexMode: 'percent', opex: 40, mode: 'none'
+    },
+    holm: {
+      // Bernt & Holm 2023: Ist-Miete-Modell, Mietsenkung auf Landeseigenen-Niveau 6,29 €/m².
+      // Verkehrswert einheitlich 2.085 €/m² — Entschädigungsquote 1538/2085 ≈ 73,8 % vom
+      // Verkehrswert, entspricht ca. 24 Mrd € Gesamtkompensation.
+      price: 2085, purchaseFactor: 73.8,
+      financing: 'kredit', rate: 3.5, riskPremium: 0, term: 30, rateResetYears: 30, rateIncrement: 0,
+      baseRent: 6.29, rentGrowth: 1.5, costInflation: 2.0,
+      opexMode: 'percent', opex: 35, mode: 'none'
+    },
+    rechnungshof: {
+      // Rechnungshof Berlin 2024: verkehrswertorientiert (~32,5 Mrd € bei 100% Entschädigungsquote), Bewirtschaftungskosten absolut 2,20 €/m²
+      price: 2085, purchaseFactor: 100,
+      financing: 'kredit', rate: 3.5, riskPremium: 0, term: 30, rateResetYears: 10, rateIncrement: 1.0,
+      baseRent: 6.71, rentGrowth: 1.5, costInflation: 2.0,
+      opexMode: 'absolute', opexAbsolute: 2.20, mode: 'none'
+    },
+    gegenmodell: {
+      // IW Köln/Empirica 2026 (Bankengutachten): verkehrswertnah + Risikoprämie/Kapitalflucht-These
+      price: 2085, purchaseFactor: 100,
+      financing: 'kredit', rate: 3.5, riskPremium: 0.5, term: 30, rateResetYears: 5, rateIncrement: 2.0,
+      baseRent: 7.63, rentGrowth: 1.5, costInflation: 3.0,
+      opexMode: 'percent', opex: 40, mode: 'none'
+    },
+    dwe2025: {
+      // DWE-Gesetzentwurf, Stand 26.09.2025 (§§ 12-18 VergG-E): Entschädigung nach Sachwertverfahren
+      // mit auf 2011-2013 eingefrorenem, seither nur 3,5%/Jahr fortgeschriebenem Bodenwert -- nicht
+      // dem aktuellen Verkehrswert. Ausgedrückt als Anteil vom (uniform gehaltenen) Verkehrswert
+      // 2085 €/m² ergibt das die vom PwC-Whitepaper (Heim/Hackelberg) bestaetigten 40-60%; Mittelwert
+      // 50% verwendet -- ergibt bei 220.000 Wohnungen ≈14,9 Mrd €, mittig in der bestaetigten
+      // 14,5-17,0-Mrd.-€-Spanne. Bestandsgröße 220.000 (nicht 240.000) laut PwC-Zitat des Gesetzentwurfs.
+      // Zahlung erfolgt real über 100-jährige Schuldverschreibungen (Zinssatz 3,5%, keine Zinsbindungs-
+      // Neuverhandlung) statt Bankkredit; eine echte endfällige Anleihe ist im Modell nicht abbildbar,
+      // aber eine 100-jährige Annuität bei 3,5% liegt bei ≈3,6%/Jahr Zahlung -- de facto tilgungsfrei
+      // innerhalb fast jedes hier darstellbaren Zeithorizonts (max. 100 Jahre) und damit eine nahe Annäherung.
+      units: 220000, price: 2085, purchaseFactor: 50,
+      financing: 'kredit', rate: 3.5, riskPremium: 0, term: 100, rateResetYears: 100, rateIncrement: 0,
+      baseRent: 3.70, rentGrowth: 0.5, costInflation: 2.5,
+      opexMode: 'percent', opex: 40, mode: 'none'
+    }
+  };
+
+  // Seiten ohne Regler (Die Zahlen erklärt) zeigen nur die Szenario-Übersicht.
+  if(!$('chartCashflow')){
+    if($('chartScenarios')){ initScenarioChart(); updateScenarioChart(); }
+    return;
+  }
+
   // ---- events ----
   sliderIds.forEach(id=>{
     $(id).addEventListener('input', render);
@@ -844,57 +910,6 @@
     window.print();
   });
 
-  const presets = {
-    linke: {
-      // Faire-Mieten-Modell (Holm et al. / DWE-Papier): Entschädigung deutlich unter Verkehrswert,
-      // ~14 Mrd € bei 3,70 €/m² Zielmiete. Verkehrswert einheitlich 2.085 €/m² (s. Rechnungshof) —
-      // der Unterschied zu den anderen Modellen liegt in der Entschädigungsquote, nicht im Verkehrswert
-      // (897/2085 ≈ 43,0 % vom Verkehrswert, entspricht ca. 14 Mrd € Gesamtkompensation).
-      price: 2085, purchaseFactor: 43.0,
-      financing: 'kredit', rate: 3.5, riskPremium: 0, term: 30, rateResetYears: 30, rateIncrement: 0,
-      baseRent: 3.70, rentGrowth: 0.5, costInflation: 2.5,
-      opexMode: 'percent', opex: 40, mode: 'none'
-    },
-    holm: {
-      // Bernt & Holm 2023: Ist-Miete-Modell, Mietsenkung auf Landeseigenen-Niveau 6,29 €/m².
-      // Verkehrswert einheitlich 2.085 €/m² — Entschädigungsquote 1538/2085 ≈ 73,8 % vom
-      // Verkehrswert, entspricht ca. 24 Mrd € Gesamtkompensation.
-      price: 2085, purchaseFactor: 73.8,
-      financing: 'kredit', rate: 3.5, riskPremium: 0, term: 30, rateResetYears: 30, rateIncrement: 0,
-      baseRent: 6.29, rentGrowth: 1.5, costInflation: 2.0,
-      opexMode: 'percent', opex: 35, mode: 'none'
-    },
-    rechnungshof: {
-      // Rechnungshof Berlin 2024: verkehrswertorientiert (~32,5 Mrd € bei 100% Entschädigungsquote), Bewirtschaftungskosten absolut 2,20 €/m²
-      price: 2085, purchaseFactor: 100,
-      financing: 'kredit', rate: 3.5, riskPremium: 0, term: 30, rateResetYears: 10, rateIncrement: 1.0,
-      baseRent: 6.71, rentGrowth: 1.5, costInflation: 2.0,
-      opexMode: 'absolute', opexAbsolute: 2.20, mode: 'none'
-    },
-    gegenmodell: {
-      // IW Köln/Empirica 2026 (Bankengutachten): verkehrswertnah + Risikoprämie/Kapitalflucht-These
-      price: 2085, purchaseFactor: 100,
-      financing: 'kredit', rate: 3.5, riskPremium: 0.5, term: 30, rateResetYears: 5, rateIncrement: 2.0,
-      baseRent: 7.63, rentGrowth: 1.5, costInflation: 3.0,
-      opexMode: 'percent', opex: 40, mode: 'none'
-    },
-    dwe2025: {
-      // DWE-Gesetzentwurf, Stand 26.09.2025 (§§ 12-18 VergG-E): Entschädigung nach Sachwertverfahren
-      // mit auf 2011-2013 eingefrorenem, seither nur 3,5%/Jahr fortgeschriebenem Bodenwert -- nicht
-      // dem aktuellen Verkehrswert. Ausgedrückt als Anteil vom (uniform gehaltenen) Verkehrswert
-      // 2085 €/m² ergibt das die vom PwC-Whitepaper (Heim/Hackelberg) bestaetigten 40-60%; Mittelwert
-      // 50% verwendet -- ergibt bei 220.000 Wohnungen ≈14,9 Mrd €, mittig in der bestaetigten
-      // 14,5-17,0-Mrd.-€-Spanne. Bestandsgröße 220.000 (nicht 240.000) laut PwC-Zitat des Gesetzentwurfs.
-      // Zahlung erfolgt real über 100-jährige Schuldverschreibungen (Zinssatz 3,5%, keine Zinsbindungs-
-      // Neuverhandlung) statt Bankkredit; eine echte endfällige Anleihe ist im Modell nicht abbildbar,
-      // aber eine 100-jährige Annuität bei 3,5% liegt bei ≈3,6%/Jahr Zahlung -- de facto tilgungsfrei
-      // innerhalb fast jedes hier darstellbaren Zeithorizonts (max. 100 Jahre) und damit eine nahe Annäherung.
-      units: 220000, price: 2085, purchaseFactor: 50,
-      financing: 'kredit', rate: 3.5, riskPremium: 0, term: 100, rateResetYears: 100, rateIncrement: 0,
-      baseRent: 3.70, rentGrowth: 0.5, costInflation: 2.5,
-      opexMode: 'percent', opex: 40, mode: 'none'
-    }
-  };
 
   document.querySelectorAll('.preset-btn').forEach(btn=>{
     btn.addEventListener('click', ()=>applyState(presets[btn.dataset.preset]));

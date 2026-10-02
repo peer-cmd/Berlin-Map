@@ -208,3 +208,7 @@ Gestrichen: der Lead-Absatz auf `hintergrund.html` (Verweis auf Übersicht und G
 ## 2026-10-02 — Modellseite: Gruppentitel entfernt, Horizont 50/100 Jahre
 
 Gruppentitel „Voreinstellungen", „Zeithorizont" und „Ergebnisse" entfernt. Betrachtungszeitraum: Standard 50 Jahre (vorher 30), Maximum 100 Jahre (vorher 50); `defaults.horizon` in `model-calc.js` angepasst. Kommentar zum DWE-2025-Preset (100-jährige Schuldverschreibung) auf das neue Maximum aktualisiert.
+
+## 2026-10-02 — Szenario-Übersicht nach „Die Zahlen erklärt", Horizont-Hinweis zum kumulierten Cashflow
+
+Der Hinweis „Nettoergebnis verläuft nicht linear …" steht jetzt in der Unterzeile des Diagramms „Kumulierter Cashflow" (vorher unter dem Horizont-Regler). Das Diagramm „Szenario-Übersicht" ist von der Modellseite nach `zahlen.html` gewandert, direkt unter die Tabelle der fünf Positionen; es rechnet mit den Standardannahmen und 50 Jahren Horizont. `model-calc.js`: Aufbau und Aktualisierung des Diagramms als `initScenarioChart()`/`updateScenarioChart()`; `presets` vor die Event-Bindungen verschoben; auf Seiten ohne Regler zeichnet das Skript nur dieses Diagramm. `zahlen.html` lädt dafür `vendor/chart.umd.js` und `model-calc.js`.
