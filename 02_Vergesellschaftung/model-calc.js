@@ -892,6 +892,14 @@
       document.querySelectorAll('.preset-btn').forEach(b=>b.classList.toggle('active', b===btn));
     });
   });
+  // Sobald ein Regler, Feld oder Umschalter bewegt wird, ist es nicht mehr das Preset: Markierung aufheben.
+  const clearPreset = ()=>document.querySelectorAll('.preset-btn.active').forEach(b=>b.classList.remove('active'));
+  const controlsEl = document.querySelector('.controls');
+  if(controlsEl){
+    controlsEl.addEventListener('input', e=>{ if(e.target.id!=='labelA' && e.target.id!=='labelB') clearPreset(); });
+    controlsEl.addEventListener('change', e=>{ if(e.target.id==='mode') clearPreset(); });
+    controlsEl.querySelectorAll('.seg button').forEach(b=>b.addEventListener('click', clearPreset));
+  }
 
   function saveSlot(key, labelInputId){
     readState();

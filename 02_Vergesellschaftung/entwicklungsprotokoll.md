@@ -358,3 +358,7 @@ Die Beschriftungen „Modus" (Finanzierung) und „Bewirtschaftungskosten-Modus"
 ## 2026-10-03 — Modell: „Ergebnisse drucken" unter „Zurücksetzen"
 
 Die Schaltfläche „Ergebnisse drucken" steht jetzt links unter „Zurücksetzen", in derselben Breite; der leere Rahmen oben rechts im Kopf ist entfernt.
+
+## 2026-10-03 — Modell: Preset-Schaltflächen grün, Markierung endet bei Änderung
+
+Hover und gewähltes Preset jetzt in `--green` (`#109A82`) mit weißer Schrift statt Gelb. Sobald ein Regler, ein Zahlenfeld, der Reinvestitionsmodus oder ein Umschalter geändert wird, verschwindet die Markierung, weil die Einstellung dann nicht mehr dem Preset entspricht; das Eintippen eines Szenarionamens zählt nicht.
