@@ -411,8 +411,8 @@ select{
 /* ---------- Summary frame: title, verdict, key figures ---------- */
 .summary{border:1px solid var(--line-strong);background:var(--panel);padding:16px 18px;margin-bottom:20px;}
 .summary h1{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px;letter-spacing:-0.01em;line-height:1.25;margin:0 0 12px;}
-.summary .verdict{border:none;padding:0;margin:0 0 14px;}
-.summary .stats{border:none;background:none;gap:0;margin:0;}
+.summary .verdict{float:right;border:none;padding:0;margin:0 0 8px 16px;}
+.summary .stats{clear:both;border:none;background:none;gap:0;margin:0;}
 .summary .stat{padding:0 12px 0 0;}
 
 /* ---------- Verdict banner ---------- */

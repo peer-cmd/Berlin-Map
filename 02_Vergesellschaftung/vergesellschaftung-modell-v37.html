@@ -6,7 +6,7 @@
 <title>Kosten- und Finanzierungsmodell der Vergesellschaftung Berlin</title>
 <link rel="stylesheet" href="fonts/fonts.css">
 <script src="vendor/chart.umd.js"></script>
-<link rel="stylesheet" href="style.css?v=20261002p">
+<link rel="stylesheet" href="style.css?v=20261002q">
 </head>
 <body class="model-page">
 <div class="app">
@@ -264,11 +264,10 @@
     <main class="results">
 
       <section class="summary">
-        <h1>Kosten- und Finanzierungsmodell der Vergesellschaftung großer Wohnungsunternehmen</h1>
         <div class="verdict" id="verdictBanner">
-          <span class="verdict-text" id="verdictText">–</span>
           <button class="print-btn" id="printBtn">Ergebnisse drucken</button>
         </div>
+        <h1>Kosten- und Finanzierungsmodell der Vergesellschaftung großer Wohnungsunternehmen</h1>
 
         <div class="stats">
           <div class="stat">
@@ -297,10 +296,6 @@
         </div>
         <p class="panel-sub">Jährlicher Cashflow nach Schuldendienst. Zeigt, in welchem Jahr die laufende Bewirtschaftung in den Überschuss dreht.</p>
         <canvas id="chartCashflow" height="70"></canvas>
-        <div class="legend">
-          <span><i class="swatch" style="background:var(--green)"></i>Jahres-Cashflow positiv</span>
-          <span><i class="swatch" style="background:var(--red)"></i>Jahres-Cashflow negativ</span>
-        </div>
       </div>
 
       <div class="panel">
@@ -309,9 +304,6 @@
         </div>
         <p class="panel-sub">Kumulierter Cashflow seit Übernahme, inkl. Einmalkosten in Jahr 1. Der Endwert entspricht dem Nettoergebnis oben. Zeigt, in welchem Jahr — falls überhaupt — sich der Bestand insgesamt rechnet (Break-even). Das Nettoergebnis verläuft nicht linear: Solange der Kredit läuft (Tilgungsdauer), verschlechtert sich der kumulierte Cashflow von Jahr zu Jahr. Erst nach vollständiger Tilgung entfällt der Schuldendienst und der Cashflow dreht kräftig ins Plus — je nach Horizont kann das Nettoergebnis diesen Rückgang ganz, teilweise oder gar nicht mehr aufholen.</p>
         <canvas id="chartCumulative" height="70"></canvas>
-        <div class="legend">
-          <span><i class="swatch" style="background:var(--blue)"></i>kumulierter Cashflow</span>
-        </div>
       </div>
 
       <div class="panel" id="balancePanelWrap">
@@ -514,9 +506,9 @@
 
 </div>
 
-<script src="model-calc.js?v=20261002p"></script>
-<script src="content.js?v=20261002p"></script>
+<script src="model-calc.js?v=20261002q"></script>
+<script src="content.js?v=20261002q"></script>
 <script src="include.js"></script>
-<script src="tooltips.js?v=20261002p"></script>
+<script src="tooltips.js?v=20261002q"></script>
 </body>
 </html>

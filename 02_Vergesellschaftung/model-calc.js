@@ -519,15 +519,6 @@
     $('s-kaufpreis').textContent = state.purchaseFactor+' % vom Verkehrswert';
     $('s-kaufpreis-sub').textContent = fmtInt(state.price*(state.purchaseFactor/100))+' €/m² · '+fmtEUR(result.principal)+' gesamt';
 
-    // ---- verdict banner ----
-    const verdictEl = $('verdictBanner');
-    const isPos = result.netResult >= 0;
-    verdictEl.className = 'verdict '+(isPos ? 'pos' : 'neg');
-    const beText = result.breakEvenYear ? ('Break-even in Jahr '+result.breakEvenYear) : ('kein Break-even innerhalb von '+state.horizon+' Jahren');
-    const modeText = state.mode==='neubau' ? (', dabei wächst der Bestand um '+fmtInt(result.finalUnits-state.units)+' Wohnungen')
-      : state.mode==='sozial' ? (', dabei steigt der Sozialanteil auf '+(result.finalSozial/state.units*100).toLocaleString('de-DE',{maximumFractionDigits:1})+' %')
-      : '';
-    $('verdictText').innerHTML = 'Bei diesen Annahmen: '+(isPos?'Überschuss':'Defizit')+' von '+fmtEUR(Math.abs(result.netResult))+' nach '+state.horizon+' Jahren — '+beText+modeText+'.';
 
     $('s-breakeven').textContent = fmtYear(result.breakEvenYear);
 

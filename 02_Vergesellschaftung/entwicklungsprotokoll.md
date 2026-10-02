@@ -296,3 +296,7 @@ Die Legende steht nicht mehr im Ebenen-Panel, sondern in einem eigenen Kasten un
 ## 2026-10-02 — Modell: Diagramme ohne senkrechte Achsentitel, bündige Jahresachsen
 
 Senkrechte Achsentitel entfernt („Jahres-Cashflow", „Kumuliert", „Mio €/Jahr", „Nettoergebnis", „Break-even (Jahr)", „Kaufpreis / Nettoergebnis"). Wo der Titel die Einheit trug, steht sie jetzt an den Achsenwerten (Zuschussbedarf in € statt Mio €, Break-even als „Jahr …"). Alle Jahresdiagramme haben dieselbe Achsenbreite links und rechts und dieselbe Beschriftung (Jahr 1 und jedes 5. Jahr, ab 60 Jahren jedes 10.); Jahr 1 und das letzte Jahr stehen in allen Diagrammen an derselben Stelle. Vorher waren „Der Cashflow pro Jahr" (Balkenversatz) und „Der Cashflow kumuliert" (fehlender rechter Rand) verschoben. Versionsparameter auf `?v=20261002p`.
+
+## 2026-10-02 — Modell: Urteilszeile und Einzel-Legenden entfernt
+
+Die Urteilszeile im Ergebnisrahmen („Bei diesen Annahmen: Defizit von … nach … Jahren — …") entfällt (HTML und Zuweisung in `model-calc.js`); damit entfällt auch der dort angehängte Hinweis zum Bestandswachstum bzw. Sozialanteil im Modus „Neubau"/„Umwandlung". „Ergebnisse drucken" steht rechts neben dem Seitentitel. Legenden unter „Der Cashflow pro Jahr" („Jahres-Cashflow positiv/negativ") und „Der Cashflow kumuliert" („kumulierter Cashflow") entfernt. Versionsparameter auf `?v=20261002q`.
