@@ -179,7 +179,6 @@
           <select id="mode">
             <option value="none">Keine Reinvestition</option>
             <option value="neubau">Neubau — Bestand wächst</option>
-            <option value="sozial">Umwandlung in Sozialwohnungen</option>
           </select>
         </div>
 
@@ -199,38 +198,40 @@
           </div>
         </div>
 
-        <div class="subpanel" id="panel-sozial">
-          <div class="field">
-            <div class="field-row"><label data-term="Sozialmiete">Sozialmiete</label><span class="val" id="v-sozialRent">6,50 €/m²</span></div>
-            <input type="range" id="sozialRent" min="3" max="10" step="0.1" value="6.5">
-            <div class="hint" id="hint-sozialRentCap" style="display:none;color:var(--red);">Sozialmiete liegt über der Ausgangsmiete — im Modell auf die Ausgangsmiete gedeckelt (Sozialmiete kann Marktmiete nicht übersteigen).</div>
-            <div class="linked-row">
-              <label class="linked-label">≈ pro Wohnung</label>
-              <input type="number" class="linked-input" id="sozialRentPerUnit" step="5">
-              <span class="linked-suffix">€/Monat</span>
-            </div>
+      </div>
+
+      <div class="group">
+        <p class="group-title">Die Sozialwohnungen</p>
+        <div class="field">
+          <div class="field-row"><label data-term="Sozialmiete">Sozialmiete</label><span class="val" id="v-sozialRent">6,50 €/m²</span></div>
+          <input type="range" id="sozialRent" min="3" max="10" step="0.1" value="6.5">
+          <div class="hint" id="hint-sozialRentCap" style="display:none;color:var(--red);">Sozialmiete liegt über der Ausgangsmiete — im Modell auf die Ausgangsmiete gedeckelt (Sozialmiete kann Marktmiete nicht übersteigen).</div>
+          <div class="linked-row">
+            <label class="linked-label">≈ pro Wohnung</label>
+            <input type="number" class="linked-input" id="sozialRentPerUnit" step="5">
+            <span class="linked-suffix">€/Monat</span>
           </div>
-          <div class="field">
-            <div class="field-row"><label data-term="Umwandlungskosten">Umwandlungskosten</label><span class="val" id="v-convCost">0 €/m²</span></div>
-            <input type="range" id="convCost" min="0" max="3000" step="50" value="0">
-            <div class="linked-row">
-              <label class="linked-label">≈ pro Wohnung</label>
-              <input type="number" class="linked-input" id="convCostPerUnit" step="1000">
-              <span class="linked-suffix">€ (Kosten je Whg.)</span>
-            </div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Umwandlungskosten">Umwandlungskosten</label><span class="val" id="v-convCost">0 €/m²</span></div>
+          <input type="range" id="convCost" min="0" max="3000" step="50" value="0">
+          <div class="linked-row">
+            <label class="linked-label">≈ pro Wohnung</label>
+            <input type="number" class="linked-input" id="convCostPerUnit" step="1000">
+            <span class="linked-suffix">€ (Kosten je Whg.)</span>
           </div>
-          <div class="field">
-            <div class="field-row"><label data-term="Umwandlungstempo">Sofort umgewandelt</label><span class="val" id="v-sozialImmediate">0 %</span></div>
-            <input type="range" id="sozialImmediate" min="0" max="100" step="5" value="0">
-          </div>
-          <div class="field">
-            <div class="field-row"><label data-term="Umwandlungstempo">Fester Zeitplan</label><span class="val" id="v-sozialPaceRate">0,0 %/Jahr</span></div>
-            <input type="range" id="sozialPaceRate" min="0" max="20" step="0.1" value="0">
-          </div>
-          <div class="field">
-            <div class="field-row"><label data-term="Umwandlungstempo">Aus Überschuss</label><span class="val" id="v-reinvestQuota2">100 %</span></div>
-            <input type="range" id="reinvestQuota2" min="0" max="100" step="5" value="100">
-          </div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Umwandlungstempo">Sofort umgewandelt</label><span class="val" id="v-sozialImmediate">0 %</span></div>
+          <input type="range" id="sozialImmediate" min="0" max="100" step="5" value="0">
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Umwandlungstempo">Fester Zeitplan</label><span class="val" id="v-sozialPaceRate">0,0 %/Jahr</span></div>
+          <input type="range" id="sozialPaceRate" min="0" max="20" step="0.1" value="0">
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Umwandlungstempo">Aus Überschuss</label><span class="val" id="v-reinvestQuota2">0 %</span></div>
+          <input type="range" id="reinvestQuota2" min="0" max="100" step="5" value="0">
         </div>
       </div>
 
@@ -366,11 +367,11 @@
         <canvas id="chartStock" height="70"></canvas>
       </div>
 
-      <div class="panel" id="sozialPanelWrap" style="display:none;">
+      <div class="panel" id="sozialPanelWrap">
         <div class="panel-head">
           <h2>Die <span data-term="Sozialbindung">Sozialwohnungen</span></h2>
         </div>
-        <p class="panel-sub">Anteil der Wohnungen mit Sozialmiete am Bestand, nach Herkunft: sofort umgewandelt, nach festem Zeitplan und aus dem Überschuss, eingestellt unter „Der Überschuss“.</p>
+        <p class="panel-sub">Anteil der Wohnungen mit Sozialmiete am Bestand, nach Herkunft: sofort umgewandelt, nach festem Zeitplan und aus dem Überschuss, eingestellt unter „Die Sozialwohnungen“.</p>
         <canvas id="chartSozial" height="70"></canvas>
         <div class="legend">
           <span><i class="swatch" style="background:var(--blue)"></i>Sofort</span>
@@ -379,7 +380,7 @@
         </div>
       </div>
 
-      <div class="panel" id="savingsPanelWrap" style="display:none;">
+      <div class="panel" id="savingsPanelWrap">
         <div class="panel-head">
           <h2>Die <span data-term="Mieterersparnis">Ersparnis der Mieter</span></h2>
         </div>
@@ -427,8 +428,8 @@
 
 </div>
 
-<script src="model-calc.js?v=20261002z"></script>
-<script src="content.js?v=20261002w"></script>
+<script src="model-calc.js?v=20261003a"></script>
+<script src="content.js?v=20261003a"></script>
 <script src="tooltips.js?v=20261002q"></script>
 </body>
 </html>

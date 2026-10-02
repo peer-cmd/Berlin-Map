@@ -342,3 +342,7 @@ Die Hinweise „Gesamtwert = Wohnungen × Größe × Verkehrswert/m²" (unter de
 ## 2026-10-02 — Akzentfarbe Petrol statt Dunkelblau
 
 `--blue` und alle festen `#1E3A5F` (Überschriften, Navigation, Fußnotenlinks, Schaltflächen, Diagrammlinien in `model-calc.js`) sind jetzt `#00788C`, die Farbe der Buchstaben im Glossar.
+
+## 2026-10-03 — Modell: Sozialwohnungen als eigene, immer aktive Gruppe
+
+Die Umwandlung in Sozialwohnungen ist in allen Positionen das Ziel und keine Frage der Reinvestition. „Der Überschuss" bietet nur noch „Keine Reinvestition" und „Neubau"; die neue Gruppe „Die Sozialwohnungen" (Sozialmiete, Umwandlungskosten, Sofort, Fester Zeitplan, Aus Überschuss) wirkt immer. Der Anteil „Aus Überschuss" geht zuerst in die Umwandlung, Neubau erhält die Reinvestitionsquote vom Rest; umgewandelt wird nur der übernommene Bestand, Neubauwohnungen bleiben bei der Modellmiete. Standard 0 % / 0 %/Jahr / 0 %: alle Presets und Kennzahlen bleiben unverändert (gegen die vorige Version geprüft). „Die Sozialwohnungen" und „Die Ersparnis der Mieter" sind immer sichtbar; Jahr-für-Jahr-Tabelle und Szenariovergleich zeigen Bestand und Sozialanteil.
