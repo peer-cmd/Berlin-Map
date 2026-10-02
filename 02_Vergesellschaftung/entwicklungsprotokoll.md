@@ -188,3 +188,7 @@ Auf Wunsch als eigenständiges fünftes Preset umgesetzt (Alternative zu Update 
 - Gelöscht: `pdf/test_write.txt`, themenfremder Rechnungshof-Bericht `pdf/2026_beratungsbericht_zuwendungen_senkultgz_gesamt.pdf` samt Markdown-Extraktion.
 - `My Collection_All.bib` bleibt im Projektordner (Pfad in `Bibliography/scripts/corpus_search.py` erwartet).
 - Regler Verkehrswert: Schrittweite 20 → 5 €/m². Bei Schritt 20 (ab 500) rastete 2.085 auf 2.080 ein; alle Presets rechneten dadurch mit 2.080 statt 2.085 €/m² (32,45 statt 32,53 Mrd. € bei 100 %).
+
+## 2026-10-02 — Untertitel im Seitenkopf entfernt
+
+Die Zeile unter der Überschrift im `masthead` entfällt auf allen Seiten: `hintergrund.html`, `impressum.html`, `datenschutz.html` und `modell-kompakt.html` (dort fügte `build_kompakt.py` sie ein; Ersetzung gestrichen, Seite neu erzeugt). Die Zeile „Berlin, Art. 15 GG — Projektübersicht" in `index.html` war bereits entfernt.

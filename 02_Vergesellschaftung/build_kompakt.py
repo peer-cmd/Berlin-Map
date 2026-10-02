@@ -23,9 +23,6 @@ def replace_once(text, old, new):
 def main():
     s = SRC.read_text(encoding="utf-8")
     s = replace_once(s, "Vergesellschaftung Berlin</title>", "Vergesellschaftung Berlin — kompakt</title>")
-    s = replace_once(s, "großer Wohnungsunternehmen</h1>\n",
-                     "großer Wohnungsunternehmen</h1>\n"
-                     '      <p>Wie das Modell rechnet und was es nicht abbildet: <a href="hintergrund.html">Hintergrund</a>.</p>\n')
     s = replace_once(s, '<div class="layout">', '<div class="layout no-bg">')
     start = s.index(BG_START)
     end = s.index(BG_END, start) + len(BG_END)
