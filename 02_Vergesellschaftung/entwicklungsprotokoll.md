@@ -244,3 +244,7 @@ Glossar alphabetisch sortiert, mit violetten Buchstabenköpfen (A, B, C …). Je
 ## 2026-10-02 — Kennzahlen-Kacheln: eine Schriftgröße
 
 Die vier Kacheln über den Diagrammen (Entschädigungsquote, Break-even, Nettoergebnis, Bestandseffekt) setzen Bezeichnung, Wert und Zusatzzeile in 12 px (vorher 9,5 / 20 / 10,5 px); Bezeichnung ohne Versalien, Wert fett. Innenabstand 8/12 px statt 14/16 px, die Kacheln sind dadurch etwa halb so hoch. Versionsparameter auf `?v=20261002e`.
+
+## 2026-10-02 — Glossar: zwei Spalten, getrennte Einträge, Farbe
+
+Das Glossar ist überall zweispaltig mit Trennlinie, auch in der Hintergrundspalte der Modellseite (`div.glossary`, `columns:2 280px`; bei schmalem Fenster einspaltig). Jeder Eintrag ist ein eigener Absatz mit 8 px Abstand und bricht nicht über die Spalte. Stichwörter in Violett, Buchstabenköpfe größer in Türkis mit türkiser Linie, Quellenangaben weiter in Türkis. Versionsparameter auf `?v=20261002f`, damit Browser die neue `style.css` und `content.js` laden.

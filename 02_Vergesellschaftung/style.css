@@ -145,17 +145,16 @@ body{
   color:var(--muted);
   border-bottom:1px solid var(--line-strong);
 }
-/* Glossary set like a dictionary: run-in headword, hanging indent, sources in turquoise, letters in violet */
+/* Glossary set like a dictionary: two columns, one entry per paragraph, headwords in violet, sources in turquoise */
 .glossary{--gl-turq:#00788C;--gl-violet:#6B3FA0;font-size:12.5px;line-height:1.45;}
-.glossary .gl-letter{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600;color:var(--gl-violet);margin:14px 0 4px;break-after:avoid;}
+div.glossary{columns:2 280px;column-gap:32px;column-rule:1px solid var(--line);}
+.glossary .gl-letter{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:600;line-height:1;color:var(--gl-turq);margin:16px 0 6px;padding-bottom:4px;border-bottom:1px solid var(--gl-turq);break-after:avoid;}
 .glossary .gl-letter:first-child{margin-top:0;}
 .glossary dl{margin:0;}
-.glossary dl > div{padding-left:1.2em;text-indent:-1.2em;margin-bottom:5px;hyphens:auto;-webkit-hyphens:auto;}
-.glossary dt{display:inline;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;color:var(--ink);}
+.glossary dl > div{display:block;padding-left:1.2em;text-indent:-1.2em;margin-bottom:8px;break-inside:avoid;hyphens:auto;-webkit-hyphens:auto;}
+.glossary dt{display:inline;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;color:var(--gl-violet);}
 .glossary dd{display:inline;margin:0 0 0 4px;color:var(--ink);}
 .glossary .src{color:var(--gl-turq);}
-.two-col > .glossary{column-count:2;column-gap:28px;column-rule:1px solid var(--line);}
-@media (max-width:640px){.two-col > .glossary{column-count:1;}}
 .timeline{display:grid;grid-template-columns:6.5em 1fr;gap:14px 20px;margin:12px 0 24px;}
 .timeline dt{font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;}
 .timeline dd{margin:0;font-size:12.5px;line-height:1.6;}
