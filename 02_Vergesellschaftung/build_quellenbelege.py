@@ -2,8 +2,8 @@
 
 quellenbelege.md stays the source; run this script after editing it:
     python3 build_quellenbelege.py
-Layout as on the Glossar page: '## year' becomes a letter head, '### document'
-with its paragraph a glossary entry, '- **Lead:** text' an indented point.
+One column: '## year' becomes h2, '### document' h3, and '- **Lead:** text'
+a paragraph with a bold lead (no bullet list).
 Inline: **bold**, *italic*, `code`, [links](url).
 """
 import html
@@ -21,7 +21,7 @@ PAGE = """<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Die Chronologie — Vergesellschaftung großer Wohnungsunternehmen</title>
 <link rel="stylesheet" href="fonts/fonts.css">
-<link rel="stylesheet" href="style.css?v=20261002n">
+<link rel="stylesheet" href="style.css?v=20261002o">
 </head>
 <body>
 <!-- Generated from quellenbelege.md by build_quellenbelege.py. Do not edit by hand. -->
@@ -64,14 +64,11 @@ def inline(text):
     return text
 
 
-def entry(term, text):
-    return f"<div><dt>{inline(term)}</dt> <dd>{inline(text)}</dd></div>"
-
-
 def convert(lines):
-    """Intro paragraph, then glossary-style blocks: '## year' is a letter head,
-    '### document' plus its paragraph is an entry, '- **Lead:** text' a point."""
-    out, title, i, opened = [], "Die Chronologie", 0, False
+    """Intro paragraph as lead, '## year' as h2, '### document' as h3,
+    '- **Lead:** text' as a paragraph starting with the bold lead (no list)."""
+    out, title, i = [], "Die Chronologie", 0
+    first = True
     while i < len(lines):
         line = lines[i]
         if not line.strip():
@@ -81,38 +78,23 @@ def convert(lines):
             title = inline(line[2:])
             i += 1
             continue
-        if line.startswith("## "):
-            if not opened:
-                out.append('<div class="glossary chronik">')
-                opened = True
-            out.append(f'<div class="gl-letter">{inline(line[3:])}</div>')
+        m = re.match(r"(#{2,3}) (.*)", line)
+        if m:
+            level = len(m.group(1))
+            out.append(f"<h{level}>{inline(m.group(2))}</h{level}>")
             i += 1
             continue
-        if line.startswith("### "):
-            term, i = line[4:], i + 1
-            while i < len(lines) and not lines[i].strip():
-                i += 1
-            para = []
-            while i < len(lines) and lines[i].strip() and not re.match(r"(#{1,3} |- )", lines[i]):
-                para.append(lines[i].strip())
-                i += 1
-            out.append(f"<dl>{entry(term, ' '.join(para))}</dl>")
-            continue
         if line.startswith("- "):
-            items = []
-            while i < len(lines) and lines[i].startswith("- "):
-                m = re.match(r"- \*\*(.+?)\*\*\s*(.*)", lines[i])
-                items.append(entry(m.group(1), m.group(2)) if m else f"<div><dd>{inline(lines[i][2:])}</dd></div>")
-                i += 1
-            out.append('<dl class="gl-points">' + "".join(items) + "</dl>")
+            out.append(f"<p>{inline(line[2:])}</p>")
+            i += 1
             continue
         para = []
         while i < len(lines) and lines[i].strip() and not re.match(r"(#{1,3} |- )", lines[i]):
             para.append(lines[i].strip())
             i += 1
-        out.append(f'<p class="lead">{inline(" ".join(para))}</p>')
-    if opened:
-        out.append("</div>")
+        cls = ' class="lead"' if first else ""
+        first = False
+        out.append(f"<p{cls}>{inline(' '.join(para))}</p>")
     return title, "\n".join("    " + o for o in out)
 
 
