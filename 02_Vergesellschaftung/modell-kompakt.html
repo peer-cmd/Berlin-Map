@@ -33,7 +33,6 @@
     <aside class="controls">
 
       <div class="group">
-        <p class="group-title">Voreinstellungen</p>
         <div class="field">
           <button class="preset-btn" data-preset="linke">Faire-Mieten-Modell (DWE)</button>
           <button class="preset-btn" data-preset="holm">Bernt/Holm (empirisch)</button>
@@ -44,10 +43,9 @@
       </div>
 
       <div class="group">
-        <p class="group-title">Zeithorizont</p>
         <div class="field">
-          <div class="field-row"><label>Betrachtungszeitraum</label><span class="val" id="v-horizon">30 Jahre</span></div>
-          <input type="range" id="horizon" min="10" max="50" step="1" value="30">
+          <div class="field-row"><label>Betrachtungszeitraum</label><span class="val" id="v-horizon">50 Jahre</span></div>
+          <input type="range" id="horizon" min="10" max="100" step="1" value="50">
           <div class="hint">Nettoergebnis verläuft nicht linear: Solange der Kredit läuft (Tilgungsdauer), verschlechtert sich der kumulierte Cashflow von Jahr zu Jahr. Erst nach vollständiger Tilgung entfällt der Schuldendienst und der Cashflow dreht kräftig ins Plus — je nach Horizont kann das Nettoergebnis diesen Rückgang ganz, teilweise oder gar nicht mehr aufholen.</div>
         </div>
       </div>
@@ -283,8 +281,6 @@
     </aside>
 
     <main class="results">
-
-      <p class="group-title">Ergebnisse</p>
 
       <div class="verdict" id="verdictBanner">
         <span class="verdict-text" id="verdictText">–</span>

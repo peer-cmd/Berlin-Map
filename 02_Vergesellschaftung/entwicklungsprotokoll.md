@@ -204,3 +204,7 @@ Gestrichen: der Lead-Absatz auf `hintergrund.html` (Verweis auf Übersicht und G
 ## 2026-10-02 — Startseite: Überschriften, Seitenbeschreibungen, Zeitleiste
 
 `index.html`: Überschriften direkt formuliert („Der Volksentscheid", „Der Ablauf seit 2021", „Der rechtliche Rahmen", „Das Projekt"); die zwei Buttons unter dem Einleitungsabsatz und die Überschrift „Seiten" entfallen; Seitennamen mit Artikel („Das Modell" usw.) und ausführlicheren Beschreibungen. Die Kartenbeschreibung nennt jetzt alle Ebenen der Karte (vorher nur Bodenrichtwerte). Zeitleiste in `content.js` als `<dl class="timeline">` (Jahr | Text, zweispaltig mit Abstand); `.timeline-p` entfällt, gilt auch für v37/`modell-kompakt.html`.
+
+## 2026-10-02 — Modellseite: Gruppentitel entfernt, Horizont 50/100 Jahre
+
+Gruppentitel „Voreinstellungen", „Zeithorizont" und „Ergebnisse" entfernt. Betrachtungszeitraum: Standard 50 Jahre (vorher 30), Maximum 100 Jahre (vorher 50); `defaults.horizon` in `model-calc.js` angepasst. Kommentar zum DWE-2025-Preset (100-jährige Schuldverschreibung) auf das neue Maximum aktualisiert.

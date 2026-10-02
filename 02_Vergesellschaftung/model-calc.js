@@ -10,7 +10,7 @@
     freeMarketRent:15.8, munizRent:6.29, cpiGrowth:2.0, incomeGrowth:3.0,
     mode:'none', buildCost:3500, reinvestQuota1:100,
     sozialRent:6.5, convCost:1200, reinvestQuota2:100, sozialPace:'surplus', sozialPaceRate:3.3,
-    horizon:30
+    horizon:50
   };
   let state = Object.assign({}, defaults);
   let savedScenarios = { A: null, B: null };
@@ -888,7 +888,7 @@
       // Zahlung erfolgt real über 100-jährige Schuldverschreibungen (Zinssatz 3,5%, keine Zinsbindungs-
       // Neuverhandlung) statt Bankkredit; eine echte endfällige Anleihe ist im Modell nicht abbildbar,
       // aber eine 100-jährige Annuität bei 3,5% liegt bei ≈3,6%/Jahr Zahlung -- de facto tilgungsfrei
-      // innerhalb jedes hier darstellbaren Zeithorizonts (max. 50 Jahre) und damit eine nahe Annäherung.
+      // innerhalb fast jedes hier darstellbaren Zeithorizonts (max. 100 Jahre) und damit eine nahe Annäherung.
       units: 220000, price: 2085, purchaseFactor: 50,
       financing: 'kredit', rate: 3.5, riskPremium: 0, term: 100, rateResetYears: 100, rateIncrement: 0,
       baseRent: 3.70, rentGrowth: 0.5, costInflation: 2.5,
