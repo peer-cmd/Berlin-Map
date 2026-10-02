@@ -326,3 +326,7 @@ Rot `#B23A34` → `#E0435C` (zum Pink hin), Grün `#2F7D46` und `#3A7D44` → `#
 ## 2026-10-02 — Fix: leere Diagramme nach dem Sozialwohnungs-Update
 
 Ein Browser mit zwischengespeicherter alter Seite lud das neue `model-calc.js`; dort fehlte die Zeichenfläche `chartSozialCum`, `getContext` auf `null` brach `initCharts` ab, und kein Diagramm wurde gezeichnet. `model-calc.js` überspringt die Grafik jetzt, wenn die Zeichenfläche fehlt. Mit alter Seite und neuem Skript nachgestellt und geprüft.
+
+## 2026-10-02 — Modell: Umwandlungstempo als kombinierbare Regler
+
+Die drei Pfade sind keine Vergleichsgrafik mehr, sondern Regler links unter „Der Überschuss" → „Umwandlung in Sozialwohnungen", die zusammenwirken: „Sofort umgewandelt" (Anteil ab Jahr 1, 0–100 %), „Fester Zeitplan" (0–20 %/Jahr des Gesamtbestands) und „Aus Überschuss" (Anteil des Überschusses, 0–100 %, ersetzt die Reinvestitionsquote dieses Modus). Standard 0 % / 0 %/Jahr / 100 % entspricht dem bisherigen Standard. „Die Sozialwohnungen" zeigt den Sozialanteil gestapelt nach Herkunft; die Cashflow-Grafik darunter entfällt. „Die Sozialwohnungen" und „Die Ersparnis der Mieter" erscheinen nur im Modus „Umwandlung in Sozialwohnungen"; die Bestandsgrafik nur noch bei Neubau. `$()` liefert für fehlende Elemente einen losgelösten Platzhalter, damit eine zwischengespeicherte ältere Seite das Skript nicht abbricht.
