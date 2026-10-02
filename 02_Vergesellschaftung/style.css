@@ -403,12 +403,19 @@ select{
   background:var(--panel);
   border:1px solid var(--line-strong);
   font-family:'IBM Plex Sans',sans-serif;
-  font-size:11.5px;
+  font-size:13px;
   color:var(--ink);
   cursor:pointer;
 }
 .preset-btn:last-child{margin-bottom:0;}
 .preset-btn:hover{border-color:var(--blue);background:#F3F6FA;}
+
+/* ---------- Summary frame: title, verdict, key figures ---------- */
+.summary{border:1px solid var(--line-strong);background:var(--panel);padding:16px 18px;margin-bottom:20px;}
+.summary h1{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px;letter-spacing:-0.01em;line-height:1.25;margin:0 0 12px;}
+.summary .verdict{border:none;padding:0;margin:0 0 14px;}
+.summary .stats{border:none;background:none;gap:0;margin:0;}
+.summary .stat{padding:0 12px 0 0;}
 
 /* ---------- Verdict banner ---------- */
 .verdict{
@@ -432,7 +439,7 @@ select{
 /* ---------- Stat cards ---------- */
 .stats{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(3,1fr);
   gap:1px;
   background:var(--line-strong);
   border:1px solid var(--line-strong);

@@ -264,3 +264,7 @@ Die Seitenbeschreibungen auf `index.html` stehen nicht mehr als fortlaufende Lis
 ## 2026-10-02 — Regler rund, Schiene schwarz, keine Trennlinien
 
 Reglerknopf rund (`border-radius:50%`), Schiene 1 px schwarz (`var(--ink)`) statt 2 px grau. Die Linien zwischen den Abschnitten der Reglerspalte (`.group`) entfallen. Versionsparameter auf `?v=20261002j`.
+
+## 2026-10-02 — Ergebnisrahmen mit Titel, ohne Bestandseffekt
+
+Seitentitel, Urteilszeile („Bei diesen Annahmen: …", mit „Ergebnisse drucken") und die Kennzahlen stehen in einem gemeinsamen Rahmen (`section.summary`) oben in der Ergebnisspalte; der Titelkopf (`.masthead`) über den Spalten entfällt auf der Modellseite. Kachel „Bestandseffekt" entfernt (HTML und Zuweisung in `model-calc.js`), die drei übrigen Kennzahlen dreispaltig ohne Trennlinien. Positionsknöpfe (Faire-Mieten-Modell, Gegenmodell …) in 13 px statt 11,5 px. Versionsparameter auf `?v=20261002k`.
