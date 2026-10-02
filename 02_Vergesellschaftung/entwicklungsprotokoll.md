@@ -272,3 +272,7 @@ Seitentitel, Urteilszeile („Bei diesen Annahmen: …", mit „Ergebnisse druck
 ## 2026-10-02 — „Die Zahlen" ruhiger gesetzt
 
 Fließtext und Listen auf den Inhaltsseiten im Flattersatz mit Silbentrennung (vorher Blocksatz mit breiten Lücken); nur die Einleitungsabsätze (`p.lead`, Übersicht) bleiben im Blocksatz. Sprungleiste (`.jump-nav`) als schlichte Textlinks in der Überschriftschrift statt umrandeter Knöpfe, gelb beim Überfahren. Abstand vor Abschnittsüberschriften 32 px statt 20 px. Das Diagramm „Die fünf Positionen im Modell" steht ohne Rahmen im Text. Regel `sup.fn + sup.fn::before` entfernt: Sie setzte vor Fußnotenzeichen ein Komma, sobald die vorige Fußnote im selben Absatz stand, auch mit Text dazwischen („Nebenkosten).,³"). Versionsparameter auf `?v=20261002l`.
+
+## 2026-10-02 — Fließtext einheitlich 14,5 px
+
+Fließtext auf allen Inhaltsseiten (`.bg-page p`, Listen, Zeitleiste, Hinweiskästen) in 14,5 px wie der Einleitungsabsatz der Übersicht; vorher 12,5–13 px. Glossar, Tabellen, Quellenliste und Fußnotenliste behalten ihre kleineren Größen. Überschriften damit über der Textgröße: `h2` 16 px, `h3` 14,5 px (vorher je 13 px); Diagrammüberschrift auf „Die Zahlen" wie `h2`. Fußnotenzeichen 10,5 px. Versionsparameter auf `?v=20261002m`.
