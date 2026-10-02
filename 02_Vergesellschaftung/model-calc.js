@@ -221,7 +221,7 @@
     $('v-purchaseFactor').textContent = state.purchaseFactor+' %';
     const effPricePerSqm = state.price*(state.purchaseFactor/100);
     const effTotal = total*(state.purchaseFactor/100);
-    $('v-effectivePrice').textContent = fmtInt(effPricePerSqm)+' €/m² · '+effTotal.toLocaleString('de-DE',{maximumFractionDigits:1})+' Mrd €';
+    $('v-effectivePrice').textContent = fmtInt(effPricePerSqm)+' €/m² · '+effTotal.toLocaleString('de-DE',{maximumFractionDigits:1});
     $('v-rate').textContent = state.rate.toLocaleString('de-DE',{minimumFractionDigits:1})+' %';
     $('v-riskPremium').textContent = '+'+state.riskPremium.toLocaleString('de-DE',{minimumFractionDigits:1})+' pp';
     $('v-term').textContent = state.term+' J.';

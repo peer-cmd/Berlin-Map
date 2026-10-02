@@ -55,17 +55,16 @@
         <div class="field">
           <div class="field-row"><label data-term="Verkehrswert">Verkehrswert/m²</label><span class="val" id="v-price">2.085 €/m²</span></div>
           <input type="range" id="price" min="500" max="5000" step="5" value="2085">
-          <div class="hint">Gesamtwert = Wohnungen × Größe × Verkehrswert/m² → <span id="v-totalDerived">32,5 Mrd €</span></div>
-          <div class="linked-row">
-            <label class="linked-label">≈ pro Wohnung</label>
-            <input type="number" class="linked-input" id="pricePerUnit" step="1000">
-            <span class="linked-suffix">€ (Verkehrswert einer Whg.)</span>
-          </div>
         </div>
         <div class="field">
           <div class="field-row"><label data-term="Entschädigungsquote">Entschädigungsquote (vom Verkehrswert)</label><span class="val" id="v-purchaseFactor">100 %</span></div>
           <input type="range" id="purchaseFactor" min="40" max="100" step="5" value="100">
-          <div class="hint">Tatsächlicher Kaufpreis: <span id="v-effectivePrice">2.085 €/m² · 32,5 Mrd €</span></div>
+          <div class="hint">Kaufpreis <span id="v-effectivePrice">2.085 €/m² · 32,5</span> von <span id="v-totalDerived">32,5 Mrd €</span></div>
+          <div class="linked-row">
+            <label class="linked-label">≈ pro Wohnung</label>
+            <input type="number" class="linked-input" id="pricePerUnit" step="1000">
+            <span class="linked-suffix">€ Verkehrswert</span>
+          </div>
         </div>
       </div>
 
@@ -508,7 +507,7 @@
 
 </div>
 
-<script src="model-calc.js?v=20261002w"></script>
+<script src="model-calc.js?v=20261002y"></script>
 <script src="content.js?v=20261002w"></script>
 <script src="include.js"></script>
 <script src="tooltips.js?v=20261002q"></script>

@@ -334,3 +334,7 @@ Die drei Pfade sind keine Vergleichsgrafik mehr, sondern Regler links unter „D
 ## 2026-10-02 — Modell: Kennzahlen im Kopf auf zwei Zeilen
 
 Entschädigungsquote, Break-even und Nettoergebnis stehen je auf zwei Zeilen: Bezeichnung und Wert in der ersten, Erläuterung in der zweiten; die drei Spalten sind so breit wie ihr Inhalt. Ist der Kopfrahmen schmaler als 700 px (Container-Abfrage), stehen die drei Kennzahlen untereinander.
+
+## 2026-10-02 — Modell: Gesamtwert und Kaufpreis unter der Entschädigungsquote
+
+Die Hinweise „Gesamtwert = Wohnungen × Größe × Verkehrswert/m²" (unter dem Verkehrswert) und „Tatsächlicher Kaufpreis" (unter der Entschädigungsquote) sind zu einer Zeile unter der Entschädigungsquote zusammengefasst: „Kaufpreis 1.564 €/m² · 24,4 von 32,5 Mrd €". Das Feld „≈ pro Wohnung … € Verkehrswert" steht jetzt ebenfalls dort.
