@@ -239,7 +239,6 @@ div.glossary{columns:2 280px;column-gap:32px;column-rule:1px solid var(--line);}
 
 /* ---------- Control groups ---------- */
 .group{
-  border-bottom:1px solid var(--line);
   padding:20px 22px;
 }
 .group-title{
@@ -269,8 +268,8 @@ div.glossary{columns:2 280px;column-gap:32px;column-rule:1px solid var(--line);}
 input[type=range]{
   -webkit-appearance:none;
   width:100%;
-  height:2px;
-  background:var(--line-strong);
+  height:1px;
+  background:var(--ink);
   outline:none;
   margin:8px 0 2px;
 }
@@ -279,7 +278,7 @@ input[type=range]::-webkit-slider-thumb{
   width:12px;height:12px;
   background:var(--blue);
   cursor:pointer;
-  border-radius:0;
+  border-radius:50%;
   margin-top:-5px;
 }
 input[type=range]::-moz-range-thumb{
@@ -287,10 +286,10 @@ input[type=range]::-moz-range-thumb{
   background:var(--blue);
   border:none;
   cursor:pointer;
-  border-radius:0;
+  border-radius:50%;
 }
 input[type=range]::-moz-range-track{
-  height:2px;background:var(--line-strong);
+  height:1px;background:var(--ink);
 }
 .hint{font-size:10.5px;color:var(--faint);margin-top:2px;}
 [data-term]{cursor:help;outline:none;}

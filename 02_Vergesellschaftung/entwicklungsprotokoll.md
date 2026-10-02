@@ -260,3 +260,7 @@ Die Seitenbeschreibungen auf `index.html` stehen nicht mehr als fortlaufende Lis
 ## 2026-10-02 — Einleitungsabsätze größer
 
 `.bg-page .lead` in 14,5 px statt 13 px (Übersicht und weitere Seiten mit Einleitungsabsatz). Versionsparameter auf `?v=20261002i`.
+
+## 2026-10-02 — Regler rund, Schiene schwarz, keine Trennlinien
+
+Reglerknopf rund (`border-radius:50%`), Schiene 1 px schwarz (`var(--ink)`) statt 2 px grau. Die Linien zwischen den Abschnitten der Reglerspalte (`.group`) entfallen. Versionsparameter auf `?v=20261002j`.
