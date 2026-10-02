@@ -99,6 +99,8 @@ body{
   color:var(--blue);
 }
 .bg-page h2:first-child{margin-top:0;}
+.bg-page h2 a{color:inherit;text-decoration:none;}
+.bg-page h2 a:hover,.bg-page h2 a:focus{background:#FFE55C;outline:none;}
 .jump-nav{
   display:flex;
   gap:8px;

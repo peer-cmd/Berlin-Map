@@ -252,3 +252,7 @@ Das Glossar ist überall zweispaltig mit Trennlinie, auch in der Hintergrundspal
 ## 2026-10-02 — Diagramme: keine Randnotizen, Erläuterung über volle Breite
 
 Die Kurzangaben rechts neben den Diagrammtiteln (`<span class="caption">`, z. B. „nach Schuldendienst · Zinsbindung 10 J., danach +1,0 pp", „Modellergebnis", „Vergleichsrechnung") entfernt, auf der Modellseite und in `zahlen.html`; die zugehörigen Zuweisungen in `model-calc.js` und die Regel `.panel-head .caption` in `style.css` entfallen. Die Erläuterung unter jedem Titel (`.panel-sub`) läuft über die volle Breite des Diagrammrahmens (vorher höchstens 74 Zeichen). Versionsparameter auf `?v=20261002g`.
+
+## 2026-10-02 — Übersicht: ein Abschnitt je Seite
+
+Die Seitenbeschreibungen auf `index.html` stehen nicht mehr als fortlaufende Liste (`dl.glossary`), sondern wie „Der Volksentscheid": je Seite eine Überschrift (`h2`) mit Link und ein Absatz (`p.lead`). Verlinkte Überschriften (`.bg-page h2 a`) in der Überschriftfarbe ohne Unterstreichung, beim Überfahren gelb hinterlegt (#FFE55C, wie die Begriffe auf der Modellseite). Versionsparameter auf `?v=20261002h`.
