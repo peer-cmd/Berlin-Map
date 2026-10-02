@@ -244,3 +244,19 @@ Glossar alphabetisch sortiert, mit violetten Buchstabenköpfen (A, B, C …). Je
 ## 2026-10-02 — Kennzahlen-Kacheln: eine Schriftgröße
 
 Die vier Kacheln über den Diagrammen (Entschädigungsquote, Break-even, Nettoergebnis, Bestandseffekt) setzen Bezeichnung, Wert und Zusatzzeile in 12 px (vorher 9,5 / 20 / 10,5 px); Bezeichnung ohne Versalien, Wert fett. Innenabstand 8/12 px statt 14/16 px, die Kacheln sind dadurch etwa halb so hoch. Versionsparameter auf `?v=20261002e`.
+
+## 2026-10-02 — Glossar: zwei Spalten, getrennte Einträge, Farbe
+
+Das Glossar ist überall zweispaltig mit Trennlinie, auch in der Hintergrundspalte der Modellseite (`div.glossary`, `columns:2 280px`; bei schmalem Fenster einspaltig). Jeder Eintrag ist ein eigener Absatz mit 8 px Abstand und bricht nicht über die Spalte. Stichwörter in Violett, Buchstabenköpfe größer in Türkis mit türkiser Linie, Quellenangaben weiter in Türkis. Versionsparameter auf `?v=20261002f`, damit Browser die neue `style.css` und `content.js` laden.
+
+## 2026-10-02 — Diagramme: keine Randnotizen, Erläuterung über volle Breite
+
+Die Kurzangaben rechts neben den Diagrammtiteln (`<span class="caption">`, z. B. „nach Schuldendienst · Zinsbindung 10 J., danach +1,0 pp", „Modellergebnis", „Vergleichsrechnung") entfernt, auf der Modellseite und in `zahlen.html`; die zugehörigen Zuweisungen in `model-calc.js` und die Regel `.panel-head .caption` in `style.css` entfallen. Die Erläuterung unter jedem Titel (`.panel-sub`) läuft über die volle Breite des Diagrammrahmens (vorher höchstens 74 Zeichen). Versionsparameter auf `?v=20261002g`.
+
+## 2026-10-02 — Übersicht: ein Abschnitt je Seite
+
+Die Seitenbeschreibungen auf `index.html` stehen nicht mehr als fortlaufende Liste (`dl.glossary`), sondern wie „Der Volksentscheid": je Seite eine Überschrift (`h2`) mit Link und ein Absatz (`p.lead`). Verlinkte Überschriften (`.bg-page h2 a`) in der Überschriftfarbe ohne Unterstreichung, beim Überfahren gelb hinterlegt (#FFE55C, wie die Begriffe auf der Modellseite). Versionsparameter auf `?v=20261002h`.
+
+## 2026-10-02 — Einleitungsabsätze größer
+
+`.bg-page .lead` in 14,5 px statt 13 px (Übersicht und weitere Seiten mit Einleitungsabsatz). Versionsparameter auf `?v=20261002i`.
