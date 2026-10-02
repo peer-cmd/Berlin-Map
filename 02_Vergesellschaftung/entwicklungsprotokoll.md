@@ -192,3 +192,7 @@ Auf Wunsch als eigenständiges fünftes Preset umgesetzt (Alternative zu Update 
 ## 2026-10-02 — Untertitel im Seitenkopf entfernt
 
 Die Zeile unter der Überschrift im `masthead` entfällt auf allen Seiten: `hintergrund.html`, `impressum.html`, `datenschutz.html` und `modell-kompakt.html` (dort fügte `build_kompakt.py` sie ein; Ersetzung gestrichen, Seite neu erzeugt). Die Zeile „Berlin, Art. 15 GG — Projektübersicht" in `index.html` war bereits entfernt.
+
+## 2026-10-02 — Kein grauer Text
+
+`--muted` und `--faint` stehen in `style.css` und `web/style.css` jetzt auf der Textfarbe `--ink` (#14171A); beide Tokens färben nur Text. In `model-calc.js` setzt `Chart.defaults.color` Achsen- und Legendenschrift auf Schwarz, ebenso die Beschriftung der senkrechten Markierungslinie. Graue Linien in den Diagrammen (CPI, Nulllinie, Raster) bleiben.

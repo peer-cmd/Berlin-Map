@@ -1,6 +1,6 @@
 /* Tokens follow 02_Vergesellschaftung/style.css so the map sits inside that site without a visual break. */
 :root {
-  --paper: #ffffff; --ink: #14171a; --muted: #6b6b63; --faint: #9a9a90;
+  --paper: #ffffff; --ink: #14171a; --muted: #14171a; --faint: #14171a;
   --line: #dadad2; --line-strong: #b9b8ae; --blue: #1e3a5f; --hover: #f3f6fa;
   --sans: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, Helvetica, Arial, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;

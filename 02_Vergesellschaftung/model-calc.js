@@ -275,7 +275,7 @@
       ctx.lineTo(xPix, yArea.bottom);
       ctx.stroke();
       ctx.setLineDash([]);
-      ctx.fillStyle = '#6B6B63';
+      ctx.fillStyle = '#14171A';
       ctx.font = "9px 'IBM Plex Mono'";
       const label = (opts && opts.label) || '';
       ctx.fillText(label, xPix+4, yArea.top+10);
@@ -283,6 +283,7 @@
     }
   };
   Chart.register(vlinePlugin);
+  Chart.defaults.color = '#14171A';
 
   function initCharts(){
     const ctx1 = $('chartCashflow').getContext('2d');
