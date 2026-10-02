@@ -875,7 +875,10 @@
     render();
   }
 
-  $('resetBtn').addEventListener('click', ()=>applyState({}));
+  $('resetBtn').addEventListener('click', ()=>{
+    applyState({});
+    document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('active'));
+  });
 
   $('printBtn').addEventListener('click', ()=>{
     document.querySelectorAll('details.panel').forEach(d => d.open = true);
@@ -884,7 +887,10 @@
 
 
   document.querySelectorAll('.preset-btn').forEach(btn=>{
-    btn.addEventListener('click', ()=>applyState(presets[btn.dataset.preset]));
+    btn.addEventListener('click', ()=>{
+      applyState(presets[btn.dataset.preset]);
+      document.querySelectorAll('.preset-btn').forEach(b=>b.classList.toggle('active', b===btn));
+    });
   });
 
   function saveSlot(key, labelInputId){
