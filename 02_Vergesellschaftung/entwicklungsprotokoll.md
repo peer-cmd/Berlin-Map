@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-03 — Die Zahlen: Spaltenbreite am Seitenende
+
+Ein überzähliges `</div>` nach dem Chart „Die fünf Positionen im Modell“ schloss `.bg-page` zu früh; „Die Grenzen des Modells“ und „Die Anmerkungen“ liefen dadurch über die volle Breite. Entfernt; alle Abschnitte stehen jetzt in derselben Spalte.
+
 ## 2026-10-03 — Die Zahlen: Tabellen einheitlich
 
 Alle Tabellen beginnen mit einer Bezeichnung (Position, Szenario, Posten), dann „Angabe der Quelle“, rechts die Modellwerte („… im Modell“) mit Einheit im Kopf und reinen Zahlen in den Zellen; Näherungen mit „≈“. Bestand und Mieten jetzt je Position in Modellreihenfolge (Bestand mit BBU/Sodan als Vergleichszeile, Spalte „Wohnungen im Modell“). Neue Zeile Rechnungshof in „Die Mieten“: Ausgangsmiete 6,71 €/m² aus `model-calc.js`, als „Modellannahme, Beleg fehlt“ markiert — offen. Keine neuen Quellenzahlen; Fußnotennummern unverändert.
