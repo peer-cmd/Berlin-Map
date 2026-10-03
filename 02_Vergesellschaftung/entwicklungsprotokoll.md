@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-03 — Die Quellen: eigene Seite
+
+„Die Quellen“ (Liste und Hinweis zu Modellannahmen/Referenzwerten) aus dem Footer von `zahlen.html` auf die neue Seite `quellen.html` verschoben; Sprunglink `#quellen` entfernt. Alle Footer verlinken „Quellen“ vor Impressum und Datenschutz (auch `karte.html`, `build_quellenbelege.py`). CSS `.colophon-sources` entfernt. Versionstag: `style.css?v=20261003l`.
+
 ## 2026-10-03 — Die Zahlen: „Die offenen Punkte“ entfernt
 
 Abschnitt und Sprunglink in `zahlen.html` gelöscht. Übernommen: Abbildung des DWE-Gesetzentwurfs (Sachwertverfahren, 50 % auf 2.085 €/m², 100-jährige Schuldverschreibungen als 100-jähriger Kredit) als Absatz unter „Der Rechenweg“; Wohnungsgröße 61 vs. 65 m² unter „Die Grenzen des Modells“. Fußnote 16 (DWE-Gesetzentwurf) ist jetzt 15; die alte Fn. 15 (PwC, aktuellere Mieten) entfällt.
