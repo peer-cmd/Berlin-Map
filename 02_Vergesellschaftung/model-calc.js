@@ -729,19 +729,17 @@
     chartScenarios = new Chart(ctx8, {
       data:{ labels:[], datasets:[
         {type:'bar', label:'Kaufpreis', data:[], backgroundColor:'#93AECB', yAxisID:'y', order:2},
-        {type:'bar', label:'Nettoergebnis', data:[], backgroundColor:[], yAxisID:'y', order:2},
-        {type:'line', label:'Break-even (Jahr)', data:[], borderColor:'#14171A', backgroundColor:'#14171A', borderWidth:1.5, pointRadius:4, pointBackgroundColor:'#14171A', showLine:false, yAxisID:'y1', order:1}
+        {type:'bar', label:'Nettoergebnis', data:[], backgroundColor:[], yAxisID:'y', order:2}
       ]},
       options:{
         responsive:true,
         animation:{duration:250},
         plugins:{ legend:{display:false},
-          tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+(ctx.dataset.label==='Break-even (Jahr)' ? (ctx.parsed.y===null?'kein Break-even':('Jahr '+ctx.parsed.y)) : fmtEUR(ctx.parsed.y)) }}
+          tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+fmtEUR(ctx.parsed.y) }}
         },
         scales:{
           x:{ grid:{display:false}, ticks:{font:{family:'IBM Plex Mono',size:9}} },
-          y:{ position:'left', ticks:{ font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v) }, grid:{color:'#EAEAE4'} },
-          y1:{ position:'right', ticks:{ font:{family:'IBM Plex Mono',size:9}, callback:v=>'Jahr '+v }, grid:{display:false} }
+          y:{ position:'left', ticks:{ font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v) }, grid:{color:'#EAEAE4'} }
         }
       }
     });
@@ -759,8 +757,15 @@
     chartScenarios.data.datasets[0].data = presetResults.map(r=>r.principal);
     chartScenarios.data.datasets[1].data = presetResults.map(r=>r.netResult);
     chartScenarios.data.datasets[1].backgroundColor = presetResults.map(r=>r.netResult>=0?'#109A82':'#E0435C');
-    chartScenarios.data.datasets[2].data = presetResults.map(r=>r.breakEvenYear);
     chartScenarios.update('none');
+    // Break-even als Satz statt als zweite Achse: im Horizont erreichen ihn meist nur wenige Positionen.
+    const be = presetResults.filter(r=>r.breakEvenYear!==null);
+    const beList = be.map(r=>r.label+' (Jahr '+r.breakEvenYear+')').join(', ');
+    const beText = be.length===0 ? 'Keine Position erreicht innerhalb des Horizonts den Break-even.'
+      : be.length===presetResults.length ? 'Break-even: '+beList+'.'
+      : 'Innerhalb des Horizonts '+(be.length===1?'erreicht':'erreichen')+' nur '+beList+' den Break-even.';
+    if(byId('scenario-breakeven')) $('scenario-breakeven').textContent = beText;
+    if(byId('scenario-horizon')) $('scenario-horizon').textContent = defaults.horizon;
   }
 
   const presets = {

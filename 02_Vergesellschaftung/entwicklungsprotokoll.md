@@ -486,3 +486,7 @@ Rechts neben der Überschrift „Die Finanzen" steht „Die Mieter" als Link zum
 ## 2026-10-03 — Modell: Sensitivitätsdiagramme unter „Sensitivität"
 
 Die Diagramme „Der Zuschussbedarf je Zinssatz" und „Das Ergebnis je Entschädigungsquote" stehen nicht mehr zwischen den Zeitreihen unter „Die Finanzen", sondern im zugeklappten Abschnitt „Sensitivität" unter der Jahr-für-Jahr-Tabelle. Das Zinsdiagramm heißt jetzt „Das Ergebnis je Zinssatz" und zeigt wie das Entschädigungsdiagramm Nettoergebnis (mit Vorzeichen, statt auf 0 gekappt) und Break-even-Jahr; bei Eigenmitteln ist es ausgeblendet. Der Durchschnitt über den Horizont entfällt, weil er mit dem Zuschussbedarf des Rechnungshofs (erste zehn Jahre) nicht vergleichbar war. Achsenbereich beider Diagramme aus allen Presets an den Reglerenden.
+
+## 2026-10-03 — Zahlen: „Die fünf Positionen im Modell" ohne Break-even-Achse
+
+Die rechte Achse mit dem Break-even-Jahr ist entfernt: Nach 50 Jahren erreicht nur Bernt/Holm den Break-even (Jahr 45), die Achse trug also einen einzigen Punkt und zeigte doppelte gerundete Beschriftungen. Das Break-even-Jahr steht jetzt als Satz im Untertitel, aus dem Modell berechnet. Die Legende hat nur noch „Kaufpreis" und „Nettoergebnis" (grün/rot), der Untertitel ist gekürzt.
