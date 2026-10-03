@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-03 — Quellenhinweise der Mietregler in den Tooltip
+
+Die drei Hinweiszeilen unter „Ausgangsmiete", „Referenz: freier Markt" und „Referenz: kommunale WoGes." stehen nicht mehr dauerhaft im Modell. Sie sind als `data-note` am Label hinterlegt; `tooltips.js` zeigt sie beim Überfahren oder Antippen unter dem Glossarsatz an (Klasse `.term-tip-note`). Versionstags: `style.css?v=20261003i`, `tooltips.js?v=20261003a`.
+
 ## 2026-10-03 — „Hintergrund" wird „Das Recht"
 
 `hintergrund.html` heißt jetzt `recht.html` (Navigation: „Das Recht"); alle Links, `build_quellenbelege.py` und die generierten Seiten sind angepasst. Die Seite enthält nur noch rechtliche Themen, mit eigenen Fußnoten: Art. 15 GG und fehlende Rechtsprechung (BBU-Sodan 2019, S. 103; Expertenkommission 2023, S. 127), Mehrheit vs. Sondervotum (aus `zahlen.html` verschoben), Wertermittlung nach ImmoWertV (Expertenkommission 2023, S. 70, Rn. 247 f.), rechtliche Einordnung des Rechnungshof-Berichts (S. 7; § 4, Zitat S. 24) und die Kritik der Expertenkommission (S. 60, Rn. 202). Zitat Art. 15 GG korrigiert („regelt" statt „bestimmt").

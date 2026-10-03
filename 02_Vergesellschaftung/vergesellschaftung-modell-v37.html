@@ -6,7 +6,7 @@
 <title>Kosten- und Finanzierungsmodell der Vergesellschaftung Berlin</title>
 <link rel="stylesheet" href="fonts/fonts.css">
 <script src="vendor/chart.umd.js"></script>
-<link rel="stylesheet" href="style.css?v=20261003h">
+<link rel="stylesheet" href="style.css?v=20261003i">
 </head>
 <body class="model-page">
 <div class="app">
@@ -113,9 +113,8 @@
       <div class="group">
         <p class="group-title">Miete &amp; Bewirtschaftung</p>
         <div class="field">
-          <div class="field-row"><label data-term="Ausgangsmiete">Ausgangsmiete</label><span class="val" id="v-baseRent">7,63 €/m²</span></div>
+          <div class="field-row"><label data-term="Ausgangsmiete" data-note="Ø Nettokaltmiete der 6 größten privaten Wohnungskonzerne, exakt der Vergesellschaftungs-Bestand (Bernt/Holm 2023, Rosa-Luxemburg-Stiftung)">Ausgangsmiete</label><span class="val" id="v-baseRent">7,63 €/m²</span></div>
           <input type="range" id="baseRent" min="3" max="20" step="0.1" value="7.63">
-          <div class="hint">Ø Nettokaltmiete der 6 größten privaten Wohnungskonzerne, exakt der Vergesellschaftungs-Bestand (Bernt/Holm 2023, Rosa-Luxemburg-Stiftung)</div>
           <div class="linked-row">
             <label class="linked-label">≈ pro Wohnung</label>
             <input type="number" class="linked-input" id="baseRentPerUnit" step="5">
@@ -151,14 +150,12 @@
           </div>
         </div>
         <div class="field">
-          <div class="field-row"><label data-term="Neuvertragsmiete">Referenz: freier Markt</label><span class="val" id="v-freeMarketRent">15,80 €/m²</span></div>
+          <div class="field-row"><label data-term="Neuvertragsmiete" data-note="Neuvertragsmiete Berlin, Wachstum fix 3,0 %/Jahr angenommen (Berlin Hyp/CBRE 2026; Quelle nicht im Projektordner, Wert nicht geprüft)">Referenz: freier Markt</label><span class="val" id="v-freeMarketRent">15,80 €/m²</span></div>
           <input type="range" id="freeMarketRent" min="8" max="25" step="0.1" value="15.8">
-          <div class="hint">Neuvertragsmiete Berlin, Wachstum fix 3,0 %/Jahr angenommen (Berlin Hyp/CBRE 2026; Quelle nicht im Projektordner, Wert nicht geprüft)</div>
         </div>
         <div class="field">
-          <div class="field-row"><label data-term="Landeseigene Wohnungsgesellschaften">Referenz: kommunale WoGes.</label><span class="val" id="v-munizRent">6,29 €/m²</span></div>
+          <div class="field-row"><label data-term="Landeseigene Wohnungsgesellschaften" data-note="Ø Nettokaltmiete landeseigene Gesellschaften (Bernt/Holm 2023); Wachstum fix 2,0 %/Jahr angenommen">Referenz: kommunale WoGes.</label><span class="val" id="v-munizRent">6,29 €/m²</span></div>
           <input type="range" id="munizRent" min="4" max="12" step="0.1" value="6.29">
-          <div class="hint">Ø Nettokaltmiete landeseigene Gesellschaften (Bernt/Holm 2023); Wachstum fix 2,0 %/Jahr angenommen</div>
         </div>
         <div class="field">
           <div class="field-row"><label data-term="CPI">Referenz: Verbraucherpreise (CPI)</label><span class="val" id="v-cpiGrowth">2,0 %/J.</span></div>
@@ -507,6 +504,6 @@
 <script src="model-calc.js?v=20261003e"></script>
 <script src="content.js?v=20261003b"></script>
 <script src="include.js"></script>
-<script src="tooltips.js?v=20261002q"></script>
+<script src="tooltips.js?v=20261003a"></script>
 </body>
 </html>

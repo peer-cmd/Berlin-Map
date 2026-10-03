@@ -2,6 +2,7 @@
 // of the matching glossary entry in content.js (SITE_INCLUDES.glossary), so each
 // definition exists only once. Matching: data-term against each <dt>, split at
 // " / " (outside brackets) and " vs. ", with and without its bracketed part, case-insensitive.
+// An optional data-note on the same element (source, assumption) is shown below it.
 (function(){
   "use strict";
   var html = (window.SITE_INCLUDES || {}).glossary;
@@ -55,8 +56,15 @@
 
   function show(el){
     var text = explain(el.getAttribute('data-term'));
-    if(!text) return;
-    tip.textContent = text;
+    var note = el.getAttribute('data-note');
+    if(!text && !note) return;
+    tip.textContent = text || '';
+    if(note){
+      var n = document.createElement('div');
+      n.className = 'term-tip-note';
+      n.textContent = note;
+      tip.appendChild(n);
+    }
     tip.hidden = false;
     var r = el.getBoundingClientRect();
     var w = tip.offsetWidth, h = tip.offsetHeight;
@@ -69,7 +77,7 @@
   function hide(){ tip.hidden = true; }
 
   document.querySelectorAll('[data-term]').forEach(function(el){
-    if(!explain(el.getAttribute('data-term'))){
+    if(!explain(el.getAttribute('data-term')) && !el.hasAttribute('data-note')){
       el.removeAttribute('data-term');
       return;
     }
