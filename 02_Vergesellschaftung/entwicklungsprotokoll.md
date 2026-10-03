@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-03 — Die Zahlen: Positionen als eigene Abschnitte
+
+Neue Reihenfolge: Bestand, Verkehrswert, Kosten, Mieten, Positionen, Rechenweg. Unter „Die Positionen“ je ein kurzer Absatz (h3) für Faire-Mieten-Modell, DWE-Gesetzentwurf, Bernt/Holm, Rechnungshof (mit beiden Tabellen), IW/Empirica, jeweils mit der Annahme des Modells. DWE-Gesetzentwurf aus „Der Rechenweg“, Bernt/Holm aus „Die Kosten im Vergleich“ dorthin verschoben und gekürzt (Satz zur Segregation entfällt). Chart „Die fünf Positionen im Modell“ steht jetzt im Rechenweg, nach der Erklärung der Annahmen. Keine neuen Zahlen; Fußnotennummern unverändert.
+
 ## 2026-10-03 — Die Zahlen: Verkehrswert vor die Kosten
 
 „Der Verkehrswert“ steht jetzt zwischen „Der Bestand“ und „Die Kosten im Vergleich“ (auch in der Abschnittsnavigation), damit die gemeinsame Berechnungsgrundlage vor dem Kostenvergleich erklärt ist. Aufzählung der fünf Entschädigungsquoten dort gestrichen (steht in der Positionstabelle); „Die Kosten im Vergleich“ verweist auf den Abschnitt oben. Fußnotennummern unverändert.

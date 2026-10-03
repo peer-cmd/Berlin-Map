@@ -33,9 +33,8 @@
       <a href="#bestand">Bestand</a>
       <a href="#verkehrswert">Verkehrswert</a>
       <a href="#kosten">Kosten</a>
-      <a href="#rechnungshof">Rechnungshof</a>
       <a href="#mieten">Mieten</a>
-      <a href="#iw-empirica">IW/Empirica</a>
+      <a href="#positionen">Positionen</a>
       <a href="#rechenweg">Rechenweg</a>
     </div>
 
@@ -67,19 +66,6 @@
         <tr><td>IW/Empirica (2026)</td><td>zitiert 29–39 Mrd. € (Senat); Entschädigung unter Marktwert führe zu höheren Risikoprämien<sup class="fn"><a href="#fn7">7</a></sup></td><td class="num">100 %</td><td class="num">≈ 32,5 Mrd. €</td></tr>
       </tbody>
     </table>
-    <div class="panel">
-      <div class="panel-head">
-        <h2>Die fünf Positionen im Modell</h2>
-      </div>
-      <p class="panel-sub">Kaufpreis und Nettoergebnis nach Horizont (links, Mrd €) sowie Break-even-Jahr (rechts) für die fünf Positionen, jeweils mit den Voreinstellungen des <a href="modell-kompakt.html">Modells</a> und einem Horizont von 50 Jahren. Für diese Finanzierungsrechnung unterscheiden sich die Positionen auch in Miete, Bewirtschaftungskosten und Zinsannahmen.</p>
-      <canvas id="chartScenarios" height="80"></canvas>
-      <div class="legend">
-        <span><i class="swatch" style="background:var(--blue-light)"></i>Kaufpreis</span>
-        <span><i class="swatch" style="background:var(--green)"></i>Nettoergebnis positiv</span>
-        <span><i class="swatch" style="background:var(--red)"></i>Nettoergebnis negativ</span>
-        <span><i class="swatch" style="background:var(--ink)"></i>Break-even (rechte Achse)</span>
-      </div>
-    </div>
     <p>Weitere Schätzungen in den Quellen:</p>
     <table>
       <thead><tr><th>Schätzung</th><th class="num">Betrag</th><th>Quelle</th></tr></thead>
@@ -93,8 +79,28 @@
       </tbody>
     </table>
 
-    <h2 id="rechnungshof">Der Rechnungshof</h2>
-    <p>Der Berliner Rechnungshof hat am 20.02.2024 einen Beratungsbericht zu den Folgen einer Vergesellschaftung für den Landeshaushalt vorgelegt. Eine angemessene Entschädigungshöhe bewertet er nicht selbst. Er rechnet vier übernommene Szenarien durch.<sup class="fn"><a href="#fn6">6</a></sup> Nach seiner Berechnung führen schon Entschädigungssummen über 11 Mrd. € wegen der Finanzierungskosten zu Defiziten bei der Bewirtschaftung durch eine Anstalt öffentlichen Rechts.<sup class="fn"><a href="#fn8">8</a></sup></p>
+    <h2 id="mieten">Die Mieten</h2>
+    <table>
+      <thead><tr><th class="num">Nettokaltmiete</th><th>Angabe der Quelle</th><th>Im Modell</th></tr></thead>
+      <tbody>
+        <tr><td class="num">3,70 €/m²</td><td>Zielmiete des Faire-Mieten-Modells (DWE); nach Angabe der Initiative so kalkuliert, dass sie für Haushalte an der Armutsschwelle bezahlbar bleibt<sup class="fn"><a href="#fn10">10</a></sup></td><td>Ausgangsmiete Faire-Mieten-Modell und DWE-Gesetzentwurf</td></tr>
+        <tr><td class="num">6,29 €/m²</td><td>Ø landeseigene Wohnungsgesellschaften; bei Bernt/Holm der Referenzwert für eine Bewirtschaftung wie bei den Landeseigenen<sup class="fn"><a href="#fn5">5</a></sup></td><td>Ausgangsmiete Bernt/Holm; Referenzlinie</td></tr>
+        <tr><td class="num">7,63 €/m²</td><td>Ø sechs größte private Konzerne (≈ 222.000 Wohnungen)<sup class="fn"><a href="#fn5">5</a></sup></td><td>Ausgangsmiete IW/Empirica, ohne Mietsenkung</td></tr>
+      </tbody>
+    </table>
+    <h2 id="positionen">Die Positionen</h2>
+
+    <h3 id="faire-mieten">Faire-Mieten-Modell (DWE 2022)</h3>
+    <p>Die Initiative Deutsche Wohnen &amp; Co. enteignen beziffert die Entschädigung auf 8–11 Mrd. €, wie im IW/Empirica-Gutachten zitiert.<sup class="fn"><a href="#fn2">2</a></sup> Ihre Zielmiete beträgt 3,70 €/m².<sup class="fn"><a href="#fn10">10</a></sup> Das Modell rechnet mit 43 % des Verkehrswerts und 3,70 €/m² als Ausgangsmiete.</p>
+
+    <h3 id="dwe-gesetzentwurf">DWE-Gesetzentwurf (2025)</h3>
+    <p>Der Entwurf berechnet die Entschädigung über das Sachwertverfahren mit einem Bodenwert, der von den Bodenrichtwerten 2011–2013 aus mit 3,5 % pro Jahr fortgeschrieben wird.<sup class="fn"><a href="#fn15">15</a></sup> Nach der Quelle ergibt das 40–60 % vom heutigen Verkehrswert, für 220.000 Wohnungen 14,5–17,0 Mrd. €.<sup class="fn"><a href="#fn4">4</a></sup> Das Modell setzt die Mitte, 50 %, und kommt auf ≈ 14,9 Mrd. €. Miete und Wachstum übernimmt es vom Faire-Mieten-Modell; die 100-jährigen Schuldverschreibungen bildet es näherungsweise als 100-jährigen Kredit ab.</p>
+
+    <h3 id="bernt-holm">Bernt/Holm (2023)</h3>
+    <p>Die Studie der Rosa-Luxemburg-Stiftung vergleicht die sechs größten privaten Konzerne mit den landeseigenen Gesellschaften. Die Landeseigenen erwirtschaften trotz niedrigerer Mieten Gewinne im dreistelligen Millionenbereich und geben mehr für Instandhaltung aus.<sup class="fn"><a href="#fn12">12</a></sup> Eine Vergesellschaftung könnte die Miete für ~200.000 Haushalte im Schnitt um 16 % senken; die Expertenkommission nennt monatlich 45 bis 160 €, im Mittel über 1.000 € je Wohnung und Jahr.<sup class="fn"><a href="#fn11">11</a></sup> Eine Gesamtsumme nennt die Studie nicht. Das Modell rechnet mit 74 % des Verkehrswerts und der Durchschnittsmiete der Landeseigenen, 6,29 €/m², als Ausgangsmiete.<sup class="fn"><a href="#fn5">5</a></sup></p>
+
+    <h3 id="rechnungshof">Rechnungshof (2024)</h3>
+    <p>Der Berliner Rechnungshof hat am 20.02.2024 einen Beratungsbericht zu den Folgen einer Vergesellschaftung für den Landeshaushalt vorgelegt. Eine angemessene Entschädigungshöhe bewertet er nicht selbst. Er rechnet vier übernommene Szenarien durch.<sup class="fn"><a href="#fn6">6</a></sup> Nach seiner Berechnung führen schon Entschädigungssummen über 11 Mrd. € wegen der Finanzierungskosten zu Defiziten bei der Bewirtschaftung durch eine Anstalt öffentlichen Rechts.<sup class="fn"><a href="#fn8">8</a></sup> Das Modell rechnet mit 100 % des Verkehrswerts.</p>
     <table>
       <thead><tr><th class="num">Entschädigung</th><th>Herkunft</th><th class="num">Zuschuss des Landes<br>(Ø Jahr 1–10)</th><th class="num">Erforderliche Ausgangsmiete<br>(€/m² und Monat)</th></tr></thead>
       <tbody>
@@ -117,23 +123,24 @@
       </tbody>
     </table>
 
-    <h2 id="mieten">Die Mieten</h2>
-    <table>
-      <thead><tr><th class="num">Nettokaltmiete</th><th>Angabe der Quelle</th><th>Im Modell</th></tr></thead>
-      <tbody>
-        <tr><td class="num">3,70 €/m²</td><td>Zielmiete des Faire-Mieten-Modells (DWE); nach Angabe der Initiative so kalkuliert, dass sie für Haushalte an der Armutsschwelle bezahlbar bleibt<sup class="fn"><a href="#fn10">10</a></sup></td><td>Ausgangsmiete Faire-Mieten-Modell und DWE-Gesetzentwurf</td></tr>
-        <tr><td class="num">6,29 €/m²</td><td>Ø landeseigene Wohnungsgesellschaften; bei Bernt/Holm der Referenzwert für eine Bewirtschaftung wie bei den Landeseigenen<sup class="fn"><a href="#fn5">5</a></sup></td><td>Ausgangsmiete Bernt/Holm; Referenzlinie</td></tr>
-        <tr><td class="num">7,63 €/m²</td><td>Ø sechs größte private Konzerne (≈ 222.000 Wohnungen)<sup class="fn"><a href="#fn5">5</a></sup></td><td>Ausgangsmiete IW/Empirica, ohne Mietsenkung</td></tr>
-      </tbody>
-    </table>
-    <p>Bernt/Holm (Rosa-Luxemburg-Stiftung, 2023) kommen zu dem Ergebnis, dass eine Vergesellschaftung die Miete für ~200.000 Haushalte im Schnitt um 16 % senken könnte. Denselben Wert nennt der Abschlussbericht der Expertenkommission: eine Absenkung um monatlich 45 bis 160 € für mehr als 200.000 Haushalte, im Mittel über 1.000 € je Wohnung und Jahr.<sup class="fn"><a href="#fn11">11</a></sup> Die Studie vergleicht die sechs größten privaten Konzerne mit den landeseigenen Gesellschaften. Nach Bernt/Holm erwirtschaften die Landeseigenen trotz niedrigerer Mieten kontinuierlich Gewinne im dreistelligen Millionenbereich und geben mehr für Instandhaltung aus. Die Studie argumentiert außerdem, dass eine Vergesellschaftung der sozialräumlichen Segregation entgegenwirken könne; das Modell bildet diesen Effekt nicht ab. Die Werte 6,29 und 7,63 €/m² übernimmt das <a href="modell-kompakt.html">Modell</a> als Referenzlinie und Ausgangsmiete.<sup class="fn"><a href="#fn12">12</a></sup></p>
-
-    <h2 id="iw-empirica">IW/Empirica</h2>
-    <p>Die Position IW/Empirica stützt sich auf ein Gutachten von Dr. Philipp Deschermeier und Prof. Dr. Michael Voigtländer (Institut der deutschen Wirtschaft Köln) vom 23.06.2026, im Auftrag von Berliner Sparkasse, Berliner Volksbank, Deutscher Kreditbank (DKB) und Investitionsbank Berlin (IBB).<sup class="fn"><a href="#fn14">14</a></sup> Das Gutachten argumentiert, dass eine Entschädigung unterhalb des Marktwerts einen Vertrauensbruch darstelle, auf den Kapitalmärkte mit höheren Risikoprämien reagieren würden.<sup class="fn"><a href="#fn2">2</a></sup> Daraus leitet das Modell als Annahme den Zinsaufschlag dieses Presets ab (+0,5 Prozentpunkte).</p>
+    <h3 id="iw-empirica">IW/Empirica (2026)</h3>
+    <p>Die Position IW/Empirica stützt sich auf ein Gutachten von Dr. Philipp Deschermeier und Prof. Dr. Michael Voigtländer (Institut der deutschen Wirtschaft Köln) vom 23.06.2026, im Auftrag von Berliner Sparkasse, Berliner Volksbank, Deutscher Kreditbank (DKB) und Investitionsbank Berlin (IBB).<sup class="fn"><a href="#fn14">14</a></sup> Das Gutachten argumentiert, dass eine Entschädigung unterhalb des Marktwerts einen Vertrauensbruch darstelle, auf den Kapitalmärkte mit höheren Risikoprämien reagieren würden.<sup class="fn"><a href="#fn2">2</a></sup> Das Modell rechnet mit 100 % des Verkehrswerts und der Durchschnittsmiete der privaten Konzerne (7,63 €/m²) ohne Mietsenkung; aus dem Argument leitet es einen Zinsaufschlag von 0,5 Prozentpunkten ab.</p>
 
     <h2 id="rechenweg">Der Rechenweg</h2>
     <p>Der Kaufpreis (Verkehrswert × Entschädigungsquote) wird entweder über ein Annuitätendarlehen finanziert (Zins + Tilgung, mit Zinsbindung und Anschlussfinanzierungs-Risiko) oder aus Eigenmitteln des Landeshaushalts. Die laufenden Mieteinnahmen abzüglich Bewirtschaftungskosten (Nettobetriebsergebnis, NOI) müssen den Schuldendienst tragen. Positive Überschüsse können im Modell reinvestiert werden — in Neubau (Bestand wächst) oder in die Umwandlung weiterer Einheiten in Sozialwohnungen (Mietniveau sinkt für einen wachsenden Anteil).</p>
-    <p>Den DWE-Gesetzentwurf bildet das Modell vereinfacht ab. Der Entwurf berechnet die Entschädigung über das Sachwertverfahren mit einem Bodenwert, der von den Bodenrichtwerten 2011–2013 aus mit 3,5 % pro Jahr fortgeschrieben wird.<sup class="fn"><a href="#fn15">15</a></sup> Nach der Quelle ergibt diese Rechnung 40–60 % vom heutigen Verkehrswert. Das Modell setzt die Mitte, 50 %, auf den einheitlichen Verkehrswert von 2.085 €/m²; mit 220.000 Wohnungen ergibt das ≈ 14,9 Mrd. €, innerhalb der von der Quelle genannten Spanne von 14,5–17,0 Mrd. €.<sup class="fn"><a href="#fn4">4</a></sup> Miete und Wachstum übernimmt es vom Faire-Mieten-Modell; die 100-jährigen Schuldverschreibungen bildet es näherungsweise als 100-jährigen Kredit ab.</p>
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Die fünf Positionen im Modell</h2>
+      </div>
+      <p class="panel-sub">Kaufpreis und Nettoergebnis nach Horizont (links, Mrd €) sowie Break-even-Jahr (rechts) für die fünf Positionen, jeweils mit den Voreinstellungen des <a href="modell-kompakt.html">Modells</a> und einem Horizont von 50 Jahren. Für diese Finanzierungsrechnung unterscheiden sich die Positionen auch in Miete, Bewirtschaftungskosten und Zinsannahmen.</p>
+      <canvas id="chartScenarios" height="80"></canvas>
+      <div class="legend">
+        <span><i class="swatch" style="background:var(--blue-light)"></i>Kaufpreis</span>
+        <span><i class="swatch" style="background:var(--green)"></i>Nettoergebnis positiv</span>
+        <span><i class="swatch" style="background:var(--red)"></i>Nettoergebnis negativ</span>
+        <span><i class="swatch" style="background:var(--ink)"></i>Break-even (rechte Achse)</span>
+      </div>
+    </div>
     <h3>Die Grenzen des Modells</h3>
     <p>Das Modell vergleicht Annahmen; es ist keine Prognose. Es zeigt die Größenordnung der Entschädigung unter jeweils gleichen Ausgangsannahmen. Es prognostiziert weder den tatsächlichen Verkehrswert noch die rechtlich festzusetzende Entschädigung. Nicht abgebildet sind:</p>
     <ul>
