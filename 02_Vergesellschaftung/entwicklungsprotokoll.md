@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-03 — Chronologie-Titel violett; Glossar-Spalten beginnen mit Buchstaben
+
+Dokumenttitel (h3) in `quellenbelege.html` in der Farbe der Glossarbegriffe: `body.chron-page` (gesetzt in `build_quellenbelege.py`), Farbe `--gl-violet` jetzt in `:root`. Glossar: jeder Buchstabe mit seinen Einträgen in `<section class="gl-group">` (`content.js`), `break-inside:avoid`, so dass Spalten nur zwischen Buchstaben umbrechen. Versionstags: `style.css?v=20261003m`, `content.js?v=20261003c`.
+
 ## 2026-10-03 — Einheitliche Namen der fünf Positionen
 
 Kurzname (Schaltflächen, Grafik, Fließtext) / Vollname (Erstnennung, Tabellen): Faire-Mieten-Modell / Faire-Mieten-Modell (DWE 2022); DWE-Gesetzentwurf / DWE-Gesetzentwurf (2025); Bernt/Holm / Bernt/Holm (2023); Rechnungshof / Rechnungshof (2024); IW/Empirica / IW/Empirica (2026). „Gegenmodell“ entfällt (Abschnitt und Sprunglink in `zahlen.html` jetzt „IW/Empirica“, Anker `#iw-empirica`). Einheitliche Reihenfolge nach steigender Quote in Schaltflächen und Grafik. Fußnoten behalten die Zitierform. Interne Preset-Schlüssel (`linke`, `gegenmodell`) unverändert. Versionstag: `model-calc.js?v=20261003f`.

@@ -1,4 +1,5 @@
 :root{
+  --gl-violet:#6B3FA0;
   --paper:#FFFFFF;
   --panel:#FFFFFF;
   --ink:#14171A;
@@ -152,16 +153,17 @@ body{
 .zahlen-page .bg-page th, .zahlen-page .bg-page td{border:1px solid var(--line-strong);}
 .zahlen-page .bg-page th{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;text-transform:none;letter-spacing:0;color:var(--ink);background:#F2F2EE;}
 /* Glossary set like a dictionary: two columns, one entry per paragraph, headwords in violet, sources in turquoise */
-.glossary{--gl-turq:#00788C;--gl-violet:#6B3FA0;font-size:12.5px;line-height:1.45;}
+.glossary{--gl-turq:#00788C;font-size:12.5px;line-height:1.45;}
 div.glossary{columns:2 280px;column-gap:32px;column-rule:1px solid var(--line);}
 .bg-page.full div.glossary{columns:4 220px;}
-.glossary .gl-letter{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:600;line-height:1;color:var(--gl-turq);margin:16px 0 6px;padding-bottom:4px;border-bottom:1px solid var(--gl-turq);break-after:avoid;}
-.glossary .gl-letter:first-child{margin-top:0;}
+.glossary .gl-group{break-inside:avoid;padding-bottom:16px;}
+.glossary .gl-letter{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:600;line-height:1;color:var(--gl-turq);margin:0 0 6px;padding-bottom:4px;border-bottom:1px solid var(--gl-turq);break-after:avoid;}
 .glossary dl{margin:0;}
 .glossary dl > div{display:block;padding-left:1.2em;text-indent:-1.2em;margin-bottom:8px;break-inside:avoid;hyphens:auto;-webkit-hyphens:auto;}
 .glossary dt{display:inline;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;color:var(--gl-violet);}
 .glossary dd{display:inline;margin:0 0 0 4px;color:var(--ink);}
 .glossary .src{color:var(--gl-turq);}
+.chron-page .bg-page h3{color:var(--gl-violet);}
 .timeline{display:grid;grid-template-columns:6.5em 1fr;gap:14px 20px;margin:12px 0 24px;}
 .timeline dt{font-family:'IBM Plex Mono',monospace;font-size:11px;padding-top:2px;}
 .timeline dd{margin:0;font-size:14.5px;line-height:1.6;}
