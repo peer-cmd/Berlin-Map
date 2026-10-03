@@ -1,6 +1,6 @@
 /* Tokens follow 02_Vergesellschaftung/style.css so the map sits inside that site without a visual break. */
 :root {
-  --paper: #ffffff; --ink: #14171a; --muted: #6b6b63; --faint: #9a9a90;
+  --paper: #ffffff; --ink: #14171a; --muted: #14171a; --faint: #14171a;
   --line: #dadad2; --line-strong: #b9b8ae; --blue: #1e3a5f; --hover: #f3f6fa;
   --sans: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, Helvetica, Arial, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
@@ -70,7 +70,18 @@ h3:first-child { margin-top: 0; }
 .legend-sub { margin-top: 6px; }
 .pop-note { margin-top: 10px; color: var(--muted); font-size: 11px; }
 .src-note { display: block; margin-top: 2px; color: var(--faint); }
-#toggles h3 + .layer-row { margin-top: 0; }
+#toggles details.group { border: 0; padding: 0; margin: 0 0 4px; }
+#toggles .group summary {
+  display: flex; gap: 6px; align-items: baseline; padding: 4px 0; cursor: pointer; list-style: none;
+  font: 500 9.5px var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--faint);
+}
+#toggles .group summary::-webkit-details-marker { display: none; }
+#toggles .group summary::before { content: "▸"; width: 10px; }
+#toggles .group[open] summary::before { content: "▾"; }
+#toggles .group summary:hover { color: var(--blue); }
+#toggles .group[open] .group-count { display: none; }
+#toggles .group-count { margin-left: auto; font-variant-numeric: tabular-nums; }
+#toggles .group > :last-child { margin-bottom: 4px; }
 
 #legend-section {
   position: absolute; right: 12px; bottom: 32px; width: 240px; max-height: calc(100% - 120px); overflow: auto;
