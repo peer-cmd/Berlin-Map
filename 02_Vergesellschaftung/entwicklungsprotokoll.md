@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-03 — Das Recht: Verweise auf Die Zahlen entfernt
+
+In `recht.html` drei Verweissätze auf `zahlen.html` (Quoten, Sachwertverfahren/offene Punkte, Szenarien des Rechnungshofs) gelöscht.
+
 ## 2026-10-03 — Übersicht: „Der rechtliche Rahmen“ und „Das Projekt“ entfernt
 
 Beide Abschnitte aus `index.html` gelöscht. Der Inhalt von „Der rechtliche Rahmen“ (Art. 14 Abs. 3 vs. Art. 15 GG, fehlende Rechtsprechung, Streitpunkt Verkehrswert) steht bereits ausführlicher und mit Fußnoten in `recht.html`; nichts übernommen.
