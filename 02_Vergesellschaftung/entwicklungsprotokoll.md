@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-03 — Modell: Schieberegler-Linie gleichmäßig
+
+Die Linie der Schieberegler war ein 1 px hoher Hintergrund; bei Bildschirm-Zoom ≠ 100 % wurde sie je nach Position 1 oder 2 Gerätepixel dick. Jetzt `border-top` auf der Spur (Browser runden Rahmen auf ganze Pixel). Geprüft bei 100, 125 und 150 %. Versions-Tag `style.css?v=20261003o`.
+
 ## 2026-10-03 — Die Zahlen: Zwischentitel violett
 
 h3 auf „Die Zahlen“ (Positionen, „Die Grenzen des Modells“) in derselben Farbe wie die Titel der Chronologie (`--gl-violet`). Versions-Tag `style.css?v=20261003n`.
