@@ -54,7 +54,7 @@ Bericht nach § 88 Abs. 2 LHO vom 20.02.2024 an den Regierenden Bürgermeister, 
 - **Zuschussbedarf je Szenario:** S. 23, wörtlich: "Bei einer verkehrswertorientierten Entschädigungssumme von 29 Mrd. € wären durchschnittlich jährliche Zuschüsse von rd. 700 Mio. € in den ersten zehn Jahren erforderlich. Bei einer Entschädigungssumme von 36 Mrd. € steigt der Zuschussbedarf auf rd. 1 Mrd. € jährlich."
 - **Bewirtschaftungskosten:** S. 25 (Anhang 1), Absolutbeträge pro Jahr: Verwaltungsaufwand 343,69 €/Wohneinheit, Instandhaltung 17,18 €/m², nicht umlagefähige Betriebskosten 3,60 €/m², Mietausfallwagnis 2 %. Auf einen Monatswert pro m² umgerechnet (bei Ø 61 m²: 343,69/61/12 ≈ 0,47 + 17,18/12 ≈ 1,43 + 3,60/12 = 0,30) ergibt das ≈ 2,20 €/m². Dieser Monatswert steht nicht im Bericht; er dient im Modell als Voreinstellung für den Modus „Absolut €/m²".
 - **Wohnungsgröße:** Ø 61 m² laut Rechnungshof (S. 25); das Modell setzt 65 m² an (Basis: DWE/BBU).
-- **Schlussfolgerung:** §4, S. 22: "Eine Vergesellschaftung kann nur verhältnismäßig sein, wenn dadurch die Mieten gesenkt oder zumindest entdynamisiert werden. Im Ergebnis sieht der Rechnungshof daher keine Möglichkeit, eine Vergesellschaftung mit vertretbaren Risiken umzusetzen." Seitenzahl nicht erneut am Original geprüft.
+- **Schlussfolgerung:** §4 (ab S. 22), Zitat S. 24: "Eine Vergesellschaftung kann nur verhältnismäßig sein, wenn dadurch die Mieten gesenkt oder zumindest entdynamisiert werden. Im Ergebnis sieht der Rechnungshof daher keine Möglichkeit, eine Vergesellschaftung mit vertretbaren Risiken umzusetzen." Seitenzahl am Original geprüft (03.10.2026).
 
 ### OECD: Social rental housing stock (PH4.2)
 

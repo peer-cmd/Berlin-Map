@@ -8,6 +8,12 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-03 — „Hintergrund" wird „Das Recht"
+
+`hintergrund.html` heißt jetzt `recht.html` (Navigation: „Das Recht"); alle Links, `build_quellenbelege.py` und die generierten Seiten sind angepasst. Die Seite enthält nur noch rechtliche Themen, mit eigenen Fußnoten: Art. 15 GG und fehlende Rechtsprechung (BBU-Sodan 2019, S. 103; Expertenkommission 2023, S. 127), Mehrheit vs. Sondervotum (aus `zahlen.html` verschoben), Wertermittlung nach ImmoWertV (Expertenkommission 2023, S. 70, Rn. 247 f.), rechtliche Einordnung des Rechnungshof-Berichts (S. 7; § 4, Zitat S. 24) und die Kritik der Expertenkommission (S. 60, Rn. 202). Zitat Art. 15 GG korrigiert („regelt" statt „bestimmt").
+
+Nach `zahlen.html` verschoben: Rechenweg und Grenzen des Modells, Quellenliste mit Referenzwerten, zusätzliche Befunde von Bernt/Holm (neue Fn. 12, S. 4, 6, 11, 14–18). Gestrichen, weil auf „Die Zahlen" belegt vorhanden: Bestand, Entschädigungsspanne, Rechnungshof-Beträge, unbelegte €/m²-Spannen der Wertermittlung und das nicht belegte Zitat zum Liegenschaftszins „zur Bemessung von Enteignungsentschädigungen". Fußnoten in `zahlen.html` neu nummeriert. `quellenbelege.md`: Rechnungshof-Schlussfolgerung am Original auf S. 24 geprüft.
+
 ## 2026-10-02 — Voreinstellung „Fester Zeitplan“ aus Bernt/Holm
 
 Der Regler „Fester Zeitplan“ (Die Sozialwohnungen) startet bei 3,2 %/Jahr statt 0. Quelle: Bernt/Holm 2023, S. 13–14: 63 % der Neuvermietungen an WBS-Inhaber*innen (Quote der Landeseigenen) bei 5 % Fluktuation = 6.999 Wohnungen/Jahr; 6.999 / 222.183 ≈ 3,15 %. „Sofort umgewandelt“ und „Aus Überschuss“ bleiben bei 0, da die Quelle die Vergabe nur bei Neuvermietung annimmt. Die fünf Presets setzen `sozialPaceRate: 0`, ihre Ergebnisse bleiben unverändert. Beleg in `quellenbelege.md`, Erläuterung im Glossar (Umwandlungstempo).

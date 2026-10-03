@@ -30,7 +30,7 @@ PAGE = """<!DOCTYPE html>
   <nav class="site-nav">
     <a href="index.html">Übersicht</a>
     <a href="modell-kompakt.html">Modell</a>
-    <a href="hintergrund.html">Hintergrund</a>
+    <a href="recht.html">Das Recht</a>
     <a href="zahlen.html">Die Zahlen</a>
     <a href="glossar.html">Glossar</a>
     <a href="quellenbelege.html" class="active">Die Chronologie</a>
