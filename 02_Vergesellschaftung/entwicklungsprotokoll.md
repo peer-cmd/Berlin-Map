@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-03 — Chronologie auf der Startseite gekürzt
+
+Einleitung und Einträge der Chronologie in `index.html` auf je einen kurzen Satz gekürzt; Details stehen in `quellenbelege.html`. Defekten Link `zahlen.html#recht` auf `zahlen.html#kosten` korrigiert.
+
 ## 2026-10-03 — Quellenhinweise der Mietregler in den Tooltip
 
 Die drei Hinweiszeilen unter „Ausgangsmiete", „Referenz: freier Markt" und „Referenz: kommunale WoGes." stehen nicht mehr dauerhaft im Modell. Sie sind als `data-note` am Label hinterlegt; `tooltips.js` zeigt sie beim Überfahren oder Antippen unter dem Glossarsatz an (Klasse `.term-tip-note`). Versionstags: `style.css?v=20261003i`, `tooltips.js?v=20261003a`.
