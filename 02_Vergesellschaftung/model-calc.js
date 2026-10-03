@@ -484,30 +484,8 @@
 
     if(byId('chartScenarios')) initScenarioChart();
 
-    const ctx9 = $('chartRateSens').getContext('2d');
-    chartRateSens = new Chart(ctx9, {
-      type:'line',
-      data:{ labels:[], datasets:[
-        {label:'Ø jährlicher Zuschussbedarf', data:[], borderColor:'#E0435C', backgroundColor:'rgba(224,67,92,0.08)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.2}
-      ]},
-      options:{
-        responsive:true,
-        animation:{duration:250},
-        interaction:{mode:'index', intersect:false},
-        layout:{padding:{right:AXIS_W}},
-        plugins:{ legend:{display:false},
-          tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+fmtEUR(ctx.parsed.y*1e6) }},
-          vlineMarker:{ index:null, label:'' }
-        },
-        scales:{
-          x:{ title:{display:true,text:'Zinssatz %',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:{font:{family:'IBM Plex Mono',size:9}} },
-          y:{ min:0, suggestedMax:1800, afterFit:fixAxisWidth, ticks:{font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v*1e6)}, grid:{color:'#EAEAE4'} }
-        }
-      }
-    });
-
-    const ctx10 = $('chartCompSens').getContext('2d');
-    chartCompSens = new Chart(ctx10, {
+    // Beide Sensitivitätsdiagramme: Nettoergebnis (links) und Break-even-Jahr (rechts) je Reglerwert.
+    const sensChart = (id, xTitle) => new Chart($(id).getContext('2d'), {
       data:{ labels:[], datasets:[
         {type:'line', label:'Nettoergebnis', data:[], borderColor:'#00788C', backgroundColor:'rgba(0,120,140,0.06)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.15, yAxisID:'y'},
         {type:'line', label:'Break-even (Jahr)', data:[], borderColor:'#A9762C', backgroundColor:'transparent', borderWidth:1.5, borderDash:[4,2], pointRadius:0, tension:0.15, yAxisID:'y1'}
@@ -521,12 +499,16 @@
           vlineMarker:{ index:null, label:'' }
         },
         scales:{
-          x:{ title:{display:true,text:'Entschädigungsquote %',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:{font:{family:'IBM Plex Mono',size:9}} },
+          x:{ title:{display:true,text:xTitle,font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:{font:{family:'IBM Plex Mono',size:9}, maxRotation:0} },
           y:{ position:'left', suggestedMin:-45e9, suggestedMax:10e9, afterFit:fixAxisWidth, ticks:{font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v)}, grid:{color:'#EAEAE4'} },
           y1:{ position:'right', afterFit:fixAxisWidth, ticks:{font:{family:'IBM Plex Mono',size:9}, callback:v=>'Jahr '+v}, grid:{display:false} }
         }
       }
     });
+    chartRateSens = sensChart('chartRateSens', 'Zinssatz %');
+    chartCompSens = sensChart('chartCompSens', 'Entschädigungsquote %');
+    // Chart.js misst im geschlossenen <details> eine Breite von 0; beim Öffnen neu messen.
+    $('sensPanel').addEventListener('toggle', ()=>{ chartRateSens.resize(); chartCompSens.resize(); });
   }
 
   function render(){
@@ -632,20 +614,41 @@
 
     if(chartScenarios) updateScenarioChart();
 
-    // ---- chart Zinssensitivität (bei aktuellen Reglereinstellungen, Zins variiert) ----
-    const rateSteps = [];
-    for(let r=0; r<=7; r+=0.5) rateSteps.push(Math.round(r*10)/10);
-    const rateSubsidy = rateSteps.map(r=>{
-      const p = Object.assign({}, state, {rate:r});
-      const res = runScenario(state.price, p);
-      return res.netResult<0 ? (-res.netResult/state.horizon/1e6) : 0;
-    });
-    chartRateSens.data.labels = rateSteps.map(r=>r.toLocaleString('de-DE',{minimumFractionDigits:1})+' %');
-    chartRateSens.data.datasets[0].data = rateSubsidy;
-    let rateIdx = rateSteps.reduce((best,r,i)=> Math.abs(r-state.rate)<Math.abs(rateSteps[best]-state.rate) ? i : best, 0);
-    chartRateSens.options.plugins.vlineMarker.index = rateIdx;
-    chartRateSens.options.plugins.vlineMarker.label = 'aktuell: '+state.rate.toLocaleString('de-DE',{minimumFractionDigits:1})+' %';
-    chartRateSens.update('none');
+    // ---- Sensitivität: Achsenbereich aus allen Presets an beiden Enden des Reglers ----
+    // (bei aktuellem Zeithorizont/Bestand), damit die Achse beim Presetwechsel stabil bleibt.
+    const sensRange = (key, ends) => {
+      let lo = 0, hi = 0;
+      Object.values(presets).forEach(preset=>{
+        ends.forEach(v=>{
+          const p = Object.assign({}, state, preset, {[key]:v});
+          const r = runScenario(p.price, p);
+          if(r.netResult<lo) lo = r.netResult;
+          if(r.netResult>hi) hi = r.netResult;
+        });
+      });
+      const pad = (hi-lo)*0.08 || 1e9;
+      return [lo-pad, hi+pad];
+    };
+
+    // ---- chart Sensitivität Zinssatz (nur bei Kreditfinanzierung) ----
+    const showRateSens = state.financing==='kredit';
+    $('rateSensWrap').style.display = showRateSens ? 'block' : 'none';
+    if(showRateSens){
+      const rateSteps = [];
+      for(let r=0; r<=7; r+=0.5) rateSteps.push(Math.round(r*10)/10);
+      const rateResults = rateSteps.map(r=>runScenario(state.price, Object.assign({}, state, {rate:r})));
+      chartRateSens.data.labels = rateSteps.map(r=>r.toLocaleString('de-DE',{minimumFractionDigits:1}));
+      chartRateSens.data.datasets[0].data = rateResults.map(r=>r.netResult);
+      chartRateSens.data.datasets[1].data = rateResults.map(r=>r.breakEvenYear);
+      chartRateSens.options.scales.y1.ticks.display = rateResults.some(r=>r.breakEvenYear!==null);
+      const [rateLo, rateHi] = sensRange('rate', [0,7]);
+      chartRateSens.options.scales.y.suggestedMin = rateLo;
+      chartRateSens.options.scales.y.suggestedMax = rateHi;
+      const rateIdx = rateSteps.reduce((best,r,i)=> Math.abs(r-state.rate)<Math.abs(rateSteps[best]-state.rate) ? i : best, 0);
+      chartRateSens.options.plugins.vlineMarker.index = rateIdx;
+      chartRateSens.options.plugins.vlineMarker.label = 'aktuell: '+state.rate.toLocaleString('de-DE',{minimumFractionDigits:1})+' %';
+      chartRateSens.update('none');
+    }
 
     // ---- chart Sensitivität Entschädigungsquote (bei aktuellen Reglereinstellungen, Quote variiert) ----
     const pfSteps = [];
@@ -654,24 +657,13 @@
       const p = Object.assign({}, state, {purchaseFactor:pf});
       return runScenario(state.price, p);
     });
-    chartCompSens.data.labels = pfSteps.map(pf=>pf+' %');
+    chartCompSens.data.labels = pfSteps;
     chartCompSens.data.datasets[0].data = pfResults.map(r=>r.netResult);
     chartCompSens.data.datasets[1].data = pfResults.map(r=>r.breakEvenYear);
-    // Range derived from all presets (at current Zeithorizont/Bestand) rather than a
-    // fixed constant, so the axis stays stable when switching presets but still adapts
-    // correctly if Zeithorizont, Bestandsgröße etc. are changed.
-    let compLo = 0, compHi = 0;
-    Object.values(presets).forEach(preset=>{
-      [50,100].forEach(pf=>{
-        const p = Object.assign({}, state, preset, {purchaseFactor:pf});
-        const r = runScenario(p.price, p);
-        if(r.netResult<compLo) compLo = r.netResult;
-        if(r.netResult>compHi) compHi = r.netResult;
-      });
-    });
-    const compPad = (compHi-compLo)*0.08 || 1e9;
-    chartCompSens.options.scales.y.suggestedMin = compLo-compPad;
-    chartCompSens.options.scales.y.suggestedMax = compHi+compPad;
+    chartCompSens.options.scales.y1.ticks.display = pfResults.some(r=>r.breakEvenYear!==null);
+    const [compLo, compHi] = sensRange('purchaseFactor', [50,100]);
+    chartCompSens.options.scales.y.suggestedMin = compLo;
+    chartCompSens.options.scales.y.suggestedMax = compHi;
     let pfIdx = pfSteps.reduce((best,pf,i)=> Math.abs(pf-state.purchaseFactor)<Math.abs(pfSteps[best]-state.purchaseFactor) ? i : best, 0);
     chartCompSens.options.plugins.vlineMarker.index = pfIdx;
     chartCompSens.options.plugins.vlineMarker.label = 'aktuell: '+state.purchaseFactor+' %';

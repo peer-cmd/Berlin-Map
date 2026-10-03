@@ -550,6 +550,7 @@ details.panel summary{
 details.panel summary::-webkit-details-marker{display:none;}
 details.panel summary:before{content:"▸ ";color:var(--blue);}
 details.panel[open] summary:before{content:"▾ ";}
+.sens-block{margin-top:14px;}
 .table-wrap{max-height:340px;overflow-y:auto;overflow-x:auto;margin-top:12px;border-top:1px solid var(--line);-webkit-overflow-scrolling:touch;}
 table{width:100%;border-collapse:collapse;font-family:'IBM Plex Mono',monospace;font-size:10.5px;}
 th,td{

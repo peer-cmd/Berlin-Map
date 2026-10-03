@@ -6,7 +6,7 @@
 <title>Kosten- und Finanzierungsmodell der Vergesellschaftung Berlin</title>
 <link rel="stylesheet" href="fonts/fonts.css">
 <script src="vendor/chart.umd.js"></script>
-<link rel="stylesheet" href="style.css?v=20261003o">
+<link rel="stylesheet" href="style.css?v=20261003p">
 </head>
 <body class="model-page">
 <div class="app">
@@ -310,22 +310,6 @@
         </div>
       </div>
 
-      <div class="panel">
-        <div class="panel-head">
-          <h2>Der <span data-term="Zuschussbedarf">Zuschussbedarf</span> je Zinssatz</h2>
-        </div>
-        <p class="panel-sub">Ø jährlicher Zuschussbedarf aus dem Landeshaushalt (Fehlbetrag über den Horizont geglättet) in Abhängigkeit vom Zinssatz, alle übrigen Regler auf aktuellem Stand.</p>
-        <canvas id="chartRateSens" height="70"></canvas>
-      </div>
-
-      <div class="panel">
-        <div class="panel-head">
-          <h2>Das Ergebnis je <span data-term="Entschädigungsquote">Entschädigungsquote</span></h2>
-        </div>
-        <p class="panel-sub">Nettoergebnis nach Horizont (links, Mrd €) und Break-even-Jahr (rechts) in Abhängigkeit von der Entschädigungsquote, alle übrigen Regler auf aktuellem Stand.</p>
-        <canvas id="chartCompSens" height="70"></canvas>
-      </div>
-
       <p class="group-title section-jump" id="mieter"><a href="#finanzen">Die Finanzen</a><span>Die Mieter</span></p>
 
       <div class="panel">
@@ -384,6 +368,23 @@
             </thead>
             <tbody id="dataTableBody"></tbody>
           </table>
+        </div>
+      </details>
+
+      <details class="panel" id="sensPanel">
+        <summary>Sensitivität</summary>
+        <div class="sens-block">
+          <p class="panel-sub">Ergebnis, wenn ein Regler über seinen ganzen Bereich variiert wird, alle übrigen Regler auf aktuellem Stand. Die senkrechte Linie markiert die aktuelle Einstellung.</p>
+        </div>
+        <div class="sens-block" id="rateSensWrap">
+          <div class="panel-head"><h2>Das Ergebnis je <span data-term="Zinssatz">Zinssatz</span></h2></div>
+          <p class="panel-sub">Nettoergebnis nach Horizont (links, Mrd €) und Break-even-Jahr (rechts). Zum Zinssatz kommt die Risikoprämie, nach Ende der Zinsbindung zusätzlich der Zinsaufschlag.</p>
+          <canvas id="chartRateSens" height="70"></canvas>
+        </div>
+        <div class="sens-block">
+          <div class="panel-head"><h2>Das Ergebnis je <span data-term="Entschädigungsquote">Entschädigungsquote</span></h2></div>
+          <p class="panel-sub">Nettoergebnis nach Horizont (links, Mrd €) und Break-even-Jahr (rechts).</p>
+          <canvas id="chartCompSens" height="70"></canvas>
         </div>
       </details>
 
@@ -493,7 +494,7 @@
 
 </div>
 
-<script src="model-calc.js?v=20261003f"></script>
+<script src="model-calc.js?v=20261003g"></script>
 <script src="content.js?v=20261003d"></script>
 <script src="include.js"></script>
 <script src="tooltips.js?v=20261003a"></script>

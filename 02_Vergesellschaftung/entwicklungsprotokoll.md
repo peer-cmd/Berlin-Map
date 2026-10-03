@@ -482,3 +482,7 @@ Hover und gewähltes Preset jetzt in `--green` (`#109A82`) mit weißer Schrift s
 ## 2026-10-03 — Modell: Sprung zwischen „Die Finanzen" und „Die Mieter"
 
 Rechts neben der Überschrift „Die Finanzen" steht „Die Mieter" als Link zum Abschnitt mit Mieten, Sozialwohnungen und Mieterersparnis; dort führt „Die Finanzen" zurück. Der aktuelle Abschnitt steht in Petrol, der andere grau unterstrichen, beim Überfahren grün; Bildlauf weich.
+
+## 2026-10-03 — Modell: Sensitivitätsdiagramme unter „Sensitivität"
+
+Die Diagramme „Der Zuschussbedarf je Zinssatz" und „Das Ergebnis je Entschädigungsquote" stehen nicht mehr zwischen den Zeitreihen unter „Die Finanzen", sondern im zugeklappten Abschnitt „Sensitivität" unter der Jahr-für-Jahr-Tabelle. Das Zinsdiagramm heißt jetzt „Das Ergebnis je Zinssatz" und zeigt wie das Entschädigungsdiagramm Nettoergebnis (mit Vorzeichen, statt auf 0 gekappt) und Break-even-Jahr; bei Eigenmitteln ist es ausgeblendet. Der Durchschnitt über den Horizont entfällt, weil er mit dem Zuschussbedarf des Rechnungshofs (erste zehn Jahre) nicht vergleichbar war. Achsenbereich beider Diagramme aus allen Presets an den Reglerenden.
