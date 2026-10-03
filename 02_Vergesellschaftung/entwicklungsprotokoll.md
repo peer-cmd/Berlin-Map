@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-03 — Die Zahlen: Quellen in den Footer
+
+In `zahlen.html` steht „Die Quellen“ (Liste und Hinweis zu Modellannahmen/Referenzwerten) jetzt im Footer (`.colophon-sources` innerhalb von `.colophon`), unter den Anmerkungen. Sprunglink `#quellen` bleibt. Versionstag: `style.css?v=20261003k`.
+
 ## 2026-10-03 — Das Recht: Verweise auf Die Zahlen entfernt
 
 In `recht.html` drei Verweissätze auf `zahlen.html` (Quoten, Sachwertverfahren/offene Punkte, Szenarien des Rechnungshofs) gelöscht.
