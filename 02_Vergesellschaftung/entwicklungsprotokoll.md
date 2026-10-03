@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-03 — Einheitliche Namen der fünf Positionen
+
+Kurzname (Schaltflächen, Grafik, Fließtext) / Vollname (Erstnennung, Tabellen): Faire-Mieten-Modell / Faire-Mieten-Modell (DWE 2022); DWE-Gesetzentwurf / DWE-Gesetzentwurf (2025); Bernt/Holm / Bernt/Holm (2023); Rechnungshof / Rechnungshof (2024); IW/Empirica / IW/Empirica (2026). „Gegenmodell“ entfällt (Abschnitt und Sprunglink in `zahlen.html` jetzt „IW/Empirica“, Anker `#iw-empirica`). Einheitliche Reihenfolge nach steigender Quote in Schaltflächen und Grafik. Fußnoten behalten die Zitierform. Interne Preset-Schlüssel (`linke`, `gegenmodell`) unverändert. Versionstag: `model-calc.js?v=20261003f`.
+
 ## 2026-10-03 — Die Zahlen: Quelle, Modellannahme, Modellergebnis getrennt
 
 Texte in `zahlen.html` präzisiert: gemeinsame Berechnungsgrundlage (240.000 Wohnungen, 65 m², 2.085 €/m², Quote variiert) als Operation des Modells ausgewiesen; Hinweis, dass die Quellenschätzungen nur eingeschränkt vergleichbar sind; Kasten (`.note-box`) mit den drei Ebenen; Tabellenköpfe und Erläuterungen mit „Quelle:“/„Modell:“. „Konsens aller Lager“ ersetzt; Segregation, Vertrauensbruch, Armutsschwelle, Referenzmiete den Quellen zugeschrieben; „mittig in der Spanne“ (14,9 in 14,5–17,0) korrigiert; „Grenzen des Modells“ mit Satz zu Vergleich statt Prognose, Wohnungsgröße als eigener Absatz.

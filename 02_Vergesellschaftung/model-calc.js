@@ -757,7 +757,7 @@
 
   // Szenario-Übersicht: die fünf Voreinstellungen, unabhängig von den aktuellen Reglern
   function updateScenarioChart(){
-    const presetOrder = [['linke','Faire-Mieten'],['holm','Holm'],['rechnungshof','Rechnungshof'],['gegenmodell','Gegenmodell'],['dwe2025','DWE 2025']];
+    const presetOrder = [['linke','Faire-Mieten-Modell'],['dwe2025','DWE-Gesetzentwurf'],['holm','Bernt/Holm'],['rechnungshof','Rechnungshof'],['gegenmodell','IW/Empirica']];
     const presetResults = presetOrder.map(([key,label])=>{
       const p = Object.assign({}, defaults, presets[key]);
       const r = runScenario(p.price, p);

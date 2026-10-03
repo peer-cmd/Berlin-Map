@@ -4,7 +4,7 @@
 
 ### IW Köln und Empirica: Auswirkungen der Vergesellschaftung privater Wohnungsunternehmen in Berlin
 
-Gutachten, 23.06.2026, 31 S. Grundlage für das „Gegenmodell".
+Gutachten, 23.06.2026, 31 S. Grundlage für die Position IW/Empirica im Modell.
 
 - **Herkunft:** Dr. Philipp Deschermeier und Prof. Dr. Michael Voigtländer, Institut der deutschen Wirtschaft Köln (IW), im Auftrag von Berliner Sparkasse, Berliner Volksbank, Deutscher Kreditbank (DKB) und Investitionsbank Berlin (IBB) — Titelseite, S. 1.
 - **Kernargument:** Eine Entschädigung unterhalb des Marktwerts löse einen "erheblichen Vertrauensbruch" aus, auf den Kapitalmärkte mit Aufschlägen auf die Risikoprämien reagieren würden („Kapitalflucht-These") — S. 8 (Zusammenfassung), Risikoprämien-Diskussion durchgehend S. 128 ff.
