@@ -34,6 +34,16 @@
           <button class="preset-btn" data-preset="gegenmodell">Gegenmodell (IW/Empirica)</button>
           <button class="preset-btn" data-preset="dwe2025">DWE-Gesetzentwurf 2025</button>
         </div>
+        <div class="field" style="display:flex;gap:6px;">
+          <input type="text" id="labelA" placeholder="Name Szenario A" maxlength="18"
+            style="flex:1;padding:6px 7px;border:1px solid var(--line-strong);font-family:'IBM Plex Sans',sans-serif;font-size:11px;">
+          <button class="snap-btn" id="saveA">A speichern</button>
+        </div>
+        <div class="field" style="display:flex;gap:6px;">
+          <input type="text" id="labelB" placeholder="Name Szenario B" maxlength="18"
+            style="flex:1;padding:6px 7px;border:1px solid var(--line-strong);font-family:'IBM Plex Sans',sans-serif;font-size:11px;">
+          <button class="snap-btn" id="saveB">B speichern</button>
+        </div>
       </div>
 
       <div class="group">
@@ -228,24 +238,6 @@
           <div class="field-row"><label data-term="Umwandlungstempo">Aus Überschuss</label><span class="val" id="v-reinvestQuota2">0 %</span></div>
           <input type="range" id="reinvestQuota2" min="0" max="100" step="5" value="0">
         </div>
-      </div>
-
-      <div class="group">
-        <p class="group-title">Eigene Szenarien</p>
-        <div class="field">
-          <label style="font-size:11px;">Aktuelle Einstellung sichern als:</label>
-        </div>
-        <div class="field" style="display:flex;gap:6px;">
-          <input type="text" id="labelA" placeholder="Name Szenario A" maxlength="18"
-            style="flex:1;padding:6px 7px;border:1px solid var(--line-strong);font-family:'IBM Plex Sans',sans-serif;font-size:11px;">
-          <button class="snap-btn" id="saveA">A speichern</button>
-        </div>
-        <div class="field" style="display:flex;gap:6px;">
-          <input type="text" id="labelB" placeholder="Name Szenario B" maxlength="18"
-            style="flex:1;padding:6px 7px;border:1px solid var(--line-strong);font-family:'IBM Plex Sans',sans-serif;font-size:11px;">
-          <button class="snap-btn" id="saveB">B speichern</button>
-        </div>
-        <div class="hint">Vergleichstabelle erscheint unten in den Ergebnissen, sobald A oder B gespeichert ist.</div>
       </div>
 
       <div class="reset-row">

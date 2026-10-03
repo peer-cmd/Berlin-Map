@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-03 — Eigene Szenarien unter die Presets
+
+Die Felder „A speichern"/„B speichern" stehen jetzt direkt unter den fünf Preset-Buttons. Gruppentitel „Eigene Szenarien", „Aktuelle Einstellung sichern als:" und der Hinweis zur Vergleichstabelle sind entfernt.
+
 ## 2026-10-03 — Chronologie auf der Startseite gekürzt
 
 Einleitung und Einträge der Chronologie in `index.html` auf je einen kurzen Satz gekürzt; Details stehen in `quellenbelege.html`. Defekten Link `zahlen.html#recht` auf `zahlen.html#kosten` korrigiert.
