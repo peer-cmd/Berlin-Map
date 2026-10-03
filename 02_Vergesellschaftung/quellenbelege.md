@@ -94,6 +94,16 @@ Sammelband der Initiative, 149 S.
 
 Aufsatz in PROKLA 209, 18 S. Politikwissenschaftliche Einordnung von DWE als Transformationsstrategie; diskursanalytisch, ohne Zahlen für das Modell.
 
+## 2021
+
+### Volksentscheid „Deutsche Wohnen & Co enteignen"
+
+Abstimmung in Berlin, 26.09.2021, getragen von der Initiative „Deutsche Wohnen & Co enteignen". Abgestimmt wurde über einen Beschluss, der den Senat zur Erarbeitung eines Gesetzentwurfs auffordert; der Beschluss ist im Amtsblatt für Berlin vom 6. August 2021 veröffentlicht. Kein eigenes Dokument in `pdf/`; die Angaben stammen aus den folgenden Quellen.
+
+- **Ergebnis:** „eine Mehrheit von 57,6 % der abgegebenen Stimmen (amtliches Endergebnis vom 22.02.2022)" — Expertenkommission 2023, S. 8 (§1). Die Initiative und Bernt/Holm nennen „59,1 % der gültigen Stimmen" — DWE 2022, S. 4 (Vorwort); Bernt/Holm 2023, S. 5. Die beiden Werte beziehen sich auf verschiedene Grundgesamtheiten (abgegebene bzw. gültige Stimmen).
+- **Inhalt:** „Der Senat wird aufgefordert, alle Maßnahmen einzuleiten, die zur Überführung von Immobilien in Gemeineigentum erforderlich sind" — Wortlaut des Stimmzettels, wiedergegeben in Expertenkommission 2023, S. 26 (§55).
+- **Folge:** Der Senat setzte am 29. März 2022 die Expertenkommission ein — Expertenkommission 2023, S. 8 (§2).
+
 ## 2019
 
 ### Helge Sodan: Zur Verfassungsmäßigkeit der Sozialisierung von Immobilien privater Wohnungswirtschaftsunternehmen im Land Berlin

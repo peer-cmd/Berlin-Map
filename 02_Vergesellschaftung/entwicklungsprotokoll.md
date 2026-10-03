@@ -8,6 +8,12 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-03 — Die Chronologie: Volksentscheid 2021
+
+Neuer Eintrag „Volksentscheid“ unter 2021: Ergebnis 57,6 % der abgegebenen Stimmen (Expertenkommission, S. 8, amtliches Endergebnis) und 59,1 % der gültigen Stimmen (DWE 2022, S. 4; Bernt/Holm, S. 5), Wortlaut des Stimmzettels (Expertenkommission, S. 26), Einsetzung der Kommission (S. 8). Zitate am PDF geprüft.
+
+Offen: Die Zeitleiste in `content.js` nennt 56,4 % ohne Beleg.
+
 ## 2026-10-03 — Die Zahlen: Positionen als eigene Abschnitte
 
 Neue Reihenfolge: Bestand, Verkehrswert, Kosten, Mieten, Positionen, Rechenweg. Unter „Die Positionen“ je ein kurzer Absatz (h3) für Faire-Mieten-Modell, DWE-Gesetzentwurf, Bernt/Holm, Rechnungshof (mit beiden Tabellen), IW/Empirica, jeweils mit der Annahme des Modells. DWE-Gesetzentwurf aus „Der Rechenweg“, Bernt/Holm aus „Die Kosten im Vergleich“ dorthin verschoben und gekürzt (Satz zur Segregation entfällt). Chart „Die fünf Positionen im Modell“ steht jetzt im Rechenweg, nach der Erklärung der Annahmen. Keine neuen Zahlen; Fußnotennummern unverändert.
