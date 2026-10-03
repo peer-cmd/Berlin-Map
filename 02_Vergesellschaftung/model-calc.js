@@ -20,7 +20,16 @@
     horizon:50
   };
   let state = Object.assign({}, defaults);
+  // Gespeicherte Szenarien A/B bleiben im Browser (localStorage); ohne Speicher (privates Fenster) nur bis zum Neuladen.
+  const STORE_KEY = 'vergesellschaftung-szenarien';
   let savedScenarios = { A: null, B: null };
+  try{
+    const stored = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
+    if(stored) ['A','B'].forEach(k=>{ if(stored[k]) savedScenarios[k] = Object.assign({}, defaults, stored[k]); });
+  }catch(e){}
+  function storeScenarios(){
+    try{ localStorage.setItem(STORE_KEY, JSON.stringify(savedScenarios)); }catch(e){}
+  }
 
   const sliderIds = ['units','price','purchaseFactor','rate','riskPremium','term','rateResetYears','rateIncrement','onceCosts','maintBacklog','integrationCosts',
     'baseRent','rentGrowth','costInflation','avgSize','opex','opexAbsolute','freeMarketRent','munizRent','cpiGrowth','incomeGrowth','buildCost','reinvestQuota1',
@@ -612,7 +621,6 @@
       chartTenantSavings.update('none');
     }
 
-    if(chartScenarios) updateScenarioChart();
 
     // ---- Sensitivität: Achsenbereich aus allen Presets an beiden Enden des Reglers ----
     // (bei aktuellem Zeithorizont/Bestand), damit die Achse beim Presetwechsel stabil bleibt.
@@ -694,13 +702,16 @@
     const wrap = $('comparePanel');
     if(slots.length===0){ wrap.style.display='none'; return; }
     wrap.style.display='block';
+    if(chartScenarios) updateScenarioChart(true);
 
     const headRow = $('compareHeadRow');
-    headRow.innerHTML = '<th style="text-align:left;">Kennzahl</th><th>Aktuell</th>'+
+    const activeBtn = document.querySelector('.preset-btn.active');
+    const currentLabel = 'Aktuell'+(activeBtn ? ' ('+activeBtn.textContent+')' : '');
+    headRow.innerHTML = '<th style="text-align:left;">Kennzahl</th><th>'+currentLabel+'</th>'+
       slots.map(([k,v])=>'<th>'+(v.label||('Szenario '+k))+'</th>').join('');
 
     const currentResult = runScenario(state.price, state);
-    const results = [ {label:'Aktuell', s:state, r:currentResult} ].concat(
+    const results = [ {label:currentLabel, s:state, r:currentResult} ].concat(
       slots.map(([k,v])=>({label:v.label||('Szenario '+k), s:v, r: runScenario(v.price, v)}))
     );
 
@@ -746,11 +757,14 @@
   }
 
   // Szenario-Übersicht: die fünf Voreinstellungen, unabhängig von den aktuellen Reglern
-  function updateScenarioChart(){
+  // withSaved (Modellseite): gespeicherte Szenarien als weitere Balken, alle über den eingestellten Horizont.
+  function updateScenarioChart(withSaved){
+    const horizon = withSaved ? state.horizon : defaults.horizon;
     const presetOrder = [['linke','Faire-Mieten-Modell'],['dwe2025','DWE-Gesetzentwurf'],['holm','Bernt/Holm'],['rechnungshof','Rechnungshof'],['gegenmodell','IW/Empirica']];
-    const presetResults = presetOrder.map(([key,label])=>{
-      const p = Object.assign({}, defaults, presets[key]);
-      const r = runScenario(p.price, p);
+    const entries = presetOrder.map(([key,label])=>({label, p:Object.assign({}, defaults, presets[key])}));
+    if(withSaved) Object.entries(savedScenarios).forEach(([k,v])=>{ if(v) entries.push({label:k+': '+v.label, p:v}); });
+    const presetResults = entries.map(({label,p})=>{
+      const r = runScenario(p.price, Object.assign({}, p, {horizon}));
       return {label, principal:r.principal, netResult:r.netResult, breakEvenYear:r.breakEvenYear};
     });
     chartScenarios.data.labels = presetResults.map(r=>r.label);
@@ -888,12 +902,16 @@
 
   document.querySelectorAll('.preset-btn').forEach(btn=>{
     btn.addEventListener('click', ()=>{
-      applyState(presets[btn.dataset.preset]);
       document.querySelectorAll('.preset-btn').forEach(b=>b.classList.toggle('active', b===btn));
+      applyState(presets[btn.dataset.preset]);
     });
   });
   // Sobald ein Regler, Feld oder Umschalter bewegt wird, ist es nicht mehr das Preset: Markierung aufheben.
-  const clearPreset = ()=>document.querySelectorAll('.preset-btn.active').forEach(b=>b.classList.remove('active'));
+  const clearPreset = ()=>{
+    const active = document.querySelectorAll('.preset-btn.active');
+    active.forEach(b=>b.classList.remove('active'));
+    if(active.length) renderCompareTable();
+  };
   const controlsEl = document.querySelector('.controls');
   if(controlsEl){
     controlsEl.addEventListener('input', e=>{ if(e.target.id!=='labelA' && e.target.id!=='labelB') clearPreset(); });
@@ -901,15 +919,77 @@
     controlsEl.querySelectorAll('.seg button').forEach(b=>b.addEventListener('click', clearPreset));
   }
 
+  // Gespeicherte Szenarien als Schaltflächen unter den Presets: Klick lädt, × löscht.
+  function renderSavedButtons(activeKey){
+    const box = $('savedSlots');
+    box.innerHTML = '';
+    Object.entries(savedScenarios).forEach(([k,v])=>{
+      if(!v) return;
+      const row = document.createElement('div');
+      row.className = 'saved-row';
+      const btn = document.createElement('button');
+      btn.className = 'preset-btn'+(k===activeKey ? ' active' : '');
+      btn.textContent = k+': '+v.label;
+      btn.addEventListener('click', ()=>{
+        document.querySelectorAll('.preset-btn').forEach(b=>b.classList.toggle('active', b===btn));
+        const s = Object.assign({}, v); delete s.label;
+        applyState(s);
+      });
+      const del = document.createElement('button');
+      del.className = 'snap-clear';
+      del.textContent = '×';
+      del.title = 'Szenario '+k+' löschen';
+      del.addEventListener('click', ()=>{
+        savedScenarios[k] = null;
+        storeScenarios();
+        const activeSaved = box.querySelector('.preset-btn.active');
+        renderSavedButtons(activeSaved ? activeSaved.textContent.split(':')[0] : null);
+        render();
+      });
+      row.append(btn, del);
+      box.append(row);
+    });
+  }
+
   function saveSlot(key, labelInputId){
     readState();
     const labelVal = $(labelInputId).value.trim();
     savedScenarios[key] = Object.assign({}, state, { label: labelVal || ('Szenario '+key) });
+    storeScenarios();
+    document.querySelectorAll('.preset-btn.active').forEach(b=>b.classList.remove('active'));
+    renderSavedButtons(key);
     render();
   }
+
+  // Link teilen: nur die Abweichungen von den Standardwerten, lesbar als #s=schlüssel:wert,…
+  const textKeys = { financing:['kredit','eigen'], opexMode:['percent','absolute'], mode:['none','neubau'] };
+  function encodeState(s){
+    return Object.keys(defaults).filter(k=>s[k]!==defaults[k]).map(k=>k+':'+s[k]).join(',');
+  }
+  function decodeState(str){
+    const out = {};
+    str.split(',').forEach(pair=>{
+      const [k, v] = pair.split(':');
+      if(!(k in defaults) || v===undefined) return;
+      if(textKeys[k]){ if(textKeys[k].includes(v)) out[k] = v; }
+      else if(isFinite(+v)) out[k] = +v;
+    });
+    return out;
+  }
+  $('shareBtn').addEventListener('click', ()=>{
+    readState();
+    const hash = '#s='+encodeState(state);
+    history.replaceState(null, '', hash);
+    const btn = $('shareBtn');
+    const done = text=>{ btn.textContent = text; setTimeout(()=>{ btn.textContent = 'Link kopieren'; }, 2000); };
+    if(navigator.clipboard) navigator.clipboard.writeText(location.href).then(()=>done('Link kopiert'), ()=>done('Link steht in der Adresszeile'));
+    else done('Link steht in der Adresszeile');
+  });
   $('saveA').addEventListener('click', ()=>saveSlot('A','labelA'));
   $('saveB').addEventListener('click', ()=>saveSlot('B','labelB'));
 
   initCharts();
-  render();
+  renderSavedButtons();
+  if(location.hash.startsWith('#s=')) applyState(decodeState(decodeURIComponent(location.hash.slice(3))));
+  else render();
 })();

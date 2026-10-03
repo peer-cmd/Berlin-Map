@@ -490,3 +490,7 @@ Die Diagramme „Der Zuschussbedarf je Zinssatz" und „Das Ergebnis je Entschä
 ## 2026-10-03 — Zahlen: „Die fünf Positionen im Modell" ohne Break-even-Achse
 
 Die rechte Achse mit dem Break-even-Jahr ist entfernt: Nach 50 Jahren erreicht nur Bernt/Holm den Break-even (Jahr 45), die Achse trug also einen einzigen Punkt und zeigte doppelte gerundete Beschriftungen. Das Break-even-Jahr steht jetzt als Satz im Untertitel, aus dem Modell berechnet. Die Legende hat nur noch „Kaufpreis" und „Nettoergebnis" (grün/rot), der Untertitel ist gekürzt.
+
+## 2026-10-03 — Modell: gespeicherte Szenarien als Schaltflächen, Link teilen, Übersichtsdiagramm
+
+Nach „A speichern"/„B speichern" erscheint das Szenario als Schaltfläche (gestrichelt) unter den fünf Positionen; ein Klick lädt es in die Regler, × löscht es. Die Szenarien bleiben im Browser gespeichert (localStorage) und sind auf beiden Modellseiten verfügbar. „Link kopieren" schreibt die Abweichungen von den Standardwerten in die Adresse (`#s=schlüssel:wert,…`); wer den Link öffnet, bekommt dieselbe Einstellung. „Der Szenario-Vergleich" zeigt über der Tabelle Kaufpreis und Nettoergebnis der fünf Positionen und der gespeicherten Szenarien über den eingestellten Betrachtungszeitraum; die Spalte „Aktuell" nennt die gewählte Position oder das geladene Szenario. Lange Tabellenzellen brechen jetzt um.

@@ -435,6 +435,11 @@ select{
 }
 .preset-btn:last-child{margin-bottom:0;}
 .preset-btn:hover, .preset-btn:active, .preset-btn.active{border-color:var(--green);background:var(--green);color:#fff;}
+.saved-row{display:flex;gap:6px;align-items:center;margin-bottom:6px;}
+.saved-row .preset-btn{margin-bottom:0;border-style:dashed;}
+.saved-row .preset-btn.active, .saved-row .preset-btn:hover{border-style:solid;}
+#savedSlots:empty{display:none;}
+#compareTable td{white-space:normal;}
 
 /* ---------- Summary frame: title, verdict, key figures ---------- */
 .summary{border:1px solid var(--line-strong);background:var(--panel);padding:16px 18px;margin-bottom:20px;}

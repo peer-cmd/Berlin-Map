@@ -6,7 +6,7 @@
 <title>Kosten- und Finanzierungsmodell der Vergesellschaftung Berlin — kompakt</title>
 <link rel="stylesheet" href="fonts/fonts.css">
 <script src="vendor/chart.umd.js"></script>
-<link rel="stylesheet" href="style.css?v=20261003p">
+<link rel="stylesheet" href="style.css?v=20261003q">
 </head>
 <body class="model-page">
 <!-- Generated from vergesellschaftung-modell-v37.html by build_kompakt.py. Do not edit by hand. -->
@@ -34,6 +34,7 @@
           <button class="preset-btn" data-preset="rechnungshof">Rechnungshof</button>
           <button class="preset-btn" data-preset="gegenmodell">IW/Empirica</button>
         </div>
+        <div class="field" id="savedSlots"></div>
         <div class="field" style="display:flex;gap:6px;">
           <input type="text" id="labelA" placeholder="Name Szenario A" maxlength="18"
             style="flex:1;padding:6px 7px;border:1px solid var(--line-strong);font-family:'IBM Plex Sans',sans-serif;font-size:11px;">
@@ -243,6 +244,7 @@
       <div class="reset-row">
         <button class="reset-btn" id="resetBtn">Zurücksetzen</button>
         <button class="print-btn" id="printBtn">Ergebnisse drucken</button>
+        <button class="print-btn" id="shareBtn">Link kopieren</button>
       </div>
 
     </aside>
@@ -393,6 +395,12 @@
         <div class="panel-head">
           <h2>Der Szenario-Vergleich</h2>
         </div>
+        <p class="panel-sub">Kaufpreis und Nettoergebnis der fünf Positionen und der gespeicherten Szenarien, alle über den eingestellten Betrachtungszeitraum. Die Tabelle stellt die aktuelle Einstellung den gespeicherten Szenarien gegenüber.</p>
+        <canvas id="chartScenarios" height="80"></canvas>
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--blue-light)"></i>Kaufpreis</span>
+          <span><i class="swatch" style="background:var(--green)"></i><i class="swatch" style="background:var(--red)"></i>Nettoergebnis</span>
+        </div>
         <div class="table-wrap" style="max-height:none;">
           <table id="compareTable">
             <thead>
@@ -414,7 +422,7 @@
 
 </div>
 
-<script src="model-calc.js?v=20261003h"></script>
+<script src="model-calc.js?v=20261003i"></script>
 <script src="content.js?v=20261003d"></script>
 <script src="tooltips.js?v=20261003a"></script>
 </body>
