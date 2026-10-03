@@ -11,6 +11,8 @@
 
 - Step 4: merged the website branch (`claude/modest-einstein-vjlgy6`: karte.html, Hintergrund, Impressum, Datenschutz, self-hosted fonts, .htaccess). `karte.html` now loads `?map=vergesellschaftung` with all 14 layers; `scripts/export_site.py --zip` builds `02_Vergesellschaftung/karte/` and `website-upload.zip` (tested unpacked on a static server).
 
+- Step 4a (2026-10-03): viewer groups are collapsible (open if a layer is visible, count when closed); visible layers and views are written to `?layers=` so links reopen the same map; error banners show setup hints (run.bat, update_data.bat) only on localhost/file://, the website shows a reload message.
+
 ## Next
 
 5. Tempelhofer Feld map (`config/maps/tempelhofer-feld.json`): BRW time series, B-Pläne, FNP 2025 (mixed polygon/point geometry, needs handling), Grünanlagen, Klimaanalyse 2022, StEP Wohnen. Verify each service first.
@@ -20,5 +22,4 @@
 - Website: GitHub Pages from `main`, https://peer-cmd.github.io/Berlin-Map/02_Vergesellschaftung/index.html. Changes go live after merging into `main`.
 - Merge this branch into `main` (pull request) so parallel sessions start from the current state.
 - Einwohnerdichte GeoJSON is 12.5 MB (26,613 blocks); loads only on demand. Vector tiles if it feels slow.
-- Panel is long with 15 layers; collapsible groups would help.
 - Not yet included: Denkmale (9,578), FNP 2025, Wohnatlas time series (geometry changed 2022: 58 vs 60 areas), StEP Vorrangkulisse Innenentwicklung.

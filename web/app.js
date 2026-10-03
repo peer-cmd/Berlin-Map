@@ -7,7 +7,8 @@
      lang=de|en            interface and label language (default: the map's "lang")
      embed=1               hide the side panel behind a button, for iframes
      layers=id[:view],...  show only these layers, optionally with a given view
-   The map position is kept in the URL hash (#zoom/lat/lon). */
+   The map position is kept in the URL hash (#zoom/lat/lon); layer changes are written back to layers=.
+   Setup hints (run.bat, update_data.bat) appear only when the map runs locally. */
 (async function () {
   const $ = (id) => document.getElementById(id);
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -16,6 +17,7 @@
   const BASE = document.body.dataset.base || "../config/";
   const DATA_DIR = document.body.dataset.data || "../data/processed/";
   const mapId = (params.get("map") || document.body.dataset.map || "research").replace(/[^a-z0-9_-]/gi, "");
+  const LOCAL = location.protocol === "file:" || /^(localhost|127\.|\[::1\]$)/.test(location.hostname);
 
   async function getJson(url) {
     const r = await fetch(url);
@@ -27,7 +29,12 @@
   try {
     [catalogue, def] = await Promise.all([getJson(`${BASE}sources.json`), getJson(`${BASE}maps/${mapId}.json`)]);
   } catch (e) {
-    banner(`Konfiguration nicht lesbar / cannot read configuration (${esc(e.message)}). Start the map with run.bat; opening index.html directly does not work.`);
+    console.error(e);
+    banner(LOCAL
+      ? `Konfiguration nicht lesbar / cannot read configuration (${esc(e.message)}). Start the map with run.bat; opening index.html directly does not work.`
+      : params.get("lang") === "en"
+        ? "The map could not be loaded. Please reload the page or try again later."
+        : "Die Karte konnte nicht geladen werden. Bitte die Seite neu laden oder später erneut versuchen.");
     return;
   }
 
@@ -37,13 +44,15 @@
   const t = (v) => (v && typeof v === "object" ? v[lang] ?? v.de ?? Object.values(v)[0] : v ?? "");
   const UI = {
     de: { layers: "Ebenen", basemap: "Grundkarte", labels: "Beschriftung", legend: "Legende", sources: "Quellen",
-          retrieved: "abgerufen", atPoint: "Objekte an diesem Punkt", source: "Quelle", noData: "Daten fehlen",
-          runUpdate: "update_data.bat ausführen und neu laden", warnings: "Verarbeitungshinweis(e)",
+          retrieved: "abgerufen", atPoint: "Objekte an diesem Punkt", source: "Quelle",
+          noData: LOCAL ? "Daten fehlen" : "Daten konnten nicht geladen werden",
+          runUpdate: LOCAL ? "update_data.bat ausführen und neu laden" : "Bitte die Seite neu laden oder später erneut versuchen", warnings: "Verarbeitungshinweis(e)",
           noValue: "ohne Wert", other: "Sonstige", basemapFail: "Grundkarte lädt nicht (offline oder blockiert). Die Datenebenen funktionieren weiter.",
           download: "Download", close: "Schließen", view: "Darstellung" },
     en: { layers: "Layers", basemap: "Basemap", labels: "Place labels", legend: "Legend", sources: "Sources",
-          retrieved: "retrieved", atPoint: "features at this point", source: "Source", noData: "data missing",
-          runUpdate: "run update_data.bat, then reload", warnings: "processing note(s)",
+          retrieved: "retrieved", atPoint: "features at this point", source: "Source",
+          noData: LOCAL ? "data missing" : "data could not be loaded",
+          runUpdate: LOCAL ? "run update_data.bat, then reload" : "please reload the page or try again later", warnings: "processing note(s)",
           noValue: "no value", other: "Other", basemapFail: "Basemap is not loading (offline or blocked). Data layers still work.",
           download: "Download", close: "Close", view: "Display" },
   }[lang] || {};
@@ -101,8 +110,8 @@
 
   // ---------- items: map definition joined with catalogue ----------
   const byId = Object.fromEntries(catalogue.sources.map((s) => [s.id, s]));
-  const only = params.get("layers")
-    ? Object.fromEntries(params.get("layers").split(",").map((x) => x.split(":")))
+  const only = params.has("layers")
+    ? Object.fromEntries(params.get("layers").split(",").filter(Boolean).map((x) => x.split(":")))
     : null;
   const items = [];
   for (const g of def.groups) {
@@ -320,19 +329,35 @@
     l.firstChild.addEventListener("change", (e) => onChange(e.target.checked));
     return l;
   }
-  let lastGroup = null;
+  // Current layers and views go into ?layers= so a copied link reopens the same map.
+  function syncUrl() {
+    const p = new URLSearchParams(location.search);
+    p.set("layers", ready.filter((it) => it.visible).map((it) => (it.views.length > 1 ? `${it.src.id}:${it.view}` : it.src.id)).join(","));
+    history.replaceState(history.state, "", `${location.pathname}?${p.toString().replace(/%2C/g, ",").replace(/%3A/g, ":")}${location.hash}`);
+  }
+  // Each group is a <details>; groups with a visible layer start open. The count shows visible layers when closed.
+  function group(title, open) {
+    const d = document.createElement("details");
+    d.className = "group";
+    d.open = open;
+    d.innerHTML = `<summary><span>${esc(title)}</span><span class="group-count"></span></summary>`;
+    $("toggles").appendChild(d);
+    return d;
+  }
+  const groupBox = new Map();
+  const updateCounts = () => groupBox.forEach((d, g) => {
+    const n = ready.filter((it) => it.group === g && it.visible).length;
+    d.querySelector(".group-count").textContent = n ? String(n) : "";
+  });
   for (const it of ready) {
-    if (it.group !== lastGroup) {
-      const h = document.createElement("h3");
-      h.textContent = t(it.group.title);
-      $("toggles").appendChild(h);
-      lastGroup = it.group;
-    }
+    if (!groupBox.has(it.group)) groupBox.set(it.group, group(t(it.group.title), ready.some((x) => x.group === it.group && x.visible)));
     const row = document.createElement("div");
     row.className = "layer-row";
     row.appendChild(checkbox(t(it.src.title), it.visible, async (on) => {
       it.visible = on;
       setVis(it.layerIds, on);
+      updateCounts();
+      syncUrl();
       if (on) await ensureData(it);
       renderLegend();
     }));
@@ -345,17 +370,17 @@
         const c = colorExpr(currentStyle(it));
         it.colorProps.forEach(([lid, prop]) => map.setPaintProperty(lid, prop, c));
         if (it.kind === "polygon") map.setPaintProperty(it.src.id + "-main", "fill-opacity", fillOpacity(it));
+        syncUrl();
         renderLegend();
       });
       row.appendChild(sel);
     }
-    $("toggles").appendChild(row);
+    groupBox.get(it.group).appendChild(row);
   }
-  const hb = document.createElement("h3");
-  hb.textContent = UI.basemap;
-  $("toggles").appendChild(hb);
-  $("toggles").appendChild(checkbox(UI.basemap, true, (on) => setVis(baseIds, on)));
-  $("toggles").appendChild(checkbox(UI.labels, true, (on) => setVis(labelIds, on)));
+  updateCounts();
+  const gb = group(UI.basemap, false);
+  gb.appendChild(checkbox(UI.basemap, true, (on) => setVis(baseIds, on)));
+  gb.appendChild(checkbox(UI.labels, true, (on) => setVis(labelIds, on)));
   renderLegend();
 
   $("source-text").innerHTML = ready.map((it) => {
