@@ -109,3 +109,12 @@ Abstimmung in Berlin, 26.09.2021, getragen von der Initiative „Deutsche Wohnen
 ### Helge Sodan: Zur Verfassungsmäßigkeit der Sozialisierung von Immobilien privater Wohnungswirtschaftsunternehmen im Land Berlin
 
 Rechtsgutachten im Auftrag des BBU Verband Berlin-Brandenburgischer Wohnungsunternehmen e.V., 108 S. Grundlage für die amtliche Kostenschätzung des Senats (28,8–36 bzw. 30–39 Mrd. €), den Kreditbedarf und die Bestandsangabe „bis zu 243.000 Wohneinheiten" (S. 54). Vom Vermieterverband beauftragt und daher tendenziell entschädigungsfreundlich; bei der Einordnung der Zahlen von 28,8–36 Mrd. € mitzudenken.
+
+Schätzungen im Gutachten (bis 03.10.2026 als Tabelle „Weitere Schätzungen in den Quellen" auf der Seite „Die Zahlen"):
+
+- **DW enteignen, frühe Schätzung (2019):** 7,3–13,7 Mrd. € — S. 9, 102.
+- **BBU, eigene vorsichtige Schätzung:** ≈ 25 Mrd. € — S. 102.
+- **Senat 2019, Entschädigung allein:** 28,8–36 Mrd. € — S. 9, 68, 70, 102.
+- **Senat 2019, mit 1,5–2,9 Mrd. € Erwerbsnebenkosten:** 30–39 Mrd. € — S. 68; zitiert als „29 bis 39 Milliarden Euro" in DWE 2022, S. 112, und IW Köln/Empirica 2026, S. 8.
+- **Kreditbedarf der Anstalt nach 6–8 Mrd. € Landeseigenkapital:** 23–28,8 Mrd. € — S. 70, 72, 106.
+- **Zum Vergleich: Berliner Landeshaushalt 2019:** 29,356 Mrd. € — S. 70.

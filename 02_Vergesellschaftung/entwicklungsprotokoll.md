@@ -498,3 +498,7 @@ Nach „A speichern"/„B speichern" erscheint das Szenario als Schaltfläche (g
 ## 2026-10-03 — Modell: ein Feld und eine Schaltfläche zum Speichern
 
 Die zwei Zeilen „A speichern"/„B speichern" sind durch ein Namensfeld und „Speichern" ersetzt (auch mit Enter). Jedes Speichern legt eine neue Schaltfläche an, höchstens fünf; bei gleichem Namen wird das Szenario überschrieben, beim sechsten fällt das älteste weg. Ohne Namen heißt es „Szenario n". Früher gespeicherte A/B-Szenarien werden übernommen.
+
+## 2026-10-03 — Zahlen: Tabelle „Weitere Schätzungen in den Quellen" entfernt
+
+Die sechs Zeilen (DWE-Frühschätzung, BBU-Schätzung, Senat 2019 mit und ohne Erwerbsnebenkosten, Kreditbedarf der Anstalt, Landeshaushalt 2019) stehen jetzt mit allen Seitenangaben unter BBU-Sodan 2019 in `quellenbelege.md` („Die Chronologie").
