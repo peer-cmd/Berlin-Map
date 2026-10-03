@@ -93,6 +93,9 @@ body{
   margin:0 auto;
   padding:36px 32px 64px;
 }
+/* full-width variant (glossar) */
+.bg-page.full{max-width:none;}
+.masthead:has(+ .bg-page.full){padding-left:32px;padding-right:32px;}
 .bg-page h2{
   font-family:'Space Grotesk',sans-serif;
   font-size:16px;
@@ -151,6 +154,7 @@ body{
 /* Glossary set like a dictionary: two columns, one entry per paragraph, headwords in violet, sources in turquoise */
 .glossary{--gl-turq:#00788C;--gl-violet:#6B3FA0;font-size:12.5px;line-height:1.45;}
 div.glossary{columns:2 280px;column-gap:32px;column-rule:1px solid var(--line);}
+.bg-page.full div.glossary{columns:4 220px;}
 .glossary .gl-letter{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:600;line-height:1;color:var(--gl-turq);margin:16px 0 6px;padding-bottom:4px;border-bottom:1px solid var(--gl-turq);break-after:avoid;}
 .glossary .gl-letter:first-child{margin-top:0;}
 .glossary dl{margin:0;}
