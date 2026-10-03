@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-03 — Die Zahlen: Verkehrswert vor die Kosten
+
+„Der Verkehrswert“ steht jetzt zwischen „Der Bestand“ und „Die Kosten im Vergleich“ (auch in der Abschnittsnavigation), damit die gemeinsame Berechnungsgrundlage vor dem Kostenvergleich erklärt ist. Aufzählung der fünf Entschädigungsquoten dort gestrichen (steht in der Positionstabelle); „Die Kosten im Vergleich“ verweist auf den Abschnitt oben. Fußnotennummern unverändert.
+
 ## 2026-10-03 — Modell: Chart-Untertitel gekürzt
 
 Untertitel der Charts gestrichen: Hinweise „Markierung zeigt …“ (Zinssatz, Quote), Bernt/Holm-Satz unter Mietersparnis, Erläuterung zum Landesvermögen. Cashflow-Untertitel auf drei Sätze gekürzt.
