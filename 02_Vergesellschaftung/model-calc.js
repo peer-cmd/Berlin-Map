@@ -20,12 +20,15 @@
     horizon:50
   };
   let state = Object.assign({}, defaults);
-  // Gespeicherte Szenarien A/B bleiben im Browser (localStorage); ohne Speicher (privates Fenster) nur bis zum Neuladen.
+  // Gespeicherte Szenarien (höchstens MAX_SAVED) bleiben im Browser (localStorage);
+  // ohne Speicher (privates Fenster) nur bis zum Neuladen.
   const STORE_KEY = 'vergesellschaftung-szenarien';
-  let savedScenarios = { A: null, B: null };
+  const MAX_SAVED = 5;
+  let savedScenarios = [];
   try{
-    const stored = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
-    if(stored) ['A','B'].forEach(k=>{ if(stored[k]) savedScenarios[k] = Object.assign({}, defaults, stored[k]); });
+    let stored = JSON.parse(localStorage.getItem(STORE_KEY) || '[]');
+    if(stored && !Array.isArray(stored)) stored = [stored.A, stored.B]; // frühere Speicherung mit A/B
+    savedScenarios = (stored || []).filter(Boolean).slice(0, MAX_SAVED).map(v=>Object.assign({}, defaults, v));
   }catch(e){}
   function storeScenarios(){
     try{ localStorage.setItem(STORE_KEY, JSON.stringify(savedScenarios)); }catch(e){}
@@ -56,6 +59,7 @@
     callback(v){ const t = Number(this.getLabelForValue(v)); const step = this.chart.data.labels.length>60 ? 10 : 5;
       return (t===1 || t%step===0) ? t : ''; } };
 
+  function escapeHtml(t){ return String(t).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
   function fmtInt(n){ return Math.round(n).toLocaleString('de-DE'); }
   function fmtEUR(n){
     const sign = n<0 ? '−' : '';
@@ -698,7 +702,7 @@
   }
 
   function renderCompareTable(){
-    const slots = Object.entries(savedScenarios).filter(([k,v])=>v!==null);
+    const slots = savedScenarios;
     const wrap = $('comparePanel');
     if(slots.length===0){ wrap.style.display='none'; return; }
     wrap.style.display='block';
@@ -708,11 +712,11 @@
     const activeBtn = document.querySelector('.preset-btn.active');
     const currentLabel = 'Aktuell'+(activeBtn ? ' ('+activeBtn.textContent+')' : '');
     headRow.innerHTML = '<th style="text-align:left;">Kennzahl</th><th>'+currentLabel+'</th>'+
-      slots.map(([k,v])=>'<th>'+(v.label||('Szenario '+k))+'</th>').join('');
+      slots.map(v=>'<th>'+escapeHtml(v.label)+'</th>').join('');
 
     const currentResult = runScenario(state.price, state);
     const results = [ {label:currentLabel, s:state, r:currentResult} ].concat(
-      slots.map(([k,v])=>({label:v.label||('Szenario '+k), s:v, r: runScenario(v.price, v)}))
+      slots.map(v=>({label:v.label, s:v, r: runScenario(v.price, v)}))
     );
 
     const rowsDef = [
@@ -762,7 +766,7 @@
     const horizon = withSaved ? state.horizon : defaults.horizon;
     const presetOrder = [['linke','Faire-Mieten-Modell'],['dwe2025','DWE-Gesetzentwurf'],['holm','Bernt/Holm'],['rechnungshof','Rechnungshof'],['gegenmodell','IW/Empirica']];
     const entries = presetOrder.map(([key,label])=>({label, p:Object.assign({}, defaults, presets[key])}));
-    if(withSaved) Object.entries(savedScenarios).forEach(([k,v])=>{ if(v) entries.push({label:k+': '+v.label, p:v}); });
+    if(withSaved) savedScenarios.forEach(v=>entries.push({label:v.label, p:v}));
     const presetResults = entries.map(({label,p})=>{
       const r = runScenario(p.price, Object.assign({}, p, {horizon}));
       return {label, principal:r.principal, netResult:r.netResult, breakEvenYear:r.breakEvenYear};
@@ -914,22 +918,21 @@
   };
   const controlsEl = document.querySelector('.controls');
   if(controlsEl){
-    controlsEl.addEventListener('input', e=>{ if(e.target.id!=='labelA' && e.target.id!=='labelB') clearPreset(); });
+    controlsEl.addEventListener('input', e=>{ if(e.target.id!=='saveLabel') clearPreset(); });
     controlsEl.addEventListener('change', e=>{ if(e.target.id==='mode') clearPreset(); });
     controlsEl.querySelectorAll('.seg button').forEach(b=>b.addEventListener('click', clearPreset));
   }
 
   // Gespeicherte Szenarien als Schaltflächen unter den Presets: Klick lädt, × löscht.
-  function renderSavedButtons(activeKey){
+  function renderSavedButtons(activeIdx){
     const box = $('savedSlots');
     box.innerHTML = '';
-    Object.entries(savedScenarios).forEach(([k,v])=>{
-      if(!v) return;
+    savedScenarios.forEach((v,i)=>{
       const row = document.createElement('div');
       row.className = 'saved-row';
       const btn = document.createElement('button');
-      btn.className = 'preset-btn'+(k===activeKey ? ' active' : '');
-      btn.textContent = k+': '+v.label;
+      btn.className = 'preset-btn'+(i===activeIdx ? ' active' : '');
+      btn.textContent = v.label;
       btn.addEventListener('click', ()=>{
         document.querySelectorAll('.preset-btn').forEach(b=>b.classList.toggle('active', b===btn));
         const s = Object.assign({}, v); delete s.label;
@@ -938,12 +941,14 @@
       const del = document.createElement('button');
       del.className = 'snap-clear';
       del.textContent = '×';
-      del.title = 'Szenario '+k+' löschen';
+      del.title = v.label+' löschen';
       del.addEventListener('click', ()=>{
-        savedScenarios[k] = null;
+        const activeBtn = box.querySelector('.preset-btn.active');
+        let keep = activeBtn ? [...box.querySelectorAll('.preset-btn')].indexOf(activeBtn) : -1;
+        savedScenarios.splice(i, 1);
+        if(keep===i) keep = -1; else if(keep>i) keep--;
         storeScenarios();
-        const activeSaved = box.querySelector('.preset-btn.active');
-        renderSavedButtons(activeSaved ? activeSaved.textContent.split(':')[0] : null);
+        renderSavedButtons(keep);
         render();
       });
       row.append(btn, del);
@@ -951,13 +956,22 @@
     });
   }
 
-  function saveSlot(key, labelInputId){
+  // Ein Feld, eine Schaltfläche: gleicher Name überschreibt, sonst neues Szenario (bei MAX_SAVED fällt das älteste weg).
+  function saveScenario(){
     readState();
-    const labelVal = $(labelInputId).value.trim();
-    savedScenarios[key] = Object.assign({}, state, { label: labelVal || ('Szenario '+key) });
+    const name = $('saveLabel').value.trim() || ('Szenario '+(savedScenarios.length+1));
+    const entry = Object.assign({}, state, { label: name });
+    let idx = savedScenarios.findIndex(v=>v.label===name);
+    if(idx>=0) savedScenarios[idx] = entry;
+    else {
+      if(savedScenarios.length>=MAX_SAVED) savedScenarios.shift();
+      savedScenarios.push(entry);
+      idx = savedScenarios.length-1;
+    }
     storeScenarios();
+    $('saveLabel').value = '';
     document.querySelectorAll('.preset-btn.active').forEach(b=>b.classList.remove('active'));
-    renderSavedButtons(key);
+    renderSavedButtons(idx);
     render();
   }
 
@@ -985,8 +999,8 @@
     if(navigator.clipboard) navigator.clipboard.writeText(location.href).then(()=>done('Link kopiert'), ()=>done('Link steht in der Adresszeile'));
     else done('Link steht in der Adresszeile');
   });
-  $('saveA').addEventListener('click', ()=>saveSlot('A','labelA'));
-  $('saveB').addEventListener('click', ()=>saveSlot('B','labelB'));
+  $('saveBtn').addEventListener('click', saveScenario);
+  $('saveLabel').addEventListener('keydown', e=>{ if(e.key==='Enter') saveScenario(); });
 
   initCharts();
   renderSavedButtons();

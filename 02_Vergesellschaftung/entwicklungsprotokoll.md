@@ -494,3 +494,7 @@ Die rechte Achse mit dem Break-even-Jahr ist entfernt: Nach 50 Jahren erreicht n
 ## 2026-10-03 — Modell: gespeicherte Szenarien als Schaltflächen, Link teilen, Übersichtsdiagramm
 
 Nach „A speichern"/„B speichern" erscheint das Szenario als Schaltfläche (gestrichelt) unter den fünf Positionen; ein Klick lädt es in die Regler, × löscht es. Die Szenarien bleiben im Browser gespeichert (localStorage) und sind auf beiden Modellseiten verfügbar. „Link kopieren" schreibt die Abweichungen von den Standardwerten in die Adresse (`#s=schlüssel:wert,…`); wer den Link öffnet, bekommt dieselbe Einstellung. „Der Szenario-Vergleich" zeigt über der Tabelle Kaufpreis und Nettoergebnis der fünf Positionen und der gespeicherten Szenarien über den eingestellten Betrachtungszeitraum; die Spalte „Aktuell" nennt die gewählte Position oder das geladene Szenario. Lange Tabellenzellen brechen jetzt um.
+
+## 2026-10-03 — Modell: ein Feld und eine Schaltfläche zum Speichern
+
+Die zwei Zeilen „A speichern"/„B speichern" sind durch ein Namensfeld und „Speichern" ersetzt (auch mit Enter). Jedes Speichern legt eine neue Schaltfläche an, höchstens fünf; bei gleichem Namen wird das Szenario überschrieben, beim sechsten fällt das älteste weg. Ohne Namen heißt es „Szenario n". Früher gespeicherte A/B-Szenarien werden übernommen.
