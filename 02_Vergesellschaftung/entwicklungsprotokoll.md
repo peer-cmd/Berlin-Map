@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-03 — Modell: Chart-Untertitel gekürzt
+
+Untertitel der Charts gestrichen: Hinweise „Markierung zeigt …“ (Zinssatz, Quote), Bernt/Holm-Satz unter Mietersparnis, Erläuterung zum Landesvermögen. Cashflow-Untertitel auf drei Sätze gekürzt.
+
 ## 2026-10-03 — Die Zahlen: Mieten und Rechnungshof als Tabellen
 
 „Die Mieten“: Liste → Tabelle (Miete / Angabe der Quelle / Im Modell). „Der Rechnungshof“: Szenarientabelle (Herkunft S. 12 f., Zuschüsse S. 19/23, Ausgangsmieten Ansicht 6, S. 21) und Tabelle der Bewirtschaftungskosten (S. 25, Anhang 1) mit Umrechnung auf €/m² und Monat bei 61 m². Neue Fn. 16. Verweis „(siehe Das Recht)“ unter „Der Verkehrswert“ entfernt. Alle Werte aus `pdf/markdown/rs-beratungsbericht-vergesellschaftung.md` geprüft.

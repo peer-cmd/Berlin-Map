@@ -284,7 +284,7 @@
         <div class="panel-head">
           <h2>Der Cashflow kumuliert</h2>
         </div>
-        <p class="panel-sub">Kumulierter Cashflow seit Übernahme, inkl. Einmalkosten in Jahr 1. Der Endwert entspricht dem Nettoergebnis oben. Zeigt, in welchem Jahr — falls überhaupt — sich der Bestand insgesamt rechnet (Break-even). Das Nettoergebnis verläuft nicht linear: Solange der Kredit läuft (Tilgungsdauer), verschlechtert sich der kumulierte Cashflow von Jahr zu Jahr. Erst nach vollständiger Tilgung entfällt der Schuldendienst und der Cashflow dreht kräftig ins Plus — je nach Horizont kann das Nettoergebnis diesen Rückgang ganz, teilweise oder gar nicht mehr aufholen.</p>
+        <p class="panel-sub">Kumulierter Cashflow seit Übernahme, inkl. Einmalkosten in Jahr 1; der Endwert entspricht dem Nettoergebnis oben. Solange der Kredit läuft, sinkt die Kurve; nach der Tilgung entfällt der Schuldendienst und sie steigt. Ob sie die Nulllinie erreicht (Break-even), hängt vom Horizont ab.</p>
         <canvas id="chartCumulative" height="70"></canvas>
       </div>
 
@@ -300,7 +300,7 @@
         <div class="panel-head">
           <h2>Die Kapitalposition Berlins</h2>
         </div>
-        <p class="panel-sub">Verkehrswert des gehaltenen Bestands, abzüglich Restschuld, zuzüglich kumuliertem Cashflow aus dem laufenden Betrieb (inkl. Kosten für Neubau/Sozialumwandlung). Zeigt, wie sich das Landesvermögen insgesamt entwickelt — schnellere Umwandlungstempi oder Neubau schlagen sich hier als reale Kosten nieder, nicht nur im Cashflow-Chart oben.</p>
+        <p class="panel-sub">Verkehrswert des gehaltenen Bestands, abzüglich Restschuld, zuzüglich kumuliertem Cashflow aus dem laufenden Betrieb (inkl. Kosten für Neubau/Sozialumwandlung).</p>
         <canvas id="chartCapital" height="70"></canvas>
         <div class="legend">
           <span><i class="swatch" style="background:var(--blue-light)"></i>Vermögenswert Bestand</span>
@@ -314,7 +314,7 @@
         <div class="panel-head">
           <h2>Der <span data-term="Zuschussbedarf">Zuschussbedarf</span> je Zinssatz</h2>
         </div>
-        <p class="panel-sub">Ø jährlicher Zuschussbedarf aus dem Landeshaushalt (Fehlbetrag über den Horizont geglättet) in Abhängigkeit vom Zinssatz, alle übrigen Regler auf aktuellem Stand. Markierung zeigt den aktuell eingestellten Zinssatz.</p>
+        <p class="panel-sub">Ø jährlicher Zuschussbedarf aus dem Landeshaushalt (Fehlbetrag über den Horizont geglättet) in Abhängigkeit vom Zinssatz, alle übrigen Regler auf aktuellem Stand.</p>
         <canvas id="chartRateSens" height="70"></canvas>
       </div>
 
@@ -322,7 +322,7 @@
         <div class="panel-head">
           <h2>Das Ergebnis je <span data-term="Entschädigungsquote">Entschädigungsquote</span></h2>
         </div>
-        <p class="panel-sub">Nettoergebnis nach Horizont (links, Mrd €) und Break-even-Jahr (rechts) in Abhängigkeit von der Entschädigungsquote, alle übrigen Regler auf aktuellem Stand. Markierung zeigt die aktuell eingestellte Quote.</p>
+        <p class="panel-sub">Nettoergebnis nach Horizont (links, Mrd €) und Break-even-Jahr (rechts) in Abhängigkeit von der Entschädigungsquote, alle übrigen Regler auf aktuellem Stand.</p>
         <canvas id="chartCompSens" height="70"></canvas>
       </div>
 
@@ -368,7 +368,7 @@
         <div class="panel-head">
           <h2>Die <span data-term="Mieterersparnis">Ersparnis der Mieter</span></h2>
         </div>
-        <p class="panel-sub">Kumulierte Differenz zwischen Modellmiete und gezahlter Sozialmiete, multipliziert mit der Zahl der Wohnungen mit Sozialmiete. Operationalisiert das Argument „Vergesellschaftung senkt die Miete" (Bernt/Holm, Rosa-Luxemburg-Stiftung 2023) als Zahl: was Mieter über den Betrachtungszeitraum gegenüber dem Marktmiete-Szenario einsparen.</p>
+        <p class="panel-sub">Kumulierte Differenz zwischen Modellmiete und gezahlter Sozialmiete, multipliziert mit der Zahl der Wohnungen mit Sozialmiete.</p>
         <canvas id="chartTenantSavings" height="70"></canvas>
       </div>
 
