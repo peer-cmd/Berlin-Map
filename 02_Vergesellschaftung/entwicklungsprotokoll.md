@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-03 — Navigation: Glossar hinter Chronologie
+
+In der Navigation aller Seiten (und in `build_quellenbelege.py`) steht „Glossar“ jetzt rechts von „Die Chronologie“. Verweissatz unter dem Glossar in `glossar.html` und Einleitungssatz der Chronologie in `index.html` gelöscht.
+
 ## 2026-10-03 — Glossar volle Breite, vier Spalten
 
 `glossar.html` nutzt `.bg-page.full` (ohne `--content-width`); das Glossar steht dort in vier Spalten (`columns:4 220px`, auf schmalen Bildschirmen weniger). Im Modell (v37) bleibt es zweispaltig. Versionstag: `style.css?v=20261003j`.

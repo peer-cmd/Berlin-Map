@@ -32,8 +32,8 @@ PAGE = """<!DOCTYPE html>
     <a href="modell-kompakt.html">Modell</a>
     <a href="recht.html">Das Recht</a>
     <a href="zahlen.html">Die Zahlen</a>
-    <a href="glossar.html">Glossar</a>
     <a href="quellenbelege.html" class="active">Die Chronologie</a>
+    <a href="glossar.html">Glossar</a>
     <a href="karte.html">Karte</a>
   </nav>
 
