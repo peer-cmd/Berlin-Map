@@ -8,6 +8,12 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-03 — Die Zahlen: Mieten und Rechnungshof als Tabellen
+
+„Die Mieten“: Liste → Tabelle (Miete / Angabe der Quelle / Im Modell). „Der Rechnungshof“: Szenarientabelle (Herkunft S. 12 f., Zuschüsse S. 19/23, Ausgangsmieten Ansicht 6, S. 21) und Tabelle der Bewirtschaftungskosten (S. 25, Anhang 1) mit Umrechnung auf €/m² und Monat bei 61 m². Neue Fn. 16. Verweis „(siehe Das Recht)“ unter „Der Verkehrswert“ entfernt. Alle Werte aus `pdf/markdown/rs-beratungsbericht-vergesellschaftung.md` geprüft.
+
+Offen: Rechnungshof datiert die Senatsschätzung auf 2018 (Schreiben vom 23.04.2018), die Schätzungstabelle nennt „Senat 2019“ (nach BBU-Sodan 2019).
+
 ## 2026-10-03 — Die Zahlen: Positionstabelle mit Quellenangabe
 
 Tabelle der fünf Positionen zeigt jetzt Angabe der Quelle neben Entschädigungsquote und Entschädigung des Modells (Spalte „Quote (Modellannahme)“ → „Entschädigungsquote (Modell)“). Faire-Mieten-Modell und Rechnungshof-Szenarien aus der Schätzungstabelle entfernt (stehen in der Positionstabelle bzw. unter „Der Rechnungshof“); diese heißt jetzt „Weitere Schätzungen in den Quellen“. Absatz zur Senatsschätzung (29–36 / 29–39) entfernt, Werte stehen in der Tabelle.
