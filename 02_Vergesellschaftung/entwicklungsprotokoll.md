@@ -8,6 +8,16 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-03 — Die Zahlen: Quelle, Modellannahme, Modellergebnis getrennt
+
+Texte in `zahlen.html` präzisiert: gemeinsame Berechnungsgrundlage (240.000 Wohnungen, 65 m², 2.085 €/m², Quote variiert) als Operation des Modells ausgewiesen; Hinweis, dass die Quellenschätzungen nur eingeschränkt vergleichbar sind; Kasten (`.note-box`) mit den drei Ebenen; Tabellenköpfe und Erläuterungen mit „Quelle:“/„Modell:“. „Konsens aller Lager“ ersetzt; Segregation, Vertrauensbruch, Armutsschwelle, Referenzmiete den Quellen zugeschrieben; „mittig in der Spanne“ (14,9 in 14,5–17,0) korrigiert; „Grenzen des Modells“ mit Satz zu Vergleich statt Prognose, Wohnungsgröße als eigener Absatz.
+
+Offen (nur intern):
+- Herkunft von 2.085 €/m² nicht belegt: laut Eintrag unten „Rechnungshof-Schätzung“, in den Markdown-Extraktionen von Rechnungshof und BBU nicht gefunden.
+- „Kaufpreise für leerstehende Eigentumswohnungen spielen dafür keine Rolle“ ohne Beleg.
+- 65 m² „(DWE/BBU)“: Seitenangabe fehlt.
+- Gegenmodell: Zinsaufschlag +0,5 pp ist Modellannahme; das IW-Argument betrifft Entschädigung unter Marktwert, das Preset rechnet aber mit 100 %.
+
 ## 2026-10-03 — Die Quellen: eigene Seite
 
 „Die Quellen“ (Liste und Hinweis zu Modellannahmen/Referenzwerten) aus dem Footer von `zahlen.html` auf die neue Seite `quellen.html` verschoben; Sprunglink `#quellen` entfernt. Alle Footer verlinken „Quellen“ vor Impressum und Datenschutz (auch `karte.html`, `build_quellenbelege.py`). CSS `.colophon-sources` entfernt. Versionstag: `style.css?v=20261003l`.
