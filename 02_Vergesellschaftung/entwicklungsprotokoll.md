@@ -8,6 +8,12 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-03 — Die Zahlen: Positionstabelle mit Quellenangabe
+
+Tabelle der fünf Positionen zeigt jetzt Angabe der Quelle neben Entschädigungsquote und Entschädigung des Modells (Spalte „Quote (Modellannahme)“ → „Entschädigungsquote (Modell)“). Faire-Mieten-Modell und Rechnungshof-Szenarien aus der Schätzungstabelle entfernt (stehen in der Positionstabelle bzw. unter „Der Rechnungshof“); diese heißt jetzt „Weitere Schätzungen in den Quellen“. Absatz zur Senatsschätzung (29–36 / 29–39) entfernt, Werte stehen in der Tabelle.
+
+Offen: Faire-Mieten-Modell — Quelle 8–11 Mrd. €, Modell ≈ 14 Mrd. € (897 €/m², Herkunft nicht belegt). Bernt/Holm nennen keine Gesamtsumme; ≈ 24 Mrd. € beruht auf 1.538 €/m², Herkunft nicht belegt.
+
 ## 2026-10-03 — Chronologie-Titel violett; Glossar-Spalten beginnen mit Buchstaben
 
 Dokumenttitel (h3) in `quellenbelege.html` in der Farbe der Glossarbegriffe: `body.chron-page` (gesetzt in `build_quellenbelege.py`), Farbe `--gl-violet` jetzt in `:root`. Glossar: jeder Buchstabe mit seinen Einträgen in `<section class="gl-group">` (`content.js`), `break-inside:avoid`, so dass Spalten nur zwischen Buchstaben umbrechen. Versionstags: `style.css?v=20261003m`, `content.js?v=20261003c`.
