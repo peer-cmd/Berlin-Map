@@ -4,7 +4,7 @@
 window.SITE_INCLUDES = {
 "timeline": `
     <dl class="timeline">
-      <dt>2021</dt><dd>Volksentscheid „Deutsche Wohnen &amp; Co enteignen": 56,4 % Zustimmung. Der Beschluss ist rechtlich nicht bindend; er ist ein politischer Auftrag an den Senat.</dd>
+      <dt>2021</dt><dd>Volksentscheid „Deutsche Wohnen &amp; Co enteignen": 59,1 % der gültigen Stimmen. Der Beschluss ist rechtlich nicht bindend; er ist ein politischer Auftrag an den Senat.</dd>
       <dt>2021–2023</dt><dd>Die Expertenkommission „Vergesellschaftung" tagt und prüft Rechtsfragen und Kostenrahmen.</dd>
       <dt>2023</dt><dd>Abschlussbericht der Kommission. Das Mehrheitsvotum hält die Vergesellschaftung für verfassungsrechtlich möglich, auch mit einer Entschädigung unterhalb des Verkehrswerts. Ein Sondervotum (3 von 13 Mitgliedern) sieht den Verkehrswert als zwingenden Ausgangspunkt mit nur engem Spielraum für Abschläge.</dd>
       <dt>2024</dt><dd>Der Berliner Rechnungshof veröffentlicht am 20.02.2024 einen Beratungsbericht mit vier Kostenszenarien für den Landeshaushalt: 8, 11, 29 und 36 Mrd. €.</dd>

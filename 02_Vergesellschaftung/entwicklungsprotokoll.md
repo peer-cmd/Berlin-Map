@@ -12,7 +12,7 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 
 Neuer Eintrag „Volksentscheid“ unter 2021: Ergebnis 57,6 % der abgegebenen Stimmen (Expertenkommission, S. 8, amtliches Endergebnis) und 59,1 % der gültigen Stimmen (DWE 2022, S. 4; Bernt/Holm, S. 5), Wortlaut des Stimmzettels (Expertenkommission, S. 26), Einsetzung der Kommission (S. 8). Zitate am PDF geprüft.
 
-Offen: Die Zeitleiste in `content.js` nennt 56,4 % ohne Beleg.
+Ergebnis überall einheitlich als „59,1 % der gültigen Stimmen“ (Startseite, Modell, Zeitleiste in `content.js`); vorher nannten Modellseite und Zeitleiste 56,4 % ohne Beleg. Versions-Tag auf `content.js?v=20261003d`.
 
 ## 2026-10-03 — Die Zahlen: Positionen als eigene Abschnitte
 
