@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-03 — Chronologie: Einleitung und „Nicht geprüft" entfernt
+
+In `quellenbelege.md` die Einleitung und den Abschnitt „Nicht geprüft" (Wohnmarktreport 2026, DWE-Factsheet, IW-Gutachten Refinanzierungsrisiken) gelöscht. Der Prüfstatus dieser Quellen steht weiter unter „Die offenen Punkte" in `zahlen.html`.
+
 ## 2026-10-03 — Eigene Szenarien unter die Presets
 
 Die Felder „A speichern"/„B speichern" stehen jetzt direkt unter den fünf Preset-Buttons. Gruppentitel „Eigene Szenarien", „Aktuelle Einstellung sichern als:" und der Hinweis zur Vergleichstabelle sind entfernt.

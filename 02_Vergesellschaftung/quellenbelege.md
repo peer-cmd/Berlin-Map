@@ -1,7 +1,5 @@
 # Die Chronologie
 
-Alle Dokumente, auf die sich Modell und Website stützen, nach Erscheinungsdatum geordnet, das jüngste zuerst. Zu jedem Dokument: Herkunft und Auftraggeber, die verwendeten Fundstellen mit Seitenzahl und eine Einschätzung der Reichweite. Zitate sind wörtlich oder eng paraphrasiert; Seitenangaben beziehen sich auf die Seiten der PDF-Datei, außer anders vermerkt. Wie die Zahlen aus diesen Quellen zusammenpassen und wo sie sich widersprechen, steht auf der Seite [Die Zahlen](zahlen.html).
-
 ## 2026
 
 ### IW Köln und Empirica: Auswirkungen der Vergesellschaftung privater Wohnungsunternehmen in Berlin
@@ -101,17 +99,3 @@ Aufsatz in PROKLA 209, 18 S. Politikwissenschaftliche Einordnung von DWE als Tra
 ### Helge Sodan: Zur Verfassungsmäßigkeit der Sozialisierung von Immobilien privater Wohnungswirtschaftsunternehmen im Land Berlin
 
 Rechtsgutachten im Auftrag des BBU Verband Berlin-Brandenburgischer Wohnungsunternehmen e.V., 108 S. Grundlage für die amtliche Kostenschätzung des Senats (28,8–36 bzw. 30–39 Mrd. €), den Kreditbedarf und die Bestandsangabe „bis zu 243.000 Wohneinheiten" (S. 54). Vom Vermieterverband beauftragt und daher tendenziell entschädigungsfreundlich; bei der Einordnung der Zahlen von 28,8–36 Mrd. € mitzudenken.
-
-## Nicht geprüft
-
-### Berlin Hyp und CBRE: Wohnmarktreport 2026
-
-Quelle der Neuvertragsmiete von Ø 15,80 €/m² im Modell.
-
-### Initiative „Deutsche Wohnen & Co enteignen": Factsheet zum Gesetzentwurf 2025
-
-Quelle für die Gesamtsumme von 14,5–17,0 Mrd. € und die Quote von 40–60 %; belegt über das PwC-Whitepaper.
-
-### IW Köln: Gutachten zu Refinanzierungsrisiken
-
-In der Quellenliste des Modells genannt.
