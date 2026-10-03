@@ -8,6 +8,16 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-03 — Die Zahlen: „Die offenen Punkte“ entfernt
+
+Abschnitt und Sprunglink in `zahlen.html` gelöscht. Übernommen: Abbildung des DWE-Gesetzentwurfs (Sachwertverfahren, 50 % auf 2.085 €/m², 100-jährige Schuldverschreibungen als 100-jähriger Kredit) als Absatz unter „Der Rechenweg“; Wohnungsgröße 61 vs. 65 m² unter „Die Grenzen des Modells“. Fußnote 16 (DWE-Gesetzentwurf) ist jetzt 15; die alte Fn. 15 (PwC, aktuellere Mieten) entfällt.
+
+Weiter offen (nur intern):
+- DWE-Factsheet (14,5–17,0 Mrd. €, 40–60 %) liegt nicht im Projektordner; belegt nur über das PwC-Whitepaper, Fn. 1–2.
+- PwC-Whitepaper (Heim/Hackelberg): Auftraggeber auf den geprüften Seiten nicht angegeben.
+- PwC nennt für 2024/25 Bestandsmieten Ø 6,82 €/m² (landeseigene) und 8,39 €/m² (Adler/Vonovia), nach Unternehmensangaben; Modell verwendet weiter Bernt/Holm 6,29 und 7,63 €/m².
+- Neuvertragsmiete Ø 15,80 €/m² (Berlin Hyp/CBRE Wohnmarktreport 2026) nicht geprüft, Bericht nicht im Projektordner; ebenso das IW-Gutachten zu Refinanzierungsrisiken.
+
 ## 2026-10-03 — Die Zahlen: Quellen in den Footer
 
 In `zahlen.html` steht „Die Quellen“ (Liste und Hinweis zu Modellannahmen/Referenzwerten) jetzt im Footer (`.colophon-sources` innerhalb von `.colophon`), unter den Anmerkungen. Sprunglink `#quellen` bleibt. Versionstag: `style.css?v=20261003k`.
