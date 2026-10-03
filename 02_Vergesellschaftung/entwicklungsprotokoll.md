@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-03 — Startseite: Chronologie dreispaltig
+
+Die Chronologie auf der Startseite stand zweispaltig mit Datum und Akteur fett übereinander. Jetzt drei Spalten je Zeile: Datum (Mono, wie die übrigen Zeitleisten), Akteur, Inhalt; auf schmalen Bildschirmen untereinander, Akteur fett. Inhalt unverändert. Versions-Tag `style.css?v=20261003r`.
+
 ## 2026-10-03 — Die Zahlen: Spaltenbreite am Seitenende
 
 Ein überzähliges `</div>` nach dem Chart „Die fünf Positionen im Modell“ schloss `.bg-page` zu früh; „Die Grenzen des Modells“ und „Die Anmerkungen“ liefen dadurch über die volle Breite. Entfernt; alle Abschnitte stehen jetzt in derselben Spalte.
