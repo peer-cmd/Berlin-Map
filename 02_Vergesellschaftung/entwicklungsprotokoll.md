@@ -506,3 +506,7 @@ Die zwei Zeilen „A speichern"/„B speichern" sind durch ein Namensfeld und �
 ## 2026-10-03 — Zahlen: Tabelle „Weitere Schätzungen in den Quellen" entfernt
 
 Die sechs Zeilen (DWE-Frühschätzung, BBU-Schätzung, Senat 2019 mit und ohne Erwerbsnebenkosten, Kreditbedarf der Anstalt, Landeshaushalt 2019) stehen jetzt mit allen Seitenangaben unter BBU-Sodan 2019 in `quellenbelege.md` („Die Chronologie").
+
+## 2026-10-04 — Das Recht: neuer Text
+
+`recht.html` hat den neuen Text der Autorin: Art. 15 GG und Landesverfassung (Art. 23 VvB, Art. 142 GG), Verweis auf Art. 14 Abs. 3 Satz 3 und 4 GG, Mehrheit und Sondervotum, Wertermittlung (ImmoWertV, Ertragswert, Sachwertverfahren des DWE-Entwurfs nach BewG), Rechnungshof und neuer Abschnitt „Was bleibt offen?“ (Sprunglink „Offene Fragen“). Die wörtlichen Zitate von Rechnungshof und Kommission sind entfallen. Fußnoten neu nummeriert (1–11); neu belegt: Landesverfassung (Expertenkommission 2023, S. 18, Rn. 49 f.; S. 94, Rn. 344), Ansätze der Mehrheit (S. 17, Rn. 42), Sondervotum ergänzt um S. 17, Rn. 43, DWE-Gesetzentwurf 2025 (§§ 13–16, S. 8 f.).
