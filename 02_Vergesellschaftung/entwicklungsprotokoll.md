@@ -511,3 +511,11 @@ Die sechs Zeilen (DWE-Frühschätzung, BBU-Schätzung, Senat 2019 mit und ohne E
 
 `recht.html` hat einen neuen Text: Art. 15 GG und Landesverfassung (Art. 23 VvB, Art. 142 GG), Verweis auf Art. 14 Abs. 3 Satz 3 und 4 GG, Mehrheit und Sondervotum, Wertermittlung (ImmoWertV, Ertragswert, Sachwertverfahren des DWE-Entwurfs nach BewG), Rechnungshof und neuer Abschnitt „Was bleibt offen?“ (Sprunglink „Offene Fragen“). Die wörtlichen Zitate von Rechnungshof und Kommission sind entfallen. Fußnoten neu nummeriert (1–11); neu belegt: Landesverfassung (Expertenkommission 2023, S. 18, Rn. 49 f.; S. 94, Rn. 344), Ansätze der Mehrheit (S. 17, Rn. 42), Sondervotum ergänzt um S. 17, Rn. 43, DWE-Gesetzentwurf 2025 (§§ 13–16, S. 8 f.).
 Fußnote 10 präzisiert: Der Rechnungshof stützt das rechtliche Risiko auf die Rechtsprechung zu Art. 14 Abs. 3 GG (Rechnungshof Berlin 2024, S. 12 und S. 22 f.); am Text geprüft.
+
+## 2026-10-04 — Das Recht: Ansätze der Mehrheit nach Rn. 42
+
+Der Satz zu den Ansätzen der Kommissionsmehrheit folgt jetzt Expertenkommission 2023, S. 17, Rn. 42: Erträge aus gemeinwirtschaftlicher Bewirtschaftung, fiskalische Leistbarkeitsgrenzen, hypothetischer Ertragswert aus entschädigungsfrei zulässigen Regulierungen. „Zukünftige Ertragsfähigkeit“ steht so nicht in der Quelle.
+
+## 2026-10-04 — Karte: „Wohnungsmarkt“ unter „Eigentum“, Erklärsatz in der Legende
+
+In `config/maps/vergesellschaftung.json` steht die Gruppe „Wohnungsmarkt“ jetzt direkt unter „Eigentum“. Jede Ansicht in `config/sources.json` hat ein Feld `description` (DE/EN), das `web/app.js` in der Legende unter dem Titel zeigt: was die Fläche, Linie oder der Punkt darstellt, Bezugsraum und Stand. Die Sätze stützen sich nur auf Felder, Einheiten und Hinweise im Katalog. `karte/` mit `export_site.py` neu erzeugt.
