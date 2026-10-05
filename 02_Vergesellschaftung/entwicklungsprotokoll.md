@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-05 — Volle Fensterbreite: Navigation und Modell
+
+Über 1440 px Fensterbreite stand der Inhalt aller Seiten außer der Karte in einem zentrierten Rahmen von 1440 px; beim Wechsel zur Karte sprang die Navigation um den Seitenrand nach links, und auf den Modellseiten blieben links und rechts je bis zu 240 px leer. Die Obergrenze von `.app` ist entfernt: Navigation und Modellseiten nutzen die ganze Fensterbreite, die Navigation steht auf allen Seiten gleich. Der Rahmen um das Modell entfällt; Navigation und Fußzeile trennen es weiterhin mit je einer Linie. Textseiten behalten ihre Spalte von 820 px; das Glossar zeigt auf breiten Fenstern bis zu vier Spalten.
+
 ## 2026-10-05 — Karte mobil: Ebenen und Legende in einer Leiste am unteren Rand
 
 Bis 600 px Breite verdeckten Ebenen-Panel (oben) und Legende (unten) rund 70 % der Karte. Jetzt teilen sich beide eine Leiste am unteren Rand mit den Reitern „Ebenen" und „Legende". Geschlossen zeigt sie je sichtbarer Ebene eine Zeile mit Titel und Farbskala (niedrigster und höchster Wert); ein Tipp darauf oder auf einen Reiter öffnet den Reiter auf halber Kartenhöhe, ▾ oder ein Tipp in die Karte schließt ihn. Maßstab und Quellenvermerk rücken über die Leiste. Am Desktop und in der eingebetteten Karte (`embed=1`) unverändert. Code in `web/app.js` und `web/style.css`, mit `scripts/export_site.py` nach `karte/` kopiert.
