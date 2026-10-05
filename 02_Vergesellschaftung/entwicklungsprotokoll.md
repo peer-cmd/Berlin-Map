@@ -8,6 +8,12 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-05 — Mobil: Menü-Schaltfläche, Regler als Seitenleiste
+
+Bis 860 px Breite steht oben eine Zeile „Menü" mit dem Namen der aktuellen Seite; ein Tipp öffnet die sieben Links untereinander. Vorher lief die Navigation über den Rand, „Glossar" und „Karte" waren auf dem Telefon nicht erreichbar. Die Zeile bleibt beim Scrollen oben (`overflow-x:clip` statt `hidden`, damit `position:sticky` wirkt).
+
+Modellseiten bis 1160 px: Die Ergebnisse stehen allein auf der Seite; „Parameter" (rechts in der Navigationszeile) schiebt die Regler von links als Seitenleiste herein, „Schließen", ein Tipp daneben oder Esc schließt sie. Behoben: Auf `modell-kompakt.html` blieb das zweispaltige Raster auch auf dem Telefon bestehen (`.layout.no-bg` überschrieb die Media-Query), die Ergebnisse waren 56 px breit. Unter 600 px: Diagramme im Seitenverhältnis 1,8 statt 4,3 (`model-calc.js`), Kennzahlen einspaltig, größere Preset-Schaltflächen und Schieberegler. Neue Datei `nav.js`, auf allen Seiten geladen.
+
 ## 2026-10-03 — Die Zahlen: Tabellen einheitlich
 
 Alle Tabellen beginnen mit einer Bezeichnung (Position, Szenario, Posten), dann „Angabe der Quelle“, rechts die Modellwerte („… im Modell“) mit Einheit im Kopf und reinen Zahlen in den Zellen; Näherungen mit „≈“. Bestand und Mieten jetzt je Position in Modellreihenfolge (Bestand mit BBU/Sodan als Vergleichszeile, Spalte „Wohnungen im Modell“). Neue Zeile Rechnungshof in „Die Mieten“: Ausgangsmiete 6,71 €/m² aus `model-calc.js`, als „Modellannahme, Beleg fehlt“ markiert — offen. Keine neuen Quellenzahlen; Fußnotennummern unverändert.

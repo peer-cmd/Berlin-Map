@@ -319,6 +319,8 @@
   };
   Chart.register(vlinePlugin);
   Chart.defaults.color = '#14171A';
+  // Phones: the canvas height attributes (70/80) give very flat charts at ~340 px width.
+  if (window.matchMedia('(max-width:600px)').matches) Chart.defaults.aspectRatio = 1.8;
 
   function initCharts(){
     const ctx1 = $('chartCashflow').getContext('2d');
