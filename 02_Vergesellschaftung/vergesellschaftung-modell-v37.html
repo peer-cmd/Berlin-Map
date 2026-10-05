@@ -6,7 +6,7 @@
 <title>Kosten- und Finanzierungsmodell der Vergesellschaftung Berlin</title>
 <link rel="stylesheet" href="fonts/fonts.css">
 <script src="vendor/chart.umd.js"></script>
-<link rel="stylesheet" href="style.css?v=20261003q">
+<link rel="stylesheet" href="style.css?v=20261005">
 </head>
 <body class="model-page">
 <div class="app">
@@ -250,19 +250,14 @@
 
         <div class="stats">
           <div class="stat">
-            <div class="label"><span data-term="Entschädigungsquote">Entschädigungsquote</span></div>
+            <div class="label">Kaufpreis</div>
             <div class="value" id="s-kaufpreis">–</div>
             <div class="sub" id="s-kaufpreis-sub">–</div>
           </div>
           <div class="stat">
-            <div class="label"><span data-term="Break-even">Break-even</span></div>
-            <div class="value" id="s-breakeven">–</div>
-            <div class="sub">Jahr, kum. Cashflow &gt; 0</div>
-          </div>
-          <div class="stat">
-            <div class="label"><span data-term="Nettoergebnis">Nettoergebnis</span></div>
+            <div class="label"><span data-term="Nettoergebnis">Nettoergebnis</span> <span id="s-netto-label">nach 50 Jahren</span></div>
             <div class="value" id="s-netto">–</div>
-            <div class="sub" id="s-netto-sub">nach Horizont</div>
+            <div class="sub" id="s-netto-sub">–</div>
           </div>
         </div>
       </section>
@@ -273,7 +268,7 @@
         <div class="panel-head">
           <h2>Der <span data-term="Cashflow">Cashflow</span> pro Jahr</h2>
         </div>
-        <p class="panel-sub">Jährlicher Cashflow nach Schuldendienst. Zeigt, in welchem Jahr die laufende Bewirtschaftung in den Überschuss dreht.</p>
+        <p class="panel-sub">Mieteinnahmen minus Bewirtschaftung und Kreditraten, je Jahr. Ab dem Jahr, in dem die Balken positiv werden, trägt sich der Bestand selbst.</p>
         <canvas id="chartCashflow" height="70"></canvas>
       </div>
 
@@ -281,7 +276,7 @@
         <div class="panel-head">
           <h2>Der Cashflow kumuliert</h2>
         </div>
-        <p class="panel-sub">Kumulierter Cashflow seit Übernahme, inkl. Einmalkosten in Jahr 1; der Endwert entspricht dem Nettoergebnis oben. Solange der Kredit läuft, sinkt die Kurve; nach der Tilgung entfällt der Schuldendienst und sie steigt. Ob sie die Nulllinie erreicht (Break-even), hängt vom Horizont ab.</p>
+        <p class="panel-sub">Summe aller Jahresergebnisse seit der Übernahme, einschließlich der Einmalkosten. Die Kurve sinkt, solange Kreditraten anfallen, und steigt nach der Tilgung; ihr Endwert ist das Nettoergebnis oben.</p>
         <canvas id="chartCumulative" height="70"></canvas>
       </div>
 
@@ -289,7 +284,7 @@
         <div class="panel-head">
           <h2>Die <span data-term="Restschuld">Restschuld</span></h2>
         </div>
-        <p class="panel-sub">Verbleibende Kreditsumme über die Zeit. Der Knick markiert das Ende der Zinsbindung, danach Anschlussfinanzierung zum Aufschlagszins.</p>
+        <p class="panel-sub">Verbleibender Kredit. Am Knick endet die Zinsbindung; danach gilt der höhere Anschlusszins.</p>
         <canvas id="chartBalance" height="70"></canvas>
       </div>
 
@@ -297,7 +292,7 @@
         <div class="panel-head">
           <h2>Die Kapitalposition Berlins</h2>
         </div>
-        <p class="panel-sub">Verkehrswert des gehaltenen Bestands, abzüglich Restschuld, zuzüglich kumuliertem Cashflow aus dem laufenden Betrieb (inkl. Kosten für Neubau/Sozialumwandlung).</p>
+        <p class="panel-sub">Was Berlin besitzt, minus was es schuldet: Verkehrswert des Bestands abzüglich Restschuld, zuzüglich der bisherigen Überschüsse (nach Kosten für Neubau und Sozialumwandlung). Über null ist der Bestand mehr wert als die verbleibenden Schulden.</p>
         <canvas id="chartCapital" height="70"></canvas>
         <div class="legend">
           <span><i class="swatch" style="background:var(--blue-light)"></i>Vermögenswert Bestand</span>
@@ -313,7 +308,7 @@
         <div class="panel-head">
           <h2>Die Mieten</h2>
         </div>
-        <p class="panel-sub">Ø Nettokaltmiete im übernommenen Bestand (Modell) im Vergleich zu freiem Markt, landeseigenen Gesellschaften, Verbraucherpreisen und Haushaltseinkommen.</p>
+        <p class="panel-sub">Durchschnittliche Nettokaltmiete im übernommenen Bestand, verglichen mit Markt- und LWU-Mieten, Verbraucherpreisen und Haushaltseinkommen.</p>
         <canvas id="chartRent" height="70"></canvas>
         <div class="legend">
           <span><i class="swatch" style="background:#E0435C"></i>Freier Markt</span>
@@ -328,7 +323,7 @@
         <div class="panel-head">
           <h2 id="stock-title">Der Bestand</h2>
         </div>
-        <p class="panel-sub" id="stock-sub">Entwicklung des Wohnungsbestands durch Reinvestition des jährlichen Cashflow-Überschusses gemäß den Einstellungen unter „Der Überschuss“.</p>
+        <p class="panel-sub" id="stock-sub">Zahl der Wohnungen, wenn die Überschüsse in Neubau fließen (Einstellung unter „Der Überschuss“).</p>
         <canvas id="chartStock" height="70"></canvas>
       </div>
 
@@ -349,7 +344,7 @@
         <div class="panel-head">
           <h2>Die <span data-term="Mieterersparnis">Ersparnis der Mieter</span></h2>
         </div>
-        <p class="panel-sub">Kumulierte Differenz zwischen Modellmiete und gezahlter Sozialmiete, multipliziert mit der Zahl der Wohnungen mit Sozialmiete.</p>
+        <p class="panel-sub">Was Mieter in Sozialwohnungen zusammen weniger zahlen als die Modellmiete, aufsummiert über die Jahre.</p>
         <canvas id="chartTenantSavings" height="70"></canvas>
       </div>
 
@@ -375,12 +370,12 @@
         </div>
         <div class="sens-block" id="rateSensWrap">
           <div class="panel-head"><h2>Das Ergebnis je <span data-term="Zinssatz">Zinssatz</span></h2></div>
-          <p class="panel-sub">Nettoergebnis nach Horizont (links, Mrd €) und Break-even-Jahr (rechts). Zum Zinssatz kommt die Risikoprämie, nach Ende der Zinsbindung zusätzlich der Zinsaufschlag.</p>
+          <p class="panel-sub">Nettoergebnis über den Betrachtungszeitraum (linke Achse, Mrd €) und Break-even-Jahr (rechte Achse), wenn nur dieser Wert verändert wird. Zum Zinssatz kommt die Risikoprämie, nach Ende der Zinsbindung zusätzlich der Zinsaufschlag.</p>
           <canvas id="chartRateSens" height="70"></canvas>
         </div>
         <div class="sens-block">
           <div class="panel-head"><h2>Das Ergebnis je <span data-term="Entschädigungsquote">Entschädigungsquote</span></h2></div>
-          <p class="panel-sub">Nettoergebnis nach Horizont (links, Mrd €) und Break-even-Jahr (rechts).</p>
+          <p class="panel-sub">Nettoergebnis über den Betrachtungszeitraum (linke Achse, Mrd €) und Break-even-Jahr (rechte Achse), wenn nur dieser Wert verändert wird.</p>
           <canvas id="chartCompSens" height="70"></canvas>
         </div>
       </details>
@@ -389,7 +384,7 @@
         <div class="panel-head">
           <h2>Der Szenario-Vergleich</h2>
         </div>
-        <p class="panel-sub">Kaufpreis und Nettoergebnis der fünf Positionen und der gespeicherten Szenarien, alle über den eingestellten Betrachtungszeitraum. Die Tabelle stellt die aktuelle Einstellung den gespeicherten Szenarien gegenüber.</p>
+        <p class="panel-sub">Kaufpreis und Nettoergebnis der fünf Positionen und Ihrer gespeicherten Szenarien über den Betrachtungszeitraum.</p>
         <canvas id="chartScenarios" height="80"></canvas>
         <div class="legend">
           <span><i class="swatch" style="background:var(--blue-light)"></i>Kaufpreis</span>
@@ -497,7 +492,7 @@
 
 </div>
 
-<script src="model-calc.js?v=20261003j"></script>
+<script src="model-calc.js?v=20261005"></script>
 <script src="content.js?v=20261003d"></script>
 <script src="include.js"></script>
 <script src="tooltips.js?v=20261003a"></script>

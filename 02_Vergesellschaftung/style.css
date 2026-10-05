@@ -450,10 +450,10 @@ select{
 /* key figures on two lines: label and value on the first, sub on the second */
 .summary .stat .label, .summary .stat .value{display:inline;margin:0;}
 .summary .stat .value{margin-left:0.4em;}
-.summary .stats{grid-template-columns:repeat(3,max-content);justify-content:space-between;column-gap:20px;}
+.summary .stats{grid-template-columns:repeat(2,max-content);justify-content:space-between;column-gap:20px;}
 .summary .stat{white-space:nowrap;}
 .summary{container-type:inline-size;}
-@container (max-width:700px){.summary .stats{grid-template-columns:1fr;row-gap:8px;}.summary .stat{white-space:normal;}}
+@container (max-width:520px){.summary .stats{grid-template-columns:1fr;row-gap:8px;}.summary .stat{white-space:normal;}}
 
 /* ---------- Verdict banner ---------- */
 .verdict{

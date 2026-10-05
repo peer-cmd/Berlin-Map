@@ -519,3 +519,7 @@ Der Satz zu den Ansätzen der Kommissionsmehrheit folgt jetzt Expertenkommission
 ## 2026-10-04 — Karte: „Wohnungsmarkt“ unter „Eigentum“, Erklärsatz in der Legende
 
 In `config/maps/vergesellschaftung.json` steht die Gruppe „Wohnungsmarkt“ jetzt direkt unter „Eigentum“. Jede Ansicht in `config/sources.json` hat ein Feld `description` (DE/EN), das `web/app.js` in der Legende unter dem Titel zeigt: was die Fläche, Linie oder der Punkt darstellt, Bezugsraum und Stand. Die Sätze stützen sich nur auf Felder, Einheiten und Hinweise im Katalog. `karte/` mit `export_site.py` neu erzeugt.
+
+## 2026-10-05 — Modell: zwei Kennzahlen statt drei, Diagrammtexte gekürzt
+
+Oben stehen nur noch „Kaufpreis“ (Gesamtsumme, darunter die Quote vom Verkehrswert) und „Nettoergebnis nach n Jahren“ (darunter „Break-even in Jahr n“ oder „kein Break-even im Zeitraum“), beide mit einer Nachkommastelle. Die eigene Break-even-Kachel und der Preis je m² entfallen; die Quote steht weiter am Regler. Die Kennzahlen stehen bis 520 px Breite nebeneinander. Die Erläuterungen unter den Diagrammen sind kürzer und sagen, worauf zu achten ist; „Horizont“ heißt dort „Betrachtungszeitraum“, „Schuldendienst“ „Kreditraten“. Die Sensitivitätsdiagramme behalten die rechte Achse mit dem Break-even-Jahr. Versions-Tag von `style.css` und `model-calc.js` auf `20261005`.
