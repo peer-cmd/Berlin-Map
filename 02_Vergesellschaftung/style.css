@@ -25,7 +25,7 @@ body{
   line-height:1.45;
   -webkit-font-smoothing:antialiased;
 }
-.app{max-width:1440px;margin:0 auto;padding:0 0 64px;}
+.app{padding:0 0 64px;} /* full window width; text pages keep their column via .bg-page */
 
 /* ---------- Site nav (shared across all pages) ---------- */
 .site-nav{
@@ -212,7 +212,6 @@ div.glossary{columns:2 280px;column-gap:32px;column-rule:1px solid var(--line);}
   grid-template-columns:296px 328px 1fr;
   align-items:start;
   min-width:0;
-  border:1px solid var(--line-strong);
 }
 .layout > *{ min-width:0; }
 .layout.no-bg{grid-template-columns:328px 1fr;}
@@ -641,7 +640,6 @@ td:first-child,th:first-child{text-align:left;color:var(--muted);}
     overflow:visible;
     padding:0;
   }
-  .app{max-width:none;}
   .masthead{border-bottom:1px solid var(--ink);}
   .panel{break-inside:avoid;border-color:#999;}
   .stats{break-inside:avoid;}
