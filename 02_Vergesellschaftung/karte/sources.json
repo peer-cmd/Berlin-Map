@@ -222,6 +222,10 @@
       "de": "Einzeleigentümer/innen (natürliche Personen)",
       "en": "Private individuals"
      },
+     "description": {
+      "de": "Anteil der Wohn- und Mischfläche je Planungsraum, deren Flurstücke Einzeleigentümer/innen gehören (einschließlich Wohnungseigentümergemeinschaften).",
+      "en": "Share of residential and mixed-use land per planning area whose parcels belong to private individuals (including condominium owners)."
+     },
      "style": {
       "kind": "step",
       "property": "nat_pers",
@@ -242,6 +246,10 @@
      "label": {
       "de": "Juristische Personen des privaten Rechts",
       "en": "Legal persons under private law"
+     },
+     "description": {
+      "de": "Anteil der Wohn- und Mischfläche je Planungsraum, deren Flurstücke juristischen Personen des privaten Rechts gehören.",
+      "en": "Share of residential and mixed-use land per planning area whose parcels belong to legal persons under private law."
      },
      "style": {
       "kind": "step",
@@ -264,6 +272,10 @@
       "de": "Juristische Personen ohne städt. WBG und Genossenschaften",
       "en": "Legal persons excl. municipal companies and cooperatives"
      },
+     "description": {
+      "de": "Anteil der Wohn- und Mischfläche je Planungsraum, deren Flurstücke juristischen Personen des privaten Rechts gehören, ohne städtische Wohnungsbaugesellschaften und Genossenschaften.",
+      "en": "Share of residential and mixed-use land per planning area owned by legal persons under private law, excluding municipal companies and cooperatives."
+     },
      "style": {
       "kind": "step",
       "property": "jp_ohn_swg",
@@ -284,6 +296,10 @@
      "label": {
       "de": "Städtische Wohnungsbaugesellschaften",
       "en": "Municipal housing companies"
+     },
+     "description": {
+      "de": "Anteil der Wohn- und Mischfläche je Planungsraum, deren Flurstücke städtischen Wohnungsbaugesellschaften gehören.",
+      "en": "Share of residential and mixed-use land per planning area owned by municipal housing companies."
      },
      "style": {
       "kind": "step",
@@ -306,6 +322,10 @@
       "de": "Genossenschaften",
       "en": "Cooperatives"
      },
+     "description": {
+      "de": "Anteil der Wohn- und Mischfläche je Planungsraum, deren Flurstücke Genossenschaften gehören.",
+      "en": "Share of residential and mixed-use land per planning area owned by cooperatives."
+     },
      "style": {
       "kind": "step",
       "property": "genossen",
@@ -326,6 +346,10 @@
      "label": {
       "de": "Gemeinwohlorientierte Eigentümer/innen",
       "en": "Public-interest owners"
+     },
+     "description": {
+      "de": "Anteil der Wohn- und Mischfläche je Planungsraum, deren Flurstücke gemeinwohlorientierten Eigentümer/innen gehören.",
+      "en": "Share of residential and mixed-use land per planning area owned by public-interest owners."
      },
      "style": {
       "kind": "step",
@@ -399,9 +423,539 @@
       "de": "Bestand",
       "en": "Stock"
      },
+     "description": {
+      "de": "Flurstücke mit Wohnungsbestand der landeseigenen Wohnungsunternehmen.",
+      "en": "Parcels with housing stock of the state-owned housing companies."
+     },
      "style": {
       "kind": "single",
       "color": "violet"
+     }
+    }
+   }
+  },
+  {
+   "id": "wohnatlas2022",
+   "enabled": true,
+   "title": {
+    "de": "Wohnatlas Berlin 2022",
+    "en": "Berlin housing atlas 2022"
+   },
+   "unit_label": {
+    "de": "Prognoseräume",
+    "en": "forecast areas"
+   },
+   "geometry": "polygon",
+   "source": {
+    "type": "wfs",
+    "base_url": "https://gdi.berlin.de/services/wfs/wa_01_angebotsmieten",
+    "version": "2.0.0",
+    "output_format": "application/json",
+    "srs_name": "EPSG:4326",
+    "parts": [
+     {
+      "base_url": "https://gdi.berlin.de/services/wfs/wa_01_angebotsmieten",
+      "type_name": "wa_01_angebotsmieten:wa_01_2022"
+     },
+     {
+      "base_url": "https://gdi.berlin.de/services/wfs/wa_04_anteil_sozwohng",
+      "type_name": "wa_04_anteil_sozwohng:wa_04_2022"
+     },
+     {
+      "base_url": "https://gdi.berlin.de/services/wfs/wa_05_anteil_staedtwbg",
+      "type_name": "wa_05_anteil_staedtwbg:wa_05_2022"
+     },
+     {
+      "base_url": "https://gdi.berlin.de/services/wfs/wa_07_whg_umwandlungp",
+      "type_name": "wa_07_whg_umwandlungp:wa_07_2017_22"
+     },
+     {
+      "base_url": "https://gdi.berlin.de/services/wfs/wa_10_whg_verkaufp",
+      "type_name": "wa_10_whg_verkaufp:wa_10_2017_22"
+     }
+    ],
+    "dataset_page": "https://gdi.berlin.de/services/wfs/wa_01_angebotsmieten?request=GetCapabilities&service=WFS"
+   },
+   "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+   "license": {
+    "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+    "id": "dl-de-zero-2.0",
+    "url": "https://www.govdata.de/dl-de/zero-2-0"
+   },
+   "note": {
+    "de": "Jahrgang 2022; Umwandlungen und Verkäufe als Summe 2017–2022. 58 Prognoseräume (LOR 2021).",
+    "en": "Year 2022; conversions and sales summed over 2017–2022. 58 forecast areas (LOR 2021)."
+   },
+   "process": {
+    "id_field": "prognoseraum_nummer",
+    "combine": {
+     "mode": "join",
+     "key": "prognoseraum_nummer"
+    },
+    "alias": {
+     "pgr_id": "prognoseraum_nummer"
+    },
+    "precision": 5,
+    "simplify_m": 2
+   },
+   "fields": [
+    {
+     "key": "prognoseraum_bezeichnung",
+     "label": {
+      "de": "Prognoseraum",
+      "en": "Forecast area"
+     }
+    },
+    {
+     "key": "bezirk",
+     "label": {
+      "de": "Bezirk",
+      "en": "District"
+     }
+    },
+    {
+     "key": "angebotsmieten",
+     "label": {
+      "de": "Angebotsmiete (netto kalt)",
+      "en": "Asking rent (net, cold)"
+     },
+     "format": "number",
+     "unit": "€/m²"
+    },
+    {
+     "key": "anteil_sozwohng",
+     "label": {
+      "de": "Anteil Sozialmietwohnungen",
+      "en": "Share of social housing"
+     },
+     "format": "number",
+     "unit": "%"
+    },
+    {
+     "key": "anteil_staedtwbg",
+     "label": {
+      "de": "Anteil städtische Wohnungsbaugesellschaften",
+      "en": "Share of municipal companies"
+     },
+     "format": "number",
+     "unit": "%"
+    },
+    {
+     "key": "wohnung_umwandp",
+     "label": {
+      "de": "Umwandlungen in Eigentumswohnungen je 1.000 Wohnungen (2017–2022)",
+      "en": "Conversions to condominiums per 1,000 dwellings (2017–2022)"
+     },
+     "format": "number"
+    },
+    {
+     "key": "wohnungverkaufp",
+     "label": {
+      "de": "Wohnungsverkäufe je 1.000 Wohnungen (2017–2022)",
+      "en": "Flat sales per 1,000 dwellings (2017–2022)"
+     },
+     "format": "number"
+    },
+    {
+     "key": "prognoseraum_nummer",
+     "label": {
+      "de": "Prognoseraum-Nr.",
+      "en": "Forecast area no."
+     }
+    }
+   ],
+   "popup_title": "prognoseraum_bezeichnung",
+   "views": {
+    "angebotsmieten": {
+     "label": {
+      "de": "Angebotsmiete",
+      "en": "Asking rent"
+     },
+     "description": {
+      "de": "Angebotsmiete netto kalt in €/m² je Prognoseraum, Jahrgang 2022.",
+      "en": "Asking rent (net, cold) in €/m² per forecast area, year 2022."
+     },
+     "style": {
+      "kind": "step",
+      "property": "angebotsmieten",
+      "unit": "€/m² netto kalt",
+      "breaks": [
+       9,
+       10,
+       11,
+       12,
+       13,
+       14,
+       16,
+       18
+      ],
+      "colors": "earth"
+     }
+    },
+    "anteil_sozwohng": {
+     "label": {
+      "de": "Anteil Sozialmietwohnungen",
+      "en": "Share of social housing"
+     },
+     "description": {
+      "de": "Anteil der Sozialmietwohnungen je Prognoseraum in %, Jahrgang 2022.",
+      "en": "Share of social rental housing per forecast area in %, year 2022."
+     },
+     "style": {
+      "kind": "step",
+      "property": "anteil_sozwohng",
+      "unit": "%",
+      "breaks": [
+       1,
+       2,
+       4,
+       6,
+       8,
+       10,
+       15
+      ],
+      "colors": "plum"
+     }
+    },
+    "anteil_staedtwbg": {
+     "label": {
+      "de": "Anteil städt. Wohnungsbaugesellschaften",
+      "en": "Share of municipal companies"
+     },
+     "description": {
+      "de": "Anteil der städtischen Wohnungsbaugesellschaften je Prognoseraum in %, Jahrgang 2022.",
+      "en": "Share of municipal housing companies per forecast area in %, year 2022."
+     },
+     "style": {
+      "kind": "step",
+      "property": "anteil_staedtwbg",
+      "unit": "%",
+      "breaks": [
+       5,
+       10,
+       15,
+       20,
+       30,
+       40,
+       50
+      ],
+      "colors": "violet"
+     }
+    },
+    "wohnung_umwandp": {
+     "label": {
+      "de": "Umwandlungen 2017–2022",
+      "en": "Conversions 2017–2022"
+     },
+     "description": {
+      "de": "Umwandlungen in Eigentumswohnungen je 1.000 Wohnungen je Prognoseraum, Summe 2017–2022.",
+      "en": "Conversions to condominiums per 1,000 dwellings per forecast area, total 2017–2022."
+     },
+     "style": {
+      "kind": "step",
+      "property": "wohnung_umwandp",
+      "unit": "je 1.000 Wohnungen",
+      "breaks": [
+       5,
+       10,
+       20,
+       40,
+       60,
+       80,
+       100
+      ],
+      "colors": "plum"
+     }
+    },
+    "wohnungverkaufp": {
+     "label": {
+      "de": "Wohnungsverkäufe 2017–2022",
+      "en": "Flat sales 2017–2022"
+     },
+     "description": {
+      "de": "Wohnungsverkäufe je 1.000 Wohnungen je Prognoseraum, Summe 2017–2022.",
+      "en": "Flat sales per 1,000 dwellings per forecast area, total 2017–2022."
+     },
+     "style": {
+      "kind": "step",
+      "property": "wohnungverkaufp",
+      "unit": "je 1.000 Wohnungen",
+      "breaks": [
+       10,
+       20,
+       30,
+       40,
+       50,
+       60,
+       70
+      ],
+      "colors": "plum"
+     }
+    }
+   }
+  },
+  {
+   "id": "brw2026",
+   "enabled": true,
+   "title": {
+    "de": "Bodenrichtwerte 01.01.2026",
+    "en": "Standard land values 01.01.2026"
+   },
+   "unit_label": {
+    "de": "Zonen",
+    "en": "zones"
+   },
+   "geometry": "polygon",
+   "source": {
+    "type": "wfs",
+    "base_url": "https://gdi.berlin.de/services/wfs/brw2026",
+    "version": "2.0.0",
+    "type_name": "brw2026:brw2026_vector",
+    "output_format": "application/json",
+    "srs_name": "EPSG:4326",
+    "dataset_page": "https://daten.berlin.de/datensaetze/bodenrichtwerte-01-01-2026-wfs-0933be9c"
+   },
+   "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+   "license": {
+    "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+    "id": "dl-de-zero-2.0",
+    "url": "https://www.govdata.de/dl-de/zero-2-0"
+   },
+   "process": {
+    "id_field": "brwid",
+    "sort": "area_desc"
+   },
+   "fields": [
+    {
+     "key": "brw",
+     "label": {
+      "de": "Bodenrichtwert",
+      "en": "Standard land value"
+     },
+     "format": "number",
+     "unit": "€/m²"
+    },
+    {
+     "key": "stichtag",
+     "label": {
+      "de": "Stichtag",
+      "en": "Reference date"
+     },
+     "format": "date"
+    },
+    {
+     "key": "nutzung",
+     "label": {
+      "de": "Art der Nutzung",
+      "en": "Use"
+     }
+    },
+    {
+     "key": "gfz",
+     "label": {
+      "de": "Wertrelevante GFZ",
+      "en": "Floor-area ratio (GFZ)"
+     },
+     "format": "number"
+    },
+    {
+     "key": "bezirk",
+     "label": {
+      "de": "Bezirk",
+      "en": "District"
+     }
+    },
+    {
+     "key": "brwid",
+     "label": {
+      "de": "Bodenrichtwertnummer",
+      "en": "Zone no."
+     }
+    },
+    {
+     "key": "beitragszustand",
+     "label": {
+      "de": "Beitragsrechtlicher Zustand",
+      "en": "Contribution status"
+     }
+    },
+    {
+     "key": "anwert",
+     "label": {
+      "de": "Sanierungs-/Entwicklungszusatz",
+      "en": "Redevelopment supplement"
+     }
+    },
+    {
+     "key": "verfahrensart",
+     "label": {
+      "de": "Verfahrensart",
+      "en": "Procedure"
+     }
+    },
+    {
+     "key": "lumnum",
+     "label": {
+      "de": "GFZ-Umrechnungskoeffizienten",
+      "en": "GFZ conversion coefficients"
+     },
+     "format": "link",
+     "link_text": "Gutachterausschuss"
+    }
+   ],
+   "popup_title": "brw",
+   "views": {
+    "brw": {
+     "label": {
+      "de": "Bodenrichtwert",
+      "en": "Land value"
+     },
+     "description": {
+      "de": "Bodenrichtwert in €/m² je Bodenrichtwertzone, Stichtag 01.01.2026.",
+      "en": "Standard land value in €/m² per zone, reference date 01.01.2026."
+     },
+     "style": {
+      "kind": "step",
+      "property": "brw",
+      "unit": "€/m²",
+      "breaks": [
+       10,
+       100,
+       250,
+       500,
+       1000,
+       2500,
+       5000,
+       10000
+      ],
+      "colors": "earth"
+     }
+    },
+    "nutzung": {
+     "label": {
+      "de": "Art der Nutzung",
+      "en": "Use"
+     },
+     "description": {
+      "de": "Art der Nutzung je Bodenrichtwertzone, Stichtag 01.01.2026.",
+      "en": "Type of use per land value zone, reference date 01.01.2026."
+     },
+     "style": {
+      "kind": "categorical",
+      "property": "nutzung",
+      "opacity": 0.92,
+      "categories": [
+       {
+        "label": {
+         "de": "Wohnen",
+         "en": "Residential"
+        },
+        "color": "pink",
+        "values": [
+         "W - Wohngebiet",
+         "W-EFH - Wohnbaufläche - Ein- und Zweifamilienhäuser"
+        ]
+       },
+       {
+        "label": {
+         "de": "Kern- und Mischgebiet",
+         "en": "Core and mixed use"
+        },
+        "color": "plum",
+        "values": [
+         "M1 - Kerngebiet",
+         "M2 - Mischgebiet"
+        ]
+       },
+       {
+        "label": {
+         "de": "Gewerbe",
+         "en": "Commercial"
+        },
+        "color": "violet",
+        "values": [
+         "G - Gewerbe",
+         "G - Gewerbliche Baufläche",
+         "Gp - Gewerbe produzierend",
+         "G-GD - Gewerbliche Baufläche - Handel und dienstleistungsorientiertes Gewerbe",
+         "G-FZT - Gewerbliche Baufläche - Freizeit und Touristik"
+        ]
+       },
+       {
+        "label": {
+         "de": "Gemeinbedarf",
+         "en": "Public facilities"
+        },
+        "color": "orange",
+        "values": [
+         "GB - Gemeinbedarf"
+        ]
+       },
+       {
+        "label": {
+         "de": "Sonderbauflächen",
+         "en": "Special building land"
+        },
+        "color": "yellow",
+        "values": [
+         "S-WO - Sonderbaufläche - Wochenendhäuser",
+         "S-FZT - Sonderbaufläche - Freizeit und Touristik"
+        ]
+       },
+       {
+        "label": {
+         "de": "Sonstige Flächen",
+         "en": "Other land"
+        },
+        "color": "olive",
+        "values": [
+         "SF-SN - Sonstige Flächen - Sondernutzungsfläche",
+         "SF-KGA - Sonstige Flächen - Kleingartenfläche",
+         "SF-FH - Sonstige Flächen - Friedhof",
+         "SF-SPO - Sonstige Flächen - Sportfläche",
+         "SF-CA - Sonstige Flächen - Campingplatz"
+        ]
+       },
+       {
+        "label": {
+         "de": "Land- und Forstwirtschaft",
+         "en": "Agriculture and forestry"
+        },
+        "color": "green",
+        "values": [
+         "LF-F - Flächen der Land-o. Forstwirtschaft - forstwirtschaftliche Fläche",
+         "LF-A - Flächen der Land-o. Forstwirtschaft - Acker",
+         "LF-GR - Flächen der Land-o. Forstwirtschaft - Grünland",
+         "LF-EGA - Flächen der Land-o. Forstwirtschaft - Erwerbsgartenbaufläche"
+        ]
+       }
+      ],
+      "other_color": "grey"
+     }
+    },
+    "gfz": {
+     "label": {
+      "de": "Wertrelevante GFZ",
+      "en": "Floor-area ratio (GFZ)"
+     },
+     "description": {
+      "de": "Wertrelevante Geschossflächenzahl je Bodenrichtwertzone, Stichtag 01.01.2026.",
+      "en": "Value-relevant floor-area ratio per land value zone, reference date 01.01.2026."
+     },
+     "style": {
+      "kind": "step",
+      "property": "gfz",
+      "unit": "GFZ",
+      "breaks": [
+       0.4,
+       0.8,
+       1.2,
+       2.0,
+       3.0,
+       4.5
+      ],
+      "colors": "earth7",
+      "missing_color": "none"
      }
     }
    }
@@ -524,6 +1078,10 @@
      "label": {
       "de": "Erhaltungsziel",
       "en": "Purpose"
+     },
+     "description": {
+      "de": "Umrisse der Gebiete mit Erhaltungsverordnung nach § 172 BauGB, nach Erhaltungsziel.",
+      "en": "Outlines of areas with a preservation ordinance under § 172 BauGB, by purpose."
      },
      "style": {
       "kind": "categorical",
@@ -653,6 +1211,10 @@
       "de": "Geltungsbereich",
       "en": "Area"
      },
+     "description": {
+      "de": "Umrisse der Gebiete mit Vorkaufsrechtsverordnung nach § 25 BauGB.",
+      "en": "Outlines of areas with a pre-emption rights ordinance under § 25 BauGB."
+     },
      "style": {
       "kind": "single",
       "color": "orange"
@@ -772,6 +1334,10 @@
      "label": {
       "de": "Status",
       "en": "Status"
+     },
+     "description": {
+      "de": "Umrisse der Sanierungsgebiete, nach Status.",
+      "en": "Outlines of redevelopment areas, by status."
      },
      "style": {
       "kind": "categorical",
@@ -909,6 +1475,10 @@
       "de": "Status",
       "en": "Status"
      },
+     "description": {
+      "de": "Umrisse der Entwicklungsbereiche nach § 165 BauGB, nach Status.",
+      "en": "Outlines of development areas under § 165 BauGB, by status."
+     },
      "style": {
       "kind": "categorical",
       "property": "status",
@@ -1002,6 +1572,10 @@
      "label": {
       "de": "Programmkulisse",
       "en": "Programme"
+     },
+     "description": {
+      "de": "Umrisse der Großsiedlungen, nach Programmkulisse.",
+      "en": "Outlines of large housing estates, by programme."
      },
      "style": {
       "kind": "categorical",
@@ -1142,6 +1716,10 @@
       "de": "Fertigstellungshorizont",
       "en": "Completion horizon"
      },
+     "description": {
+      "de": "Standorte mit Wohnungsbaupotenzial nach StEP Wohnen 2040; Farbe nach Fertigstellungshorizont, Größe nach Wohneinheiten-Klasse.",
+      "en": "Housing potential sites from StEP Housing 2040; colour by completion horizon, size by dwelling class."
+     },
      "style": {
       "kind": "categorical",
       "property": "leg_fertig",
@@ -1194,6 +1772,10 @@
      "label": {
       "de": "Gemeinwohlorientierung",
       "en": "Public-interest orientation"
+     },
+     "description": {
+      "de": "Standorte mit Wohnungsbaupotenzial nach StEP Wohnen 2040; Farbe nach Gemeinwohlorientierung, Größe nach Wohneinheiten-Klasse.",
+      "en": "Housing potential sites from StEP Housing 2040; colour by public-interest orientation, size by dwelling class."
      },
      "style": {
       "kind": "categorical",
@@ -1289,6 +1871,10 @@
       "de": "Realisierung",
       "en": "Completion"
      },
+     "description": {
+      "de": "Neue Stadtquartiere nach StEP Wohnen 2040 als Kreise von etwa 900 m Radius um den Standort, nach Realisierung.",
+      "en": "New urban quarters from StEP Housing 2040 as circles of about 900 m radius around each site, by completion."
+     },
      "style": {
       "kind": "categorical",
       "property": "kat",
@@ -1361,500 +1947,6 @@
    "note": {
     "de": "Schematische Darstellung: Der Dienst liefert Kreise von etwa 900 m Radius um den Standort, keine Gebietsgrenzen.",
     "en": "Schematic: the service delivers circles of about 900 m radius around each site, not area boundaries."
-   }
-  },
-  {
-   "id": "wohnatlas2022",
-   "enabled": true,
-   "title": {
-    "de": "Wohnatlas Berlin 2022",
-    "en": "Berlin housing atlas 2022"
-   },
-   "unit_label": {
-    "de": "Prognoseräume",
-    "en": "forecast areas"
-   },
-   "geometry": "polygon",
-   "source": {
-    "type": "wfs",
-    "base_url": "https://gdi.berlin.de/services/wfs/wa_01_angebotsmieten",
-    "version": "2.0.0",
-    "output_format": "application/json",
-    "srs_name": "EPSG:4326",
-    "parts": [
-     {
-      "base_url": "https://gdi.berlin.de/services/wfs/wa_01_angebotsmieten",
-      "type_name": "wa_01_angebotsmieten:wa_01_2022"
-     },
-     {
-      "base_url": "https://gdi.berlin.de/services/wfs/wa_04_anteil_sozwohng",
-      "type_name": "wa_04_anteil_sozwohng:wa_04_2022"
-     },
-     {
-      "base_url": "https://gdi.berlin.de/services/wfs/wa_05_anteil_staedtwbg",
-      "type_name": "wa_05_anteil_staedtwbg:wa_05_2022"
-     },
-     {
-      "base_url": "https://gdi.berlin.de/services/wfs/wa_07_whg_umwandlungp",
-      "type_name": "wa_07_whg_umwandlungp:wa_07_2017_22"
-     },
-     {
-      "base_url": "https://gdi.berlin.de/services/wfs/wa_10_whg_verkaufp",
-      "type_name": "wa_10_whg_verkaufp:wa_10_2017_22"
-     }
-    ],
-    "dataset_page": "https://gdi.berlin.de/services/wfs/wa_01_angebotsmieten?request=GetCapabilities&service=WFS"
-   },
-   "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
-   "license": {
-    "name": "Datenlizenz Deutschland – Zero – Version 2.0",
-    "id": "dl-de-zero-2.0",
-    "url": "https://www.govdata.de/dl-de/zero-2-0"
-   },
-   "note": {
-    "de": "Jahrgang 2022; Umwandlungen und Verkäufe als Summe 2017–2022. 58 Prognoseräume (LOR 2021).",
-    "en": "Year 2022; conversions and sales summed over 2017–2022. 58 forecast areas (LOR 2021)."
-   },
-   "process": {
-    "id_field": "prognoseraum_nummer",
-    "combine": {
-     "mode": "join",
-     "key": "prognoseraum_nummer"
-    },
-    "alias": {
-     "pgr_id": "prognoseraum_nummer"
-    },
-    "precision": 5,
-    "simplify_m": 2
-   },
-   "fields": [
-    {
-     "key": "prognoseraum_bezeichnung",
-     "label": {
-      "de": "Prognoseraum",
-      "en": "Forecast area"
-     }
-    },
-    {
-     "key": "bezirk",
-     "label": {
-      "de": "Bezirk",
-      "en": "District"
-     }
-    },
-    {
-     "key": "angebotsmieten",
-     "label": {
-      "de": "Angebotsmiete (netto kalt)",
-      "en": "Asking rent (net, cold)"
-     },
-     "format": "number",
-     "unit": "€/m²"
-    },
-    {
-     "key": "anteil_sozwohng",
-     "label": {
-      "de": "Anteil Sozialmietwohnungen",
-      "en": "Share of social housing"
-     },
-     "format": "number",
-     "unit": "%"
-    },
-    {
-     "key": "anteil_staedtwbg",
-     "label": {
-      "de": "Anteil städtische Wohnungsbaugesellschaften",
-      "en": "Share of municipal companies"
-     },
-     "format": "number",
-     "unit": "%"
-    },
-    {
-     "key": "wohnung_umwandp",
-     "label": {
-      "de": "Umwandlungen in Eigentumswohnungen je 1.000 Wohnungen (2017–2022)",
-      "en": "Conversions to condominiums per 1,000 dwellings (2017–2022)"
-     },
-     "format": "number"
-    },
-    {
-     "key": "wohnungverkaufp",
-     "label": {
-      "de": "Wohnungsverkäufe je 1.000 Wohnungen (2017–2022)",
-      "en": "Flat sales per 1,000 dwellings (2017–2022)"
-     },
-     "format": "number"
-    },
-    {
-     "key": "prognoseraum_nummer",
-     "label": {
-      "de": "Prognoseraum-Nr.",
-      "en": "Forecast area no."
-     }
-    }
-   ],
-   "popup_title": "prognoseraum_bezeichnung",
-   "views": {
-    "angebotsmieten": {
-     "label": {
-      "de": "Angebotsmiete",
-      "en": "Asking rent"
-     },
-     "style": {
-      "kind": "step",
-      "property": "angebotsmieten",
-      "unit": "€/m² netto kalt",
-      "breaks": [
-       9,
-       10,
-       11,
-       12,
-       13,
-       14,
-       16,
-       18
-      ],
-      "colors": "earth"
-     }
-    },
-    "anteil_sozwohng": {
-     "label": {
-      "de": "Anteil Sozialmietwohnungen",
-      "en": "Share of social housing"
-     },
-     "style": {
-      "kind": "step",
-      "property": "anteil_sozwohng",
-      "unit": "%",
-      "breaks": [
-       1,
-       2,
-       4,
-       6,
-       8,
-       10,
-       15
-      ],
-      "colors": "plum"
-     }
-    },
-    "anteil_staedtwbg": {
-     "label": {
-      "de": "Anteil städt. Wohnungsbaugesellschaften",
-      "en": "Share of municipal companies"
-     },
-     "style": {
-      "kind": "step",
-      "property": "anteil_staedtwbg",
-      "unit": "%",
-      "breaks": [
-       5,
-       10,
-       15,
-       20,
-       30,
-       40,
-       50
-      ],
-      "colors": "violet"
-     }
-    },
-    "wohnung_umwandp": {
-     "label": {
-      "de": "Umwandlungen 2017–2022",
-      "en": "Conversions 2017–2022"
-     },
-     "style": {
-      "kind": "step",
-      "property": "wohnung_umwandp",
-      "unit": "je 1.000 Wohnungen",
-      "breaks": [
-       5,
-       10,
-       20,
-       40,
-       60,
-       80,
-       100
-      ],
-      "colors": "plum"
-     }
-    },
-    "wohnungverkaufp": {
-     "label": {
-      "de": "Wohnungsverkäufe 2017–2022",
-      "en": "Flat sales 2017–2022"
-     },
-     "style": {
-      "kind": "step",
-      "property": "wohnungverkaufp",
-      "unit": "je 1.000 Wohnungen",
-      "breaks": [
-       10,
-       20,
-       30,
-       40,
-       50,
-       60,
-       70
-      ],
-      "colors": "plum"
-     }
-    }
-   }
-  },
-  {
-   "id": "brw2026",
-   "enabled": true,
-   "title": {
-    "de": "Bodenrichtwerte 01.01.2026",
-    "en": "Standard land values 01.01.2026"
-   },
-   "unit_label": {
-    "de": "Zonen",
-    "en": "zones"
-   },
-   "geometry": "polygon",
-   "source": {
-    "type": "wfs",
-    "base_url": "https://gdi.berlin.de/services/wfs/brw2026",
-    "version": "2.0.0",
-    "type_name": "brw2026:brw2026_vector",
-    "output_format": "application/json",
-    "srs_name": "EPSG:4326",
-    "dataset_page": "https://daten.berlin.de/datensaetze/bodenrichtwerte-01-01-2026-wfs-0933be9c"
-   },
-   "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
-   "license": {
-    "name": "Datenlizenz Deutschland – Zero – Version 2.0",
-    "id": "dl-de-zero-2.0",
-    "url": "https://www.govdata.de/dl-de/zero-2-0"
-   },
-   "process": {
-    "id_field": "brwid",
-    "sort": "area_desc"
-   },
-   "fields": [
-    {
-     "key": "brw",
-     "label": {
-      "de": "Bodenrichtwert",
-      "en": "Standard land value"
-     },
-     "format": "number",
-     "unit": "€/m²"
-    },
-    {
-     "key": "stichtag",
-     "label": {
-      "de": "Stichtag",
-      "en": "Reference date"
-     },
-     "format": "date"
-    },
-    {
-     "key": "nutzung",
-     "label": {
-      "de": "Art der Nutzung",
-      "en": "Use"
-     }
-    },
-    {
-     "key": "gfz",
-     "label": {
-      "de": "Wertrelevante GFZ",
-      "en": "Floor-area ratio (GFZ)"
-     },
-     "format": "number"
-    },
-    {
-     "key": "bezirk",
-     "label": {
-      "de": "Bezirk",
-      "en": "District"
-     }
-    },
-    {
-     "key": "brwid",
-     "label": {
-      "de": "Bodenrichtwertnummer",
-      "en": "Zone no."
-     }
-    },
-    {
-     "key": "beitragszustand",
-     "label": {
-      "de": "Beitragsrechtlicher Zustand",
-      "en": "Contribution status"
-     }
-    },
-    {
-     "key": "anwert",
-     "label": {
-      "de": "Sanierungs-/Entwicklungszusatz",
-      "en": "Redevelopment supplement"
-     }
-    },
-    {
-     "key": "verfahrensart",
-     "label": {
-      "de": "Verfahrensart",
-      "en": "Procedure"
-     }
-    },
-    {
-     "key": "lumnum",
-     "label": {
-      "de": "GFZ-Umrechnungskoeffizienten",
-      "en": "GFZ conversion coefficients"
-     },
-     "format": "link",
-     "link_text": "Gutachterausschuss"
-    }
-   ],
-   "popup_title": "brw",
-   "views": {
-    "brw": {
-     "label": {
-      "de": "Bodenrichtwert",
-      "en": "Land value"
-     },
-     "style": {
-      "kind": "step",
-      "property": "brw",
-      "unit": "€/m²",
-      "breaks": [
-       10,
-       100,
-       250,
-       500,
-       1000,
-       2500,
-       5000,
-       10000
-      ],
-      "colors": "earth"
-     }
-    },
-    "nutzung": {
-     "label": {
-      "de": "Art der Nutzung",
-      "en": "Use"
-     },
-     "style": {
-      "kind": "categorical",
-      "property": "nutzung",
-      "opacity": 0.92,
-      "categories": [
-       {
-        "label": {
-         "de": "Wohnen",
-         "en": "Residential"
-        },
-        "color": "pink",
-        "values": [
-         "W - Wohngebiet",
-         "W-EFH - Wohnbaufläche - Ein- und Zweifamilienhäuser"
-        ]
-       },
-       {
-        "label": {
-         "de": "Kern- und Mischgebiet",
-         "en": "Core and mixed use"
-        },
-        "color": "plum",
-        "values": [
-         "M1 - Kerngebiet",
-         "M2 - Mischgebiet"
-        ]
-       },
-       {
-        "label": {
-         "de": "Gewerbe",
-         "en": "Commercial"
-        },
-        "color": "violet",
-        "values": [
-         "G - Gewerbe",
-         "G - Gewerbliche Baufläche",
-         "Gp - Gewerbe produzierend",
-         "G-GD - Gewerbliche Baufläche - Handel und dienstleistungsorientiertes Gewerbe",
-         "G-FZT - Gewerbliche Baufläche - Freizeit und Touristik"
-        ]
-       },
-       {
-        "label": {
-         "de": "Gemeinbedarf",
-         "en": "Public facilities"
-        },
-        "color": "orange",
-        "values": [
-         "GB - Gemeinbedarf"
-        ]
-       },
-       {
-        "label": {
-         "de": "Sonderbauflächen",
-         "en": "Special building land"
-        },
-        "color": "yellow",
-        "values": [
-         "S-WO - Sonderbaufläche - Wochenendhäuser",
-         "S-FZT - Sonderbaufläche - Freizeit und Touristik"
-        ]
-       },
-       {
-        "label": {
-         "de": "Sonstige Flächen",
-         "en": "Other land"
-        },
-        "color": "olive",
-        "values": [
-         "SF-SN - Sonstige Flächen - Sondernutzungsfläche",
-         "SF-KGA - Sonstige Flächen - Kleingartenfläche",
-         "SF-FH - Sonstige Flächen - Friedhof",
-         "SF-SPO - Sonstige Flächen - Sportfläche",
-         "SF-CA - Sonstige Flächen - Campingplatz"
-        ]
-       },
-       {
-        "label": {
-         "de": "Land- und Forstwirtschaft",
-         "en": "Agriculture and forestry"
-        },
-        "color": "green",
-        "values": [
-         "LF-F - Flächen der Land-o. Forstwirtschaft - forstwirtschaftliche Fläche",
-         "LF-A - Flächen der Land-o. Forstwirtschaft - Acker",
-         "LF-GR - Flächen der Land-o. Forstwirtschaft - Grünland",
-         "LF-EGA - Flächen der Land-o. Forstwirtschaft - Erwerbsgartenbaufläche"
-        ]
-       }
-      ],
-      "other_color": "grey"
-     }
-    },
-    "gfz": {
-     "label": {
-      "de": "Wertrelevante GFZ",
-      "en": "Floor-area ratio (GFZ)"
-     },
-     "style": {
-      "kind": "step",
-      "property": "gfz",
-      "unit": "GFZ",
-      "breaks": [
-       0.4,
-       0.8,
-       1.2,
-       2.0,
-       3.0,
-       4.5
-      ],
-      "colors": "earth7",
-      "missing_color": "none"
-     }
-    }
    }
   },
   {
@@ -1952,6 +2044,10 @@
       "de": "Status-Index",
       "en": "Status index"
      },
+     "description": {
+      "de": "Status-Index des Monitorings Soziale Stadtentwicklung je Planungsraum, Daten zum 31.12.2024.",
+      "en": "Status index of the social urban development monitoring per planning area, data as of 31.12.2024."
+     },
      "style": {
       "kind": "categorical",
       "property": "si_v",
@@ -2014,6 +2110,10 @@
      "label": {
       "de": "Dynamik-Index",
       "en": "Dynamics index"
+     },
+     "description": {
+      "de": "Dynamik-Index des Monitorings Soziale Stadtentwicklung je Planungsraum, Daten zum 31.12.2024.",
+      "en": "Dynamics index of the social urban development monitoring per planning area, data as of 31.12.2024."
      },
      "style": {
       "kind": "categorical",
@@ -2143,6 +2243,10 @@
       "de": "Einwohner/innen je Hektar",
       "en": "Residents per hectare"
      },
+     "description": {
+      "de": "Einwohner/innen je Hektar je Block, 2025.",
+      "en": "Residents per hectare per block, 2025."
+     },
      "style": {
       "kind": "step",
       "property": "ew_ha_2025",
@@ -2244,6 +2348,10 @@
      "label": {
       "de": "Grenzen",
       "en": "Boundaries"
+     },
+     "description": {
+      "de": "Grenzen der 542 LOR-Planungsräume 2021.",
+      "en": "Boundaries of the 542 LOR planning areas 2021."
      },
      "style": {
       "kind": "single",

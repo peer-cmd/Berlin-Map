@@ -54,6 +54,27 @@
     },
     {
       "title": {
+        "de": "Wohnungsmarkt",
+        "en": "Housing market"
+      },
+      "layers": [
+        {
+          "source": "wohnatlas2022",
+          "visible": false,
+          "opacity": 0.85
+        },
+        {
+          "source": "brw2026",
+          "views": [
+            "brw"
+          ],
+          "visible": false,
+          "opacity": 0.78
+        }
+      ]
+    },
+    {
+      "title": {
         "de": "Planungsrecht und Förderkulissen",
         "en": "Planning law and programmes"
       },
@@ -100,27 +121,6 @@
           "source": "step_wohnen_quartiere",
           "visible": false,
           "opacity": 0.8
-        }
-      ]
-    },
-    {
-      "title": {
-        "de": "Wohnungsmarkt",
-        "en": "Housing market"
-      },
-      "layers": [
-        {
-          "source": "wohnatlas2022",
-          "visible": false,
-          "opacity": 0.85
-        },
-        {
-          "source": "brw2026",
-          "views": [
-            "brw"
-          ],
-          "visible": false,
-          "opacity": 0.78
         }
       ]
     },

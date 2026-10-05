@@ -190,6 +190,10 @@
             "de": "Bodenrichtwert",
             "en": "Land value"
           },
+          "description": {
+            "de": "Bodenrichtwert in €/m² je Bodenrichtwertzone, Stichtag 01.01.2026.",
+            "en": "Standard land value in €/m² per zone, reference date 01.01.2026."
+          },
           "style": {
             "kind": "step",
             "property": "brw",
@@ -211,6 +215,10 @@
           "label": {
             "de": "Art der Nutzung",
             "en": "Use"
+          },
+          "description": {
+            "de": "Art der Nutzung je Bodenrichtwertzone, Stichtag 01.01.2026.",
+            "en": "Type of use per land value zone, reference date 01.01.2026."
           },
           "style": {
             "kind": "categorical",
@@ -309,6 +317,10 @@
           "label": {
             "de": "Wertrelevante GFZ",
             "en": "Floor-area ratio (GFZ)"
+          },
+          "description": {
+            "de": "Wertrelevante Geschossflächenzahl je Bodenrichtwertzone, Stichtag 01.01.2026.",
+            "en": "Value-relevant floor-area ratio per land value zone, reference date 01.01.2026."
           },
           "style": {
             "kind": "step",
@@ -476,6 +488,10 @@
             "de": "Einzeleigentümer/innen (natürliche Personen)",
             "en": "Private individuals"
           },
+          "description": {
+            "de": "Anteil der Wohn- und Mischfläche je Planungsraum, deren Flurstücke Einzeleigentümer/innen gehören (einschließlich Wohnungseigentümergemeinschaften).",
+            "en": "Share of residential and mixed-use land per planning area whose parcels belong to private individuals (including condominium owners)."
+          },
           "style": {
             "kind": "step",
             "property": "nat_pers",
@@ -496,6 +512,10 @@
           "label": {
             "de": "Juristische Personen des privaten Rechts",
             "en": "Legal persons under private law"
+          },
+          "description": {
+            "de": "Anteil der Wohn- und Mischfläche je Planungsraum, deren Flurstücke juristischen Personen des privaten Rechts gehören.",
+            "en": "Share of residential and mixed-use land per planning area whose parcels belong to legal persons under private law."
           },
           "style": {
             "kind": "step",
@@ -518,6 +538,10 @@
             "de": "Juristische Personen ohne städt. WBG und Genossenschaften",
             "en": "Legal persons excl. municipal companies and cooperatives"
           },
+          "description": {
+            "de": "Anteil der Wohn- und Mischfläche je Planungsraum, deren Flurstücke juristischen Personen des privaten Rechts gehören, ohne städtische Wohnungsbaugesellschaften und Genossenschaften.",
+            "en": "Share of residential and mixed-use land per planning area owned by legal persons under private law, excluding municipal companies and cooperatives."
+          },
           "style": {
             "kind": "step",
             "property": "jp_ohn_swg",
@@ -538,6 +562,10 @@
           "label": {
             "de": "Städtische Wohnungsbaugesellschaften",
             "en": "Municipal housing companies"
+          },
+          "description": {
+            "de": "Anteil der Wohn- und Mischfläche je Planungsraum, deren Flurstücke städtischen Wohnungsbaugesellschaften gehören.",
+            "en": "Share of residential and mixed-use land per planning area owned by municipal housing companies."
           },
           "style": {
             "kind": "step",
@@ -560,6 +588,10 @@
             "de": "Genossenschaften",
             "en": "Cooperatives"
           },
+          "description": {
+            "de": "Anteil der Wohn- und Mischfläche je Planungsraum, deren Flurstücke Genossenschaften gehören.",
+            "en": "Share of residential and mixed-use land per planning area owned by cooperatives."
+          },
           "style": {
             "kind": "step",
             "property": "genossen",
@@ -580,6 +612,10 @@
           "label": {
             "de": "Gemeinwohlorientierte Eigentümer/innen",
             "en": "Public-interest owners"
+          },
+          "description": {
+            "de": "Anteil der Wohn- und Mischfläche je Planungsraum, deren Flurstücke gemeinwohlorientierten Eigentümer/innen gehören.",
+            "en": "Share of residential and mixed-use land per planning area owned by public-interest owners."
           },
           "style": {
             "kind": "step",
@@ -652,6 +688,10 @@
           "label": {
             "de": "Bestand",
             "en": "Stock"
+          },
+          "description": {
+            "de": "Flurstücke mit Wohnungsbestand der landeseigenen Wohnungsunternehmen.",
+            "en": "Parcels with housing stock of the state-owned housing companies."
           },
           "style": {
             "kind": "single",
@@ -778,6 +818,10 @@
           "label": {
             "de": "Erhaltungsziel",
             "en": "Purpose"
+          },
+          "description": {
+            "de": "Umrisse der Gebiete mit Erhaltungsverordnung nach § 172 BauGB, nach Erhaltungsziel.",
+            "en": "Outlines of areas with a preservation ordinance under § 172 BauGB, by purpose."
           },
           "style": {
             "kind": "categorical",
@@ -907,6 +951,10 @@
             "de": "Geltungsbereich",
             "en": "Area"
           },
+          "description": {
+            "de": "Umrisse der Gebiete mit Vorkaufsrechtsverordnung nach § 25 BauGB.",
+            "en": "Outlines of areas with a pre-emption rights ordinance under § 25 BauGB."
+          },
           "style": {
             "kind": "single",
             "color": "orange"
@@ -1026,6 +1074,10 @@
           "label": {
             "de": "Status",
             "en": "Status"
+          },
+          "description": {
+            "de": "Umrisse der Sanierungsgebiete, nach Status.",
+            "en": "Outlines of redevelopment areas, by status."
           },
           "style": {
             "kind": "categorical",
@@ -1163,6 +1215,10 @@
             "de": "Status",
             "en": "Status"
           },
+          "description": {
+            "de": "Umrisse der Entwicklungsbereiche nach § 165 BauGB, nach Status.",
+            "en": "Outlines of development areas under § 165 BauGB, by status."
+          },
           "style": {
             "kind": "categorical",
             "property": "status",
@@ -1256,6 +1312,10 @@
           "label": {
             "de": "Programmkulisse",
             "en": "Programme"
+          },
+          "description": {
+            "de": "Umrisse der Großsiedlungen, nach Programmkulisse.",
+            "en": "Outlines of large housing estates, by programme."
           },
           "style": {
             "kind": "categorical",
@@ -1356,6 +1416,10 @@
           "label": {
             "de": "Realisierung",
             "en": "Completion"
+          },
+          "description": {
+            "de": "Neue Stadtquartiere nach StEP Wohnen 2040 als Kreise von etwa 900 m Radius um den Standort, nach Realisierung.",
+            "en": "New urban quarters from StEP Housing 2040 as circles of about 900 m radius around each site, by completion."
           },
           "style": {
             "kind": "categorical",
@@ -1530,6 +1594,10 @@
             "de": "Fertigstellungshorizont",
             "en": "Completion horizon"
           },
+          "description": {
+            "de": "Standorte mit Wohnungsbaupotenzial nach StEP Wohnen 2040; Farbe nach Fertigstellungshorizont, Größe nach Wohneinheiten-Klasse.",
+            "en": "Housing potential sites from StEP Housing 2040; colour by completion horizon, size by dwelling class."
+          },
           "style": {
             "kind": "categorical",
             "property": "leg_fertig",
@@ -1582,6 +1650,10 @@
           "label": {
             "de": "Gemeinwohlorientierung",
             "en": "Public-interest orientation"
+          },
+          "description": {
+            "de": "Standorte mit Wohnungsbaupotenzial nach StEP Wohnen 2040; Farbe nach Gemeinwohlorientierung, Größe nach Wohneinheiten-Klasse.",
+            "en": "Housing potential sites from StEP Housing 2040; colour by public-interest orientation, size by dwelling class."
           },
           "style": {
             "kind": "categorical",
@@ -1712,6 +1784,10 @@
             "de": "Status-Index",
             "en": "Status index"
           },
+          "description": {
+            "de": "Status-Index des Monitorings Soziale Stadtentwicklung je Planungsraum, Daten zum 31.12.2024.",
+            "en": "Status index of the social urban development monitoring per planning area, data as of 31.12.2024."
+          },
           "style": {
             "kind": "categorical",
             "property": "si_v",
@@ -1774,6 +1850,10 @@
           "label": {
             "de": "Dynamik-Index",
             "en": "Dynamics index"
+          },
+          "description": {
+            "de": "Dynamik-Index des Monitorings Soziale Stadtentwicklung je Planungsraum, Daten zum 31.12.2024.",
+            "en": "Dynamics index of the social urban development monitoring per planning area, data as of 31.12.2024."
           },
           "style": {
             "kind": "categorical",
@@ -1962,6 +2042,10 @@
             "de": "Angebotsmiete",
             "en": "Asking rent"
           },
+          "description": {
+            "de": "Angebotsmiete netto kalt in €/m² je Prognoseraum, Jahrgang 2022.",
+            "en": "Asking rent (net, cold) in €/m² per forecast area, year 2022."
+          },
           "style": {
             "kind": "step",
             "property": "angebotsmieten",
@@ -1984,6 +2068,10 @@
             "de": "Anteil Sozialmietwohnungen",
             "en": "Share of social housing"
           },
+          "description": {
+            "de": "Anteil der Sozialmietwohnungen je Prognoseraum in %, Jahrgang 2022.",
+            "en": "Share of social rental housing per forecast area in %, year 2022."
+          },
           "style": {
             "kind": "step",
             "property": "anteil_sozwohng",
@@ -2004,6 +2092,10 @@
           "label": {
             "de": "Anteil städt. Wohnungsbaugesellschaften",
             "en": "Share of municipal companies"
+          },
+          "description": {
+            "de": "Anteil der städtischen Wohnungsbaugesellschaften je Prognoseraum in %, Jahrgang 2022.",
+            "en": "Share of municipal housing companies per forecast area in %, year 2022."
           },
           "style": {
             "kind": "step",
@@ -2026,6 +2118,10 @@
             "de": "Umwandlungen 2017–2022",
             "en": "Conversions 2017–2022"
           },
+          "description": {
+            "de": "Umwandlungen in Eigentumswohnungen je 1.000 Wohnungen je Prognoseraum, Summe 2017–2022.",
+            "en": "Conversions to condominiums per 1,000 dwellings per forecast area, total 2017–2022."
+          },
           "style": {
             "kind": "step",
             "property": "wohnung_umwandp",
@@ -2046,6 +2142,10 @@
           "label": {
             "de": "Wohnungsverkäufe 2017–2022",
             "en": "Flat sales 2017–2022"
+          },
+          "description": {
+            "de": "Wohnungsverkäufe je 1.000 Wohnungen je Prognoseraum, Summe 2017–2022.",
+            "en": "Flat sales per 1,000 dwellings per forecast area, total 2017–2022."
           },
           "style": {
             "kind": "step",
@@ -2142,6 +2242,10 @@
           "label": {
             "de": "Einwohner/innen je Hektar",
             "en": "Residents per hectare"
+          },
+          "description": {
+            "de": "Einwohner/innen je Hektar je Block, 2025.",
+            "en": "Residents per hectare per block, 2025."
           },
           "style": {
             "kind": "step",
@@ -2244,6 +2348,10 @@
           "label": {
             "de": "Grenzen",
             "en": "Boundaries"
+          },
+          "description": {
+            "de": "Grenzen der 542 LOR-Planungsräume 2021.",
+            "en": "Boundaries of the 542 LOR planning areas 2021."
           },
           "style": {
             "kind": "single",

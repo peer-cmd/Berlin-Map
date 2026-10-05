@@ -533,15 +533,14 @@
     const result = runScenario(state.price, state);
 
     // ---- stats ----
-    $('s-kaufpreis').textContent = state.purchaseFactor+' % vom Verkehrswert';
-    $('s-kaufpreis-sub').textContent = fmtInt(state.price*(state.purchaseFactor/100))+' €/m² · '+fmtEUR(result.principal)+' gesamt';
-
-
-    $('s-breakeven').textContent = fmtYear(result.breakEvenYear);
-
-    $('s-netto').textContent = fmtEUR(result.netResult);
+    // Kennzahlen oben: eine Nachkommastelle, Break-even als Halbsatz unter dem Nettoergebnis.
+    const mrd1 = n => (n<0?'−':'')+(Math.abs(n)/1e9).toLocaleString('de-DE',{minimumFractionDigits:1,maximumFractionDigits:1})+' Mrd €';
+    $('s-kaufpreis').textContent = mrd1(result.principal);
+    $('s-kaufpreis-sub').textContent = state.purchaseFactor+' % vom Verkehrswert';
+    $('s-netto-label').textContent = 'nach '+state.horizon+' Jahren';
+    $('s-netto').textContent = mrd1(result.netResult);
     $('s-netto').className = 'value '+(result.netResult>=0?'pos':'neg');
-    $('s-netto-sub').textContent = 'nach '+state.horizon+' Jahren';
+    $('s-netto-sub').textContent = result.breakEvenYear===null ? 'kein Break-even im Zeitraum' : 'Break-even in Jahr '+result.breakEvenYear;
 
 
 
@@ -571,7 +570,7 @@
     $('stockPanelWrap').style.display = showStock ? 'block' : 'none';
     if(showStock){
       $('stock-title').textContent = 'Der Bestand mit Neubau';
-      $('stock-sub').textContent = 'Wachstum des Wohnungsbestands durch Reinvestition des Cashflow-Überschusses in Neubau, eingestellt unter „Der Überschuss“.';
+      $('stock-sub').textContent = 'Zahl der Wohnungen, wenn die Überschüsse in Neubau fließen (Einstellung unter „Der Überschuss“).';
       chartStock.data.labels = labels;
       chartStock.data.datasets[0].label = 'Wohnungen gesamt';
       chartStock.data.datasets[0].data = result.rows.map(r=>Math.round(r.units));

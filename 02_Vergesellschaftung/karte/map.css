@@ -29,6 +29,7 @@ h3:first-child { margin-top: 0; }
 .legend-block + .legend-block { margin-top: 10px; }
 .legend-title { font-weight: 500; margin-bottom: 4px; }
 .legend-unit { color: var(--muted); font-size: 11px; margin-bottom: 4px; }
+.legend-desc { color: var(--muted); font-size: 11px; line-height: 1.4; margin-bottom: 6px; }
 .legend-row { display: grid; grid-template-columns: 22px 1fr; gap: 8px; align-items: center; min-height: 18px; }
 .legend-row i { display: block; height: 10px; border: 1px solid var(--line); }
 .legend-row i.sw-point { width: 10px; border-radius: 50%; justify-self: center; }

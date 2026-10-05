@@ -312,7 +312,9 @@
         `<div class="legend-row"><i class="sw-size" style="width:${2 * r}px;height:${2 * r}px"></i><span>${esc(k)}</span></div>`).join("");
     }
     const viewLabel = it.view && it.views.length > 1 ? ` · ${esc(t(it.src.views[it.view].label))}` : "";
-    return `<div class="legend-block"><div class="legend-title">${esc(t(it.src.title))}${viewLabel}</div>${unit}${rows}</div>`;
+    const desc = it.view && it.src.views[it.view].description;
+    const descHtml = desc ? `<div class="legend-desc">${esc(t(desc))}</div>` : "";
+    return `<div class="legend-block"><div class="legend-title">${esc(t(it.src.title))}${viewLabel}</div>${descHtml}${unit}${rows}</div>`;
   }
   // One line per layer for the closed sheet on phones: title and colour strip.
   function miniHtml(it) {
