@@ -64,7 +64,6 @@ h3:first-child { margin-top: 0; }
 .pop-head { color: var(--muted); margin-bottom: 8px; }
 .pop-src { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
 .maplibregl-ctrl-attrib { background: rgba(255,255,255,.85) !important; font-size: 11px; }
-@media (max-width: 600px) { #panel { width: calc(100% - 24px); max-height: 45%; } }
 .embed #panel > section:first-of-type { border-top: 0; margin-top: 0; padding-top: 0; }
 .legend-row i.sw-size { border-radius: 50%; justify-self: center; background: transparent; border: 1px solid var(--ink); }
 .legend-sub { margin-top: 6px; }
@@ -94,4 +93,38 @@ h3:first-child { margin-top: 0; }
 #panel #source summary:hover { color: var(--blue); }
 #panel #source[open] summary { margin-bottom: 6px; }
 #panel details { border-top: 1px solid var(--line); padding-top: 10px; margin-top: 10px; }
-@media (max-width: 600px) { #legend-section { width: calc(100% - 24px); max-height: 30%; } }
+
+/* ---------- Phones: panel and legend share one sheet at the bottom (app.js, "phones") ---------- */
+#sheet-bar { display: none; }
+.sheet #sheet-bar {
+  display: block; position: absolute; left: 0; right: 0; bottom: 0; z-index: 3;
+  background: var(--paper); border-top: 1px solid var(--line-strong);
+}
+.sheet-head { display: flex; border-bottom: 1px solid var(--line); }
+.sheet-head button {
+  padding: 11px 14px; border: 0; border-right: 1px solid var(--line); background: var(--paper); cursor: pointer;
+  font: 500 10.5px var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--ink);
+}
+.sheet-head button[aria-selected="true"] { color: var(--blue); box-shadow: inset 0 -2px 0 var(--blue); }
+.sheet-head .sheet-toggle { margin-left: auto; border-right: 0; border-left: 1px solid var(--line); font-size: 12px; }
+.sheet-mini { max-height: 86px; overflow: auto; padding: 6px 12px 8px; cursor: pointer; }
+.sheet-mini:empty { display: none; }
+.sheet-open .sheet-mini { display: none; }
+.mini-row { display: flex; gap: 8px; align-items: center; min-height: 22px; }
+.mini-title { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mini-scale { display: flex; gap: 2px; align-items: center; flex: none; font: 10px var(--mono); font-variant-numeric: tabular-nums; }
+.mini-scale span:first-child { margin-right: 4px; }
+.mini-scale span:last-child { margin-left: 4px; }
+.mini-scale i { display: block; width: 12px; height: 10px; border: 1px solid var(--line); }
+.mini-scale i.sw-point { width: 10px; border-radius: 50%; }
+.mini-scale i.sw-line { height: 3px; border: 0; }
+.sheet #panel, .sheet #legend-section { display: none; }
+.sheet.sheet-open[data-sheet="layers"] #panel,
+.sheet.sheet-open[data-sheet="legend"] #legend-section:not([hidden]) {
+  display: block; top: auto; left: 0; right: 0; bottom: 0; width: auto; height: 50%; max-height: none;
+  border: 0; border-top: 1px solid var(--line); z-index: 3;
+}
+.sheet.sheet-open #sheet-bar { bottom: 50%; }
+.sheet:not(.sheet-open) .maplibregl-ctrl-bottom-left,
+.sheet:not(.sheet-open) .maplibregl-ctrl-bottom-right { bottom: var(--sheet-bar, 0); }
+.sheet #legend-section #h-legend { display: none; }
