@@ -316,11 +316,59 @@
     const descHtml = desc ? `<div class="legend-desc">${esc(t(desc))}</div>` : "";
     return `<div class="legend-block"><div class="legend-title">${esc(t(it.src.title))}${viewLabel}</div>${descHtml}${unit}${rows}</div>`;
   }
+  // One line per layer for the closed sheet on phones: title and colour strip.
+  function miniHtml(it) {
+    const st = currentStyle(it);
+    let colors = [], ends = ["", ""];
+    if (st.kind === "step") {
+      colors = ramp(st.colors, st.breaks.length + 1);
+      ends = [`< ${num(st.breaks[0])}`, `≥ ${num(st.breaks[st.breaks.length - 1])}`];
+    } else if (st.kind === "categorical") colors = st.categories.map((c) => col(c.color));
+    else colors = [col(st.color || "violet")];
+    const strip = colors.map((c) => `<i class="sw-${it.kind}" style="background:${esc(c)}"></i>`).join("");
+    const lo = ends[0] ? `<span>${esc(ends[0])}</span>` : "", hi = ends[1] ? `<span>${esc(ends[1])}</span>` : "";
+    return `<div class="mini-row"><span class="mini-title">${esc(t(it.src.title))}</span><span class="mini-scale">${lo}${strip}${hi}</span></div>`;
+  }
   function renderLegend() {
     const vis = ready.filter((it) => it.visible);
     $("legend").innerHTML = vis.map(legendHtml).join("");
     $("legend-section").hidden = !vis.length;
+    if (sheet) sheet.mini.innerHTML = vis.map(miniHtml).join("");
   }
+
+  // ---------- phones: panel and legend share one sheet at the bottom ----------
+  // Closed: a bar with the tabs and one colour strip per visible layer. Open: the chosen tab fills half the map.
+  const sheet = params.get("embed") === "1" ? null : (() => {
+    const bar = document.createElement("div");
+    bar.id = "sheet-bar";
+    bar.innerHTML = `<div class="sheet-head" role="tablist">
+        <button type="button" role="tab" data-tab="layers">${esc(UI.layers)}</button>
+        <button type="button" role="tab" data-tab="legend">${esc(UI.legend)}</button>
+        <button type="button" class="sheet-toggle" aria-label="${esc(UI.close)}"></button>
+      </div><div class="sheet-mini"></div>`;
+    $("panel").parentNode.insertBefore(bar, $("panel"));
+    const body = document.body, mq = matchMedia("(max-width: 600px)");
+    const tabs = bar.querySelectorAll("[data-tab]");
+    const set = (tab) => {
+      body.classList.toggle("sheet-open", !!tab);
+      if (tab) body.dataset.sheet = tab;
+      tabs.forEach((b) => b.setAttribute("aria-selected", String(b.dataset.tab === tab)));
+      bar.querySelector(".sheet-toggle").textContent = tab ? "▾" : "▴";
+    };
+    tabs.forEach((b) => b.addEventListener("click", () =>
+      set(body.classList.contains("sheet-open") && body.dataset.sheet === b.dataset.tab ? null : b.dataset.tab)));
+    bar.querySelector(".sheet-toggle").addEventListener("click", () =>
+      set(body.classList.contains("sheet-open") ? null : body.dataset.sheet || "legend"));
+    bar.querySelector(".sheet-mini").addEventListener("click", () => set("legend"));
+    map.on("click", () => set(null));
+    // Keep scale bar and attribution above the closed bar.
+    new ResizeObserver(() => bar.parentNode.style.setProperty("--sheet-bar", bar.offsetHeight + "px")).observe(bar);
+    const apply = () => body.classList.toggle("sheet", mq.matches);
+    mq.addEventListener("change", apply);
+    apply();
+    set(null);
+    return { mini: bar.querySelector(".sheet-mini") };
+  })();
 
   // ---------- panel ----------
   const setVis = (ids, on) => ids.forEach((id) => map.setLayoutProperty(id, "visibility", on ? "visible" : "none"));

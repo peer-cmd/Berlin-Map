@@ -42,6 +42,7 @@ Static site: cost and financing model for the socialisation of large Berlin hous
 - Edit `quellenbelege.md`, then run `python3 build_quellenbelege.py`; `quellenbelege.html` is generated.
 - Model logic and presets: `model-calc.js`. Shared glossary and timeline text: `content.js` (loaded by `include.js`, works from file://).
 - Hover explanations on the model pages: `data-term="<glossary term>"` on a label; `tooltips.js` shows the first sentence of the matching glossary entry. Add new terms to the glossary in `content.js`, not as hints in the controls.
-- Pages load `style.css`, `model-calc.js`, `content.js` (and on the model pages `tooltips.js`) with `?v=YYYYMMDD` so browsers fetch new versions; after changing one of these files, update the tag in all pages and both build scripts.
+- `nav.js` (all pages) adds the mobile "Menü" button and, on the model pages, the "Parameter" button that slides the controls in from the left.
+- Pages load `style.css`, `model-calc.js`, `content.js`, `nav.js` (and on the model pages `tooltips.js`) with `?v=YYYYMMDD` so browsers fetch new versions; after changing one of these files, update the tag in all pages and both build scripts.
 - Chart.js 4.4.0 is vendored in `vendor/`. Primary sources are PDFs in `pdf/` with Markdown extractions in `pdf/markdown/`.
 - Every number needs a source with page, in the footnotes of `zahlen.html` or in `quellenbelege.md` (page "Die Chronologie", documents ordered by date, newest first); quote verbatim only from the original PDF. Log changes in `entwicklungsprotokoll.md`.

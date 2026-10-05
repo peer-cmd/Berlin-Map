@@ -16,7 +16,7 @@
   --content-width:820px; /* standard page width for standalone content pages (index, zahlen, glossar, modell-kompakt) — the full model tool (v37) keeps its own wider grid */
 }
 *{box-sizing:border-box;}
-html,body{margin:0;padding:0;overflow-x:hidden;}
+html,body{margin:0;padding:0;overflow-x:hidden;overflow-x:clip;} /* clip keeps position:sticky working */
 body{
   background:var(--paper);
   color:var(--ink);
@@ -621,7 +621,7 @@ td:first-child,th:first-child{text-align:left;color:var(--muted);}
 }
 
 @media (max-width:1160px){
-  .layout{grid-template-columns:1fr;}
+  .layout, .layout.no-bg{grid-template-columns:1fr;}
   .controls{position:relative;max-height:none;border-right:none;border-bottom:1px solid var(--line-strong);}
   .bg-col{position:relative;max-height:none;border-right:none;border-bottom:1px solid var(--line-strong);}
   .bg-col .bg-page{padding:22px 28px 32px;}
@@ -654,3 +654,92 @@ body.map-page{display:flex;flex-direction:column;height:100vh;height:100dvh;over
 .map-page #panel .legal{font-size:11px;color:var(--muted);}
 .map-page #panel .legal a{color:inherit;}
 .colophon a{color:inherit;}
+
+/* ---------- Mobile: nav menu button, controls as slide-in drawer (buttons from nav.js) ---------- */
+.nav-bar, .drawer-close, .drawer-backdrop{display:none;}
+.nav-toggle, .drawer-toggle, .drawer-close{
+  padding:12px 16px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10.5px;
+  font-weight:700;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  color:var(--ink);
+  background:var(--panel);
+  border:none;
+  cursor:pointer;
+}
+.nav-toggle{border-right:1px solid var(--line);}
+.nav-toggle::before{content:"☰ ";}
+.nav-toggle[aria-expanded="true"]::before{content:"× ";}
+.drawer-toggle{margin-left:auto;color:#fff;background:var(--blue);}
+.nav-current{
+  align-self:center;
+  padding:0 12px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10.5px;
+  font-weight:700;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  color:var(--blue);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  min-width:0;
+}
+
+@media (max-width:860px){
+  .site-nav{flex-direction:column;position:sticky;top:0;z-index:20;}
+  .nav-bar{display:flex;align-items:stretch;}
+  .site-nav > a{display:none;border-right:none;border-top:1px solid var(--line);padding:13px 16px;}
+  .site-nav.open > a{display:block;}
+  .site-nav.open .nav-current{visibility:hidden;}
+  .masthead{padding:22px 16px 18px;}
+}
+
+@media (max-width:1160px){
+  body.model-page .site-nav{position:sticky;top:0;z-index:20;}
+  body.model-page .nav-bar{display:flex;align-items:stretch;}
+  body.model-page .controls{
+    position:fixed;
+    top:0;bottom:0;left:0;
+    z-index:40;
+    width:min(360px, 88vw);
+    max-height:none;
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    background:var(--panel);
+    border-right:1px solid var(--line-strong);
+    border-bottom:none;
+    transform:translateX(-100%);
+    visibility:hidden;
+    transition:transform .25s ease, visibility 0s .25s;
+  }
+  body.controls-open .controls{transform:none;visibility:visible;transition:transform .25s ease;}
+  body.controls-open{overflow:hidden;}
+  body.controls-open .drawer-backdrop{display:block;position:fixed;inset:0;z-index:30;background:rgba(20,23,26,.35);}
+  .drawer-close{
+    display:block;
+    position:sticky;top:0;z-index:1;
+    width:100%;
+    text-align:right;
+    border-bottom:1px solid var(--line-strong);
+  }
+  .drawer-close::after{content:" ×";}
+  .results{padding:16px 16px 32px;}
+  .bg-col .bg-page{padding:20px 16px 28px;}
+}
+@media (max-width:1160px) and (min-width:861px){
+  body.model-page .site-nav > a{flex:1;}
+  body.model-page .nav-bar{order:1;margin-left:auto;}
+  body.model-page .nav-toggle, body.model-page .nav-current{display:none;}
+}
+@media (max-width:600px){
+  .stats{grid-template-columns:1fr;}
+  .panel{padding:14px 12px 8px;}
+  .panel-head{flex-wrap:wrap;gap:4px 12px;}
+  .legend{flex-wrap:wrap;gap:6px 14px;}
+  .preset-btn{padding:11px 10px;}
+  input[type=range]{height:28px;}
+}
+@media print{.nav-bar, .drawer-close, .drawer-backdrop{display:none !important;}}
