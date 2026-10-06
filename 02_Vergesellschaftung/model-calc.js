@@ -538,9 +538,9 @@
     chartCompSens = sensChart('chartCompSens', 'Entschädigungsquote %');
     // Chart.js misst im geschlossenen <details> eine Breite von 0; beim Öffnen neu messen.
     $('sensPanel').addEventListener('toggle', ()=>{ chartRateSens.resize(); chartCompSens.resize(); });
-    // Sprunglinks „Die Sensitivität“ und „Jahr für Jahr“ öffnen das zugeklappte Panel.
-    [['sensitivitaet','sensPanel'],['jahre','tablePanel']].forEach(([target, panel])=>{
-      document.querySelectorAll('a[href="#'+target+'"]').forEach(a=>a.addEventListener('click', ()=>{ $(panel).open = true; }));
+    // Sprunglinks „Die Sensitivität“ und „Die Tabellen“ öffnen die zugeklappten Panels.
+    [['sensitivitaet',['sensPanel']],['tabellen',['comparePanel','tablePanel']]].forEach(([target, panels])=>{
+      document.querySelectorAll('a[href="#'+target+'"]').forEach(a=>a.addEventListener('click', ()=>{ panels.forEach(id=>{ $(id).open = true; }); }));
     });
 
     // Modellvergleich: eine Linie je Position, Datensätze werden in updateCompareCharts gesetzt.

@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-06 — Modellseite: Reihenfolge und Abschnitt „Die Tabellen"
+
+„Kaufpreis und Nettoergebnis" steht im Modellvergleich nach „Die Mieten im Vergleich". Der Abschnitt „Jahr für Jahr" heißt „Die Tabellen" (Anker `#tabellen`) und enthält beide Tabellen als zugeklappte Panels: „Die Kennzahlen" (bisher offen im Modellvergleich) und „Jahr für Jahr". Der Sprunglink öffnet beide.
+
 ## 2026-10-06 — Sozialwohnungen: Vergabe bei Neuvermietung statt festem Zeitplan
 
 Fehler: Der Regler „Fester Zeitplan" (Voreinstellung 3,2 %/Jahr) wandelte jedes Jahr 3,2 % des Gesamtbestands um; nach 32 Jahren war der ganze Bestand Sozialwohnung, und „Die Ersparnis der Mieter" wuchs entsprechend weiter. Bernt/Holm 2023 (S. 13–14) beschreiben einen Fluss von Vergaben: 5 % Fluktuation, davon 63 % an WBS-Inhaber*innen, 6.999 Wohnungen im Jahr. Bei dieser Quote können höchstens 63 % des Bestands an WBS-Haushalte gehen.

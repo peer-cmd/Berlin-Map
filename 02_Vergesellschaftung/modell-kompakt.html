@@ -6,7 +6,7 @@
 <title>Kosten- und Finanzierungsmodell der Vergesellschaftung Berlin — kompakt</title>
 <link rel="stylesheet" href="fonts/fonts.css">
 <script src="vendor/chart.umd.js"></script>
-<link rel="stylesheet" href="style.css?v=20261006m">
+<link rel="stylesheet" href="style.css?v=20261006n">
 </head>
 <body class="model-page">
 <!-- Generated from vergesellschaftung-modell-v37.html by build_kompakt.py. Do not edit by hand. -->
@@ -256,7 +256,7 @@
         <p class="figures">Kaufpreis <span class="value" id="s-kaufpreis">–</span> (<span id="s-kaufpreis-sub">–</span>), <span data-term="Nettoergebnis">Nettoergebnis</span> <span id="s-netto-label">nach 50 Jahren</span> <span class="value" id="s-netto">–</span>, <span id="s-netto-sub">–</span>.</p>
       </section>
 
-      <p class="group-title section-jump" id="finanzen"><span>Die Finanzen</span><a href="#mieter">Die Mieter</a><a href="#vergleich">Der Modellvergleich</a><a href="#sensitivitaet">Die Sensitivität</a><a href="#jahre">Jahr für Jahr</a></p>
+      <p class="group-title section-jump" id="finanzen"><span>Die Finanzen</span><a href="#mieter">Die Mieter</a><a href="#vergleich">Der Modellvergleich</a><a href="#sensitivitaet">Die Sensitivität</a><a href="#tabellen">Die Tabellen</a></p>
 
       <div class="panel">
         <div class="panel-head">
@@ -296,7 +296,7 @@
         </div>
       </div>
 
-      <p class="group-title section-jump" id="mieter"><a href="#finanzen">Die Finanzen</a><span>Die Mieter</span><a href="#vergleich">Der Modellvergleich</a><a href="#sensitivitaet">Die Sensitivität</a><a href="#jahre">Jahr für Jahr</a></p>
+      <p class="group-title section-jump" id="mieter"><a href="#finanzen">Die Finanzen</a><span>Die Mieter</span><a href="#vergleich">Der Modellvergleich</a><a href="#sensitivitaet">Die Sensitivität</a><a href="#tabellen">Die Tabellen</a></p>
 
       <div class="panel">
         <div class="panel-head">
@@ -342,19 +342,7 @@
         <canvas id="chartTenantSavings" height="70"></canvas>
       </div>
 
-      <p class="group-title section-jump" id="vergleich"><a href="#finanzen">Die Finanzen</a><a href="#mieter">Die Mieter</a><span>Der Modellvergleich</span><a href="#sensitivitaet">Die Sensitivität</a><a href="#jahre">Jahr für Jahr</a></p>
-
-      <div class="panel">
-        <div class="panel-head">
-          <h2>Kaufpreis und Nettoergebnis</h2>
-        </div>
-        <p class="panel-sub">Kaufpreis und Nettoergebnis über den Betrachtungszeitraum: aktuelle Einstellung, die fünf Positionen und Ihre gespeicherten Szenarien.</p>
-        <canvas id="chartScenarios" height="80"></canvas>
-        <div class="legend">
-          <span><i class="swatch" style="background:var(--blue-light)"></i>Kaufpreis</span>
-          <span><i class="swatch" style="background:var(--green)"></i><i class="swatch" style="background:var(--red)"></i>Nettoergebnis</span>
-        </div>
-      </div>
+      <p class="group-title section-jump" id="vergleich"><a href="#finanzen">Die Finanzen</a><a href="#mieter">Die Mieter</a><span>Der Modellvergleich</span><a href="#sensitivitaet">Die Sensitivität</a><a href="#tabellen">Die Tabellen</a></p>
 
       <div class="panel">
         <div class="panel-head">
@@ -383,24 +371,19 @@
         <div class="legend compare-legend"></div>
       </div>
 
-      <div class="panel" id="comparePanel">
+      <div class="panel">
         <div class="panel-head">
-          <h2>Die Kennzahlen</h2>
+          <h2>Kaufpreis und Nettoergebnis</h2>
         </div>
-        <div class="table-wrap" style="max-height:none;">
-          <table id="compareTable">
-            <thead>
-              <tr id="compareHeadRow">
-                <th style="text-align:left;">Kennzahl</th>
-                <th>Aktuell</th>
-              </tr>
-            </thead>
-            <tbody id="compareBody"></tbody>
-          </table>
+        <p class="panel-sub">Kaufpreis und Nettoergebnis über den Betrachtungszeitraum: aktuelle Einstellung, die fünf Positionen und Ihre gespeicherten Szenarien.</p>
+        <canvas id="chartScenarios" height="80"></canvas>
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--blue-light)"></i>Kaufpreis</span>
+          <span><i class="swatch" style="background:var(--green)"></i><i class="swatch" style="background:var(--red)"></i>Nettoergebnis</span>
         </div>
       </div>
 
-      <p class="group-title section-jump" id="sensitivitaet"><a href="#finanzen">Die Finanzen</a><a href="#mieter">Die Mieter</a><a href="#vergleich">Der Modellvergleich</a><span>Die Sensitivität</span><a href="#jahre">Jahr für Jahr</a></p>
+      <p class="group-title section-jump" id="sensitivitaet"><a href="#finanzen">Die Finanzen</a><a href="#mieter">Die Mieter</a><a href="#vergleich">Der Modellvergleich</a><span>Die Sensitivität</span><a href="#tabellen">Die Tabellen</a></p>
 
       <details class="panel" id="sensPanel">
         <summary>Diagramme</summary>
@@ -419,10 +402,25 @@
         </div>
       </details>
 
-      <p class="group-title section-jump" id="jahre"><a href="#finanzen">Die Finanzen</a><a href="#mieter">Die Mieter</a><a href="#vergleich">Der Modellvergleich</a><a href="#sensitivitaet">Die Sensitivität</a><span>Jahr für Jahr</span></p>
+      <p class="group-title section-jump" id="tabellen"><a href="#finanzen">Die Finanzen</a><a href="#mieter">Die Mieter</a><a href="#vergleich">Der Modellvergleich</a><a href="#sensitivitaet">Die Sensitivität</a><span>Die Tabellen</span></p>
+
+      <details class="panel" id="comparePanel">
+        <summary>Die Kennzahlen</summary>
+        <div class="table-wrap" style="max-height:none;">
+          <table id="compareTable">
+            <thead>
+              <tr id="compareHeadRow">
+                <th style="text-align:left;">Kennzahl</th>
+                <th>Aktuell</th>
+              </tr>
+            </thead>
+            <tbody id="compareBody"></tbody>
+          </table>
+        </div>
+      </details>
 
       <details class="panel" id="tablePanel">
-        <summary>Tabelle</summary>
+        <summary>Jahr für Jahr</summary>
         <div class="table-wrap">
           <table id="dataTable">
             <thead>
@@ -444,7 +442,7 @@
 
 </div>
 
-<script src="model-calc.js?v=20261006f"></script>
+<script src="model-calc.js?v=20261006g"></script>
 <script src="content.js?v=20261006a"></script>
 <script src="tooltips.js?v=20261003a"></script>
 <script src="nav.js?v=20261005a"></script>
