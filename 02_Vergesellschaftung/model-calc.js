@@ -13,10 +13,11 @@
     baseRent:7.63, rentGrowth:1.5, costInflation:2.5, avgSize:65, opex:40, opexMode:'percent', opexAbsolute:2.2,
     freeMarketRent:15.8, munizRent:6.29, cpiGrowth:2.0, incomeGrowth:3.0,
     mode:'none', buildCost:3500, reinvestQuota1:100,
-    sozialRent:6.5, convCost:0, sozialImmediate:0, sozialPaceRate:3.2, reinvestQuota2:0,
-    // sozialPaceRate 3,2 %/Jahr: Bernt/Holm 2023, S. 13–14 — 63 % der Neuvermietungen an WBS-Inhaber*innen
-    // (Quote der Landeseigenen) bei 5 % Fluktuation = 6.999 von 222.183 Wohnungen/Jahr ≈ 3,15 %.
-    // Die Presets setzen 0, damit ihre Ergebnisse unverändert bleiben.
+    sozialRent:6.5, convCost:0, sozialImmediate:0, sozialTurnover:5, sozialQuota:63, reinvestQuota2:0,
+    // Vergabe bei Neuvermietung nach Bernt/Holm 2023, S. 13–14: Fluktuation 5 %/Jahr, davon 63 % an
+    // WBS-Inhaber*innen (Quote der Landeseigenen) = 6.999 von 222.183 Wohnungen im ersten Jahr (≈ 3,15 %).
+    // Einmal an WBS-Haushalte vergebene Wohnungen bleiben gebunden; der Anteil nähert sich daher 63 %
+    // des Bestands und erreicht nicht 100 %. Die Presets setzen sozialQuota 0, ihre Ergebnisse bleiben unverändert.
     horizon:50
   };
   let state = Object.assign({}, defaults);
@@ -25,10 +26,17 @@
   const STORE_KEY = 'vergesellschaftung-szenarien';
   const MAX_SAVED = 5;
   let savedScenarios = [];
+  // Ältere Speicherungen und Links mit dem Regler „Fester Zeitplan“ (sozialPaceRate):
+  // 0 bleibt ohne Vergabe bei Neuvermietung, jeder andere Wert übernimmt die Voreinstellung.
+  function migrateState(v){
+    if(v && v.sozialPaceRate!==undefined && v.sozialQuota===undefined) v.sozialQuota = v.sozialPaceRate>0 ? defaults.sozialQuota : 0;
+    if(v) delete v.sozialPaceRate;
+    return v;
+  }
   try{
     let stored = JSON.parse(localStorage.getItem(STORE_KEY) || '[]');
     if(stored && !Array.isArray(stored)) stored = [stored.A, stored.B]; // frühere Speicherung mit A/B
-    savedScenarios = (stored || []).filter(Boolean).slice(0, MAX_SAVED).map(v=>Object.assign({}, defaults, v));
+    savedScenarios = (stored || []).filter(Boolean).slice(0, MAX_SAVED).map(v=>Object.assign({}, defaults, migrateState(v)));
   }catch(e){}
   function storeScenarios(){
     try{ localStorage.setItem(STORE_KEY, JSON.stringify(savedScenarios)); }catch(e){}
@@ -36,7 +44,7 @@
 
   const sliderIds = ['units','price','purchaseFactor','rate','riskPremium','term','rateResetYears','rateIncrement','onceCosts','maintBacklog','integrationCosts',
     'baseRent','rentGrowth','costInflation','avgSize','opex','opexAbsolute','freeMarketRent','munizRent','cpiGrowth','incomeGrowth','buildCost','reinvestQuota1',
-    'sozialRent','convCost','sozialImmediate','sozialPaceRate','reinvestQuota2','horizon'];
+    'sozialRent','convCost','sozialImmediate','sozialTurnover','sozialQuota','reinvestQuota2','horizon'];
 
   // Parameter, die im Kern €/m² sind, aber wahlweise auch als €-Betrag pro Wohnung
   // bedient werden koennen (verlinkte Zweitfelder, zwei Wege dieselbe Groesse einzugeben).
@@ -86,7 +94,7 @@
 
     let units = p.units;
     let sozialUnits = 0;
-    // Herkunft der Sozialwohnungen: sofort (Jahr 1), fester Zeitplan, aus Überschuss
+    // Herkunft der Sozialwohnungen: sofort (Jahr 1), bei Neuvermietung, aus Überschuss
     let sozImm = 0, sozFix = 0, sozSur = 0;
     // Einmalkosten bei Übernahme (Jahr 0): Transaktionskosten, Sanierungsstau, Integrationskosten.
     // Werden hier als Startsaldo verbucht, damit sie im Jahr-für-Jahr-Verlauf, im Cashflow-Chart
@@ -106,7 +114,9 @@
       const sozialRent = Math.min(p.sozialRent, p.baseRent)*Math.pow(1+p.rentGrowth/100, t-1);
 
       // Umwandlung zu Jahresbeginn, unabhängig vom Cashflow des Jahres (die Kosten mindern ihn unten):
-      // in Jahr 1 der sofort umgewandelte Anteil, danach jedes Jahr der feste Zeitplan auf den Rest.
+      // in Jahr 1 der sofort umgewandelte Anteil, danach jedes Jahr die Vergabe bei Neuvermietung:
+      // von f × Bestand frei werdenden Wohnungen gehen q an WBS-Haushalte; gebundene Wohnungen bleiben gebunden,
+      // neu gebunden werden also f × (q × Bestand − bereits gebundene), bis der Anteil q erreicht ist.
       // Die Umwandlung ist unabhängig vom Reinvestitionsmodus (Neubau/keine) immer aktiv.
       let fixedConversionCost = 0;
       {
@@ -115,7 +125,7 @@
           sozImm += newImm; sozialUnits += newImm;
           fixedConversionCost += newImm*p.convCost*p.avgSize;
         }
-        const newFix = Math.min(p.units*((p.sozialPaceRate||0)/100), Math.max(p.units - sozialUnits,0));
+        const newFix = Math.min(Math.max((p.sozialTurnover||0)/100*((p.sozialQuota||0)/100*p.units - sozialUnits), 0), Math.max(p.units - sozialUnits,0));
         sozFix += newFix; sozialUnits += newFix;
         fixedConversionCost += newFix*p.convCost*p.avgSize;
       }
@@ -225,7 +235,8 @@
     state.convCost = +$('convCost').value;
     state.sozialImmediate = +$('sozialImmediate').value;
     state.reinvestQuota2 = +$('reinvestQuota2').value;
-    state.sozialPaceRate = +$('sozialPaceRate').value;
+    state.sozialTurnover = +$('sozialTurnover').value;
+    state.sozialQuota = +$('sozialQuota').value;
     state.horizon = +$('horizon').value;
   }
 
@@ -264,7 +275,8 @@
     $('hint-sozialRentCap').style.display = state.sozialRent > state.baseRent ? 'block' : 'none';
     $('v-convCost').textContent = fmtInt(state.convCost)+' €/m²';
     $('v-sozialImmediate').textContent = state.sozialImmediate+' %';
-    $('v-sozialPaceRate').textContent = state.sozialPaceRate.toLocaleString('de-DE',{minimumFractionDigits:1})+' %/Jahr';
+    $('v-sozialTurnover').textContent = state.sozialTurnover.toLocaleString('de-DE',{maximumFractionDigits:1})+' %/Jahr';
+    $('v-sozialQuota').textContent = state.sozialQuota+' %';
     $('v-reinvestQuota2').textContent = state.reinvestQuota2+' %';
     $('v-horizon').textContent = state.horizon+' Jahre';
 
@@ -457,13 +469,13 @@
       }
     });
 
-    // Sozialanteil nach Herkunft (sofort / fester Zeitplan / aus Überschuss), gestapelt
+    // Sozialanteil nach Herkunft (sofort / bei Neuvermietung / aus Überschuss), gestapelt
     const fmtPct = v => v.toLocaleString('de-DE',{maximumFractionDigits:0})+' %';
     chartSozial = new Chart($('chartSozial').getContext('2d'), {
       type:'line',
       data:{ labels:[], datasets:[
         {label:'Sofort', data:[], borderColor:'#00788C', backgroundColor:'rgba(0,120,140,0.35)', borderWidth:1.5, pointRadius:0, fill:'origin', tension:0.15},
-        {label:'Fester Zeitplan', data:[], borderColor:'#A9762C', backgroundColor:'rgba(169,118,44,0.35)', borderWidth:1.5, pointRadius:0, fill:'-1', tension:0.15},
+        {label:'Bei Neuvermietung', data:[], borderColor:'#A9762C', backgroundColor:'rgba(169,118,44,0.35)', borderWidth:1.5, pointRadius:0, fill:'-1', tension:0.15},
         {label:'Aus Überschuss', data:[], borderColor:'#109A82', backgroundColor:'rgba(16,154,130,0.35)', borderWidth:1.5, pointRadius:0, fill:'-1', tension:0.15}
       ]},
       options:{
@@ -727,7 +739,7 @@
   function describeSnapshot(s){
     const finParts = [s.financing==='kredit' ? ('Kredit '+s.rate+'%') : 'Eigenmittel'];
     const modeLabel = s.mode==='neubau' ? 'Neubau' : 'keine Reinvest.';
-    const sozialLabel = 'Sozial: sofort '+s.sozialImmediate+' %, '+s.sozialPaceRate+' %/J., Überschuss '+s.reinvestQuota2+' %';
+    const sozialLabel = 'Sozial: sofort '+s.sozialImmediate+' %, '+'WBS-Quote '+s.sozialQuota+' % bei '+s.sozialTurnover+' % Fluktuation, Überschuss '+s.reinvestQuota2+' %';
     return finParts[0]+' · '+modeLabel+' · '+sozialLabel+' · '+s.purchaseFactor+'% Kaufpreis';
   }
 
@@ -857,7 +869,7 @@
       price: 2085, purchaseFactor: 43.0,
       financing: 'kredit', rate: 3.5, riskPremium: 0, term: 30, rateResetYears: 30, rateIncrement: 0,
       baseRent: 3.70, rentGrowth: 0.5, costInflation: 2.5,
-      opexMode: 'percent', opex: 40, mode: 'none', sozialPaceRate: 0
+      opexMode: 'percent', opex: 40, mode: 'none', sozialQuota: 0
     },
     holm: {
       // Bernt & Holm 2023: Ist-Miete-Modell, Mietsenkung auf Landeseigenen-Niveau 6,29 €/m².
@@ -866,21 +878,21 @@
       price: 2085, purchaseFactor: 73.8,
       financing: 'kredit', rate: 3.5, riskPremium: 0, term: 30, rateResetYears: 30, rateIncrement: 0,
       baseRent: 6.29, rentGrowth: 1.5, costInflation: 2.0,
-      opexMode: 'percent', opex: 35, mode: 'none', sozialPaceRate: 0
+      opexMode: 'percent', opex: 35, mode: 'none', sozialQuota: 0
     },
     rechnungshof: {
       // Rechnungshof Berlin 2024: verkehrswertorientiert (~32,5 Mrd € bei 100% Entschädigungsquote), Bewirtschaftungskosten absolut 2,20 €/m²
       price: 2085, purchaseFactor: 100,
       financing: 'kredit', rate: 3.5, riskPremium: 0, term: 30, rateResetYears: 10, rateIncrement: 1.0,
       baseRent: 6.71, rentGrowth: 1.5, costInflation: 2.0,
-      opexMode: 'absolute', opexAbsolute: 2.20, mode: 'none', sozialPaceRate: 0
+      opexMode: 'absolute', opexAbsolute: 2.20, mode: 'none', sozialQuota: 0
     },
     gegenmodell: {
       // IW Köln/Empirica 2026 (Bankengutachten): verkehrswertnah + Risikoprämie/Kapitalflucht-These
       price: 2085, purchaseFactor: 100,
       financing: 'kredit', rate: 3.5, riskPremium: 0.5, term: 30, rateResetYears: 5, rateIncrement: 2.0,
       baseRent: 7.63, rentGrowth: 1.5, costInflation: 3.0,
-      opexMode: 'percent', opex: 40, mode: 'none', sozialPaceRate: 0
+      opexMode: 'percent', opex: 40, mode: 'none', sozialQuota: 0
     },
     dwe2025: {
       // DWE-Gesetzentwurf, Stand 26.09.2025 (§§ 12-18 VergG-E): Entschädigung nach Sachwertverfahren
@@ -896,7 +908,7 @@
       units: 220000, price: 2085, purchaseFactor: 50,
       financing: 'kredit', rate: 3.5, riskPremium: 0, term: 100, rateResetYears: 100, rateIncrement: 0,
       baseRent: 3.70, rentGrowth: 0.5, costInflation: 2.5,
-      opexMode: 'percent', opex: 40, mode: 'none', sozialPaceRate: 0
+      opexMode: 'percent', opex: 40, mode: 'none', sozialQuota: 0
     }
   };
 
@@ -1046,11 +1058,12 @@
     const out = {};
     str.split(',').forEach(pair=>{
       const [k, v] = pair.split(':');
+      if(k==='sozialPaceRate' && isFinite(+v)){ out.sozialPaceRate = +v; return; }
       if(!(k in defaults) || v===undefined) return;
       if(textKeys[k]){ if(textKeys[k].includes(v)) out[k] = v; }
       else if(isFinite(+v)) out[k] = +v;
     });
-    return out;
+    return migrateState(out);
   }
   $('shareBtn').addEventListener('click', ()=>{
     readState();

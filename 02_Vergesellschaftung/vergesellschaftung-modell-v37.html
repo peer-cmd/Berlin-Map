@@ -226,8 +226,12 @@
           <input type="range" id="sozialImmediate" min="0" max="100" step="5" value="0">
         </div>
         <div class="field">
-          <div class="field-row"><label data-term="Umwandlungstempo">Fester Zeitplan</label><span class="val" id="v-sozialPaceRate">3,2 %/Jahr</span></div>
-          <input type="range" id="sozialPaceRate" min="0" max="20" step="0.1" value="3.2">
+          <div class="field-row"><label data-term="Umwandlungstempo">Fluktuation</label><span class="val" id="v-sozialTurnover">5 %/Jahr</span></div>
+          <input type="range" id="sozialTurnover" min="0" max="15" step="0.5" value="5">
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Umwandlungstempo">WBS-Quote bei Neuvermietung</label><span class="val" id="v-sozialQuota">63 %</span></div>
+          <input type="range" id="sozialQuota" min="0" max="100" step="1" value="63">
         </div>
         <div class="field">
           <div class="field-row"><label data-term="Umwandlungstempo">Aus Überschuss</label><span class="val" id="v-reinvestQuota2">0 %</span></div>
@@ -320,11 +324,11 @@
         <div class="panel-head">
           <h2>Die <span data-term="Sozialbindung">Sozialwohnungen</span></h2>
         </div>
-        <p class="panel-sub">Anteil der Wohnungen mit Sozialmiete am Bestand, nach Herkunft: sofort umgewandelt, nach festem Zeitplan und aus dem Überschuss, eingestellt unter „Die Sozialwohnungen“.</p>
+        <p class="panel-sub">Anteil der Wohnungen mit Sozialmiete am Bestand, nach Herkunft: sofort umgewandelt, bei Neuvermietung an WBS-Haushalte und aus dem Überschuss, eingestellt unter „Die Sozialwohnungen“.</p>
         <canvas id="chartSozial" height="70"></canvas>
         <div class="legend">
           <span><i class="swatch" style="background:var(--blue)"></i>Sofort</span>
-          <span><i class="swatch" style="background:var(--amber)"></i>Fester Zeitplan</span>
+          <span><i class="swatch" style="background:var(--amber)"></i>Bei Neuvermietung</span>
           <span><i class="swatch" style="background:var(--green)"></i>Aus Überschuss</span>
         </div>
       </div>
@@ -520,8 +524,8 @@
 
 </div>
 
-<script src="model-calc.js?v=20261006e"></script>
-<script src="content.js?v=20261003d"></script>
+<script src="model-calc.js?v=20261006f"></script>
+<script src="content.js?v=20261006a"></script>
 <script src="include.js"></script>
 <script src="tooltips.js?v=20261003a"></script>
 <script src="nav.js?v=20261005a"></script>

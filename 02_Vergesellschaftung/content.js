@@ -34,7 +34,7 @@ window.SITE_INCLUDES = {
       <section class="gl-group">
       <h3 class="gl-letter">C</h3>
       <dl>
-        <div><dt>Cashflow</dt> <dd>NOI abzüglich Schuldendienst (und abzüglich der Kosten einer Umwandlung nach festem Zeitplan) in einem Jahr. Der kumulierte Cashflow summiert die Jahreswerte seit Übernahme, beginnend mit den Einmalkosten in Jahr 0.</dd></div>
+        <div><dt>Cashflow</dt> <dd>NOI abzüglich Schuldendienst (und abzüglich der Kosten einer Umwandlung bei Neuvermietung) in einem Jahr. Der kumulierte Cashflow summiert die Jahreswerte seit Übernahme, beginnend mit den Einmalkosten in Jahr 0.</dd></div>
       </dl>
       </section>
       <section class="gl-group">
@@ -127,7 +127,7 @@ window.SITE_INCLUDES = {
       <h3 class="gl-letter">U</h3>
       <dl>
         <div><dt>Umwandlungskosten</dt> <dd>Einmalige Kosten je m² Wohnfläche, wenn eine Wohnung in eine Sozialwohnung umgewandelt wird; × Ø Wohnungsgröße ergibt die Kosten je Wohnung. Standardwert 0: Im öffentlichen Eigentum ist die Umwandlung eine Entscheidung über die Miete, ihre Kosten sind die entgangenen Mieteinnahmen, die das Modell über die Sozialmiete bereits erfasst. Ein Wert über 0 bildet zusätzliche Kosten ab, etwa für Verwaltung oder Modernisierung.</dd></div>
-        <div><dt>Umwandlungstempo</dt> <dd>Legt fest, wie schnell Wohnungen in Sozialwohnungen umgewandelt werden; die drei Regler wirken zusammen, bis der gesamte übernommene Bestand umgewandelt ist, und gelten unabhängig vom Reinvestitionsmodus; Neubauwohnungen bleiben bei der Modellmiete. „Sofort umgewandelt": Anteil des Bestands, der ab Jahr 1 die Sozialmiete trägt. „Fester Zeitplan": weiterer Anteil des Gesamtbestands pro Jahr, unabhängig vom Cashflow; die Kosten mindern den Cashflow des jeweiligen Jahres. Bei 3,3 %/Jahr ist der gesamte Bestand nach rund 30 Jahren umgewandelt. Voreinstellung 3,2 %/Jahr: Bernt/Holm (2023) rechnen damit, dass nach einer Vergesellschaftung 63 % der Neuvermietungen an WBS-Inhaber*innen gehen, wie bei den landeseigenen Unternehmen; bei 5 % Fluktuation sind das jährlich 6.999 von rund 222.000 Wohnungen. „Aus Überschuss": Anteil des jährlichen Überschusses, der weitere Umwandlungen trägt, gerechnet mit entgangener Miete und Umwandlungskosten je Wohnung; 0 % schaltet ihn ab.</dd></div>
+        <div><dt>Umwandlungstempo</dt> <dd>Legt fest, wie schnell Wohnungen in Sozialwohnungen umgewandelt werden; die Regler wirken zusammen und gelten unabhängig vom Reinvestitionsmodus; umgewandelt wird nur der übernommene Bestand, Neubauwohnungen bleiben bei der Modellmiete. „Sofort umgewandelt": Anteil des Bestands, der ab Jahr 1 die Sozialmiete trägt. „Fluktuation" und „WBS-Quote bei Neuvermietung": Jedes Jahr wird der Anteil „Fluktuation" aller Wohnungen neu vermietet; davon geht die WBS-Quote an WBS-Haushalte und trägt ab dann die Sozialmiete. Bereits vergebene Wohnungen bleiben gebunden, deshalb nähert sich der Anteil der WBS-Quote am Bestand und steigt nicht darüber. Voreinstellung nach Bernt/Holm (2023): 5 % Fluktuation, 63 % der Neuvermietungen an WBS-Inhaber*innen wie bei den landeseigenen Unternehmen; im ersten Jahr sind das 6.999 von 222.183 Wohnungen (3,15 %), nach 30 Jahren rund die Hälfte des Bestands. Die Kosten der Umwandlung mindern den Cashflow des jeweiligen Jahres. „Aus Überschuss": Anteil des jährlichen Überschusses, der weitere Umwandlungen trägt, gerechnet mit entgangener Miete und Umwandlungskosten je Wohnung; 0 % schaltet ihn ab.</dd></div>
       </dl>
       </section>
       <section class="gl-group">

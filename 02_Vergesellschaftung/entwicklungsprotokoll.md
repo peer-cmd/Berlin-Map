@@ -8,6 +8,12 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-06 — Sozialwohnungen: Vergabe bei Neuvermietung statt festem Zeitplan
+
+Fehler: Der Regler „Fester Zeitplan" (Voreinstellung 3,2 %/Jahr) wandelte jedes Jahr 3,2 % des Gesamtbestands um; nach 32 Jahren war der ganze Bestand Sozialwohnung, und „Die Ersparnis der Mieter" wuchs entsprechend weiter. Bernt/Holm 2023 (S. 13–14) beschreiben einen Fluss von Vergaben: 5 % Fluktuation, davon 63 % an WBS-Inhaber*innen, 6.999 Wohnungen im Jahr. Bei dieser Quote können höchstens 63 % des Bestands an WBS-Haushalte gehen.
+
+Neu: zwei Regler „Fluktuation" (5 %/Jahr) und „WBS-Quote bei Neuvermietung" (63 %). Neu gebunden werden je Jahr Fluktuation × (Quote × Bestand − bereits gebundene Wohnungen); gebundene Wohnungen bleiben gebunden. Jahr 1: 3,15 % (= 6.999 / 222.183), Jahr 10: 25 %, Jahr 30: 50 %, Jahr 50: 58 %. „Sofort umgewandelt" und „Aus Überschuss" zählen auf den gebundenen Bestand an. Presets setzen `sozialQuota: 0`, ihre Ergebnisse bleiben unverändert. Gespeicherte Szenarien und Links mit `sozialPaceRate` werden übernommen: 0 → Quote 0, sonst Voreinstellung. Glossar (Umwandlungstempo, Cashflow) und `quellenbelege.md` angepasst.
+
 ## 2026-10-06 — Kennzahlen ohne Rahmen, Stand in der Fußzeile
 
 Die Kopfzeile mit Titel, Kaufpreis und Nettoergebnis auf den Modellseiten steht ohne Rahmen und Hintergrund (`.summary` in `style.css`). Auf der Übersicht steht „Stand: Oktober 2026“ in der Fußzeile statt rechts neben dem Titel.
