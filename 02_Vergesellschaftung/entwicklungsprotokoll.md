@@ -8,6 +8,12 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-06 — Modell: Modellvergleich als eigener Abschnitt, Reihenfolge der Ergebnisse
+
+Die Ergebnisse stehen jetzt in fünf Abschnitten: Die Finanzen, Die Mieter, Der Modellvergleich, Die Sensitivität, Jahr für Jahr. Jeder Abschnitt hat eine Sprungleiste zu allen anderen; die Links zu den zugeklappten Abschnitten (Sensitivität, Jahr für Jahr) öffnen diese. Die Jahrestabelle steht als Nachschlagewerk am Ende.
+
+Der Modellvergleich ist immer sichtbar (vorher nur mit gespeicherten Szenarien). Er zeigt die aktuelle Einstellung, die fünf Positionen und die gespeicherten Szenarien, alle über den eingestellten Betrachtungszeitraum: Kaufpreis und Nettoergebnis als Balken (neu mit „Aktuell“), dazu drei neue Liniendiagramme mit je einer Linie pro Position (kumulierter Cashflow, Restschuld, Ø Miete im Bestand). Die aktuelle Einstellung ist eine dicke schwarze Linie, gespeicherte Szenarien sind grau gestrichelt. Die Kennzahlentabelle führt die fünf Positionen immer als Spalten. Code in `model-calc.js` (`compareEntries`, `updateCompareCharts`).
+
 ## 2026-10-05 — Volle Fensterbreite: Navigation und Modell
 
 Über 1440 px Fensterbreite stand der Inhalt aller Seiten außer der Karte in einem zentrierten Rahmen von 1440 px; beim Wechsel zur Karte sprang die Navigation um den Seitenrand nach links, und auf den Modellseiten blieben links und rechts je bis zu 240 px leer. Die Obergrenze von `.app` ist entfernt: Navigation und Modellseiten nutzen die ganze Fensterbreite, die Navigation steht auf allen Seiten gleich. Der Rahmen um das Modell entfällt; Navigation und Fußzeile trennen es weiterhin mit je einer Linie. Textseiten behalten ihre Spalte von 820 px; das Glossar zeigt auf breiten Fenstern bis zu vier Spalten.

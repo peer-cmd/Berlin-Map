@@ -289,7 +289,7 @@
     $('panel-neubau').classList.toggle('show', state.mode==='neubau');
   }
 
-  let chartCashflow, chartCumulative, chartStock, chartRent, chartBalance, chartCapital, chartSozial, chartTenantSavings, chartScenarios, chartRateSens, chartCompSens;
+  let chartCashflow, chartCumulative, chartStock, chartRent, chartBalance, chartCapital, chartSozial, chartTenantSavings, chartScenarios, chartRateSens, chartCompSens, chartCompareCum, chartCompareBalance, chartCompareRent;
 
   const vlinePlugin = {
     id: 'vlineMarker',
@@ -526,8 +526,33 @@
     chartCompSens = sensChart('chartCompSens', 'Entschädigungsquote %');
     // Chart.js misst im geschlossenen <details> eine Breite von 0; beim Öffnen neu messen.
     $('sensPanel').addEventListener('toggle', ()=>{ chartRateSens.resize(); chartCompSens.resize(); });
-    // Sprunglinks „Die Sensitivität“ öffnen das zugeklappte Panel.
-    document.querySelectorAll('a[href="#sensPanel"]').forEach(a=>a.addEventListener('click', ()=>{ $('sensPanel').open = true; }));
+    // Sprunglinks „Die Sensitivität“ und „Jahr für Jahr“ öffnen das zugeklappte Panel.
+    [['sensitivitaet','sensPanel'],['jahre','tablePanel']].forEach(([target, panel])=>{
+      document.querySelectorAll('a[href="#'+target+'"]').forEach(a=>a.addEventListener('click', ()=>{ $(panel).open = true; }));
+    });
+
+    // Modellvergleich: eine Linie je Position, Datensätze werden in updateCompareCharts gesetzt.
+    const compareChart = (id, fmt) => new Chart($(id).getContext('2d'), {
+      type:'line',
+      data:{ labels:[], datasets:[] },
+      options:{
+        responsive:true,
+        animation:{duration:250},
+        interaction:{mode:'index', intersect:false},
+        layout:{padding:{right:AXIS_W}},
+        plugins:{ legend:{display:false},
+          tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+fmt(ctx.parsed.y) }}
+        },
+        scales:{
+          x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:YEAR_TICKS },
+          y:{ afterFit:fixAxisWidth, ticks:{font:{family:'IBM Plex Mono',size:9}, callback:v=>fmt(v)}, grid:{color:'#EAEAE4'} }
+        }
+      }
+    });
+    const fmtRent = v => v.toLocaleString('de-DE',{maximumFractionDigits:2})+' €';
+    chartCompareCum = compareChart('chartCompareCum', fmtEUR);
+    chartCompareBalance = compareChart('chartCompareBalance', fmtEUR);
+    chartCompareRent = compareChart('chartCompareRent', fmtRent);
   }
 
   function render(){
@@ -707,11 +732,9 @@
   }
 
   function renderCompareTable(){
-    const slots = savedScenarios;
-    const wrap = $('comparePanel');
-    if(slots.length===0){ wrap.style.display='none'; return; }
-    wrap.style.display='block';
+    const slots = compareEntries();
     if(chartScenarios) updateScenarioChart(true);
+    updateCompareCharts(slots);
 
     const headRow = $('compareHeadRow');
     const activeBtn = document.querySelector('.preset-btn.active');
@@ -721,7 +744,7 @@
 
     const currentResult = runScenario(state.price, state);
     const results = [ {label:currentLabel, s:state, r:currentResult} ].concat(
-      slots.map(v=>({label:v.label, s:v, r: runScenario(v.price, v)}))
+      slots.map(v=>({label:v.label, s:v.p, r:v.r}))
     );
 
     const rowsDef = [
@@ -742,6 +765,38 @@
       return '<tr><td style="text-align:left;color:var(--ink);">'+label+'</td>'+
         results.map(r=>'<td>'+fn(r)+'</td>').join('')+'</tr>';
     }).join('');
+  }
+
+  // Die fünf Positionen und die gespeicherten Szenarien, alle über den eingestellten Horizont.
+  // Farben folgen der Position, nicht dem Rang; gespeicherte Szenarien sind grau gestrichelt.
+  const PRESET_ORDER = [['linke','Faire-Mieten-Modell','#00788C'],['dwe2025','DWE-Gesetzentwurf','#A9762C'],['holm','Bernt/Holm','#6B3FA0'],['rechnungshof','Rechnungshof','#E0435C'],['gegenmodell','IW/Empirica','#4A6FA5']];
+  const SAVED_DASH = [[6,3],[2,3],[8,3,2,3],[4,4],[1,2]];
+  function compareEntries(){
+    const horizon = state.horizon;
+    const entries = PRESET_ORDER.map(([key,label,color])=>({label, color, p:Object.assign({}, defaults, presets[key], {horizon})}))
+      .concat(savedScenarios.map((v,i)=>({label:v.label, color:'#6B6B63', dash:SAVED_DASH[i%SAVED_DASH.length], p:Object.assign({}, v, {horizon})})));
+    entries.forEach(e=>{ e.r = runScenario(e.p.price, e.p); });
+    return entries;
+  }
+
+  function updateCompareCharts(slots){
+    if(!chartCompareCum) return;
+    const current = runScenario(state.price, state);
+    const entries = [{label:'Aktuell', color:'#14171A', current:true, r:current}].concat(slots);
+    const labels = current.rows.map(r=>r.t);
+    const set = (chart, key) => {
+      chart.data.labels = labels;
+      chart.data.datasets = entries.map(e=>({
+        label:e.label, data:e.r.rows.map(r=>r[key]), borderColor:e.color, backgroundColor:'transparent',
+        borderWidth:e.current ? 3 : 1.5, borderDash:e.dash || [], pointRadius:0, tension:0.15, order:e.current ? 0 : 1
+      }));
+      chart.update('none');
+    };
+    set(chartCompareCum, 'cumForChart');
+    set(chartCompareBalance, 'balance');
+    set(chartCompareRent, 'avgRent');
+    const legend = entries.map(e=>'<span><i class="swatch" style="background:'+e.color+'"></i>'+escapeHtml(e.label)+'</span>').join('');
+    document.querySelectorAll('.compare-legend').forEach(el=>{ el.innerHTML = legend; });
   }
 
   function initScenarioChart(){
@@ -769,9 +824,11 @@
   // withSaved (Modellseite): gespeicherte Szenarien als weitere Balken, alle über den eingestellten Horizont.
   function updateScenarioChart(withSaved){
     const horizon = withSaved ? state.horizon : defaults.horizon;
-    const presetOrder = [['linke','Faire-Mieten-Modell'],['dwe2025','DWE-Gesetzentwurf'],['holm','Bernt/Holm'],['rechnungshof','Rechnungshof'],['gegenmodell','IW/Empirica']];
-    const entries = presetOrder.map(([key,label])=>({label, p:Object.assign({}, defaults, presets[key])}));
-    if(withSaved) savedScenarios.forEach(v=>entries.push({label:v.label, p:v}));
+    const entries = PRESET_ORDER.map(([key,label])=>({label, p:Object.assign({}, defaults, presets[key])}));
+    if(withSaved){
+      entries.unshift({label:'Aktuell', p:state});
+      savedScenarios.forEach(v=>entries.push({label:v.label, p:v}));
+    }
     const presetResults = entries.map(({label,p})=>{
       const r = runScenario(p.price, Object.assign({}, p, {horizon}));
       return {label, principal:r.principal, netResult:r.netResult, breakEvenYear:r.breakEvenYear};

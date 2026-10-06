@@ -259,9 +259,8 @@ div.glossary{columns:2 280px;column-gap:32px;column-rule:1px solid var(--line);}
   margin:0 0 14px;
 }
 
-/* Results: jump between "Die Finanzen" and "Die Mieter"; the current section in petrol, the other as a link */
-.section-jump{display:flex;gap:20px;scroll-margin-top:12px;}
-#sensPanel{scroll-margin-top:12px;}
+/* Results: jump between the result sections; the current section in petrol, the others as links */
+.section-jump{display:flex;flex-wrap:wrap;gap:6px 20px;scroll-margin-top:12px;}
 .section-jump a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line-strong);}
 .section-jump a:hover, .section-jump a:focus{color:var(--green);border-bottom-color:var(--green);outline:none;}
 .results{scroll-behavior:smooth;}
