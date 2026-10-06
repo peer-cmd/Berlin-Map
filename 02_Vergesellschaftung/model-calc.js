@@ -803,8 +803,8 @@
     const ctx8 = $('chartScenarios').getContext('2d');
     chartScenarios = new Chart(ctx8, {
       data:{ labels:[], datasets:[
-        {type:'bar', label:'Kaufpreis', data:[], backgroundColor:'#93AECB', yAxisID:'y', order:2},
-        {type:'bar', label:'Nettoergebnis', data:[], backgroundColor:[], yAxisID:'y', order:2}
+        {type:'bar', label:'Kaufpreis', data:[], backgroundColor:'#93AECB', yAxisID:'y', order:2, categoryPercentage:0.45, barPercentage:0.9},
+        {type:'bar', label:'Nettoergebnis', data:[], backgroundColor:[], yAxisID:'y', order:2, categoryPercentage:0.45, barPercentage:0.9}
       ]},
       options:{
         responsive:true,
