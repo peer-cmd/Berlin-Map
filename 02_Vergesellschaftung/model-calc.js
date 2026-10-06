@@ -524,6 +524,8 @@
     chartCompSens = sensChart('chartCompSens', 'Entschädigungsquote %');
     // Chart.js misst im geschlossenen <details> eine Breite von 0; beim Öffnen neu messen.
     $('sensPanel').addEventListener('toggle', ()=>{ chartRateSens.resize(); chartCompSens.resize(); });
+    // Sprunglinks „Die Sensitivität“ öffnen das zugeklappte Panel.
+    document.querySelectorAll('a[href="#sensPanel"]').forEach(a=>a.addEventListener('click', ()=>{ $('sensPanel').open = true; }));
   }
 
   function render(){

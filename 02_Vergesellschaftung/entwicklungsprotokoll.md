@@ -581,3 +581,7 @@ Von elf Zwischentiteln (h3) bleiben zwei: „Die Mehrheit“ und „Das Sondervo
 ## 2026-10-06 — Modell: Diagramme ohne Rahmen
 
 Die Diagramm-Panels in der Ergebnisspalte (`.results .panel`) haben keinen Rahmen und keinen Innenabstand mehr; der Abstand zwischen den Diagrammen steigt auf 36 px. Die Zeichenflächen werden dadurch um den früheren Innenabstand breiter. Der Kasten mit Titel und Kennzahlen behält seinen Rahmen. Versions-Tag von `style.css` auf `20261006g`.
+
+## 2026-10-06 — Modell: Sprunglink „Die Sensitivität“
+
+Die Sprungleisten „Die Finanzen / Die Mieter“ haben einen dritten Eintrag „Die Sensitivität“. Der Link springt zum Panel `#sensPanel` und klappt es auf (`model-calc.js`). Versions-Tags: `style.css` `20261006h`, `model-calc.js` `20261006b`.
