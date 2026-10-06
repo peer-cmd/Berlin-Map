@@ -21,7 +21,7 @@ PAGE = """<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Die Chronologie — Vergesellschaftung großer Wohnungsunternehmen</title>
 <link rel="stylesheet" href="fonts/fonts.css">
-<link rel="stylesheet" href="style.css?v=20261006n">
+<link rel="stylesheet" href="style.css?v=20261006p">
 </head>
 <body class="chron-page">
 <!-- Generated from quellenbelege.md by build_quellenbelege.py. Do not edit by hand. -->
@@ -35,6 +35,8 @@ PAGE = """<!DOCTYPE html>
     <a href="quellenbelege.html" class="active">Die Chronologie</a>
     <a href="glossar.html">Glossar</a>
     <a href="karte.html">Karte</a>
+    <a href="quellen.html">Quellen</a>
+    <a href="mailto:info@peerfrantzen.com" class="nav-contact">Kontakt</a>
   </nav>
 
   <div class="masthead">
