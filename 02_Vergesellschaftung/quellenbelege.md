@@ -51,6 +51,7 @@ Bericht nach § 88 Abs. 2 LHO vom 20.02.2024 an den Regierenden Bürgermeister, 
 - **Schwelle bei 11 Mrd. €:** S. 23, wörtlich: "Das vom Rechnungshof entwickelte Berechnungsmodell hat ergeben, dass bereits Entschädigungssummen über 11 Mrd. € wegen der hohen Finanzierungskosten unweigerlich zu Defiziten bei der Bewirtschaftung der zu vergesellschaftenden Bestände durch eine AöR führen."
 - **Zuschussbedarf je Szenario:** S. 23, wörtlich: "Bei einer verkehrswertorientierten Entschädigungssumme von 29 Mrd. € wären durchschnittlich jährliche Zuschüsse von rd. 700 Mio. € in den ersten zehn Jahren erforderlich. Bei einer Entschädigungssumme von 36 Mrd. € steigt der Zuschussbedarf auf rd. 1 Mrd. € jährlich."
 - **Bewirtschaftungskosten:** S. 25 (Anhang 1), Absolutbeträge pro Jahr: Verwaltungsaufwand 343,69 €/Wohneinheit, Instandhaltung 17,18 €/m², nicht umlagefähige Betriebskosten 3,60 €/m², Mietausfallwagnis 2 %. Auf einen Monatswert pro m² umgerechnet (bei Ø 61 m²: 343,69/61/12 ≈ 0,47 + 17,18/12 ≈ 1,43 + 3,60/12 = 0,30) ergibt das ≈ 2,20 €/m². Dieser Monatswert steht nicht im Bericht; er dient im Modell als Voreinstellung für den Modus „Absolut €/m²".
+- **Mieterhöhungen:** 1 % p. a. bis 2024, 2 % p. a. ab 2025, begründet mit dem Senatsbeschluss zum Mieterschutz bei den Landeseigenen von 2021; der Mietspiegel 2023 zeigt 2,7 % p. a. für 2021–2023 — S. 26 (Anhang 1), auch S. 11 (Ansicht 2). Im Modell einheitlich 2,0 %.
 - **Wohnungsgröße:** Ø 61 m² laut Rechnungshof (S. 25); das Modell setzt 65 m² an (Basis: DWE/BBU).
 - **Schlussfolgerung:** §4 (ab S. 22), Zitat S. 24: "Eine Vergesellschaftung kann nur verhältnismäßig sein, wenn dadurch die Mieten gesenkt oder zumindest entdynamisiert werden. Im Ergebnis sieht der Rechnungshof daher keine Möglichkeit, eine Vergesellschaftung mit vertretbaren Risiken umzusetzen." Seitenzahl am Original geprüft (03.10.2026).
 
@@ -73,7 +74,7 @@ Juni 2023, 158 S. Grundlage für den Rechtsstreit um die Entschädigung und für
 
 Kurzstudie zu den sozialen Effekten einer möglichen Vergesellschaftung von Wohnungen in Berlin, Online-Studie 1/2023, 23 S.
 
-- **Mieten landeseigener Unternehmen:** Ø 6,29 €/m², Wachstum 1,6 % — S. 22 (Zeitreihentabelle), auch S. 10, 12.
+- **Mieten landeseigener Unternehmen:** Ø 6,29 €/m², Wachstum 1,6 % — S. 22 (Zeitreihentabelle), auch S. 10, 12. Die Studie schreibt dieses Wachstum ab 2023 fort (S. 11); im Modell Mietsteigerung der Position Bernt/Holm.
 - **Mieten großer privater Konzerne:** Ø 7,63 €/m², Wachstum 3,9 % — S. 22, auch S. 10–12.
 - **Bestand der sechs größten Konzerne:** 222.183 Wohnungen — S. 12.
 - **Vergabe an WBS-Inhaber*innen:** S. 14: nach einer Vergesellschaftung würden "63 Prozent aller Neuvermietungen an WBS-Inhaber*innen erfolgen. Bei einer unterstellten Fluktuation von 5 Prozent pro Jahr beträfe das jährlich 6.999 Wohnungen." Fluktuationsrate 5 % als Mittel der untersuchten Bestände seit 2016 — S. 13. Im Modell Voreinstellung „Fluktuation" 5 %/Jahr und „WBS-Quote bei Neuvermietung" 63 %; im ersten Jahr 6.999 / 222.183 ≈ 3,15 % des Bestands. Die Quelle nennt die jährliche Zahl der Vergaben; dass vergebene Wohnungen gebunden bleiben und der Anteil sich daher 63 % nähert, ist eine Annahme des Modells.
@@ -87,6 +88,7 @@ Sammelband der Initiative, 149 S.
 
 - **Volksentscheid:** am 26.09.2021 „59,1 % der gültigen Stimmen" für die Vergesellschaftung — S. 4 (Vorwort).
 - **Bestand:** ≈ 240.000 Wohnungen — S. 8, 9, 45–47, 77, 81, 112.
+- **Fortschreibung:** leistbare Miete und Bewirtschaftungskosten steigen mit 0,43 % pro Jahr, dem geometrischen Mittel der Reallohnentwicklung 1991–2019 — S. 97 (Begründung zum Gesetzentwurf). Im Modell 0,4 % für Mietsteigerung und Kosteninflation des Faire-Mieten-Modells. Der DWE-Gesetzentwurf 2025 nennt keine Mietsteigerung; das Modell übernimmt dort die 0,4 %.
 - **Zielmiete 3,70 €/m²:** S. 117: "Die Berliner Initiative DW enteignen rechnet in ihrem sog. Faire-Mieten-Modell mit einer NKM von 3,70 €/m²."
 - **Kritik der Senatsschätzung:** „Anmerkungen zur Kostenschätzung des Senats", S. 134–137; im Modell nur pauschal zitiert.
 

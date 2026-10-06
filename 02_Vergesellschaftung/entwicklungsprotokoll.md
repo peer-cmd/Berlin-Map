@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-06 — Mietsteigerung nach den Quellen; Prüfung aller Preset-Parameter
+
+Mietsteigerung der Presets an die Quellen angepasst: Faire-Mieten-Modell 0,5 → 0,4 % und Kosteninflation 2,5 → 0,4 % (DWE 2022, S. 97: 0,43 % für Miete und Bewirtschaftung); DWE-Gesetzentwurf 0,5 → 0,4 % (übernommen); Bernt/Holm 1,5 → 1,6 % (S. 22, Tab. 6); Rechnungshof 1,5 → 2,0 % (S. 26: 1 % bis 2024, 2 % ab 2025). IW/Empirica und Voreinstellung 1,5 % ohne Quelle. Belege in `quellenbelege.md`. Neue Datei `parameterpruefung.md`: alle Preset-Parameter mit Quelle, Fundstelle, Befund und Vorschlag; die Vorschläge sind noch nicht übernommen. Gefunden: Regler „Entschädigungsquote“ (`min=40 step=5`) rundet 43 auf 45 und 73,8 auf 75. Versionstag: `model-calc.js?v=20261006h`.
+
 ## 2026-10-06 — Navigation: Quellen und Kontakt; Kreisdiagramm Volksentscheid
 
 Die Navigation aller Seiten (auch `build_quellenbelege.py`, `modell-kompakt.html` über `build_kompakt.py`) hat zwei neue Einträge: „Quellen“ (`quellen.html`) und rechtsbündig „Kontakt“ (`mailto:info@peerfrantzen.com`, Adresse aus dem Impressum). Auf der Übersicht steht unter „Der Volksentscheid“ ein Kreisdiagramm als Inline-SVG: 59,1 % Ja, 40,9 % Nein der gültigen Stimmen (Beleg in `quellenbelege.md`, Volksentscheid).

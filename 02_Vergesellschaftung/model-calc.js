@@ -866,9 +866,11 @@
       // ~14 Mrd € bei 3,70 €/m² Zielmiete. Verkehrswert einheitlich 2.085 €/m² (s. Rechnungshof) —
       // der Unterschied zu den anderen Modellen liegt in der Entschädigungsquote, nicht im Verkehrswert
       // (897/2085 ≈ 43,0 % vom Verkehrswert, entspricht ca. 14 Mrd € Gesamtkompensation).
+      // Miete und Bewirtschaftungskosten steigen laut Gesetzentwurf 2022 mit 0,43 %/Jahr (Reallohnentwicklung
+      // 1991–2019; DWE 2022, S. 97), im Modell auf 0,4 % gerundet.
       price: 2085, purchaseFactor: 43.0,
       financing: 'kredit', rate: 3.5, riskPremium: 0, term: 30, rateResetYears: 30, rateIncrement: 0,
-      baseRent: 3.70, rentGrowth: 0.5, costInflation: 2.5,
+      baseRent: 3.70, rentGrowth: 0.4, costInflation: 0.4,
       opexMode: 'percent', opex: 40, mode: 'none', sozialQuota: 0
     },
     holm: {
@@ -877,14 +879,16 @@
       // Verkehrswert, entspricht ca. 24 Mrd € Gesamtkompensation.
       price: 2085, purchaseFactor: 73.8,
       financing: 'kredit', rate: 3.5, riskPremium: 0, term: 30, rateResetYears: 30, rateIncrement: 0,
-      baseRent: 6.29, rentGrowth: 1.5, costInflation: 2.0,
+      // Mietsteigerung: Trendfortschreibung der Landeseigenen 2016–2021, 1,6 %/Jahr (Bernt/Holm 2023, Tabelle 6).
+      baseRent: 6.29, rentGrowth: 1.6, costInflation: 2.0,
       opexMode: 'percent', opex: 35, mode: 'none', sozialQuota: 0
     },
     rechnungshof: {
       // Rechnungshof Berlin 2024: verkehrswertorientiert (~32,5 Mrd € bei 100% Entschädigungsquote), Bewirtschaftungskosten absolut 2,20 €/m²
       price: 2085, purchaseFactor: 100,
       financing: 'kredit', rate: 3.5, riskPremium: 0, term: 30, rateResetYears: 10, rateIncrement: 1.0,
-      baseRent: 6.71, rentGrowth: 1.5, costInflation: 2.0,
+      // Mieterhöhung laut Rechnungshof 1 % bis 2024, 2 % ab 2025 (Anhang 1, S. 26); im Modell einheitlich 2,0 %.
+      baseRent: 6.71, rentGrowth: 2.0, costInflation: 2.0,
       opexMode: 'absolute', opexAbsolute: 2.20, mode: 'none', sozialQuota: 0
     },
     gegenmodell: {
@@ -907,7 +911,8 @@
       // innerhalb fast jedes hier darstellbaren Zeithorizonts (max. 100 Jahre) und damit eine nahe Annäherung.
       units: 220000, price: 2085, purchaseFactor: 50,
       financing: 'kredit', rate: 3.5, riskPremium: 0, term: 100, rateResetYears: 100, rateIncrement: 0,
-      baseRent: 3.70, rentGrowth: 0.5, costInflation: 2.5,
+      // Der Entwurf nennt keine Mietsteigerung; Miete und Wachstum vom Faire-Mieten-Modell übernommen.
+      baseRent: 3.70, rentGrowth: 0.4, costInflation: 2.5,
       opexMode: 'percent', opex: 40, mode: 'none', sozialQuota: 0
     }
   };
