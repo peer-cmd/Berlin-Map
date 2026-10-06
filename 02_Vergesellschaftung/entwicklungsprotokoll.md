@@ -569,3 +569,7 @@ Die Positionsnamen auf den Auswahlknöpfen sind wieder schwarz. Violett sind jet
 ## 2026-10-06 — Recht: Expertenkommission eingeführt
 
 Im Abschnitt „Der Streit um die Entschädigung“ erklären drei Sätze, wer die Expertenkommission ist: 2022 vom Senat eingesetzt, Auftrag (Verfassungskonformität prüfen, rechtssichere Wege untersuchen), Abschlussbericht Juni 2023. Beleg: Expertenkommission 2023, S. 1 (Titelseite), S. 8, Rn. 2 (Einsetzung am 29. März 2022, Auftrag laut Senatsbeschluss). Neue Fußnote 5; die folgenden Fußnoten rücken um eins auf (6–12).
+
+## 2026-10-06 — Recht: Seite neu gegliedert
+
+Fünf Abschnitte mit Unterpunkten (h3): Die Rechtsgrundlage (Art. 15 GG; Berliner Verfassung; kein Gesetz, kein Urteil), Die Expertenkommission (Einsetzung und Auftrag; Mehrheit; Sondervotum), Die Entschädigung (Maßstab; Verkehrswert und Ertragswertverfahren; DWE-Gesetzentwurf), Der Rechnungshof (Kritik der Kommission 2023; Beratungsbericht 2024), Offene Fragen. Korrigiert: Die Kritik der Kommission (Rn. 202) galt den Aussagen der Rechnungshof-Präsidentin in der Sitzung vom 26.04.2023, nicht dem Bericht von 2024. Neu belegt: Verkehrswert (§ 194 BauGB), ImmoWertV-Verfahren (Expertenkommission 2023, S. 70, Rn. 247), Mehrheitsverhältnis zur Landesverfassung 11:2 (S. 94, Rn. 344), Rechnungshof S. 12 und 22. Gestrichen: unbelegte Rahmensätze und die Hervorhebung in „Was bleibt offen?“. Fußnoten neu nummeriert (1–14).
