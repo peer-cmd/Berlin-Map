@@ -537,3 +537,7 @@ In `config/maps/vergesellschaftung.json` steht die Gruppe „Wohnungsmarkt“ je
 ## 2026-10-05 — Modell: zwei Kennzahlen statt drei, Diagrammtexte gekürzt
 
 Oben stehen nur noch „Kaufpreis“ (Gesamtsumme, darunter die Quote vom Verkehrswert) und „Nettoergebnis nach n Jahren“ (darunter „Break-even in Jahr n“ oder „kein Break-even im Zeitraum“), beide mit einer Nachkommastelle. Die eigene Break-even-Kachel und der Preis je m² entfallen; die Quote steht weiter am Regler. Die Kennzahlen stehen bis 520 px Breite nebeneinander. Die Erläuterungen unter den Diagrammen sind kürzer und sagen, worauf zu achten ist; „Horizont“ heißt dort „Betrachtungszeitraum“, „Schuldendienst“ „Kreditraten“. Die Sensitivitätsdiagramme behalten die rechte Achse mit dem Break-even-Jahr. Versions-Tag von `style.css` und `model-calc.js` auf `20261005`.
+
+## 2026-10-06 — Zahlen: „Die Grenzen des Modells“ und Anmerkungen im Seitenrahmen
+
+Ein überzähliges `</div>` nach dem Diagramm „Die fünf Positionen im Modell“ schloss `.bg-page` vorzeitig; die Abschnitte „Die Grenzen des Modells“ und „Die Anmerkungen“ standen dadurch außerhalb des Seitenrahmens. Entfernt.
