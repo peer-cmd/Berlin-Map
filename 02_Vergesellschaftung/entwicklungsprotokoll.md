@@ -557,3 +557,7 @@ Auf den Modellseiten sind die Diagrammtitel (`.panel-head h2`) wieder schwarz; v
 ## 2026-10-06 — Modell: Violett an den Positionsnamen
 
 Die Reglerbezeichnungen (`.field-row label`) sind wieder schwarz. Violett sind jetzt die Namen der fünf Positionen auf den Auswahlknöpfen (`.preset-btn[data-preset]`); gespeicherte eigene Szenarien bleiben schwarz, der gewählte Knopf bleibt weiß auf Grün. Versions-Tag von `style.css` auf `20261006d`.
+
+## 2026-10-06 — Modell: Kennzahlen als ein Satz
+
+Die beiden Kennzahlen oben stehen als ein Satz in einer Zeile: „Kaufpreis 14,9 Mrd € (50 % vom Verkehrswert), Nettoergebnis nach 50 Jahren −20,8 Mrd €, kein Break-even im Zeitraum.“ Die IDs bleiben, `model-calc.js` ist unverändert. Bei schmaler Ergebnisspalte bricht der Satz um. Versions-Tag von `style.css` auf `20261006e`.

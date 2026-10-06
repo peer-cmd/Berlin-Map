@@ -444,15 +444,9 @@ select{
 .summary{border:1px solid var(--line-strong);background:var(--panel);padding:16px 18px;margin-bottom:20px;}
 .summary h1{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px;letter-spacing:-0.01em;line-height:1.25;margin:0 0 12px;}
 .summary .verdict{float:right;border:none;padding:0;margin:0 0 8px 16px;}
-.summary .stats{clear:both;border:none;background:none;gap:0;margin:0;}
-.summary .stat{padding:0 12px 0 0;}
-/* key figures on two lines: label and value on the first, sub on the second */
-.summary .stat .label, .summary .stat .value{display:inline;margin:0;}
-.summary .stat .value{margin-left:0.4em;}
-.summary .stats{grid-template-columns:repeat(2,max-content);justify-content:space-between;column-gap:20px;}
-.summary .stat{white-space:nowrap;}
-.summary{container-type:inline-size;}
-@container (max-width:520px){.summary .stats{grid-template-columns:1fr;row-gap:8px;}.summary .stat{white-space:normal;}}
+/* key figures as one sentence */
+.summary .figures{margin:0;font-size:13px;line-height:1.45;}
+.summary .figures .value{font-family:'Space Grotesk',sans-serif;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;}
 
 /* ---------- Verdict banner ---------- */
 .verdict{
