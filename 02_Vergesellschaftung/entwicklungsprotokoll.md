@@ -577,3 +577,7 @@ Fünf Abschnitte mit Unterpunkten (h3): Die Rechtsgrundlage (Art. 15 GG; Berline
 ## 2026-10-06 — Recht: weniger Zwischentitel
 
 Von elf Zwischentiteln (h3) bleiben zwei: „Die Mehrheit“ und „Das Sondervotum“ im Abschnitt Expertenkommission, wo die Gegenüberstellung der Kern ist. Die übrigen Unterpunkte stehen als Absätze unter den fünf Abschnittstiteln.
+
+## 2026-10-06 — Modell: Diagramme ohne Rahmen
+
+Die Diagramm-Panels in der Ergebnisspalte (`.results .panel`) haben keinen Rahmen und keinen Innenabstand mehr; der Abstand zwischen den Diagrammen steigt auf 36 px. Die Zeichenflächen werden dadurch um den früheren Innenabstand breiter. Der Kasten mit Titel und Kennzahlen behält seinen Rahmen. Versions-Tag von `style.css` auf `20261006g`.

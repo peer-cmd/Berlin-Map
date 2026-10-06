@@ -507,6 +507,7 @@ select{
   padding:16px 18px 10px;
   margin-bottom:18px;
 }
+.results .panel{border:none;padding:0;margin-bottom:36px;} /* model pages: charts without frames */
 .panel-head{
   display:flex;
   justify-content:space-between;
