@@ -541,3 +541,7 @@ Oben stehen nur noch „Kaufpreis“ (Gesamtsumme, darunter die Quote vom Verkeh
 ## 2026-10-06 — Zahlen: „Die Grenzen des Modells“ und Anmerkungen im Seitenrahmen
 
 Ein überzähliges `</div>` nach dem Diagramm „Die fünf Positionen im Modell“ schloss `.bg-page` vorzeitig; die Abschnitte „Die Grenzen des Modells“ und „Die Anmerkungen“ standen dadurch außerhalb des Seitenrahmens. Entfernt.
+
+## 2026-10-06 — Modell: Diagramme breiter
+
+Die feste Achsbreite aller Diagramme (`AXIS_W` in `model-calc.js`) sinkt von 100 auf 72 px; die längsten Achsbeschriftungen (≈ 55–65 px) passen weiter hinein, die Zeichenflächen bleiben bündig. Der seitliche Innenabstand der Ergebnisspalte sinkt von 28 auf 20 px. Bei 1440 px Fensterbreite gewinnt jede Zeichenfläche rund 70 px. Versions-Tag von `style.css` und `model-calc.js` auf `20261006`.

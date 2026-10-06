@@ -52,7 +52,7 @@
   ];
 
   // Fixed axis width (px) so every "Jahr"-chart's plot area starts/ends at the same x-position.
-  const AXIS_W = 100;
+  const AXIS_W = 72;
   function fixAxisWidth(scale){ scale.width = AXIS_W; }
   // Year axis: label year 1 and every 5th year (every 10th beyond 60 years), so all "Jahr"-charts share the same ticks and the last year shows.
   const YEAR_TICKS = { font:{family:'IBM Plex Mono',size:9}, autoSkip:false, maxRotation:0,
