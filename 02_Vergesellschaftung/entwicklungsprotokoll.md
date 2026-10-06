@@ -549,3 +549,7 @@ Die feste Achsbreite aller Diagramme (`AXIS_W` in `model-calc.js`) sinkt von 100
 ## 2026-10-06 — Zwei Farben auf allen Seiten außer der Karte
 
 Das Farbschema von Glossar und Chronologie gilt jetzt seitenübergreifend: Türkis (`--blue`) markiert Abschnitte (h2, Gruppentitel, Sprungmarken), Violett (`--violet`, vorher `--gl-violet`) die Einträge darin: alle h3, Daten in Zeitleisten (Übersicht, Modell-Hintergrund), Diagrammtitel (`.panel-head h2`, Modell und Zahlen) und auf „Die Quellen“ der Herausgeber vor dem Gedankenstrich (`.src-author`). Die Regel für h3 gilt global statt nur auf `chron-page` und `zahlen-page`. Auf „Das Recht“ sind „Mehrheit“ und „Sondervotum von drei der 13 Mitglieder“ nicht mehr fett. Die Karte bleibt unverändert. Versions-Tag von `style.css` auf `20261006b`.
+
+## 2026-10-06 — Modell: Violett an den Reglern statt an den Diagrammtiteln
+
+Auf den Modellseiten sind die Diagrammtitel (`.panel-head h2`) wieder schwarz; violett sind jetzt die Bezeichnungen der Regler (`.field-row label`, z. B. „Betrachtungszeitraum“). Der Diagrammtitel auf „Die Zahlen“ bleibt violett. Versions-Tag von `style.css` auf `20261006c`.
