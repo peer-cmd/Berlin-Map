@@ -441,7 +441,7 @@ select{
 #compareTable td{white-space:normal;}
 
 /* ---------- Summary frame: title, verdict, key figures ---------- */
-.summary{border:1px solid var(--line-strong);background:var(--panel);padding:16px 18px;margin-bottom:20px;}
+.summary{margin-bottom:20px;}
 .summary h1{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px;letter-spacing:-0.01em;line-height:1.25;margin:0 0 12px;}
 .summary .verdict{float:right;border:none;padding:0;margin:0 0 8px 16px;}
 /* key figures as one sentence */

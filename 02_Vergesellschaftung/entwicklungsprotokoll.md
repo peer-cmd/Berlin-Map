@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-06 — Kennzahlen ohne Rahmen, Stand in der Fußzeile
+
+Die Kopfzeile mit Titel, Kaufpreis und Nettoergebnis auf den Modellseiten steht ohne Rahmen und Hintergrund (`.summary` in `style.css`). Auf der Übersicht steht „Stand: Oktober 2026“ in der Fußzeile statt rechts neben dem Titel.
+
 ## 2026-10-06 — Modell: Modellvergleich als eigener Abschnitt, Reihenfolge der Ergebnisse
 
 Die Ergebnisse stehen jetzt in fünf Abschnitten: Die Finanzen, Die Mieter, Der Modellvergleich, Die Sensitivität, Jahr für Jahr. Jeder Abschnitt hat eine Sprungleiste zu allen anderen; die Links zu den zugeklappten Abschnitten (Sensitivität, Jahr für Jahr) öffnen diese. Die Jahrestabelle steht als Nachschlagewerk am Ende.
