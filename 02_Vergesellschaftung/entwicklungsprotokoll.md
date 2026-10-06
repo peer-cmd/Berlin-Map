@@ -573,3 +573,7 @@ Im Abschnitt „Der Streit um die Entschädigung“ erklären drei Sätze, wer d
 ## 2026-10-06 — Recht: Seite neu gegliedert
 
 Fünf Abschnitte mit Unterpunkten (h3): Die Rechtsgrundlage (Art. 15 GG; Berliner Verfassung; kein Gesetz, kein Urteil), Die Expertenkommission (Einsetzung und Auftrag; Mehrheit; Sondervotum), Die Entschädigung (Maßstab; Verkehrswert und Ertragswertverfahren; DWE-Gesetzentwurf), Der Rechnungshof (Kritik der Kommission 2023; Beratungsbericht 2024), Offene Fragen. Korrigiert: Die Kritik der Kommission (Rn. 202) galt den Aussagen der Rechnungshof-Präsidentin in der Sitzung vom 26.04.2023, nicht dem Bericht von 2024. Neu belegt: Verkehrswert (§ 194 BauGB), ImmoWertV-Verfahren (Expertenkommission 2023, S. 70, Rn. 247), Mehrheitsverhältnis zur Landesverfassung 11:2 (S. 94, Rn. 344), Rechnungshof S. 12 und 22. Gestrichen: unbelegte Rahmensätze und die Hervorhebung in „Was bleibt offen?“. Fußnoten neu nummeriert (1–14).
+
+## 2026-10-06 — Recht: weniger Zwischentitel
+
+Von elf Zwischentiteln (h3) bleiben zwei: „Die Mehrheit“ und „Das Sondervotum“ im Abschnitt Expertenkommission, wo die Gegenüberstellung der Kern ist. Die übrigen Unterpunkte stehen als Absätze unter den fünf Abschnittstiteln.
