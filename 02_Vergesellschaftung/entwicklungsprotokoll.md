@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-06 — Quellenseite mit Links zu den Originalen
+
+`quellen.html` verlinkt jedes Dokument beim Herausgeber oder Verlag (PDF bzw. Seite), sortiert nach Datum wie die Chronologie; die Kopien in `pdf/` werden nicht verlinkt. Neu aufgenommen: Holm/Thonke 2025 (Refinanzierungsoptionen, bisher nur im Hinweistext zitiert), Becker 2024, OECD PH4.2, Stoll 2022, Ergebnisse des Volksentscheids. Einträge ohne Einzeldokument (BBU-Kostenschätzung, Baupreisindex, Bauzinsen u. a.) stehen gesondert. Neuer Block „Die Geodaten der Karte“ aus `config/sources.json` (Datensatz- bzw. GetCapabilities-Link, Lizenz). Die URLs stammen aus der Websuche und stimmen bei acht Dokumenten mit den Dateinamen der lokalen Kopien überein; aus der Arbeitsumgebung waren die Hosts nicht erreichbar (Proxy), ein Klicktest im Browser steht aus.
+
 ## 2026-10-06 — Modellseite: Reihenfolge und Abschnitt „Die Tabellen"
 
 „Kaufpreis und Nettoergebnis" steht im Modellvergleich nach „Die Mieten im Vergleich". Der Abschnitt „Jahr für Jahr" heißt „Die Tabellen" (Anker `#tabellen`) und enthält beide Tabellen als zugeklappte Panels: „Die Kennzahlen" (bisher offen im Modellvergleich) und „Jahr für Jahr". Der Sprunglink öffnet beide.
