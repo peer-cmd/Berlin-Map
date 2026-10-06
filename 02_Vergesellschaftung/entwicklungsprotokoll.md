@@ -565,3 +565,7 @@ Die beiden Kennzahlen oben stehen als ein Satz in einer Zeile: „Kaufpreis 14,9
 ## 2026-10-06 — Modell: Violett an den Reglergruppen
 
 Die Positionsnamen auf den Auswahlknöpfen sind wieder schwarz. Violett sind jetzt die Titel der Reglergruppen („Bestand & Entschädigung“, „Finanzierung“, „Miete & Bewirtschaftung“, „Der Überschuss“, „Die Sozialwohnungen“; `.controls .group-title`). „Die Finanzen / Die Mieter“ und „Hintergrund“ bleiben türkis. Versions-Tag von `style.css` auf `20261006f`.
+
+## 2026-10-06 — Recht: Expertenkommission eingeführt
+
+Im Abschnitt „Der Streit um die Entschädigung“ erklären drei Sätze, wer die Expertenkommission ist: 2022 vom Senat eingesetzt, Auftrag (Verfassungskonformität prüfen, rechtssichere Wege untersuchen), Abschlussbericht Juni 2023. Beleg: Expertenkommission 2023, S. 1 (Titelseite), S. 8, Rn. 2 (Einsetzung am 29. März 2022, Auftrag laut Senatsbeschluss). Neue Fußnote 5; die folgenden Fußnoten rücken um eins auf (6–12).
