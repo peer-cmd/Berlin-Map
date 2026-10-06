@@ -313,7 +313,9 @@
       ctx.fillStyle = '#14171A';
       ctx.font = "9px 'IBM Plex Mono'";
       const label = (opts && opts.label) || '';
-      ctx.fillText(label, xPix+4, yArea.top+10);
+      // Label rechts der Linie; links davon, wenn es sonst über die Zeichenfläche (und die rechte Achse) hinausragt.
+      if(xPix+4+ctx.measureText(label).width > yArea.right){ ctx.textAlign = 'right'; ctx.fillText(label, xPix-4, yArea.top+10); }
+      else ctx.fillText(label, xPix+4, yArea.top+10);
       ctx.restore();
     }
   };

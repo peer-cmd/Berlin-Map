@@ -585,3 +585,7 @@ Die Diagramm-Panels in der Ergebnisspalte (`.results .panel`) haben keinen Rahme
 ## 2026-10-06 — Modell: Sprunglink „Die Sensitivität“
 
 Die Sprungleisten „Die Finanzen / Die Mieter“ haben einen dritten Eintrag „Die Sensitivität“. Der Link springt zum Panel `#sensPanel` und klappt es auf (`model-calc.js`). Versions-Tags: `style.css` `20261006h`, `model-calc.js` `20261006b`.
+
+## 2026-10-06 — Modell: Markierung „aktuell“ ohne Überlappung
+
+Liegt die senkrechte Linie der aktuellen Einstellung am rechten Rand (z. B. Entschädigungsquote 100 %), steht ihr Label jetzt links der Linie; vorher ragte es in die rechte Achse und überdeckte „Jahr 48“. Versions-Tag von `model-calc.js` auf `20261006c`.
