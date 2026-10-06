@@ -561,3 +561,7 @@ Die Reglerbezeichnungen (`.field-row label`) sind wieder schwarz. Violett sind j
 ## 2026-10-06 — Modell: Kennzahlen als ein Satz
 
 Die beiden Kennzahlen oben stehen als ein Satz in einer Zeile: „Kaufpreis 14,9 Mrd € (50 % vom Verkehrswert), Nettoergebnis nach 50 Jahren −20,8 Mrd €, kein Break-even im Zeitraum.“ Die IDs bleiben, `model-calc.js` ist unverändert. Bei schmaler Ergebnisspalte bricht der Satz um. Versions-Tag von `style.css` auf `20261006e`.
+
+## 2026-10-06 — Modell: Violett an den Reglergruppen
+
+Die Positionsnamen auf den Auswahlknöpfen sind wieder schwarz. Violett sind jetzt die Titel der Reglergruppen („Bestand & Entschädigung“, „Finanzierung“, „Miete & Bewirtschaftung“, „Der Überschuss“, „Die Sozialwohnungen“; `.controls .group-title`). „Die Finanzen / Die Mieter“ und „Hintergrund“ bleiben türkis. Versions-Tag von `style.css` auf `20261006f`.

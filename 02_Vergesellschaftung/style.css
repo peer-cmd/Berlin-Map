@@ -250,6 +250,7 @@ div.glossary{columns:2 280px;column-gap:32px;column-rule:1px solid var(--line);}
 .group{
   padding:20px 22px;
 }
+.controls .group-title{color:var(--violet);} /* control groups; section titles elsewhere stay turquoise */
 .group-title{
   font-family:'Space Grotesk',sans-serif;
   font-size:13px;
@@ -432,7 +433,6 @@ select{
   cursor:pointer;
 }
 .preset-btn:last-child{margin-bottom:0;}
-.preset-btn[data-preset]{color:var(--violet);} /* the five positions; saved scenarios stay black */
 .preset-btn:hover, .preset-btn:active, .preset-btn.active{border-color:var(--green);background:var(--green);color:#fff;}
 .saved-row{display:flex;gap:6px;align-items:center;margin-bottom:6px;}
 .saved-row .preset-btn{margin-bottom:0;border-style:dashed;}
