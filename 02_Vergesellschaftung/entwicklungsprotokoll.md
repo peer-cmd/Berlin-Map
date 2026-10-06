@@ -545,3 +545,7 @@ Ein überzähliges `</div>` nach dem Diagramm „Die fünf Positionen im Modell�
 ## 2026-10-06 — Modell: Diagramme breiter
 
 Die feste Achsbreite aller Diagramme (`AXIS_W` in `model-calc.js`) sinkt von 100 auf 72 px; die längsten Achsbeschriftungen (≈ 55–65 px) passen weiter hinein, die Zeichenflächen bleiben bündig. Der seitliche Innenabstand der Ergebnisspalte sinkt von 28 auf 20 px. Bei 1440 px Fensterbreite gewinnt jede Zeichenfläche rund 70 px. Versions-Tag von `style.css` und `model-calc.js` auf `20261006`.
+
+## 2026-10-06 — Zwei Farben auf allen Seiten außer der Karte
+
+Das Farbschema von Glossar und Chronologie gilt jetzt seitenübergreifend: Türkis (`--blue`) markiert Abschnitte (h2, Gruppentitel, Sprungmarken), Violett (`--violet`, vorher `--gl-violet`) die Einträge darin: alle h3, Daten in Zeitleisten (Übersicht, Modell-Hintergrund), Diagrammtitel (`.panel-head h2`, Modell und Zahlen) und auf „Die Quellen“ der Herausgeber vor dem Gedankenstrich (`.src-author`). Die Regel für h3 gilt global statt nur auf `chron-page` und `zahlen-page`. Auf „Das Recht“ sind „Mehrheit“ und „Sondervotum von drei der 13 Mitglieder“ nicht mehr fett. Die Karte bleibt unverändert. Versions-Tag von `style.css` auf `20261006b`.
