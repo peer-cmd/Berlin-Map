@@ -40,7 +40,7 @@ window.SITE_INCLUDES = {
       <section class="gl-group">
       <h3 class="gl-letter">E</h3>
       <dl>
-        <div><dt>Einmalige Kosten</dt> <dd>Kosten, die einmalig bei der Übernahme in Jahr 0 anfallen: Transaktion, Aufbau der Trägerorganisation, Rechtsverfahren. Im Modell zusätzlich zu Integrationskosten und Sanierungsstau.</dd></div>
+        <div><dt>Einmalige Kosten</dt> <dd>Kosten, die einmalig bei der Übernahme in Jahr 0 anfallen: Transaktion, Aufbau der Trägerorganisation, Rechtsverfahren. Im Modell zusätzlich zu Integrationskosten und Sanierungsstau. Voreinstellung 200 Mio. €: die Integrationskosten der Fusion Vonovia/Deutsche Wohnen, laut <span class="src">IW Köln/Empirica 2026, S. 17</span> eher eine Untergrenze.</dd></div>
         <div><dt>Entschädigungsquote</dt> <dd>Anteil des vollen Verkehrswerts, der tatsächlich als Entschädigung gezahlt wird (100 % = voller Verkehrswert, sog. Kaufpreisfaktor). Ein Wert unter 100 % ist <span class="src">laut Expertenkommission</span> rechtlich umstritten, wird aber mehrheitlich für zulässig gehalten.</dd></div>
         <div><dt>Ertragswertverfahren</dt> <dd>Wertermittlungsmethode für vermietete Objekte: kapitalisierter Reinertrag (Miete abzüglich Bewirtschaftungskosten), abgezinst mit dem Liegenschaftszins. Maßgeblich für Bestände mit Mieterschutz und regulierten Mieten.</dd></div>
       </dl>
@@ -66,7 +66,7 @@ window.SITE_INCLUDES = {
       <section class="gl-group">
       <h3 class="gl-letter">I</h3>
       <dl>
-        <div><dt>Integrationskosten</dt> <dd>Einmalige Kosten der Zusammenführung vieler getrennter Bestände in eine Anstalt (IT, Verwaltung, Recht), Jahr 0, als % des Kaufpreises. Von <span class="src">IW Köln 2026</span> als im DWE-Modell fehlend kritisiert. Kein wohnungswirtschaftsspezifischer Wert bekannt; 2 % ist eine grobe Analogie zur allgemeinen M&amp;A-Literatur (typ. niedriger einstelliger Prozentbereich), keine belastbare Schätzung.</dd></div>
+        <div><dt>Integrationskosten</dt> <dd>Einmalige Kosten der Zusammenführung vieler getrennter Bestände in eine Anstalt (IT, Verwaltung, Recht), Jahr 0, als % des Kaufpreises. Von <span class="src">IW Köln 2026</span> als im DWE-Modell fehlend kritisiert. Keine Quelle nennt einen Prozentsatz; Voreinstellung daher 0 %. Den einzigen bezifferten Wert, 200 Mio. € für die Fusion Vonovia/Deutsche Wohnen, enthalten die Einmaligen Kosten.</dd></div>
       </dl>
       </section>
       <section class="gl-group">
@@ -110,7 +110,7 @@ window.SITE_INCLUDES = {
       <section class="gl-group">
       <h3 class="gl-letter">S</h3>
       <dl>
-        <div><dt>Sanierungsstau</dt> <dd>Einmaliger Nachholbedarf bei Übernahme (<span class="src">These Bernt/Holm</span>: private Konzerne unterinvestieren). Default grob hergeleitet aus Berliner Sanierungsbedarf-Schätzungen für Bestandsbauten (Größenordnung 20.000–30.000 €/Whg. bei Teilmodernisierung; energetische Vollsanierung nach <span class="src">IW-Consult-Kostensätzen</span> 660–1.600 €/m² liegt deutlich höher, 40.000+ €/Whg.). Illustrativ, keine belastbare Einzelschätzung je Bestand.</dd></div>
+        <div><dt>Sanierungsstau</dt> <dd>Einmaliger Nachholbedarf bei Übernahme (<span class="src">These Bernt/Holm</span>: private Konzerne unterinvestieren). Keine der ausgewerteten Quellen beziffert ihn; der <span class="src">Rechnungshof</span> rechnet ohne und nennt sein Ergebnis deshalb eine Untergrenze. Voreinstellung daher 0 €. Zur Größenordnung: energetische Vollsanierung nach <span class="src">IW-Consult-Kostensätzen</span> 660–1.600 €/m². Laufende Modernisierung steckt in den Bewirtschaftungskosten der Positionen.</dd></div>
         <div><dt>Schuldendienst</dt> <dd>Jährliche Zahlung an die Kreditgeber aus Zinsen und Tilgung; beim Annuitätendarlehen gleich der Annuität.</dd></div>
         <div><dt>Sondervotum / Mehrheitsvotum</dt> <dd>Stimmt eine Kommission nicht einstimmig ab, hält der Abschlussbericht die Position der Mehrheit (Mehrheitsvotum) und die der überstimmten Minderheit (Sondervotum) getrennt fest. Bei der Expertenkommission Vergesellschaftung vertraten 3 von 13 Mitgliedern ein Sondervotum zur Entschädigung: Verkehrswert als zwingender Ausgangspunkt, nur enger Spielraum für Abschläge — nicht schlicht „voller Verkehrswert".</dd></div>
         <div><dt>Sozialbindung / Belegungsbindung</dt> <dd>Vertragliche oder gesetzliche Verpflichtung, eine Wohnung für einen bestimmten Zeitraum zu gedeckelter Sozialmiete an berechtigte Haushalte zu vermieten.</dd></div>

@@ -58,8 +58,8 @@
           <input type="range" id="units" min="50000" max="400000" step="5000" value="240000">
         </div>
         <div class="field">
-          <div class="field-row"><label>Ø Wohnungsgröße</label><span class="val" id="v-avgSize">65 m²</span></div>
-          <input type="range" id="avgSize" min="40" max="100" step="1" value="65">
+          <div class="field-row"><label>Ø Wohnungsgröße</label><span class="val" id="v-avgSize">62 m²</span></div>
+          <input type="range" id="avgSize" min="40" max="100" step="1" value="62">
         </div>
         <div class="field">
           <div class="field-row"><label data-term="Verkehrswert">Verkehrswert/m²</label><span class="val" id="v-price">2.085 €/m²</span></div>
@@ -67,8 +67,8 @@
         </div>
         <div class="field">
           <div class="field-row"><label data-term="Entschädigungsquote">Entschädigungsquote (vom Verkehrswert)</label><span class="val" id="v-purchaseFactor">100 %</span></div>
-          <input type="range" id="purchaseFactor" min="40" max="100" step="5" value="100">
-          <div class="hint">Kaufpreis <span id="v-effectivePrice">2.085 €/m² · 32,5</span> von <span id="v-totalDerived">32,5 Mrd €</span></div>
+          <input type="range" id="purchaseFactor" min="20" max="100" step="0.1" value="100">
+          <div class="hint">Kaufpreis <span id="v-effectivePrice">2.085 €/m² · 31,0</span> von <span id="v-totalDerived">31,0 Mrd €</span></div>
           <div class="linked-row">
             <label class="linked-label">≈ pro Wohnung</label>
             <input type="number" class="linked-input" id="pricePerUnit" step="1000">
@@ -106,16 +106,16 @@
           <input type="range" id="rateIncrement" min="0" max="3" step="0.1" value="1.0">
         </div>
         <div class="field">
-          <div class="field-row"><label data-term="Einmalige Kosten">Einmalige Kosten</label><span class="val" id="v-onceCosts">405 Mio €</span></div>
-          <input type="range" id="onceCosts" min="0" max="1500" step="5" value="405">
+          <div class="field-row"><label data-term="Einmalige Kosten">Einmalige Kosten</label><span class="val" id="v-onceCosts">200 Mio €</span></div>
+          <input type="range" id="onceCosts" min="0" max="1500" step="5" value="200">
         </div>
         <div class="field">
-          <div class="field-row"><label data-term="Integrationskosten">Integrationskosten</label><span class="val" id="v-integrationCosts">2,0 %</span></div>
-          <input type="range" id="integrationCosts" min="0" max="10" step="0.5" value="2">
+          <div class="field-row"><label data-term="Integrationskosten">Integrationskosten</label><span class="val" id="v-integrationCosts">0,0 %</span></div>
+          <input type="range" id="integrationCosts" min="0" max="10" step="0.5" value="0">
         </div>
         <div class="field">
-          <div class="field-row"><label data-term="Sanierungsstau">Sanierungsstau pro Wohnung</label><span class="val" id="v-maintBacklog">20.000 €</span></div>
-          <input type="range" id="maintBacklog" min="0" max="30000" step="500" value="20000">
+          <div class="field-row"><label data-term="Sanierungsstau">Sanierungsstau pro Wohnung</label><span class="val" id="v-maintBacklog">0 €</span></div>
+          <input type="range" id="maintBacklog" min="0" max="30000" step="500" value="0">
         </div>
       </div>
 
@@ -123,7 +123,7 @@
         <p class="group-title">Miete &amp; Bewirtschaftung</p>
         <div class="field">
           <div class="field-row"><label data-term="Ausgangsmiete" data-note="Ø Nettokaltmiete der 6 größten privaten Wohnungskonzerne, exakt der Vergesellschaftungs-Bestand (Bernt/Holm 2023, Rosa-Luxemburg-Stiftung)">Ausgangsmiete</label><span class="val" id="v-baseRent">7,63 €/m²</span></div>
-          <input type="range" id="baseRent" min="3" max="20" step="0.1" value="7.63">
+          <input type="range" id="baseRent" min="3" max="20" step="0.01" value="7.63">
           <div class="linked-row">
             <label class="linked-label">≈ pro Wohnung</label>
             <input type="number" class="linked-input" id="baseRentPerUnit" step="5">
@@ -150,7 +150,7 @@
         </div>
         <div class="field" id="wrap-opex-absolute" style="display:none;">
           <div class="field-row"><label data-term="Bewirtschaftungskosten">Bewirtschaftungskosten absolut</label><span class="val" id="v-opexAbsolute">2,20 €/m²</span></div>
-          <input type="range" id="opexAbsolute" min="1" max="5" step="0.05" value="2.2">
+          <input type="range" id="opexAbsolute" min="1" max="5" step="0.01" value="2.2">
           <div class="hint">Ansatz Rechnungshof Berlin 2024, S. 25</div>
           <div class="linked-row">
             <label class="linked-label">≈ pro Wohnung</label>
@@ -444,8 +444,8 @@
 
 </div>
 
-<script src="model-calc.js?v=20261006h"></script>
-<script src="content.js?v=20261006a"></script>
+<script src="model-calc.js?v=20261006i"></script>
+<script src="content.js?v=20261006b"></script>
 <script src="tooltips.js?v=20261003a"></script>
 <script src="nav.js?v=20261005a"></script>
 </body>

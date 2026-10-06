@@ -9,8 +9,8 @@
 
   const defaults = {
     units:240000, price:2085, purchaseFactor:100,
-    financing:'kredit', rate:3.5, riskPremium:0, term:30, rateResetYears:10, rateIncrement:1.0, onceCosts:405, maintBacklog:20000, integrationCosts:2,
-    baseRent:7.63, rentGrowth:1.5, costInflation:2.5, avgSize:65, opex:40, opexMode:'percent', opexAbsolute:2.2,
+    financing:'kredit', rate:3.5, riskPremium:0, term:30, rateResetYears:10, rateIncrement:1.0, onceCosts:200, maintBacklog:0, integrationCosts:0,
+    baseRent:7.63, rentGrowth:1.5, costInflation:2.5, avgSize:62, opex:40, opexMode:'percent', opexAbsolute:2.2,
     freeMarketRent:15.8, munizRent:6.29, cpiGrowth:2.0, incomeGrowth:3.0,
     mode:'none', buildCost:3500, reinvestQuota1:100,
     sozialRent:6.5, convCost:0, sozialImmediate:0, sozialTurnover:5, sozialQuota:63, reinvestQuota2:0,
@@ -18,6 +18,9 @@
     // WBS-Inhaber*innen (Quote der Landeseigenen) = 6.999 von 222.183 Wohnungen im ersten Jahr (≈ 3,15 %).
     // Einmal an WBS-Haushalte vergebene Wohnungen bleiben gebunden; der Anteil nähert sich daher 63 %
     // des Bestands und erreicht nicht 100 %. Die Presets setzen sozialQuota 0, ihre Ergebnisse bleiben unverändert.
+    // Wohnungsgröße 62 m²: Senat 2018 (zitiert RH 2024, S. 25), DWE 2022, S. 102; RH 61, Bernt/Holm 63.
+    // Einmalige Kosten 200 Mio €: Integrationskosten der Fusion Vonovia/Deutsche Wohnen (IW 2026, S. 17),
+    // laut IW eher Untergrenze. Sanierungsstau und Integrationskosten in %: keine Quelle, daher 0.
     horizon:50
   };
   let state = Object.assign({}, defaults);
@@ -69,6 +72,7 @@
 
   function escapeHtml(t){ return String(t).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
   function fmtInt(n){ return Math.round(n).toLocaleString('de-DE'); }
+  function fmtQuote(v){ return v.toLocaleString('de-DE',{maximumFractionDigits:1})+' %'; }
   function fmtEUR(n){
     const sign = n<0 ? '−' : '';
     n = Math.abs(n);
@@ -245,7 +249,7 @@
     $('v-price').textContent = fmtInt(state.price)+' €/m²';
     const total = state.units*state.avgSize*state.price/1e9;
     $('v-totalDerived').textContent = total.toLocaleString('de-DE',{maximumFractionDigits:1})+' Mrd €';
-    $('v-purchaseFactor').textContent = state.purchaseFactor+' %';
+    $('v-purchaseFactor').textContent = fmtQuote(state.purchaseFactor);
     const effPricePerSqm = state.price*(state.purchaseFactor/100);
     const effTotal = total*(state.purchaseFactor/100);
     $('v-effectivePrice').textContent = fmtInt(effPricePerSqm)+' €/m² · '+effTotal.toLocaleString('de-DE',{maximumFractionDigits:1});
@@ -577,7 +581,7 @@
     // Kennzahlen oben: eine Nachkommastelle, Break-even als Halbsatz unter dem Nettoergebnis.
     const mrd1 = n => (n<0?'−':'')+(Math.abs(n)/1e9).toLocaleString('de-DE',{minimumFractionDigits:1,maximumFractionDigits:1})+' Mrd €';
     $('s-kaufpreis').textContent = mrd1(result.principal);
-    $('s-kaufpreis-sub').textContent = state.purchaseFactor+' % vom Verkehrswert';
+    $('s-kaufpreis-sub').textContent = fmtQuote(state.purchaseFactor)+' vom Verkehrswert';
     $('s-netto-label').textContent = 'nach '+state.horizon+' Jahren';
     $('s-netto').textContent = mrd1(result.netResult);
     $('s-netto').className = 'value '+(result.netResult>=0?'pos':'neg');
@@ -706,7 +710,7 @@
 
     // ---- chart Sensitivität Entschädigungsquote (bei aktuellen Reglereinstellungen, Quote variiert) ----
     const pfSteps = [];
-    for(let pf=40; pf<=100; pf+=5) pfSteps.push(pf);
+    for(let pf=20; pf<=100; pf+=5) pfSteps.push(pf);
     const pfResults = pfSteps.map(pf=>{
       const p = Object.assign({}, state, {purchaseFactor:pf});
       return runScenario(state.price, p);
@@ -715,12 +719,12 @@
     chartCompSens.data.datasets[0].data = pfResults.map(r=>r.netResult);
     chartCompSens.data.datasets[1].data = pfResults.map(r=>r.breakEvenYear);
     chartCompSens.options.scales.y1.ticks.display = pfResults.some(r=>r.breakEvenYear!==null);
-    const [compLo, compHi] = sensRange('purchaseFactor', [50,100]);
+    const [compLo, compHi] = sensRange('purchaseFactor', [20,100]);
     chartCompSens.options.scales.y.suggestedMin = compLo;
     chartCompSens.options.scales.y.suggestedMax = compHi;
     let pfIdx = pfSteps.reduce((best,pf,i)=> Math.abs(pf-state.purchaseFactor)<Math.abs(pfSteps[best]-state.purchaseFactor) ? i : best, 0);
     chartCompSens.options.plugins.vlineMarker.index = pfIdx;
-    chartCompSens.options.plugins.vlineMarker.label = 'aktuell: '+state.purchaseFactor+' %';
+    chartCompSens.options.plugins.vlineMarker.label = 'aktuell: '+fmtQuote(state.purchaseFactor);
     chartCompSens.update('none');
 
     // ---- table ----
@@ -740,7 +744,7 @@
     const finParts = [s.financing==='kredit' ? ('Kredit '+s.rate+'%') : 'Eigenmittel'];
     const modeLabel = s.mode==='neubau' ? 'Neubau' : 'keine Reinvest.';
     const sozialLabel = 'Sozial: sofort '+s.sozialImmediate+' %, '+'WBS-Quote '+s.sozialQuota+' % bei '+s.sozialTurnover+' % Fluktuation, Überschuss '+s.reinvestQuota2+' %';
-    return finParts[0]+' · '+modeLabel+' · '+sozialLabel+' · '+s.purchaseFactor+'% Kaufpreis';
+    return finParts[0]+' · '+modeLabel+' · '+sozialLabel+' · '+fmtQuote(s.purchaseFactor)+' Kaufpreis';
   }
 
   function renderCompareTable(){
@@ -860,60 +864,65 @@
     if(byId('scenario-horizon')) $('scenario-horizon').textContent = defaults.horizon;
   }
 
+  // Alle Werte mit Fundstelle: parameterpruefung.md. Gemeinsame Basis aller Positionen (defaults):
+  // 240.000 Wohnungen, 62 m², Verkehrswert 2.085 €/m² = 31,0 Mrd €; die Quote bildet die Summe der Quelle ab.
+  // Bewirtschaftung je €/m² und Monat, bei 62 m². Bausteine nach Rechnungshof 2024, S. 25–26:
+  // Verwaltung 343,69 €/Whg. p. a. = 0,46; Instandhaltung 17,18 €/m² p. a. = 1,43; Betriebskosten 3,60 €/m² p. a. = 0,30;
+  // Mietausfallwagnis 2 % der Miete.
   const presets = {
     linke: {
-      // Faire-Mieten-Modell (Holm et al. / DWE-Papier): Entschädigung deutlich unter Verkehrswert,
-      // ~14 Mrd € bei 3,70 €/m² Zielmiete. Verkehrswert einheitlich 2.085 €/m² (s. Rechnungshof) —
-      // der Unterschied zu den anderen Modellen liegt in der Entschädigungsquote, nicht im Verkehrswert
-      // (897/2085 ≈ 43,0 % vom Verkehrswert, entspricht ca. 14 Mrd € Gesamtkompensation).
-      // Miete und Bewirtschaftungskosten steigen laut Gesetzentwurf 2022 mit 0,43 %/Jahr (Reallohnentwicklung
-      // 1991–2019; DWE 2022, S. 97), im Modell auf 0,4 % gerundet.
-      price: 2085, purchaseFactor: 43.0,
-      financing: 'kredit', rate: 3.5, riskPremium: 0, term: 30, rateResetYears: 30, rateIncrement: 0,
-      baseRent: 3.70, rentGrowth: 0.4, costInflation: 0.4,
-      opexMode: 'percent', opex: 40, mode: 'none', sozialQuota: 0
+      // Faire-Mieten-Modell im DWE-Gesetzentwurf 2022 (DWE 2022, S. 96–102): leistbare Miete 4,04 €/m²,
+      // Bewirtschaftung 2,76 €/m², beide +0,43 %/Jahr (Reallohnentwicklung 1991–2019, S. 97);
+      // Entschädigung 10 Mrd € für 243.000 Whg. à 62 m², gezahlt in unverzinsten Schuldverschreibungen,
+      // 1/40 Tilgung pro Jahr. Auf 240.000 Whg.: 9,9 Mrd € = 31,8 % von 31,0 Mrd €.
+      price: 2085, purchaseFactor: 31.8,
+      financing: 'kredit', rate: 0, riskPremium: 0, term: 40, rateResetYears: 40, rateIncrement: 0,
+      baseRent: 4.04, rentGrowth: 0.4, costInflation: 0.4,
+      opexMode: 'absolute', opexAbsolute: 2.76, mode: 'none', sozialQuota: 0
     },
     holm: {
-      // Bernt & Holm 2023: Ist-Miete-Modell, Mietsenkung auf Landeseigenen-Niveau 6,29 €/m².
-      // Verkehrswert einheitlich 2.085 €/m² — Entschädigungsquote 1538/2085 ≈ 73,8 % vom
-      // Verkehrswert, entspricht ca. 24 Mrd € Gesamtkompensation.
-      price: 2085, purchaseFactor: 73.8,
-      financing: 'kredit', rate: 3.5, riskPremium: 0, term: 30, rateResetYears: 30, rateIncrement: 0,
-      // Mietsteigerung: Trendfortschreibung der Landeseigenen 2016–2021, 1,6 %/Jahr (Bernt/Holm 2023, Tabelle 6).
-      baseRent: 6.29, rentGrowth: 1.6, costInflation: 2.0,
-      opexMode: 'percent', opex: 35, mode: 'none', sozialQuota: 0
+      // Bernt/Holm 2023, Mietsenkungsmodell: 7,63 → 6,39 €/m² (S. 12, Tab. 2), danach Trend der
+      // Landeseigenen 1,6 %/Jahr (S. 22, Tab. 6). Die Studie nennt keine Entschädigung; Gerhardt/Holm 2021:
+      // Ertragswert mit den Mieten der Landeseigenen 17 Mrd € (DWE 2022, S. 112) = 54,8 %.
+      // Bewirtschaftung 2,98 €/m²: Instandsetzung 18,54 und Modernisierung 6,53 €/m² p. a. der Landeseigenen
+      // (S. 23, Tab. 8, 9) = 2,09, dazu Verwaltung, Betriebskosten, Mietausfall nach Rechnungshof.
+      // Zins und Kosteninflation nennt die Studie nicht: Bedingungen des Rechnungshofs (4,2 %, 2,0 %).
+      price: 2085, purchaseFactor: 54.8,
+      financing: 'kredit', rate: 4.2, riskPremium: 0, term: 30, rateResetYears: 30, rateIncrement: 0,
+      baseRent: 6.39, rentGrowth: 1.6, costInflation: 2.0,
+      opexMode: 'absolute', opexAbsolute: 2.98, mode: 'none', sozialQuota: 0
     },
     rechnungshof: {
-      // Rechnungshof Berlin 2024: verkehrswertorientiert (~32,5 Mrd € bei 100% Entschädigungsquote), Bewirtschaftungskosten absolut 2,20 €/m²
+      // Rechnungshof 2024, Anhang 1 (S. 25–27): Miete 7,16 €/m²; Mieterhöhung 1 % bis 2024, 2 % ab 2025;
+      // Inflation 10 % bis 2024, 2 % ab 2025 (im Modell einheitlich 2,0 %); AöR-Kredit 4,5 % (80 %),
+      // Eigenkapital des Landes 3,0 % (20 %), beide 30 Jahre fest, gewichtet 4,2 %.
+      // Bewirtschaftung 3,34 €/m²: Verwaltung, Instandhaltung, Betriebskosten (2,19), Modernisierung
+      // rd. 12 €/m² p. a. (1,00), Mietausfall 2 % (0,14). Szenarien 29 und 36 Mrd €; 100 % = 31,0 Mrd €.
       price: 2085, purchaseFactor: 100,
-      financing: 'kredit', rate: 3.5, riskPremium: 0, term: 30, rateResetYears: 10, rateIncrement: 1.0,
-      // Mieterhöhung laut Rechnungshof 1 % bis 2024, 2 % ab 2025 (Anhang 1, S. 26); im Modell einheitlich 2,0 %.
-      baseRent: 6.71, rentGrowth: 2.0, costInflation: 2.0,
-      opexMode: 'absolute', opexAbsolute: 2.20, mode: 'none', sozialQuota: 0
+      financing: 'kredit', rate: 4.2, riskPremium: 0, term: 30, rateResetYears: 30, rateIncrement: 0,
+      baseRent: 7.16, rentGrowth: 2.0, costInflation: 2.0,
+      opexMode: 'absolute', opexAbsolute: 3.34, mode: 'none', sozialQuota: 0
     },
     gegenmodell: {
-      // IW Köln/Empirica 2026 (Bankengutachten): verkehrswertnah + Risikoprämie/Kapitalflucht-These
+      // IW Köln/Empirica 2026: Entschädigung zum Verkehrswert (Senat 29–39 Mrd €, S. 8); zusätzliche
+      // Risikoprämie 0,5 Prozentpunkte (S. 23); Modernisierung 13–25 €/m² p. a. bei LEG, Vonovia, VivaWest,
+      // Mitte 19 = 1,58 €/m²; Inflation 2,7 % (März 2026, S. 17). Bewirtschaftung 3,93 €/m² = 2,19 + 1,58
+      // + Mietausfall 0,15. Miete 7,63 €/m² der sechs Konzerne ohne Mietsenkung (Bernt/Holm 2023, S. 12);
+      // Zins und Mietsteigerung nennt das Gutachten nicht: Bedingungen des Rechnungshofs (4,2 %, 2,0 %).
       price: 2085, purchaseFactor: 100,
-      financing: 'kredit', rate: 3.5, riskPremium: 0.5, term: 30, rateResetYears: 5, rateIncrement: 2.0,
-      baseRent: 7.63, rentGrowth: 1.5, costInflation: 3.0,
-      opexMode: 'percent', opex: 40, mode: 'none', sozialQuota: 0
+      financing: 'kredit', rate: 4.2, riskPremium: 0.5, term: 30, rateResetYears: 30, rateIncrement: 0,
+      baseRent: 7.63, rentGrowth: 2.0, costInflation: 2.7,
+      opexMode: 'absolute', opexAbsolute: 3.93, mode: 'none', sozialQuota: 0
     },
     dwe2025: {
-      // DWE-Gesetzentwurf, Stand 26.09.2025 (§§ 12-18 VergG-E): Entschädigung nach Sachwertverfahren
-      // mit auf 2011-2013 eingefrorenem, seither nur 3,5%/Jahr fortgeschriebenem Bodenwert -- nicht
-      // dem aktuellen Verkehrswert. Ausgedrückt als Anteil vom (uniform gehaltenen) Verkehrswert
-      // 2085 €/m² ergibt das die vom PwC-Whitepaper (Heim/Hackelberg) bestaetigten 40-60%; Mittelwert
-      // 50% verwendet -- ergibt bei 220.000 Wohnungen ≈14,9 Mrd €, mittig in der bestaetigten
-      // 14,5-17,0-Mrd.-€-Spanne. Bestandsgröße 220.000 (nicht 240.000) laut PwC-Zitat des Gesetzentwurfs.
-      // Zahlung erfolgt real über 100-jährige Schuldverschreibungen (Zinssatz 3,5%, keine Zinsbindungs-
-      // Neuverhandlung) statt Bankkredit; eine echte endfällige Anleihe ist im Modell nicht abbildbar,
-      // aber eine 100-jährige Annuität bei 3,5% liegt bei ≈3,6%/Jahr Zahlung -- de facto tilgungsfrei
-      // innerhalb fast jedes hier darstellbaren Zeithorizonts (max. 100 Jahre) und damit eine nahe Annäherung.
-      units: 220000, price: 2085, purchaseFactor: 50,
+      // DWE-Gesetzentwurf, Stand 26.09.2025: Entschädigung nach Sachwertverfahren, laut Factsheet (über PwC)
+      // 14,5–17,0 Mrd € für 220.000 Wohnungen; Mitte 15,75 Mrd € = 55,4 % von 28,4 Mrd €.
+      // Schuldverschreibungen mit 3,5 % festem Zins, Tilgung über 100 Jahre (Entwurf, S. 7).
+      // Miete und Bewirtschaftung nennt der Entwurf nicht; übernommen vom Faire-Mieten-Modell.
+      units: 220000, price: 2085, purchaseFactor: 55.4,
       financing: 'kredit', rate: 3.5, riskPremium: 0, term: 100, rateResetYears: 100, rateIncrement: 0,
-      // Der Entwurf nennt keine Mietsteigerung; Miete und Wachstum vom Faire-Mieten-Modell übernommen.
-      baseRent: 3.70, rentGrowth: 0.4, costInflation: 2.5,
-      opexMode: 'percent', opex: 40, mode: 'none', sozialQuota: 0
+      baseRent: 4.04, rentGrowth: 0.4, costInflation: 0.4,
+      opexMode: 'absolute', opexAbsolute: 2.76, mode: 'none', sozialQuota: 0
     }
   };
 

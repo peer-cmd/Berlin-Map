@@ -7,10 +7,14 @@
 Gutachten, 23.06.2026, 31 S. Grundlage für die Position IW/Empirica im Modell.
 
 - **Herkunft:** Dr. Philipp Deschermeier und Prof. Dr. Michael Voigtländer, Institut der deutschen Wirtschaft Köln (IW), im Auftrag von Berliner Sparkasse, Berliner Volksbank, Deutscher Kreditbank (DKB) und Investitionsbank Berlin (IBB) — Titelseite, S. 1.
-- **Kernargument:** Eine Entschädigung unterhalb des Marktwerts löse einen "erheblichen Vertrauensbruch" aus, auf den Kapitalmärkte mit Aufschlägen auf die Risikoprämien reagieren würden („Kapitalflucht-These") — S. 8 (Zusammenfassung), Risikoprämien-Diskussion durchgehend S. 128 ff.
+- **Kernargument:** Eine Entschädigung unterhalb des Marktwerts löse einen "erheblichen Vertrauensbruch" aus, auf den Kapitalmärkte mit Aufschlägen auf die Risikoprämien reagieren würden („Kapitalflucht-These") — S. 8 (Zusammenfassung), Risikoprämien-Diskussion S. 18–25.
 - **Zwei Sichtweisen:** Die amtliche Kostenschätzung des Senats (29–39 Mrd. €) und das Faire-Mieten-Modell (8–11 Mrd. €) werden als "zwei sehr unterschiedliche Sichtweisen" gegenübergestellt — S. 8.
 - **Buchwert und Verkehrswert:** Vonovia verkaufte 2024 4.500 Wohnungen für 700 Mio. € an die HOWOGE, "was genau dem Buchwert/Verkehrswert der Bestände entsprach" — S. 8 f.
 - **Schuldenstand Berlin:** 76 Mrd. € Ende 2027 laut Prognose des Landesrechnungshofs — S. 23 (zitiert: Landesrechnungshof von Berlin, Jahresbericht 2025).
+- **Risikoprämie:** "Selbst eine geringe zusätzliche Risikoprämie von 0,5 Prozentpunkten bei den Finanzierungskosten würde zu zusätzlichen Ausgaben von rund 400 Millionen Euro pro Jahr führen" — S. 23, bezogen auf die Landesschulden. Im Modell als Zinsaufschlag auf den Kredit der Position IW/Empirica.
+- **Integrationskosten:** Vonovia kalkulierte für die Fusion mit der Deutschen Wohnen 2021 Integrationskosten von 200 Mio. €; bei einer AöR "könnten sogar noch höher ausfallen" — S. 17. Im Modell Voreinstellung der Einmaligen Kosten für alle Positionen.
+- **Modernisierung:** Holm et al. (2025) setzen 6–12 €/m² im Jahr an; VivaWest, LEG und Vonovia 2024 13–25 €/m² — S. 17. Im Modell Mitte 19 €/m² für die Position IW/Empirica.
+- **Inflation:** voraussichtlich 2,7 % im März 2026 — S. 17. Im Modell Kosteninflation der Position IW/Empirica.
 
 ### PwC: Vergesellschaftung großer Wohnungsunternehmen in Berlin
 
@@ -26,7 +30,7 @@ Whitepaper von Dr. Harald Heim und Prof. Dr. Florian Hackelberg, 10 S., ohne Dat
 Gesetzentwurf, Stand 26.09.2025, 19 S.
 
 - **Vergesellschaftungswert:** Die Entschädigung beruht auf einem eigenen Vergesellschaftungswert nach dem Sachwertverfahren (§§ 13–18) und weicht damit von der Verkehrswert-Quote im Modell ab. Der Bodenwert wird aus den Bodenrichtwerten 2011–2013 mit 3,5 % pro Jahr ab 2013 fortgeschrieben (§ 16), statt den aktuellen Marktwert anzusetzen. Das ist vermutlich die rechtliche Grundlage der vom PwC-Whitepaper zitierten "40–60 % des Verkehrswerts".
-- **Zahlung:** über Schuldverschreibungen mit 100 Jahren Laufzeit und 3,5 % Zins, nicht bar.
+- **Zahlung:** über Schuldverschreibungen mit festem Zins von 3,5 % und Tilgung über 100 Jahre — S. 7.
 - **Gesamtsumme:** 14,5–17,0 Mrd. € und der Prozentsatz stehen im zugehörigen Factsheet der Initiative, nicht im Gesetzestext. Das Factsheet lag für diese Auswertung nicht vor.
 - **Bestand:** laut PwC-Zitat dieses Gesetzentwurfs ≈ 220.000 Wohnungen, nicht 240.000.
 
@@ -50,9 +54,11 @@ Bericht nach § 88 Abs. 2 LHO vom 20.02.2024 an den Regierenden Bürgermeister, 
 - **Vier Szenarien (8/11/29/36 Mrd. €):** vom Rechnungshof unverändert von der Initiative bzw. aus der amtlichen Senatsschätzung übernommen, ohne eigene Bewertung. "Diese nicht verkehrswertorientierten Entschädigungssummen von 8 oder 11 Mrd. €" (S. 23) werden ausdrücklich von der verkehrswertorientierten Schätzung (29/36 Mrd. €) unterschieden.
 - **Schwelle bei 11 Mrd. €:** S. 23, wörtlich: "Das vom Rechnungshof entwickelte Berechnungsmodell hat ergeben, dass bereits Entschädigungssummen über 11 Mrd. € wegen der hohen Finanzierungskosten unweigerlich zu Defiziten bei der Bewirtschaftung der zu vergesellschaftenden Bestände durch eine AöR führen."
 - **Zuschussbedarf je Szenario:** S. 23, wörtlich: "Bei einer verkehrswertorientierten Entschädigungssumme von 29 Mrd. € wären durchschnittlich jährliche Zuschüsse von rd. 700 Mio. € in den ersten zehn Jahren erforderlich. Bei einer Entschädigungssumme von 36 Mrd. € steigt der Zuschussbedarf auf rd. 1 Mrd. € jährlich."
-- **Bewirtschaftungskosten:** S. 25 (Anhang 1), Absolutbeträge pro Jahr: Verwaltungsaufwand 343,69 €/Wohneinheit, Instandhaltung 17,18 €/m², nicht umlagefähige Betriebskosten 3,60 €/m², Mietausfallwagnis 2 %. Auf einen Monatswert pro m² umgerechnet (bei Ø 61 m²: 343,69/61/12 ≈ 0,47 + 17,18/12 ≈ 1,43 + 3,60/12 = 0,30) ergibt das ≈ 2,20 €/m². Dieser Monatswert steht nicht im Bericht; er dient im Modell als Voreinstellung für den Modus „Absolut €/m²".
+- **Nettokaltmiete:** 7,16 €/m² pro Monat, Durchschnitt laut Mietspiegel 2023 — S. 9, 25. Ausgangsmiete der Position Rechnungshof.
+- **Bewirtschaftungskosten:** S. 25–26 (Anhang 1), Absolutbeträge pro Jahr: Verwaltungsaufwand 343,69 €/Wohneinheit, Instandhaltung 17,18 €/m², nicht umlagefähige Betriebskosten 3,60 €/m², Mietausfallwagnis 2 %, Modernisierung rd. 12 €/m². Bei 62 m² im Monat: 0,46 + 1,43 + 0,30 + 1,00 + 2 % von 7,16 (0,14) = 3,34 €/m². Dieser Monatswert steht nicht im Bericht; Bewirtschaftung der Position Rechnungshof. Verwaltung, Instandhaltung und Betriebskosten (2,19 €/m²) sind auch Grundlage der Positionen Bernt/Holm und IW/Empirica, deren Quellen keine Gesamtwerte nennen.
+- **Finanzierung:** 20 % Eigenkapital des Landes zu 3 %, 80 % Fremdkapital der AöR zu 4,5 %, beide 30 Jahre — S. 27. Gewichtet 4,2 %; im Modell Zins der Positionen Rechnungshof, Bernt/Holm und IW/Empirica.
 - **Mieterhöhungen:** 1 % p. a. bis 2024, 2 % p. a. ab 2025, begründet mit dem Senatsbeschluss zum Mieterschutz bei den Landeseigenen von 2021; der Mietspiegel 2023 zeigt 2,7 % p. a. für 2021–2023 — S. 26 (Anhang 1), auch S. 11 (Ansicht 2). Im Modell einheitlich 2,0 %.
-- **Wohnungsgröße:** Ø 61 m² laut Rechnungshof (S. 25); das Modell setzt 65 m² an (Basis: DWE/BBU).
+- **Wohnungsgröße:** Ø 61 m² laut Rechnungshof; amtliche Kostenschätzung des Senats 62 m² — beides S. 25. Das Modell setzt 62 m² an.
 - **Schlussfolgerung:** §4 (ab S. 22), Zitat S. 24: "Eine Vergesellschaftung kann nur verhältnismäßig sein, wenn dadurch die Mieten gesenkt oder zumindest entdynamisiert werden. Im Ergebnis sieht der Rechnungshof daher keine Möglichkeit, eine Vergesellschaftung mit vertretbaren Risiken umzusetzen." Seitenzahl am Original geprüft (03.10.2026).
 
 ### OECD: Social rental housing stock (PH4.2)
@@ -74,6 +80,8 @@ Juni 2023, 158 S. Grundlage für den Rechtsstreit um die Entschädigung und für
 
 Kurzstudie zu den sozialen Effekten einer möglichen Vergesellschaftung von Wohnungen in Berlin, Online-Studie 1/2023, 23 S.
 
+- **Mietsenkungsmodell:** Absenkung von 7,63 auf 6,39 €/m², das Niveau der Landeseigenen; Ø Wohnungsgröße 63 m² — S. 12 (Tabelle 2). Ausgangsmiete der Position Bernt/Holm.
+- **Instandsetzung und Modernisierung der Landeseigenen:** 18,54 und 6,53 €/m² im Jahr, Mittel 2016–2021 — S. 23 (Tabellen 8, 9). Im Modell Grundlage der Bewirtschaftung der Position Bernt/Holm (2,09 €/m² im Monat, dazu Verwaltung, Betriebskosten und Mietausfall nach Rechnungshof: 2,98 €/m²).
 - **Mieten landeseigener Unternehmen:** Ø 6,29 €/m², Wachstum 1,6 % — S. 22 (Zeitreihentabelle), auch S. 10, 12. Die Studie schreibt dieses Wachstum ab 2023 fort (S. 11); im Modell Mietsteigerung der Position Bernt/Holm.
 - **Mieten großer privater Konzerne:** Ø 7,63 €/m², Wachstum 3,9 % — S. 22, auch S. 10–12.
 - **Bestand der sechs größten Konzerne:** 222.183 Wohnungen — S. 12.
@@ -88,8 +96,10 @@ Sammelband der Initiative, 149 S.
 
 - **Volksentscheid:** am 26.09.2021 „59,1 % der gültigen Stimmen" für die Vergesellschaftung — S. 4 (Vorwort).
 - **Bestand:** ≈ 240.000 Wohnungen — S. 8, 9, 45–47, 77, 81, 112.
+- **Faire-Mieten-Modell im Gesetzentwurf:** leistbare Miete 4,04 €/m², Bewirtschaftung 2,76 €/m² (Instandsetzung 2,00, Verwaltung 0,68, Mietausfall 0,08); Entschädigung = Reinertrag aus 40 Jahren, für 243.000 Wohnungen à 62 m² 10 Mrd. € — S. 97, 102. Zahlung in unverzinsten Schuldverschreibungen, 40 Jahre, Tilgung 1/40 pro Jahr — S. 96. Grunderwerbsteuer 0 % — S. 99. Frühere Rechnung der Initiative: 7,3–13,2 Mrd. € — S. 10. Im Modell: 31,8 % des Verkehrswerts (9,9 Mrd. € für 240.000 Wohnungen), Zins 0 %, Laufzeit 40 Jahre.
+- **Gerhardt/Holm (2021), Kurzfassung:** vier Rechnungen, 23, 16, 17 (Ertragswert mit den Mieten der Landeseigenen) und 14,5 Mrd. €; "Bis zu einer Entschädigungshöhe von etwa 17 Milliarden Euro ist eine Refinanzierung (ohne Mieterhöhungen und zusätzliche Finanzierungsmittel) aus den laufenden Mieteinnahmen möglich." — S. 112. Im Modell Entschädigung der Position Bernt/Holm.
 - **Fortschreibung:** leistbare Miete und Bewirtschaftungskosten steigen mit 0,43 % pro Jahr, dem geometrischen Mittel der Reallohnentwicklung 1991–2019 — S. 97 (Begründung zum Gesetzentwurf). Im Modell 0,4 % für Mietsteigerung und Kosteninflation des Faire-Mieten-Modells. Der DWE-Gesetzentwurf 2025 nennt keine Mietsteigerung; das Modell übernimmt dort die 0,4 %.
-- **Zielmiete 3,70 €/m²:** S. 117: "Die Berliner Initiative DW enteignen rechnet in ihrem sog. Faire-Mieten-Modell mit einer NKM von 3,70 €/m²."
+- **Zielmiete 3,70 €/m² (frühere Fassung, Fußnote eines Fremdbeitrags; im Modell nicht mehr verwendet):** S. 117: "Die Berliner Initiative DW enteignen rechnet in ihrem sog. Faire-Mieten-Modell mit einer NKM von 3,70 €/m²."
 - **Kritik der Senatsschätzung:** „Anmerkungen zur Kostenschätzung des Senats", S. 134–137; im Modell nur pauschal zitiert.
 
 ### Stoll: Vergesellschaftung als Transformationsstrategie
