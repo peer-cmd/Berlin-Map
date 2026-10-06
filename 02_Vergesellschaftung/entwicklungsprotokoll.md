@@ -553,3 +553,7 @@ Das Farbschema von Glossar und Chronologie gilt jetzt seitenübergreifend: Türk
 ## 2026-10-06 — Modell: Violett an den Reglern statt an den Diagrammtiteln
 
 Auf den Modellseiten sind die Diagrammtitel (`.panel-head h2`) wieder schwarz; violett sind jetzt die Bezeichnungen der Regler (`.field-row label`, z. B. „Betrachtungszeitraum“). Der Diagrammtitel auf „Die Zahlen“ bleibt violett. Versions-Tag von `style.css` auf `20261006c`.
+
+## 2026-10-06 — Modell: Violett an den Positionsnamen
+
+Die Reglerbezeichnungen (`.field-row label`) sind wieder schwarz. Violett sind jetzt die Namen der fünf Positionen auf den Auswahlknöpfen (`.preset-btn[data-preset]`); gespeicherte eigene Szenarien bleiben schwarz, der gewählte Knopf bleibt weiß auf Grün. Versions-Tag von `style.css` auf `20261006d`.

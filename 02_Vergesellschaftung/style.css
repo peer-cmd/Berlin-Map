@@ -273,7 +273,7 @@ html{scroll-behavior:smooth;}
   align-items:baseline;
   margin-bottom:5px;
 }
-.field-row label{font-size:12px;color:var(--violet);}
+.field-row label{font-size:12px;color:var(--ink);}
 .field-row .val{
   font-family:'IBM Plex Mono',monospace;
   font-size:12px;
@@ -432,6 +432,7 @@ select{
   cursor:pointer;
 }
 .preset-btn:last-child{margin-bottom:0;}
+.preset-btn[data-preset]{color:var(--violet);} /* the five positions; saved scenarios stay black */
 .preset-btn:hover, .preset-btn:active, .preset-btn.active{border-color:var(--green);background:var(--green);color:#fff;}
 .saved-row{display:flex;gap:6px;align-items:center;margin-bottom:6px;}
 .saved-row .preset-btn{margin-bottom:0;border-style:dashed;}
