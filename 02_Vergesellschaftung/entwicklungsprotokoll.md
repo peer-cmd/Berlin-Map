@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-06 — Kontaktadresse
+
+E-Mail auf allen Seiten (Navigation „Kontakt", Impressum, Datenschutz, `build_quellenbelege.py`) von info@peerfrantzen.com auf info@vergesellschaftungsrechner-berlin.de umgestellt.
+
 ## 2026-10-06 — Alle Preset-Parameter nach den Quellen
 
 Vorschläge aus `parameterpruefung.md` übernommen; jede Fundstelle am Original-PDF geprüft. Gemeinsame Basis: 62 m² (Senat, DWE 2022; vorher 65 ohne Quelle), Einmalige Kosten 200 Mio. € (IW S. 17; vorher 405 ohne Quelle), Sanierungsstau und Integrationskosten 0 (keine Quelle). Bewirtschaftung aller Positionen absolut in €/m², aus den Quellen bzw. den Bausteinen des Rechnungshofs. Faire-Mieten-Modell: 4,04 €/m², 2,76 €/m², 31,8 % = 9,9 Mrd. €, 0 % über 40 Jahre. DWE-Gesetzentwurf: 55,4 % = 15,8 Mrd. €, Miete und Kosten vom Faire-Mieten-Modell. Bernt/Holm: 6,39 €/m², 2,98 €/m², 54,8 % = 17 Mrd. € (Gerhardt/Holm 2021), 4,2 %. Rechnungshof: 7,16 €/m², 3,34 €/m², 4,2 % fest 30 Jahre. IW/Empirica: 3,93 €/m², 2,7 % Kosteninflation, 4,2 % + 0,5, Mietsteigerung 2,0 %. Regler: Quote ab 20 % in 0,1-Schritten, Miete und Bewirtschaftung in 0,01-Schritten. `zahlen.html`: Tabellen und Texte aktualisiert, neue Tabelle „Die Kosten und die Finanzierung", Fn. 17–20; Fn. 7 korrigiert (Risikoprämien S. 18–25 statt „S. 128 ff."). Glossar: Einmalige Kosten, Integrationskosten, Sanierungsstau. Versionstags: `model-calc.js?v=20261006i`, `content.js?v=20261006b`.

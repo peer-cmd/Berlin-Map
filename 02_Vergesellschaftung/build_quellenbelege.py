@@ -36,7 +36,7 @@ PAGE = """<!DOCTYPE html>
     <a href="glossar.html">Glossar</a>
     <a href="karte.html">Karte</a>
     <a href="quellen.html">Quellen</a>
-    <a href="mailto:info@peerfrantzen.com" class="nav-contact">Kontakt</a>
+    <a href="mailto:info@vergesellschaftungsrechner-berlin.de" class="nav-contact">Kontakt</a>
   </nav>
 
   <div class="masthead">
