@@ -169,7 +169,10 @@ div.glossary{columns:2 280px;column-gap:32px;column-rule:1px solid var(--line);}
 .timeline.chron{grid-template-columns:auto 1fr;gap:6px 16px;}
 .timeline.chron dt{font-family:inherit;font-size:14px;line-height:1.6;font-weight:600;padding-top:0;white-space:nowrap;}
 .timeline.chron dt span{display:inline-block;width:6.2em;font-weight:400;}
-.timeline.chron dd{font-size:14px;text-align:right;white-space:nowrap;}
+.timeline.chron dd{font-size:13.5px;text-align:right;white-space:nowrap;}
+.teaser{margin:14px 0 8px;}
+.teaser img{display:block;width:100%;height:auto;border:1px solid var(--line);}
+.teaser figcaption{margin-top:6px;font-size:12px;line-height:1.45;}
 @media (max-width:760px){.timeline.chron{grid-template-columns:1fr;gap:2px 0;}.timeline.chron dd{text-align:left;white-space:normal;margin-bottom:12px;}}
 .app > .bg-page .panel{border:none;padding:0;margin:24px 0;}
 .app > .bg-page .panel-head h2{font-size:16px;color:var(--violet);}
