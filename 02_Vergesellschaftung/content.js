@@ -25,7 +25,7 @@ window.SITE_INCLUDES = {
       <h3 class="gl-letter">B</h3>
       <dl>
         <div><dt>Baukosten Neubau</dt> <dd>Kosten für die Errichtung einer neuen Wohnung je m² Wohnfläche. Bestimmt im Modus „Neubau", wie viele Wohnungen aus dem reinvestierten Überschuss entstehen (Baukosten × Ø Wohnungsgröße je Wohnung).</dd></div>
-        <div><dt>Bestandseffekt</dt> <dd>Was bis zum Ende des Betrachtungszeitraums erreicht ist: der Anteil der Sozialwohnungen am übernommenen Bestand und, im Modus „Neubau", die Zahl neu gebauter Wohnungen.</dd></div>
+        <div><dt>Bestandseffekt</dt> <dd>Was bis zum Ende des Betrachtungszeitraums erreicht ist: wie lange die Ø Miete im Bestand höchstens auf der Grenze Sozialmiete liegt (alle Jahre, bis Jahr X oder nie) und, im Modus „Neubau", die Zahl neu gebauter Wohnungen.</dd></div>
         <div><dt>Betrachtungszeitraum</dt> <dd>Zahl der Jahre, über die das Modell Mieteinnahmen, Kosten und Schulden fortschreibt. Nettoergebnis, Bestandseffekt und Nettoposition beziehen sich auf das Ende dieses Zeitraums.</dd></div>
         <div><dt>Bewirtschaftungskosten</dt> <dd>Laufende, nicht auf Mieter umlegbare Kosten der Immobilienverwaltung: Instandhaltung, Verwaltung, Mietausfallwagnis (<span class="src">ImmoWertV Anlage 3</span>).</dd></div>
         <div><dt>Break-even</dt> <dd>Erstes Jahr, in dem der kumulierte Cashflow (bzw. NOI abzüglich Kaufpreis) positiv wird.</dd></div>
@@ -34,7 +34,7 @@ window.SITE_INCLUDES = {
       <section class="gl-group">
       <h3 class="gl-letter">C</h3>
       <dl>
-        <div><dt>Cashflow</dt> <dd>NOI abzüglich Schuldendienst (und abzüglich der Kosten einer Umwandlung bei Neuvermietung) in einem Jahr. Der kumulierte Cashflow summiert die Jahreswerte seit Übernahme, beginnend mit den Einmalkosten in Jahr 0.</dd></div>
+        <div><dt>Cashflow</dt> <dd>NOI abzüglich Schuldendienst in einem Jahr. Der kumulierte Cashflow summiert die Jahreswerte seit Übernahme, beginnend mit den Einmalkosten in Jahr 0.</dd></div>
       </dl>
       </section>
       <section class="gl-group">
@@ -54,6 +54,7 @@ window.SITE_INCLUDES = {
       <section class="gl-group">
       <h3 class="gl-letter">G</h3>
       <dl>
+        <div><dt>Grenze Sozialmiete</dt> <dd>Miete der landeseigenen Wohnungsgesellschaften: 6,39 €/m², das Niveau, auf das Bernt/Holm die Mieten senken (<span class="src">Bernt/Holm 2023, S. 12</span>), fortgeschrieben mit 1,6 % im Jahr, dem Mittel der Landeseigenen 2016–2021 (<span class="src">S. 22</span>). Liegt die Ø Miete im übernommenen Bestand höchstens auf dieser Grenze, gilt der Bestand im Modell als Sozialwohnungen.</dd></div>
         <div><dt>Grundpfandrecht</dt> <dd>Dingliches Sicherungsrecht an einem Grundstück zugunsten eines Gläubigers (Hypothek, Grundschuld); Grundlage der Kreditvergabe im Immobiliengeschäft.</dd></div>
       </dl>
       </section>
@@ -86,7 +87,6 @@ window.SITE_INCLUDES = {
       <section class="gl-group">
       <h3 class="gl-letter">M</h3>
       <dl>
-        <div><dt>Mieterersparnis</dt> <dd>Kumulierte Differenz zwischen der Miete ohne Umwandlung und der gezahlten Sozialmiete, multipliziert mit der Zahl der umgewandelten Wohnungen.</dd></div>
         <div><dt>Mietsteigerung</dt> <dd>Jährliche prozentuale Erhöhung der Miete im übernommenen Bestand, ausgehend von der Ausgangsmiete.</dd></div>
       </dl>
       </section>
@@ -102,7 +102,7 @@ window.SITE_INCLUDES = {
       <section class="gl-group">
       <h3 class="gl-letter">R</h3>
       <dl>
-        <div><dt>Reinvestitionsquote</dt> <dd>Anteil des positiven Cashflows nach Schuldendienst, der in Neubau fließt, statt als Rücklage zu verbleiben. Ist unter „Die Sozialwohnungen" ein Anteil „Aus Überschuss" gesetzt, geht dieser zuerst in die Umwandlung; die Reinvestitionsquote bezieht sich auf den Rest.</dd></div>
+        <div><dt>Reinvestitionsquote</dt> <dd>Anteil des positiven Cashflows nach Schuldendienst, der in Neubau fließt, statt als Rücklage zu verbleiben.</dd></div>
         <div><dt>Restschuld</dt> <dd>Zu einem Zeitpunkt noch nicht getilgter Anteil der ursprünglichen Kreditsumme.</dd></div>
         <div><dt>Risikoprämie</dt> <dd>Zinsaufschlag ab dem Zeitpunkt der Ankündigung einer Vergesellschaftung, den Kreditgeber laut <span class="src">IW Köln/Empirica (2026)</span> wegen erhöhter wahrgenommener Risiken verlangen könnten (Kapitalflucht-These). Im Modell sofort ab Jahr 1 wirksam, unabhängig von der späteren Zinsbindung.</dd></div>
       </dl>
@@ -114,7 +114,7 @@ window.SITE_INCLUDES = {
         <div><dt>Schuldendienst</dt> <dd>Jährliche Zahlung an die Kreditgeber aus Zinsen und Tilgung; beim Annuitätendarlehen gleich der Annuität.</dd></div>
         <div><dt>Sondervotum / Mehrheitsvotum</dt> <dd>Stimmt eine Kommission nicht einstimmig ab, hält der Abschlussbericht die Position der Mehrheit (Mehrheitsvotum) und die der überstimmten Minderheit (Sondervotum) getrennt fest. Bei der Expertenkommission Vergesellschaftung vertraten 3 von 13 Mitgliedern ein Sondervotum zur Entschädigung: Verkehrswert als zwingender Ausgangspunkt, nur enger Spielraum für Abschläge — nicht schlicht „voller Verkehrswert".</dd></div>
         <div><dt>Sozialbindung / Belegungsbindung</dt> <dd>Vertragliche oder gesetzliche Verpflichtung, eine Wohnung für einen bestimmten Zeitraum zu gedeckelter Sozialmiete an berechtigte Haushalte zu vermieten.</dd></div>
-        <div><dt>Sozialmiete</dt> <dd>Gedeckelte Miete in Wohnungen mit Sozialbindung. Im Modell steigt sie mit derselben Rate wie die Ausgangsmiete und liegt nie über ihr.</dd></div>
+        <div><dt>Sozialmiete</dt> <dd>Gedeckelte Miete in Wohnungen mit Sozialbindung. Im Modell gilt als Sozialmiete jede Miete, die höchstens auf der Grenze Sozialmiete liegt.</dd></div>
       </dl>
       </section>
       <section class="gl-group">
@@ -126,8 +126,6 @@ window.SITE_INCLUDES = {
       <section class="gl-group">
       <h3 class="gl-letter">U</h3>
       <dl>
-        <div><dt>Umwandlungskosten</dt> <dd>Einmalige Kosten je m² Wohnfläche, wenn eine Wohnung in eine Sozialwohnung umgewandelt wird; × Ø Wohnungsgröße ergibt die Kosten je Wohnung. Standardwert 0: Im öffentlichen Eigentum ist die Umwandlung eine Entscheidung über die Miete, ihre Kosten sind die entgangenen Mieteinnahmen, die das Modell über die Sozialmiete bereits erfasst. Ein Wert über 0 bildet zusätzliche Kosten ab, etwa für Verwaltung oder Modernisierung.</dd></div>
-        <div><dt>Umwandlungstempo</dt> <dd>Legt fest, wie schnell Wohnungen in Sozialwohnungen umgewandelt werden; die Regler wirken zusammen und gelten unabhängig vom Reinvestitionsmodus; umgewandelt wird nur der übernommene Bestand, Neubauwohnungen bleiben bei der Modellmiete. „Sofort umgewandelt": Anteil des Bestands, der ab Jahr 1 die Sozialmiete trägt. „Fluktuation" und „WBS-Quote bei Neuvermietung": Jedes Jahr wird der Anteil „Fluktuation" aller Wohnungen neu vermietet; davon geht die WBS-Quote an WBS-Haushalte und trägt ab dann die Sozialmiete. Bereits vergebene Wohnungen bleiben gebunden, deshalb nähert sich der Anteil der WBS-Quote am Bestand und steigt nicht darüber. Voreinstellung nach Bernt/Holm (2023): 5 % Fluktuation, 63 % der Neuvermietungen an WBS-Inhaber*innen wie bei den landeseigenen Unternehmen; im ersten Jahr sind das 6.999 von 222.183 Wohnungen (3,15 %), nach 30 Jahren rund die Hälfte des Bestands. Die Kosten der Umwandlung mindern den Cashflow des jeweiligen Jahres. „Aus Überschuss": Anteil des jährlichen Überschusses, der weitere Umwandlungen trägt, gerechnet mit entgangener Miete und Umwandlungskosten je Wohnung; 0 % schaltet ihn ab.</dd></div>
       </dl>
       </section>
       <section class="gl-group">
