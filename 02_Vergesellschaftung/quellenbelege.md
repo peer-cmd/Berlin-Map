@@ -80,13 +80,13 @@ Juni 2023, 158 S. Grundlage für den Rechtsstreit um die Entschädigung und für
 
 Kurzstudie zu den sozialen Effekten einer möglichen Vergesellschaftung von Wohnungen in Berlin, Online-Studie 1/2023, 23 S.
 
-- **Mietsenkungsmodell:** Absenkung von 7,63 auf 6,39 €/m², das Niveau der Landeseigenen; Ø Wohnungsgröße 63 m² — S. 12 (Tabelle 2). Ausgangsmiete der Position Bernt/Holm.
+- **Mietsenkungsmodell:** Absenkung von 7,63 auf 6,39 €/m², das Niveau der Landeseigenen; Ø Wohnungsgröße 63 m² — S. 12 (Tabelle 2). Ausgangsmiete der Position Bernt/Holm; im Modell auch die „Grenze Sozialmiete“: Liegt die Ø Miete im Bestand höchstens darauf, gilt der Bestand als Sozialwohnungen.
 - **Instandsetzung und Modernisierung der Landeseigenen:** 18,54 und 6,53 €/m² im Jahr, Mittel 2016–2021 — S. 23 (Tabellen 8, 9). Im Modell Grundlage der Bewirtschaftung der Position Bernt/Holm (2,09 €/m² im Monat, dazu Verwaltung, Betriebskosten und Mietausfall nach Rechnungshof: 2,98 €/m²).
-- **Mieten landeseigener Unternehmen:** Ø 6,29 €/m², Wachstum 1,6 % — S. 22 (Zeitreihentabelle), auch S. 10, 12. Die Studie schreibt dieses Wachstum ab 2023 fort (S. 11); im Modell Mietsteigerung der Position Bernt/Holm.
+- **Mieten landeseigener Unternehmen:** Ø 6,29 €/m², Wachstum 1,6 % — S. 22 (Zeitreihentabelle), auch S. 10, 12. Die Studie schreibt dieses Wachstum ab 2023 fort (S. 11); im Modell Mietsteigerung der Position Bernt/Holm und Wachstum der Grenze Sozialmiete. Tabelle 6 (S. 22) nennt für 2021 6,29 €/m², Tabelle 2 (S. 12) als Ziel der Mietsenkung 6,39 €/m²; das Modell verwendet für die Grenze 6,39 €/m².
 - **Mieten großer privater Konzerne:** Ø 7,63 €/m², Wachstum 3,9 % — S. 22, auch S. 10–12.
 - **Bestand der sechs größten Konzerne:** 222.183 Wohnungen — S. 12.
-- **Vergabe an WBS-Inhaber*innen:** S. 14: nach einer Vergesellschaftung würden "63 Prozent aller Neuvermietungen an WBS-Inhaber*innen erfolgen. Bei einer unterstellten Fluktuation von 5 Prozent pro Jahr beträfe das jährlich 6.999 Wohnungen." Fluktuationsrate 5 % als Mittel der untersuchten Bestände seit 2016 — S. 13. Im Modell Voreinstellung „Fluktuation" 5 %/Jahr und „WBS-Quote bei Neuvermietung" 63 %; im ersten Jahr 6.999 / 222.183 ≈ 3,15 % des Bestands. Die Quelle nennt die jährliche Zahl der Vergaben; dass vergebene Wohnungen gebunden bleiben und der Anteil sich daher 63 % nähert, ist eine Annahme des Modells.
-- **Nicht verwendet:** Vergleich von Instandhaltung, Sozialwohnungsanteil und räumlicher Verteilung (S. 22–23).
+- **Nicht verwendet:** Vergabe an WBS-Inhaber*innen, S. 13–14: nach einer Vergesellschaftung würden "63 Prozent aller Neuvermietungen an WBS-Inhaber*innen erfolgen. Bei einer unterstellten Fluktuation von 5 Prozent pro Jahr beträfe das jährlich 6.999 Wohnungen." Die Studie zählt Vergaben an Haushalte und nennt keine Mietsenkung für diese Wohnungen; das Modell bestimmt Sozialwohnungen über die Miete (Grenze Sozialmiete).
+- **Nicht verwendet:** Verteilung der Bestände auf die Bezirke (S. 14–15, Tabelle 3).
 
 ## 2022
 

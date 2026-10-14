@@ -162,8 +162,8 @@
           <input type="range" id="freeMarketRent" min="8" max="25" step="0.1" value="15.8">
         </div>
         <div class="field">
-          <div class="field-row"><label data-term="Landeseigene Wohnungsgesellschaften" data-note="Ø Nettokaltmiete landeseigene Gesellschaften (Bernt/Holm 2023); Wachstum fix 2,0 %/Jahr angenommen">Referenz: kommunale WoGes.</label><span class="val" id="v-munizRent">6,29 €/m²</span></div>
-          <input type="range" id="munizRent" min="4" max="12" step="0.1" value="6.29">
+          <div class="field-row"><label data-term="Grenze Sozialmiete" data-note="Miete der Landeseigenen, auf die Bernt/Holm 2023 senken (S. 12); Wachstum 1,6 %/Jahr (S. 22)">Grenze Sozialmiete</label><span class="val" id="v-munizRent">6,39 €/m²</span></div>
+          <input type="range" id="munizRent" min="4" max="12" step="0.01" value="6.39">
         </div>
         <div class="field">
           <div class="field-row"><label data-term="CPI">Referenz: Verbraucherpreise (CPI)</label><span class="val" id="v-cpiGrowth">2,0 %/J.</span></div>
@@ -200,45 +200,6 @@
           </div>
         </div>
 
-      </div>
-
-      <div class="group">
-        <p class="group-title">Die Sozialwohnungen</p>
-        <div class="field">
-          <div class="field-row"><label data-term="Sozialmiete">Sozialmiete</label><span class="val" id="v-sozialRent">6,50 €/m²</span></div>
-          <input type="range" id="sozialRent" min="3" max="10" step="0.1" value="6.5">
-          <div class="hint" id="hint-sozialRentCap" style="display:none;color:var(--red);">Sozialmiete liegt über der Ausgangsmiete — im Modell auf die Ausgangsmiete gedeckelt (Sozialmiete kann Marktmiete nicht übersteigen).</div>
-          <div class="linked-row">
-            <label class="linked-label">≈ pro Wohnung</label>
-            <input type="number" class="linked-input" id="sozialRentPerUnit" step="5">
-            <span class="linked-suffix">€/Monat</span>
-          </div>
-        </div>
-        <div class="field">
-          <div class="field-row"><label data-term="Umwandlungskosten">Umwandlungskosten</label><span class="val" id="v-convCost">0 €/m²</span></div>
-          <input type="range" id="convCost" min="0" max="3000" step="50" value="0">
-          <div class="linked-row">
-            <label class="linked-label">≈ pro Wohnung</label>
-            <input type="number" class="linked-input" id="convCostPerUnit" step="1000">
-            <span class="linked-suffix">€ (Kosten je Whg.)</span>
-          </div>
-        </div>
-        <div class="field">
-          <div class="field-row"><label data-term="Umwandlungstempo">Sofort umgewandelt</label><span class="val" id="v-sozialImmediate">0 %</span></div>
-          <input type="range" id="sozialImmediate" min="0" max="100" step="5" value="0">
-        </div>
-        <div class="field">
-          <div class="field-row"><label data-term="Umwandlungstempo">Fluktuation</label><span class="val" id="v-sozialTurnover">5 %/Jahr</span></div>
-          <input type="range" id="sozialTurnover" min="0" max="15" step="0.5" value="5">
-        </div>
-        <div class="field">
-          <div class="field-row"><label data-term="Umwandlungstempo">WBS-Quote bei Neuvermietung</label><span class="val" id="v-sozialQuota">63 %</span></div>
-          <input type="range" id="sozialQuota" min="0" max="100" step="1" value="63">
-        </div>
-        <div class="field">
-          <div class="field-row"><label data-term="Umwandlungstempo">Aus Überschuss</label><span class="val" id="v-reinvestQuota2">0 %</span></div>
-          <input type="range" id="reinvestQuota2" min="0" max="100" step="5" value="0">
-        </div>
       </div>
 
       <div class="reset-row">
@@ -287,7 +248,7 @@
         <div class="panel-head">
           <h2>Die Kapitalposition Berlins</h2>
         </div>
-        <p class="panel-sub">Was Berlin besitzt, minus was es schuldet: Verkehrswert des Bestands abzüglich Restschuld, zuzüglich der bisherigen Überschüsse (nach Kosten für Neubau und Sozialumwandlung). Über null ist der Bestand mehr wert als die verbleibenden Schulden.</p>
+        <p class="panel-sub">Was Berlin besitzt, minus was es schuldet: Verkehrswert des Bestands abzüglich Restschuld, zuzüglich der bisherigen Überschüsse (nach Kosten für Neubau). Über null ist der Bestand mehr wert als die verbleibenden Schulden.</p>
         <canvas id="chartCapital" height="70"></canvas>
         <div class="legend">
           <span><i class="swatch" style="background:var(--blue-light)"></i>Vermögenswert Bestand</span>
@@ -303,15 +264,16 @@
         <div class="panel-head">
           <h2>Die Mieten</h2>
         </div>
-        <p class="panel-sub">Durchschnittliche Nettokaltmiete im übernommenen Bestand, verglichen mit Markt- und LWU-Mieten, Verbraucherpreisen und Haushaltseinkommen.</p>
+        <p class="panel-sub">Durchschnittliche Nettokaltmiete im übernommenen Bestand, verglichen mit der Marktmiete, der Grenze Sozialmiete (Miete der Landeseigenen), Verbraucherpreisen und Haushaltseinkommen. Liegt die Miete höchstens auf der Grenze, gilt der Bestand als Sozialwohnungen.</p>
         <canvas id="chartRent" height="70"></canvas>
         <div class="legend">
           <span><i class="swatch" style="background:#E0435C"></i>Freier Markt</span>
-          <span><i class="swatch" style="background:#A9762C"></i>Kommunale WoGes.</span>
+          <span><i class="swatch" style="background:#A9762C"></i>Grenze Sozialmiete</span>
           <span><i class="swatch" style="background:#6B6B63"></i>CPI (indexiert)</span>
           <span><i class="swatch" style="background:#109A82"></i>Einkommen (indexiert)</span>
           <span><i class="swatch" style="background:var(--blue)"></i>Ø Miete Bestand (Modell)</span>
         </div>
+        <p class="panel-sub" id="rentLimitNote"></p>
       </div>
 
       <div class="panel" id="stockPanelWrap" style="display:none;">
@@ -320,27 +282,6 @@
         </div>
         <p class="panel-sub" id="stock-sub">Zahl der Wohnungen, wenn die Überschüsse in Neubau fließen (Einstellung unter „Der Überschuss“).</p>
         <canvas id="chartStock" height="70"></canvas>
-      </div>
-
-      <div class="panel" id="sozialPanelWrap">
-        <div class="panel-head">
-          <h2>Die <span data-term="Sozialbindung">Sozialwohnungen</span></h2>
-        </div>
-        <p class="panel-sub">Anteil der Wohnungen mit Sozialmiete am Bestand, nach Herkunft: sofort umgewandelt, bei Neuvermietung an WBS-Haushalte und aus dem Überschuss, eingestellt unter „Die Sozialwohnungen“.</p>
-        <canvas id="chartSozial" height="70"></canvas>
-        <div class="legend">
-          <span><i class="swatch" style="background:var(--blue)"></i>Sofort</span>
-          <span><i class="swatch" style="background:var(--amber)"></i>Bei Neuvermietung</span>
-          <span><i class="swatch" style="background:var(--green)"></i>Aus Überschuss</span>
-        </div>
-      </div>
-
-      <div class="panel" id="savingsPanelWrap">
-        <div class="panel-head">
-          <h2>Die <span data-term="Mieterersparnis">Ersparnis der Mieter</span></h2>
-        </div>
-        <p class="panel-sub">Was Mieter in Sozialwohnungen zusammen weniger zahlen als die Modellmiete, aufsummiert über die Jahre.</p>
-        <canvas id="chartTenantSavings" height="70"></canvas>
       </div>
 
       <p class="group-title section-jump" id="vergleich"><a href="#finanzen">Die Finanzen</a><a href="#mieter">Die Mieter</a><span>Der Modellvergleich</span><a href="#sensitivitaet">Die Sensitivität</a><a href="#tabellen">Die Tabellen</a></p>
@@ -427,7 +368,7 @@
             <thead>
               <tr>
                 <th>Jahr</th><th>Modell-Ausgangsmiete €/m²</th><th>Ø Miete Bestand €/m²</th><th>Mieteinnahmen</th><th><span data-term="NOI">NOI</span></th>
-                <th><span data-term="Annuität">Annuität</span></th><th>Cashflow</th><th>Kumuliert</th><th>Bestand/Sozial</th>
+                <th><span data-term="Annuität">Annuität</span></th><th>Cashflow</th><th>Kumuliert</th><th>Bestand</th>
               </tr>
             </thead>
             <tbody id="dataTableBody"></tbody>
@@ -456,7 +397,7 @@
     <p>Anders als die Enteignung nach Art. 14 Abs. 3 GG (Einzelfall, im öffentlichen Interesse, gegen Entschädigung) erlaubt Art. 15 GG die Vergesellschaftung ganzer Wirtschaftszweige — Grund und Boden, Naturschätze, Produktionsmittel — in Gemeineigentum, „durch ein Gesetz, das Art und Ausmaß der Entschädigung bestimmt". Art. 15 GG wurde seit 1949 noch nie angewendet; es gibt daher keine Rechtsprechung, die die Entschädigungshöhe konkretisiert. Zentraler Streitpunkt: Muss die Entschädigung dem vollen Verkehrswert entsprechen (wie bei Art. 14 GG üblich), oder erlaubt Art. 15 GG als eigenständige Kategorie eine geringere Entschädigung, weil sie strukturell anders angelegt ist als die klassische Enteignung? Die Expertenkommission war hier gespalten; eine verbindliche gerichtliche Klärung steht aus.</p>
 
     <h2>Der Rechenweg</h2>
-    <p>Der Kaufpreis (Verkehrswert × Entschädigungsquote) wird entweder über ein Annuitätendarlehen finanziert (Zins + Tilgung, mit Zinsbindung und Anschlussfinanzierungs-Risiko) oder aus Eigenmitteln des Landeshaushalts. Die laufenden Mieteinnahmen abzüglich Bewirtschaftungskosten (Nettobetriebsergebnis, NOI) müssen den Schuldendienst tragen. Positive Überschüsse können reinvestiert werden — in Neubau (Bestand wächst) oder in die Umwandlung weiterer Einheiten in Sozialwohnungen (Mietniveau sinkt für einen wachsenden Anteil).</p>
+    <p>Der Kaufpreis (Verkehrswert × Entschädigungsquote) wird entweder über ein Annuitätendarlehen finanziert (Zins + Tilgung, mit Zinsbindung und Anschlussfinanzierungs-Risiko) oder aus Eigenmitteln des Landeshaushalts. Die laufenden Mieteinnahmen abzüglich Bewirtschaftungskosten (Nettobetriebsergebnis, NOI) müssen den Schuldendienst tragen. Positive Überschüsse können in Neubau reinvestiert werden (Bestand wächst). Als Sozialwohnungen gilt der Bestand, solange seine Durchschnittsmiete höchstens auf der Miete der Landeseigenen liegt (Grenze Sozialmiete).</p>
     <h3>Die Grenzen des Modells</h3>
     <ul>
       <li>Diskontierung/Barwert — alle Werte sind nominal aufsummiert, nicht auf heutigen Wert abgezinst</li>
@@ -490,7 +431,7 @@
       <li>Landeseigene erwirtschaften trotz niedrigerer Miete einen Überschuss im dreistelligen Millionenbereich — Kernargument, dass niedrigere Miete wirtschaftliche Tragfähigkeit nicht ausschließt</li>
       <li>Weitere Befunde: bessere Instandhaltung als bei den Konzernen zu erwarten, mehr Sozialwohnungen, wirkt räumlicher Segregation entgegen (private Bestände konzentrieren sich in teuren Innenstadtlagen, landeseigene eher am Stadtrand)</li>
     </ul>
-    <p>Diese Zahlen bilden die Grundlage für die Ausgangsmiete (7,63 €/m²) und die Referenzlinie „Kommunale Wohnungsgesellschaften" (6,29 €/m²) im Modell-Tab.</p>
+    <p>Diese Zahlen bilden die Grundlage für die Ausgangsmiete (7,63 €/m²) und die Linie „Grenze Sozialmiete“ im Modell (6,39 €/m², das Niveau, auf das Bernt/Holm senken, S. 12; Wachstum 1,6 %/Jahr, S. 22).</p>
 
     <h2>Der Rechnungshof</h2>
     <p>Der Berliner Rechnungshof veröffentlichte am 20.02.2024 einen Beratungsbericht (nach § 88 Abs. 2 LHO) zu den „Auswirkungen einer Vergesellschaftung großer Wohnungsunternehmen auf den Landeshaushalt". Der Rechnungshof entscheidet nicht über die Entschädigungshöhe; diese obliegt dem Gesetzgeber. Der Bericht rechnet vier exogen übernommene Szenarien durch: 8, 11, 29 und 36 Mrd. € für 240.000 Wohnungen — Werte aus der Initiative bzw. der amtlichen Senatsschätzung, keine eigene Bewertung des Rechnungshofs ("Der Rechnungshof hat sich nicht mit einer angemessenen Entschädigungssumme beschäftigt.", § 2.1). Finanzierungsannahme: 80/20 Fremd-/Eigenkapital.</p>
@@ -524,8 +465,8 @@
 
 </div>
 
-<script src="model-calc.js?v=20261006i"></script>
-<script src="content.js?v=20261006b"></script>
+<script src="model-calc.js?v=20261014a"></script>
+<script src="content.js?v=20261014a"></script>
 <script src="include.js"></script>
 <script src="tooltips.js?v=20261003a"></script>
 <script src="nav.js?v=20261005a"></script>

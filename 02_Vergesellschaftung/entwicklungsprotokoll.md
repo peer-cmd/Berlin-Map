@@ -8,6 +8,14 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-14 — Sozialwohnungen über die Miete: Grenze Sozialmiete
+
+Problem: Die Gruppe „Die Sozialwohnungen“ stand in allen fünf Positionen auf 0 (Presets mit `sozialQuota: 0`). Die Positionen mit Mietsenkung (Faire-Mieten-Modell, DWE 2025, Bernt/Holm) zeigten keine Sozialwohnungen, weil ihre Ausgangsmiete unter der Sozialmiete von 6,50 €/m² (ohne Quelle) lag. Die WBS-Vergabe nach Bernt/Holm zählt Haushalte; eine Mietsenkung für diese Wohnungen nennt die Studie nicht.
+
+Neu: Sozialwohnungen sind Wohnungen, deren Miete höchstens auf einer Grenze liegt. Grenze Sozialmiete = Miete der Landeseigenen, 6,39 €/m² (Bernt/Holm 2023, S. 12, Tab. 2), Wachstum 1,6 %/Jahr (S. 22, Tab. 6; vorher ohne Quelle 2,0 %). Der Regler „Referenz: kommunale WoGes.“ heißt jetzt „Grenze Sozialmiete“ (6,29 → 6,39 €/m²). „Die Mieten“ zeigt die Grenze als Linie und darunter, bis wann die Ø Miete auf oder unter ihr liegt; „Bestandseffekt“ im Modellvergleich ebenso („Sozialmiete: alle Jahre / bis Jahr X / nie“). Ergebnis: Faire-Mieten-Modell, DWE 2025 und Bernt/Holm alle Jahre, Rechnungshof und IW/Empirica nie.
+
+Entfernt: Reglergruppe „Die Sozialwohnungen“ (Sozialmiete, Umwandlungskosten, Sofort, Fluktuation, WBS-Quote, Aus Überschuss), Panels „Die Sozialwohnungen“ und „Die Ersparnis der Mieter“, Glossar Mieterersparnis, Umwandlungskosten, Umwandlungstempo. Gespeicherte Szenarien und Links mit diesen Werten laden weiter, die Werte entfallen. Die fünf Positionen rechnen unverändert (Nettoergebnis und Break-even geprüft); die Standardeinstellung ohne Position verliert die WBS-Vergabe zur Sozialmiete, ihr Nettoergebnis nach 50 Jahren steigt von −13,2 auf −6,7 Mrd €. Versions-Tags `model-calc.js` und `content.js` auf `20261014a`.
+
 ## 2026-10-06 — Kontaktadresse
 
 E-Mail auf allen Seiten (Navigation „Kontakt", Impressum, Datenschutz, `build_quellenbelege.py`) von info@peerfrantzen.com auf info@vergesellschaftungsrechner-berlin.de umgestellt.

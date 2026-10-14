@@ -11,13 +11,11 @@
     units:240000, price:2085, purchaseFactor:100,
     financing:'kredit', rate:3.5, riskPremium:0, term:30, rateResetYears:10, rateIncrement:1.0, onceCosts:200, maintBacklog:0, integrationCosts:0,
     baseRent:7.63, rentGrowth:1.5, costInflation:2.5, avgSize:62, opex:40, opexMode:'percent', opexAbsolute:2.2,
-    freeMarketRent:15.8, munizRent:6.29, cpiGrowth:2.0, incomeGrowth:3.0,
+    freeMarketRent:15.8, munizRent:6.39, munizGrowth:1.6, cpiGrowth:2.0, incomeGrowth:3.0,
     mode:'none', buildCost:3500, reinvestQuota1:100,
-    sozialRent:6.5, convCost:0, sozialImmediate:0, sozialTurnover:5, sozialQuota:63, reinvestQuota2:0,
-    // Vergabe bei Neuvermietung nach Bernt/Holm 2023, S. 13–14: Fluktuation 5 %/Jahr, davon 63 % an
-    // WBS-Inhaber*innen (Quote der Landeseigenen) = 6.999 von 222.183 Wohnungen im ersten Jahr (≈ 3,15 %).
-    // Einmal an WBS-Haushalte vergebene Wohnungen bleiben gebunden; der Anteil nähert sich daher 63 %
-    // des Bestands und erreicht nicht 100 %. Die Presets setzen sozialQuota 0, ihre Ergebnisse bleiben unverändert.
+    // Grenze Sozialmiete = Miete der Landeseigenen: 6,39 €/m², das Niveau, auf das Bernt/Holm 2023 die Mieten
+    // senken (S. 12, Tab. 2); Wachstum 1,6 %/Jahr, Mittel 2016–2021 (S. 22, Tab. 6). Liegt die Ø Miete im
+    // Bestand höchstens auf dieser Grenze, gilt der Bestand als Sozialwohnungen.
     // Wohnungsgröße 62 m²: Senat 2018 (zitiert RH 2024, S. 25), DWE 2022, S. 102; RH 61, Bernt/Holm 63.
     // Einmalige Kosten 200 Mio €: Integrationskosten der Fusion Vonovia/Deutsche Wohnen (IW 2026, S. 17),
     // laut IW eher Untergrenze. Sanierungsstau und Integrationskosten in %: keine Quelle, daher 0.
@@ -29,11 +27,10 @@
   const STORE_KEY = 'vergesellschaftung-szenarien';
   const MAX_SAVED = 5;
   let savedScenarios = [];
-  // Ältere Speicherungen und Links mit dem Regler „Fester Zeitplan“ (sozialPaceRate):
-  // 0 bleibt ohne Vergabe bei Neuvermietung, jeder andere Wert übernimmt die Voreinstellung.
+  // Ältere Speicherungen enthalten noch die Regler der entfernten Gruppe „Die Sozialwohnungen“.
+  const OBSOLETE_KEYS = ['sozialRent','convCost','sozialImmediate','sozialTurnover','sozialQuota','reinvestQuota2','sozialPaceRate'];
   function migrateState(v){
-    if(v && v.sozialPaceRate!==undefined && v.sozialQuota===undefined) v.sozialQuota = v.sozialPaceRate>0 ? defaults.sozialQuota : 0;
-    if(v) delete v.sozialPaceRate;
+    if(v) OBSOLETE_KEYS.forEach(k=>{ delete v[k]; });
     return v;
   }
   try{
@@ -46,8 +43,7 @@
   }
 
   const sliderIds = ['units','price','purchaseFactor','rate','riskPremium','term','rateResetYears','rateIncrement','onceCosts','maintBacklog','integrationCosts',
-    'baseRent','rentGrowth','costInflation','avgSize','opex','opexAbsolute','freeMarketRent','munizRent','cpiGrowth','incomeGrowth','buildCost','reinvestQuota1',
-    'sozialRent','convCost','sozialImmediate','sozialTurnover','sozialQuota','reinvestQuota2','horizon'];
+    'baseRent','rentGrowth','costInflation','avgSize','opex','opexAbsolute','freeMarketRent','munizRent','cpiGrowth','incomeGrowth','buildCost','reinvestQuota1','horizon'];
 
   // Parameter, die im Kern €/m² sind, aber wahlweise auch als €-Betrag pro Wohnung
   // bedient werden koennen (verlinkte Zweitfelder, zwei Wege dieselbe Groesse einzugeben).
@@ -57,9 +53,7 @@
     { key:'price', decimals:0 },
     { key:'baseRent', decimals:0 },
     { key:'opexAbsolute', decimals:0 },
-    { key:'buildCost', decimals:0 },
-    { key:'sozialRent', decimals:0 },
-    { key:'convCost', decimals:0 }
+    { key:'buildCost', decimals:0 }
   ];
 
   // Fixed axis width (px) so every "Jahr"-chart's plot area starts/ends at the same x-position.
@@ -88,6 +82,14 @@
     return pv * rate / (1 - Math.pow(1+rate,-nper));
   }
 
+  // Grenze Sozialmiete im Jahr t: Miete der Landeseigenen, fortgeschrieben mit ihrem Wachstum
+  function munizLimit(p, t){ return p.munizRent*Math.pow(1+p.munizGrowth/100, t-1); }
+  // Wie lange der Bestand unter der Grenze bleibt: alle Jahre, bis Jahr X oder nie
+  function fmtLimit(r, horizon){
+    if(r.belowLimitYears>=horizon) return 'alle Jahre';
+    return r.belowLimitYears>0 ? 'bis Jahr '+r.belowLimitYears : 'nie';
+  }
+
   // ---- core simulation for one price-per-sqm scenario (€/m² Verkehrswert) ----
   function runScenario(pricePerSqm, p){
     const fullValue = p.units*p.avgSize*pricePerSqm;
@@ -97,9 +99,8 @@
     let annuity = p.financing==='kredit' ? pmt(currentRate, p.term, principal) : 0;
 
     let units = p.units;
-    let sozialUnits = 0;
-    // Herkunft der Sozialwohnungen: sofort (Jahr 1), bei Neuvermietung, aus Überschuss
-    let sozImm = 0, sozFix = 0, sozSur = 0;
+    // Jahre ab Jahr 1, in denen die Ø Miete höchstens auf der Grenze Sozialmiete liegt
+    let belowLimitYears = 0, belowLimit = true;
     // Einmalkosten bei Übernahme (Jahr 0): Transaktionskosten, Sanierungsstau, Integrationskosten.
     // Werden hier als Startsaldo verbucht, damit sie im Jahr-für-Jahr-Verlauf, im Cashflow-Chart
     // und in der Break-even-Berechnung sichtbar/wirksam sind -- statt nur am Ende vom Nettoergebnis
@@ -114,28 +115,9 @@
 
     for(let t=1;t<=p.horizon;t++){
       const rent = p.baseRent*Math.pow(1+p.rentGrowth/100, t-1);
-      // Sozialmiete darf die Ausgangsmiete nie übersteigen (sonst würde Umwandlung die Miete erhöhen statt senken)
-      const sozialRent = Math.min(p.sozialRent, p.baseRent)*Math.pow(1+p.rentGrowth/100, t-1);
-
-      // Umwandlung zu Jahresbeginn, unabhängig vom Cashflow des Jahres (die Kosten mindern ihn unten):
-      // in Jahr 1 der sofort umgewandelte Anteil, danach jedes Jahr die Vergabe bei Neuvermietung:
-      // von f × Bestand frei werdenden Wohnungen gehen q an WBS-Haushalte; gebundene Wohnungen bleiben gebunden,
-      // neu gebunden werden also f × (q × Bestand − bereits gebundene), bis der Anteil q erreicht ist.
-      // Die Umwandlung ist unabhängig vom Reinvestitionsmodus (Neubau/keine) immer aktiv.
-      let fixedConversionCost = 0;
-      {
-        if(t===1){
-          const newImm = Math.min(p.units*((p.sozialImmediate||0)/100), Math.max(p.units - sozialUnits,0));
-          sozImm += newImm; sozialUnits += newImm;
-          fixedConversionCost += newImm*p.convCost*p.avgSize;
-        }
-        const newFix = Math.min(Math.max((p.sozialTurnover||0)/100*((p.sozialQuota||0)/100*p.units - sozialUnits), 0), Math.max(p.units - sozialUnits,0));
-        sozFix += newFix; sozialUnits += newFix;
-        fixedConversionCost += newFix*p.convCost*p.avgSize;
-      }
-
-      // Neubauwohnungen bleiben bei der Modellmiete; umgewandelt wird nur der übernommene Bestand.
-      const income = (units - sozialUnits)*p.avgSize*rent*12 + sozialUnits*p.avgSize*sozialRent*12;
+      const income = units*p.avgSize*rent*12;
+      const limit = munizLimit(p, t);
+      if(belowLimit && rent <= limit*(1+1e-9)) belowLimitYears = t; else belowLimit = false;
 
       const opexPerUnit = opexPerUnitBase*Math.pow(1+p.costInflation/100, t-1);
       const opexAmt = units*opexPerUnit;
@@ -156,42 +138,26 @@
         annuityThisYear = annuity;
       }
 
-      const cashflow = noi - annuityThisYear - fixedConversionCost;
+      const cashflow = noi - annuityThisYear;
 
       if(p.financing==='kredit'){
         cum += cashflow;
         if(breakEvenYear===null && cum>0) breakEvenYear = t;
       } else {
-        cum += noi - fixedConversionCost;
+        cum += noi;
         if(breakEvenYear===null && cum>principal) breakEvenYear = t;
       }
 
-      rows.push({t, rent, sozialRent, income, noi, annuity:annuityThisYear, cashflow,
+      rows.push({t, rent, limit, income, noi, annuity:annuityThisYear, cashflow,
         cumForChart: p.financing==='kredit' ? cum : (cum-principal),
-        units, sozialUnits, sozImm, sozFix, sozSur, rateNow: currentRate*100,
+        units, rateNow: currentRate*100,
         avgRent: income/(units*p.avgSize*12),
         balance: p.financing==='kredit' ? balance : null});
 
       // reinvestment for next year -- spending is subtracted from the cash reserve (cum) so it is
       // counted exactly once (either as cash-on-hand, or converted into recorded asset/stock value),
       // never both. This also means it delays break-even/Kapitalposition, as real capex would.
-      // Zuerst der Anteil „Aus Überschuss" für weitere Sozialwohnungen, danach Neubau aus dem Rest.
       let surplusLeft = Math.max(cashflow,0);
-      if(p.reinvestQuota2>0){
-        // As many units as this year's surplus can carry: each new social unit costs its one-off
-        // conversion cost plus next year's rent loss (model rent − social rent), so the cash flow
-        // stays roughly at zero instead of turning negative.
-        const capacity = p.units - sozialUnits;
-        const convBudget = surplusLeft*(p.reinvestQuota2/100);
-        const rentLossNext = (p.baseRent - Math.min(p.sozialRent, p.baseRent))*Math.pow(1+p.rentGrowth/100, t)*p.avgSize*12;
-        const costPerUnit = p.convCost*p.avgSize + rentLossNext;
-        const newSozial = costPerUnit>0 ? Math.min(convBudget/costPerUnit, Math.max(capacity,0)) : Math.max(capacity,0);
-        const actualSpend = newSozial*p.convCost*p.avgSize; // capped if capacity is reached
-        sozialUnits = sozialUnits + newSozial;
-        sozSur += newSozial;
-        cum -= actualSpend;
-        surplusLeft -= Math.min(newSozial*costPerUnit, convBudget);
-      }
       if(p.mode==='neubau'){
         const buildSpend = surplusLeft*(p.reinvestQuota1/100);
         const newUnits = buildSpend/(p.buildCost*p.avgSize);
@@ -206,7 +172,7 @@
     return {
       principal, fullValue, rows, breakEvenYear, netResult,
       finalUnits: rows[rows.length-1].units,
-      finalSozial: rows[rows.length-1].sozialUnits
+      belowLimitYears
     };
   }
 
@@ -235,12 +201,6 @@
     state.mode = $('mode').value;
     state.buildCost = +$('buildCost').value;
     state.reinvestQuota1 = +$('reinvestQuota1').value;
-    state.sozialRent = +$('sozialRent').value;
-    state.convCost = +$('convCost').value;
-    state.sozialImmediate = +$('sozialImmediate').value;
-    state.reinvestQuota2 = +$('reinvestQuota2').value;
-    state.sozialTurnover = +$('sozialTurnover').value;
-    state.sozialQuota = +$('sozialQuota').value;
     state.horizon = +$('horizon').value;
   }
 
@@ -275,13 +235,6 @@
     $('v-incomeGrowth').textContent = state.incomeGrowth.toLocaleString('de-DE',{minimumFractionDigits:1})+' %/J.';
     $('v-buildCost').textContent = fmtInt(state.buildCost)+' €/m²';
     $('v-reinvestQuota1').textContent = state.reinvestQuota1+' %';
-    $('v-sozialRent').textContent = state.sozialRent.toLocaleString('de-DE',{minimumFractionDigits:2})+' €/m²';
-    $('hint-sozialRentCap').style.display = state.sozialRent > state.baseRent ? 'block' : 'none';
-    $('v-convCost').textContent = fmtInt(state.convCost)+' €/m²';
-    $('v-sozialImmediate').textContent = state.sozialImmediate+' %';
-    $('v-sozialTurnover').textContent = state.sozialTurnover.toLocaleString('de-DE',{maximumFractionDigits:1})+' %/Jahr';
-    $('v-sozialQuota').textContent = state.sozialQuota+' %';
-    $('v-reinvestQuota2').textContent = state.reinvestQuota2+' %';
     $('v-horizon').textContent = state.horizon+' Jahre';
 
     // verlinkte "pro Wohnung"-Zweitfelder aktualisieren (nicht ueberschreiben waehrend der Nutzer tippt)
@@ -305,7 +258,7 @@
     $('panel-neubau').classList.toggle('show', state.mode==='neubau');
   }
 
-  let chartCashflow, chartCumulative, chartStock, chartRent, chartBalance, chartCapital, chartSozial, chartTenantSavings, chartScenarios, chartRateSens, chartCompSens, chartCompareCum, chartCompareBalance, chartCompareRent;
+  let chartCashflow, chartCumulative, chartStock, chartRent, chartBalance, chartCapital, chartScenarios, chartRateSens, chartCompSens, chartCompareCum, chartCompareBalance, chartCompareRent;
 
   const vlinePlugin = {
     id: 'vlineMarker',
@@ -407,7 +360,7 @@
       type:'line',
       data:{ labels:[], datasets:[
         {label:'Freier Markt', data:[], borderColor:'#E0435C', backgroundColor:'transparent', borderWidth:1.5, borderDash:[3,3], pointRadius:0, tension:0.15},
-        {label:'Kommunale Wohnungsgesellschaften', data:[], borderColor:'#A9762C', backgroundColor:'transparent', borderWidth:1.5, borderDash:[6,2], pointRadius:0, tension:0.15},
+        {label:'Grenze Sozialmiete (Landeseigene)', data:[], borderColor:'#A9762C', backgroundColor:'transparent', borderWidth:1.5, borderDash:[6,2], pointRadius:0, tension:0.15},
         {label:'Verbraucherpreise (CPI, indexiert)', data:[], borderColor:'#6B6B63', backgroundColor:'transparent', borderWidth:1.2, borderDash:[1,3], pointRadius:0, tension:0.15},
         {label:'Haushaltseinkommen (indexiert)', data:[], borderColor:'#109A82', backgroundColor:'transparent', borderWidth:1.2, borderDash:[1,3], pointRadius:0, tension:0.15},
         {label:'Ø Miete im Bestand (Modell)', data:[], borderColor:'#00788C', backgroundColor:'rgba(0,120,140,0.06)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.15}
@@ -462,48 +415,6 @@
         responsive:true,
         animation:{duration:250},
         interaction:{mode:'index', intersect:false},
-        layout:{padding:{right:AXIS_W}},
-        plugins:{ legend:{display:false},
-          tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+fmtEUR(ctx.parsed.y) }}
-        },
-        scales:{
-          x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:YEAR_TICKS },
-          y:{ afterFit:fixAxisWidth, ticks:{font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v)}, grid:{color:'#EAEAE4'} }
-        }
-      }
-    });
-
-    // Sozialanteil nach Herkunft (sofort / bei Neuvermietung / aus Überschuss), gestapelt
-    const fmtPct = v => v.toLocaleString('de-DE',{maximumFractionDigits:0})+' %';
-    chartSozial = new Chart($('chartSozial').getContext('2d'), {
-      type:'line',
-      data:{ labels:[], datasets:[
-        {label:'Sofort', data:[], borderColor:'#00788C', backgroundColor:'rgba(0,120,140,0.35)', borderWidth:1.5, pointRadius:0, fill:'origin', tension:0.15},
-        {label:'Bei Neuvermietung', data:[], borderColor:'#A9762C', backgroundColor:'rgba(169,118,44,0.35)', borderWidth:1.5, pointRadius:0, fill:'-1', tension:0.15},
-        {label:'Aus Überschuss', data:[], borderColor:'#109A82', backgroundColor:'rgba(16,154,130,0.35)', borderWidth:1.5, pointRadius:0, fill:'-1', tension:0.15}
-      ]},
-      options:{
-        responsive:true,
-        animation:{duration:250},
-        layout:{padding:{right:AXIS_W}},
-        plugins:{ legend:{display:false},
-          tooltip:{mode:'index', intersect:false, callbacks:{ label: ctx => ctx.dataset.label+': '+fmtPct(ctx.parsed.y - (ctx.datasetIndex ? ctx.chart.data.datasets[ctx.datasetIndex-1].data[ctx.dataIndex] : 0)) }}
-        },
-        scales:{
-          x:{ title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{color:'#EAEAE4'}, ticks:YEAR_TICKS },
-          y:{ min:0, max:100, afterFit:fixAxisWidth, ticks:{font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtPct(v)}, grid:{color:'#EAEAE4'} }
-        }
-      }
-    });
-
-    chartTenantSavings = new Chart($('chartTenantSavings').getContext('2d'), {
-      type:'line',
-      data:{ labels:[], datasets:[
-        {label:'Kumulierte Mieteinsparung', data:[], borderColor:'#109A82', backgroundColor:'rgba(16,154,130,0.10)', borderWidth:2, pointRadius:0, fill:true, tension:0.15}
-      ]},
-      options:{
-        responsive:true,
-        animation:{duration:250},
         layout:{padding:{right:AXIS_W}},
         plugins:{ legend:{display:false},
           tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+fmtEUR(ctx.parsed.y) }}
@@ -625,11 +536,13 @@
     // ---- chart rent level ----
     chartRent.data.labels = labels;
     chartRent.data.datasets[0].data = labels.map(t=>state.freeMarketRent*Math.pow(1.03,t-1));
-    chartRent.data.datasets[1].data = labels.map(t=>state.munizRent*Math.pow(1.02,t-1));
+    chartRent.data.datasets[1].data = labels.map(t=>munizLimit(state, t));
     chartRent.data.datasets[2].data = labels.map(t=>state.baseRent*Math.pow(1+state.cpiGrowth/100,t-1));
     chartRent.data.datasets[3].data = labels.map(t=>state.baseRent*Math.pow(1+state.incomeGrowth/100,t-1));
     chartRent.data.datasets[4].data = result.rows.map(r=>r.avgRent);
     chartRent.update('none');
+    const limitText = fmtLimit(result, state.horizon);
+    $('rentLimitNote').textContent = 'Ø Miete höchstens auf der Grenze Sozialmiete: '+limitText+'.';
 
     // ---- chart Restschuld (conditional on Kredit) ----
     const showBalance = state.financing==='kredit';
@@ -653,24 +566,6 @@
     chartCapital.data.datasets[2].data = result.rows.map(r=>r.cumForChart);
     chartCapital.data.datasets[3].data = result.rows.map(r=>(state.price*state.avgSize*r.units)-(r.balance||0)+r.cumForChart);
     chartCapital.update('none');
-
-    // ---- Die Sozialwohnungen und die Ersparnis der Mieter (nur bei Umwandlung in Sozialwohnungen) ----
-    {
-      chartSozial.data.labels = labels;
-      chartSozial.data.datasets[0].data = result.rows.map(r=>r.sozImm/state.units*100);
-      chartSozial.data.datasets[1].data = result.rows.map(r=>(r.sozImm+r.sozFix)/state.units*100);
-      chartSozial.data.datasets[2].data = result.rows.map(r=>r.sozialUnits/state.units*100);
-      chartSozial.update('none');
-      // Mieterersparnis: Differenz Modellmiete − Sozialmiete × Wohnungen mit Sozialmiete, kumuliert
-      let cumSavings = 0;
-      chartTenantSavings.data.labels = labels;
-      chartTenantSavings.data.datasets[0].data = result.rows.map(r=>{
-        cumSavings += (r.rent - r.sozialRent) * r.sozialUnits * state.avgSize * 12;
-        return cumSavings;
-      });
-      chartTenantSavings.update('none');
-    }
-
 
     // ---- Sensitivität: Achsenbereich aus allen Presets an beiden Enden des Reglers ----
     // (bei aktuellem Zeithorizont/Bestand), damit die Achse beim Presetwechsel stabil bleibt.
@@ -730,7 +625,7 @@
     // ---- table ----
     const tbody = $('dataTableBody');
     tbody.innerHTML = result.rows.map(r=>{
-      const stockCell = (state.mode==='neubau' ? fmtInt(r.units) : fmtInt(state.units))+' / '+fmtInt(r.sozialUnits);
+      const stockCell = state.mode==='neubau' ? fmtInt(r.units) : fmtInt(state.units);
       return '<tr><td>'+r.t+'</td><td>'+r.rent.toLocaleString('de-DE',{maximumFractionDigits:2})+'</td>'+
         '<td>'+r.avgRent.toLocaleString('de-DE',{maximumFractionDigits:2})+'</td>'+
         '<td>'+fmtEUR(r.income)+'</td><td>'+fmtEUR(r.noi)+'</td><td>'+fmtEUR(r.annuity)+'</td>'+
@@ -743,8 +638,7 @@
   function describeSnapshot(s){
     const finParts = [s.financing==='kredit' ? ('Kredit '+s.rate+'%') : 'Eigenmittel'];
     const modeLabel = s.mode==='neubau' ? 'Neubau' : 'keine Reinvest.';
-    const sozialLabel = 'Sozial: sofort '+s.sozialImmediate+' %, '+'WBS-Quote '+s.sozialQuota+' % bei '+s.sozialTurnover+' % Fluktuation, Überschuss '+s.reinvestQuota2+' %';
-    return finParts[0]+' · '+modeLabel+' · '+sozialLabel+' · '+fmtQuote(s.purchaseFactor)+' Kaufpreis';
+    return finParts[0]+' · '+modeLabel+' · '+fmtQuote(s.purchaseFactor)+' Kaufpreis';
   }
 
   function renderCompareTable(){
@@ -771,7 +665,7 @@
       ['Bestandseffekt (Basis)', r=>{
         const parts = [];
         if(r.s.mode==='neubau') parts.push('+'+fmtInt(r.r.finalUnits-r.s.units)+' Whg.');
-        parts.push((r.r.finalSozial/r.s.units*100).toLocaleString('de-DE',{maximumFractionDigits:1})+'% sozial');
+        parts.push('Sozialmiete: '+fmtLimit(r.r, r.s.horizon));
         return parts.join(' · ');
       }]
     ];
@@ -878,7 +772,7 @@
       price: 2085, purchaseFactor: 31.8,
       financing: 'kredit', rate: 0, riskPremium: 0, term: 40, rateResetYears: 40, rateIncrement: 0,
       baseRent: 4.04, rentGrowth: 0.4, costInflation: 0.4,
-      opexMode: 'absolute', opexAbsolute: 2.76, mode: 'none', sozialQuota: 0
+      opexMode: 'absolute', opexAbsolute: 2.76, mode: 'none'
     },
     holm: {
       // Bernt/Holm 2023, Mietsenkungsmodell: 7,63 → 6,39 €/m² (S. 12, Tab. 2), danach Trend der
@@ -890,7 +784,7 @@
       price: 2085, purchaseFactor: 54.8,
       financing: 'kredit', rate: 4.2, riskPremium: 0, term: 30, rateResetYears: 30, rateIncrement: 0,
       baseRent: 6.39, rentGrowth: 1.6, costInflation: 2.0,
-      opexMode: 'absolute', opexAbsolute: 2.98, mode: 'none', sozialQuota: 0
+      opexMode: 'absolute', opexAbsolute: 2.98, mode: 'none'
     },
     rechnungshof: {
       // Rechnungshof 2024, Anhang 1 (S. 25–27): Miete 7,16 €/m²; Mieterhöhung 1 % bis 2024, 2 % ab 2025;
@@ -901,7 +795,7 @@
       price: 2085, purchaseFactor: 100,
       financing: 'kredit', rate: 4.2, riskPremium: 0, term: 30, rateResetYears: 30, rateIncrement: 0,
       baseRent: 7.16, rentGrowth: 2.0, costInflation: 2.0,
-      opexMode: 'absolute', opexAbsolute: 3.34, mode: 'none', sozialQuota: 0
+      opexMode: 'absolute', opexAbsolute: 3.34, mode: 'none'
     },
     gegenmodell: {
       // IW Köln/Empirica 2026: Entschädigung zum Verkehrswert (Senat 29–39 Mrd €, S. 8); zusätzliche
@@ -912,7 +806,7 @@
       price: 2085, purchaseFactor: 100,
       financing: 'kredit', rate: 4.2, riskPremium: 0.5, term: 30, rateResetYears: 30, rateIncrement: 0,
       baseRent: 7.63, rentGrowth: 2.0, costInflation: 2.7,
-      opexMode: 'absolute', opexAbsolute: 3.93, mode: 'none', sozialQuota: 0
+      opexMode: 'absolute', opexAbsolute: 3.93, mode: 'none'
     },
     dwe2025: {
       // DWE-Gesetzentwurf, Stand 26.09.2025: Entschädigung nach Sachwertverfahren, laut Factsheet (über PwC)
@@ -922,7 +816,7 @@
       units: 220000, price: 2085, purchaseFactor: 55.4,
       financing: 'kredit', rate: 3.5, riskPremium: 0, term: 100, rateResetYears: 100, rateIncrement: 0,
       baseRent: 4.04, rentGrowth: 0.4, costInflation: 0.4,
-      opexMode: 'absolute', opexAbsolute: 2.76, mode: 'none', sozialQuota: 0
+      opexMode: 'absolute', opexAbsolute: 2.76, mode: 'none'
     }
   };
 
@@ -1072,7 +966,6 @@
     const out = {};
     str.split(',').forEach(pair=>{
       const [k, v] = pair.split(':');
-      if(k==='sozialPaceRate' && isFinite(+v)){ out.sozialPaceRate = +v; return; }
       if(!(k in defaults) || v===undefined) return;
       if(textKeys[k]){ if(textKeys[k].includes(v)) out[k] = v; }
       else if(isFinite(+v)) out[k] = +v;
