@@ -68,16 +68,26 @@ console.log("\nFaire-Mieten-Modell (DWE 2022, S. 89, 96–97, 102)");
     `Saldo Jahr 40 ${fmt(r.netResult / 1e9, 2)} Mrd €; tiefster Stand ${fmt(minCum / 1e9, 2)} Mrd € (feste Tilgung 1/40 bei steigendem Reinertrag)`);
 }
 
-// ---- DWE-Gesetzentwurf 2025 ----
-console.log("\nDWE-Gesetzentwurf 2025 (Entwurf S. 7; PwC S. 3)");
+// ---- Holm/Thonke/Arpagaus 2025 (Kurzstudie im Auftrag von DWE) ----
+console.log("\nHolm/Thonke/Arpagaus 2025 (S. 33–37, Tabellen 7, 8, 13)");
 {
-  const { r } = run("dwe2025", { horizon: 100 });
-  check("Entschädigung 15,75 Mrd € (Mitte 14,5–17,0)", Math.abs(r.principal / 1e9 - 15.75) < 0.05, `${fmt(r.principal / 1e9, 2)} Mrd €`);
-  // „ohne zusätzliche Haushaltsmittel“: der kumulierte Saldo der AöR wird nie negativ, die Schuld ist nach 100 Jahren getilgt.
-  const neg = r.rows.filter(x => x.cashflow < 0).map(x => x.t);
-  const minCum = Math.min(...r.rows.map(x => x.cumForChart));
-  check("ohne Mieterhöhung und ohne Haushaltsmittel refinanziert (kumulierter Saldo nie negativ)", minCum >= 0 && r.finalDebt < 1,
-    `tiefster Stand ${fmt(minCum / 1e9, 2)} Mrd €; Jahre mit Fehlbetrag: ${neg.length ? neg[0] + "–" + neg[neg.length - 1] : "keine"} (aus Überschüssen gedeckt)`);
+  // Ohne Zuschuss: die Rücklage der AöR (Überschüsse abzüglich Sondertilgungen) wird nie negativ, die Schuld ist am Ende getilgt.
+  const reserveMin = r => { let rv = 0, min = 0; r.rows.forEach(x => { rv += x.aoer - x.swept; min = Math.min(min, rv); }); return min; };
+  const carries = r => reserveMin(r) >= -1e6 && r.finalDebt < 1e6;
+  const sumAt = (over, eur) => { const p = Object.assign({}, defaults, presets.holm2025, over); return Object.assign(over, { purchaseFactor: quoteFor(p, eur) }); };
+  const maxSum = over => { let lo = 1, hi = 30; for (let k = 0; k < 40; k++) { const m = (lo + hi) / 2; carries(run("holm2025", sumAt(Object.assign({}, over), m * 1e9)).r) ? (lo = m) : (hi = m); } return lo; };
+  const { r } = run("holm2025");
+  check("Entschädigung 10,11 Mrd €", Math.abs(r.principal / 1e9 - 10.11) < 0.01, `${fmt(r.principal / 1e9, 2)} Mrd €`);
+  const ds = r.rows.slice(0, 2).map(x => x.service / 1e6);
+  check("Kapitaldienst Jahr 1 und 2 (Tabelle 8: 0,37 + 0,20 Mrd € mit Entgelt; danach 0,33 + 0,16)", Math.abs(ds[0] - 569) <= 5 && Math.abs(ds[1] - 489) <= 5, `Modell ${ds.map(v => fmt(v)).join(" / ")} Mio €`);
+  check("aus den Mieten refinanziert, ohne Zuschuss, nach 30 Jahren getilgt", carries(r), `tiefster Stand der Rücklage ${fmt(reserveMin(r) / 1e6)} Mio €, Restschuld ${fmt(r.finalDebt / 1e9, 2)} Mrd €`);
+  const m30 = maxSum({});
+  check("größte refinanzierbare Summe, 30 Jahre (Studie 10,11 Mrd €)", Math.abs(m30 - 10.11) <= 0.3, `Modell ${fmt(m30, 2)} Mrd €`);
+  const m90 = maxSum({ term: 90, horizon: 90, initialRepayment: 0.1, rentGrowth: 1.7 });
+  check("größte refinanzierbare Summe, 90 Jahre (Tabelle 13: 13,56 Mrd €)", Math.abs(m90 - 13.56) <= 0.3, `Modell ${fmt(m90, 2)} Mrd €`);
+  const m60 = maxSum({ term: 60, horizon: 60, initialRepayment: 0.65, rentGrowth: 1.2 });
+  console.log(`  Hinweis: 60 Jahre (Tabelle 13: 12,57 Mrd €) ergibt im Modell ${fmt(m60, 2)} Mrd €; den Tilgungsverlauf dieser Variante legt die Studie nicht offen.`);
+  console.log("  Hinweis: Die übrigen Zellen von Tabelle 15 setzen je Variante eine eigene Anfangstilgung an, die die Studie nicht nennt; sie werden nicht geprüft.");
 }
 
 // ---- IW/Empirica 2026: nur die Einwände weichen vom Rechnungshof ab ----

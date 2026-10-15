@@ -8,6 +8,14 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-15 — DWE-Studie 2025 statt DWE-Gesetzentwurf
+
+Neue Quellen in `pdf/` (von Peer hochgeladen) mit Markdown-Auszügen: Holm/Thonke/Arpagaus 2025 (Kurzstudie im Auftrag von DWE), DWE-Factsheet zum Gesetzentwurf (26.09.2025), Erklärspalte zum Gesetzentwurf (Fassung 2021), Gerhardt 2021 (Folien Memo-Sommerschule; nicht das vollständige Gutachten der AG Sozialisierung).
+
+Befund: Das Factsheet nennt 200.000–220.000 Wohnungen, 40–60 % des Marktwerts und Schuldverschreibungen mit 3,5 % über 100 Jahre, aber keine Gesamtsumme und keine Miete. Die 14,5–17,0 Mrd. €, die PwC ihm zuschreibt, stehen dort nicht. Das Preset `dwe2025` (15,75 Mrd. €, Miete 7,63 €/m² übernommen) ist entfernt.
+
+Neu: Preset `holm2025` („DWE-Studie 2025“), Grundmodell der Studie: 240.000 × 61 m², 7,00 €/m² +1 %, Bewirtschaftung 3,59 €/m² + 2 % Mietausfall, +2 %; 20 % Eigenkapital des Landes, je 40 % Annuitätendarlehen (4,5 %, 10 J., Anfangstilgung 3,59 %) und endfällige Anleihe (4,0 %, 7 J.), danach +2 Pp., 1 % Strukturierungsentgelt, Überschüsse tilgen; 10,11 Mrd. €, 30 Jahre. Rechenkern: zweite Tranche als endfällige Anleihe, Anfangstilgung, Strukturierungsentgelt, Überschüsse tilgen (Cash Sweep); bestehende Positionen rechnen unverändert. `pruefung.js`: Kapitaldienst Jahr 1/2 570/489 Mio. € wie Tabelle 8; ohne Zuschuss getilgt; größte Summe ohne Zuschuss 10,15 Mrd. € (Studie 10,11) und 13,57 Mrd. € über 90 Jahre (Studie 13,56); 60 Jahre 11,99 statt 12,57 Mrd. € (nicht geprüft, Tilgungsverlauf nicht offengelegt). Bernt/Holm: Hinweis auf AG Sozialisierung (14,5 Mrd. € bei 5,00 €/m²) und Gerhardt 2021. `zahlen.html`, Modellseite, Glossar (Anfangstilgung, Endfällige Anleihe, Strukturierungsentgelt, Überschüsse tilgen), `quellenbelege.md`, `parameterpruefung.md` angepasst; Fn. 21 jetzt referenziert, Fn. 24–26 neu. Versions-Tags `model-calc.js` und `content.js` auf `20261015b`.
+
 ## 2026-10-15 — Die Positionen treffen die Ergebnisse ihrer Quellen
 
 Grundsatz (Peer): Jede Position rechnet nur mit den Werten ihrer Quelle und soll deren Ergebnis treffen; was eine Quelle nicht ansetzt, kann man zuschalten, es ändert aber nicht die Position. Bisher hatten drei Positionen Werte anderer Quellen übernommen und kamen dadurch zu Ergebnissen, die ihre Quelle nicht nennt.

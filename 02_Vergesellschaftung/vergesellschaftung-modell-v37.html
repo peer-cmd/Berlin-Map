@@ -30,7 +30,7 @@
       <div class="group">
         <div class="field">
           <button class="preset-btn" data-preset="linke">Faire-Mieten-Modell</button>
-          <button class="preset-btn" data-preset="dwe2025">DWE-Gesetzentwurf</button>
+          <button class="preset-btn" data-preset="holm2025">DWE-Studie 2025</button>
           <button class="preset-btn" data-preset="holm">Bernt/Holm</button>
           <button class="preset-btn" data-preset="rechnungshof">Rechnungshof</button>
           <button class="preset-btn" data-preset="gegenmodell">IW/Empirica</button>
@@ -103,6 +103,23 @@
         <div class="field" id="wrap-increment">
           <div class="field-row"><label data-term="Zinsaufschlag">Zinsaufschlag danach</label><span class="val" id="v-rateIncrement">+1,0 pp</span></div>
           <input type="range" id="rateIncrement" min="0" max="3" step="0.1" value="1.0">
+        </div>
+        <div class="field" id="wrap-bond">
+          <div class="field-row"><label data-term="Anfangstilgung">Anfangstilgung</label><span class="val" id="v-initialRepayment">Annuität</span></div>
+          <input type="range" id="initialRepayment" min="0" max="5" step="0.01" value="0">
+          <div class="field-row"><label data-term="Endfällige Anleihe">Anteil endfällige Anleihe</label><span class="val" id="v-bondShare">0 %</span></div>
+          <input type="range" id="bondShare" min="0" max="100" step="5" value="0">
+          <div class="field-row"><label>Zins der Anleihe</label><span class="val" id="v-bondRate">4,0 %</span></div>
+          <input type="range" id="bondRate" min="0" max="7" step="0.1" value="4">
+          <div class="field-row"><label>Laufzeit der Anleihe</label><span class="val" id="v-bondReset">7 J.</span></div>
+          <input type="range" id="bondReset" min="1" max="15" step="1" value="7">
+          <div class="field-row"><label data-term="Strukturierungsentgelt">Strukturierungsentgelt</label><span class="val" id="v-feeRate">0,0 %</span></div>
+          <input type="range" id="feeRate" min="0" max="3" step="0.1" value="0">
+          <div class="field-row"><label data-term="Überschüsse tilgen">Überschüsse tilgen</label></div>
+          <div class="seg" id="seg-sweep">
+            <button data-val="aus" class="active">aus</button>
+            <button data-val="an">an</button>
+          </div>
         </div>
         <div class="field" id="wrap-equity">
           <div class="field-row"><label data-term="Eigenkapitalanteil">Eigenkapitalanteil des Landes</label><span class="val" id="v-equityShare">0 %</span></div>
@@ -459,7 +476,8 @@
       <li><strong>Faire-Mieten-Modell (DWE 2022)</strong> — 10 Mrd. € für 243.000 Wohnungen à 62 m² (Gesetzentwurf 2022; frühere Rechnung 7,3–13,2 Mrd. €). Die Entschädigung ist der Reinertrag aus 40 Jahren: leistbare Miete 4,04 €/m² (30 % des Einkommens an der Armutsgrenze) abzüglich Bewirtschaftung 2,76 €/m², gezahlt in unverzinsten Schuldverschreibungen mit 40 Jahren Laufzeit (DWE 2022, S. 10, 96–102).</li>
       <li><strong>Bernt/Holm (2023)</strong> — Die Studie nennt keine Summe; sie senkt die Miete auf das Niveau der Landeseigenen, 6,39 €/m² (S. 12). Gerhardt/Holm (2021) kommen mit den Mieten der Landeseigenen auf einen Ertragswert von 17 Mrd. €; bis zu dieser Summe sei die Entschädigung aus den Mieten refinanzierbar (DWE 2022, S. 112).</li>
       <li><strong>Landesschätzung / BBU 2019</strong> — ≈ 29–36 Mrd. €. Ertragswertverfahren, verkehrswertnah.</li>
-      <li><strong>DWE-Gesetzentwurf (2025)</strong> — 14,5–17,0 Mrd. € für ≈ 220.000 Wohnungen, 40–60 % vom Verkehrswert; Sachwertverfahren, Zahlung über 100-jährige Schuldverschreibungen (PwC-Whitepaper, Fn. 1–2).</li>
+      <li><strong>DWE-Gesetzentwurf (2025)</strong> — 200.000–220.000 Wohnungen, in der Regel 40–60 % des Marktwerts; Sachwertverfahren, Zahlung über Schuldverschreibungen mit 3,5 % Zins über 100 Jahre aus den Mieteinnahmen der AöR (Factsheet, 26.09.2025, S. 1, 3). Eine Gesamtsumme und eine Miete nennt das Factsheet nicht; die 14,5–17,0 Mrd. €, die das PwC-Whitepaper ihm zuschreibt, stehen dort nicht.</li>
+      <li><strong>DWE-Studie (Holm/Thonke/Arpagaus 2025)</strong> — Grundmodell 10,11 Mrd. € aus den Mieten refinanzierbar (7,00 €/m², Bewirtschaftung 3,73 €/m², 20 % Eigenkapital des Landes, Bankdarlehen und Anleihen), in realistischen Varianten 10–17 Mrd. € (S. 3, 33–34, 41). Das Modell rechnet das Grundmodell als Position „DWE-Studie 2025“ nach.</li>
       <li><strong>Sondervotum der Expertenkommission (3 von 13 Mitgliedern)</strong> — Verkehrswert als zwingender Ausgangspunkt, Abschläge etwa wegen Sozialbindung nur in engem Rahmen (Abschlussbericht, S. 16, 124 f.). Nicht offiziell beziffert.</li>
     </ul>
 
@@ -488,14 +506,16 @@
       <li>Expertenkommission Vergesellschaftung Berlin (2023) — Abschlussbericht, Mehrheits- und Sondervotum</li>
       <li>BBU Verband Berlin-Brandenburgischer Wohnungsunternehmen — Kostenschätzung Land Berlin 2019</li>
       <li>Matthias Bernt &amp; Andrej Holm (2023) — „Vergesellschaftung senkt die Miete", Rosa-Luxemburg-Stiftung</li>
-      <li>Deutsche Wohnen &amp; Co enteignen — „Was kostet Vergesellschaftung" (Berechnungsgrundlage Holm et al.)</li>
+      <li>Andrej Holm, Friederike Thonke, Gian Arpagaus (2025) — „Refinanzierungsoptionen in vergesellschafteten Wohnungsbeständen", Kurzstudie im Auftrag von Deutsche Wohnen &amp; Co enteignen</li>
+      <li>Deutsche Wohnen &amp; Co enteignen (26.09.2025) — Factsheet: Vergesellschaftungsgesetz – VergG</li>
+      <li>Sebastian Gerhardt (2021) — „Neubau, Mietenregulierung, Vergesellschaftung?", Beitrag zur Memo-Sommerschule</li>
       <li>IW Köln &amp; Empirica (2026) — „Auswirkungen der Vergesellschaftung privater Wohnungsunternehmen in Berlin" (Deschermeier/Voigtländer, Simons), im Auftrag Berliner Sparkasse/Volksbank/DKB/IBB</li>
       <li>Gutachterausschuss für Grundstückswerte in Berlin — Liegenschaftszinssätze 2025, Kaufpreisstatistik H1/2025</li>
       <li>BKI / Statistisches Bundesamt (Destatis) — Baupreisindex Wohngebäude 2025/26</li>
       <li>Marktdaten Baufinanzierung (Finanztip, Dr. Klein, Baufi24) — Bauzinsen Stand Juli 2026</li>
       <li>IW Köln — Gutachten zu Refinanzierungsrisiken einer Vergesellschaftung (Titel und Jahr nicht angegeben, nicht im Projektordner)</li>
     </ul>
-    <p>Alle Parameter sind Modellannahmen, keine amtlichen Festlegungen. Die Entschädigungshöhe für eine Vergesellschaftung nach Art. 15 GG ist rechtlich ungeklärt (BVerfG-Klärung steht aus). Referenzwerte (Stand: Juli 2026): Bestandsmiete landeseigene Wohnungsgesellschaften Berlin &lt;7,50 €/m², Angebotsmiete Anfang 2026 16,75 €/m² (IW/Empirica 2026, S. 12; IBB-Wohnungsmarktbericht 2025: 16,25 €/m², nach PwC-Whitepaper, S. 4); Baukosten Neubau 3.300–3.800 €/m² (BKI/Destatis 2025); Bauzinsen 10 Jahre fest 3,6–4,0 % (Marktdaten Juli 2026). Finanzierungskorridor 10–17 Mrd. € (Holm/Thonke, DWE Nov. 2025); Sanierungskosten-Bandbreite 660–1.600 €/m² (IW Consult 2024). Einmalige Kosten 200 Mio. € in der Position IW/Empirica: Integrationskosten der Fusion Vonovia/Deutsche Wohnen, laut Gutachten eher eine Untergrenze (S. 17); die übrigen Positionen setzen keine an.</p>
+    <p>Alle Parameter sind Modellannahmen, keine amtlichen Festlegungen. Die Entschädigungshöhe für eine Vergesellschaftung nach Art. 15 GG ist rechtlich ungeklärt (BVerfG-Klärung steht aus). Referenzwerte (Stand: Juli 2026): Bestandsmiete landeseigene Wohnungsgesellschaften Berlin &lt;7,50 €/m², Angebotsmiete Anfang 2026 16,75 €/m² (IW/Empirica 2026, S. 12; IBB-Wohnungsmarktbericht 2025: 16,25 €/m², nach PwC-Whitepaper, S. 4); Baukosten Neubau 3.300–3.800 €/m² (BKI/Destatis 2025); Bauzinsen 10 Jahre fest 3,6–4,0 % (Marktdaten Juli 2026). Finanzierungskorridor 10–17 Mrd. € (Holm/Thonke/Arpagaus 2025, S. 3, 41); Sanierungskosten-Bandbreite 660–1.600 €/m² (IW Consult 2024). Einmalige Kosten 200 Mio. € in der Position IW/Empirica: Integrationskosten der Fusion Vonovia/Deutsche Wohnen, laut Gutachten eher eine Untergrenze (S. 17); die übrigen Positionen setzen keine an.</p>
 
   </div></div>
   </div>
@@ -504,8 +524,8 @@
 
 </div>
 
-<script src="model-calc.js?v=20261015a"></script>
-<script src="content.js?v=20261015a"></script>
+<script src="model-calc.js?v=20261015b"></script>
+<script src="content.js?v=20261015b"></script>
 <script src="include.js"></script>
 <script src="tooltips.js?v=20261003a"></script>
 <script src="nav.js?v=20261005a"></script>

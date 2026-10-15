@@ -15,6 +15,10 @@
     // Eigenkapitalanteil: Teil des Kaufpreises, den das Land über einen eigenen Kredit (Landeszins, gleiche Laufzeit)
     // aufbringt; die AöR leiht nur den Rest. Mehrkosten Landesschulden: Mio € pro Jahr, die das Land zusätzlich trägt.
     equityShare:0, equityRate:3.0, landDebtCost:0,
+    // Zweite Tranche als endfällige Anleihe (Anteil am Fremdkapital der AöR, Zins, Laufzeit bis zur Erneuerung);
+    // Strukturierungsentgelt in % je neuer Zins- bzw. Anleiheperiode; anfängliche Tilgung in % (0 = Annuität über
+    // die Laufzeit); Überschüsse tilgen: Rücklage über drei Monatsraten tilgt zu Beginn jeder neuen Periode.
+    bondShare:0, bondRate:4.0, bondReset:7, feeRate:0, initialRepayment:0, sweep:'aus',
     baseRent:7.63, rentGrowth:1.5, costInflation:2.5, avgSize:62, opex:40, opexMode:'percent', opexAbsolute:2.2,
     // Mietausfallwagnis in % der Mieteinnahmen (zusätzlich zu den Bewirtschaftungskosten).
     vacancyRate:0,
@@ -57,11 +61,11 @@
   }
 
   const sliderIds = ['units','price','purchaseFactor','rate','riskPremium','term','rateResetYears','rateIncrement','onceCosts','maintBacklog','integrationCosts',
-    'equityShare','equityRate','landDebtCost',
+    'equityShare','equityRate','landDebtCost','bondShare','bondRate','bondReset','feeRate','initialRepayment',
     'baseRent','rentGrowth','costInflation','avgSize','opex','opexAbsolute','vacancyRate','startYears','startInflation','startRentGrowth',
     'freeMarketRent','freeMarketGrowth','munizRent','cpiGrowth','incomeGrowth','buildCost','reinvestQuota1','discountRate','horizon'];
   // Umschalter (Schaltflächengruppen) und der Zustand, den sie setzen.
-  const segIds = { financing:'seg-financing', opexMode:'seg-opexmode', valuation:'seg-valuation', deficitInterest:'seg-deficit' };
+  const segIds = { financing:'seg-financing', opexMode:'seg-opexmode', valuation:'seg-valuation', deficitInterest:'seg-deficit', sweep:'seg-sweep' };
 
   // Parameter, die im Kern €/m² sind, aber wahlweise auch als €-Betrag pro Wohnung
   // bedient werden koennen (verlinkte Zweitfelder, zwei Wege dieselbe Groesse einzugeben).
@@ -115,9 +119,16 @@
     const kredit = p.financing==='kredit';
     // Bei Kredit bringt das Land den Eigenkapitalanteil über einen eigenen Kredit auf, die AöR leiht den Rest.
     const equity = kredit ? principal*((p.equityShare||0)/100) : 0;
-    let balance = principal - equity;
+    // Fremdkapital der AöR: Annuitätendarlehen und, wahlweise, endfällige Anleihe.
+    const debt = principal - equity;
+    let bondBalance = debt*((p.bondShare||0)/100);
+    let balance = debt - bondBalance;
     let currentRate = p.rate/100 + p.riskPremium/100;
-    let annuity = kredit ? pmt(currentRate, p.term, balance) : 0;
+    let bondRateNow = (p.bondRate||0)/100;
+    // Annuität: über die Laufzeit, oder aus Zins und fester anfänglicher Tilgung (bleibt nach der Zinsbindung gleich).
+    const fixedRepayment = (p.initialRepayment||0) > 0;
+    let annuity = !kredit ? 0 : fixedRepayment ? balance*(currentRate + p.initialRepayment/100) : pmt(currentRate, p.term, balance);
+    let reserve = 0, lastService = 0;
     const equityRate = (p.equityRate||0)/100;
     let equityBalance = equity;
     const equityAnnuity = pmt(equityRate, p.term, equity);
@@ -161,22 +172,43 @@
       const noi = income - opexAmt;
 
       // financing with rate reset at end of Zinsbindung
-      let annuityThisYear = 0;
+      // Kapitaldienst der AöR: Annuität, Anleihezinsen, Strukturierungsentgelte, Restzahlung am Laufzeitende.
+      let annuityThisYear = 0, swept = 0;
       if(kredit && t<=p.term){
         if(t === p.rateResetYears+1 && p.rateResetYears < p.term){
           currentRate = p.rate/100 + p.riskPremium/100 + p.rateIncrement/100;
-          const remainingTerm = p.term - p.rateResetYears;
-          annuity = pmt(currentRate, remainingTerm, balance);
+          if(!fixedRepayment) annuity = pmt(currentRate, p.term - p.rateResetYears, balance);
         }
-        const interestPortion = balance*currentRate;
-        let principalPortion = annuity - interestPortion;
-        if(principalPortion > balance) principalPortion = balance;
-        balance = Math.max(balance - principalPortion, 0);
-        annuityThisYear = annuity;
+        const loanRenew = t>1 && p.rateResetYears>0 && (t-1)%p.rateResetYears===0;
+        const bondRenew = t>1 && p.bondReset>0 && (t-1)%p.bondReset===0 && bondBalance>0;
+        if(t === p.bondReset+1) bondRateNow += p.rateIncrement/100;   // einmaliger Aufschlag wie beim Darlehen
+        // Überschüsse tilgen: Rücklage über einem Viertel des letzten Kapitaldienstes, zuerst die Anleihe.
+        if(p.sweep==='an' && (loanRenew || bondRenew) && reserve > lastService/4){
+          let use = reserve - lastService/4;
+          const b = Math.min(use, bondBalance); bondBalance -= b; use -= b;
+          const l = Math.min(use, balance); balance -= l;
+          swept = b + l; reserve -= swept;
+        }
+        const feeRate = (p.feeRate||0)/100;
+        let fees = 0;
+        if(t === 1) fees = (balance + bondBalance)*feeRate;
+        else { if(loanRenew) fees += balance*feeRate; if(bondRenew) fees += bondBalance*feeRate; }
+        let loanService = 0;
+        if(balance > 0){
+          const interestPortion = balance*currentRate;
+          let principalPortion = t===p.term ? balance : Math.min(annuity - interestPortion, balance);
+          balance = Math.max(balance - principalPortion, 0);
+          loanService = interestPortion + principalPortion;
+        }
+        let bondService = bondBalance*bondRateNow;
+        if(t===p.term){ bondService += bondBalance; bondBalance = 0; }
+        annuityThisYear = loanService + bondService + fees;
+        lastService = annuityThisYear;
       }
 
       // Ergebnis der AöR: Überschuss bzw. Zuschussbedarf aus Bewirtschaftung und ihrem Kapitaldienst.
       const aoer = noi - annuityThisYear;
+      if(p.sweep==='an') reserve += aoer;
       // Land: Kapitaldienst für den Eigenkapitalanteil und Mehrkosten der Landesschulden.
       let land = (p.landDebtCost||0)*1e6;
       if(kredit && t<=p.term && equityBalance>0){
@@ -188,8 +220,9 @@
       const interest = p.deficitInterest==='an' ? cash*currentRate : 0;
       const cashflow = aoer - land + interest;
       const d = df(t);
-      cash += cashflow;
-      cum += cashflow*d;
+      // Getilgte Rücklage verlässt die Kasse und senkt die Schuld um denselben Betrag.
+      cash += cashflow - swept;
+      cum += (cashflow - swept)*d;
       if(breakEvenYear===null && (kredit ? cum>0 : cum>principal)) breakEvenYear = t;
 
       rows.push({t, rent, limit, income, noi, annuity:annuityThisYear, aoer:aoer*d, land:land*d, interest:interest*d,
@@ -197,7 +230,8 @@
         cumForChart: kredit ? cum : (cum-principal),
         units, bookNew, rateNow: currentRate*100,
         avgRent: income/(units*p.avgSize*12),
-        balance: kredit ? balance+equityBalance : null});
+        service: annuityThisYear, swept,
+        balance: kredit ? balance+bondBalance+equityBalance : null});
 
       // reinvestment for next year -- spending is subtracted from the cash reserve (cum) so it is
       // counted exactly once (either as cash-on-hand, or converted into recorded asset/stock value),
@@ -273,6 +307,12 @@
     $('v-startRentGrowth').textContent = pct(state.startRentGrowth, 1);
     $('v-freeMarketGrowth').textContent = pct(state.freeMarketGrowth, 1)+'/J.';
     $('v-discountRate').textContent = pct(state.discountRate, 2);
+    $('v-initialRepayment').textContent = state.initialRepayment>0 ? pct(state.initialRepayment, 2) : 'Annuität';
+    $('v-bondShare').textContent = state.bondShare+' %';
+    $('v-bondRate').textContent = pct(state.bondRate, 1);
+    $('v-bondReset').textContent = state.bondReset+' J.';
+    $('v-feeRate').textContent = pct(state.feeRate, 1);
+    $('wrap-bond').style.opacity = state.financing==='kredit' ? 1 : 0.35;
     $('wrap-start').style.opacity = state.startYears>0 ? 1 : 0.35;
     $('wrap-discount').style.opacity = state.valuation==='barwert' ? 1 : 0.35;
     $('wrap-equity').style.opacity = state.financing==='kredit' ? 1 : 0.35;
@@ -729,7 +769,7 @@
 
   // Die fünf Positionen und die gespeicherten Szenarien, alle über den eingestellten Horizont.
   // Farben folgen der Position, nicht dem Rang; gespeicherte Szenarien sind grau gestrichelt.
-  const PRESET_ORDER = [['linke','Faire-Mieten-Modell','#00788C'],['dwe2025','DWE-Gesetzentwurf','#A9762C'],['holm','Bernt/Holm','#6B3FA0'],['rechnungshof','Rechnungshof','#E0435C'],['gegenmodell','IW/Empirica','#4A6FA5']];
+  const PRESET_ORDER = [['linke','Faire-Mieten-Modell','#00788C'],['holm2025','DWE-Studie 2025','#A9762C'],['holm','Bernt/Holm','#6B3FA0'],['rechnungshof','Rechnungshof','#E0435C'],['gegenmodell','IW/Empirica','#4A6FA5']];
   const SAVED_DASH = [[6,3],[2,3],[8,3,2,3],[4,4],[1,2]];
   function compareEntries(){
     const horizon = state.horizon;
@@ -822,16 +862,20 @@
       baseRent: 4.04, rentGrowth: 0.43, costInflation: 0.43,
       opexMode: 'absolute', opexAbsolute: 2.76, mode: 'none', horizon: 40
     },
-    dwe2025: {
-      // DWE-Gesetzentwurf, Stand 26.09.2025: Schuldverschreibungen mit 3,5 % festem Zins, Annuität über
-      // 100 Jahre (Entwurf, S. 7); laut Factsheet (über PwC, S. 3) 14,5–17,0 Mrd € für 220.000 Wohnungen,
-      // refinanzierbar „ohne Mieterhöhungen und ohne zusätzliche Haushaltsmittel“. Mitte 15,75 Mrd €
-      // = 55,38 % von 28,44 Mrd €. Miete und Bewirtschaftung nennt der Entwurf nicht: Bestandsmiete der
-      // Konzerne 7,63 €/m² ohne Erhöhung (Bernt/Holm 2023, S. 12), Bewirtschaftung wie im Entwurf 2022.
-      units: 220000, avgSize: 62, price: 2085, purchaseFactor: 55.38,
-      financing: 'kredit', rate: 3.5, riskPremium: 0, term: 100, rateResetYears: 100, rateIncrement: 0,
-      baseRent: 7.63, rentGrowth: 0, costInflation: 0.43,
-      opexMode: 'absolute', opexAbsolute: 2.76, mode: 'none', horizon: 100
+    holm2025: {
+      // Holm/Thonke/Arpagaus 2025, Kurzstudie im Auftrag von DWE, Grundmodell (S. 19–21, 28–34): 240.000 Whg.
+      // à 61 m², Miete 7,00 €/m² +1 %/Jahr; Bewirtschaftung „LWU“ 3,73 €/m² = 3,59 + Mietausfall 2 %, +2 %/Jahr;
+      // 20 % Eigenkapital, je 40 % Annuitätendarlehen (4,5 %, 10 Jahre fest, Tilgung anfangs 3,59 %) und endfällige
+      // Anleihe (4,0 %, 7 Jahre), danach je +2 Prozentpunkte; Strukturierungsentgelt 1 % je Periode; Überschüsse
+      // tilgen (Cash Sweep, Rücklage drei Monatsraten); Laufzeit 30 Jahre. Ergebnis: 10,11 Mrd € aus den Mieten
+      // refinanzierbar = 33,12 % von 30,52 Mrd €. Das Eigenkapital (2,02 Mrd €) bringt das Land auf (S. 25);
+      // einen Zins dafür nennt die Studie nicht, das Modell verteilt es ohne Zins über die Laufzeit.
+      units: 240000, avgSize: 61, price: 2085, purchaseFactor: 33.12,
+      financing: 'kredit', rate: 4.5, riskPremium: 0, term: 30, rateResetYears: 10, rateIncrement: 2,
+      initialRepayment: 3.59, bondShare: 50, bondRate: 4.0, bondReset: 7, feeRate: 1, sweep: 'an',
+      equityShare: 20, equityRate: 0,
+      baseRent: 7.00, rentGrowth: 1, costInflation: 2,
+      opexMode: 'absolute', opexAbsolute: 3.59, vacancyRate: 2, mode: 'none', horizon: 30
     },
     holm: {
       // Bernt/Holm 2023 rechnen nur die Mieten: Mietsenkungsmodell 7,63 → 6,39 €/m² (S. 12, Tab. 2), danach

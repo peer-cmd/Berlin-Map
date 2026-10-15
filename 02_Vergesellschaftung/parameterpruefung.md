@@ -21,18 +21,22 @@ Bewirtschaftung in €/m² und Monat bei der Wohnungsgröße der Position. Baust
 | Einmalige Kosten | 0 | 200 Mio. € | keine | – | 0 |
 | Betrachtungszeitraum | 40 Jahre | 50 | Abführungsdauer 40 Jahre | S. 102 | ✓ |
 
-## DWE-Gesetzentwurf (2025), Preset `dwe2025`
+## DWE-Studie (Holm/Thonke/Arpagaus 2025), Preset `holm2025`
 
-| Parameter | Modell | vorher | Quelle | Fundstelle | Befund |
-|---|---|---|---|---|---|
-| Bestand | 220.000 × 62 m² | 220.000 × 62 | ≈ 220.000 | PwC, S. 3, Fn. 1–2 | ✓ (62 m² ü Senat/DWE 2022) |
-| Entschädigung | 55,38 % = 15,75 Mrd. € | 55,4 % | 14,5–17,0 Mrd. €, Mitte 15,75 | PwC, S. 3 | ✓ |
-| Finanzierung | 3,5 %, Annuität über 100 Jahre | 3,5 %, 100 | fester Zins 3,5 %, gleichbleibende Annuität über 100 Jahre | Entwurf, S. 7 | ✓ |
-| Ausgangsmiete | 7,63 €/m², keine Erhöhung | 4,04, +0,4 % | Entwurf nennt keine; Factsheet: „ohne Mieterhöhungen“ | PwC, S. 3; Bernt/Holm, S. 12 (Tab. 2) | ü Bernt/Holm |
-| Bewirtschaftung | 2,76 €/m², +0,43 % | 2,76, +0,4 % | Entwurf nennt keine | DWE 2022, S. 89, 97 | ü Faire-Mieten-Modell |
-| Betrachtungszeitraum | 100 Jahre | 50 | Laufzeit der Schuldverschreibungen | Entwurf, S. 7 | ✓ |
+Ersetzt das frühere Preset `dwe2025`. Das Factsheet zum Gesetzentwurf (26.09.2025) nennt 200.000–220.000 Wohnungen, 40–60 % des Marktwerts und Schuldverschreibungen mit 3,5 % über 100 Jahre, aber keine Gesamtsumme und keine Miete; die 14,5–17,0 Mrd. €, die PwC dem Factsheet zuschreibt, stehen dort nicht. Der Gesetzentwurf ist deshalb keine Position mehr; die Finanzierungsrechnung der Initiative ist diese Studie.
 
-Das Factsheet vom 26.09.2025 mit den Annahmen der Initiative liegt nicht in `pdf/`; die Miete ist deshalb übernommen.
+| Parameter | Modell | Quelle | Fundstelle | Befund |
+|---|---|---|---|---|
+| Bestand | 240.000 × 61 m² | „insg. etwa 240.000“, 61 m² nach Rechnungshof | Holm u. a., S. 12, 19 | ✓ |
+| Ausgangsmiete | 7,00 €/m², +1 %/Jahr | Grundmodell | S. 15–17, 33 | ✓ |
+| Bewirtschaftung | 3,59 €/m² + 2 % Mietausfall, +2 %/Jahr | „Bewirtschaftung LWU“ 3,73 €/m² (Mietausfall 0,14) | S. 20–21 (Tabelle 5), S. 30 | ✓ |
+| Eigenkapital | 20 %, vom Land, ohne Zins über 30 Jahre | 20 %; Zins nennt die Studie nicht | S. 25, 33 | ≈ Verteilung ohne Zins |
+| Darlehen | 40 %, 4,5 %, 10 Jahre fest, dann +2 Pp., Anfangstilgung 3,59 % | Tabelle 8 | S. 28–29, 33–34 | ✓ |
+| Anleihe | 40 %, 4,0 %, je 7 Jahre, dann +2 Pp., endfällig | Tabelle 8 | S. 29, 33–34 | ✓ |
+| Strukturierungsentgelt | 1 % je Periode | 1 % | S. 29 | ✓ |
+| Überschüsse tilgen | an, Rücklage drei Monatsraten, zu Beginn jeder neuen Periode | Cash Sweep | S. 31 | ≈ jährliche Rücklage |
+| Entschädigung | 33,12 % = 10,11 Mrd. € | Grundmodell 10,11 Mrd. € | S. 34 | ✓ |
+| Laufzeit, Zeitraum | 30 Jahre | Grundmodell | S. 33 | ✓ |
 
 ## Bernt/Holm (2023), Preset `holm`
 
@@ -102,8 +106,9 @@ Das Gutachten rechnet kein eigenes Ergebnis der AöR. Die Position ist die Rechn
 | Rechnungshof, Ansicht 4 (S. 18) | Ø nach 10/20/30 Jahren, 29 Mrd.: −717 / −576 / −464 Mio. € | −711 / −576 / −467 | 25 Mio. € |
 | Rechnungshof, Ansicht 6 (S. 21) | erforderliche Ausgangsmiete 6,3 / 7,2 / 12,1 / 14,1 €/m² | 6,17 / 7,02 / 12,10 / 14,08 | 0,2 €/m² |
 | Rechnungshof, Ansicht 12 | Gewinnschwelle 29 und 36 Mrd.: 31. Jahr | 31. Jahr | – |
+| DWE-Studie (S. 34, 36) | 10,11 Mrd. € (30 Jahre), 13,56 Mrd. € (90 Jahre) ohne Zuschuss refinanzierbar | größte Summe ohne Zuschuss 10,15 und 13,57 Mrd. €; Kapitaldienst Jahr 1/2: 570/489 Mio. € | 0,3 Mrd. € |
 | Faire-Mieten-Modell (S. 96, 102) | 10 Mrd. € = Reinertrag aus 40 Jahren, aus den Mieten bedient | Reinertrag 10,08 Mrd. €, Saldo Jahr 40 +0,08 Mrd. €, tiefster Stand −0,18 Mrd. € | Saldo ≥ 0 |
-| DWE-Gesetzentwurf (PwC, S. 3) | ohne Mieterhöhungen und Haushaltsmittel refinanzierbar | kumulierter Saldo nie negativ (tiefster Stand +0,23 Mrd. €), Fehlbeträge nur in Jahr 97–100 | Saldo ≥ 0 |
+| DWE-Studie, 60 Jahre (S. 36) | 12,57 Mrd. € | 11,99 Mrd. € (Tilgungsverlauf nicht offengelegt) | nicht geprüft |
 | IW/Empirica | kein eigenes Ergebnis | weicht vom Rechnungshof nur in Modernisierung, Inflation, Integrationskosten, Landesschulden ab | – |
 | Bernt/Holm | nur Mieten | 6,39 €/m², +1,6 %; unter den Bedingungen des Rechnungshofs Ø −263 Mio. € pro Jahr (Jahre 1–10) | – |
 
@@ -114,7 +119,7 @@ Bei 8 und 11 Mrd. € liegt das Modell in allen Jahren 12–17 Mio. € über de
 | Position | Kaufpreis (Mrd. €) | Ergebnis AöR, Ø Jahr 1–10 (Mio. €) | Nettoergebnis (Mrd. €) | Zeitraum, Bewertung |
 |---|---|---|---|---|
 | Faire-Mieten-Modell | 10,0 (vorher 9,9) | −14 | +0,1 | 40 Jahre, nominal |
-| DWE-Gesetzentwurf | 15,75 (15,8) | +219 | +11,6 | 100 Jahre, nominal |
+| DWE-Studie 2025 | 10,11 (vorher DWE-Gesetzentwurf 15,75) | +52 | −1,9 (davon Eigenkapital des Landes −2,0) | 30 Jahre, nominal |
 | Bernt/Holm | 17,0 (17,0) | −263 | −8,0 | 32 Jahre, Barwert |
 | Rechnungshof | 29,0 (31,0) | −711 | −19,1 | 32 Jahre, Barwert |
 | IW/Empirica | 29,0 (31,0) | −843 | −32,9 | 32 Jahre, Barwert |
@@ -123,8 +128,8 @@ Das Nettoergebnis enthält den Kapitaldienst des Landes für den Eigenkapitalant
 
 ## Offen
 
-- Gerhardt/Holm (2021): nur Kurzfassung (DWE 2022, S. 112); deren Finanzierungsannahmen fehlen.
-- Holm et al. (2025), von IW zitiert (8–11 Mrd. €, Modernisierung 6–12 €/m²), liegt nicht im Projektordner.
-- DWE-Factsheet 2025 (14,5–17,0 Mrd. €, Mieten) nur über PwC belegt.
+- Gerhardt/Holm (2021): Kurzfassung (DWE 2022, S. 112) und Folien Gerhardt 2021 (S. 30–31); die Finanzierungsannahmen hinter den 17 Mrd. € fehlen, das vollständige Gutachten der AG Sozialisierung liegt nicht vor.
+- Holm/Thonke/Arpagaus (2025) liegt vor; geprüft sind Grundmodell und 90 Jahre, die übrigen Zellen von Tabelle 15 nicht (Anfangstilgung je Variante nicht genannt).
+- Factsheet 2025 liegt vor: keine Gesamtsumme, keine Miete.
 - Rechnungshof, Ansicht 5 (Finanzierungszeitraum bis 80 Jahre, Zuschuss zur Zinsdeckung 6,7 und 12,3 Mrd. €): rechnet mit flexibler Tilgung aus den Mieterlösen; das bildet das Modell nicht ab.
 - Voreinstellung ohne Position (`defaults`: 7,63 €/m², 1,5 %, 2,5 %, 40 %, 3,5 % mit Zinsänderung nach 10 Jahren) ist freier Startwert ohne Quelle.
