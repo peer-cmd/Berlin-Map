@@ -250,7 +250,7 @@
     const last = rows[rows.length-1];
     const first10 = rows.slice(0, 10);
     return {
-      principal, fullValue, rows, breakEvenYear, netResult: last.cumForChart,
+      principal, fullValue, equity, rows, breakEvenYear, netResult: last.cumForChart,
       finalUnits: last.units,
       finalDebt: last.balance || 0,
       aoerAvg10: first10.reduce((s,r)=>s+r.aoer, 0)/first10.length,
@@ -570,7 +570,10 @@
     // Kennzahlen oben: eine Nachkommastelle, Break-even als Halbsatz unter dem Nettoergebnis.
     const mrd1 = n => (n<0?'−':'')+(Math.abs(n)/1e9).toLocaleString('de-DE',{minimumFractionDigits:1,maximumFractionDigits:1})+' Mrd €';
     $('s-kaufpreis').textContent = mrd1(result.principal);
-    $('s-kaufpreis-sub').textContent = fmtQuote(state.purchaseFactor)+' vom Verkehrswert';
+    // Eigenkapital des Landes ausweisen; ohne Zins des Landes trägt das Modell keine Finanzierungskosten dafür.
+    $('s-kaufpreis-sub').textContent = fmtQuote(state.purchaseFactor)+' vom Verkehrswert'
+      + (result.equity>0 ? ', davon '+mrd1(result.equity)+' Eigenkapital des Landes'
+        + (state.equityRate>0 ? '' : ', ohne Finanzierungskosten des Landes') : '');
     $('s-netto-label').textContent = 'nach '+state.horizon+' Jahren';
     $('s-netto').textContent = mrd1(result.netResult);
     $('s-netto').className = 'value '+(result.netResult>=0?'pos':'neg');
@@ -748,6 +751,7 @@
     const rowsDef = [
       ['Konfiguration', r=>describeSnapshot(r.s)],
       ['Kaufpreis (Basis)', r=>fmtEUR(r.r.principal)],
+      ['davon Eigenkapital des Landes', r=>r.r.equity>0 ? fmtEUR(r.r.equity)+(r.s.equityRate>0 ? ' zu '+fmtQuote(r.s.equityRate) : ' ohne Zins') : '–'],
       ['Break-even (Basis)', r=>fmtYear(r.r.breakEvenYear)],
       ['Nettoergebnis (Basis)', r=>fmtEUR(r.r.netResult)],
       ['Ergebnis AöR, Ø Jahr 1–10', r=>fmtEUR(r.r.aoerAvg10)],

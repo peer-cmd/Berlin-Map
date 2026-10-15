@@ -78,6 +78,9 @@ console.log("\nHolm/Thonke/Arpagaus 2025 (S. 33–37, Tabellen 7, 8, 13)");
   const maxSum = over => { let lo = 1, hi = 30; for (let k = 0; k < 40; k++) { const m = (lo + hi) / 2; carries(run("holm2025", sumAt(Object.assign({}, over), m * 1e9)).r) ? (lo = m) : (hi = m); } return lo; };
   const { r } = run("holm2025");
   check("Entschädigung 10,11 Mrd €", Math.abs(r.principal / 1e9 - 10.11) < 0.01, `${fmt(r.principal / 1e9, 2)} Mrd €`);
+  const debt = r.principal - r.equity;
+  check("davon Eigenkapital des Landes 2,02 Mrd €, aus den Mieten 8,09 Mrd € (Tabelle 8; Tabelle 14a „ohne Eigenkapital“: 8,09)",
+    Math.abs(r.equity / 1e9 - 2.02) < 0.01 && Math.abs(debt / 1e9 - 8.09) < 0.01, `Eigenkapital ${fmt(r.equity / 1e9, 2)}, Fremdkapital ${fmt(debt / 1e9, 2)} Mrd €`);
   const ds = r.rows.slice(0, 2).map(x => x.service / 1e6);
   check("Kapitaldienst Jahr 1 und 2 (Tabelle 8: 0,37 + 0,20 Mrd € mit Entgelt; danach 0,33 + 0,16)", Math.abs(ds[0] - 569) <= 5 && Math.abs(ds[1] - 489) <= 5, `Modell ${ds.map(v => fmt(v)).join(" / ")} Mio €`);
   check("aus den Mieten refinanziert, ohne Zuschuss, nach 30 Jahren getilgt", carries(r), `tiefster Stand der Rücklage ${fmt(reserveMin(r) / 1e6)} Mio €, Restschuld ${fmt(r.finalDebt / 1e9, 2)} Mrd €`);

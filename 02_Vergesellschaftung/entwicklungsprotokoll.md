@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-15 — Eigenkapital des Landes ausgewiesen
+
+Die 10,11 Mrd. € der DWE-Studie enthalten 2,02 Mrd. € Eigenkapital des Landes; aus den Mieten refinanziert werden 8,09 Mrd. € (Tabelle 14a, S. 37). Kennzahlen oben und Vergleichstabelle zeigen jetzt bei jeder Position mit Eigenkapitalanteil „davon … Eigenkapital des Landes“, bei Zins 0 mit dem Zusatz „ohne Finanzierungskosten des Landes“. `zahlen.html`: Aufteilung in Kostentabelle und Abschnitt DWE-Studie, Hinweis auf 103 Mio. € pro Jahr bei 3 % (Zins des Landes beim Rechnungshof), Satz des Factsheets zu den Landesschulden eingeordnet, Vergleich mit dem Rechnungshof; Fn. 24 ergänzt. Glossar „Eigenkapitalanteil“ ergänzt. `pruefung.js`: Aufteilung 2,02/8,09 Mrd. € geprüft. Keine Rechenänderung. Versions-Tags `model-calc.js` und `content.js` auf `20261015c`.
+
 ## 2026-10-15 — DWE-Studie 2025 statt DWE-Gesetzentwurf
 
 Neue Quellen in `pdf/` (von Peer hochgeladen) mit Markdown-Auszügen: Holm/Thonke/Arpagaus 2025 (Kurzstudie im Auftrag von DWE), DWE-Factsheet zum Gesetzentwurf (26.09.2025), Erklärspalte zum Gesetzentwurf (Fassung 2021), Gerhardt 2021 (Folien Memo-Sommerschule; nicht das vollständige Gutachten der AG Sozialisierung).

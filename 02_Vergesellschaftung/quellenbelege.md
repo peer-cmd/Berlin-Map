@@ -33,6 +33,7 @@ Kurzstudie im Auftrag von Deutsche Wohnen & Co enteignen, Redaktionsschluss Augu
 - **Grundmodell:** 240.000 Wohnungen à 61 m², Miete 7,00 €/m², +1 % pro Jahr; Bewirtschaftung "LWU" 3,73 €/m² einschließlich Mietausfall 2 % und Modernisierung 12 €/m² im Jahr, +2 % pro Jahr — S. 12–21, 33.
 - **Finanzierung:** 20 % Eigenkapital, je 40 % Annuitätendarlehen (4,5 %, 10 Jahre fest, Tilgung anfangs 3,59 %) und endfällige Anleihe (4,0 %, 7 Jahre), danach je +2 Prozentpunkte, Strukturierungsentgelt 1 % — S. 28–29, 33–34 (Tabelle 8). Das Eigenkapital muss "voraussichtlich das Land Berlin" einbringen — S. 25.
 - **Ergebnis:** "eine Entschädigungssumme von 10,1 Mrd. €" — S. 34; Laufzeit 60 Jahre 12,57, 90 Jahre 13,56 Mrd. € — S. 36 (Tabelle 13); alle Varianten 3,1–25,6 Mrd. € — S. 38–39 (Tabelle 15); "in realistischen mittleren Szenarien" 10–17 Mrd. € — S. 41.
+- **Eigenkapital:** Ohne Eigenkapital ließen sich 8,09 Mrd. € refinanzieren — S. 37 (Tabelle 14a). Von den 10,11 Mrd. € des Grundmodells kommen also 2,02 Mrd. € als Einlage des Landes; einen Zins dafür nennt die Studie nicht.
 - **AG Sozialisierung 2021:** mit einer "sozialen Bewirtschaftungsmiete (5,00 €/m²)" 14,5 Mrd. € aus den Mieten refinanzierbar — S. 5–6.
 - **Im Modell:** nachgerechnet in `pruefung.js`; größte Summe ohne Zuschuss 10,15 Mrd. € (30 Jahre) und 13,57 Mrd. € (90 Jahre).
 
