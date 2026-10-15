@@ -30,7 +30,7 @@ Ersetzt das frühere Preset `dwe2025`. Das Factsheet zum Gesetzentwurf (26.09.20
 | Bestand | 240.000 × 61 m² | „insg. etwa 240.000“, 61 m² nach Rechnungshof | Holm u. a., S. 12, 19 | ✓ |
 | Ausgangsmiete | 7,00 €/m², +1 %/Jahr | Grundmodell | S. 15–17, 33 | ✓ |
 | Bewirtschaftung | 3,59 €/m² + 2 % Mietausfall, +2 %/Jahr | „Bewirtschaftung LWU“ 3,73 €/m² (Mietausfall 0,14) | S. 20–21 (Tabelle 5), S. 30 | ✓ |
-| Eigenkapital | 20 % = 2,02 Mrd. €, vom Land, ohne Zins über 30 Jahre; Finanzierungskosten des Landes nicht enthalten (bei 3 % wie Rechnungshof: 103 Mio. € pro Jahr) | 20 %; ohne Eigenkapital 8,09 Mrd. €; Zins nennt die Studie nicht | S. 25, 33, 37 (Tabelle 14a) | ≈ Verteilung ohne Zins |
+| Eigenkapital | 20 % = 2,02 Mrd. €, vom Land, Einmalzahlung bei der Übernahme (Jahr 0); Finanzierungskosten des Landes nicht enthalten (bei 3 % wie Rechnungshof: 103 Mio. € pro Jahr) | 20 %; ohne Eigenkapital 8,09 Mrd. €; Zins nennt die Studie nicht | S. 25, 33, 37 (Tabelle 14a) | ✓ Einlage bei Übernahme |
 | Darlehen | 40 %, 4,5 %, 10 Jahre fest, dann +2 Pp., Anfangstilgung 3,59 % | Tabelle 8 | S. 28–29, 33–34 | ✓ |
 | Anleihe | 40 %, 4,0 %, je 7 Jahre, dann +2 Pp., endfällig | Tabelle 8 | S. 29, 33–34 | ✓ |
 | Strukturierungsentgelt | 1 % je Periode | 1 % | S. 29 | ✓ |
@@ -87,7 +87,7 @@ Das Gutachten rechnet kein eigenes Ergebnis der AöR. Die Position ist die Rechn
 | Eigenkapitalanteil, Mehrkosten Landesschulden, Mietausfallwagnis, Anfangsphase | 0 bzw. keine | – | je Position aus der Quelle | 0 |
 | Fehlbeträge verzinsen | aus | – | keine Quelle rechnet so | aus |
 | Bewertung | nominal, Abzinsung 3,15 % wenn Barwert | nominal | Rechnungshof | – |
-| Referenz freier Markt | 16,75 €/m², +6,0 %/Jahr | 15,80 €/m², +3 % ohne Quelle | Angebotsmiete Anfang 2012 7,40, Anfang 2026 16,75 €/m² | IW, S. 12 | ✓ (Rate eigene Rechnung) |
+| Referenz freier Markt | 16,75 €/m², +2,3 %/Jahr | 16,75, +6,0 % (Rückblick 2012–2026, nach 50 Jahren 291 €/m²) | Angebotsmiete Anfang 2026 16,75 €/m²; ortsübliche Vergleichsmiete +2,3 %/Jahr | IW, S. 12; Bernt/Holm, S. 13, 22 (Tab. 6) | ≈ Kombination zweier Quellen |
 | Verkehrswert | 2.085 €/m² | 2.085 | Modellannahme in der Spanne des Gutachterausschusses (1.634–4.247 €/m²); Liegenschaftszinssätze 2025, S. 16 | – offengelegt |
 | Sanierungsstau, Integrationskosten (%) | 0 | 0 | keine Quelle | 0 |
 
