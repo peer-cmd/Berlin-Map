@@ -6,7 +6,7 @@
 <title>Kosten- und Finanzierungsmodell der Vergesellschaftung Berlin</title>
 <link rel="stylesheet" href="fonts/fonts.css">
 <script src="vendor/chart.umd.js"></script>
-<link rel="stylesheet" href="style.css?v=20261006p">
+<link rel="stylesheet" href="style.css?v=20261015a">
 </head>
 <body class="model-page">
 <div class="app">
@@ -356,6 +356,21 @@
 
       <div class="panel">
         <div class="panel-head">
+          <h2>Die Finanzierung im Vergleich</h2>
+        </div>
+        <p class="panel-sub">Wie jede Position die Entschädigung finanziert, nach den Werten ihrer Quelle. Endfällige Anleihen und das Tilgen aus Überschüssen erzeugen Sprünge in den Kurven; eine Einlage des Landes bei der Übernahme lässt die kumulierte Kurve im Minus beginnen.</p>
+        <div class="table-wrap" style="max-height:none;">
+          <table id="financeTable">
+            <thead>
+              <tr><th>Position</th><th>Entschädigung</th><th>Eigenkapital des Landes</th><th>Fremdkapital der AöR</th><th>Zins</th><th>Tilgung</th><th>Weitere Kosten</th></tr>
+            </thead>
+            <tbody id="financeBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
           <h2>Der Cashflow kumuliert im Vergleich</h2>
         </div>
         <p class="panel-sub">Summe aller Jahresergebnisse seit der Übernahme, je Position. Die dicke Linie ist die aktuelle Einstellung, gestrichelte Linien sind gespeicherte Szenarien.</p>
@@ -529,7 +544,7 @@
 
 </div>
 
-<script src="model-calc.js?v=20261015e"></script>
+<script src="model-calc.js?v=20261015f"></script>
 <script src="content.js?v=20261015e"></script>
 <script src="include.js"></script>
 <script src="tooltips.js?v=20261003a"></script>

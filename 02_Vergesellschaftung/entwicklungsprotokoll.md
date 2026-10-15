@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-15 — Finanzierung im Vergleich
+
+Neues Panel „Die Finanzierung im Vergleich“ am Anfang von „Der Modellvergleich“: je Position Entschädigung, Eigenkapital des Landes, Fremdkapital der AöR, Zins, Tilgung und weitere Kosten. Die Tabelle wird in `model-calc.js` (`renderFinanceTable`, `FINANCE_FORM`) aus den presets erzeugt und folgt so dem Rechenkern. Anlass: Sprünge der DWE-Studie 2025 (endfällige Anleihe, Tilgen aus Überschüssen) waren ohne Blick in die Regler nicht nachvollziehbar. Versions-Tags: `style.css` `20261015a`, `model-calc.js` `20261015f`.
+
 ## 2026-10-15 — Cashflow-Diagramm gestapelt, Eigenkapital als Einlage
 
 „Der Cashflow pro Jahr“ zeigte bei der DWE-Studie in den Jahren 8–19 Fehlbeträge, die fast nur aus den 67 Mio. € pro Jahr bestanden, mit denen das Modell das Eigenkapital des Landes über 30 Jahre verteilte; Sondertilgungen fehlten in den Balken, nur die kumulierte Kurve zog sie ab. Neu: Steht der Zins des Landes auf 0, zahlt das Land seinen Anteil als Einmalzahlung in Jahr 0 (so beschreibt es die Studie, S. 25); mit Zins bleibt es ein Kredit des Landes (Rechnungshof, IW/Empirica, Bernt/Holm unverändert). Die Balken sind gestapelt: Ergebnis der AöR, Land, Sondertilgung; zusammen ergeben sie die Veränderung der kumulierten Kurve. Legende und Erläuterung (Sprünge bei Tilgungsende, Restschuld am Laufzeitende aus der Rücklage) unter dem Diagramm. Nettoergebnis und alle Prüfwerte unverändert. Versions-Tags `model-calc.js` und `content.js` auf `20261015e`.

@@ -788,6 +788,41 @@
   // Die fünf Positionen und die gespeicherten Szenarien, alle über den eingestellten Horizont.
   // Farben folgen der Position, nicht dem Rang; gespeicherte Szenarien sind grau gestrichelt.
   const PRESET_ORDER = [['linke','Faire-Mieten-Modell','#00788C'],['holm2025','DWE-Studie 2025','#A9762C'],['holm','Bernt/Holm','#6B3FA0'],['rechnungshof','Rechnungshof','#E0435C'],['gegenmodell','IW/Empirica','#4A6FA5']];
+  // Finanzierungsform je Position, wie in der Quelle benannt (Fundstellen in den Kommentaren der presets).
+  const FINANCE_FORM = {
+    linke: 'Unverzinste Schuldverschreibungen',
+    holm2025: 'Bankdarlehen und endfällige Anleihe',
+    holm: 'Kredit; die Quelle nennt keine Bedingungen, das Modell setzt die des Rechnungshofs ein',
+    rechnungshof: 'Kredit',
+    gegenmodell: 'Kredit wie Rechnungshof'
+  };
+  // Tabelle „Die Finanzierung im Vergleich“: aus den presets erzeugt, damit sie dem Rechenkern folgt.
+  function renderFinanceTable(){
+    if(!byId('financeBody')) return;
+    const pct = v => fmtQuote(v);
+    $('financeBody').innerHTML = PRESET_ORDER.map(([key,label])=>{
+      const p = Object.assign({}, defaults, presets[key]);
+      const r = runScenario(p.price, p);
+      const debt = r.principal - r.equity;
+      const bond = p.bondShare||0;
+      const equity = r.equity>0
+        ? fmtEUR(r.equity)+' ('+pct(p.equityShare)+'), '+(p.equityRate>0 ? 'Kredit zu '+pct(p.equityRate)+' über '+p.term+' Jahre' : 'Einlage bei der Übernahme')
+        : 'keines';
+      const parts = bond>0 ? fmtEUR(debt*(100-bond)/100)+' Darlehen, '+fmtEUR(debt*bond/100)+' Anleihe' : fmtEUR(debt);
+      const loanRate = p.rate + p.riskPremium;
+      let rate = loanRate===0 ? 'zinslos' : pct(loanRate)+(p.rateIncrement>0 && p.rateResetYears<p.term ? ', nach '+p.rateResetYears+' Jahren +'+p.rateIncrement+' Punkte' : ' fest');
+      if(bond>0) rate += '; Anleihe '+pct(p.bondRate)+(p.rateIncrement>0 ? ', nach '+p.bondReset+' Jahren +'+p.rateIncrement+' Punkte' : '');
+      let repay = (p.initialRepayment||0)>0 ? 'Annuität, anfangs '+pct(p.initialRepayment)+' Tilgung'
+        : loanRate===0 ? 'gleiche Raten über '+p.term+' Jahre' : 'Annuität über '+p.term+' Jahre';
+      if(bond>0) repay += '; Anleihe nur Zinsen, alle '+p.bondReset+' Jahre erneuert, Rest am Ende der Laufzeit ('+p.term+' Jahre)';
+      if(p.sweep==='an') repay += '; Überschüsse tilgen bei jeder Erneuerung';
+      const extra = [];
+      if(p.feeRate>0) extra.push('Strukturierungsentgelt '+pct(p.feeRate)+' je Periode');
+      if(p.landDebtCost>0) extra.push('Mehrkosten der Landesschulden '+fmtEUR(p.landDebtCost*1e6)+' pro Jahr');
+      if(p.onceCosts>0) extra.push('Einmalkosten '+fmtEUR(p.onceCosts*1e6));
+      return '<tr><td>'+label+'</td><td>'+fmtEUR(r.principal)+'</td><td>'+equity+'</td><td>'+FINANCE_FORM[key]+': '+parts+'</td><td>'+rate+'</td><td>'+repay+'</td><td>'+(extra.join('; ')||'–')+'</td></tr>';
+    }).join('');
+  }
   const SAVED_DASH = [[6,3],[2,3],[8,3,2,3],[4,4],[1,2]];
   function compareEntries(){
     const horizon = state.horizon;
@@ -1109,6 +1144,7 @@
   $('saveLabel').addEventListener('keydown', e=>{ if(e.key==='Enter') saveScenario(); });
 
   initCharts();
+  renderFinanceTable();
   renderSavedButtons();
   if(location.hash.startsWith('#s=')) applyState(decodeState(decodeURIComponent(location.hash.slice(3))));
   else render();

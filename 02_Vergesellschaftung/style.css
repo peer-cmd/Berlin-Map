@@ -451,6 +451,7 @@ select{
 .saved-row .preset-btn.active, .saved-row .preset-btn:hover{border-style:solid;}
 #savedSlots:empty{display:none;}
 #compareTable td{white-space:normal;}
+#financeTable th, #financeTable td{white-space:normal;text-align:left;vertical-align:top;}
 
 /* ---------- Summary frame: title, verdict, key figures ---------- */
 .summary{margin-bottom:20px;}
