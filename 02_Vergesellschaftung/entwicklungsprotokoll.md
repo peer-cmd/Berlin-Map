@@ -8,6 +8,17 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-15 — Weniger Regler
+
+Sieben Regler entfallen, ohne dass sich ein Ergebnis der Positionen ändert (geprüft: Nettoergebnis, Break-even und kumulierter Verlauf aller fünf Positionen identisch):
+- Kredit/Eigenmittel: Eigenmittel ist rechnerisch gleich Eigenkapitalanteil 100 % ohne Zins des Landes.
+- Risikoprämie: wurde nur zum Zinssatz addiert.
+- Bewirtschaftung in % der Miete (Umschalter und Regler): keine Quelle nennt sie so; Standard jetzt 3,05 €/m² (= 40 % von 7,63, gerundet auf die Schrittweite; Standardlauf −35 Mio € nach 50 Jahren).
+- Integrationskosten (%) und Sanierungsstau je Wohnung: gehen in die Einmaligen Kosten (Mio €) ein.
+- Fehlbeträge verzinsen: keine Quelle rechnet so.
+
+Eingeklappt (`details.subgroup`): „Anleihe und Sondertilgung“ (öffnet bei der DWE-Studie), „Anfangsphase“ (öffnet bei Rechnungshof, Bernt/Holm, IW/Empirica), „Referenzen für die Mieten“. Sichtbar sind in der Grundeinstellung 22 statt 44 Bedienelemente. `migrateState` rechnet gespeicherte Szenarien und ältere Links um; `sweep` wird in Links jetzt mitgelesen. Glossar, `parameterpruefung.md`, `pruefung.js` angepasst. Versions-Tags: `style.css` `20261015b`, `model-calc.js` `20261015g`, `content.js` `20261015f`.
+
 ## 2026-10-15 — Finanzierung im Vergleich
 
 Neues Panel „Die Finanzierung im Vergleich“ am Anfang von „Der Modellvergleich“: je Position Entschädigung, Eigenkapital des Landes, Fremdkapital der AöR, Zins, Tilgung und weitere Kosten. Die Tabelle wird in `model-calc.js` (`renderFinanceTable`, `FINANCE_FORM`) aus den presets erzeugt und folgt so dem Rechenkern. Anlass: Sprünge der DWE-Studie 2025 (endfällige Anleihe, Tilgen aus Überschüssen) waren ohne Blick in die Regler nicht nachvollziehbar. Versions-Tags: `style.css` `20261015a`, `model-calc.js` `20261015f`.

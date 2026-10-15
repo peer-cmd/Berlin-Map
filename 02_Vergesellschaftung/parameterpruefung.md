@@ -83,18 +83,17 @@ Das Gutachten rechnet kein eigenes Ergebnis der AöR. Die Position ist die Rechn
 
 | Parameter | Modell | vorher | Quelle | Befund |
 |---|---|---|---|---|
-| Einmalige Kosten | 0 | 200 Mio. € | nur IW/Empirica nennt Integrationskosten | 0 |
+| Einmalige Kosten (einschließlich Integrationskosten und Sanierungsstau) | 0 | 200 Mio. € | nur IW/Empirica nennt Integrationskosten | 0 |
 | Eigenkapitalanteil, Mehrkosten Landesschulden, Mietausfallwagnis, Anfangsphase | 0 bzw. keine | – | je Position aus der Quelle | 0 |
-| Fehlbeträge verzinsen | aus | – | keine Quelle rechnet so | aus |
 | Bewertung | nominal, Abzinsung 3,15 % wenn Barwert | nominal | Rechnungshof | – |
 | Referenz freier Markt | 16,75 €/m², +2,3 %/Jahr | 16,75, +6,0 % (Rückblick 2012–2026, nach 50 Jahren 291 €/m²) | Angebotsmiete Anfang 2026 16,75 €/m²; ortsübliche Vergleichsmiete +2,3 %/Jahr | IW, S. 12; Bernt/Holm, S. 13, 22 (Tab. 6) | ≈ Kombination zweier Quellen |
 | Verkehrswert | 2.085 €/m² | 2.085 | Modellannahme in der Spanne des Gutachterausschusses (1.634–4.247 €/m²); Liegenschaftszinssätze 2025, S. 16 | – offengelegt |
-| Sanierungsstau, Integrationskosten (%) | 0 | 0 | keine Quelle | 0 |
 
 ## Regler
 
 - Entschädigungsquote `step="0.01"` (Summen der Quellen exakt), Anzahl Wohnungen `step="1000"` (243.000), Mietsteigerung und Kosteninflation `step="0.01"` (0,43 %).
-- Neu: Eigenkapitalanteil und Zins des Landes, Mehrkosten Landesschulden, Fehlbeträge verzinsen, Anfangsphase (Jahre, Inflation, Mietsteigerung), Mietausfallwagnis, Steigerung freier Markt, Bewertung (nominal/Barwert) mit Abzinsungssatz.
+- Entfallen (2026-10-15): Kredit/Eigenmittel (= Eigenkapitalanteil 100 % ohne Zins), Risikoprämie (im Zinssatz), Bewirtschaftung in % der Miete, Integrationskosten und Sanierungsstau (in den Einmaligen Kosten), Fehlbeträge verzinsen (keine Quelle). Ältere Links und Szenarien werden umgerechnet.
+- Neu: Eigenkapitalanteil und Zins des Landes, Mehrkosten Landesschulden, Anfangsphase (Jahre, Inflation, Mietsteigerung), Mietausfallwagnis, Steigerung freier Markt, Bewertung (nominal/Barwert) mit Abzinsungssatz.
 
 ## Ergebnis der Quelle und Modell
 
@@ -132,4 +131,4 @@ Das Nettoergebnis enthält den Kapitaldienst des Landes für den Eigenkapitalant
 - Holm/Thonke/Arpagaus (2025) liegt vor; geprüft sind Grundmodell und 90 Jahre, die übrigen Zellen von Tabelle 15 nicht (Anfangstilgung je Variante nicht genannt).
 - Factsheet 2025 liegt vor: keine Gesamtsumme, keine Miete.
 - Rechnungshof, Ansicht 5 (Finanzierungszeitraum bis 80 Jahre, Zuschuss zur Zinsdeckung 6,7 und 12,3 Mrd. €): rechnet mit flexibler Tilgung aus den Mieterlösen; das bildet das Modell nicht ab.
-- Voreinstellung ohne Position (`defaults`: 7,63 €/m², 1,5 %, 2,5 %, 40 %, 3,5 % mit Zinsänderung nach 10 Jahren) ist freier Startwert ohne Quelle.
+- Voreinstellung ohne Position (`defaults`: 7,63 €/m², 1,5 %, 2,5 %, Bewirtschaftung 3,05 €/m², 3,5 % mit Zinsänderung nach 10 Jahren) ist freier Startwert ohne Quelle.

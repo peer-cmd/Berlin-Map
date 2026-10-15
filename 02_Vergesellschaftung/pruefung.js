@@ -116,7 +116,6 @@ console.log("\nBernt/Holm 2023 (S. 12, 22) und Gerhardt/Holm 2021 (DWE 2022, S. 
 console.log("\nAlle Positionen");
 for (const [key, pr] of Object.entries(presets)) {
   const p = Object.assign({}, defaults, pr);
-  check(`${key}: keine Zinsen auf Fehlbeträge`, p.deficitInterest === "aus");
   if (key !== "gegenmodell") check(`${key}: keine Einmal- oder Landeszusatzkosten`, p.onceCosts === 0 && p.landDebtCost === 0);
 }
 

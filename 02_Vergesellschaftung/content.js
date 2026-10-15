@@ -15,7 +15,7 @@ window.SITE_INCLUDES = {
     <ul>
       <li>Leerstand über das eingestellte Mietausfallwagnis hinaus</li>
       <li>Mietpreisbremse/Kappungsgrenze als rechtliche Deckelung der Mietsteigerung</li>
-      <li>Energetische Pflichtsanierung (GEG) als eigener Kostenblock; ein Sanierungsstau lässt sich als Einmalbetrag je Wohnung einstellen (Voreinstellung 0)</li>
+      <li>Energetische Pflichtsanierung (GEG) als eigener Kostenblock; ein Sanierungsstau lässt sich in den Einmaligen Kosten einstellen (Voreinstellung 0)</li>
       <li>Rückkopplung auf Berlins Bonität; zusätzliche Zinskosten des Landes lassen sich als fester Jahresbetrag einstellen</li>
       <li>Politisches/rechtliches Verzögerungsrisiko bis zu einer verfassungsgerichtlichen Klärung</li>
       <li>Die Zinsstrukturkurve des Rechnungshofs; die Abzinsung rechnet mit einem festen Satz</li>
@@ -42,7 +42,7 @@ window.SITE_INCLUDES = {
         <div><dt>Bestandseffekt</dt> <dd>Was bis zum Ende des Betrachtungszeitraums erreicht ist: wie lange die Ø Miete im Bestand höchstens auf der Grenze Sozialmiete liegt (alle Jahre, bis Jahr X oder nie) und, im Modus „Neubau", die Zahl neu gebauter Wohnungen.</dd></div>
         <div><dt>Betrachtungszeitraum</dt> <dd>Zahl der Jahre, über die das Modell Mieteinnahmen, Kosten und Schulden fortschreibt. Nettoergebnis, Bestandseffekt und Nettoposition beziehen sich auf das Ende dieses Zeitraums.</dd></div>
         <div><dt>Bewirtschaftungskosten</dt> <dd>Laufende, nicht auf Mieter umlegbare Kosten der Immobilienverwaltung: Instandhaltung, Verwaltung, Mietausfallwagnis (<span class="src">ImmoWertV Anlage 3</span>).</dd></div>
-        <div><dt>Break-even</dt> <dd>Erstes Jahr, in dem der kumulierte Cashflow (bzw. NOI abzüglich Kaufpreis) positiv wird.</dd></div>
+        <div><dt>Break-even</dt> <dd>Erstes Jahr, in dem der kumulierte Cashflow positiv wird.</dd></div>
       </dl>
       </section>
       <section class="gl-group">
@@ -54,8 +54,8 @@ window.SITE_INCLUDES = {
       <section class="gl-group">
       <h3 class="gl-letter">E</h3>
       <dl>
-        <div><dt>Eigenkapitalanteil</dt> <dd>Teil des Kaufpreises, den das Land aufbringt; die AöR leiht nur den Rest. Das Land finanziert seinen Anteil über einen eigenen Kredit zum Zins des Landes mit derselben Laufzeit; dessen Kapitaldienst erscheint in der Spalte „Land“. Der Rechnungshof rechnet mit 20 % zu 3 % (<span class="src">Rechnungshof 2024, S. 27</span>). Steht der Zins des Landes auf 0, zahlt das Land seinen Anteil bei der Übernahme auf einmal ein; Finanzierungskosten des Landes sind dann nicht enthalten (so bei der DWE-Studie 2025, die keinen Zins nennt).</dd></div>
-        <div><dt>Einmalige Kosten</dt> <dd>Kosten, die einmalig bei der Übernahme in Jahr 0 anfallen: Transaktion, Aufbau der Trägerorganisation, Rechtsverfahren. Im Modell zusätzlich zu Integrationskosten und Sanierungsstau. Nur die Position IW/Empirica setzt 200 Mio. € an: die Integrationskosten der Fusion Vonovia/Deutsche Wohnen, laut <span class="src">IW Köln/Empirica 2026, S. 17</span> eher eine Untergrenze.</dd></div>
+        <div><dt>Eigenkapitalanteil</dt> <dd>Teil des Kaufpreises, den das Land aufbringt; die AöR leiht nur den Rest. Das Land finanziert seinen Anteil über einen eigenen Kredit zum Zins des Landes mit derselben Laufzeit; dessen Kapitaldienst erscheint in der Spalte „Land“. Der Rechnungshof rechnet mit 20 % zu 3 % (<span class="src">Rechnungshof 2024, S. 27</span>). Steht der Zins des Landes auf 0, zahlt das Land seinen Anteil bei der Übernahme auf einmal ein; Finanzierungskosten des Landes sind dann nicht enthalten (so bei der DWE-Studie 2025, die keinen Zins nennt). Bei 100 % ohne Zins kauft das Land aus Eigenmitteln: Die AöR hat keinen Kredit, der Kaufpreis ist in Jahr 0 abgezogen.</dd></div>
+        <div><dt>Einmalige Kosten</dt> <dd>Kosten, die einmalig bei der Übernahme in Jahr 0 anfallen: Transaktion, Aufbau der Trägerorganisation, Rechtsverfahren, Integrationskosten, Sanierungsstau. Nur die Position IW/Empirica setzt 200 Mio. € an: die Integrationskosten der Fusion Vonovia/Deutsche Wohnen, laut <span class="src">IW Köln/Empirica 2026, S. 17</span> eher eine Untergrenze.</dd></div>
         <div><dt>Endfällige Anleihe</dt> <dd>Teil des Fremdkapitals, für den nur Zinsen gezahlt werden; die Summe wird am Ende jeder Anleiheperiode neu aufgenommen und am Ende der Laufzeit zurückgezahlt. Holm/Thonke/Arpagaus finanzieren die Hälfte des Fremdkapitals so, zu 4,0 % für je 7 Jahre (<span class="src">Holm/Thonke/Arpagaus 2025, S. 28–29, 33</span>).</dd></div>
         <div><dt>Entschädigungsquote</dt> <dd>Anteil des vollen Verkehrswerts, der tatsächlich als Entschädigung gezahlt wird (100 % = voller Verkehrswert, sog. Kaufpreisfaktor). Ein Wert unter 100 % ist <span class="src">laut Expertenkommission</span> rechtlich umstritten, wird aber mehrheitlich für zulässig gehalten.</dd></div>
         <div><dt>Ergebnis der AöR</dt> <dd>Mieteinnahmen abzüglich Bewirtschaftung und Kapitaldienst der AöR in einem Jahr, ohne die Kosten des Landes. Ein negativer Wert ist der Zuschuss, den das Land der AöR zahlen muss; im Mittel der Jahre 1–10 ist er mit den Angaben des Rechnungshofs vergleichbar (rd. 700 Mio. € bei 29 Mrd. €, rd. 1 Mrd. € bei 36 Mrd. €).</dd></div>
@@ -65,8 +65,6 @@ window.SITE_INCLUDES = {
       <section class="gl-group">
       <h3 class="gl-letter">F</h3>
       <dl>
-        <div><dt>Fehlbeträge verzinsen</dt> <dd>Wenn eingeschaltet, trägt der laufende Kassenstand Zinsen zum Kreditzins: Fehlbeträge kosten Zinsen, Überschüsse bringen welche. Keine der Quellen rechnet so; der Rechnungshof erfasst den Zeitwert über die Abzinsung.</dd></div>
-        <div><dt>Finanzierungsmodus (Kredit / Eigenmittel)</dt> <dd>Kredit: Der Kaufpreis wird über ein Annuitätendarlehen finanziert und mit Zins und Tilgung aus den Mieteinnahmen bedient. Eigenmittel: Das Land zahlt den Kaufpreis aus dem Haushalt; es fällt kein Schuldendienst an, der Kaufpreis wird im Nettoergebnis als Ausgabe abgezogen.</dd></div>
       </dl>
       </section>
       <section class="gl-group">
@@ -85,7 +83,7 @@ window.SITE_INCLUDES = {
       <section class="gl-group">
       <h3 class="gl-letter">I</h3>
       <dl>
-        <div><dt>Integrationskosten</dt> <dd>Einmalige Kosten der Zusammenführung vieler getrennter Bestände in eine Anstalt (IT, Verwaltung, Recht), Jahr 0, als % des Kaufpreises. Von <span class="src">IW Köln 2026</span> als im DWE-Modell fehlend kritisiert. Keine Quelle nennt einen Prozentsatz; Voreinstellung daher 0 %. Den einzigen bezifferten Wert, 200 Mio. € für die Fusion Vonovia/Deutsche Wohnen, enthalten die Einmaligen Kosten.</dd></div>
+        <div><dt>Integrationskosten</dt> <dd>Einmalige Kosten der Zusammenführung vieler getrennter Bestände in eine Anstalt (IT, Verwaltung, Recht), Jahr 0. Von <span class="src">IW Köln 2026</span> als im DWE-Modell fehlend kritisiert. Im Modell Teil der Einmaligen Kosten; der einzige bezifferte Wert sind 200 Mio. € für die Fusion Vonovia/Deutsche Wohnen.</dd></div>
       </dl>
       </section>
       <section class="gl-group">
@@ -113,7 +111,7 @@ window.SITE_INCLUDES = {
       <section class="gl-group">
       <h3 class="gl-letter">N</h3>
       <dl>
-        <div><dt>Nettoergebnis</dt> <dd>Kumulierter Cashflow am Ende des Betrachtungszeitraums, einschließlich der Einmalkosten. Im Modus Eigenmittel ist der aus dem Haushalt gezahlte Kaufpreis abgezogen.</dd></div>
+        <div><dt>Nettoergebnis</dt> <dd>Kumulierter Cashflow am Ende des Betrachtungszeitraums, einschließlich der Einmalkosten und des Eigenkapitals, das das Land bei der Übernahme einzahlt.</dd></div>
         <div><dt>Nettokaltmiete (NKM) / Bestandsmiete vs. Neuvertragsmiete</dt> <dd>Nettokaltmiete ist die Miete ohne Betriebskosten. Bestandsmiete meint die in laufenden, oft älteren Mietverhältnissen tatsächlich gezahlte Miete; Neuvertragsmiete die bei Neuabschluss verlangte, meist deutlich höhere Miete. Das Modell rechnet mit Bestandsmieten, da die übernommenen Wohnungen bereits vermietet sind.</dd></div>
         <div><dt>Nettoposition</dt> <dd>Vermögenswert des Bestands (Verkehrswert × Bestandsgröße) abzüglich Restschuld, zuzüglich kumuliertem Cashflow aus dem laufenden Betrieb. Zeigt die Gesamtvermögensposition des Landes, nicht nur den laufenden Cashflow.</dd></div>
         <div><dt>NOI (Nettobetriebsergebnis)</dt> <dd>Mieteinnahmen abzüglich laufender Bewirtschaftungskosten, vor Schuldendienst.</dd></div>
@@ -124,13 +122,13 @@ window.SITE_INCLUDES = {
       <dl>
         <div><dt>Reinvestitionsquote</dt> <dd>Anteil des positiven Cashflows nach Schuldendienst, der in Neubau fließt, statt als Rücklage zu verbleiben.</dd></div>
         <div><dt>Restschuld</dt> <dd>Zu einem Zeitpunkt noch nicht getilgter Anteil der ursprünglichen Kreditsumme. Im Modell der Kredit der AöR und, bei einem Eigenkapitalanteil, der Kredit des Landes; die Restschuld am Ende des Betrachtungszeitraums ist im Nettoergebnis nicht abgezogen und wird daneben ausgewiesen.</dd></div>
-        <div><dt>Risikoprämie</dt> <dd>Zinsaufschlag ab dem Zeitpunkt der Ankündigung einer Vergesellschaftung, den Kreditgeber laut <span class="src">IW Köln/Empirica (2026)</span> wegen erhöhter wahrgenommener Risiken verlangen könnten (Kapitalflucht-These). Im Modell sofort ab Jahr 1 wirksam, unabhängig von der späteren Zinsbindung.</dd></div>
+        <div><dt>Risikoprämie</dt> <dd>Zinsaufschlag ab dem Zeitpunkt der Ankündigung einer Vergesellschaftung, den Kreditgeber laut <span class="src">IW Köln/Empirica (2026)</span> wegen erhöhter wahrgenommener Risiken verlangen könnten (Kapitalflucht-These). Im Modell als Aufschlag auf den Zinssatz einzustellen.</dd></div>
       </dl>
       </section>
       <section class="gl-group">
       <h3 class="gl-letter">S</h3>
       <dl>
-        <div><dt>Sanierungsstau</dt> <dd>Einmaliger Nachholbedarf bei Übernahme (<span class="src">These Bernt/Holm</span>: private Konzerne unterinvestieren). Keine der ausgewerteten Quellen beziffert ihn; der <span class="src">Rechnungshof</span> rechnet ohne und nennt sein Ergebnis deshalb eine Untergrenze. Voreinstellung daher 0 €. Zur Größenordnung: energetische Vollsanierung nach <span class="src">IW-Consult-Kostensätzen</span> 660–1.600 €/m². Laufende Modernisierung steckt in den Bewirtschaftungskosten der Positionen.</dd></div>
+        <div><dt>Sanierungsstau</dt> <dd>Einmaliger Nachholbedarf bei Übernahme (<span class="src">These Bernt/Holm</span>: private Konzerne unterinvestieren). Keine der ausgewerteten Quellen beziffert ihn; der <span class="src">Rechnungshof</span> rechnet ohne und nennt sein Ergebnis deshalb eine Untergrenze. Im Modell Teil der Einmaligen Kosten, Voreinstellung 0. Zur Größenordnung: energetische Vollsanierung nach <span class="src">IW-Consult-Kostensätzen</span> 660–1.600 €/m². Laufende Modernisierung steckt in den Bewirtschaftungskosten der Positionen.</dd></div>
         <div><dt>Strukturierungsentgelt</dt> <dd>Einmalige Gebühr bei Aufnahme oder Erneuerung eines Darlehens oder einer Anleihe, in Prozent der Summe. Holm/Thonke/Arpagaus setzen 1 % je Zins- bzw. Anleiheperiode an (<span class="src">Holm/Thonke/Arpagaus 2025, S. 29</span>).</dd></div>
         <div><dt>Schuldendienst</dt> <dd>Jährliche Zahlung an die Kreditgeber aus Zinsen und Tilgung; beim Annuitätendarlehen gleich der Annuität.</dd></div>
         <div><dt>Sondervotum / Mehrheitsvotum</dt> <dd>Stimmt eine Kommission nicht einstimmig ab, hält der Abschlussbericht die Position der Mehrheit (Mehrheitsvotum) und die der überstimmten Minderheit (Sondervotum) getrennt fest. Bei der Expertenkommission Vergesellschaftung vertraten 3 von 13 Mitgliedern ein Sondervotum zur Entschädigung: Verkehrswert als zwingender Ausgangspunkt, nur enger Spielraum für Abschläge — nicht schlicht „voller Verkehrswert".</dd></div>
@@ -163,7 +161,7 @@ window.SITE_INCLUDES = {
       <dl>
         <div><dt>Zinsaufschlag (Anschlussfinanzierung)</dt> <dd>Erhöhung des Zinssatzes nach Ende der Zinsbindung, wenn die Restschuld zu neuen Konditionen weiterfinanziert wird. Im Modell wird die Annuität für die restliche Tilgungsdauer mit dem erhöhten Zins neu berechnet.</dd></div>
         <div><dt>Zinsbindung</dt> <dd>Zeitraum, für den ein Kreditzins fest vereinbart ist; danach Anschlussfinanzierung zu dann geltenden Konditionen.</dd></div>
-        <div><dt>Zinssatz</dt> <dd>Jährlicher Preis für den Kredit, in Prozent der noch offenen Kreditsumme (Restschuld). Im Modell gilt er bis zum Ende der Zinsbindung, zuzüglich einer etwaigen Risikoprämie.</dd></div>
+        <div><dt>Zinssatz</dt> <dd>Jährlicher Preis für den Kredit, in Prozent der noch offenen Kreditsumme (Restschuld). Im Modell gilt er bis zum Ende der Zinsbindung; eine Risikoprämie ist darin enthalten.</dd></div>
         <div><dt>Zuschussbedarf</dt> <dd>Der Betrag, den der Landeshaushalt jährlich zuschießen müsste, wenn die Mieteinnahmen abzüglich Bewirtschaftungskosten den Schuldendienst nicht decken — also der jährliche Fehlbetrag bei negativem Cashflow.</dd></div>
       </dl>
       </section>

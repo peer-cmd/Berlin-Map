@@ -372,6 +372,12 @@ select{
   display:none;
 }
 .subpanel.show{display:block;}
+/* eingeklappte Reglergruppen (Anleihe, Anfangsphase, Referenzen) */
+details.subgroup{margin-top:4px;}
+details.subgroup summary{cursor:pointer;list-style:none;font-size:11px;color:var(--muted);padding:4px 0;}
+details.subgroup summary::-webkit-details-marker{display:none;}
+details.subgroup summary:before{content:"▸ ";color:var(--blue);}
+details.subgroup[open] summary:before{content:"▾ ";}
 
 .reset-row{padding:16px 22px;}
 .reset-btn{

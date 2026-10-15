@@ -6,7 +6,7 @@
 <title>Kosten- und Finanzierungsmodell der Vergesellschaftung Berlin</title>
 <link rel="stylesheet" href="fonts/fonts.css">
 <script src="vendor/chart.umd.js"></script>
-<link rel="stylesheet" href="style.css?v=20261015a">
+<link rel="stylesheet" href="style.css?v=20261015b">
 </head>
 <body class="model-page">
 <div class="app">
@@ -79,34 +79,43 @@
       <div class="group">
         <p class="group-title">Finanzierung</p>
         <div class="field">
-          <div class="seg" id="seg-financing">
-            <button data-val="kredit" class="active">Kredit</button>
-            <button data-val="eigen">Eigenmittel</button>
-          </div>
-        </div>
-        <div class="field" id="wrap-rate">
           <div class="field-row"><label data-term="Zinssatz">Zinssatz</label><span class="val" id="v-rate">3,5 %</span></div>
           <input type="range" id="rate" min="0" max="7" step="0.1" value="3.5">
         </div>
         <div class="field">
-          <div class="field-row"><label data-term="Risikoprämie">Risikoprämie ab Ankündigung</label><span class="val" id="v-riskPremium">0,0 pp</span></div>
-          <input type="range" id="riskPremium" min="0" max="2" step="0.1" value="0">
-        </div>
-        <div class="field" id="wrap-term">
           <div class="field-row"><label data-term="Tilgungsdauer">Tilgungsdauer</label><span class="val" id="v-term">30 J.</span></div>
           <input type="range" id="term" min="5" max="100" step="1" value="30">
         </div>
-        <div class="field" id="wrap-reset">
+        <div class="field">
           <div class="field-row"><label data-term="Zinsbindung">Zinsbindung</label><span class="val" id="v-rateResetYears">10 J.</span></div>
           <input type="range" id="rateResetYears" min="5" max="100" step="1" value="10">
         </div>
-        <div class="field" id="wrap-increment">
+        <div class="field">
           <div class="field-row"><label data-term="Zinsaufschlag">Zinsaufschlag danach</label><span class="val" id="v-rateIncrement">+1,0 pp</span></div>
           <input type="range" id="rateIncrement" min="0" max="3" step="0.1" value="1.0">
         </div>
-        <div class="field" id="wrap-bond">
+        <div class="field">
           <div class="field-row"><label data-term="Anfangstilgung">Anfangstilgung</label><span class="val" id="v-initialRepayment">Annuität</span></div>
           <input type="range" id="initialRepayment" min="0" max="5" step="0.01" value="0">
+        </div>
+        <div class="field" id="wrap-equity">
+          <div class="field-row"><label data-term="Eigenkapitalanteil">Eigenkapitalanteil des Landes</label><span class="val" id="v-equityShare">0 %</span></div>
+          <input type="range" id="equityShare" min="0" max="100" step="1" value="0">
+          <div class="field-row"><label data-term="Eigenkapitalanteil">Zins des Landes</label><span class="val" id="v-equityRate">3,0 %</span></div>
+          <input type="range" id="equityRate" min="0" max="6" step="0.1" value="3">
+          <div class="hint">100 % ohne Zins: Kauf aus Eigenmitteln des Landes</div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Mehrkosten Landesschulden">Mehrkosten Landesschulden</label><span class="val" id="v-landDebtCost">0 Mio €/J.</span></div>
+          <input type="range" id="landDebtCost" min="0" max="1000" step="10" value="0">
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Einmalige Kosten">Einmalige Kosten</label><span class="val" id="v-onceCosts">0 Mio €</span></div>
+          <input type="range" id="onceCosts" min="0" max="1500" step="5" value="0">
+          <div class="hint">Transaktion, Integration, Sanierungsstau</div>
+        </div>
+        <details class="subgroup" id="grp-bond">
+          <summary>Anleihe und Sondertilgung</summary>
           <div class="field-row"><label data-term="Endfällige Anleihe">Anteil endfällige Anleihe</label><span class="val" id="v-bondShare">0 %</span></div>
           <input type="range" id="bondShare" min="0" max="100" step="5" value="0">
           <div class="field-row"><label>Zins der Anleihe</label><span class="val" id="v-bondRate">4,0 %</span></div>
@@ -120,36 +129,7 @@
             <button data-val="aus" class="active">aus</button>
             <button data-val="an">an</button>
           </div>
-        </div>
-        <div class="field" id="wrap-equity">
-          <div class="field-row"><label data-term="Eigenkapitalanteil">Eigenkapitalanteil des Landes</label><span class="val" id="v-equityShare">0 %</span></div>
-          <input type="range" id="equityShare" min="0" max="100" step="1" value="0">
-          <div class="field-row"><label data-term="Eigenkapitalanteil">Zins des Landes</label><span class="val" id="v-equityRate">3,0 %</span></div>
-          <input type="range" id="equityRate" min="0" max="6" step="0.1" value="3">
-        </div>
-        <div class="field">
-          <div class="field-row"><label data-term="Mehrkosten Landesschulden">Mehrkosten Landesschulden</label><span class="val" id="v-landDebtCost">0 Mio €/J.</span></div>
-          <input type="range" id="landDebtCost" min="0" max="1000" step="10" value="0">
-        </div>
-        <div class="field">
-          <div class="field-row"><label data-term="Fehlbeträge verzinsen">Fehlbeträge verzinsen</label></div>
-          <div class="seg" id="seg-deficit">
-            <button data-val="aus" class="active">aus</button>
-            <button data-val="an">an</button>
-          </div>
-        </div>
-        <div class="field">
-          <div class="field-row"><label data-term="Einmalige Kosten">Einmalige Kosten</label><span class="val" id="v-onceCosts">0 Mio €</span></div>
-          <input type="range" id="onceCosts" min="0" max="1500" step="5" value="0">
-        </div>
-        <div class="field">
-          <div class="field-row"><label data-term="Integrationskosten">Integrationskosten</label><span class="val" id="v-integrationCosts">0,0 %</span></div>
-          <input type="range" id="integrationCosts" min="0" max="10" step="0.5" value="0">
-        </div>
-        <div class="field">
-          <div class="field-row"><label data-term="Sanierungsstau">Sanierungsstau pro Wohnung</label><span class="val" id="v-maintBacklog">0 €</span></div>
-          <input type="range" id="maintBacklog" min="0" max="30000" step="500" value="0">
-        </div>
+        </details>
       </div>
 
       <div class="group">
@@ -172,28 +152,8 @@
           <input type="range" id="costInflation" min="0" max="6" step="0.01" value="2.5">
         </div>
         <div class="field">
-          <div class="field-row"><label data-term="Anfangsphase">Anfangsphase</label><span class="val" id="v-startYears">keine</span></div>
-          <input type="range" id="startYears" min="0" max="5" step="1" value="0">
-          <div id="wrap-start">
-            <div class="field-row"><label>Inflation in der Anfangsphase</label><span class="val" id="v-startInflation">10,0 %</span></div>
-            <input type="range" id="startInflation" min="0" max="15" step="0.5" value="10">
-            <div class="field-row"><label>Mietsteigerung in der Anfangsphase</label><span class="val" id="v-startRentGrowth">1,0 %</span></div>
-            <input type="range" id="startRentGrowth" min="0" max="5" step="0.1" value="1">
-          </div>
-        </div>
-        <div class="field">
-          <div class="seg" id="seg-opexmode">
-            <button data-val="percent" class="active">% der Miete</button>
-            <button data-val="absolute">Absolut €/m²</button>
-          </div>
-        </div>
-        <div class="field" id="wrap-opex-percent">
-          <div class="field-row"><label data-term="Bewirtschaftungskosten">Bewirtschaftungskosten</label><span class="val" id="v-opex">40 %</span></div>
-          <input type="range" id="opex" min="20" max="60" step="1" value="40">
-        </div>
-        <div class="field" id="wrap-opex-absolute" style="display:none;">
-          <div class="field-row"><label data-term="Bewirtschaftungskosten">Bewirtschaftungskosten absolut</label><span class="val" id="v-opexAbsolute">2,20 €/m²</span></div>
-          <input type="range" id="opexAbsolute" min="1" max="5" step="0.01" value="2.2">
+          <div class="field-row"><label data-term="Bewirtschaftungskosten">Bewirtschaftungskosten</label><span class="val" id="v-opexAbsolute">3,05 €/m²</span></div>
+          <input type="range" id="opexAbsolute" min="1" max="5" step="0.01" value="3.05">
           <div class="linked-row">
             <label class="linked-label">≈ pro Wohnung</label>
             <input type="number" class="linked-input" id="opexAbsolutePerUnit" step="5">
@@ -204,6 +164,21 @@
           <div class="field-row"><label data-term="Mietausfallwagnis">Mietausfallwagnis</label><span class="val" id="v-vacancyRate">0,0 %</span></div>
           <input type="range" id="vacancyRate" min="0" max="10" step="0.5" value="0">
         </div>
+        <details class="subgroup" id="grp-start">
+          <summary>Anfangsphase</summary>
+          <div class="field">
+            <div class="field-row"><label data-term="Anfangsphase">Dauer</label><span class="val" id="v-startYears">keine</span></div>
+            <input type="range" id="startYears" min="0" max="5" step="1" value="0">
+            <div id="wrap-start">
+              <div class="field-row"><label>Inflation in der Anfangsphase</label><span class="val" id="v-startInflation">10,0 %</span></div>
+              <input type="range" id="startInflation" min="0" max="15" step="0.5" value="10">
+              <div class="field-row"><label>Mietsteigerung in der Anfangsphase</label><span class="val" id="v-startRentGrowth">1,0 %</span></div>
+              <input type="range" id="startRentGrowth" min="0" max="5" step="0.1" value="1">
+            </div>
+          </div>
+        </details>
+        <details class="subgroup" id="grp-ref">
+          <summary>Referenzen für die Mieten</summary>
         <div class="field">
           <div class="field-row"><label data-term="Neuvertragsmiete" data-note="Angebotsmiete Berlin Anfang 2026 16,75 €/m² (IW/Empirica 2026, S. 12), fortgeschrieben mit 2,3 % pro Jahr wie die ortsübliche Vergleichsmiete bei Bernt/Holm 2023 (S. 22)">Referenz: freier Markt</label><span class="val" id="v-freeMarketRent">16,75 €/m²</span></div>
           <input type="range" id="freeMarketRent" min="8" max="25" step="0.01" value="16.75">
@@ -222,6 +197,7 @@
           <div class="field-row"><label data-term="Haushaltseinkommen">Referenz: Haushaltseinkommen</label><span class="val" id="v-incomeGrowth">3,0 %/J.</span></div>
           <input type="range" id="incomeGrowth" min="0" max="6" step="0.1" value="3.0">
         </div>
+        </details>
       </div>
 
       <div class="group">
@@ -382,7 +358,7 @@
         <div class="panel-head">
           <h2>Die <span data-term="Restschuld">Restschuld</span> im Vergleich</h2>
         </div>
-        <p class="panel-sub">Verbleibender Kredit je Position. Positionen mit Eigenmitteln haben keine Linie.</p>
+        <p class="panel-sub">Verbleibender Kredit je Position.</p>
         <canvas id="chartCompareBalance" height="70"></canvas>
         <div class="legend compare-legend"></div>
       </div>
@@ -417,7 +393,7 @@
         </div>
         <div class="sens-block" id="rateSensWrap">
           <div class="panel-head"><h2>Das Ergebnis je <span data-term="Zinssatz">Zinssatz</span></h2></div>
-          <p class="panel-sub">Nettoergebnis über den Betrachtungszeitraum (linke Achse, Mrd €) und Break-even-Jahr (rechte Achse), wenn nur dieser Wert verändert wird. Zum Zinssatz kommt die Risikoprämie, nach Ende der Zinsbindung zusätzlich der Zinsaufschlag.</p>
+          <p class="panel-sub">Nettoergebnis über den Betrachtungszeitraum (linke Achse, Mrd €) und Break-even-Jahr (rechte Achse), wenn nur dieser Wert verändert wird. Nach Ende der Zinsbindung kommt der Zinsaufschlag hinzu.</p>
           <canvas id="chartRateSens" height="70"></canvas>
         </div>
         <div class="sens-block">
@@ -481,7 +457,7 @@
     <p>Anders als die Enteignung nach Art. 14 Abs. 3 GG (Einzelfall, im öffentlichen Interesse, gegen Entschädigung) erlaubt Art. 15 GG die Vergesellschaftung ganzer Wirtschaftszweige — Grund und Boden, Naturschätze, Produktionsmittel — in Gemeineigentum, „durch ein Gesetz, das Art und Ausmaß der Entschädigung bestimmt". Art. 15 GG wurde seit 1949 noch nie angewendet; es gibt daher keine Rechtsprechung, die die Entschädigungshöhe konkretisiert. Zentraler Streitpunkt: Muss die Entschädigung dem vollen Verkehrswert entsprechen (wie bei Art. 14 GG üblich), oder erlaubt Art. 15 GG als eigenständige Kategorie eine geringere Entschädigung, weil sie strukturell anders angelegt ist als die klassische Enteignung? Die Expertenkommission war hier gespalten; eine verbindliche gerichtliche Klärung steht aus.</p>
 
     <h2>Der Rechenweg</h2>
-    <p>Der Kaufpreis (Verkehrswert × Entschädigungsquote) wird entweder über ein Annuitätendarlehen finanziert (Zins + Tilgung, mit Zinsbindung und Anschlussfinanzierungs-Risiko) oder aus Eigenmitteln des Landeshaushalts. Die laufenden Mieteinnahmen abzüglich Bewirtschaftungskosten (Nettobetriebsergebnis, NOI) müssen den Schuldendienst tragen. Positive Überschüsse können in Neubau reinvestiert werden (Bestand wächst). Als Sozialwohnungen gilt der Bestand, solange seine Durchschnittsmiete höchstens auf der Miete der Landeseigenen liegt (Grenze Sozialmiete).</p>
+    <p>Der Kaufpreis (Verkehrswert × Entschädigungsquote) wird über ein Annuitätendarlehen finanziert (Zins + Tilgung, mit Zinsbindung und Anschlussfinanzierungs-Risiko); einen Teil oder den ganzen Kaufpreis kann das Land als Eigenkapital aus dem Haushalt aufbringen. Die laufenden Mieteinnahmen abzüglich Bewirtschaftungskosten (Nettobetriebsergebnis, NOI) müssen den Schuldendienst tragen. Positive Überschüsse können in Neubau reinvestiert werden (Bestand wächst). Als Sozialwohnungen gilt der Bestand, solange seine Durchschnittsmiete höchstens auf der Miete der Landeseigenen liegt (Grenze Sozialmiete).</p>
     <h3>Die Grenzen des Modells</h3>
     <div data-include="limits"></div>
 
@@ -544,8 +520,8 @@
 
 </div>
 
-<script src="model-calc.js?v=20261015f"></script>
-<script src="content.js?v=20261015e"></script>
+<script src="model-calc.js?v=20261015g"></script>
+<script src="content.js?v=20261015f"></script>
 <script src="include.js"></script>
 <script src="tooltips.js?v=20261003a"></script>
 <script src="nav.js?v=20261005a"></script>
