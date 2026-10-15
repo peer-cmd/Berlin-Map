@@ -12,7 +12,7 @@ Gutachten, 23.06.2026, 31 S. Grundlage für die Position IW/Empirica im Modell.
 - **Buchwert und Verkehrswert:** Vonovia verkaufte 2024 4.500 Wohnungen für 700 Mio. € an die HOWOGE, "was genau dem Buchwert/Verkehrswert der Bestände entsprach" — S. 8 f.
 - **Schuldenstand Berlin:** 76 Mrd. € Ende 2027 laut Prognose des Landesrechnungshofs — S. 23 (zitiert: Landesrechnungshof von Berlin, Jahresbericht 2025).
 - **Risikoprämie:** "Selbst eine geringe zusätzliche Risikoprämie von 0,5 Prozentpunkten bei den Finanzierungskosten würde zu zusätzlichen Ausgaben von rund 400 Millionen Euro pro Jahr führen" — S. 23, bezogen auf die Landesschulden. Im Modell als Zinsaufschlag auf den Kredit der Position IW/Empirica.
-- **Integrationskosten:** Vonovia kalkulierte für die Fusion mit der Deutschen Wohnen 2021 Integrationskosten von 200 Mio. €; bei einer AöR "könnten sogar noch höher ausfallen" — S. 17. Im Modell Voreinstellung der Einmaligen Kosten für alle Positionen.
+- **Integrationskosten:** Vonovia kalkulierte für die Fusion mit der Deutschen Wohnen 2021 Integrationskosten von 200 Mio. €; bei einer AöR "könnten sogar noch höher ausfallen" — S. 17. Im Modell Einmalige Kosten der Position IW/Empirica.
 - **Modernisierung:** Holm et al. (2025) setzen 6–12 €/m² im Jahr an; VivaWest, LEG und Vonovia 2024 13–25 €/m² — S. 17. Im Modell Mitte 19 €/m² für die Position IW/Empirica.
 - **Inflation:** voraussichtlich 2,7 % im März 2026 — S. 17. Im Modell Kosteninflation der Position IW/Empirica.
 
@@ -20,10 +20,22 @@ Gutachten, 23.06.2026, 31 S. Grundlage für die Position IW/Empirica im Modell.
 
 Whitepaper von Dr. Harald Heim und Prof. Dr. Florian Hackelberg, 10 S., ohne Datum; jüngstes Abrufdatum in den Quellenangaben: 5. Mai 2026. Kritische wirtschaftliche Analyse des Gesetzentwurfs der Initiative von 2025, in der Stoßrichtung ähnlich wie IW Köln/Empirica, mit Schwerpunkt auf Bankensicherheiten (Grundpfandrechte) und internationalen Investoren. Ein Auftraggeber ist auf den geprüften Seiten nicht angegeben.
 
-- **Gesetzentwurf 2025:** Das Whitepaper bestätigt die Parameter des Gesetzentwurfs aus externer Quelle, darunter die Gesamtsumme von 14,5–17,0 Mrd. € und die Quote von 40–60 % des Verkehrswerts aus dem Factsheet der Initiative.
+- **Gesetzentwurf 2025:** Das Whitepaper nennt 14,5–17,0 Mrd. € und 40–60 % des Verkehrswerts und verweist dafür auf das Factsheet der Initiative (Fn. 2, dort S. 3). Im Factsheet stehen die 40–60 %, eine Gesamtsumme nicht; die Spanne 10–17 Mrd. € steht in der Studie von Holm, Thonke und Arpagaus (2025).
 - **Bestandsmieten 2024/25:** landeseigene Unternehmen Ø 6,82 €/m², private (Adler/Vonovia) Ø 8,39 €/m². Aktueller als die Werte von Bernt und Holm (6,29/7,63 €/m²), aber nach anderer Methodik: Selbstauskunft der Unternehmen statt Forschungsaggregation.
 
 ## 2025
+
+### Andrej Holm, Friederike Thonke, Gian Arpagaus: Refinanzierungsoptionen in vergesellschafteten Wohnungsbeständen
+
+Kurzstudie im Auftrag von Deutsche Wohnen & Co enteignen, Redaktionsschluss August 2025, 47 S. Grundlage für die Position „DWE-Studie 2025“ im Modell.
+
+- **Fragestellung:** welche Entschädigung sich ohne öffentliche Zuschüsse aus den Mieten refinanzieren lässt; "Banken-Perspektive" mit Schuldendienstdeckungsgrad (DSCR) 1,1 — S. 8, 28.
+- **Grundmodell:** 240.000 Wohnungen à 61 m², Miete 7,00 €/m², +1 % pro Jahr; Bewirtschaftung "LWU" 3,73 €/m² einschließlich Mietausfall 2 % und Modernisierung 12 €/m² im Jahr, +2 % pro Jahr — S. 12–21, 33.
+- **Finanzierung:** 20 % Eigenkapital, je 40 % Annuitätendarlehen (4,5 %, 10 Jahre fest, Tilgung anfangs 3,59 %) und endfällige Anleihe (4,0 %, 7 Jahre), danach je +2 Prozentpunkte, Strukturierungsentgelt 1 % — S. 28–29, 33–34 (Tabelle 8). Das Eigenkapital muss "voraussichtlich das Land Berlin" einbringen — S. 25.
+- **Ergebnis:** "eine Entschädigungssumme von 10,1 Mrd. €" — S. 34; Laufzeit 60 Jahre 12,57, 90 Jahre 13,56 Mrd. € — S. 36 (Tabelle 13); alle Varianten 3,1–25,6 Mrd. € — S. 38–39 (Tabelle 15); "in realistischen mittleren Szenarien" 10–17 Mrd. € — S. 41.
+- **Eigenkapital:** Ohne Eigenkapital ließen sich 8,09 Mrd. € refinanzieren — S. 37 (Tabelle 14a). Von den 10,11 Mrd. € des Grundmodells kommen also 2,02 Mrd. € als Einlage des Landes; einen Zins dafür nennt die Studie nicht.
+- **AG Sozialisierung 2021:** mit einer "sozialen Bewirtschaftungsmiete (5,00 €/m²)" 14,5 Mrd. € aus den Mieten refinanzierbar — S. 5–6.
+- **Im Modell:** nachgerechnet in `pruefung.js`; größte Summe ohne Zuschuss 10,15 Mrd. € (30 Jahre) und 13,57 Mrd. € (90 Jahre).
 
 ### Initiative „Deutsche Wohnen & Co enteignen": Vergesellschaftungsgesetz (Entwurf)
 
@@ -31,8 +43,8 @@ Gesetzentwurf, Stand 26.09.2025, 19 S.
 
 - **Vergesellschaftungswert:** Die Entschädigung beruht auf einem eigenen Vergesellschaftungswert nach dem Sachwertverfahren (§§ 13–18) und weicht damit von der Verkehrswert-Quote im Modell ab. Der Bodenwert wird aus den Bodenrichtwerten 2011–2013 mit 3,5 % pro Jahr ab 2013 fortgeschrieben (§ 16), statt den aktuellen Marktwert anzusetzen. Das ist vermutlich die rechtliche Grundlage der vom PwC-Whitepaper zitierten "40–60 % des Verkehrswerts".
 - **Zahlung:** über Schuldverschreibungen mit festem Zins von 3,5 % und Tilgung über 100 Jahre — S. 7.
-- **Gesamtsumme:** 14,5–17,0 Mrd. € und der Prozentsatz stehen im zugehörigen Factsheet der Initiative, nicht im Gesetzestext. Das Factsheet lag für diese Auswertung nicht vor.
-- **Bestand:** laut PwC-Zitat dieses Gesetzentwurfs ≈ 220.000 Wohnungen, nicht 240.000.
+- **Factsheet (26.09.2025, 4 S.):** "200.000 bis 220.000 Wohnungen" (S. 1); "in der Regel ein Vergesellschaftungswert von 40 - 60 % des herkömmlichen Marktwerts"; Schuldverschreibungen der AöR, "über 100 Jahre getilgt", Verzinsung 3,5 %; "Das Land Berlin nimmt für die Entschädigung keine Schulden auf" (S. 3). Eine Gesamtsumme und eine Miete nennt das Factsheet nicht; ohne sie ist die Finanzierung aus den Mieten nicht nachzurechnen. Im Modell daher keine eigene Position.
+- **Bestand:** laut Factsheet 200.000–220.000 Wohnungen, nicht 240.000.
 
 ### Gutachterausschuss für Grundstückswerte in Berlin: Liegenschaftszinssätze 2025
 
@@ -115,6 +127,14 @@ Abstimmung in Berlin, 26.09.2021, getragen von der Initiative „Deutsche Wohnen
 - **Ergebnis:** „eine Mehrheit von 57,6 % der abgegebenen Stimmen (amtliches Endergebnis vom 22.02.2022)" — Expertenkommission 2023, S. 8 (§1). Die Initiative und Bernt/Holm nennen „59,1 % der gültigen Stimmen" — DWE 2022, S. 4 (Vorwort); Bernt/Holm 2023, S. 5. Die beiden Werte beziehen sich auf verschiedene Grundgesamtheiten (abgegebene bzw. gültige Stimmen); diese Seite nennt sonst durchgehend 59,1 % der gültigen Stimmen. Das Kreisdiagramm auf der Übersicht zeigt 59,1 % Ja und als Rest 40,9 % Nein der gültigen Stimmen.
 - **Inhalt:** „Der Senat wird aufgefordert, alle Maßnahmen einzuleiten, die zur Überführung von Immobilien in Gemeineigentum erforderlich sind" — Wortlaut des Stimmzettels, wiedergegeben in Expertenkommission 2023, S. 26 (§55).
 - **Folge:** Der Senat setzte am 29. März 2022 die Expertenkommission ein — Expertenkommission 2023, S. 8 (§2).
+
+### Sebastian Gerhardt: Neubau, Mietenregulierung, Vergesellschaftung?
+
+Folien, Beitrag zur Memo-Sommerschule, 10.09.2021, 37 S.
+
+- **Vier Entschädigungsmodelle:** Fremdkapital 22,8 Mrd. €, Eigenleistung 15,9 Mrd. €, Ertragswert 16,9 Mrd. €, soziale Bewirtschaftung 14,5 Mrd. €; notwendiges Eigenkapital je 20 % — S. 31.
+- **Ertragswert:** Mieterträge der landeseigenen Unternehmen, "Als Vervielfältiger der Jahresnettomieteinnahmen wurde das 15-Fache eingesetzt" — S. 30. Soziale Bewirtschaftung mit "Durchschnittsmiete von 5,00 EUR/qm (nettokalt)" — S. 30.
+- **Finanzierung:** Zins und Laufzeit nennen die Folien nicht; die Aussage, bis etwa 17 Mrd. € sei die Entschädigung aus den Mieten refinanzierbar (DWE 2022, S. 112), bleibt ohne Rechenweg.
 
 ## 2019
 
