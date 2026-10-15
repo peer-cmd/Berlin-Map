@@ -87,7 +87,7 @@ Das Gutachten rechnet kein eigenes Ergebnis der AöR. Die Position ist die Rechn
 | Eigenkapitalanteil, Mehrkosten Landesschulden, Mietausfallwagnis, Anfangsphase | 0 bzw. keine | – | je Position aus der Quelle | 0 |
 | Fehlbeträge verzinsen | aus | – | keine Quelle rechnet so | aus |
 | Bewertung | nominal, Abzinsung 3,15 % wenn Barwert | nominal | Rechnungshof | – |
-| Referenz freier Markt | 16,75 €/m², +6,0 %/Jahr | 15,80 €/m², +3 % ohne Quelle | Angebotsmiete Anfang 2012 7,40, Anfang 2026 16,75 €/m² | IW, S. 12 | ✓ (Rate eigene Rechnung) |
+| Referenz freier Markt | 16,75 €/m², +2,3 %/Jahr | 16,75, +6,0 % (Rückblick 2012–2026, nach 50 Jahren 291 €/m²) | Angebotsmiete Anfang 2026 16,75 €/m²; ortsübliche Vergleichsmiete +2,3 %/Jahr | IW, S. 12; Bernt/Holm, S. 13, 22 (Tab. 6) | ≈ Kombination zweier Quellen |
 | Verkehrswert | 2.085 €/m² | 2.085 | Modellannahme in der Spanne des Gutachterausschusses (1.634–4.247 €/m²); Liegenschaftszinssätze 2025, S. 16 | – offengelegt |
 | Sanierungsstau, Integrationskosten (%) | 0 | 0 | keine Quelle | 0 |
 

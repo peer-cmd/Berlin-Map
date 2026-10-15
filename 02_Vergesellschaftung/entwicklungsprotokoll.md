@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-15 — Referenzlinie freier Markt
+
+Die Linie „Freier Markt“ stieg mit 6,0 % pro Jahr (Angebotsmieten 2012–2026, IW S. 12) auf 291 €/m² nach 50 Jahren und drückte im Diagramm „Die Mieten“ alle anderen Linien an den Boden. Die Rate war ein Rückblick, als Prognose fortgeschrieben. Neu: Start 16,75 €/m² (IW, S. 12), Steigerung 2,3 % pro Jahr wie die ortsübliche Vergleichsmiete bei Bernt/Holm 2023 (S. 13, 22, Tab. 6); als Kombination zweier Quellen ausgewiesen. Die y-Achse richtet sich nach den übrigen Linien (×1,5), die Marktmiete darf oben hinauslaufen. Keine Rechenänderung. Versions-Tag `model-calc.js` auf `20261015d`.
+
 ## 2026-10-15 — Eigenkapital des Landes ausgewiesen
 
 Die 10,11 Mrd. € der DWE-Studie enthalten 2,02 Mrd. € Eigenkapital des Landes; aus den Mieten refinanziert werden 8,09 Mrd. € (Tabelle 14a, S. 37). Kennzahlen oben und Vergleichstabelle zeigen jetzt bei jeder Position mit Eigenkapitalanteil „davon … Eigenkapital des Landes“, bei Zins 0 mit dem Zusatz „ohne Finanzierungskosten des Landes“. `zahlen.html`: Aufteilung in Kostentabelle und Abschnitt DWE-Studie, Hinweis auf 103 Mio. € pro Jahr bei 3 % (Zins des Landes beim Rechnungshof), Satz des Factsheets zu den Landesschulden eingeordnet, Vergleich mit dem Rechnungshof; Fn. 24 ergänzt. Glossar „Eigenkapitalanteil“ ergänzt. `pruefung.js`: Aufteilung 2,02/8,09 Mrd. € geprüft. Keine Rechenänderung. Versions-Tags `model-calc.js` und `content.js` auf `20261015c`.

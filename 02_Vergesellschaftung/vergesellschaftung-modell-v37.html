@@ -205,10 +205,10 @@
           <input type="range" id="vacancyRate" min="0" max="10" step="0.5" value="0">
         </div>
         <div class="field">
-          <div class="field-row"><label data-term="Neuvertragsmiete" data-note="Angebotsmiete Berlin Anfang 2026 16,75 €/m², Anfang 2012 7,40 €/m², daraus 6,0 % pro Jahr (IW/Empirica 2026, S. 12)">Referenz: freier Markt</label><span class="val" id="v-freeMarketRent">16,75 €/m²</span></div>
+          <div class="field-row"><label data-term="Neuvertragsmiete" data-note="Angebotsmiete Berlin Anfang 2026 16,75 €/m² (IW/Empirica 2026, S. 12), fortgeschrieben mit 2,3 % pro Jahr wie die ortsübliche Vergleichsmiete bei Bernt/Holm 2023 (S. 22)">Referenz: freier Markt</label><span class="val" id="v-freeMarketRent">16,75 €/m²</span></div>
           <input type="range" id="freeMarketRent" min="8" max="25" step="0.01" value="16.75">
-          <div class="field-row"><label>Steigerung freier Markt</label><span class="val" id="v-freeMarketGrowth">6,0 %/J.</span></div>
-          <input type="range" id="freeMarketGrowth" min="0" max="8" step="0.1" value="6">
+          <div class="field-row"><label>Steigerung freier Markt</label><span class="val" id="v-freeMarketGrowth">2,3 %/J.</span></div>
+          <input type="range" id="freeMarketGrowth" min="0" max="8" step="0.1" value="2.3">
         </div>
         <div class="field">
           <div class="field-row"><label data-term="Grenze Sozialmiete" data-note="Miete der Landeseigenen, auf die Bernt/Holm 2023 senken (S. 12); Wachstum 1,6 %/Jahr (S. 22)">Grenze Sozialmiete</label><span class="val" id="v-munizRent">6,39 €/m²</span></div>
@@ -524,7 +524,7 @@
 
 </div>
 
-<script src="model-calc.js?v=20261015c"></script>
+<script src="model-calc.js?v=20261015d"></script>
 <script src="content.js?v=20261015c"></script>
 <script src="include.js"></script>
 <script src="tooltips.js?v=20261003a"></script>

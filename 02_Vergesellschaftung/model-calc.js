@@ -25,9 +25,10 @@
     // Anfangsphase: in den ersten startYears Jahren gelten eigene Raten; die Kosten steigen schon im ersten Jahr,
     // die Mieten ab dem zweiten (Rechnungshof 2024, S. 26; nachgerechnet an Ansicht 8, S. 29).
     startYears:0, startInflation:10, startRentGrowth:1,
-    // Referenz freier Markt: Angebotsmiete Anfang 2026 16,75 €/m², Anfang 2012 7,40 €/m² (IW/Empirica 2026, S. 12);
-    // daraus 6,0 % pro Jahr (eigene Rechnung).
-    freeMarketRent:16.75, freeMarketGrowth:6.0, munizRent:6.39, munizGrowth:1.6, cpiGrowth:2.0, incomeGrowth:3.0,
+    // Referenz freier Markt: Angebotsmiete Anfang 2026 16,75 €/m² (IW/Empirica 2026, S. 12), fortgeschrieben mit
+    // 2,3 % pro Jahr, der Steigerung der ortsüblichen Vergleichsmiete bei Bernt/Holm 2023 (S. 13, 22, Tab. 6).
+    // Die Steigerung der Angebotsmieten 2012–2026 (6,0 % pro Jahr) ist keine Prognose und wird nicht fortgeschrieben.
+    freeMarketRent:16.75, freeMarketGrowth:2.3, munizRent:6.39, munizGrowth:1.6, cpiGrowth:2.0, incomeGrowth:3.0,
     mode:'none', buildCost:3500, reinvestQuota1:100,
     // Bewertung: 'nominal' summiert die Jahreswerte, 'barwert' zinst sie mit discountRate auf den Beginn von Jahr 1 ab.
     // Fehlbeträge verzinsen: der laufende Kassenstand trägt Zinsen zum Kreditzins (keine Quelle rechnet so).
@@ -629,6 +630,10 @@
     chartRent.data.datasets[2].data = labels.map(t=>state.baseRent*Math.pow(1+state.cpiGrowth/100,t-1));
     chartRent.data.datasets[3].data = labels.map(t=>state.baseRent*Math.pow(1+state.incomeGrowth/100,t-1));
     chartRent.data.datasets[4].data = result.rows.map(r=>r.avgRent);
+    // Achse nach den Mieten im Bestand und den Referenzen; die Marktmiete darf oben hinauslaufen,
+    // damit eine steile Linie die übrigen nicht platt drückt.
+    const others = chartRent.data.datasets.slice(1).flatMap(d=>d.data);
+    chartRent.options.scales.y.max = Math.ceil(Math.max(Math.max(...others)*1.5, state.freeMarketRent*1.2)/5)*5;
     chartRent.update('none');
     const limitText = fmtLimit(result, state.horizon);
     $('rentLimitNote').textContent = 'Ø Miete höchstens auf der Grenze Sozialmiete: '+limitText+'.';
