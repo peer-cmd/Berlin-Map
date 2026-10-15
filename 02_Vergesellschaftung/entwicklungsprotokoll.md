@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-15 — Cashflow-Diagramm gestapelt, Eigenkapital als Einlage
+
+„Der Cashflow pro Jahr“ zeigte bei der DWE-Studie in den Jahren 8–19 Fehlbeträge, die fast nur aus den 67 Mio. € pro Jahr bestanden, mit denen das Modell das Eigenkapital des Landes über 30 Jahre verteilte; Sondertilgungen fehlten in den Balken, nur die kumulierte Kurve zog sie ab. Neu: Steht der Zins des Landes auf 0, zahlt das Land seinen Anteil als Einmalzahlung in Jahr 0 (so beschreibt es die Studie, S. 25); mit Zins bleibt es ein Kredit des Landes (Rechnungshof, IW/Empirica, Bernt/Holm unverändert). Die Balken sind gestapelt: Ergebnis der AöR, Land, Sondertilgung; zusammen ergeben sie die Veränderung der kumulierten Kurve. Legende und Erläuterung (Sprünge bei Tilgungsende, Restschuld am Laufzeitende aus der Rücklage) unter dem Diagramm. Nettoergebnis und alle Prüfwerte unverändert. Versions-Tags `model-calc.js` und `content.js` auf `20261015e`.
+
 ## 2026-10-15 — Referenzlinie freier Markt
 
 Die Linie „Freier Markt“ stieg mit 6,0 % pro Jahr (Angebotsmieten 2012–2026, IW S. 12) auf 291 €/m² nach 50 Jahren und drückte im Diagramm „Die Mieten“ alle anderen Linien an den Boden. Die Rate war ein Rückblick, als Prognose fortgeschrieben. Neu: Start 16,75 €/m² (IW, S. 12), Steigerung 2,3 % pro Jahr wie die ortsübliche Vergleichsmiete bei Bernt/Holm 2023 (S. 13, 22, Tab. 6); als Kombination zweier Quellen ausgewiesen. Die y-Achse richtet sich nach den übrigen Linien (×1,5), die Marktmiete darf oben hinauslaufen. Keine Rechenänderung. Versions-Tag `model-calc.js` auf `20261015d`.

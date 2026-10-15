@@ -131,8 +131,11 @@
     let annuity = !kredit ? 0 : fixedRepayment ? balance*(currentRate + p.initialRepayment/100) : pmt(currentRate, p.term, balance);
     let reserve = 0, lastService = 0;
     const equityRate = (p.equityRate||0)/100;
-    let equityBalance = equity;
-    const equityAnnuity = pmt(equityRate, p.term, equity);
+    // Ohne Zins des Landes zahlt das Land seinen Anteil bei der Übernahme ein (Einmalzahlung in Jahr 0),
+    // mit Zins über einen eigenen Kredit mit derselben Laufzeit.
+    const equityUpfront = equityRate > 0 ? 0 : equity;
+    let equityBalance = equity - equityUpfront;
+    const equityAnnuity = pmt(equityRate, p.term, equityBalance);
 
     // Fortschreibung; in der Anfangsphase steigen die Kosten schon im ersten Jahr, die Mieten ab dem zweiten.
     const N = p.startYears||0;
@@ -153,7 +156,7 @@
     // Werden hier als Startsaldo verbucht, damit sie im Jahr-für-Jahr-Verlauf, im Cashflow-Chart
     // und in der Break-even-Berechnung sichtbar/wirksam sind -- statt nur am Ende vom Nettoergebnis
     // abgezogen zu werden, ohne je im Cashflow-Verlauf aufzutauchen.
-    const upfrontCosts = p.onceCosts*1e6 + p.maintBacklog*p.units + principal*((p.integrationCosts||0)/100);
+    const upfrontCosts = p.onceCosts*1e6 + p.maintBacklog*p.units + principal*((p.integrationCosts||0)/100) + equityUpfront;
     // cash: nominaler Kassenstand (Grundlage der Zinsen auf Fehlbeträge); cum: kumuliert, nominal oder als Barwert.
     let cash = -upfrontCosts, cum = -upfrontCosts;
     const rows = [];
@@ -227,7 +230,7 @@
       if(breakEvenYear===null && (kredit ? cum>0 : cum>principal)) breakEvenYear = t;
 
       rows.push({t, rent, limit, income, noi, annuity:annuityThisYear, aoer:aoer*d, land:land*d, interest:interest*d,
-        cashflow:cashflow*d,
+        cashflow:cashflow*d, sweptPV: swept*d,
         cumForChart: kredit ? cum : (cum-principal),
         units, bookNew, rateNow: currentRate*100,
         avgRent: income/(units*p.avgSize*12),
@@ -376,8 +379,11 @@
     const ctx1 = $('chartCashflow').getContext('2d');
     chartCashflow = new Chart(ctx1, {
       data:{ labels:[], datasets:[
-        {type:'bar', label:'Jahres-Cashflow', data:[], backgroundColor:[], yAxisID:'y', order:2},
-        {type:'line', label:'Null', data:[], borderColor:'#9A9A90', borderWidth:1, pointRadius:0, borderDash:[2,3], yAxisID:'y', order:3}
+        // Gestapelt: Ergebnis der AöR (mit Zinsen auf den Kassenstand), Zahlungen des Landes, Sondertilgungen.
+        {type:'bar', label:'Ergebnis der AöR', data:[], backgroundColor:[], yAxisID:'y', order:2, stack:'cf'},
+        {type:'bar', label:'Land', data:[], backgroundColor:'#A9762C', yAxisID:'y', order:2, stack:'cf'},
+        {type:'bar', label:'Sondertilgung', data:[], backgroundColor:'#93AECB', yAxisID:'y', order:2, stack:'cf'},
+        {type:'line', label:'Null', data:[], borderColor:'#9A9A90', borderWidth:1, pointRadius:0, borderDash:[2,3], yAxisID:'y', order:3, stack:'null'}
       ]},
       options:{
         responsive:true,
@@ -388,8 +394,8 @@
           tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+fmtEUR(ctx.parsed.y) }}
         },
         scales:{
-          x:{ offset:false, title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{display:false}, ticks:YEAR_TICKS },
-          y:{ position:'left', afterFit:fixAxisWidth, ticks:{ font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v) }, grid:{color:'#EAEAE4'} }
+          x:{ offset:false, stacked:true, title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}, grid:{display:false}, ticks:YEAR_TICKS },
+          y:{ position:'left', stacked:true, afterFit:fixAxisWidth, ticks:{ font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v) }, grid:{color:'#EAEAE4'} }
         }
       }
     });
@@ -592,11 +598,14 @@
 
     // ---- Jahres-Cashflow (bars) ----
     const labels = result.rows.map(r=>r.t);
-    const cfValues = result.rows.map(r=>r.cashflow);
+    // Die drei Teile ergeben zusammen die Veränderung der kumulierten Kurve.
+    const aoerValues = result.rows.map(r=>r.aoer + r.interest);
     chartCashflow.data.labels = labels;
-    chartCashflow.data.datasets[0].data = cfValues;
-    chartCashflow.data.datasets[0].backgroundColor = cfValues.map(v=> v>=0 ? '#109A82' : '#E0435C');
-    chartCashflow.data.datasets[1].data = labels.map(()=>0);
+    chartCashflow.data.datasets[0].data = aoerValues;
+    chartCashflow.data.datasets[0].backgroundColor = aoerValues.map(v=> v>=0 ? '#109A82' : '#E0435C');
+    chartCashflow.data.datasets[1].data = result.rows.map(r=>-r.land);
+    chartCashflow.data.datasets[2].data = result.rows.map(r=>-r.sweptPV);
+    chartCashflow.data.datasets[3].data = labels.map(()=>0);
     chartCashflow.update('none');
 
     // ---- Kumulierter Cashflow (line) ----
@@ -877,8 +886,8 @@
       // 20 % Eigenkapital, je 40 % Annuitätendarlehen (4,5 %, 10 Jahre fest, Tilgung anfangs 3,59 %) und endfällige
       // Anleihe (4,0 %, 7 Jahre), danach je +2 Prozentpunkte; Strukturierungsentgelt 1 % je Periode; Überschüsse
       // tilgen (Cash Sweep, Rücklage drei Monatsraten); Laufzeit 30 Jahre. Ergebnis: 10,11 Mrd € aus den Mieten
-      // refinanzierbar = 33,12 % von 30,52 Mrd €. Das Eigenkapital (2,02 Mrd €) bringt das Land auf (S. 25);
-      // einen Zins dafür nennt die Studie nicht, das Modell verteilt es ohne Zins über die Laufzeit.
+      // refinanzierbar = 33,12 % von 30,52 Mrd €. Das Eigenkapital (2,02 Mrd €) bringt das Land bei der Übernahme
+      // ein (S. 25); einen Zins dafür nennt die Studie nicht, das Modell bucht es als Einmalzahlung in Jahr 0.
       units: 240000, avgSize: 61, price: 2085, purchaseFactor: 33.12,
       financing: 'kredit', rate: 4.5, riskPremium: 0, term: 30, rateResetYears: 10, rateIncrement: 2,
       initialRepayment: 3.59, bondShare: 50, bondRate: 4.0, bondReset: 7, feeRate: 1, sweep: 'an',
