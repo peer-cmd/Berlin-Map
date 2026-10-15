@@ -16,7 +16,7 @@ from common import CONFIG, MAPS_DIR, PROCESSED_DIR, ROOT, load_config, load_json
 
 # Working material that stays out of the public site.
 EXCLUDE_DIRS = {"archive", "pdf", "Bibliography"}
-EXCLUDE_FILES = {"vergesellschaftung-modell-v37.html"}
+EXCLUDE_FILES = {"vergesellschaftung-modell-v37.html", "pruefung.js"}
 EXCLUDE_SUFFIXES = {".md", ".bib", ".py"}  # licence files are always kept
 
 

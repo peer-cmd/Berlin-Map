@@ -7,18 +7,32 @@
   const stand = {};
   const $ = id => byId(id) || (stand[id] = stand[id] || document.createElement('input'));
 
+  // Grundsatz: Jede Position rechnet nur mit den Werten ihrer Quelle. Was eine Quelle nicht ansetzt, steht
+  // hier neutral (0 bzw. aus) und lässt sich von Hand zuschalten. Prüfung gegen die Ergebnisse der Quellen: pruefung.js.
   const defaults = {
     units:240000, price:2085, purchaseFactor:100,
-    financing:'kredit', rate:3.5, riskPremium:0, term:30, rateResetYears:10, rateIncrement:1.0, onceCosts:200, maintBacklog:0, integrationCosts:0,
+    financing:'kredit', rate:3.5, riskPremium:0, term:30, rateResetYears:10, rateIncrement:1.0, onceCosts:0, maintBacklog:0, integrationCosts:0,
+    // Eigenkapitalanteil: Teil des Kaufpreises, den das Land über einen eigenen Kredit (Landeszins, gleiche Laufzeit)
+    // aufbringt; die AöR leiht nur den Rest. Mehrkosten Landesschulden: Mio € pro Jahr, die das Land zusätzlich trägt.
+    equityShare:0, equityRate:3.0, landDebtCost:0,
     baseRent:7.63, rentGrowth:1.5, costInflation:2.5, avgSize:62, opex:40, opexMode:'percent', opexAbsolute:2.2,
-    freeMarketRent:15.8, munizRent:6.39, munizGrowth:1.6, cpiGrowth:2.0, incomeGrowth:3.0,
+    // Mietausfallwagnis in % der Mieteinnahmen (zusätzlich zu den Bewirtschaftungskosten).
+    vacancyRate:0,
+    // Anfangsphase: in den ersten startYears Jahren gelten eigene Raten; die Kosten steigen schon im ersten Jahr,
+    // die Mieten ab dem zweiten (Rechnungshof 2024, S. 26; nachgerechnet an Ansicht 8, S. 29).
+    startYears:0, startInflation:10, startRentGrowth:1,
+    // Referenz freier Markt: Angebotsmiete Anfang 2026 16,75 €/m², Anfang 2012 7,40 €/m² (IW/Empirica 2026, S. 12);
+    // daraus 6,0 % pro Jahr (eigene Rechnung).
+    freeMarketRent:16.75, freeMarketGrowth:6.0, munizRent:6.39, munizGrowth:1.6, cpiGrowth:2.0, incomeGrowth:3.0,
     mode:'none', buildCost:3500, reinvestQuota1:100,
+    // Bewertung: 'nominal' summiert die Jahreswerte, 'barwert' zinst sie mit discountRate auf den Beginn von Jahr 1 ab.
+    // Fehlbeträge verzinsen: der laufende Kassenstand trägt Zinsen zum Kreditzins (keine Quelle rechnet so).
+    valuation:'nominal', discountRate:3.15, deficitInterest:'aus',
     // Grenze Sozialmiete = Miete der Landeseigenen: 6,39 €/m², das Niveau, auf das Bernt/Holm 2023 die Mieten
     // senken (S. 12, Tab. 2); Wachstum 1,6 %/Jahr, Mittel 2016–2021 (S. 22, Tab. 6). Liegt die Ø Miete im
     // Bestand höchstens auf dieser Grenze, gilt der Bestand als Sozialwohnungen.
     // Wohnungsgröße 62 m²: Senat 2018 (zitiert RH 2024, S. 25), DWE 2022, S. 102; RH 61, Bernt/Holm 63.
-    // Einmalige Kosten 200 Mio €: Integrationskosten der Fusion Vonovia/Deutsche Wohnen (IW 2026, S. 17),
-    // laut IW eher Untergrenze. Sanierungsstau und Integrationskosten in %: keine Quelle, daher 0.
+    // Einmalige Kosten, Sanierungsstau und Integrationskosten in %: keine gemeinsame Quelle, daher 0.
     horizon:50
   };
   let state = Object.assign({}, defaults);
@@ -43,7 +57,11 @@
   }
 
   const sliderIds = ['units','price','purchaseFactor','rate','riskPremium','term','rateResetYears','rateIncrement','onceCosts','maintBacklog','integrationCosts',
-    'baseRent','rentGrowth','costInflation','avgSize','opex','opexAbsolute','freeMarketRent','munizRent','cpiGrowth','incomeGrowth','buildCost','reinvestQuota1','horizon'];
+    'equityShare','equityRate','landDebtCost',
+    'baseRent','rentGrowth','costInflation','avgSize','opex','opexAbsolute','vacancyRate','startYears','startInflation','startRentGrowth',
+    'freeMarketRent','freeMarketGrowth','munizRent','cpiGrowth','incomeGrowth','buildCost','reinvestQuota1','discountRate','horizon'];
+  // Umschalter (Schaltflächengruppen) und der Zustand, den sie setzen.
+  const segIds = { financing:'seg-financing', opexMode:'seg-opexmode', valuation:'seg-valuation', deficitInterest:'seg-deficit' };
 
   // Parameter, die im Kern €/m² sind, aber wahlweise auch als €-Betrag pro Wohnung
   // bedient werden koennen (verlinkte Zweitfelder, zwei Wege dieselbe Groesse einzugeben).
@@ -66,7 +84,7 @@
 
   function escapeHtml(t){ return String(t).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
   function fmtInt(n){ return Math.round(n).toLocaleString('de-DE'); }
-  function fmtQuote(v){ return v.toLocaleString('de-DE',{maximumFractionDigits:1})+' %'; }
+  function fmtQuote(v){ return v.toLocaleString('de-DE',{maximumFractionDigits:2})+' %'; }
   function fmtEUR(n){
     const sign = n<0 ? '−' : '';
     n = Math.abs(n);
@@ -94,11 +112,29 @@
   function runScenario(pricePerSqm, p){
     const fullValue = p.units*p.avgSize*pricePerSqm;
     const principal = fullValue*(p.purchaseFactor/100);
-    let balance = principal;
+    const kredit = p.financing==='kredit';
+    // Bei Kredit bringt das Land den Eigenkapitalanteil über einen eigenen Kredit auf, die AöR leiht den Rest.
+    const equity = kredit ? principal*((p.equityShare||0)/100) : 0;
+    let balance = principal - equity;
     let currentRate = p.rate/100 + p.riskPremium/100;
-    let annuity = p.financing==='kredit' ? pmt(currentRate, p.term, principal) : 0;
+    let annuity = kredit ? pmt(currentRate, p.term, balance) : 0;
+    const equityRate = (p.equityRate||0)/100;
+    let equityBalance = equity;
+    const equityAnnuity = pmt(equityRate, p.term, equity);
 
-    let units = p.units;
+    // Fortschreibung; in der Anfangsphase steigen die Kosten schon im ersten Jahr, die Mieten ab dem zweiten.
+    const N = p.startYears||0;
+    const costIndex = t => N>0
+      ? Math.pow(1+p.startInflation/100, Math.min(t,N))*Math.pow(1+p.costInflation/100, Math.max(0,t-N))
+      : Math.pow(1+p.costInflation/100, t-1);
+    const rentIndex = t => N>0
+      ? Math.pow(1+p.startRentGrowth/100, Math.min(t,N)-1)*Math.pow(1+p.rentGrowth/100, Math.max(0,t-N))
+      : Math.pow(1+p.rentGrowth/100, t-1);
+    // Barwert: Abzinsung auf den Beginn von Jahr 1 (wie Rechnungshof 2024, Ansicht 12).
+    const discount = p.valuation==='barwert';
+    const df = t => discount ? Math.pow(1+p.discountRate/100, -(t-1)) : 1;
+
+    let units = p.units, bookNew = 0;
     // Jahre ab Jahr 1, in denen die Ø Miete höchstens auf der Grenze Sozialmiete liegt
     let belowLimitYears = 0, belowLimit = true;
     // Einmalkosten bei Übernahme (Jahr 0): Transaktionskosten, Sanierungsstau, Integrationskosten.
@@ -106,7 +142,8 @@
     // und in der Break-even-Berechnung sichtbar/wirksam sind -- statt nur am Ende vom Nettoergebnis
     // abgezogen zu werden, ohne je im Cashflow-Verlauf aufzutauchen.
     const upfrontCosts = p.onceCosts*1e6 + p.maintBacklog*p.units + principal*((p.integrationCosts||0)/100);
-    let cum = -upfrontCosts;
+    // cash: nominaler Kassenstand (Grundlage der Zinsen auf Fehlbeträge); cum: kumuliert, nominal oder als Barwert.
+    let cash = -upfrontCosts, cum = -upfrontCosts;
     const rows = [];
     let breakEvenYear = null;
     const opexPerUnitBase = p.opexMode==='absolute'
@@ -114,18 +151,18 @@
       : p.avgSize*p.baseRent*12*(p.opex/100);
 
     for(let t=1;t<=p.horizon;t++){
-      const rent = p.baseRent*Math.pow(1+p.rentGrowth/100, t-1);
+      const rent = p.baseRent*rentIndex(t);
       const income = units*p.avgSize*rent*12;
       const limit = munizLimit(p, t);
       if(belowLimit && rent <= limit*(1+1e-9)) belowLimitYears = t; else belowLimit = false;
 
-      const opexPerUnit = opexPerUnitBase*Math.pow(1+p.costInflation/100, t-1);
-      const opexAmt = units*opexPerUnit;
+      const ci = costIndex(t);
+      const opexAmt = units*opexPerUnitBase*ci + income*((p.vacancyRate||0)/100);
       const noi = income - opexAmt;
 
       // financing with rate reset at end of Zinsbindung
       let annuityThisYear = 0;
-      if(p.financing==='kredit' && t<=p.term){
+      if(kredit && t<=p.term){
         if(t === p.rateResetYears+1 && p.rateResetYears < p.term){
           currentRate = p.rate/100 + p.riskPremium/100 + p.rateIncrement/100;
           const remainingTerm = p.term - p.rateResetYears;
@@ -138,70 +175,60 @@
         annuityThisYear = annuity;
       }
 
-      const cashflow = noi - annuityThisYear;
-
-      if(p.financing==='kredit'){
-        cum += cashflow;
-        if(breakEvenYear===null && cum>0) breakEvenYear = t;
-      } else {
-        cum += noi;
-        if(breakEvenYear===null && cum>principal) breakEvenYear = t;
+      // Ergebnis der AöR: Überschuss bzw. Zuschussbedarf aus Bewirtschaftung und ihrem Kapitaldienst.
+      const aoer = noi - annuityThisYear;
+      // Land: Kapitaldienst für den Eigenkapitalanteil und Mehrkosten der Landesschulden.
+      let land = (p.landDebtCost||0)*1e6;
+      if(kredit && t<=p.term && equityBalance>0){
+        let pr = equityAnnuity - equityBalance*equityRate;
+        if(pr > equityBalance) pr = equityBalance;
+        equityBalance = Math.max(equityBalance - pr, 0);
+        land += equityAnnuity;
       }
+      const interest = p.deficitInterest==='an' ? cash*currentRate : 0;
+      const cashflow = aoer - land + interest;
+      const d = df(t);
+      cash += cashflow;
+      cum += cashflow*d;
+      if(breakEvenYear===null && (kredit ? cum>0 : cum>principal)) breakEvenYear = t;
 
-      rows.push({t, rent, limit, income, noi, annuity:annuityThisYear, cashflow,
-        cumForChart: p.financing==='kredit' ? cum : (cum-principal),
-        units, rateNow: currentRate*100,
+      rows.push({t, rent, limit, income, noi, annuity:annuityThisYear, aoer:aoer*d, land:land*d, interest:interest*d,
+        cashflow:cashflow*d,
+        cumForChart: kredit ? cum : (cum-principal),
+        units, bookNew, rateNow: currentRate*100,
         avgRent: income/(units*p.avgSize*12),
-        balance: p.financing==='kredit' ? balance : null});
+        balance: kredit ? balance+equityBalance : null});
 
       // reinvestment for next year -- spending is subtracted from the cash reserve (cum) so it is
       // counted exactly once (either as cash-on-hand, or converted into recorded asset/stock value),
       // never both. This also means it delays break-even/Kapitalposition, as real capex would.
-      let surplusLeft = Math.max(cashflow,0);
+      // Baukosten steigen mit den Kosten; neue Wohnungen gehen mit ihren Baukosten in den Vermögenswert ein.
       if(p.mode==='neubau'){
-        const buildSpend = surplusLeft*(p.reinvestQuota1/100);
-        const newUnits = buildSpend/(p.buildCost*p.avgSize);
-        units = units + newUnits;
-        cum -= buildSpend;
+        const buildSpend = Math.max(cashflow,0)*(p.reinvestQuota1/100);
+        units += buildSpend/(p.buildCost*ci*p.avgSize);
+        bookNew += buildSpend;
+        cash -= buildSpend;
+        cum -= buildSpend*d;
       }
     }
 
     // Einmalkosten sind bereits im Startsaldo von cum enthalten (s.o.), daher hier kein erneuter Abzug.
-    const netResult = rows[rows.length-1].cumForChart;
-
+    const last = rows[rows.length-1];
+    const first10 = rows.slice(0, 10);
     return {
-      principal, fullValue, rows, breakEvenYear, netResult,
-      finalUnits: rows[rows.length-1].units,
+      principal, fullValue, rows, breakEvenYear, netResult: last.cumForChart,
+      finalUnits: last.units,
+      finalDebt: last.balance || 0,
+      aoerAvg10: first10.reduce((s,r)=>s+r.aoer, 0)/first10.length,
       belowLimitYears
     };
   }
 
+  // Umschalter setzen den Zustand beim Klick; Regler werden hier gelesen. Fehlt ein Regler (alte Seite im Cache),
+  // bleibt der bisherige Wert.
   function readState(){
-    state.units = +$('units').value;
-    state.price = +$('price').value;
-    state.purchaseFactor = +$('purchaseFactor').value;
-    state.rate = +$('rate').value;
-    state.riskPremium = +$('riskPremium').value;
-    state.term = +$('term').value;
-    state.rateResetYears = +$('rateResetYears').value;
-    state.rateIncrement = +$('rateIncrement').value;
-    state.onceCosts = +$('onceCosts').value;
-    state.maintBacklog = +$('maintBacklog').value;
-    state.integrationCosts = +$('integrationCosts').value;
-    state.baseRent = +$('baseRent').value;
-    state.rentGrowth = +$('rentGrowth').value;
-    state.costInflation = +$('costInflation').value;
-    state.avgSize = +$('avgSize').value;
-    state.opex = +$('opex').value;
-    state.opexAbsolute = +$('opexAbsolute').value;
-    state.freeMarketRent = +$('freeMarketRent').value;
-    state.munizRent = +$('munizRent').value;
-    state.cpiGrowth = +$('cpiGrowth').value;
-    state.incomeGrowth = +$('incomeGrowth').value;
+    sliderIds.forEach(id=>{ if(byId(id)) state[id] = +byId(id).value; });
     state.mode = $('mode').value;
-    state.buildCost = +$('buildCost').value;
-    state.reinvestQuota1 = +$('reinvestQuota1').value;
-    state.horizon = +$('horizon').value;
   }
 
   function updateLabels(){
@@ -222,8 +249,8 @@
     $('v-maintBacklog').textContent = fmtInt(state.maintBacklog)+' €';
     $('v-integrationCosts').textContent = state.integrationCosts.toLocaleString('de-DE',{minimumFractionDigits:1})+' %';
     $('v-baseRent').textContent = state.baseRent.toLocaleString('de-DE',{minimumFractionDigits:2})+' €/m²';
-    $('v-rentGrowth').textContent = state.rentGrowth.toLocaleString('de-DE',{minimumFractionDigits:1})+' %';
-    $('v-costInflation').textContent = state.costInflation.toLocaleString('de-DE',{minimumFractionDigits:1})+' %';
+    $('v-rentGrowth').textContent = state.rentGrowth.toLocaleString('de-DE',{minimumFractionDigits:1, maximumFractionDigits:2})+' %';
+    $('v-costInflation').textContent = state.costInflation.toLocaleString('de-DE',{minimumFractionDigits:1, maximumFractionDigits:2})+' %';
     $('v-avgSize').textContent = state.avgSize+' m²';
     $('v-opex').textContent = state.opex+' %';
     $('v-opexAbsolute').textContent = state.opexAbsolute.toLocaleString('de-DE',{minimumFractionDigits:2})+' €/m²';
@@ -236,6 +263,21 @@
     $('v-buildCost').textContent = fmtInt(state.buildCost)+' €/m²';
     $('v-reinvestQuota1').textContent = state.reinvestQuota1+' %';
     $('v-horizon').textContent = state.horizon+' Jahre';
+    const pct = (v, d) => v.toLocaleString('de-DE',{minimumFractionDigits:d, maximumFractionDigits:2})+' %';
+    $('v-equityShare').textContent = state.equityShare+' %';
+    $('v-equityRate').textContent = pct(state.equityRate, 1);
+    $('v-landDebtCost').textContent = fmtInt(state.landDebtCost)+' Mio €/J.';
+    $('v-vacancyRate').textContent = pct(state.vacancyRate, 1);
+    $('v-startYears').textContent = state.startYears===0 ? 'keine' : state.startYears+' J.';
+    $('v-startInflation').textContent = pct(state.startInflation, 1);
+    $('v-startRentGrowth').textContent = pct(state.startRentGrowth, 1);
+    $('v-freeMarketGrowth').textContent = pct(state.freeMarketGrowth, 1)+'/J.';
+    $('v-discountRate').textContent = pct(state.discountRate, 2);
+    $('wrap-start').style.opacity = state.startYears>0 ? 1 : 0.35;
+    $('wrap-discount').style.opacity = state.valuation==='barwert' ? 1 : 0.35;
+    $('wrap-equity').style.opacity = state.financing==='kredit' ? 1 : 0.35;
+    $('equityShare').disabled = state.financing!=='kredit';
+    $('equityRate').disabled = state.financing!=='kredit';
 
     // verlinkte "pro Wohnung"-Zweitfelder aktualisieren (nicht ueberschreiben waehrend der Nutzer tippt)
     perUnitFields.forEach(({key, decimals})=>{
@@ -288,10 +330,6 @@
       ctx.restore();
     }
   };
-  Chart.register(vlinePlugin);
-  Chart.defaults.color = '#14171A';
-  // Phones: the canvas height attributes (70/80) give very flat charts at ~340 px width.
-  if (window.matchMedia('(max-width:600px)').matches) Chart.defaults.aspectRatio = 1.8;
 
   function initCharts(){
     const ctx1 = $('chartCashflow').getContext('2d');
@@ -497,7 +535,15 @@
     $('s-netto').textContent = mrd1(result.netResult);
     $('s-netto').className = 'value '+(result.netResult>=0?'pos':'neg');
     $('s-netto-sub').textContent = result.breakEvenYear===null ? 'kein Break-even im Zeitraum' : 'Break-even in Jahr '+result.breakEvenYear;
-
+    // Ergebnis der AöR im Mittel der Jahre 1–10 (vergleichbar mit dem Zuschussbedarf beim Rechnungshof) und offene Schuld am Ende.
+    $('s-aoer').textContent = fmtEUR(result.aoerAvg10)+' pro Jahr';
+    $('s-aoer').className = 'value '+(result.aoerAvg10>=0?'pos':'neg');
+    $('s-rest').textContent = mrd1(result.finalDebt);
+    $('s-valuation').textContent = state.valuation==='barwert'
+      ? 'Barwerte, abgezinst mit '+state.discountRate.toLocaleString('de-DE',{maximumFractionDigits:2})+' % auf den Beginn von Jahr 1'
+      : 'nominale Werte';
+    if(byId('tableNote')) $('tableNote').textContent = state.valuation==='barwert'
+      ? 'Ergebnis AöR, Land, Cashflow und Kumuliert als Barwerte; Mieteinnahmen, NOI und Annuität nominal.' : 'Alle Werte nominal.';
 
 
     // ---- Jahres-Cashflow (bars) ----
@@ -535,7 +581,7 @@
 
     // ---- chart rent level ----
     chartRent.data.labels = labels;
-    chartRent.data.datasets[0].data = labels.map(t=>state.freeMarketRent*Math.pow(1.03,t-1));
+    chartRent.data.datasets[0].data = labels.map(t=>state.freeMarketRent*Math.pow(1+state.freeMarketGrowth/100,t-1));
     chartRent.data.datasets[1].data = labels.map(t=>munizLimit(state, t));
     chartRent.data.datasets[2].data = labels.map(t=>state.baseRent*Math.pow(1+state.cpiGrowth/100,t-1));
     chartRent.data.datasets[3].data = labels.map(t=>state.baseRent*Math.pow(1+state.incomeGrowth/100,t-1));
@@ -561,10 +607,12 @@
 
     // ---- chart Kapitalposition (Vermögenswert Bestand vs. Restschuld) ----
     chartCapital.data.labels = labels;
-    chartCapital.data.datasets[0].data = result.rows.map(r=>state.price*state.avgSize*r.units);
+    // Übernommener Bestand zum Verkehrswert, neu gebaute Wohnungen zu ihren Baukosten.
+    const assetValue = r => state.price*state.avgSize*state.units + r.bookNew;
+    chartCapital.data.datasets[0].data = result.rows.map(assetValue);
     chartCapital.data.datasets[1].data = result.rows.map(r=>r.balance||0);
     chartCapital.data.datasets[2].data = result.rows.map(r=>r.cumForChart);
-    chartCapital.data.datasets[3].data = result.rows.map(r=>(state.price*state.avgSize*r.units)-(r.balance||0)+r.cumForChart);
+    chartCapital.data.datasets[3].data = result.rows.map(r=>assetValue(r)-(r.balance||0)+r.cumForChart);
     chartCapital.update('none');
 
     // ---- Sensitivität: Achsenbereich aus allen Presets an beiden Enden des Reglers ----
@@ -573,7 +621,7 @@
       let lo = 0, hi = 0;
       Object.values(presets).forEach(preset=>{
         ends.forEach(v=>{
-          const p = Object.assign({}, state, preset, {[key]:v});
+          const p = Object.assign({}, state, preset, {[key]:v, horizon:state.horizon});
           const r = runScenario(p.price, p);
           if(r.netResult<lo) lo = r.netResult;
           if(r.netResult>hi) hi = r.netResult;
@@ -626,10 +674,10 @@
     const tbody = $('dataTableBody');
     tbody.innerHTML = result.rows.map(r=>{
       const stockCell = state.mode==='neubau' ? fmtInt(r.units) : fmtInt(state.units);
-      return '<tr><td>'+r.t+'</td><td>'+r.rent.toLocaleString('de-DE',{maximumFractionDigits:2})+'</td>'+
-        '<td>'+r.avgRent.toLocaleString('de-DE',{maximumFractionDigits:2})+'</td>'+
+      return '<tr><td>'+r.t+'</td><td>'+r.avgRent.toLocaleString('de-DE',{maximumFractionDigits:2})+'</td>'+
         '<td>'+fmtEUR(r.income)+'</td><td>'+fmtEUR(r.noi)+'</td><td>'+fmtEUR(r.annuity)+'</td>'+
-        '<td>'+fmtEUR(r.cashflow)+'</td><td>'+fmtEUR(r.cumForChart)+'</td><td>'+stockCell+'</td></tr>';
+        '<td>'+fmtEUR(r.aoer)+'</td><td>'+fmtEUR(-r.land)+'</td>'+
+        '<td>'+fmtEUR(r.cashflow)+'</td><td>'+fmtEUR(r.cumForChart)+'</td><td>'+fmtEUR(r.balance||0)+'</td><td>'+stockCell+'</td></tr>';
     }).join('');
 
     renderCompareTable();
@@ -638,7 +686,7 @@
   function describeSnapshot(s){
     const finParts = [s.financing==='kredit' ? ('Kredit '+s.rate+'%') : 'Eigenmittel'];
     const modeLabel = s.mode==='neubau' ? 'Neubau' : 'keine Reinvest.';
-    return finParts[0]+' · '+modeLabel+' · '+fmtQuote(s.purchaseFactor)+' Kaufpreis';
+    return finParts[0]+' · '+modeLabel+' · '+fmtQuote(s.purchaseFactor)+' Kaufpreis'+(s.valuation==='barwert' ? ' · Barwert' : '');
   }
 
   function renderCompareTable(){
@@ -662,6 +710,8 @@
       ['Kaufpreis (Basis)', r=>fmtEUR(r.r.principal)],
       ['Break-even (Basis)', r=>fmtYear(r.r.breakEvenYear)],
       ['Nettoergebnis (Basis)', r=>fmtEUR(r.r.netResult)],
+      ['Ergebnis AöR, Ø Jahr 1–10', r=>fmtEUR(r.r.aoerAvg10)],
+      ['Restschuld am Ende', r=>fmtEUR(r.r.finalDebt)],
       ['Bestandseffekt (Basis)', r=>{
         const parts = [];
         if(r.s.mode==='neubau') parts.push('+'+fmtInt(r.r.finalUnits-r.s.units)+' Whg.');
@@ -758,67 +808,83 @@
     if(byId('scenario-horizon')) $('scenario-horizon').textContent = defaults.horizon;
   }
 
-  // Alle Werte mit Fundstelle: parameterpruefung.md. Gemeinsame Basis aller Positionen (defaults):
-  // 240.000 Wohnungen, 62 m², Verkehrswert 2.085 €/m² = 31,0 Mrd €; die Quote bildet die Summe der Quelle ab.
-  // Bewirtschaftung je €/m² und Monat, bei 62 m². Bausteine nach Rechnungshof 2024, S. 25–26:
-  // Verwaltung 343,69 €/Whg. p. a. = 0,46; Instandhaltung 17,18 €/m² p. a. = 1,43; Betriebskosten 3,60 €/m² p. a. = 0,30;
-  // Mietausfallwagnis 2 % der Miete.
+  // Alle Werte mit Fundstelle: parameterpruefung.md; Abgleich mit den Ergebnissen der Quellen: pruefung.js.
+  // Jede Position übernimmt nur die Werte ihrer Quelle; nicht genannte Werte stehen auf den neutralen defaults.
+  // Die Quote bildet die Entschädigungssumme der Quelle ab (Verkehrswert 2.085 €/m² als gemeinsame Bezugsgröße).
   const presets = {
     linke: {
-      // Faire-Mieten-Modell im DWE-Gesetzentwurf 2022 (DWE 2022, S. 96–102): leistbare Miete 4,04 €/m²,
-      // Bewirtschaftung 2,76 €/m², beide +0,43 %/Jahr (Reallohnentwicklung 1991–2019, S. 97);
-      // Entschädigung 10 Mrd € für 243.000 Whg. à 62 m², gezahlt in unverzinsten Schuldverschreibungen,
-      // 1/40 Tilgung pro Jahr. Auf 240.000 Whg.: 9,9 Mrd € = 31,8 % von 31,0 Mrd €.
-      price: 2085, purchaseFactor: 31.8,
+      // Faire-Mieten-Modell im DWE-Gesetzentwurf 2022 (DWE 2022, S. 89, 96–97, 102): 243.000 Wohnungen à 62 m²,
+      // leistbare Miete 4,04 €/m², Bewirtschaftung 2,76 €/m² (einschließlich Mietausfall), beide ab dem
+      // zweiten Jahr +0,43 %/Jahr; Entschädigung = Reinertrag aus 40 Jahren = 10 Mrd €, gezahlt in
+      // unverzinsten Schuldverschreibungen, 1/40 Tilgung pro Jahr. 10 Mrd € = 31,83 % von 31,41 Mrd €.
+      units: 243000, avgSize: 62, price: 2085, purchaseFactor: 31.83,
       financing: 'kredit', rate: 0, riskPremium: 0, term: 40, rateResetYears: 40, rateIncrement: 0,
-      baseRent: 4.04, rentGrowth: 0.4, costInflation: 0.4,
-      opexMode: 'absolute', opexAbsolute: 2.76, mode: 'none'
-    },
-    holm: {
-      // Bernt/Holm 2023, Mietsenkungsmodell: 7,63 → 6,39 €/m² (S. 12, Tab. 2), danach Trend der
-      // Landeseigenen 1,6 %/Jahr (S. 22, Tab. 6). Die Studie nennt keine Entschädigung; Gerhardt/Holm 2021:
-      // Ertragswert mit den Mieten der Landeseigenen 17 Mrd € (DWE 2022, S. 112) = 54,8 %.
-      // Bewirtschaftung 2,98 €/m²: Instandsetzung 18,54 und Modernisierung 6,53 €/m² p. a. der Landeseigenen
-      // (S. 23, Tab. 8, 9) = 2,09, dazu Verwaltung, Betriebskosten, Mietausfall nach Rechnungshof.
-      // Zins und Kosteninflation nennt die Studie nicht: Bedingungen des Rechnungshofs (4,2 %, 2,0 %).
-      price: 2085, purchaseFactor: 54.8,
-      financing: 'kredit', rate: 4.2, riskPremium: 0, term: 30, rateResetYears: 30, rateIncrement: 0,
-      baseRent: 6.39, rentGrowth: 1.6, costInflation: 2.0,
-      opexMode: 'absolute', opexAbsolute: 2.98, mode: 'none'
-    },
-    rechnungshof: {
-      // Rechnungshof 2024, Anhang 1 (S. 25–27): Miete 7,16 €/m²; Mieterhöhung 1 % bis 2024, 2 % ab 2025;
-      // Inflation 10 % bis 2024, 2 % ab 2025 (im Modell einheitlich 2,0 %); AöR-Kredit 4,5 % (80 %),
-      // Eigenkapital des Landes 3,0 % (20 %), beide 30 Jahre fest, gewichtet 4,2 %.
-      // Bewirtschaftung 3,34 €/m²: Verwaltung, Instandhaltung, Betriebskosten (2,19), Modernisierung
-      // rd. 12 €/m² p. a. (1,00), Mietausfall 2 % (0,14). Szenarien 29 und 36 Mrd €; 100 % = 31,0 Mrd €.
-      price: 2085, purchaseFactor: 100,
-      financing: 'kredit', rate: 4.2, riskPremium: 0, term: 30, rateResetYears: 30, rateIncrement: 0,
-      baseRent: 7.16, rentGrowth: 2.0, costInflation: 2.0,
-      opexMode: 'absolute', opexAbsolute: 3.34, mode: 'none'
-    },
-    gegenmodell: {
-      // IW Köln/Empirica 2026: Entschädigung zum Verkehrswert (Senat 29–39 Mrd €, S. 8); zusätzliche
-      // Risikoprämie 0,5 Prozentpunkte (S. 23); Modernisierung 13–25 €/m² p. a. bei LEG, Vonovia, VivaWest,
-      // Mitte 19 = 1,58 €/m²; Inflation 2,7 % (März 2026, S. 17). Bewirtschaftung 3,93 €/m² = 2,19 + 1,58
-      // + Mietausfall 0,15. Miete 7,63 €/m² der sechs Konzerne ohne Mietsenkung (Bernt/Holm 2023, S. 12);
-      // Zins und Mietsteigerung nennt das Gutachten nicht: Bedingungen des Rechnungshofs (4,2 %, 2,0 %).
-      price: 2085, purchaseFactor: 100,
-      financing: 'kredit', rate: 4.2, riskPremium: 0.5, term: 30, rateResetYears: 30, rateIncrement: 0,
-      baseRent: 7.63, rentGrowth: 2.0, costInflation: 2.7,
-      opexMode: 'absolute', opexAbsolute: 3.93, mode: 'none'
+      baseRent: 4.04, rentGrowth: 0.43, costInflation: 0.43,
+      opexMode: 'absolute', opexAbsolute: 2.76, mode: 'none', horizon: 40
     },
     dwe2025: {
-      // DWE-Gesetzentwurf, Stand 26.09.2025: Entschädigung nach Sachwertverfahren, laut Factsheet (über PwC)
-      // 14,5–17,0 Mrd € für 220.000 Wohnungen; Mitte 15,75 Mrd € = 55,4 % von 28,4 Mrd €.
-      // Schuldverschreibungen mit 3,5 % festem Zins, Tilgung über 100 Jahre (Entwurf, S. 7).
-      // Miete und Bewirtschaftung nennt der Entwurf nicht; übernommen vom Faire-Mieten-Modell.
-      units: 220000, price: 2085, purchaseFactor: 55.4,
+      // DWE-Gesetzentwurf, Stand 26.09.2025: Schuldverschreibungen mit 3,5 % festem Zins, Annuität über
+      // 100 Jahre (Entwurf, S. 7); laut Factsheet (über PwC, S. 3) 14,5–17,0 Mrd € für 220.000 Wohnungen,
+      // refinanzierbar „ohne Mieterhöhungen und ohne zusätzliche Haushaltsmittel“. Mitte 15,75 Mrd €
+      // = 55,38 % von 28,44 Mrd €. Miete und Bewirtschaftung nennt der Entwurf nicht: Bestandsmiete der
+      // Konzerne 7,63 €/m² ohne Erhöhung (Bernt/Holm 2023, S. 12), Bewirtschaftung wie im Entwurf 2022.
+      units: 220000, avgSize: 62, price: 2085, purchaseFactor: 55.38,
       financing: 'kredit', rate: 3.5, riskPremium: 0, term: 100, rateResetYears: 100, rateIncrement: 0,
-      baseRent: 4.04, rentGrowth: 0.4, costInflation: 0.4,
-      opexMode: 'absolute', opexAbsolute: 2.76, mode: 'none'
+      baseRent: 7.63, rentGrowth: 0, costInflation: 0.43,
+      opexMode: 'absolute', opexAbsolute: 2.76, mode: 'none', horizon: 100
+    },
+    holm: {
+      // Bernt/Holm 2023 rechnen nur die Mieten: Mietsenkungsmodell 7,63 → 6,39 €/m² (S. 12, Tab. 2), danach
+      // Trend der Landeseigenen 1,6 %/Jahr (S. 22, Tab. 6). Entschädigung 17 Mrd € nach Gerhardt/Holm 2021
+      // (DWE 2022, S. 112) = 55,69 % von 30,53 Mrd €; deren Finanzierungsbedingungen liegen nicht vor.
+      // Finanzierung, Kosten und Bewertung daher wie Rechnungshof (Kombination, kein Ergebnis der Quelle).
+      // Bewirtschaftung 2,86 €/m² bei 61 m²: Instandsetzung 18,54 + Modernisierung 6,53 €/m² p. a. der
+      // Landeseigenen (S. 23, Tab. 8, 9) = 2,09, Verwaltung 0,47 und Betriebskosten 0,30 nach Rechnungshof.
+      units: 240000, avgSize: 61, price: 2085, purchaseFactor: 55.69,
+      financing: 'kredit', rate: 4.5, riskPremium: 0, term: 30, rateResetYears: 30, rateIncrement: 0,
+      equityShare: 20, equityRate: 3.0,
+      baseRent: 6.39, rentGrowth: 1.6, costInflation: 2.0, startYears: 2, startInflation: 10, startRentGrowth: 1.6,
+      opexMode: 'absolute', opexAbsolute: 2.86, vacancyRate: 2, mode: 'none',
+      valuation: 'barwert', discountRate: 3.15, horizon: 32
+    },
+    rechnungshof: {
+      // Rechnungshof 2024, Ansicht 2 und Anhang 1 (S. 11, 25–27): 240.000 Wohnungen à 61 m², Miete 7,16 €/m²;
+      // Verwaltung 343,69 €/Whg., Instandhaltung 17,18 €/m², Betriebskosten 3,60 €/m², Modernisierung 12 €/m²
+      // p. a. = 3,20 €/m² im Monat, Mietausfallwagnis 2 %; Inflation 10 % bis 2024, dann 2 %; Mieten +1 % bis
+      // 2024, dann +2 %; AöR-Kredit 80 % zu 4,5 %, Eigenkapital des Landes 20 % zu 3 %, je 30 Jahre; Planung
+      // 32 Jahre. Szenario 29 Mrd € = 95,01 % von 30,52 Mrd €. Werte als Kapitalwerte (Ansicht 12); Zinsstruktur
+      // + 75 bp vereinfacht zu einem festen Satz von 3,15 %, angepasst an Ansicht 12 (siehe pruefung.js).
+      units: 240000, avgSize: 61, price: 2085, purchaseFactor: 95.01,
+      financing: 'kredit', rate: 4.5, riskPremium: 0, term: 30, rateResetYears: 30, rateIncrement: 0,
+      equityShare: 20, equityRate: 3.0,
+      baseRent: 7.16, rentGrowth: 2.0, costInflation: 2.0, startYears: 2, startInflation: 10, startRentGrowth: 1,
+      opexMode: 'absolute', opexAbsolute: 3.20, vacancyRate: 2, mode: 'none',
+      valuation: 'barwert', discountRate: 3.15, horizon: 32
+    },
+    gegenmodell: {
+      // IW Köln/Empirica 2026 rechnet kein eigenes Ergebnis der AöR. Die Position ist die Rechnung des
+      // Rechnungshofs (29 Mrd €) mit den Einwänden des Gutachtens: Modernisierung 13–25 €/m² p. a. statt
+      // 12 (Mitte 19: 3,20 − 1,00 + 1,58 = 3,78 €/m²) und Inflation 2,7 % (S. 17); Integrationskosten
+      // mindestens 200 Mio € (S. 17); +0,5 Prozentpunkte auf die Landesschulden = rd. 400 Mio € pro Jahr (S. 23).
+      units: 240000, avgSize: 61, price: 2085, purchaseFactor: 95.01,
+      financing: 'kredit', rate: 4.5, riskPremium: 0, term: 30, rateResetYears: 30, rateIncrement: 0,
+      equityShare: 20, equityRate: 3.0, onceCosts: 200, landDebtCost: 400,
+      baseRent: 7.16, rentGrowth: 2.0, costInflation: 2.7, startYears: 2, startInflation: 10, startRentGrowth: 1,
+      opexMode: 'absolute', opexAbsolute: 3.78, vacancyRate: 2, mode: 'none',
+      valuation: 'barwert', discountRate: 3.15, horizon: 32
     }
   };
+
+  // Für die Prüfung unter Node (pruefung.js): Rechenkern ohne Seite.
+  if(typeof module !== 'undefined' && module.exports){
+    module.exports = { defaults, presets, runScenario };
+    return;
+  }
+
+  Chart.register(vlinePlugin);
+  Chart.defaults.color = '#14171A';
+  // Phones: the canvas height attributes (70/80) give very flat charts at ~340 px width.
+  if (window.matchMedia('(max-width:600px)').matches) Chart.defaults.aspectRatio = 1.8;
 
   // Seiten ohne Regler (Die Zahlen) zeigen nur die Szenario-Übersicht.
   if(!byId('chartCashflow')){
@@ -850,28 +916,23 @@
     });
   });
   $('mode').addEventListener('change', render);
-  document.querySelectorAll('#seg-financing button').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      document.querySelectorAll('#seg-financing button').forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      state.financing = btn.dataset.val;
-      render();
-    });
-  });
-  document.querySelectorAll('#seg-opexmode button').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      document.querySelectorAll('#seg-opexmode button').forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      state.opexMode = btn.dataset.val;
-      render();
+  Object.entries(segIds).forEach(([key, id])=>{
+    document.querySelectorAll('#'+id+' button').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        document.querySelectorAll('#'+id+' button').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        state[key] = btn.dataset.val;
+        render();
+      });
     });
   });
   function applyState(overrides){
     state = Object.assign({}, defaults, overrides);
     sliderIds.forEach(id=>{ $(id).value = state[id]; });
     $('mode').value = state.mode;
-    document.querySelectorAll('#seg-financing button').forEach(b=>b.classList.toggle('active', b.dataset.val===state.financing));
-    document.querySelectorAll('#seg-opexmode button').forEach(b=>b.classList.toggle('active', b.dataset.val===state.opexMode));
+    Object.entries(segIds).forEach(([key, id])=>{
+      document.querySelectorAll('#'+id+' button').forEach(b=>b.classList.toggle('active', b.dataset.val===state[key]));
+    });
     render();
   }
 
@@ -958,7 +1019,8 @@
   }
 
   // Link teilen: nur die Abweichungen von den Standardwerten, lesbar als #s=schlüssel:wert,…
-  const textKeys = { financing:['kredit','eigen'], opexMode:['percent','absolute'], mode:['none','neubau'] };
+  const textKeys = { financing:['kredit','eigen'], opexMode:['percent','absolute'], mode:['none','neubau'],
+    valuation:['nominal','barwert'], deficitInterest:['aus','an'] };
   function encodeState(s){
     return Object.keys(defaults).filter(k=>s[k]!==defaults[k]).map(k=>k+':'+s[k]).join(',');
   }

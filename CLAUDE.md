@@ -40,7 +40,7 @@ Static site: cost and financing model for the socialisation of large Berlin hous
 
 - Edit `vergesellschaftung-modell-v37.html`, then run `python3 build_kompakt.py`; `modell-kompakt.html` is generated.
 - Edit `quellenbelege.md`, then run `python3 build_quellenbelege.py`; `quellenbelege.html` is generated.
-- Model logic and presets: `model-calc.js`. Shared glossary and timeline text: `content.js` (loaded by `include.js`, works from file://).
+- Model logic and presets: `model-calc.js`. Each preset uses only its source's values and must reproduce the source's own results; anything a source omits stays neutral in `defaults` and can be switched on by the user. After changing the model, run `node pruefung.js` (checks presets against the sources' results; documented in `parameterpruefung.md`). Shared glossary and timeline text: `content.js` (loaded by `include.js`, works from file://).
 - Hover explanations on the model pages: `data-term="<glossary term>"` on a label; `tooltips.js` shows the first sentence of the matching glossary entry. Add new terms to the glossary in `content.js`, not as hints in the controls.
 - `nav.js` (all pages) adds the mobile "Menü" button and, on the model pages, the "Parameter" button that slides the controls in from the left.
 - Pages load `style.css`, `model-calc.js`, `content.js`, `nav.js` (and on the model pages `tooltips.js`) with `?v=YYYYMMDD` so browsers fetch new versions; after changing one of these files, update the tag in all pages and both build scripts.

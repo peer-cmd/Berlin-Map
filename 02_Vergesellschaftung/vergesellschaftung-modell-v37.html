@@ -54,7 +54,7 @@
         <p class="group-title">Bestand &amp; Entschädigung</p>
         <div class="field">
           <div class="field-row"><label>Anzahl Wohnungen</label><span class="val" id="v-units">240.000</span></div>
-          <input type="range" id="units" min="50000" max="400000" step="5000" value="240000">
+          <input type="range" id="units" min="50000" max="400000" step="1000" value="240000">
         </div>
         <div class="field">
           <div class="field-row"><label>Ø Wohnungsgröße</label><span class="val" id="v-avgSize">62 m²</span></div>
@@ -66,7 +66,7 @@
         </div>
         <div class="field">
           <div class="field-row"><label data-term="Entschädigungsquote">Entschädigungsquote (vom Verkehrswert)</label><span class="val" id="v-purchaseFactor">100 %</span></div>
-          <input type="range" id="purchaseFactor" min="20" max="100" step="0.1" value="100">
+          <input type="range" id="purchaseFactor" min="20" max="100" step="0.01" value="100">
           <div class="hint">Kaufpreis <span id="v-effectivePrice">2.085 €/m² · 31,0</span> von <span id="v-totalDerived">31,0 Mrd €</span></div>
           <div class="linked-row">
             <label class="linked-label">≈ pro Wohnung</label>
@@ -104,9 +104,26 @@
           <div class="field-row"><label data-term="Zinsaufschlag">Zinsaufschlag danach</label><span class="val" id="v-rateIncrement">+1,0 pp</span></div>
           <input type="range" id="rateIncrement" min="0" max="3" step="0.1" value="1.0">
         </div>
+        <div class="field" id="wrap-equity">
+          <div class="field-row"><label data-term="Eigenkapitalanteil">Eigenkapitalanteil des Landes</label><span class="val" id="v-equityShare">0 %</span></div>
+          <input type="range" id="equityShare" min="0" max="100" step="1" value="0">
+          <div class="field-row"><label data-term="Eigenkapitalanteil">Zins des Landes</label><span class="val" id="v-equityRate">3,0 %</span></div>
+          <input type="range" id="equityRate" min="0" max="6" step="0.1" value="3">
+        </div>
         <div class="field">
-          <div class="field-row"><label data-term="Einmalige Kosten">Einmalige Kosten</label><span class="val" id="v-onceCosts">200 Mio €</span></div>
-          <input type="range" id="onceCosts" min="0" max="1500" step="5" value="200">
+          <div class="field-row"><label data-term="Mehrkosten Landesschulden">Mehrkosten Landesschulden</label><span class="val" id="v-landDebtCost">0 Mio €/J.</span></div>
+          <input type="range" id="landDebtCost" min="0" max="1000" step="10" value="0">
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Fehlbeträge verzinsen">Fehlbeträge verzinsen</label></div>
+          <div class="seg" id="seg-deficit">
+            <button data-val="aus" class="active">aus</button>
+            <button data-val="an">an</button>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Einmalige Kosten">Einmalige Kosten</label><span class="val" id="v-onceCosts">0 Mio €</span></div>
+          <input type="range" id="onceCosts" min="0" max="1500" step="5" value="0">
         </div>
         <div class="field">
           <div class="field-row"><label data-term="Integrationskosten">Integrationskosten</label><span class="val" id="v-integrationCosts">0,0 %</span></div>
@@ -131,11 +148,21 @@
         </div>
         <div class="field">
           <div class="field-row"><label data-term="Mietsteigerung">Mietsteigerung p.a.</label><span class="val" id="v-rentGrowth">1,5 %</span></div>
-          <input type="range" id="rentGrowth" min="0" max="4" step="0.1" value="1.5">
+          <input type="range" id="rentGrowth" min="0" max="4" step="0.01" value="1.5">
         </div>
         <div class="field">
           <div class="field-row"><label data-term="Kosteninflation">Kosteninflation p.a.</label><span class="val" id="v-costInflation">2,5 %</span></div>
-          <input type="range" id="costInflation" min="0" max="6" step="0.1" value="2.5">
+          <input type="range" id="costInflation" min="0" max="6" step="0.01" value="2.5">
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Anfangsphase">Anfangsphase</label><span class="val" id="v-startYears">keine</span></div>
+          <input type="range" id="startYears" min="0" max="5" step="1" value="0">
+          <div id="wrap-start">
+            <div class="field-row"><label>Inflation in der Anfangsphase</label><span class="val" id="v-startInflation">10,0 %</span></div>
+            <input type="range" id="startInflation" min="0" max="15" step="0.5" value="10">
+            <div class="field-row"><label>Mietsteigerung in der Anfangsphase</label><span class="val" id="v-startRentGrowth">1,0 %</span></div>
+            <input type="range" id="startRentGrowth" min="0" max="5" step="0.1" value="1">
+          </div>
         </div>
         <div class="field">
           <div class="seg" id="seg-opexmode">
@@ -150,7 +177,6 @@
         <div class="field" id="wrap-opex-absolute" style="display:none;">
           <div class="field-row"><label data-term="Bewirtschaftungskosten">Bewirtschaftungskosten absolut</label><span class="val" id="v-opexAbsolute">2,20 €/m²</span></div>
           <input type="range" id="opexAbsolute" min="1" max="5" step="0.01" value="2.2">
-          <div class="hint">Ansatz Rechnungshof Berlin 2024, S. 25</div>
           <div class="linked-row">
             <label class="linked-label">≈ pro Wohnung</label>
             <input type="number" class="linked-input" id="opexAbsolutePerUnit" step="5">
@@ -158,8 +184,14 @@
           </div>
         </div>
         <div class="field">
-          <div class="field-row"><label data-term="Neuvertragsmiete" data-note="Neuvertragsmiete Berlin, Wachstum fix 3,0 %/Jahr angenommen (Berlin Hyp/CBRE 2026; Quelle nicht im Projektordner, Wert nicht geprüft)">Referenz: freier Markt</label><span class="val" id="v-freeMarketRent">15,80 €/m²</span></div>
-          <input type="range" id="freeMarketRent" min="8" max="25" step="0.1" value="15.8">
+          <div class="field-row"><label data-term="Mietausfallwagnis">Mietausfallwagnis</label><span class="val" id="v-vacancyRate">0,0 %</span></div>
+          <input type="range" id="vacancyRate" min="0" max="10" step="0.5" value="0">
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Neuvertragsmiete" data-note="Angebotsmiete Berlin Anfang 2026 16,75 €/m², Anfang 2012 7,40 €/m², daraus 6,0 % pro Jahr (IW/Empirica 2026, S. 12)">Referenz: freier Markt</label><span class="val" id="v-freeMarketRent">16,75 €/m²</span></div>
+          <input type="range" id="freeMarketRent" min="8" max="25" step="0.01" value="16.75">
+          <div class="field-row"><label>Steigerung freier Markt</label><span class="val" id="v-freeMarketGrowth">6,0 %/J.</span></div>
+          <input type="range" id="freeMarketGrowth" min="0" max="8" step="0.1" value="6">
         </div>
         <div class="field">
           <div class="field-row"><label data-term="Grenze Sozialmiete" data-note="Miete der Landeseigenen, auf die Bernt/Holm 2023 senken (S. 12); Wachstum 1,6 %/Jahr (S. 22)">Grenze Sozialmiete</label><span class="val" id="v-munizRent">6,39 €/m²</span></div>
@@ -172,6 +204,20 @@
         <div class="field">
           <div class="field-row"><label data-term="Haushaltseinkommen">Referenz: Haushaltseinkommen</label><span class="val" id="v-incomeGrowth">3,0 %/J.</span></div>
           <input type="range" id="incomeGrowth" min="0" max="6" step="0.1" value="3.0">
+        </div>
+      </div>
+
+      <div class="group">
+        <p class="group-title">Bewertung</p>
+        <div class="field">
+          <div class="seg" id="seg-valuation">
+            <button data-val="nominal" class="active">Nominal</button>
+            <button data-val="barwert">Barwert</button>
+          </div>
+        </div>
+        <div class="field" id="wrap-discount">
+          <div class="field-row"><label data-term="Barwert">Abzinsungssatz</label><span class="val" id="v-discountRate">3,15 %</span></div>
+          <input type="range" id="discountRate" min="0" max="6" step="0.05" value="3.15">
         </div>
       </div>
 
@@ -215,7 +261,7 @@
       <section class="summary">
         <h1>Kosten- und Finanzierungsmodell der Vergesellschaftung großer Wohnungsunternehmen</h1>
 
-        <p class="figures">Kaufpreis <span class="value" id="s-kaufpreis">–</span> (<span id="s-kaufpreis-sub">–</span>), <span data-term="Nettoergebnis">Nettoergebnis</span> <span id="s-netto-label">nach 50 Jahren</span> <span class="value" id="s-netto">–</span>, <span id="s-netto-sub">–</span>.</p>
+        <p class="figures">Kaufpreis <span class="value" id="s-kaufpreis">–</span> (<span id="s-kaufpreis-sub">–</span>), <span data-term="Nettoergebnis">Nettoergebnis</span> <span id="s-netto-label">nach 50 Jahren</span> <span class="value" id="s-netto">–</span>, <span id="s-netto-sub">–</span>. <span data-term="Ergebnis der AöR">Ergebnis der AöR</span>, Ø Jahr 1–10: <span class="value" id="s-aoer">–</span>; <span data-term="Restschuld">Restschuld</span> am Ende <span class="value" id="s-rest">–</span>. Alle Werte: <span id="s-valuation">–</span>.</p>
       </section>
 
       <p class="group-title section-jump" id="finanzen"><span>Die Finanzen</span><a href="#mieter">Die Mieter</a><a href="#vergleich">Der Modellvergleich</a><a href="#sensitivitaet">Die Sensitivität</a><a href="#tabellen">Die Tabellen</a></p>
@@ -224,7 +270,7 @@
         <div class="panel-head">
           <h2>Der <span data-term="Cashflow">Cashflow</span> pro Jahr</h2>
         </div>
-        <p class="panel-sub">Mieteinnahmen minus Bewirtschaftung und Kreditraten, je Jahr. Ab dem Jahr, in dem die Balken positiv werden, trägt sich der Bestand selbst.</p>
+        <p class="panel-sub">Mieteinnahmen minus Bewirtschaftung, Kreditraten der AöR und Kosten des Landes (Eigenkapitalanteil, Mehrkosten Landesschulden), je Jahr. Ab dem Jahr, in dem die Balken positiv werden, trägt sich der Bestand selbst.</p>
         <canvas id="chartCashflow" height="70"></canvas>
       </div>
 
@@ -240,7 +286,7 @@
         <div class="panel-head">
           <h2>Die <span data-term="Restschuld">Restschuld</span></h2>
         </div>
-        <p class="panel-sub">Verbleibender Kredit. Am Knick endet die Zinsbindung; danach gilt der höhere Anschlusszins.</p>
+        <p class="panel-sub">Verbleibender Kredit der AöR, mit Eigenkapitalanteil zuzüglich des Kredits des Landes. Am Knick endet die Zinsbindung; danach gilt der höhere Anschlusszins.</p>
         <canvas id="chartBalance" height="70"></canvas>
       </div>
 
@@ -248,7 +294,7 @@
         <div class="panel-head">
           <h2>Die Kapitalposition Berlins</h2>
         </div>
-        <p class="panel-sub">Was Berlin besitzt, minus was es schuldet: Verkehrswert des Bestands abzüglich Restschuld, zuzüglich der bisherigen Überschüsse (nach Kosten für Neubau). Über null ist der Bestand mehr wert als die verbleibenden Schulden.</p>
+        <p class="panel-sub">Was Berlin besitzt, minus was es schuldet: Verkehrswert des übernommenen Bestands und Baukosten neu gebauter Wohnungen, abzüglich Restschuld, zuzüglich der bisherigen Überschüsse (nach Kosten für Neubau). Über null ist der Bestand mehr wert als die verbleibenden Schulden.</p>
         <canvas id="chartCapital" height="70"></canvas>
         <div class="legend">
           <span><i class="swatch" style="background:var(--blue-light)"></i>Vermögenswert Bestand</span>
@@ -363,12 +409,13 @@
 
       <details class="panel" id="tablePanel">
         <summary>Jahr für Jahr</summary>
+        <p class="panel-sub" id="tableNote"></p>
         <div class="table-wrap">
           <table id="dataTable">
             <thead>
               <tr>
-                <th>Jahr</th><th>Modell-Ausgangsmiete €/m²</th><th>Ø Miete Bestand €/m²</th><th>Mieteinnahmen</th><th><span data-term="NOI">NOI</span></th>
-                <th><span data-term="Annuität">Annuität</span></th><th>Cashflow</th><th>Kumuliert</th><th>Bestand</th>
+                <th>Jahr</th><th>Ø Miete Bestand €/m²</th><th>Mieteinnahmen</th><th><span data-term="NOI">NOI</span></th>
+                <th><span data-term="Annuität">Annuität</span> AöR</th><th><span data-term="Ergebnis der AöR">Ergebnis AöR</span></th><th>Land</th><th>Cashflow</th><th>Kumuliert</th><th>Restschuld</th><th>Bestand</th>
               </tr>
             </thead>
             <tbody id="dataTableBody"></tbody>
@@ -399,14 +446,7 @@
     <h2>Der Rechenweg</h2>
     <p>Der Kaufpreis (Verkehrswert × Entschädigungsquote) wird entweder über ein Annuitätendarlehen finanziert (Zins + Tilgung, mit Zinsbindung und Anschlussfinanzierungs-Risiko) oder aus Eigenmitteln des Landeshaushalts. Die laufenden Mieteinnahmen abzüglich Bewirtschaftungskosten (Nettobetriebsergebnis, NOI) müssen den Schuldendienst tragen. Positive Überschüsse können in Neubau reinvestiert werden (Bestand wächst). Als Sozialwohnungen gilt der Bestand, solange seine Durchschnittsmiete höchstens auf der Miete der Landeseigenen liegt (Grenze Sozialmiete).</p>
     <h3>Die Grenzen des Modells</h3>
-    <ul>
-      <li>Diskontierung/Barwert — alle Werte sind nominal aufsummiert, nicht auf heutigen Wert abgezinst</li>
-      <li>Leerstand/Mietausfall — es wird 100 % Vermietung unterstellt</li>
-      <li>Mietpreisbremse/Kappungsgrenze als rechtliche Deckelung der Mietsteigerung</li>
-      <li>Instandhaltungsstau und energetische Pflichtsanierung (GEG) als eigener Kostenblock</li>
-      <li>Rückkopplung auf Berlins Gesamtbonität und Zinskosten bestehender Landesschulden</li>
-      <li>Politisches/rechtliches Verzögerungsrisiko bis zu einer verfassungsgerichtlichen Klärung</li>
-    </ul>
+    <div data-include="limits"></div>
 
     <h3>Die Wertermittlung</h3>
     <p>Für vermietete Mehrfamilienhäuser mit Bestandsmieter:innen ist rechtlich das Ertragswertverfahren einschlägig: Wert = kapitalisierter Reinertrag (Miete abzüglich Bewirtschaftungskosten), abgezinst mit dem amtlichen Liegenschaftszins des Gutachterausschusses Berlin — der laut Gutachterausschuss ausdrücklich auch „zur Bemessung von Enteignungsentschädigungen" dient. Das ergibt bei den heutigen, oft regulierten Bestandsmieten (~7 €/m²) deutlich niedrigere Werte (rund 1.500–2.500 €/m²) als der Vergleichswert für leerstehende Eigentumswohnungen (~5.000–5.700 €/m², Gutachterausschuss H1/2025).</p>
@@ -436,7 +476,7 @@
     <h2>Der Rechnungshof</h2>
     <p>Der Berliner Rechnungshof veröffentlichte am 20.02.2024 einen Beratungsbericht (nach § 88 Abs. 2 LHO) zu den „Auswirkungen einer Vergesellschaftung großer Wohnungsunternehmen auf den Landeshaushalt". Der Rechnungshof entscheidet nicht über die Entschädigungshöhe; diese obliegt dem Gesetzgeber. Der Bericht rechnet vier exogen übernommene Szenarien durch: 8, 11, 29 und 36 Mrd. € für 240.000 Wohnungen — Werte aus der Initiative bzw. der amtlichen Senatsschätzung, keine eigene Bewertung des Rechnungshofs ("Der Rechnungshof hat sich nicht mit einer angemessenen Entschädigungssumme beschäftigt.", § 2.1). Finanzierungsannahme: 80/20 Fremd-/Eigenkapital.</p>
     <p>Auf S. 23 hält der Bericht fest: „Das vom Rechnungshof entwickelte Berechnungsmodell hat ergeben, dass bereits Entschädigungssummen über 11 Mrd. € wegen der hohen Finanzierungskosten unweigerlich zu Defiziten bei der Bewirtschaftung der zu vergesellschaftenden Bestände durch eine AöR führen." Ebenfalls auf S. 23 beziffert der Bericht den jährlichen Zuschussbedarf für die ersten zehn Jahre konkret je Szenario: rund 700 Mio. € bei einer verkehrswertorientierten Entschädigung von 29 Mrd. €, rund 1 Mrd. € bei 36 Mrd. €.</p>
-    <p>Der Bericht nennt auf S. 25 f. jährliche Bewirtschaftungskosten als Absolutbeträge: 343,69 €/Wohneinheit (Verwaltung), 17,18 €/m² (Instandhaltung), 3,60 €/m² (Betriebskosten), dazu Modernisierung rd. 12 €/m² und ein Mietausfallwagnis von 2 %. Bei 62 m² ergibt das 3,34 €/m² im Monat; mit diesem Wert rechnet die Position Rechnungshof. Finanziert wird zu 80 % über einen AöR-Kredit zu 4,5 % und zu 20 % über Eigenkapital des Landes zu 3,0 %, beide 30 Jahre fest (S. 27); das Modell rechnet mit dem gewichteten Zins von 4,2 %.</p>
+    <p>Der Bericht nennt auf S. 25 f. jährliche Bewirtschaftungskosten als Absolutbeträge: 343,69 €/Wohneinheit (Verwaltung), 17,18 €/m² (Instandhaltung), 3,60 €/m² (Betriebskosten), dazu Modernisierung rd. 12 €/m² und ein Mietausfallwagnis von 2 %. Bei 61 m² ergibt das 3,20 €/m² im Monat zuzüglich Mietausfallwagnis. Finanziert wird zu 80 % über einen AöR-Kredit zu 4,5 % und zu 20 % über Eigenkapital des Landes zu 3,0 %, beide 30 Jahre fest (S. 27). Die Position Rechnungshof übernimmt diese Werte, die Inflation von 10 % und die Mieterhöhung von 1 % in den ersten beiden Jahren und die Abzinsung auf Kapitalwerte. So gerechnet, trifft das Modell die Jahreswerte des Berichts (Ansicht 12, S. 30) auf höchstens 25 Mio. € genau; die Abzinsung mit der Zinsstrukturkurve zuzüglich 75 Basispunkten ist dabei durch einen festen Satz von 3,15 % ersetzt.</p>
     <p>Von allen zitierten Quellen ist der Rechnungshof am ehesten unabhängig — aber nicht ergebnisoffen im Sinne von „ohne Tendenz". Seine Kernaufgabe ist Haushaltskonsolidierung und Risikovermeidung; Präsidentin Karin Klingen äußerte öffentlich, sie sehe „keine Möglichkeit, eine Vergesellschaftung mit vertretbaren Risiken umzusetzen" — eine Einschätzung, die auch die Schlussfolgerung des Berichts trägt (§ 4, S. 22): „Eine Vergesellschaftung kann nur verhältnismäßig sein, wenn dadurch die Mieten gesenkt oder zumindest entdynamisiert werden." Das ist eine andere Motivation als bei IW/Empirica (marktliberal) oder Bernt/Holm (umverteilungsorientiert), führt aber in eine ähnliche Richtung wie IW/Empirica — aus einer schuldenbremsen-fokussierten statt marktideologischen Perspektive. Zur Einordnung: Die Expertenkommission hat die methodischen Grundannahmen des Rechnungshofs bereits 2023 explizit zurückgewiesen — sie hält seine Prognosen für „auf wenig überzeugenden faktischen Grundannahmen" beruhend, weil sie von einem „gegriffen niedrigen und zudem in der Zeit unflexiblen Mietniveau" ausgingen (Expertenkommission-Abschlussbericht, S. 60, § 202). Unabhängigkeit der Institution heißt also nicht, dass die Fachleute der Kommission die zugrunde liegenden Annahmen teilen.</p>
 
     <h2 id="section-glossar">Das Glossar</h2>
@@ -451,12 +491,11 @@
       <li>Deutsche Wohnen &amp; Co enteignen — „Was kostet Vergesellschaftung" (Berechnungsgrundlage Holm et al.)</li>
       <li>IW Köln &amp; Empirica (2026) — „Auswirkungen der Vergesellschaftung privater Wohnungsunternehmen in Berlin" (Deschermeier/Voigtländer, Simons), im Auftrag Berliner Sparkasse/Volksbank/DKB/IBB</li>
       <li>Gutachterausschuss für Grundstückswerte in Berlin — Liegenschaftszinssätze 2025, Kaufpreisstatistik H1/2025</li>
-      <li>Berlin Hyp / CBRE — Wohnmarktreport Berlin 2026 (nicht im Projektordner, nicht geprüft)</li>
       <li>BKI / Statistisches Bundesamt (Destatis) — Baupreisindex Wohngebäude 2025/26</li>
       <li>Marktdaten Baufinanzierung (Finanztip, Dr. Klein, Baufi24) — Bauzinsen Stand Juli 2026</li>
       <li>IW Köln — Gutachten zu Refinanzierungsrisiken einer Vergesellschaftung (Titel und Jahr nicht angegeben, nicht im Projektordner)</li>
     </ul>
-    <p>Alle Parameter sind Modellannahmen, keine amtlichen Festlegungen. Die Entschädigungshöhe für eine Vergesellschaftung nach Art. 15 GG ist rechtlich ungeklärt (BVerfG-Klärung steht aus). Referenzwerte (Stand: Juli 2026): Bestandsmiete landeseigene Wohnungsgesellschaften Berlin &lt;7,50 €/m², Neuvertragsmiete ⌀15,80 €/m² (Berlin Hyp/CBRE Wohnmarktreport 2026); Baukosten Neubau 3.300–3.800 €/m² (BKI/Destatis 2025); Bauzinsen 10 Jahre fest 3,6–4,0 % (Marktdaten Juli 2026). Finanzierungskorridor 10–17 Mrd. € (Holm/Thonke, DWE Nov. 2025); Sanierungskosten-Bandbreite 660–1.600 €/m² (IW Consult 2024). Einmalige Kosten 200 Mio. €: Integrationskosten der Fusion Vonovia/Deutsche Wohnen, laut IW/Empirica eher eine Untergrenze (Gutachten 2026, S. 17).</p>
+    <p>Alle Parameter sind Modellannahmen, keine amtlichen Festlegungen. Die Entschädigungshöhe für eine Vergesellschaftung nach Art. 15 GG ist rechtlich ungeklärt (BVerfG-Klärung steht aus). Referenzwerte (Stand: Juli 2026): Bestandsmiete landeseigene Wohnungsgesellschaften Berlin &lt;7,50 €/m², Angebotsmiete Anfang 2026 16,75 €/m² (IW/Empirica 2026, S. 12; IBB-Wohnungsmarktbericht 2025: 16,25 €/m², nach PwC-Whitepaper, S. 4); Baukosten Neubau 3.300–3.800 €/m² (BKI/Destatis 2025); Bauzinsen 10 Jahre fest 3,6–4,0 % (Marktdaten Juli 2026). Finanzierungskorridor 10–17 Mrd. € (Holm/Thonke, DWE Nov. 2025); Sanierungskosten-Bandbreite 660–1.600 €/m² (IW Consult 2024). Einmalige Kosten 200 Mio. € in der Position IW/Empirica: Integrationskosten der Fusion Vonovia/Deutsche Wohnen, laut Gutachten eher eine Untergrenze (S. 17); die übrigen Positionen setzen keine an.</p>
 
   </div></div>
   </div>
@@ -465,8 +504,8 @@
 
 </div>
 
-<script src="model-calc.js?v=20261014a"></script>
-<script src="content.js?v=20261014a"></script>
+<script src="model-calc.js?v=20261015a"></script>
+<script src="content.js?v=20261015a"></script>
 <script src="include.js"></script>
 <script src="tooltips.js?v=20261003a"></script>
 <script src="nav.js?v=20261005a"></script>

@@ -13,6 +13,8 @@
 
 - Step 4a (2026-10-03): viewer groups are collapsible (open if a layer is visible, count when closed); visible layers and views are written to `?layers=` so links reopen the same map; error banners show setup hints (run.bat, update_data.bat) only on localhost/file://, the website shows a reload message.
 
+- Model (2026-10-15): the five positions of `02_Vergesellschaftung` reproduce their sources' own results; `node 02_Vergesellschaftung/pruefung.js` checks them (details in `parameterpruefung.md`, log in `entwicklungsprotokoll.md`).
+
 ## Next
 
 5. Tempelhofer Feld map (`config/maps/tempelhofer-feld.json`): BRW time series, B-Pläne, FNP 2025 (mixed polygon/point geometry, needs handling), Grünanlagen, Klimaanalyse 2022, StEP Wohnen. Verify each service first.
@@ -20,6 +22,6 @@
 ## Open
 
 - Website: GitHub Pages from `main`, https://peer-cmd.github.io/Berlin-Map/02_Vergesellschaftung/index.html. Changes go live after merging into `main`.
-- Merge this branch into `main` (pull request) so parallel sessions start from the current state.
+- Model sources missing from `02_Vergesellschaftung/pdf/`: DWE factsheet 26.09.2025 (rents behind the 2025 draft law), Gerhardt/Holm 2021 full report (financing behind the 17 Mrd € claim), Holm et al. 2025 (cited by IW/Empirica).
 - Einwohnerdichte GeoJSON is 12.5 MB (26,613 blocks); loads only on demand. Vector tiles if it feels slow.
 - Not yet included: Denkmale (9,578), FNP 2025, Wohnatlas time series (geometry changed 2022: 58 vs 60 areas), StEP Vorrangkulisse Innenentwicklung.

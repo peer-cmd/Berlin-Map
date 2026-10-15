@@ -55,7 +55,7 @@
         <p class="group-title">Bestand &amp; Entschädigung</p>
         <div class="field">
           <div class="field-row"><label>Anzahl Wohnungen</label><span class="val" id="v-units">240.000</span></div>
-          <input type="range" id="units" min="50000" max="400000" step="5000" value="240000">
+          <input type="range" id="units" min="50000" max="400000" step="1000" value="240000">
         </div>
         <div class="field">
           <div class="field-row"><label>Ø Wohnungsgröße</label><span class="val" id="v-avgSize">62 m²</span></div>
@@ -67,7 +67,7 @@
         </div>
         <div class="field">
           <div class="field-row"><label data-term="Entschädigungsquote">Entschädigungsquote (vom Verkehrswert)</label><span class="val" id="v-purchaseFactor">100 %</span></div>
-          <input type="range" id="purchaseFactor" min="20" max="100" step="0.1" value="100">
+          <input type="range" id="purchaseFactor" min="20" max="100" step="0.01" value="100">
           <div class="hint">Kaufpreis <span id="v-effectivePrice">2.085 €/m² · 31,0</span> von <span id="v-totalDerived">31,0 Mrd €</span></div>
           <div class="linked-row">
             <label class="linked-label">≈ pro Wohnung</label>
@@ -105,9 +105,26 @@
           <div class="field-row"><label data-term="Zinsaufschlag">Zinsaufschlag danach</label><span class="val" id="v-rateIncrement">+1,0 pp</span></div>
           <input type="range" id="rateIncrement" min="0" max="3" step="0.1" value="1.0">
         </div>
+        <div class="field" id="wrap-equity">
+          <div class="field-row"><label data-term="Eigenkapitalanteil">Eigenkapitalanteil des Landes</label><span class="val" id="v-equityShare">0 %</span></div>
+          <input type="range" id="equityShare" min="0" max="100" step="1" value="0">
+          <div class="field-row"><label data-term="Eigenkapitalanteil">Zins des Landes</label><span class="val" id="v-equityRate">3,0 %</span></div>
+          <input type="range" id="equityRate" min="0" max="6" step="0.1" value="3">
+        </div>
         <div class="field">
-          <div class="field-row"><label data-term="Einmalige Kosten">Einmalige Kosten</label><span class="val" id="v-onceCosts">200 Mio €</span></div>
-          <input type="range" id="onceCosts" min="0" max="1500" step="5" value="200">
+          <div class="field-row"><label data-term="Mehrkosten Landesschulden">Mehrkosten Landesschulden</label><span class="val" id="v-landDebtCost">0 Mio €/J.</span></div>
+          <input type="range" id="landDebtCost" min="0" max="1000" step="10" value="0">
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Fehlbeträge verzinsen">Fehlbeträge verzinsen</label></div>
+          <div class="seg" id="seg-deficit">
+            <button data-val="aus" class="active">aus</button>
+            <button data-val="an">an</button>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Einmalige Kosten">Einmalige Kosten</label><span class="val" id="v-onceCosts">0 Mio €</span></div>
+          <input type="range" id="onceCosts" min="0" max="1500" step="5" value="0">
         </div>
         <div class="field">
           <div class="field-row"><label data-term="Integrationskosten">Integrationskosten</label><span class="val" id="v-integrationCosts">0,0 %</span></div>
@@ -132,11 +149,21 @@
         </div>
         <div class="field">
           <div class="field-row"><label data-term="Mietsteigerung">Mietsteigerung p.a.</label><span class="val" id="v-rentGrowth">1,5 %</span></div>
-          <input type="range" id="rentGrowth" min="0" max="4" step="0.1" value="1.5">
+          <input type="range" id="rentGrowth" min="0" max="4" step="0.01" value="1.5">
         </div>
         <div class="field">
           <div class="field-row"><label data-term="Kosteninflation">Kosteninflation p.a.</label><span class="val" id="v-costInflation">2,5 %</span></div>
-          <input type="range" id="costInflation" min="0" max="6" step="0.1" value="2.5">
+          <input type="range" id="costInflation" min="0" max="6" step="0.01" value="2.5">
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Anfangsphase">Anfangsphase</label><span class="val" id="v-startYears">keine</span></div>
+          <input type="range" id="startYears" min="0" max="5" step="1" value="0">
+          <div id="wrap-start">
+            <div class="field-row"><label>Inflation in der Anfangsphase</label><span class="val" id="v-startInflation">10,0 %</span></div>
+            <input type="range" id="startInflation" min="0" max="15" step="0.5" value="10">
+            <div class="field-row"><label>Mietsteigerung in der Anfangsphase</label><span class="val" id="v-startRentGrowth">1,0 %</span></div>
+            <input type="range" id="startRentGrowth" min="0" max="5" step="0.1" value="1">
+          </div>
         </div>
         <div class="field">
           <div class="seg" id="seg-opexmode">
@@ -151,7 +178,6 @@
         <div class="field" id="wrap-opex-absolute" style="display:none;">
           <div class="field-row"><label data-term="Bewirtschaftungskosten">Bewirtschaftungskosten absolut</label><span class="val" id="v-opexAbsolute">2,20 €/m²</span></div>
           <input type="range" id="opexAbsolute" min="1" max="5" step="0.01" value="2.2">
-          <div class="hint">Ansatz Rechnungshof Berlin 2024, S. 25</div>
           <div class="linked-row">
             <label class="linked-label">≈ pro Wohnung</label>
             <input type="number" class="linked-input" id="opexAbsolutePerUnit" step="5">
@@ -159,8 +185,14 @@
           </div>
         </div>
         <div class="field">
-          <div class="field-row"><label data-term="Neuvertragsmiete" data-note="Neuvertragsmiete Berlin, Wachstum fix 3,0 %/Jahr angenommen (Berlin Hyp/CBRE 2026; Quelle nicht im Projektordner, Wert nicht geprüft)">Referenz: freier Markt</label><span class="val" id="v-freeMarketRent">15,80 €/m²</span></div>
-          <input type="range" id="freeMarketRent" min="8" max="25" step="0.1" value="15.8">
+          <div class="field-row"><label data-term="Mietausfallwagnis">Mietausfallwagnis</label><span class="val" id="v-vacancyRate">0,0 %</span></div>
+          <input type="range" id="vacancyRate" min="0" max="10" step="0.5" value="0">
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Neuvertragsmiete" data-note="Angebotsmiete Berlin Anfang 2026 16,75 €/m², Anfang 2012 7,40 €/m², daraus 6,0 % pro Jahr (IW/Empirica 2026, S. 12)">Referenz: freier Markt</label><span class="val" id="v-freeMarketRent">16,75 €/m²</span></div>
+          <input type="range" id="freeMarketRent" min="8" max="25" step="0.01" value="16.75">
+          <div class="field-row"><label>Steigerung freier Markt</label><span class="val" id="v-freeMarketGrowth">6,0 %/J.</span></div>
+          <input type="range" id="freeMarketGrowth" min="0" max="8" step="0.1" value="6">
         </div>
         <div class="field">
           <div class="field-row"><label data-term="Grenze Sozialmiete" data-note="Miete der Landeseigenen, auf die Bernt/Holm 2023 senken (S. 12); Wachstum 1,6 %/Jahr (S. 22)">Grenze Sozialmiete</label><span class="val" id="v-munizRent">6,39 €/m²</span></div>
@@ -173,6 +205,20 @@
         <div class="field">
           <div class="field-row"><label data-term="Haushaltseinkommen">Referenz: Haushaltseinkommen</label><span class="val" id="v-incomeGrowth">3,0 %/J.</span></div>
           <input type="range" id="incomeGrowth" min="0" max="6" step="0.1" value="3.0">
+        </div>
+      </div>
+
+      <div class="group">
+        <p class="group-title">Bewertung</p>
+        <div class="field">
+          <div class="seg" id="seg-valuation">
+            <button data-val="nominal" class="active">Nominal</button>
+            <button data-val="barwert">Barwert</button>
+          </div>
+        </div>
+        <div class="field" id="wrap-discount">
+          <div class="field-row"><label data-term="Barwert">Abzinsungssatz</label><span class="val" id="v-discountRate">3,15 %</span></div>
+          <input type="range" id="discountRate" min="0" max="6" step="0.05" value="3.15">
         </div>
       </div>
 
@@ -216,7 +262,7 @@
       <section class="summary">
         <h1>Kosten- und Finanzierungsmodell der Vergesellschaftung großer Wohnungsunternehmen</h1>
 
-        <p class="figures">Kaufpreis <span class="value" id="s-kaufpreis">–</span> (<span id="s-kaufpreis-sub">–</span>), <span data-term="Nettoergebnis">Nettoergebnis</span> <span id="s-netto-label">nach 50 Jahren</span> <span class="value" id="s-netto">–</span>, <span id="s-netto-sub">–</span>.</p>
+        <p class="figures">Kaufpreis <span class="value" id="s-kaufpreis">–</span> (<span id="s-kaufpreis-sub">–</span>), <span data-term="Nettoergebnis">Nettoergebnis</span> <span id="s-netto-label">nach 50 Jahren</span> <span class="value" id="s-netto">–</span>, <span id="s-netto-sub">–</span>. <span data-term="Ergebnis der AöR">Ergebnis der AöR</span>, Ø Jahr 1–10: <span class="value" id="s-aoer">–</span>; <span data-term="Restschuld">Restschuld</span> am Ende <span class="value" id="s-rest">–</span>. Alle Werte: <span id="s-valuation">–</span>.</p>
       </section>
 
       <p class="group-title section-jump" id="finanzen"><span>Die Finanzen</span><a href="#mieter">Die Mieter</a><a href="#vergleich">Der Modellvergleich</a><a href="#sensitivitaet">Die Sensitivität</a><a href="#tabellen">Die Tabellen</a></p>
@@ -225,7 +271,7 @@
         <div class="panel-head">
           <h2>Der <span data-term="Cashflow">Cashflow</span> pro Jahr</h2>
         </div>
-        <p class="panel-sub">Mieteinnahmen minus Bewirtschaftung und Kreditraten, je Jahr. Ab dem Jahr, in dem die Balken positiv werden, trägt sich der Bestand selbst.</p>
+        <p class="panel-sub">Mieteinnahmen minus Bewirtschaftung, Kreditraten der AöR und Kosten des Landes (Eigenkapitalanteil, Mehrkosten Landesschulden), je Jahr. Ab dem Jahr, in dem die Balken positiv werden, trägt sich der Bestand selbst.</p>
         <canvas id="chartCashflow" height="70"></canvas>
       </div>
 
@@ -241,7 +287,7 @@
         <div class="panel-head">
           <h2>Die <span data-term="Restschuld">Restschuld</span></h2>
         </div>
-        <p class="panel-sub">Verbleibender Kredit. Am Knick endet die Zinsbindung; danach gilt der höhere Anschlusszins.</p>
+        <p class="panel-sub">Verbleibender Kredit der AöR, mit Eigenkapitalanteil zuzüglich des Kredits des Landes. Am Knick endet die Zinsbindung; danach gilt der höhere Anschlusszins.</p>
         <canvas id="chartBalance" height="70"></canvas>
       </div>
 
@@ -249,7 +295,7 @@
         <div class="panel-head">
           <h2>Die Kapitalposition Berlins</h2>
         </div>
-        <p class="panel-sub">Was Berlin besitzt, minus was es schuldet: Verkehrswert des Bestands abzüglich Restschuld, zuzüglich der bisherigen Überschüsse (nach Kosten für Neubau). Über null ist der Bestand mehr wert als die verbleibenden Schulden.</p>
+        <p class="panel-sub">Was Berlin besitzt, minus was es schuldet: Verkehrswert des übernommenen Bestands und Baukosten neu gebauter Wohnungen, abzüglich Restschuld, zuzüglich der bisherigen Überschüsse (nach Kosten für Neubau). Über null ist der Bestand mehr wert als die verbleibenden Schulden.</p>
         <canvas id="chartCapital" height="70"></canvas>
         <div class="legend">
           <span><i class="swatch" style="background:var(--blue-light)"></i>Vermögenswert Bestand</span>
@@ -364,12 +410,13 @@
 
       <details class="panel" id="tablePanel">
         <summary>Jahr für Jahr</summary>
+        <p class="panel-sub" id="tableNote"></p>
         <div class="table-wrap">
           <table id="dataTable">
             <thead>
               <tr>
-                <th>Jahr</th><th>Modell-Ausgangsmiete €/m²</th><th>Ø Miete Bestand €/m²</th><th>Mieteinnahmen</th><th><span data-term="NOI">NOI</span></th>
-                <th><span data-term="Annuität">Annuität</span></th><th>Cashflow</th><th>Kumuliert</th><th>Bestand</th>
+                <th>Jahr</th><th>Ø Miete Bestand €/m²</th><th>Mieteinnahmen</th><th><span data-term="NOI">NOI</span></th>
+                <th><span data-term="Annuität">Annuität</span> AöR</th><th><span data-term="Ergebnis der AöR">Ergebnis AöR</span></th><th>Land</th><th>Cashflow</th><th>Kumuliert</th><th>Restschuld</th><th>Bestand</th>
               </tr>
             </thead>
             <tbody id="dataTableBody"></tbody>
@@ -385,8 +432,8 @@
 
 </div>
 
-<script src="model-calc.js?v=20261014a"></script>
-<script src="content.js?v=20261014a"></script>
+<script src="model-calc.js?v=20261015a"></script>
+<script src="content.js?v=20261015a"></script>
 <script src="tooltips.js?v=20261003a"></script>
 <script src="nav.js?v=20261005a"></script>
 </body>
