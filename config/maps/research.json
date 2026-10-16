@@ -43,7 +43,7 @@
           "opacity": 0.78
         },
         {
-          "source": "wohnatlas2022",
+          "source": "wohnatlas",
           "visible": false,
           "opacity": 0.85
         }
@@ -114,6 +114,21 @@
         "en": "Urban development planning"
       },
       "layers": [
+        {
+          "source": "fnp2025_symbole",
+          "visible": false,
+          "opacity": 0.9
+        },
+        {
+          "source": "fnp2025_einzelhandel",
+          "render": "outline",
+          "visible": false
+        },
+        {
+          "source": "fnp2025_flaechen",
+          "visible": false,
+          "opacity": 0.8
+        },
         {
           "source": "step_wohnen_potenziale",
           "visible": false,

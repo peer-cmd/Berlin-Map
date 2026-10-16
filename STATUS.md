@@ -17,6 +17,8 @@
 
 - Model charts (2026-10-16): the four cashflow/debt charts on the model page are replaced by "Kaufpreis und Finanzierung", "Wohin die Miete geht" and "Schulden und Rücklage" (cost, repayment and financing kept apart; details in `entwicklungsprotokoll.md`).
 
+- Step 4b (2026-10-16): Wohnatlas time series 2004–2022 (source `wohnatlas` replaces `wohnatlas2022`; 23 types, older years matched to the 2022 areas by a grid crosswalk, change views for rent, social housing and municipal share). FNP 2025 as three layers in `?map=research` (areas, retail overlay, symbols). Pipeline: `match: "geometry"`, `derive`, `only_geometry`, `filter`; smoke test covers the crosswalk.
+
 ## Next
 
 5. Tempelhofer Feld map (`config/maps/tempelhofer-feld.json`): BRW time series, B-Pläne, FNP 2025 (mixed polygon/point geometry, needs handling), Grünanlagen, Klimaanalyse 2022, StEP Wohnen. Verify each service first.
@@ -26,4 +28,5 @@
 - Website: GitHub Pages from `main`, https://peer-cmd.github.io/Berlin-Map/02_Vergesellschaftung/index.html. Changes go live after merging into `main`.
 - Model source still missing: full AG Sozialisierung 2021 report (financing behind the 17 Mrd € claim of Gerhardt/Holm); the uploaded Gerhardt 2021 slides do not contain it.
 - Einwohnerdichte GeoJSON is 12.5 MB (26,613 blocks); loads only on demand. Vector tiles if it feels slow.
-- Not yet included: Denkmale (9,578), FNP 2025, Wohnatlas time series (geometry changed 2022: 58 vs 60 areas), StEP Vorrangkulisse Innenentwicklung.
+- Not yet included: Denkmale (9,578), StEP Vorrangkulisse Innenentwicklung.
+- FNP 2025 is only in `?map=research`, not on the website map. FNP and Wohnatlas colours are a first draft.

@@ -47,4 +47,19 @@ cat = process.combine_parts([({"type_name": "A", "value": "x"}, [dict(f, propert
 assert [f["properties"]["teil"] for f in cat] == ["x", "x", "y"], cat
 ring = [[13.0 + i * 1e-6, 52.5 + (1e-7 if i % 2 else 0)] for i in range(50)] + [[13.0, 52.6], [13.0, 52.5]]
 assert len(process.simplify_ring(ring, 1.0)) < len(ring) and process.simplify_ring(ring, 1.0)[0] == ring[0]
+# crosswalk: an unchanged area matches under a new key; a split area does not
+sqm = lambda x0, x1, k: {"properties": {"k": k}, "geometry": {"type": "Polygon", "coordinates": [
+    [[13.0 + x0, 52.5], [13.0 + x1, 52.5], [13.0 + x1, 52.51], [13.0 + x0, 52.51], [13.0 + x0, 52.5]]]}}
+new_areas = [sqm(0, 0.01, "10"), sqm(0.01, 0.03, "20")]
+old_areas = [sqm(0, 0.01, "01"), sqm(0.01, 0.02, "02"), sqm(0.02, 0.03, "03")]
+mapping, rows = process.crosswalk(new_areas, old_areas, "k", "k", 50, 0.97)
+assert mapping == {"01": "10"} and len(rows) == 3, (mapping, rows)
+base = [dict(f, properties={**f["properties"], "v_2022": i}) for i, f in enumerate(new_areas)]
+old_vals = [dict(f, properties={**f["properties"], "v": 5}) for f in old_areas]
+rep = {}
+joined = process.combine_parts([({"type_name": "N"}, base),
+                                ({"type_name": "O", "match": "geometry", "rename": {"v": "v_2008"}}, old_vals)],
+                               {"mode": "join", "key": "k"}, w, rep)
+assert joined[0]["properties"]["v_2008"] == 5 and "v_2008" not in joined[1]["properties"], joined
+assert len(rep) == 1 and list(rep.values())[0]["type_names"] == ["O"], rep
 print("SMOKE TEST OK")

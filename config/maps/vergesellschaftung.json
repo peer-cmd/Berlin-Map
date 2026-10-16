@@ -59,7 +59,7 @@
       },
       "layers": [
         {
-          "source": "wohnatlas2022",
+          "source": "wohnatlas",
           "visible": false,
           "opacity": 0.85
         },
