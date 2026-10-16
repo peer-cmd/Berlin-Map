@@ -32,3 +32,22 @@
 - Einwohnerdichte GeoJSON is 12.5 MB (26,613 blocks); loads only on demand. Vector tiles if it feels slow.
 - Not yet included: Denkmale (9,578), StEP Vorrangkulisse Innenentwicklung.
 - Wohnatlas colours are a first draft.
+
+## Open: colour logic for model charts (continue in next chat)
+
+Live on the website (since 2026-10-16, PR #33): model charts in palette "A2" (`model-calc.js`): repayment cyan `#00A0E3`, interest pink `#FF3D8B`, surplus yellow `#FFE500`, deficit dark magenta `#9C0059`, Land equity orange `#FF8A1E`, bank loan violet `#6E62D6`, bond light violet `#B8B2E8`, operating costs grey. FNP: housing pink W1–W4, other building land grey. Site interface (`style.css`, turquoise) must stay unchanged.
+
+Peer's feedback so far:
+- Pink/magenta across all charts reads like a "feminist site"; pink is fine only for housing (FNP).
+- The large violet/blue areas (bank loan, bond) in "Kaufpreis und Finanzierung" and "Schulden und Rücklage" are too much.
+- Wants red, yellow, blue, green, in the spirit of Joost Grootens, and above all a coherent logic: every colour one meaning across all charts (and map).
+
+Tested and rejected or open (renders made by injecting colours into `Chart.instances` in a headless browser; images not kept):
+- A/B/C (print colours / grey with two signals / ultramarine–vermilion–lime), A2 = A with dark-magenta deficit (applied).
+- G1/G2: primary colours (repayment green, interest red, surplus yellow, deficit dark red, equity orange, loans dark blue or light blue): "right direction", but large blue area disliked.
+- K1–K3: loans light grey, sand, black: "try harder".
+- P1–P4: loans as structure instead of colour (outline, black dot screen, dark-blue dot screen, hatching); own money solid, borrowed money open.
+
+Grootens (sources: Domus 2013 interview, Eye 2010, Atlas of the Copenhagens): Pantone spot inks incl. fluorescent and metallic; two palettes (strong foreground, light background); colour coding stays constant through a book; blue/green dot patterns for transitions.
+
+Next: derive the palette from a meaning system first (e.g. money in / money out / owed / owned; Land vs. AöR vs. tenants), then assign colours, then test all five charts and the FNP together.
