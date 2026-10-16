@@ -368,7 +368,7 @@
       const ctx = chart.ctx;
       ctx.save();
       ctx.beginPath();
-      ctx.strokeStyle = '#6B6B63';
+      ctx.strokeStyle = '#9A9A92';
       ctx.setLineDash([3,3]);
       ctx.lineWidth = 1;
       ctx.moveTo(xPix, yArea.top);
@@ -392,8 +392,8 @@
       data:{ labels:[], datasets:[
         // Gestapelt: Ergebnis der AöR (mit Zinsen auf den Kassenstand), Zahlungen des Landes, Sondertilgungen.
         {type:'bar', label:'Ergebnis der AöR', data:[], backgroundColor:[], yAxisID:'y', order:2, stack:'cf'},
-        {type:'bar', label:'Land', data:[], backgroundColor:'#A9762C', yAxisID:'y', order:2, stack:'cf'},
-        {type:'bar', label:'Sondertilgung', data:[], backgroundColor:'#93AECB', yAxisID:'y', order:2, stack:'cf'},
+        {type:'bar', label:'Land', data:[], backgroundColor:'#FF8A1E', yAxisID:'y', order:2, stack:'cf'},
+        {type:'bar', label:'Sondertilgung', data:[], backgroundColor:'#B8B2E8', yAxisID:'y', order:2, stack:'cf'},
         {type:'line', label:'Null', data:[], borderColor:'#9A9A90', borderWidth:1, pointRadius:0, borderDash:[2,3], yAxisID:'y', order:3, stack:'null'}
       ]},
       options:{
@@ -416,7 +416,7 @@
     const ctx1b = $('chartCumulative').getContext('2d');
     chartCumulative = new Chart(ctx1b, {
       data:{ labels:[], datasets:[
-        {type:'line', label:'Kumuliert', data:[], borderColor:'#00788C', backgroundColor:'transparent', borderWidth:2.2, pointRadius:0, tension:0.15, yAxisID:'y', order:1},
+        {type:'line', label:'Kumuliert', data:[], borderColor:'#00A0E3', backgroundColor:'transparent', borderWidth:2.2, pointRadius:0, tension:0.15, yAxisID:'y', order:1},
         {type:'line', label:'Null', data:[], borderColor:'#9A9A90', borderWidth:1, pointRadius:0, borderDash:[2,3], yAxisID:'y', order:3}
       ]},
       options:{
@@ -440,7 +440,7 @@
     chartStock = new Chart(ctx2, {
       type:'line',
       data:{ labels:[], datasets:[
-        {label:'Bestand', data:[], borderColor:'#109A82', backgroundColor:'rgba(16,154,130,0.08)', borderWidth:2, pointRadius:0, fill:true, tension:0.15}
+        {label:'Bestand', data:[], borderColor:'#C8B400', backgroundColor:'rgba(200,180,0,0.10)', borderWidth:2, pointRadius:0, fill:true, tension:0.15}
       ]},
       options:{
         responsive:true,
@@ -458,11 +458,11 @@
     chartRent = new Chart(ctx3, {
       type:'line',
       data:{ labels:[], datasets:[
-        {label:'Freier Markt', data:[], borderColor:'#E0435C', backgroundColor:'transparent', borderWidth:1.5, borderDash:[3,3], pointRadius:0, tension:0.15},
-        {label:'Grenze Sozialmiete (Landeseigene)', data:[], borderColor:'#A9762C', backgroundColor:'transparent', borderWidth:1.5, borderDash:[6,2], pointRadius:0, tension:0.15},
-        {label:'Verbraucherpreise (CPI, indexiert)', data:[], borderColor:'#6B6B63', backgroundColor:'transparent', borderWidth:1.2, borderDash:[1,3], pointRadius:0, tension:0.15},
-        {label:'Haushaltseinkommen (indexiert)', data:[], borderColor:'#109A82', backgroundColor:'transparent', borderWidth:1.2, borderDash:[1,3], pointRadius:0, tension:0.15},
-        {label:'Ø Miete im Bestand (Modell)', data:[], borderColor:'#00788C', backgroundColor:'rgba(0,120,140,0.06)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.15}
+        {label:'Freier Markt', data:[], borderColor:'#FF3D8B', backgroundColor:'transparent', borderWidth:1.5, borderDash:[3,3], pointRadius:0, tension:0.15},
+        {label:'Grenze Sozialmiete (Landeseigene)', data:[], borderColor:'#FF8A1E', backgroundColor:'transparent', borderWidth:1.5, borderDash:[6,2], pointRadius:0, tension:0.15},
+        {label:'Verbraucherpreise (CPI, indexiert)', data:[], borderColor:'#9A9A92', backgroundColor:'transparent', borderWidth:1.2, borderDash:[1,3], pointRadius:0, tension:0.15},
+        {label:'Haushaltseinkommen (indexiert)', data:[], borderColor:'#C8B400', backgroundColor:'transparent', borderWidth:1.2, borderDash:[1,3], pointRadius:0, tension:0.15},
+        {label:'Ø Miete im Bestand (Modell)', data:[], borderColor:'#00A0E3', backgroundColor:'rgba(0,160,227,0.08)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.15}
       ]},
       options:{
         responsive:true,
@@ -484,7 +484,7 @@
     chartBalance = new Chart(ctx5, {
       type:'line',
       data:{ labels:[], datasets:[
-        {label:'Restschuld', data:[], borderColor:'#00788C', backgroundColor:'rgba(0,120,140,0.06)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.1}
+        {label:'Restschuld', data:[], borderColor:'#00A0E3', backgroundColor:'rgba(0,160,227,0.08)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.1}
       ]},
       options:{
         responsive:true,
@@ -508,10 +508,10 @@
     chartCapital = new Chart(ctx6, {
       type:'line',
       data:{ labels:[], datasets:[
-        {label:'Vermögenswert Bestand', data:[], borderColor:'#93AECB', backgroundColor:'transparent', borderWidth:1.5, borderDash:[3,3], pointRadius:0, tension:0.1},
-        {label:'Restschuld', data:[], borderColor:'#E0435C', backgroundColor:'transparent', borderWidth:1.5, borderDash:[6,2], pointRadius:0, tension:0.1},
-        {label:'Kumulierter Cashflow', data:[], borderColor:'#A9762C', backgroundColor:'transparent', borderWidth:1.2, borderDash:[1,3], pointRadius:0, tension:0.1},
-        {label:'Nettoposition', data:[], borderColor:'#109A82', backgroundColor:'rgba(16,154,130,0.08)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.1}
+        {label:'Vermögenswert Bestand', data:[], borderColor:'#B8B2E8', backgroundColor:'transparent', borderWidth:1.5, borderDash:[3,3], pointRadius:0, tension:0.1},
+        {label:'Restschuld', data:[], borderColor:'#FF3D8B', backgroundColor:'transparent', borderWidth:1.5, borderDash:[6,2], pointRadius:0, tension:0.1},
+        {label:'Kumulierter Cashflow', data:[], borderColor:'#FF8A1E', backgroundColor:'transparent', borderWidth:1.2, borderDash:[1,3], pointRadius:0, tension:0.1},
+        {label:'Nettoposition', data:[], borderColor:'#C8B400', backgroundColor:'rgba(200,180,0,0.10)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.1}
       ]},
       options:{
         responsive:true,
@@ -535,8 +535,8 @@
     // Beide Sensitivitätsdiagramme: Nettoergebnis (links) und Break-even-Jahr (rechts) je Reglerwert.
     const sensChart = (id, xTitle) => new Chart($(id).getContext('2d'), {
       data:{ labels:[], datasets:[
-        {type:'line', label:'Nettoergebnis', data:[], borderColor:'#00788C', backgroundColor:'rgba(0,120,140,0.06)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.15, yAxisID:'y'},
-        {type:'line', label:'Break-even (Jahr)', data:[], borderColor:'#A9762C', backgroundColor:'transparent', borderWidth:1.5, borderDash:[4,2], pointRadius:0, tension:0.15, yAxisID:'y1'}
+        {type:'line', label:'Nettoergebnis', data:[], borderColor:'#00A0E3', backgroundColor:'rgba(0,160,227,0.08)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.15, yAxisID:'y'},
+        {type:'line', label:'Break-even (Jahr)', data:[], borderColor:'#FF8A1E', backgroundColor:'transparent', borderWidth:1.5, borderDash:[4,2], pointRadius:0, tension:0.15, yAxisID:'y1'}
       ]},
       options:{
         responsive:true,
@@ -590,8 +590,8 @@
   // Drei Begriffe: Aufwand (Bewirtschaftung, Zinsen, Entgelte) ist verbraucht; Tilgung wandelt Schulden in Eigentum;
   // Finanzierung sagt, woher das Geld für den Kauf kommt. Alle Werte nominal.
   let chartFinance, chartRentUse, chartDebt, finUnit = 'mio';
-  const FC = {equity:'#A9762C', bank:'#4A6FA5', bond:'#93AECB', once:'#6E6E66', opex:'#B8B8AE', interest:'#E0435C',
-    repay:'#00788C', build:'#8C6BB1', rest:'#109A82', deficit:'#7A1F2E', landBal:'#D9BC8C', landPaid:'#A9762C'};
+  const FC = {equity:'#FF8A1E', bank:'#6E62D6', bond:'#B8B2E8', once:'#9A9A92', opex:'#D4D4CC', interest:'#FF3D8B',
+    repay:'#00A0E3', build:'#8FD3F2', rest:'#FFE500', deficit:'#9C0059', landBal:'#FFC48A', landPaid:'#FF8A1E'};
   const finBar = (label, color) => ({type:'bar', label, data:[], backgroundColor:color, stack:'s', categoryPercentage:0.9, barPercentage:0.9});
   const finLine = label => ({type:'line', label, data:[], borderColor:'#222', borderWidth:1.8, pointRadius:0, tension:0, stack:'line', order:0});
   const finFmtQ = v => v.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})+' €/m²';
@@ -720,7 +720,7 @@
     if(chartCashflow){
     chartCashflow.data.labels = labels;
     chartCashflow.data.datasets[0].data = aoerValues;
-    chartCashflow.data.datasets[0].backgroundColor = aoerValues.map(v=> v>=0 ? '#109A82' : '#E0435C');
+    chartCashflow.data.datasets[0].backgroundColor = aoerValues.map(v=> v>=0 ? '#FFE500' : '#FF3D8B');
     chartCashflow.data.datasets[1].data = result.rows.map(r=>-r.land);
     chartCashflow.data.datasets[2].data = result.rows.map(r=>-r.sweptPV);
     chartCashflow.data.datasets[3].data = labels.map(()=>0);
@@ -911,12 +911,12 @@
 
   // Die fünf Positionen und die gespeicherten Szenarien, alle über den eingestellten Horizont.
   // Farben folgen der Position, nicht dem Rang; gespeicherte Szenarien sind grau gestrichelt.
-  const PRESET_ORDER = [['linke','Faire-Mieten-Modell','#00788C'],['holm2025','DWE-Studie 2025','#A9762C'],['holm','Bernt/Holm','#6B3FA0'],['rechnungshof','Rechnungshof','#E0435C'],['gegenmodell','IW/Empirica','#4A6FA5']];
+  const PRESET_ORDER = [['linke','Faire-Mieten-Modell','#00A0E3'],['holm2025','DWE-Studie 2025','#FF8A1E'],['holm','Bernt/Holm','#6E62D6'],['rechnungshof','Rechnungshof','#FF3D8B'],['gegenmodell','IW/Empirica','#9C0059']];
   const SAVED_DASH = [[6,3],[2,3],[8,3,2,3],[4,4],[1,2]];
   function compareEntries(){
     const horizon = state.horizon;
     const entries = PRESET_ORDER.map(([key,label,color])=>({label, color, p:Object.assign({}, defaults, presets[key], {horizon})}))
-      .concat(savedScenarios.map((v,i)=>({label:v.label, color:'#6B6B63', dash:SAVED_DASH[i%SAVED_DASH.length], p:Object.assign({}, v, {horizon})})));
+      .concat(savedScenarios.map((v,i)=>({label:v.label, color:'#9A9A92', dash:SAVED_DASH[i%SAVED_DASH.length], p:Object.assign({}, v, {horizon})})));
     entries.forEach(e=>{ e.r = runScenario(e.p.price, e.p); });
     return entries;
   }
@@ -945,7 +945,7 @@
     const ctx8 = $('chartScenarios').getContext('2d');
     chartScenarios = new Chart(ctx8, {
       data:{ labels:[], datasets:[
-        {type:'bar', label:'Kaufpreis', data:[], backgroundColor:'#93AECB', yAxisID:'y', order:2, categoryPercentage:0.45, barPercentage:0.9},
+        {type:'bar', label:'Kaufpreis', data:[], backgroundColor:'#B8B2E8', yAxisID:'y', order:2, categoryPercentage:0.45, barPercentage:0.9},
         {type:'bar', label:'Nettoergebnis', data:[], backgroundColor:[], yAxisID:'y', order:2, categoryPercentage:0.45, barPercentage:0.9}
       ]},
       options:{
@@ -978,7 +978,7 @@
     chartScenarios.data.labels = presetResults.map(r=>r.label);
     chartScenarios.data.datasets[0].data = presetResults.map(r=>r.principal);
     chartScenarios.data.datasets[1].data = presetResults.map(r=>r.netResult);
-    chartScenarios.data.datasets[1].backgroundColor = presetResults.map(r=>r.netResult>=0?'#109A82':'#E0435C');
+    chartScenarios.data.datasets[1].backgroundColor = presetResults.map(r=>r.netResult>=0?'#FFE500':'#FF3D8B');
     chartScenarios.update('none');
     // Break-even als Satz statt als zweite Achse: im Horizont erreichen ihn meist nur wenige Positionen.
     const be = presetResults.filter(r=>r.breakEvenYear!==null);

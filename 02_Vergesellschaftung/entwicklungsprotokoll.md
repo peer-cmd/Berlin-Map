@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-16 — Diagrammfarben (Druckfarben nach Joost Grootens)
+
+Drei Testpaletten verglichen (A Druckfarben, B Grau mit zwei Signalfarben, C Ultramarin/Zinnober/Lindgrün); gewählt A mit Fehlbetrag in Dunkelmagenta statt Schwarz. Jede Farbe hat eine Bedeutung: Tilgung Cyan `#00A0E3`, Zinsen und Entgelte Pink `#FF3D8B`, Überschuss Gelb `#FFE500`, Fehlbetrag Dunkelmagenta `#9C0059`, Eigenkapital des Landes Orange `#FF8A1E`, Bankdarlehen Violett `#6E62D6`, Anleihe Hellviolett `#B8B2E8`, Bewirtschaftung und Einmalkosten Grau. Positionen im Vergleich: Faire-Mieten-Modell Cyan, DWE-Studie Orange, Bernt/Holm Violett, Rechnungshof Pink, IW/Empirica Dunkelmagenta. Linien mit Gelb (Einkommen, Bestand, Nettoposition) in dunklerem Gelb `#C8B400`. Nur `model-calc.js` und die Legendenfelder in `vergesellschaftung-modell-v37.html` und `zahlen.html`; die Oberfläche (`style.css`, Türkis für Abschnitte und Schaltflächen) bleibt unverändert. Rechenkern unverändert; `pruefung.js` besteht. Versions-Tag `model-calc.js` auf `20261016b`.
+
 ## 2026-10-16 — Finanzierung, Mietverwendung, Schulden statt Cashflow-Diagrammen
 
 Die Diagramme „Der Cashflow pro Jahr“, „Der Cashflow kumuliert“, „Die Restschuld“ und „Die Kapitalposition Berlins“ mischten Aufwand und Tilgung: Zinsen und Rückzahlungen steckten zusammen im Ergebnis der AöR, Sondertilgungen senkten die kumulierte Kurve, und endfällige Anleihen wirkten in den Jahren ohne Rückzahlung wie Gewinn (DWE-Studie: Break-even in Jahr 28, danach −2,3 Mrd. € in Jahr 29). Kreditaufnahme und Kaufpreis erschienen nirgends. Ersetzt durch drei Diagramme mit getrennten Begriffen (Aufwand, Tilgung, Finanzierung):

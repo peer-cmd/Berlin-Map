@@ -19,6 +19,8 @@
 
 - Step 4b (2026-10-16): Wohnatlas time series 2004–2022 (source `wohnatlas` replaces `wohnatlas2022`; 23 types, older years matched to the 2022 areas by a grid crosswalk, change views for rent, social housing and municipal share). FNP 2025 as three layers (areas, retail overlay, symbols) in both maps; on the website as group "Flächennutzungsplan 2025". Pipeline: `match: "geometry"`, `derive`, `only_geometry`, `filter`; smoke test covers the crosswalk.
 
+- Colours (2026-10-16): model charts in print colours after three test palettes (see `02_Vergesellschaftung/entwicklungsprotokoll.md`); FNP areas: residential in pink steps W1–W4, other building land in greys, green and water pale. Site interface unchanged.
+
 ## Next
 
 5. Tempelhofer Feld map (`config/maps/tempelhofer-feld.json`): BRW time series, B-Pläne, FNP 2025 (mixed polygon/point geometry, needs handling), Grünanlagen, Klimaanalyse 2022, StEP Wohnen. Verify each service first.
@@ -29,4 +31,4 @@
 - Model source still missing: full AG Sozialisierung 2021 report (financing behind the 17 Mrd € claim of Gerhardt/Holm); the uploaded Gerhardt 2021 slides do not contain it.
 - Einwohnerdichte GeoJSON is 12.5 MB (26,613 blocks); loads only on demand. Vector tiles if it feels slow.
 - Not yet included: Denkmale (9,578), StEP Vorrangkulisse Innenentwicklung.
-- FNP and Wohnatlas colours are a first draft.
+- Wohnatlas colours are a first draft.

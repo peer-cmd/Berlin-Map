@@ -3369,8 +3369,8 @@
             "en": "Designation"
           },
           "description": {
-            "de": "Dargestellte Bodennutzung im Flächennutzungsplan, Stand Neubekanntmachung 2025. Wohnbauflächen nach Dichtestufe (GFZ).",
-            "en": "Land use designated in the land-use plan, 2025 re-publication. Residential areas by density class (floor area ratio)."
+            "de": "Dargestellte Bodennutzung im Flächennutzungsplan, Stand Neubekanntmachung 2025. Wohnbauflächen farbig nach Dichtestufe (GFZ), übrige Bauflächen in Grautönen.",
+            "en": "Land use designated in the land-use plan, 2025 re-publication. Residential areas in colour by density class (floor area ratio), other building land in greys."
           },
           "style": {
             "kind": "categorical",
@@ -3382,7 +3382,7 @@
                   "de": "Wohnbaufläche W1 (GFZ über 1,5)",
                   "en": "Residential W1 (FAR above 1.5)"
                 },
-                "color": "#d6336c",
+                "color": "#E8007D",
                 "values": [
                   "Wohnbaufläche, W1 (GFZ über 1,5)"
                 ]
@@ -3392,7 +3392,7 @@
                   "de": "Wohnbaufläche W2 (GFZ bis 1,5)",
                   "en": "Residential W2 (FAR up to 1.5)"
                 },
-                "color": "pink",
+                "color": "#FF5FA2",
                 "values": [
                   "Wohnbaufläche, W2 (GFZ bis 1,5)"
                 ]
@@ -3402,7 +3402,7 @@
                   "de": "Wohnbaufläche W3 (GFZ bis 0,8)",
                   "en": "Residential W3 (FAR up to 0.8)"
                 },
-                "color": "#f59ab2",
+                "color": "#FF9DC6",
                 "values": [
                   "Wohnbaufläche, W3 (GFZ bis 0,8)",
                   "Wohnbaufläche, W3 (GFZ bis 0,8) mit landschaftlicher Prägung"
@@ -3413,7 +3413,7 @@
                   "de": "Wohnbaufläche W4 (GFZ bis 0,4)",
                   "en": "Residential W4 (FAR up to 0.4)"
                 },
-                "color": "rose",
+                "color": "#FFD3E6",
                 "values": [
                   "Wohnbaufläche, W4 (GFZ bis 0,4)",
                   "Wohnbaufläche, W4 (GFZ bis 0,4) mit landschaftlicher Prägung"
@@ -3424,7 +3424,7 @@
                   "de": "Gemischte Baufläche M1",
                   "en": "Mixed use M1"
                 },
-                "color": "plum",
+                "color": "#75756E",
                 "values": [
                   "Gemischte Baufläche, M1"
                 ]
@@ -3434,7 +3434,7 @@
                   "de": "Gemischte Baufläche M2",
                   "en": "Mixed use M2"
                 },
-                "color": "#c05a88",
+                "color": "#9A9A92",
                 "values": [
                   "Gemischte Baufläche, M2"
                 ]
@@ -3444,7 +3444,7 @@
                   "de": "Gewerbliche Baufläche",
                   "en": "Commercial"
                 },
-                "color": "violet",
+                "color": "#BDBDB5",
                 "values": [
                   "Gewerbliche Baufläche"
                 ]
@@ -3454,7 +3454,7 @@
                   "de": "Gemeinbedarfsfläche",
                   "en": "Public facilities"
                 },
-                "color": "orange",
+                "color": "#52524C",
                 "values": [
                   "Gemeinbedarfsfläche",
                   "Gemeinbedarfsfläche mit hohem Grünanteil"
@@ -3465,7 +3465,7 @@
                   "de": "Sonderbaufläche",
                   "en": "Special building land"
                 },
-                "color": "yellow",
+                "color": "#DCDCD6",
                 "values": [
                   "Sonderbaufläche mit hohem Grünanteil",
                   "Sonderbaufläche Hauptstadtfunktion (H)",
@@ -3478,7 +3478,7 @@
                   "de": "Ver- und Entsorgungsfläche",
                   "en": "Utilities"
                 },
-                "color": "#9a9a92",
+                "color": "#DCDCD6",
                 "values": [
                   "Ver- und Entsorgungsfläche mit gewerblichem Charakter",
                   "Ver- und Entsorgungsfläche mit hohem Grünanteil",
@@ -3491,7 +3491,7 @@
                   "de": "Grünfläche",
                   "en": "Green space"
                 },
-                "color": "#6fae7c",
+                "color": "#C9E6BE",
                 "values": [
                   "Grünfläche"
                 ]
@@ -3501,7 +3501,7 @@
                   "de": "Wald",
                   "en": "Forest"
                 },
-                "color": "green",
+                "color": "#9BCF95",
                 "values": [
                   "Wald"
                 ]
@@ -3511,7 +3511,7 @@
                   "de": "Landwirtschaftsfläche",
                   "en": "Agriculture"
                 },
-                "color": "olive",
+                "color": "#EEF0D8",
                 "values": [
                   "Landwirtschaftsfläche"
                 ]
@@ -3521,7 +3521,7 @@
                   "de": "Wasserfläche",
                   "en": "Water"
                 },
-                "color": "#a9cfe6",
+                "color": "#DDEFF7",
                 "values": [
                   "Wasserfläche"
                 ]
@@ -3531,7 +3531,7 @@
                   "de": "Verkehr (Autobahn, Hauptverkehrsstraße, Bahn)",
                   "en": "Transport (motorway, main road, rail)"
                 },
-                "color": "#bdbdb5",
+                "color": "#F0F0EC",
                 "values": [
                   "Autobahn",
                   "übergeordnete Hauptverkehrsstraße",
@@ -3628,7 +3628,7 @@
           },
           "style": {
             "kind": "single",
-            "color": "magenta"
+            "color": "#14171A"
           }
         }
       }
@@ -3717,7 +3717,7 @@
                   "de": "Soziale Infrastruktur und Verwaltung",
                   "en": "Social infrastructure and administration"
                 },
-                "color": "orange",
+                "color": "#14171A",
                 "values": [
                   "Lagesymbol Schule",
                   "Lagesymbol Hochschule, Forschung",
@@ -3733,7 +3733,7 @@
                   "de": "Sport und Freizeit",
                   "en": "Sport and leisure"
                 },
-                "color": "yellow",
+                "color": "#9A9A92",
                 "values": [
                   "Symbol Sport",
                   "Lagesymbol Sport",
@@ -3746,7 +3746,7 @@
                   "de": "Grün (Park, Kleingarten, Friedhof, Feld)",
                   "en": "Green (park, allotments, cemetery, fields)"
                 },
-                "color": "green",
+                "color": "#3FA34D",
                 "values": [
                   "Symbol Parkanlage",
                   "Symbol Kleingarten",
@@ -3759,7 +3759,7 @@
                   "de": "Technische Infrastruktur",
                   "en": "Technical infrastructure"
                 },
-                "color": "violet",
+                "color": "#BDBDB5",
                 "values": [
                   "Lagesymbol Autobahnanschlussstelle",
                   "Symbol Betriebshof (Bahn und Bus)",
@@ -3773,7 +3773,7 @@
                   "de": "Schadstoffbelasteter Boden",
                   "en": "Contaminated soil"
                 },
-                "color": "magenta",
+                "color": "#FF2FC0",
                 "values": [
                   "Symbol schadstoffbel. Boden"
                 ]
@@ -3783,7 +3783,7 @@
                   "de": "Schutzgebiete (Kennbuchstabe)",
                   "en": "Protected areas (letter)"
                 },
-                "color": "olive",
+                "color": "#BDBDB5",
                 "values": [
                   "Landschaftsschutzgebiet (Buchstabe)",
                   "Naturschutzgebiet (Buchstabe)",
