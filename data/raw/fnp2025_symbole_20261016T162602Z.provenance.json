@@ -1,0 +1,60 @@
+{
+  "layer_id": "fnp2025_symbole",
+  "title": "Flächennutzungsplan 2025: Symbole",
+  "retrieved_utc": "20261016T162602Z",
+  "wfs_version": "2.0.0",
+  "requested_srs": "EPSG:4326",
+  "request_urls": {
+    "capabilities": "https://gdi.berlin.de/services/wfs/fnp_2025?service=WFS&version=2.0.0&request=GetCapabilities",
+    "hits": "https://gdi.berlin.de/services/wfs/fnp_2025?service=WFS&version=2.0.0&request=GetFeature&typeNames=fnp_2025:fnp_2025_vektor&resultType=hits",
+    "data": "https://gdi.berlin.de/services/wfs/fnp_2025?service=WFS&version=2.0.0&request=GetFeature&typeNames=fnp_2025:fnp_2025_vektor&outputFormat=application/json&srsName=EPSG:4326"
+  },
+  "service_base_url": "https://gdi.berlin.de/services/wfs/fnp_2025",
+  "type_name": "fnp_2025:fnp_2025_vektor",
+  "response_crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:EPSG::4326"
+    }
+  },
+  "feature_count": 6641,
+  "raw_file": "fnp2025_symbole_20261016T162602Z.geojson",
+  "raw_bytes": 9917075,
+  "raw_sha256": "13e98ebfa60fe81b02f0c8b70d99a72b7aac2907a87b76591bbb3ddd3c1d1268",
+  "service_server_timestamp": "2026-10-16T16:26:04.258Z",
+  "service_title": "FNP (Flächennutzungsplan Berlin), Stand Neubekanntmachung 2025",
+  "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+  "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen.",
+  "parts": [
+    {
+      "request_urls": {
+        "capabilities": "https://gdi.berlin.de/services/wfs/fnp_2025?service=WFS&version=2.0.0&request=GetCapabilities",
+        "hits": "https://gdi.berlin.de/services/wfs/fnp_2025?service=WFS&version=2.0.0&request=GetFeature&typeNames=fnp_2025:fnp_2025_vektor&resultType=hits",
+        "data": "https://gdi.berlin.de/services/wfs/fnp_2025?service=WFS&version=2.0.0&request=GetFeature&typeNames=fnp_2025:fnp_2025_vektor&outputFormat=application/json&srsName=EPSG:4326"
+      },
+      "service_base_url": "https://gdi.berlin.de/services/wfs/fnp_2025",
+      "type_name": "fnp_2025:fnp_2025_vektor",
+      "response_crs": {
+        "type": "name",
+        "properties": {
+          "name": "urn:ogc:def:crs:EPSG::4326"
+        }
+      },
+      "feature_count": 6641,
+      "raw_file": "fnp2025_symbole_20261016T162602Z.geojson",
+      "raw_bytes": 9917075,
+      "raw_sha256": "13e98ebfa60fe81b02f0c8b70d99a72b7aac2907a87b76591bbb3ddd3c1d1268",
+      "service_server_timestamp": "2026-10-16T16:26:04.258Z",
+      "service_title": "FNP (Flächennutzungsplan Berlin), Stand Neubekanntmachung 2025",
+      "service_fees": "Für die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden. Die Lizenz ist über https://www.govdata.de/dl-de/zero-2-0 abrufbar.",
+      "service_access_constraints": "Es gelten keine Zugriffsbeschränkungen."
+    }
+  ],
+  "dataset_page": "https://gdi.berlin.de/services/wfs/fnp_2025?request=GetCapabilities&service=WFS",
+  "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+  "license": {
+    "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+    "id": "dl-de-zero-2.0",
+    "url": "https://www.govdata.de/dl-de/zero-2-0"
+  }
+}

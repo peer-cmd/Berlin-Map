@@ -178,9 +178,62 @@ def simplify_geometry(geom, tol_m):
             "coordinates": [[simplify_ring(r, tol_m) for r in poly] for poly in geom["coordinates"]]}
 
 
-def combine_parts(parts, combine, warnings):
+def rasterize(features, key, step_m):
+    """Even-odd scanline fill of each feature's polygon rings on a grid of step_m (cell centres).
+    Returns {(col, row): key value}. Standard library stand-in for polygon intersection."""
+    kx, ky = M_PER_DEG_LON_AT_52_5, M_PER_DEG_LAT
+    cells = {}
+    for f in features:
+        g = f.get("geometry") or {}
+        t = g.get("type")
+        polys = [g["coordinates"]] if t == "Polygon" else g["coordinates"] if t == "MultiPolygon" else []
+        rows = {}
+        for ring in (r for p in polys for r in p):
+            pts = [(x * kx / step_m - 0.5, y * ky / step_m - 0.5) for x, y in (q[:2] for q in ring)]
+            for (x1, y1), (x2, y2) in zip(pts, pts[1:]):
+                if y1 == y2:
+                    continue
+                for j in range(math.ceil(min(y1, y2)), math.ceil(max(y1, y2))):
+                    rows.setdefault(j, []).append(x1 + (j - y1) * (x2 - x1) / (y2 - y1))
+        v = f["properties"].get(key)
+        for j, xs in rows.items():
+            xs.sort()
+            for a, b in zip(xs[::2], xs[1::2]):
+                for i in range(math.ceil(a), math.ceil(b)):
+                    cells[(i, j)] = v
+    return cells
+
+
+def crosswalk(base, other, key, other_key, step_m, threshold):
+    """Match areas of an older geometry to the base geometry by overlap on a grid.
+    An old area maps to a base area when each covers at least `threshold` of the other.
+    Returns ({old key: base key}, report rows for every old area)."""
+    a, b = rasterize(base, key, step_m), rasterize(other, other_key, step_m)
+    tot_a, tot_b, both = Counter(a.values()), Counter(b.values()), Counter()
+    for cell, ok in b.items():
+        if cell in a:
+            both[(ok, a[cell])] += 1
+    best = {}
+    for (ok, bk), n in both.items():
+        if n > best.get(ok, (None, 0))[1]:
+            best[ok] = (bk, n)
+    mapping, rows = {}, []
+    for ok in sorted(tot_b, key=str):
+        bk, n = best.get(ok, (None, 0))
+        s_old, s_new = n / tot_b[ok], (n / tot_a[bk] if bk is not None else 0.0)
+        matched = s_old >= threshold and s_new >= threshold
+        if matched:
+            mapping[ok] = bk
+        rows.append({"old_key": ok, "base_key": bk, "share_of_old": round(s_old, 4),
+                     "share_of_base": round(s_new, 4), "matched": matched})
+    return mapping, rows
+
+
+def combine_parts(parts, combine, warnings, report=None):
     """parts: list of (part_config, features). Returns one feature list.
-    join:   geometry from the first part; attributes of the other parts added by key.
+    join:   geometry from the first part; attributes of the other parts added by key. A part with
+            "match": "geometry" (older area boundaries) joins through crosswalk(); its report
+            goes to report[fingerprint] = {"type_names": [...], "rows": [...]}.
     concat: all features of all parts; combine["field"] records which part each came from."""
     for cfg, feats in parts:
         for f in feats:
@@ -206,6 +259,29 @@ def combine_parts(parts, combine, warnings):
         for cfg, feats in parts[1:]:
             k = cfg.get("key", key)
             index = {}
+            if cfg.get("match") == "geometry":
+                fp = hashlib.sha256(json.dumps([(f["properties"].get(k), f.get("geometry")) for f in feats],
+                                               sort_keys=True).encode()).hexdigest()[:12]
+                if report is None:
+                    report = {}
+                if fp not in report:
+                    mapping, rows = crosswalk(base, feats, key, k, combine.get("grid_m", 50),
+                                              combine.get("match_threshold", 0.97))
+                    report[fp] = {"type_names": [], "mapping": mapping, "rows": rows}
+                    n = sum(1 for f in base if f["properties"].get(key) not in mapping.values())
+                    if n:
+                        warnings.append(f"{n} features have no matching area in the older geometry "
+                                        f"(crosswalk {fp}); older values left empty")
+                report[fp]["type_names"].append(cfg["type_name"])
+                for f in feats:
+                    mk = report[fp]["mapping"].get(f["properties"].get(k))
+                    if mk is not None:
+                        index.setdefault(mk, f["properties"])
+                for f in base:
+                    other = index.get(f["properties"].get(key))
+                    for name, val in (other or {}).items():
+                        f["properties"].setdefault(name, val)
+                continue
             for f in feats:
                 index.setdefault(f["properties"].get(k), f["properties"])
             unmatched = 0
@@ -244,12 +320,38 @@ def process(layer):
         feats = json.loads(raw_bytes)["features"]
         print(f"[{lid}] {raw_path.name}: {len(feats)} features")
         parts.append((cfg, feats))
-    raw_features = combine_parts(parts, opts.get("combine"), warnings)
+    xwalk = {}
+    raw_features = combine_parts(parts, opts.get("combine"), warnings, xwalk)
 
     for new, old in (opts.get("alias") or {}).items():
         for f in raw_features:
             if new not in f["properties"] and old in f["properties"]:
                 f["properties"][new] = f["properties"][old]
+
+    # Derived fields: change between two years of the same indicator, computed from source values.
+    for d in opts.get("derive") or []:
+        for f in raw_features:
+            p = f["properties"]
+            a, b = p.get(d["from"]), p.get(d["to"])
+            if not (isinstance(a, (int, float)) and isinstance(b, (int, float))):
+                continue
+            if d["op"] == "pct_change" and a:
+                p[d["field"]] = round((b / a - 1) * 100, 1)
+            elif d["op"] == "diff":
+                p[d["field"]] = round(b - a, 2)
+
+    # One service can feed several sources, split by geometry type or by an attribute
+    # (e.g. FNP areas, overlay areas and symbols). Features are selected, never changed.
+    n = len(raw_features)
+    if opts.get("only_geometry"):
+        allowed = {"polygon": ("Polygon", "MultiPolygon"), "point": ("Point", "MultiPoint"),
+                   "line": ("LineString", "MultiLineString")}[kind]
+        raw_features = [f for f in raw_features if (f.get("geometry") or {}).get("type") in allowed]
+    flt = opts.get("filter")
+    if flt:
+        inside = lambda f: f["properties"].get(flt["property"]) in flt.get("include", flt.get("exclude", []))
+        raw_features = [f for f in raw_features if inside(f) == ("include" in flt)]
+    filtered = n - len(raw_features)
 
     skipped = Counter()
     kept = []
@@ -274,7 +376,7 @@ def process(layer):
         dup = [k for k, n in Counter(p.get(id_field) for _, p, _ in kept).items() if n > 1]
         if dup:
             warnings.append(f"{len(dup)} duplicate {id_field} values (e.g. {dup[:3]})")
-    stats = {}
+    stats, missing_by_count = {}, {}
     for view in layer.get("views", {}).values():
         st = view.get("style", {})
         prop = st.get("property")
@@ -283,13 +385,16 @@ def process(layer):
             if s:
                 stats[prop] = s
             if missing:
-                warnings.append(f"{missing} features without numeric {prop}")
+                missing_by_count.setdefault(missing, []).append(prop)
         elif st.get("kind") == "categorical" and prop:
             known = {v for c in st.get("categories", []) for v in c.get("values", [])}
             other = Counter(p.get(prop) for _, p, _ in kept if p.get(prop) not in known)
             if other:
                 warnings.append(f"{sum(other.values())} features with {prop} outside the styled categories: "
                                 f"{dict(other.most_common(5))}")
+    for missing, props in missing_by_count.items():
+        warnings.append(f"{missing} features without numeric {props[0]}" if len(props) == 1 else
+                        f"{missing} features without numeric values in {len(props)} fields ({', '.join(props)})")
     if skipped:
         warnings.append(f"skipped features: {dict(skipped)}")
 
@@ -307,6 +412,17 @@ def process(layer):
         tmp.write_text(text, encoding="utf-8-sig" if path.suffix == ".csv" else "utf-8", newline="")
         tmp.replace(path)
 
+    files = {"geojson": out_path.name, "csv": f"{lid}.csv"}
+    if xwalk:
+        rows = [{"crosswalk": fp, "type_names": " ".join(r["type_names"]), **row}
+                for fp, r in xwalk.items() for row in r["rows"]]
+        buf = io.StringIO()
+        w = csv.DictWriter(buf, fieldnames=list(rows[0]), lineterminator="\n")
+        w.writeheader()
+        w.writerows(rows)
+        files["crosswalk"] = f"{lid}.crosswalk.csv"
+        (PROCESSED_DIR / files["crosswalk"]).write_text(buf.getvalue(), encoding="utf-8-sig", newline="")
+
     meta = {
         "layer_id": lid,
         "title": title(layer),
@@ -314,11 +430,13 @@ def process(layer):
         "processed_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "feature_count": len(features),
         "skipped": dict(skipped),
+        "filtered": filtered,
         "warnings": warnings,
         "stats": stats,
         "output_bytes": len(payload.encode("utf-8")),
-        "processing": {k: opts[k] for k in ("precision", "simplify_m", "keep_fields", "combine", "alias") if k in opts},
-        "files": {"geojson": out_path.name, "csv": f"{lid}.csv"},
+        "processing": {k: opts[k] for k in ("precision", "simplify_m", "keep_fields", "combine", "alias",
+                                                "derive", "only_geometry", "filter") if k in opts},
+        "files": files,
         "provenance": prov,
         "provenance_file": prov_path.name,
     }

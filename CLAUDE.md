@@ -10,7 +10,7 @@ MapLibre map of Berlin for architectural and urban research. The data core is pr
 - `python scripts/process.py [--layer ID | --map ID]` writes `data/processed/<id>.geojson`, `<id>.csv` (attribute table) and `<id>.meta.json`.
 - `python scripts/serve.py` serves the repo root; the map is at `/web/?map=<id>` (`&lang=en`, `&embed=1`, `&layers=id:view,...`).
 - `python tests/smoke.py` runs the pipeline against a mock WFS in a temporary folder; `data/` is not touched.
-- Multi-type sources: `source.parts` (each may have its own `base_url`, `rename`, `value`) with `process.combine` = `join` (on `key`) or `concat` (adds `field`). Raw GeoJSON is git-ignored; provenance files are committed.
+- Derived fields: `process.derive` (`pct_change` or `diff` between two fields). Multi-type sources: `source.parts` (each may have its own `base_url`, `rename`, `value`) with `process.combine` = `join` (on `key`) or `concat` (adds `field`). Raw GeoJSON is git-ignored; provenance files are committed.
 - `python scripts/export_site.py [--map vergesellschaftung]` copies viewer, vendor, catalogue, map definition and the processed data that map uses into `02_Vergesellschaftung/karte/` (gitignored) for `karte.html`; `--zip` also writes `website-upload.zip`. The website is published with GitHub Pages from `main`: https://peer-cmd.github.io/Berlin-Map/02_Vergesellschaftung/index.html. Merge changes into `main` so the site updates.
 - `web/app.js` reads its paths from `<body data-base data-data data-map>`; one file serves `web/` and the website.
 - Python standard library only. MapLibre 5.24 is vendored in `web/vendor/`.
@@ -31,7 +31,8 @@ MapLibre map of Berlin for architectural and urban research. The data core is pr
 - Catalogue: CSW `https://gdi.berlin.de/geonetwork/srv/ger/csw` lists 663 WFS services. Verified for later steps (all dl-de-zero-2.0 unless noted): `eigentumstruktur` (6 types, 542 PLR, field `plr_schl`), `lwu` (`lwu:lwu_fls`, 5544 parcels), `erhaltungsverordnungsgebiete` (`erhaltgeb_em` 82, `erhaltgeb_es` 94), `vorkaufsrechtsverordnungen` (5), `grosssiedlungen` (83), `wa_01/04/05/07/10_*` (Wohnatlas, 58–60 Prognoseräume, one type per year), `mss_2025` (542 PLR, field `plr_id`), `lor_2021` (CC-BY 3.0, Amt für Statistik), `sanier`, `entwicklungsbereiche`, `denkmale` (9578), `fnp_2025` (6641), `step_wo_2040`, `brw2002`–`brw2025`.
 - Eigentumskonzentration shares are % of parcel area of residential/mixed land per PLR (not dwellings); municipal companies and cooperatives are subsets of legal persons (Datenformatbeschreibung SenSBW 2025).
 - StEP Wohnen 2040 "Neue Stadtquartiere" geometry is schematic: circles of ~900 m radius.
-- Wohnatlas 2022 uses 58 Prognoseräume (LOR 2021); earlier years use 60, so years cannot be joined by key.
+- Wohnatlas 2022 uses 58 Prognoseräume (LOR 2021); earlier years use 60 with different numbers (`0101` → `0110`). Years per service (verified 2026-10-16): wa_01 2008, 2009, 2018, 2020, 2022; wa_04 2010, 2017, 2020, 2022; wa_05 2008, 2017, 2020, 2022; wa_07 and wa_10 2004_09, 2005_10, 2012_17, 2015_20, 2017_22. Source `wohnatlas` joins older years through `match: "geometry"` (grid crosswalk, ≥ 97 % mutual overlap, written to `wohnatlas.crosswalk.csv`); 48 of 58 areas match, 10 redrawn areas have no older values.
+- FNP 2025 (`fnp_2025:fnp_2025_vektor`): 4514 polygons and 2127 points in one type, fields `nutzungsart`, `zweckbestimmung`, `gisid`. "Einzelhandelskonzentration" (248) overlays other areas. Split into `fnp2025_flaechen`, `fnp2025_einzelhandel`, `fnp2025_symbole` with `process.only_geometry` and `process.filter`.
 - Basemap: OpenFreeMap positron style (no key). CARTO tiles need an API key; do not use them.
 
 ## 02_Vergesellschaftung (separate project)

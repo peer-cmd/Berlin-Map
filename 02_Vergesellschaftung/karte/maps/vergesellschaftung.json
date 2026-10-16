@@ -59,7 +59,7 @@
       },
       "layers": [
         {
-          "source": "wohnatlas2022",
+          "source": "wohnatlas",
           "visible": false,
           "opacity": 0.85
         },
@@ -103,6 +103,29 @@
           "source": "grosssiedlungen",
           "render": "outline",
           "visible": false
+        }
+      ]
+    },
+    {
+      "title": {
+        "de": "Flächennutzungsplan 2025",
+        "en": "Land-use plan 2025"
+      },
+      "layers": [
+        {
+          "source": "fnp2025_symbole",
+          "visible": false,
+          "opacity": 0.9
+        },
+        {
+          "source": "fnp2025_einzelhandel",
+          "render": "outline",
+          "visible": false
+        },
+        {
+          "source": "fnp2025_flaechen",
+          "visible": false,
+          "opacity": 0.8
         }
       ]
     },

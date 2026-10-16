@@ -1906,11 +1906,11 @@
       }
     },
     {
-      "id": "wohnatlas2022",
+      "id": "wohnatlas",
       "enabled": true,
       "title": {
-        "de": "Wohnatlas Berlin 2022",
-        "en": "Berlin housing atlas 2022"
+        "de": "Wohnatlas Berlin 2004–2022",
+        "en": "Berlin housing atlas 2004–2022"
       },
       "unit_label": {
         "de": "Prognoseräume",
@@ -1919,30 +1919,189 @@
       "geometry": "polygon",
       "source": {
         "type": "wfs",
-        "base_url": "https://gdi.berlin.de/services/wfs/wa_01_angebotsmieten",
         "version": "2.0.0",
         "output_format": "application/json",
         "srs_name": "EPSG:4326",
+        "base_url": "https://gdi.berlin.de/services/wfs/wa_01_angebotsmieten",
         "parts": [
           {
             "base_url": "https://gdi.berlin.de/services/wfs/wa_01_angebotsmieten",
-            "type_name": "wa_01_angebotsmieten:wa_01_2022"
+            "type_name": "wa_01_angebotsmieten:wa_01_2022",
+            "rename": {
+              "angebotsmieten": "angebotsmieten_2022"
+            }
+          },
+          {
+            "base_url": "https://gdi.berlin.de/services/wfs/wa_01_angebotsmieten",
+            "type_name": "wa_01_angebotsmieten:wa_01_2020",
+            "rename": {
+              "angebotsmieten": "angebotsmieten_2020"
+            },
+            "match": "geometry"
+          },
+          {
+            "base_url": "https://gdi.berlin.de/services/wfs/wa_01_angebotsmieten",
+            "type_name": "wa_01_angebotsmieten:wa_01_2018",
+            "rename": {
+              "angebotsmieten": "angebotsmieten_2018"
+            },
+            "match": "geometry"
+          },
+          {
+            "base_url": "https://gdi.berlin.de/services/wfs/wa_01_angebotsmieten",
+            "type_name": "wa_01_angebotsmieten:wa_01_2009",
+            "rename": {
+              "angebotsmieten": "angebotsmieten_2009"
+            },
+            "match": "geometry"
+          },
+          {
+            "base_url": "https://gdi.berlin.de/services/wfs/wa_01_angebotsmieten",
+            "type_name": "wa_01_angebotsmieten:wa_01_2008",
+            "rename": {
+              "angebotsmieten": "angebotsmieten_2008"
+            },
+            "match": "geometry"
           },
           {
             "base_url": "https://gdi.berlin.de/services/wfs/wa_04_anteil_sozwohng",
-            "type_name": "wa_04_anteil_sozwohng:wa_04_2022"
+            "type_name": "wa_04_anteil_sozwohng:wa_04_2022",
+            "rename": {
+              "anteil_sozwohng": "anteil_sozwohng_2022"
+            }
+          },
+          {
+            "base_url": "https://gdi.berlin.de/services/wfs/wa_04_anteil_sozwohng",
+            "type_name": "wa_04_anteil_sozwohng:wa_04_2020",
+            "rename": {
+              "anteil_sozwohng": "anteil_sozwohng_2020"
+            },
+            "match": "geometry"
+          },
+          {
+            "base_url": "https://gdi.berlin.de/services/wfs/wa_04_anteil_sozwohng",
+            "type_name": "wa_04_anteil_sozwohng:wa_04_2017",
+            "rename": {
+              "anteil_sozwohng": "anteil_sozwohng_2017"
+            },
+            "match": "geometry"
+          },
+          {
+            "base_url": "https://gdi.berlin.de/services/wfs/wa_04_anteil_sozwohng",
+            "type_name": "wa_04_anteil_sozwohng:wa_04_2010",
+            "rename": {
+              "anteil_sozwohng": "anteil_sozwohng_2010"
+            },
+            "match": "geometry"
           },
           {
             "base_url": "https://gdi.berlin.de/services/wfs/wa_05_anteil_staedtwbg",
-            "type_name": "wa_05_anteil_staedtwbg:wa_05_2022"
+            "type_name": "wa_05_anteil_staedtwbg:wa_05_2022",
+            "rename": {
+              "anteil_staedtwbg": "anteil_staedtwbg_2022"
+            }
+          },
+          {
+            "base_url": "https://gdi.berlin.de/services/wfs/wa_05_anteil_staedtwbg",
+            "type_name": "wa_05_anteil_staedtwbg:wa_05_2020",
+            "rename": {
+              "anteil_staedtwbg": "anteil_staedtwbg_2020"
+            },
+            "match": "geometry"
+          },
+          {
+            "base_url": "https://gdi.berlin.de/services/wfs/wa_05_anteil_staedtwbg",
+            "type_name": "wa_05_anteil_staedtwbg:wa_05_2017",
+            "rename": {
+              "anteil_staedtwbg": "anteil_staedtwbg_2017"
+            },
+            "match": "geometry"
+          },
+          {
+            "base_url": "https://gdi.berlin.de/services/wfs/wa_05_anteil_staedtwbg",
+            "type_name": "wa_05_anteil_staedtwbg:wa_05_2008",
+            "rename": {
+              "anteil_staedtwbg": "anteil_staedtwbg_2008"
+            },
+            "match": "geometry"
           },
           {
             "base_url": "https://gdi.berlin.de/services/wfs/wa_07_whg_umwandlungp",
-            "type_name": "wa_07_whg_umwandlungp:wa_07_2017_22"
+            "type_name": "wa_07_whg_umwandlungp:wa_07_2017_22",
+            "rename": {
+              "wohnung_umwandp": "wohnung_umwandp_2017_22"
+            }
+          },
+          {
+            "base_url": "https://gdi.berlin.de/services/wfs/wa_07_whg_umwandlungp",
+            "type_name": "wa_07_whg_umwandlungp:wa_07_2015_20",
+            "rename": {
+              "wohnung_umwandp": "wohnung_umwandp_2015_20"
+            },
+            "match": "geometry"
+          },
+          {
+            "base_url": "https://gdi.berlin.de/services/wfs/wa_07_whg_umwandlungp",
+            "type_name": "wa_07_whg_umwandlungp:wa_07_2012_17",
+            "rename": {
+              "wohnung_umwandp": "wohnung_umwandp_2012_17"
+            },
+            "match": "geometry"
+          },
+          {
+            "base_url": "https://gdi.berlin.de/services/wfs/wa_07_whg_umwandlungp",
+            "type_name": "wa_07_whg_umwandlungp:wa_07_2005_10",
+            "rename": {
+              "wohnung_umwandp": "wohnung_umwandp_2005_10"
+            },
+            "match": "geometry"
+          },
+          {
+            "base_url": "https://gdi.berlin.de/services/wfs/wa_07_whg_umwandlungp",
+            "type_name": "wa_07_whg_umwandlungp:wa_07_2004_09",
+            "rename": {
+              "wohnung_umwandp": "wohnung_umwandp_2004_09"
+            },
+            "match": "geometry"
           },
           {
             "base_url": "https://gdi.berlin.de/services/wfs/wa_10_whg_verkaufp",
-            "type_name": "wa_10_whg_verkaufp:wa_10_2017_22"
+            "type_name": "wa_10_whg_verkaufp:wa_10_2017_22",
+            "rename": {
+              "wohnungverkaufp": "wohnungverkaufp_2017_22"
+            }
+          },
+          {
+            "base_url": "https://gdi.berlin.de/services/wfs/wa_10_whg_verkaufp",
+            "type_name": "wa_10_whg_verkaufp:wa_10_2015_20",
+            "rename": {
+              "wohnungverkaufp": "wohnungverkaufp_2015_20"
+            },
+            "match": "geometry"
+          },
+          {
+            "base_url": "https://gdi.berlin.de/services/wfs/wa_10_whg_verkaufp",
+            "type_name": "wa_10_whg_verkaufp:wa_10_2012_17",
+            "rename": {
+              "wohnungverkaufp": "wohnungverkaufp_2012_17"
+            },
+            "match": "geometry"
+          },
+          {
+            "base_url": "https://gdi.berlin.de/services/wfs/wa_10_whg_verkaufp",
+            "type_name": "wa_10_whg_verkaufp:wa_10_2005_10",
+            "rename": {
+              "wohnungverkaufp": "wohnungverkaufp_2005_10"
+            },
+            "match": "geometry"
+          },
+          {
+            "base_url": "https://gdi.berlin.de/services/wfs/wa_10_whg_verkaufp",
+            "type_name": "wa_10_whg_verkaufp:wa_10_2004_09",
+            "rename": {
+              "wohnungverkaufp": "wohnungverkaufp_2004_09"
+            },
+            "match": "geometry"
           }
         ],
         "dataset_page": "https://gdi.berlin.de/services/wfs/wa_01_angebotsmieten?request=GetCapabilities&service=WFS"
@@ -1953,19 +2112,37 @@
         "id": "dl-de-zero-2.0",
         "url": "https://www.govdata.de/dl-de/zero-2-0"
       },
-      "note": {
-        "de": "Jahrgang 2022; Umwandlungen und Verkäufe als Summe 2017–2022. 58 Prognoseräume (LOR 2021).",
-        "en": "Year 2022; conversions and sales summed over 2017–2022. 58 forecast areas (LOR 2021)."
-      },
       "process": {
         "id_field": "prognoseraum_nummer",
         "combine": {
           "mode": "join",
-          "key": "prognoseraum_nummer"
+          "key": "prognoseraum_nummer",
+          "grid_m": 50,
+          "match_threshold": 0.97
         },
         "alias": {
           "pgr_id": "prognoseraum_nummer"
         },
+        "derive": [
+          {
+            "field": "angebotsmieten_chg_2008_2022",
+            "op": "pct_change",
+            "from": "angebotsmieten_2008",
+            "to": "angebotsmieten_2022"
+          },
+          {
+            "field": "anteil_sozwohng_chg_2010_2022",
+            "op": "diff",
+            "from": "anteil_sozwohng_2010",
+            "to": "anteil_sozwohng_2022"
+          },
+          {
+            "field": "anteil_staedtwbg_chg_2008_2022",
+            "op": "diff",
+            "from": "anteil_staedtwbg_2008",
+            "to": "anteil_staedtwbg_2022"
+          }
+        ],
         "precision": 5,
         "simplify_m": 2
       },
@@ -1985,77 +2162,267 @@
           }
         },
         {
-          "key": "angebotsmieten",
+          "key": "angebotsmieten_2022",
           "label": {
-            "de": "Angebotsmiete (netto kalt)",
-            "en": "Asking rent (net, cold)"
+            "de": "Angebotsmiete 2022",
+            "en": "Asking rent 2022"
           },
           "format": "number",
           "unit": "€/m²"
         },
         {
-          "key": "anteil_sozwohng",
+          "key": "angebotsmieten_2020",
           "label": {
-            "de": "Anteil Sozialmietwohnungen",
-            "en": "Share of social housing"
+            "de": "Angebotsmiete 2020",
+            "en": "Asking rent 2020"
+          },
+          "format": "number",
+          "unit": "€/m²"
+        },
+        {
+          "key": "angebotsmieten_2018",
+          "label": {
+            "de": "Angebotsmiete 2018",
+            "en": "Asking rent 2018"
+          },
+          "format": "number",
+          "unit": "€/m²"
+        },
+        {
+          "key": "angebotsmieten_2009",
+          "label": {
+            "de": "Angebotsmiete 2009",
+            "en": "Asking rent 2009"
+          },
+          "format": "number",
+          "unit": "€/m²"
+        },
+        {
+          "key": "angebotsmieten_2008",
+          "label": {
+            "de": "Angebotsmiete 2008",
+            "en": "Asking rent 2008"
+          },
+          "format": "number",
+          "unit": "€/m²"
+        },
+        {
+          "key": "angebotsmieten_chg_2008_2022",
+          "label": {
+            "de": "Angebotsmiete: Veränderung 2008–2022",
+            "en": "Asking rent: change 2008–2022"
           },
           "format": "number",
           "unit": "%"
         },
         {
-          "key": "anteil_staedtwbg",
+          "key": "anteil_sozwohng_2022",
           "label": {
-            "de": "Anteil städtische Wohnungsbaugesellschaften",
-            "en": "Share of municipal companies"
+            "de": "Anteil Sozialmietwohnungen 2022",
+            "en": "Share of social housing 2022"
           },
           "format": "number",
           "unit": "%"
         },
         {
-          "key": "wohnung_umwandp",
+          "key": "anteil_sozwohng_2020",
           "label": {
-            "de": "Umwandlungen in Eigentumswohnungen je 1.000 Wohnungen (2017–2022)",
-            "en": "Conversions to condominiums per 1,000 dwellings (2017–2022)"
+            "de": "Anteil Sozialmietwohnungen 2020",
+            "en": "Share of social housing 2020"
           },
-          "format": "number"
+          "format": "number",
+          "unit": "%"
         },
         {
-          "key": "wohnungverkaufp",
+          "key": "anteil_sozwohng_2017",
           "label": {
-            "de": "Wohnungsverkäufe je 1.000 Wohnungen (2017–2022)",
-            "en": "Flat sales per 1,000 dwellings (2017–2022)"
+            "de": "Anteil Sozialmietwohnungen 2017",
+            "en": "Share of social housing 2017"
           },
-          "format": "number"
+          "format": "number",
+          "unit": "%"
+        },
+        {
+          "key": "anteil_sozwohng_2010",
+          "label": {
+            "de": "Anteil Sozialmietwohnungen 2010",
+            "en": "Share of social housing 2010"
+          },
+          "format": "number",
+          "unit": "%"
+        },
+        {
+          "key": "anteil_sozwohng_chg_2010_2022",
+          "label": {
+            "de": "Anteil Sozialmietwohnungen: Veränderung 2010–2022",
+            "en": "Share of social housing: change 2010–2022"
+          },
+          "format": "number",
+          "unit": "Pp."
+        },
+        {
+          "key": "anteil_staedtwbg_2022",
+          "label": {
+            "de": "Anteil städt. Wohnungsbaugesellschaften 2022",
+            "en": "Share of municipal companies 2022"
+          },
+          "format": "number",
+          "unit": "%"
+        },
+        {
+          "key": "anteil_staedtwbg_2020",
+          "label": {
+            "de": "Anteil städt. Wohnungsbaugesellschaften 2020",
+            "en": "Share of municipal companies 2020"
+          },
+          "format": "number",
+          "unit": "%"
+        },
+        {
+          "key": "anteil_staedtwbg_2017",
+          "label": {
+            "de": "Anteil städt. Wohnungsbaugesellschaften 2017",
+            "en": "Share of municipal companies 2017"
+          },
+          "format": "number",
+          "unit": "%"
+        },
+        {
+          "key": "anteil_staedtwbg_2008",
+          "label": {
+            "de": "Anteil städt. Wohnungsbaugesellschaften 2008",
+            "en": "Share of municipal companies 2008"
+          },
+          "format": "number",
+          "unit": "%"
+        },
+        {
+          "key": "anteil_staedtwbg_chg_2008_2022",
+          "label": {
+            "de": "Anteil städt. Wohnungsbaugesellschaften: Veränderung 2008–2022",
+            "en": "Share of municipal companies: change 2008–2022"
+          },
+          "format": "number",
+          "unit": "Pp."
+        },
+        {
+          "key": "wohnung_umwandp_2017_22",
+          "label": {
+            "de": "Umwandlungen in Eigentumswohnungen 2017–2022",
+            "en": "Conversions to condominiums 2017–2022"
+          },
+          "format": "number",
+          "unit": "je 1.000 Wohnungen"
+        },
+        {
+          "key": "wohnung_umwandp_2015_20",
+          "label": {
+            "de": "Umwandlungen in Eigentumswohnungen 2015–2020",
+            "en": "Conversions to condominiums 2015–2020"
+          },
+          "format": "number",
+          "unit": "je 1.000 Wohnungen"
+        },
+        {
+          "key": "wohnung_umwandp_2012_17",
+          "label": {
+            "de": "Umwandlungen in Eigentumswohnungen 2012–2017",
+            "en": "Conversions to condominiums 2012–2017"
+          },
+          "format": "number",
+          "unit": "je 1.000 Wohnungen"
+        },
+        {
+          "key": "wohnung_umwandp_2005_10",
+          "label": {
+            "de": "Umwandlungen in Eigentumswohnungen 2005–2010",
+            "en": "Conversions to condominiums 2005–2010"
+          },
+          "format": "number",
+          "unit": "je 1.000 Wohnungen"
+        },
+        {
+          "key": "wohnung_umwandp_2004_09",
+          "label": {
+            "de": "Umwandlungen in Eigentumswohnungen 2004–2009",
+            "en": "Conversions to condominiums 2004–2009"
+          },
+          "format": "number",
+          "unit": "je 1.000 Wohnungen"
+        },
+        {
+          "key": "wohnungverkaufp_2017_22",
+          "label": {
+            "de": "Wohnungsverkäufe 2017–2022",
+            "en": "Flat sales 2017–2022"
+          },
+          "format": "number",
+          "unit": "je 1.000 Wohnungen"
+        },
+        {
+          "key": "wohnungverkaufp_2015_20",
+          "label": {
+            "de": "Wohnungsverkäufe 2015–2020",
+            "en": "Flat sales 2015–2020"
+          },
+          "format": "number",
+          "unit": "je 1.000 Wohnungen"
+        },
+        {
+          "key": "wohnungverkaufp_2012_17",
+          "label": {
+            "de": "Wohnungsverkäufe 2012–2017",
+            "en": "Flat sales 2012–2017"
+          },
+          "format": "number",
+          "unit": "je 1.000 Wohnungen"
+        },
+        {
+          "key": "wohnungverkaufp_2005_10",
+          "label": {
+            "de": "Wohnungsverkäufe 2005–2010",
+            "en": "Flat sales 2005–2010"
+          },
+          "format": "number",
+          "unit": "je 1.000 Wohnungen"
+        },
+        {
+          "key": "wohnungverkaufp_2004_09",
+          "label": {
+            "de": "Wohnungsverkäufe 2004–2009",
+            "en": "Flat sales 2004–2009"
+          },
+          "format": "number",
+          "unit": "je 1.000 Wohnungen"
         },
         {
           "key": "prognoseraum_nummer",
           "label": {
-            "de": "Prognoseraum-Nr.",
-            "en": "Forecast area no."
+            "de": "Prognoseraum-Nr. (2022)",
+            "en": "Forecast area no. (2022)"
           }
         }
       ],
-      "popup_title": "prognoseraum_bezeichnung",
       "views": {
-        "angebotsmieten": {
+        "angebotsmieten_2022": {
           "label": {
-            "de": "Angebotsmiete",
-            "en": "Asking rent"
+            "de": "Angebotsmiete 2022",
+            "en": "Asking rent 2022"
           },
           "description": {
-            "de": "Angebotsmiete netto kalt in €/m² je Prognoseraum, Jahrgang 2022.",
-            "en": "Asking rent (net, cold) in €/m² per forecast area, year 2022."
+            "de": "Angebotsmiete je Prognoseraum, Jahrgang 2022.",
+            "en": "Asking rent per forecast area, year 2022."
           },
           "style": {
             "kind": "step",
-            "property": "angebotsmieten",
+            "property": "angebotsmieten_2022",
             "unit": "€/m² netto kalt",
             "breaks": [
-              9,
+              6,
+              7,
+              8,
               10,
-              11,
               12,
-              13,
               14,
               16,
               18
@@ -2063,18 +2430,146 @@
             "colors": "earth"
           }
         },
-        "anteil_sozwohng": {
+        "angebotsmieten_2020": {
           "label": {
-            "de": "Anteil Sozialmietwohnungen",
-            "en": "Share of social housing"
+            "de": "Angebotsmiete 2020",
+            "en": "Asking rent 2020"
           },
           "description": {
-            "de": "Anteil der Sozialmietwohnungen je Prognoseraum in %, Jahrgang 2022.",
-            "en": "Share of social rental housing per forecast area in %, year 2022."
+            "de": "Angebotsmiete je Prognoseraum, Jahrgang 2020.",
+            "en": "Asking rent per forecast area, year 2020."
           },
           "style": {
             "kind": "step",
-            "property": "anteil_sozwohng",
+            "property": "angebotsmieten_2020",
+            "unit": "€/m² netto kalt",
+            "breaks": [
+              6,
+              7,
+              8,
+              10,
+              12,
+              14,
+              16,
+              18
+            ],
+            "colors": "earth"
+          }
+        },
+        "angebotsmieten_2018": {
+          "label": {
+            "de": "Angebotsmiete 2018",
+            "en": "Asking rent 2018"
+          },
+          "description": {
+            "de": "Angebotsmiete je Prognoseraum, Jahrgang 2018.",
+            "en": "Asking rent per forecast area, year 2018."
+          },
+          "style": {
+            "kind": "step",
+            "property": "angebotsmieten_2018",
+            "unit": "€/m² netto kalt",
+            "breaks": [
+              6,
+              7,
+              8,
+              10,
+              12,
+              14,
+              16,
+              18
+            ],
+            "colors": "earth"
+          }
+        },
+        "angebotsmieten_2009": {
+          "label": {
+            "de": "Angebotsmiete 2009",
+            "en": "Asking rent 2009"
+          },
+          "description": {
+            "de": "Angebotsmiete je Prognoseraum, Jahrgang 2009.",
+            "en": "Asking rent per forecast area, year 2009."
+          },
+          "style": {
+            "kind": "step",
+            "property": "angebotsmieten_2009",
+            "unit": "€/m² netto kalt",
+            "breaks": [
+              6,
+              7,
+              8,
+              10,
+              12,
+              14,
+              16,
+              18
+            ],
+            "colors": "earth"
+          }
+        },
+        "angebotsmieten_2008": {
+          "label": {
+            "de": "Angebotsmiete 2008",
+            "en": "Asking rent 2008"
+          },
+          "description": {
+            "de": "Angebotsmiete je Prognoseraum, Jahrgang 2008.",
+            "en": "Asking rent per forecast area, year 2008."
+          },
+          "style": {
+            "kind": "step",
+            "property": "angebotsmieten_2008",
+            "unit": "€/m² netto kalt",
+            "breaks": [
+              6,
+              7,
+              8,
+              10,
+              12,
+              14,
+              16,
+              18
+            ],
+            "colors": "earth"
+          }
+        },
+        "angebotsmieten_chg_2008_2022": {
+          "label": {
+            "de": "Angebotsmiete: Veränderung 2008–2022",
+            "en": "Asking rent: change 2008–2022"
+          },
+          "description": {
+            "de": "Veränderung 2008–2022 je Prognoseraum in %, berechnet aus den beiden Jahrgängen. Grau: Prognoseraum 2022 neu abgegrenzt, kein vergleichbarer Wert.",
+            "en": "Change 2008–2022 per forecast area in %, computed from both years. Grey: forecast area redrawn in 2022, no comparable value."
+          },
+          "style": {
+            "kind": "step",
+            "property": "angebotsmieten_chg_2008_2022",
+            "unit": "%",
+            "breaks": [
+              40,
+              60,
+              80,
+              100,
+              120,
+              140
+            ],
+            "colors": "earth"
+          }
+        },
+        "anteil_sozwohng_2022": {
+          "label": {
+            "de": "Anteil Sozialmietwohnungen 2022",
+            "en": "Share of social housing 2022"
+          },
+          "description": {
+            "de": "Anteil Sozialmietwohnungen je Prognoseraum, Jahrgang 2022.",
+            "en": "Share of social housing per forecast area, year 2022."
+          },
+          "style": {
+            "kind": "step",
+            "property": "anteil_sozwohng_2022",
             "unit": "%",
             "breaks": [
               1,
@@ -2083,23 +2578,132 @@
               6,
               8,
               10,
-              15
+              15,
+              20
             ],
             "colors": "plum"
           }
         },
-        "anteil_staedtwbg": {
+        "anteil_sozwohng_2020": {
           "label": {
-            "de": "Anteil städt. Wohnungsbaugesellschaften",
-            "en": "Share of municipal companies"
+            "de": "Anteil Sozialmietwohnungen 2020",
+            "en": "Share of social housing 2020"
           },
           "description": {
-            "de": "Anteil der städtischen Wohnungsbaugesellschaften je Prognoseraum in %, Jahrgang 2022.",
-            "en": "Share of municipal housing companies per forecast area in %, year 2022."
+            "de": "Anteil Sozialmietwohnungen je Prognoseraum, Jahrgang 2020.",
+            "en": "Share of social housing per forecast area, year 2020."
           },
           "style": {
             "kind": "step",
-            "property": "anteil_staedtwbg",
+            "property": "anteil_sozwohng_2020",
+            "unit": "%",
+            "breaks": [
+              1,
+              2,
+              4,
+              6,
+              8,
+              10,
+              15,
+              20
+            ],
+            "colors": "plum"
+          }
+        },
+        "anteil_sozwohng_2017": {
+          "label": {
+            "de": "Anteil Sozialmietwohnungen 2017",
+            "en": "Share of social housing 2017"
+          },
+          "description": {
+            "de": "Anteil Sozialmietwohnungen je Prognoseraum, Jahrgang 2017.",
+            "en": "Share of social housing per forecast area, year 2017."
+          },
+          "style": {
+            "kind": "step",
+            "property": "anteil_sozwohng_2017",
+            "unit": "%",
+            "breaks": [
+              1,
+              2,
+              4,
+              6,
+              8,
+              10,
+              15,
+              20
+            ],
+            "colors": "plum"
+          }
+        },
+        "anteil_sozwohng_2010": {
+          "label": {
+            "de": "Anteil Sozialmietwohnungen 2010",
+            "en": "Share of social housing 2010"
+          },
+          "description": {
+            "de": "Anteil Sozialmietwohnungen je Prognoseraum, Jahrgang 2010.",
+            "en": "Share of social housing per forecast area, year 2010."
+          },
+          "style": {
+            "kind": "step",
+            "property": "anteil_sozwohng_2010",
+            "unit": "%",
+            "breaks": [
+              1,
+              2,
+              4,
+              6,
+              8,
+              10,
+              15,
+              20
+            ],
+            "colors": "plum"
+          }
+        },
+        "anteil_sozwohng_chg_2010_2022": {
+          "label": {
+            "de": "Anteil Sozialmietwohnungen: Veränderung 2010–2022",
+            "en": "Share of social housing: change 2010–2022"
+          },
+          "description": {
+            "de": "Veränderung 2010–2022 je Prognoseraum in Prozentpunkten, berechnet aus den beiden Jahrgängen. Grau: Prognoseraum 2022 neu abgegrenzt, kein vergleichbarer Wert.",
+            "en": "Change 2010–2022 per forecast area in percentage points, computed from both years. Grey: forecast area redrawn in 2022, no comparable value."
+          },
+          "style": {
+            "kind": "step",
+            "property": "anteil_sozwohng_chg_2010_2022",
+            "unit": "Prozentpunkte",
+            "breaks": [
+              -10,
+              -5,
+              -3,
+              -1,
+              0
+            ],
+            "colors": [
+              "#4a1233",
+              "#9c3a6c",
+              "#d684a6",
+              "#f1d3df",
+              "#f8eef2",
+              "#b8b2e8"
+            ]
+          }
+        },
+        "anteil_staedtwbg_2022": {
+          "label": {
+            "de": "Anteil städt. Wohnungsbaugesellschaften 2022",
+            "en": "Share of municipal companies 2022"
+          },
+          "description": {
+            "de": "Anteil städt. Wohnungsbaugesellschaften je Prognoseraum, Jahrgang 2022.",
+            "en": "Share of municipal companies per forecast area, year 2022."
+          },
+          "style": {
+            "kind": "step",
+            "property": "anteil_staedtwbg_2022",
             "unit": "%",
             "breaks": [
               5,
@@ -2113,18 +2717,116 @@
             "colors": "violet"
           }
         },
-        "wohnung_umwandp": {
+        "anteil_staedtwbg_2020": {
           "label": {
-            "de": "Umwandlungen 2017–2022",
-            "en": "Conversions 2017–2022"
+            "de": "Anteil städt. Wohnungsbaugesellschaften 2020",
+            "en": "Share of municipal companies 2020"
           },
           "description": {
-            "de": "Umwandlungen in Eigentumswohnungen je 1.000 Wohnungen je Prognoseraum, Summe 2017–2022.",
-            "en": "Conversions to condominiums per 1,000 dwellings per forecast area, total 2017–2022."
+            "de": "Anteil städt. Wohnungsbaugesellschaften je Prognoseraum, Jahrgang 2020.",
+            "en": "Share of municipal companies per forecast area, year 2020."
           },
           "style": {
             "kind": "step",
-            "property": "wohnung_umwandp",
+            "property": "anteil_staedtwbg_2020",
+            "unit": "%",
+            "breaks": [
+              5,
+              10,
+              15,
+              20,
+              30,
+              40,
+              50
+            ],
+            "colors": "violet"
+          }
+        },
+        "anteil_staedtwbg_2017": {
+          "label": {
+            "de": "Anteil städt. Wohnungsbaugesellschaften 2017",
+            "en": "Share of municipal companies 2017"
+          },
+          "description": {
+            "de": "Anteil städt. Wohnungsbaugesellschaften je Prognoseraum, Jahrgang 2017.",
+            "en": "Share of municipal companies per forecast area, year 2017."
+          },
+          "style": {
+            "kind": "step",
+            "property": "anteil_staedtwbg_2017",
+            "unit": "%",
+            "breaks": [
+              5,
+              10,
+              15,
+              20,
+              30,
+              40,
+              50
+            ],
+            "colors": "violet"
+          }
+        },
+        "anteil_staedtwbg_2008": {
+          "label": {
+            "de": "Anteil städt. Wohnungsbaugesellschaften 2008",
+            "en": "Share of municipal companies 2008"
+          },
+          "description": {
+            "de": "Anteil städt. Wohnungsbaugesellschaften je Prognoseraum, Jahrgang 2008.",
+            "en": "Share of municipal companies per forecast area, year 2008."
+          },
+          "style": {
+            "kind": "step",
+            "property": "anteil_staedtwbg_2008",
+            "unit": "%",
+            "breaks": [
+              5,
+              10,
+              15,
+              20,
+              30,
+              40,
+              50
+            ],
+            "colors": "violet"
+          }
+        },
+        "anteil_staedtwbg_chg_2008_2022": {
+          "label": {
+            "de": "Anteil städt. Wohnungsbaugesellschaften: Veränderung 2008–2022",
+            "en": "Share of municipal companies: change 2008–2022"
+          },
+          "description": {
+            "de": "Veränderung 2008–2022 je Prognoseraum in Prozentpunkten, berechnet aus den beiden Jahrgängen. Grau: Prognoseraum 2022 neu abgegrenzt, kein vergleichbarer Wert.",
+            "en": "Change 2008–2022 per forecast area in percentage points, computed from both years. Grey: forecast area redrawn in 2022, no comparable value."
+          },
+          "style": {
+            "kind": "step",
+            "property": "anteil_staedtwbg_chg_2008_2022",
+            "unit": "Prozentpunkte",
+            "breaks": [
+              0,
+              2,
+              4,
+              6,
+              10
+            ],
+            "colors": "violet"
+          }
+        },
+        "wohnung_umwandp_2017_22": {
+          "label": {
+            "de": "Umwandlungen in Eigentumswohnungen 2017–2022",
+            "en": "Conversions to condominiums 2017–2022"
+          },
+          "description": {
+            "de": "Umwandlungen in Eigentumswohnungen je Prognoseraum, Summe 2017–2022 (je 1.000 Wohnungen).",
+            "en": "Conversions to condominiums per forecast area, total 2017–2022 (per 1,000 dwellings)."
+          },
+          "style": {
+            "kind": "step",
+            "property": "wohnung_umwandp_2017_22",
             "unit": "je 1.000 Wohnungen",
             "breaks": [
               5,
@@ -2138,18 +2840,218 @@
             "colors": "plum"
           }
         },
-        "wohnungverkaufp": {
+        "wohnung_umwandp_2015_20": {
+          "label": {
+            "de": "Umwandlungen in Eigentumswohnungen 2015–2020",
+            "en": "Conversions to condominiums 2015–2020"
+          },
+          "description": {
+            "de": "Umwandlungen in Eigentumswohnungen je Prognoseraum, Summe 2015–2020 (je 1.000 Wohnungen).",
+            "en": "Conversions to condominiums per forecast area, total 2015–2020 (per 1,000 dwellings)."
+          },
+          "style": {
+            "kind": "step",
+            "property": "wohnung_umwandp_2015_20",
+            "unit": "je 1.000 Wohnungen",
+            "breaks": [
+              5,
+              10,
+              20,
+              40,
+              60,
+              80,
+              100
+            ],
+            "colors": "plum"
+          }
+        },
+        "wohnung_umwandp_2012_17": {
+          "label": {
+            "de": "Umwandlungen in Eigentumswohnungen 2012–2017",
+            "en": "Conversions to condominiums 2012–2017"
+          },
+          "description": {
+            "de": "Umwandlungen in Eigentumswohnungen je Prognoseraum, Summe 2012–2017 (je 1.000 Wohnungen).",
+            "en": "Conversions to condominiums per forecast area, total 2012–2017 (per 1,000 dwellings)."
+          },
+          "style": {
+            "kind": "step",
+            "property": "wohnung_umwandp_2012_17",
+            "unit": "je 1.000 Wohnungen",
+            "breaks": [
+              5,
+              10,
+              20,
+              40,
+              60,
+              80,
+              100
+            ],
+            "colors": "plum"
+          }
+        },
+        "wohnung_umwandp_2005_10": {
+          "label": {
+            "de": "Umwandlungen in Eigentumswohnungen 2005–2010",
+            "en": "Conversions to condominiums 2005–2010"
+          },
+          "description": {
+            "de": "Umwandlungen in Eigentumswohnungen je Prognoseraum, Summe 2005–2010 (je 1.000 Wohnungen).",
+            "en": "Conversions to condominiums per forecast area, total 2005–2010 (per 1,000 dwellings)."
+          },
+          "style": {
+            "kind": "step",
+            "property": "wohnung_umwandp_2005_10",
+            "unit": "je 1.000 Wohnungen",
+            "breaks": [
+              5,
+              10,
+              20,
+              40,
+              60,
+              80,
+              100
+            ],
+            "colors": "plum"
+          }
+        },
+        "wohnung_umwandp_2004_09": {
+          "label": {
+            "de": "Umwandlungen in Eigentumswohnungen 2004–2009",
+            "en": "Conversions to condominiums 2004–2009"
+          },
+          "description": {
+            "de": "Umwandlungen in Eigentumswohnungen je Prognoseraum, Summe 2004–2009 (je 1.000 Wohnungen).",
+            "en": "Conversions to condominiums per forecast area, total 2004–2009 (per 1,000 dwellings)."
+          },
+          "style": {
+            "kind": "step",
+            "property": "wohnung_umwandp_2004_09",
+            "unit": "je 1.000 Wohnungen",
+            "breaks": [
+              5,
+              10,
+              20,
+              40,
+              60,
+              80,
+              100
+            ],
+            "colors": "plum"
+          }
+        },
+        "wohnungverkaufp_2017_22": {
           "label": {
             "de": "Wohnungsverkäufe 2017–2022",
             "en": "Flat sales 2017–2022"
           },
           "description": {
-            "de": "Wohnungsverkäufe je 1.000 Wohnungen je Prognoseraum, Summe 2017–2022.",
-            "en": "Flat sales per 1,000 dwellings per forecast area, total 2017–2022."
+            "de": "Wohnungsverkäufe je Prognoseraum, Summe 2017–2022 (je 1.000 Wohnungen).",
+            "en": "Flat sales per forecast area, total 2017–2022 (per 1,000 dwellings)."
           },
           "style": {
             "kind": "step",
-            "property": "wohnungverkaufp",
+            "property": "wohnungverkaufp_2017_22",
+            "unit": "je 1.000 Wohnungen",
+            "breaks": [
+              10,
+              20,
+              30,
+              40,
+              50,
+              60,
+              70
+            ],
+            "colors": "plum"
+          }
+        },
+        "wohnungverkaufp_2015_20": {
+          "label": {
+            "de": "Wohnungsverkäufe 2015–2020",
+            "en": "Flat sales 2015–2020"
+          },
+          "description": {
+            "de": "Wohnungsverkäufe je Prognoseraum, Summe 2015–2020 (je 1.000 Wohnungen).",
+            "en": "Flat sales per forecast area, total 2015–2020 (per 1,000 dwellings)."
+          },
+          "style": {
+            "kind": "step",
+            "property": "wohnungverkaufp_2015_20",
+            "unit": "je 1.000 Wohnungen",
+            "breaks": [
+              10,
+              20,
+              30,
+              40,
+              50,
+              60,
+              70
+            ],
+            "colors": "plum"
+          }
+        },
+        "wohnungverkaufp_2012_17": {
+          "label": {
+            "de": "Wohnungsverkäufe 2012–2017",
+            "en": "Flat sales 2012–2017"
+          },
+          "description": {
+            "de": "Wohnungsverkäufe je Prognoseraum, Summe 2012–2017 (je 1.000 Wohnungen).",
+            "en": "Flat sales per forecast area, total 2012–2017 (per 1,000 dwellings)."
+          },
+          "style": {
+            "kind": "step",
+            "property": "wohnungverkaufp_2012_17",
+            "unit": "je 1.000 Wohnungen",
+            "breaks": [
+              10,
+              20,
+              30,
+              40,
+              50,
+              60,
+              70
+            ],
+            "colors": "plum"
+          }
+        },
+        "wohnungverkaufp_2005_10": {
+          "label": {
+            "de": "Wohnungsverkäufe 2005–2010",
+            "en": "Flat sales 2005–2010"
+          },
+          "description": {
+            "de": "Wohnungsverkäufe je Prognoseraum, Summe 2005–2010 (je 1.000 Wohnungen).",
+            "en": "Flat sales per forecast area, total 2005–2010 (per 1,000 dwellings)."
+          },
+          "style": {
+            "kind": "step",
+            "property": "wohnungverkaufp_2005_10",
+            "unit": "je 1.000 Wohnungen",
+            "breaks": [
+              10,
+              20,
+              30,
+              40,
+              50,
+              60,
+              70
+            ],
+            "colors": "plum"
+          }
+        },
+        "wohnungverkaufp_2004_09": {
+          "label": {
+            "de": "Wohnungsverkäufe 2004–2009",
+            "en": "Flat sales 2004–2009"
+          },
+          "description": {
+            "de": "Wohnungsverkäufe je Prognoseraum, Summe 2004–2009 (je 1.000 Wohnungen).",
+            "en": "Flat sales per forecast area, total 2004–2009 (per 1,000 dwellings)."
+          },
+          "style": {
+            "kind": "step",
+            "property": "wohnungverkaufp_2004_09",
             "unit": "je 1.000 Wohnungen",
             "breaks": [
               10,
@@ -2163,6 +3065,11 @@
             "colors": "plum"
           }
         }
+      },
+      "popup_title": "prognoseraum_bezeichnung",
+      "note": {
+        "de": "Geometrie: 58 Prognoseräume (LOR 2021). Ältere Jahrgänge (60 Prognoseräume) sind über eine Flächenüberlagerung zugeordnet: übernommen nur, wo sich alter und neuer Prognoseraum zu mindestens 97 % decken (Zuordnung in wohnatlas.crosswalk.csv). Neu abgegrenzte Räume (Charlottenburg-Wilmersdorf außer Charlottenburg Nord, Marienfelde/Lichtenrade, Treptow-Köpenick 1, Tegel, Grüner Norden, Wittenau/Borsigwalde, Märkisches Viertel) haben keine älteren Werte.",
+        "en": "Geometry: 58 forecast areas (LOR 2021). Older years (60 forecast areas) are assigned by area overlay, only where old and new area overlap by at least 97 % (assignment in wohnatlas.crosswalk.csv). Redrawn areas (Charlottenburg-Wilmersdorf except Charlottenburg Nord, Marienfelde/Lichtenrade, Treptow-Köpenick 1, Tegel, Grüner Norden, Wittenau/Borsigwalde, Märkisches Viertel) have no older values."
       }
     },
     {
@@ -2380,6 +3287,515 @@
       "process": {
         "id_field": "planid",
         "sort": "area_desc"
+      }
+    },
+    {
+      "id": "fnp2025_flaechen",
+      "title": {
+        "de": "Flächennutzungsplan 2025: Flächen",
+        "en": "Land-use plan 2025: areas"
+      },
+      "unit_label": {
+        "de": "Flächen",
+        "en": "areas"
+      },
+      "geometry": "polygon",
+      "enabled": true,
+      "source": {
+        "type": "wfs",
+        "base_url": "https://gdi.berlin.de/services/wfs/fnp_2025",
+        "type_name": "fnp_2025:fnp_2025_vektor",
+        "version": "2.0.0",
+        "output_format": "application/json",
+        "srs_name": "EPSG:4326",
+        "dataset_page": "https://gdi.berlin.de/services/wfs/fnp_2025?request=GetCapabilities&service=WFS"
+      },
+      "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+      "license": {
+        "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+        "id": "dl-de-zero-2.0",
+        "url": "https://www.govdata.de/dl-de/zero-2-0"
+      },
+      "fields": [
+        {
+          "key": "nutzungsart",
+          "label": {
+            "de": "Darstellung",
+            "en": "Designation"
+          }
+        },
+        {
+          "key": "zweckbestimmung",
+          "label": {
+            "de": "Zweckbestimmung",
+            "en": "Purpose"
+          }
+        },
+        {
+          "key": "gisid",
+          "label": {
+            "de": "Objekt-ID",
+            "en": "Object ID"
+          }
+        }
+      ],
+      "popup_title": "nutzungsart",
+      "note": {
+        "de": "Flächennutzungsplan Berlin in der Fassung der Neubekanntmachung 2025. Der FNP stellt die beabsichtigte Bodennutzung in Grundzügen dar; er ist nicht parzellenscharf und für Grundstücke nicht unmittelbar verbindlich.",
+        "en": "Berlin land-use plan as re-published in 2025. The FNP shows intended land use in outline; it is not parcel-precise and does not bind individual plots directly."
+      },
+      "process": {
+        "id_field": "gisid",
+        "precision": 6,
+        "keep_fields": [
+          "nutzungsart",
+          "zweckbestimmung",
+          "gisid"
+        ],
+        "only_geometry": true,
+        "filter": {
+          "property": "nutzungsart",
+          "exclude": [
+            "Einzelhandelskonzentration"
+          ]
+        },
+        "simplify_m": 1.5,
+        "sort": "area_desc"
+      },
+      "views": {
+        "nutzungsart": {
+          "label": {
+            "de": "Darstellung",
+            "en": "Designation"
+          },
+          "description": {
+            "de": "Dargestellte Bodennutzung im Flächennutzungsplan, Stand Neubekanntmachung 2025. Wohnbauflächen farbig nach Dichtestufe (GFZ), übrige Bauflächen in Grautönen.",
+            "en": "Land use designated in the land-use plan, 2025 re-publication. Residential areas in colour by density class (floor area ratio), other building land in greys."
+          },
+          "style": {
+            "kind": "categorical",
+            "property": "nutzungsart",
+            "opacity": 0.85,
+            "categories": [
+              {
+                "label": {
+                  "de": "Wohnbaufläche W1 (GFZ über 1,5)",
+                  "en": "Residential W1 (FAR above 1.5)"
+                },
+                "color": "#E8007D",
+                "values": [
+                  "Wohnbaufläche, W1 (GFZ über 1,5)"
+                ]
+              },
+              {
+                "label": {
+                  "de": "Wohnbaufläche W2 (GFZ bis 1,5)",
+                  "en": "Residential W2 (FAR up to 1.5)"
+                },
+                "color": "#FF5FA2",
+                "values": [
+                  "Wohnbaufläche, W2 (GFZ bis 1,5)"
+                ]
+              },
+              {
+                "label": {
+                  "de": "Wohnbaufläche W3 (GFZ bis 0,8)",
+                  "en": "Residential W3 (FAR up to 0.8)"
+                },
+                "color": "#FF9DC6",
+                "values": [
+                  "Wohnbaufläche, W3 (GFZ bis 0,8)",
+                  "Wohnbaufläche, W3 (GFZ bis 0,8) mit landschaftlicher Prägung"
+                ]
+              },
+              {
+                "label": {
+                  "de": "Wohnbaufläche W4 (GFZ bis 0,4)",
+                  "en": "Residential W4 (FAR up to 0.4)"
+                },
+                "color": "#FFD3E6",
+                "values": [
+                  "Wohnbaufläche, W4 (GFZ bis 0,4)",
+                  "Wohnbaufläche, W4 (GFZ bis 0,4) mit landschaftlicher Prägung"
+                ]
+              },
+              {
+                "label": {
+                  "de": "Gemischte Baufläche M1",
+                  "en": "Mixed use M1"
+                },
+                "color": "#75756E",
+                "values": [
+                  "Gemischte Baufläche, M1"
+                ]
+              },
+              {
+                "label": {
+                  "de": "Gemischte Baufläche M2",
+                  "en": "Mixed use M2"
+                },
+                "color": "#9A9A92",
+                "values": [
+                  "Gemischte Baufläche, M2"
+                ]
+              },
+              {
+                "label": {
+                  "de": "Gewerbliche Baufläche",
+                  "en": "Commercial"
+                },
+                "color": "#BDBDB5",
+                "values": [
+                  "Gewerbliche Baufläche"
+                ]
+              },
+              {
+                "label": {
+                  "de": "Gemeinbedarfsfläche",
+                  "en": "Public facilities"
+                },
+                "color": "#52524C",
+                "values": [
+                  "Gemeinbedarfsfläche",
+                  "Gemeinbedarfsfläche mit hohem Grünanteil"
+                ]
+              },
+              {
+                "label": {
+                  "de": "Sonderbaufläche",
+                  "en": "Special building land"
+                },
+                "color": "#DCDCD6",
+                "values": [
+                  "Sonderbaufläche mit hohem Grünanteil",
+                  "Sonderbaufläche Hauptstadtfunktion (H)",
+                  "Sonderbaufläche mit gewerblichem Charakter",
+                  "Sonderbaufläche (entspr. Zweckbestimmung)"
+                ]
+              },
+              {
+                "label": {
+                  "de": "Ver- und Entsorgungsfläche",
+                  "en": "Utilities"
+                },
+                "color": "#DCDCD6",
+                "values": [
+                  "Ver- und Entsorgungsfläche mit gewerblichem Charakter",
+                  "Ver- und Entsorgungsfläche mit hohem Grünanteil",
+                  "Ver- und Entsorgungsfläche mit Mischnutzungscharakter",
+                  "Ver- und Entsorgungsfläche mit landwirtschaftlicher Nutzung"
+                ]
+              },
+              {
+                "label": {
+                  "de": "Grünfläche",
+                  "en": "Green space"
+                },
+                "color": "#C9E6BE",
+                "values": [
+                  "Grünfläche"
+                ]
+              },
+              {
+                "label": {
+                  "de": "Wald",
+                  "en": "Forest"
+                },
+                "color": "#9BCF95",
+                "values": [
+                  "Wald"
+                ]
+              },
+              {
+                "label": {
+                  "de": "Landwirtschaftsfläche",
+                  "en": "Agriculture"
+                },
+                "color": "#EEF0D8",
+                "values": [
+                  "Landwirtschaftsfläche"
+                ]
+              },
+              {
+                "label": {
+                  "de": "Wasserfläche",
+                  "en": "Water"
+                },
+                "color": "#DDEFF7",
+                "values": [
+                  "Wasserfläche"
+                ]
+              },
+              {
+                "label": {
+                  "de": "Verkehr (Autobahn, Hauptverkehrsstraße, Bahn)",
+                  "en": "Transport (motorway, main road, rail)"
+                },
+                "color": "#F0F0EC",
+                "values": [
+                  "Autobahn",
+                  "übergeordnete Hauptverkehrsstraße",
+                  "Bahnfläche"
+                ]
+              }
+            ],
+            "other_color": "grey"
+          }
+        }
+      }
+    },
+    {
+      "id": "fnp2025_einzelhandel",
+      "title": {
+        "de": "Flächennutzungsplan 2025: Einzelhandelskonzentration",
+        "en": "Land-use plan 2025: retail concentration"
+      },
+      "unit_label": {
+        "de": "Flächen",
+        "en": "areas"
+      },
+      "geometry": "polygon",
+      "enabled": true,
+      "source": {
+        "type": "wfs",
+        "base_url": "https://gdi.berlin.de/services/wfs/fnp_2025",
+        "type_name": "fnp_2025:fnp_2025_vektor",
+        "version": "2.0.0",
+        "output_format": "application/json",
+        "srs_name": "EPSG:4326",
+        "dataset_page": "https://gdi.berlin.de/services/wfs/fnp_2025?request=GetCapabilities&service=WFS"
+      },
+      "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+      "license": {
+        "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+        "id": "dl-de-zero-2.0",
+        "url": "https://www.govdata.de/dl-de/zero-2-0"
+      },
+      "fields": [
+        {
+          "key": "nutzungsart",
+          "label": {
+            "de": "Darstellung",
+            "en": "Designation"
+          }
+        },
+        {
+          "key": "zweckbestimmung",
+          "label": {
+            "de": "Zweckbestimmung",
+            "en": "Purpose"
+          }
+        },
+        {
+          "key": "gisid",
+          "label": {
+            "de": "Objekt-ID",
+            "en": "Object ID"
+          }
+        }
+      ],
+      "popup_title": "nutzungsart",
+      "note": {
+        "de": "Flächennutzungsplan Berlin in der Fassung der Neubekanntmachung 2025. Der FNP stellt die beabsichtigte Bodennutzung in Grundzügen dar; er ist nicht parzellenscharf und für Grundstücke nicht unmittelbar verbindlich.",
+        "en": "Berlin land-use plan as re-published in 2025. The FNP shows intended land use in outline; it is not parcel-precise and does not bind individual plots directly."
+      },
+      "process": {
+        "id_field": "gisid",
+        "precision": 6,
+        "keep_fields": [
+          "nutzungsart",
+          "zweckbestimmung",
+          "gisid"
+        ],
+        "only_geometry": true,
+        "filter": {
+          "property": "nutzungsart",
+          "include": [
+            "Einzelhandelskonzentration"
+          ]
+        },
+        "simplify_m": 1.5
+      },
+      "views": {
+        "einzelhandel": {
+          "label": {
+            "de": "Einzelhandelskonzentration",
+            "en": "Retail concentration"
+          },
+          "description": {
+            "de": "Überlagernde Darstellung im FNP: Standorte mit Einzelhandelskonzentration. Liegt über der Flächendarstellung.",
+            "en": "Overlay in the land-use plan: locations with retail concentration. Lies on top of the area designation."
+          },
+          "style": {
+            "kind": "single",
+            "color": "#14171A"
+          }
+        }
+      }
+    },
+    {
+      "id": "fnp2025_symbole",
+      "title": {
+        "de": "Flächennutzungsplan 2025: Symbole",
+        "en": "Land-use plan 2025: symbols"
+      },
+      "unit_label": {
+        "de": "Symbole",
+        "en": "symbols"
+      },
+      "geometry": "point",
+      "enabled": true,
+      "source": {
+        "type": "wfs",
+        "base_url": "https://gdi.berlin.de/services/wfs/fnp_2025",
+        "type_name": "fnp_2025:fnp_2025_vektor",
+        "version": "2.0.0",
+        "output_format": "application/json",
+        "srs_name": "EPSG:4326",
+        "dataset_page": "https://gdi.berlin.de/services/wfs/fnp_2025?request=GetCapabilities&service=WFS"
+      },
+      "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+      "license": {
+        "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+        "id": "dl-de-zero-2.0",
+        "url": "https://www.govdata.de/dl-de/zero-2-0"
+      },
+      "fields": [
+        {
+          "key": "nutzungsart",
+          "label": {
+            "de": "Darstellung",
+            "en": "Designation"
+          }
+        },
+        {
+          "key": "zweckbestimmung",
+          "label": {
+            "de": "Zweckbestimmung",
+            "en": "Purpose"
+          }
+        },
+        {
+          "key": "gisid",
+          "label": {
+            "de": "Objekt-ID",
+            "en": "Object ID"
+          }
+        }
+      ],
+      "popup_title": "nutzungsart",
+      "note": {
+        "de": "Flächennutzungsplan Berlin in der Fassung der Neubekanntmachung 2025. Der FNP stellt die beabsichtigte Bodennutzung in Grundzügen dar; er ist nicht parzellenscharf und für Grundstücke nicht unmittelbar verbindlich.",
+        "en": "Berlin land-use plan as re-published in 2025. The FNP shows intended land use in outline; it is not parcel-precise and does not bind individual plots directly."
+      },
+      "process": {
+        "id_field": "gisid",
+        "precision": 6,
+        "keep_fields": [
+          "nutzungsart",
+          "zweckbestimmung",
+          "gisid"
+        ],
+        "only_geometry": true
+      },
+      "views": {
+        "symbol": {
+          "label": {
+            "de": "Symbol",
+            "en": "Symbol"
+          },
+          "description": {
+            "de": "Symbole und Lagesymbole im FNP sowie Kennbuchstaben von Schutzgebieten.",
+            "en": "Symbols and position symbols in the land-use plan, and letters marking protected areas."
+          },
+          "style": {
+            "kind": "categorical",
+            "property": "nutzungsart",
+            "categories": [
+              {
+                "label": {
+                  "de": "Soziale Infrastruktur und Verwaltung",
+                  "en": "Social infrastructure and administration"
+                },
+                "color": "#14171A",
+                "values": [
+                  "Lagesymbol Schule",
+                  "Lagesymbol Hochschule, Forschung",
+                  "Lagesymbol Krankenhaus",
+                  "Lagesymbol Kultur",
+                  "Lagesymbol Verwaltung",
+                  "Lagesymbol Sicherheit, Ordnung",
+                  "Lagesymbol Post"
+                ]
+              },
+              {
+                "label": {
+                  "de": "Sport und Freizeit",
+                  "en": "Sport and leisure"
+                },
+                "color": "#9A9A92",
+                "values": [
+                  "Symbol Sport",
+                  "Lagesymbol Sport",
+                  "Lagesymbol Wassersport",
+                  "Symbol Camping"
+                ]
+              },
+              {
+                "label": {
+                  "de": "Grün (Park, Kleingarten, Friedhof, Feld)",
+                  "en": "Green (park, allotments, cemetery, fields)"
+                },
+                "color": "#3FA34D",
+                "values": [
+                  "Symbol Parkanlage",
+                  "Symbol Kleingarten",
+                  "Symbol Friedhof",
+                  "Symbol Feld, Flur, Wiese"
+                ]
+              },
+              {
+                "label": {
+                  "de": "Technische Infrastruktur",
+                  "en": "Technical infrastructure"
+                },
+                "color": "#BDBDB5",
+                "values": [
+                  "Lagesymbol Autobahnanschlussstelle",
+                  "Symbol Betriebshof (Bahn und Bus)",
+                  "Symbol Abfall, Abwasser",
+                  "Symbol Energie",
+                  "Symbol Wasser"
+                ]
+              },
+              {
+                "label": {
+                  "de": "Schadstoffbelasteter Boden",
+                  "en": "Contaminated soil"
+                },
+                "color": "#FF2FC0",
+                "values": [
+                  "Symbol schadstoffbel. Boden"
+                ]
+              },
+              {
+                "label": {
+                  "de": "Schutzgebiete (Kennbuchstabe)",
+                  "en": "Protected areas (letter)"
+                },
+                "color": "#BDBDB5",
+                "values": [
+                  "Landschaftsschutzgebiet (Buchstabe)",
+                  "Naturschutzgebiet (Buchstabe)",
+                  "FFH (Buchstabe)",
+                  "Wasserschutzgebiet (Buchstabe)",
+                  "Weltkulturerbe (Buchstabe)"
+                ]
+              }
+            ],
+            "other_color": "grey"
+          }
+        }
       }
     }
   ]
