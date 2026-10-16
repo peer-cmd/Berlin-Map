@@ -15,12 +15,15 @@
 
 - Model (2026-10-15): DWE-Studie 2025 (Holm/Thonke/Arpagaus) replaces the DWE draft-law preset; the five positions of `02_Vergesellschaftung` reproduce their sources' own results; `node 02_Vergesellschaftung/pruefung.js` checks them (details in `parameterpruefung.md`, log in `entwicklungsprotokoll.md`).
 
+- Model (2026-10-16, branch `claude/lucid-cerf-8ocw6w`, not merged): table "Die Finanzierung im Vergleich"; 7 controls removed and 3 groups collapsed (22 visible instead of 44, results unchanged). A net-position measure for the cumulative curve was tried and reverted.
+
 ## Next
 
 5. Tempelhofer Feld map (`config/maps/tempelhofer-feld.json`): BRW time series, B-Pläne, FNP 2025 (mixed polygon/point geometry, needs handling), Grünanlagen, Klimaanalyse 2022, StEP Wohnen. Verify each service first.
 
 ## Open
 
+- Model: cumulative cash flow of the DWE-Studie 2025 drops in years 29–30 (bond repayment), break-even year 28 ignores 3 bn € remaining debt. Problem, constraints, rejected approach and options: `02_Vergesellschaftung/problem-kumulierter-cashflow.md`.
 - Website: GitHub Pages from `main`, https://peer-cmd.github.io/Berlin-Map/02_Vergesellschaftung/index.html. Changes go live after merging into `main`.
 - Model source still missing: full AG Sozialisierung 2021 report (financing behind the 17 Mrd € claim of Gerhardt/Holm); the uploaded Gerhardt 2021 slides do not contain it.
 - Einwohnerdichte GeoJSON is 12.5 MB (26,613 blocks); loads only on demand. Vector tiles if it feels slow.
