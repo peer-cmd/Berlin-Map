@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf: Cashflow-Diagramme, Varianten A–C</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="style.css?v=20261006p">
+<script src="vendor/chart.umd.js"></script>
+<style>
+body{max-width:1100px;margin:0 auto;padding:16px;}
+.variant{margin:28px 0 8px;font-family:'Space Grotesk',sans-serif;font-size:20px;}
+.seg{display:inline-flex;margin:8px 0 4px;}
+</style>
+</head>
+<body>
+<h1 class="variant">Entwurf: Cashflow-Diagramme, Varianten A–C</h1>
+<p class="panel-sub">Arbeitsdatei, nicht verlinkt. Daten aus <code>model-calc.js</code>, Positionen unverändert. Werte in Mio €; bei Barwert-Positionen auch die Restschuld abgezinst.</p>
+<div class="seg" id="presets"></div>
+
+<h2 class="variant">A · Kassenstand minus Restschuld</h2>
+<div class="panel">
+  <div class="panel-head"><h2>Die Nettoposition aus Kasse und Schulden</h2></div>
+  <p class="panel-sub">Kassenstand der AöR minus Restschuld, ab der Übernahme (Jahr 0). Tilgungen und Sondertilgungen ändern die Kurve nicht; sie steigt um das, was die Mieten nach Bewirtschaftung und Zinsen übrig lassen. Über null: die Mieten haben die Übernahme vollständig bezahlt. Ohne Wert des Bestands (siehe Kapitalposition).</p>
+  <canvas id="cA" height="70"></canvas>
+</div>
+
+<h2 class="variant">B · Kassenstand, bereinigte Darstellung</h2>
+<div class="panel">
+  <div class="panel-head"><h2>Der Cashflow pro Jahr</h2></div>
+  <p class="panel-sub">Jahr 0: Einmalkosten und Eigenkapital des Landes. Danach je Jahr das Ergebnis der AöR, Zahlungen des Landes und Sondertilgungen aus der Rücklage.</p>
+  <canvas id="cB1" height="70"></canvas>
+  <div class="legend" id="legB"></div>
+</div>
+<div class="panel">
+  <div class="panel-head"><h2>Der Kassenstand der AöR</h2></div>
+  <p class="panel-sub">Summe aller Zahlungen seit der Übernahme. Break-even: erstes Jahr, ab dem die Kurve bis zum Ende über null bleibt.</p>
+  <canvas id="cB2" height="70"></canvas>
+</div>
+
+<h2 class="variant">C · wie B, Sondertilgungen bei der Restschuld</h2>
+<div class="panel">
+  <div class="panel-head"><h2>Der Cashflow pro Jahr</h2></div>
+  <p class="panel-sub">Jahr 0: Einmalkosten und Eigenkapital. Danach das Ergebnis der AöR (Mieten minus Bewirtschaftung und Kapitaldienst) und Zahlungen des Landes.</p>
+  <canvas id="cC1" height="70"></canvas>
+  <div class="legend" id="legC"></div>
+</div>
+<div class="panel">
+  <div class="panel-head"><h2>Die Restschuld und die Sondertilgungen</h2></div>
+  <p class="panel-sub">Verbleibender Kredit. Punkte: Sondertilgungen aus der Rücklage der AöR, Größe nach Betrag.</p>
+  <canvas id="cC2" height="70"></canvas>
+</div>
+
+<script>
+const DATA = 
+{"linke":{"name":"Faire-Mieten-Modell","valuation":"nominal","year0":0,"t":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40],"aoer":[-19,-18,-17,-16,-15,-14,-13,-11,-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,7,8,9,10,11,12,13,14,16,17,18,19,20,21,22,24],"land":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"swept":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"cash":[0,-19,-36,-53,-68,-83,-96,-109,-120,-131,-140,-149,-156,-162,-168,-172,-175,-177,-178,-178,-177,-175,-172,-167,-162,-155,-148,-139,-129,-118,-106,-93,-78,-63,-46,-28,-9,11,32,54,78],"debt":[9999,9749,9499,9249,8999,8749,8499,8249,7999,7749,7499,7249,6999,6749,6499,6249,5999,5749,5499,5249,4999,4749,4499,4249,3999,3749,3500,3250,3000,2750,2500,2250,2000,1750,1500,1250,1000,750,500,250,0],"net":[-9999,-9767,-9535,-9301,-9067,-8832,-8595,-8358,-8119,-7880,-7639,-7398,-7155,-6911,-6667,-6421,-6174,-5926,-5677,-5427,-5176,-4924,-4671,-4417,-4161,-3905,-3647,-3388,-3129,-2868,-2605,-2342,-2078,-1812,-1546,-1278,-1009,-739,-468,-195,78],"breakEvenOld":37},"holm2025":{"name":"DWE-Studie 2025","valuation":"nominal","year0":-2022,"t":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],"aoer":[5,85,84,83,83,81,80,-16,19,17,-7,14,11,9,-28,5,2,-1,-4,165,326,314,340,336,331,326,321,315,439,-352],"land":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"swept":[0,0,0,0,0,0,0,379,0,0,6,0,0,0,27,0,0,0,0,0,182,368,0,0,0,0,0,0,2288,0],"cash":[-2022,-2017,-1932,-1848,-1764,-1682,-1601,-1520,-1916,-1897,-1879,-1892,-1878,-1867,-1858,-1913,-1908,-1906,-1907,-1911,-1746,-1602,-1657,-1316,-981,-650,-324,-3,312,-1537,-1889],"debt":[8088,7943,7791,7632,7467,7294,7113,6924,6347,6140,5924,5738,5546,5342,5124,4865,4618,4355,4075,3776,3631,3449,3081,3081,3081,3081,3081,3081,3081,793,0],"net":[-10110,-9960,-9723,-9480,-9231,-8975,-8713,-8444,-8262,-8037,-7804,-7630,-7425,-7209,-6982,-6778,-6526,-6261,-5982,-5687,-5378,-5051,-4738,-4397,-4062,-3731,-3405,-3084,-2769,-2330,-1889],"breakEvenOld":28},"holm":{"name":"Bernt/Holm","valuation":"barwert","year0":0,"t":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32],"aoer":[-287,-315,-300,-286,-272,-259,-246,-233,-222,-210,-200,-189,-179,-169,-160,-151,-143,-135,-127,-120,-113,-106,-99,-93,-87,-81,-76,-71,-66,-61,273,267],"land":[-173,-168,-163,-158,-153,-149,-144,-140,-135,-131,-127,-123,-120,-116,-112,-109,-106,-102,-99,-96,-93,-90,-88,-85,-82,-80,-77,-75,-73,-71,0,0],"swept":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"cash":[0,-461,-944,-1407,-1851,-2276,-2683,-3073,-3446,-3803,-4145,-4472,-4784,-5083,-5368,-5641,-5901,-6150,-6387,-6613,-6829,-7035,-7231,-7418,-7596,-7766,-7927,-8080,-8226,-8365,-8496,-8224,-7957],"debt":[16999,16705,16398,16079,15746,15400,15040,14664,14273,13865,13441,12998,12538,12058,11558,11037,10494,9929,9339,8726,8086,7419,6724,6000,5246,4459,3640,2786,1895,967,0,0,0],"net":[-16999,-17166,-16842,-16519,-16199,-15880,-15563,-15247,-14934,-14622,-14312,-14004,-13698,-13393,-13091,-12790,-12491,-12194,-11899,-11606,-11315,-11025,-10737,-10451,-10167,-9884,-9603,-9324,-9047,-8771,-8496,-8224,-7957],"breakEvenOld":null},"rechnungshof":{"name":"Rechnungshof","valuation":"barwert","year0":0,"t":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32],"aoer":[-810,-833,-797,-762,-729,-696,-665,-634,-605,-577,-550,-523,-498,-473,-449,-426,-404,-383,-362,-343,-323,-305,-287,-270,-254,-238,-222,-207,-193,-179,396,391],"land":[-296,-287,-278,-270,-261,-253,-246,-238,-231,-224,-217,-210,-204,-198,-192,-186,-180,-175,-169,-164,-159,-154,-150,-145,-141,-136,-132,-128,-124,-120,0,0],"swept":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"cash":[0,-1106,-2226,-3301,-4333,-5324,-6273,-7184,-8056,-8892,-9693,-10460,-11193,-11895,-12566,-13207,-13819,-14404,-14961,-15493,-16000,-16483,-16942,-17379,-17794,-18188,-18562,-18916,-19252,-19569,-19869,-19473,-19082],"debt":[29001,28499,27976,27431,26864,26273,25658,25017,24350,23655,22930,22176,21390,20571,19718,18830,17904,16939,15934,14886,13795,12657,11472,10237,8950,7608,6210,4753,3234,1650,0,0,0],"net":[-29001,-29605,-29348,-29083,-28811,-28532,-28246,-27953,-27654,-27349,-27039,-26722,-26400,-26073,-25741,-25404,-25063,-24716,-24366,-24011,-23652,-23290,-22923,-22553,-22179,-21802,-21422,-21038,-20651,-20261,-19869,-19473,-19082],"breakEvenOld":null},"gegenmodell":{"name":"IW/Empirica","valuation":"barwert","year0":-200,"t":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32],"aoer":[-922,-953,-921,-890,-860,-831,-803,-777,-751,-726,-702,-679,-657,-636,-615,-596,-577,-558,-541,-524,-507,-492,-477,-462,-448,-435,-422,-410,-398,-387,186,179],"land":[-696,-675,-654,-634,-615,-596,-578,-560,-543,-526,-510,-495,-480,-465,-451,-437,-424,-411,-398,-386,-374,-363,-352,-341,-331,-321,-311,-301,-292,-283,-158,-153],"swept":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"cash":[-200,-1818,-3446,-5020,-6544,-8019,-9446,-10827,-12164,-13458,-14710,-15923,-17097,-18234,-19335,-20401,-21434,-22434,-23403,-24342,-25251,-26133,-26988,-27816,-28620,-29399,-30154,-30887,-31598,-32289,-32959,-32931,-32904],"debt":[29001,28499,27976,27431,26864,26273,25658,25017,24350,23655,22930,22176,21390,20571,19718,18830,17904,16939,15934,14886,13795,12657,11472,10237,8950,7608,6210,4753,3234,1650,0,0,0],"net":[-29201,-30317,-30567,-30802,-31022,-31227,-31418,-31597,-31762,-31915,-32056,-32186,-32304,-32412,-32510,-32598,-32677,-32747,-32807,-32860,-32904,-32940,-32969,-32991,-33005,-33013,-33014,-33009,-32998,-32981,-32959,-32931,-32904],"breakEvenOld":null}};
+const C = {green:'#109A82', red:'#E0435C', land:'#A9762C', sweep:'#93AECB', line:'#00788C', ink:'#555', zero:'#9A9A90', y0:'#6E6E66'};
+const fmt = v => Math.abs(v)>=1000 ? (v/1000).toLocaleString('de-DE',{maximumFractionDigits:1})+' Mrd €' : Math.round(v).toLocaleString('de-DE')+' Mio €';
+const TICKS = {font:{family:'IBM Plex Mono',size:9}};
+const axes = (stacked) => ({
+  x:{stacked, grid:{display:false}, ticks:{...TICKS, autoSkip:false, callback:function(v){const l=this.getLabelForValue(v); return (l%5===0)?l:'';}}, title:{display:true,text:'Jahr',font:{family:'IBM Plex Mono',size:10}}},
+  y:{stacked, grid:{color:'#EAEAE4'}, ticks:{...TICKS, callback:fmt}}
+});
+// Erstes Jahr, ab dem die Reihe bis zum Ende über null bleibt.
+const sustained = a => { let y=null; for(let i=a.length-1;i>=0;i--){ if(a[i]>0) y=i; else break; } return y; };
+const vline = { id:'vline', afterDatasetsDraw(ch,_,o){ const a=ch.chartArea, c=ch.ctx; if(o.index==null){ if(o.label){ c.save(); c.fillStyle='#333'; c.font='10px IBM Plex Mono'; c.fillText(o.label, a.left+6, a.top+10); c.restore(); } return; } const x=ch.scales.x.getPixelForValue(o.index);
+  c.save(); c.strokeStyle='#555'; c.setLineDash([3,3]); c.beginPath(); c.moveTo(x,a.top); c.lineTo(x,a.bottom); c.stroke();
+  c.setLineDash([]); c.fillStyle='#333'; c.font='10px IBM Plex Mono'; c.textAlign = x>a.right-150?'right':'left'; c.fillText(o.label, x+(c.textAlign==='left'?4:-4), a.top+10); c.restore(); } };
+Chart.register(vline);
+const base = (stacked) => ({responsive:true, animation:false, interaction:{mode:'index',intersect:false},
+  plugins:{legend:{display:false}, tooltip:{callbacks:{label:c=>c.dataset.label+': '+fmt(c.parsed.y)}}, vline:{index:null}}, scales:axes(stacked)});
+const charts = {};
+function make(id, cfg){ if(charts[id]) charts[id].destroy(); charts[id] = new Chart(document.getElementById(id), cfg); return charts[id]; }
+function legend(id, items){ document.getElementById(id).innerHTML = items.filter(i=>i.show).map(i=>'<span><i class="swatch" style="background:'+i.c+'"></i>'+i.l+'</span>').join(''); }
+const zero = n => ({type:'line', label:'Null', data:Array(n).fill(0), borderColor:C.zero, borderWidth:1, borderDash:[2,3], pointRadius:0, stack:'z'});
+function marker(ch, idx, label){ ch.options.plugins.vline = {index:idx, label}; ch.update(); }
+
+function render(k){
+  const d = DATA[k], L = [0].concat(d.t), n = L.length;
+  const any = a => a.some(v=>v!==0);
+  // A
+  const be = sustained(d.net);
+  const a = make('cA', {data:{labels:L, datasets:[
+    {type:'line', label:'Kasse minus Restschuld', data:d.net, borderColor:C.line, borderWidth:2.2, pointRadius:0, tension:0}, zero(n)]}, options:base(false)});
+  marker(a, be, be==null ? 'Kein Break-even bis Jahr '+d.t[d.t.length-1] : 'Break-even (Jahr '+L[be]+')');
+  // B
+  const y0 = [d.year0].concat(Array(n-1).fill(0));
+  const pad = a => [0].concat(a);
+  const aoer = pad(d.aoer), land = pad(d.land), swept = pad(d.swept.map(v=>-v));
+  make('cB1', {data:{labels:L, datasets:[
+    {type:'bar', label:'Einmalkosten und Eigenkapital', data:y0, backgroundColor:C.y0, stack:'s'},
+    {type:'bar', label:'Ergebnis der AöR', data:aoer, backgroundColor:aoer.map(v=>v>=0?C.green:C.red), stack:'s'},
+    {type:'bar', label:'Land', data:land, backgroundColor:C.land, stack:'s'},
+    {type:'bar', label:'Sondertilgung', data:swept, backgroundColor:C.sweep, stack:'s'}, zero(n)]}, options:base(true)});
+  legend('legB', [{c:C.y0,l:'Einmalkosten und Eigenkapital',show:d.year0!==0},{c:C.green,l:'Ergebnis der AöR',show:true},{c:C.land,l:'Land',show:any(d.land)},{c:C.sweep,l:'Sondertilgung',show:any(d.swept)}]);
+  const beC = sustained(d.cash);
+  const lineCfg = () => ({data:{labels:L, datasets:[
+    {type:'line', label:'Kassenstand der AöR', data:d.cash, borderColor:C.line, borderWidth:2.2, pointRadius:0, tension:0}, zero(n)]}, options:base(false)});
+  const b2 = make('cB2', lineCfg());
+  marker(b2, beC, beC==null ? 'Kein dauerhafter Break-even' : 'Break-even (Jahr '+L[beC]+')');
+  // C
+  make('cC1', {data:{labels:L, datasets:[
+    {type:'bar', label:'Einmalkosten und Eigenkapital', data:y0, backgroundColor:C.y0, stack:'s'},
+    {type:'bar', label:'Ergebnis der AöR', data:aoer, backgroundColor:aoer.map(v=>v>=0?C.green:C.red), stack:'s'},
+    {type:'bar', label:'Land', data:land, backgroundColor:C.land, stack:'s'}, zero(n)]}, options:base(true)});
+  legend('legC', [{c:C.y0,l:'Einmalkosten und Eigenkapital',show:d.year0!==0},{c:C.green,l:'Ergebnis der AöR',show:true},{c:C.land,l:'Land',show:any(d.land)}]);
+  const maxS = Math.max(1, ...d.swept);
+  const pts = L.map((t,i)=> i>0 && d.swept[i-1]>0 ? d.debt[i] : null);
+  make('cC2', {data:{labels:L, datasets:[
+    {type:'line', label:'Restschuld', data:d.debt, borderColor:C.red, borderWidth:2, pointRadius:0, tension:0},
+    {type:'line', label:'Sondertilgung', data:pts, showLine:false, backgroundColor:C.sweep, borderColor:C.line, borderWidth:1,
+      pointRadius:L.map((t,i)=> i>0 && d.swept[i-1]>0 ? 3+12*Math.sqrt(d.swept[i-1]/maxS) : 0)}]},
+    options:{...base(false), plugins:{...base(false).plugins, tooltip:{callbacks:{label:c=> c.dataset.label==='Sondertilgung' ? 'Sondertilgung: '+fmt(d.swept[c.dataIndex-1]) : 'Restschuld: '+fmt(c.parsed.y)}}}}});
+  document.querySelectorAll('#presets button').forEach(b=>b.classList.toggle('active', b.dataset.k===k));
+}
+const seg = document.getElementById('presets');
+Object.keys(DATA).forEach(k=>{ const b=document.createElement('button'); b.textContent=DATA[k].name; b.dataset.k=k; b.onclick=()=>render(k); seg.appendChild(b); });
+render(new URLSearchParams(location.search).get('p') || 'holm2025');
+</script>
+</body>
+</html>
