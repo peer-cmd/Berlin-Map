@@ -178,6 +178,8 @@
       // financing with rate reset at end of Zinsbindung
       // Kapitaldienst der AöR: Annuität, Anleihezinsen, Strukturierungsentgelte, Restzahlung am Laufzeitende.
       let annuityThisYear = 0, swept = 0;
+      // Aufschlüsselung je Jahr (nominal): Zinsen und Tilgung je Kreditart, Sondertilgungen, Entgelte.
+      let loanInt = 0, loanPrin = 0, bondInt = 0, bondPrin = 0, sweptLoan = 0, sweptBond = 0, feesNow = 0;
       if(kredit && t<=p.term){
         if(t === p.rateResetYears+1 && p.rateResetYears < p.term){
           currentRate = p.rate/100 + p.riskPremium/100 + p.rateIncrement/100;
@@ -191,7 +193,7 @@
           let use = reserve - lastService/4;
           const b = Math.min(use, bondBalance); bondBalance -= b; use -= b;
           const l = Math.min(use, balance); balance -= l;
-          swept = b + l; reserve -= swept;
+          swept = b + l; reserve -= swept; sweptBond = b; sweptLoan = l;
         }
         const feeRate = (p.feeRate||0)/100;
         let fees = 0;
@@ -203,9 +205,12 @@
           let principalPortion = t===p.term ? balance : Math.min(annuity - interestPortion, balance);
           balance = Math.max(balance - principalPortion, 0);
           loanService = interestPortion + principalPortion;
+          loanInt = interestPortion; loanPrin = principalPortion;
         }
         let bondService = bondBalance*bondRateNow;
-        if(t===p.term){ bondService += bondBalance; bondBalance = 0; }
+        bondInt = bondService;
+        if(t===p.term){ bondPrin = bondBalance; bondService += bondBalance; bondBalance = 0; }
+        feesNow = fees;
         annuityThisYear = loanService + bondService + fees;
         lastService = annuityThisYear;
       }
@@ -215,9 +220,11 @@
       if(p.sweep==='an') reserve += aoer;
       // Land: Kapitaldienst für den Eigenkapitalanteil und Mehrkosten der Landesschulden.
       let land = (p.landDebtCost||0)*1e6;
+      let landInt = 0, landPrin = 0;
       if(kredit && t<=p.term && equityBalance>0){
         let pr = equityAnnuity - equityBalance*equityRate;
         if(pr > equityBalance) pr = equityBalance;
+        landInt = equityBalance*equityRate; landPrin = pr;
         equityBalance = Math.max(equityBalance - pr, 0);
         land += equityAnnuity;
       }
@@ -235,6 +242,7 @@
         units, bookNew, rateNow: currentRate*100,
         avgRent: income/(units*p.avgSize*12),
         service: annuityThisYear, swept,
+        parts: {opex:opexAmt, loanInt, loanPrin, bondInt, bondPrin, fees:feesNow, sweptLoan, sweptBond, landInt, landPrin, land, cashInterest:interest, cash, loanBal:balance, bondBal:bondBalance, equityBal:equityBalance},
         balance: kredit ? balance+bondBalance+equityBalance : null});
 
       // reinvestment for next year -- spending is subtracted from the cash reserve (cum) so it is
@@ -255,6 +263,7 @@
     const first10 = rows.slice(0, 10);
     return {
       principal, fullValue, equity, rows, breakEvenYear, netResult: last.cumForChart,
+      upfrontCosts, equityUpfront, bondStart: debt*((p.bondShare||0)/100), loanStart: debt*(1-(p.bondShare||0)/100),
       finalUnits: last.units,
       finalDebt: last.balance || 0,
       aoerAvg10: first10.reduce((s,r)=>s+r.aoer, 0)/first10.length,
