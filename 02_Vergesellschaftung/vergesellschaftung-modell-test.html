@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEST · Kosten- und Finanzierungsmodell der Vergesellschaftung Berlin</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<script src="vendor/chart.umd.js"></script>
+<link rel="stylesheet" href="style.css?v=20261006p">
+</head>
+<body class="model-page">
+<div class="app">
+
+  <nav class="site-nav">
+    <a href="index.html">Übersicht</a>
+    <a href="modell-kompakt.html" class="active">Modell</a>
+    <a href="recht.html">Das Recht</a>
+    <a href="zahlen.html">Die Zahlen</a>
+    <a href="quellenbelege.html">Die Chronologie</a>
+    <a href="glossar.html">Glossar</a>
+    <a href="karte.html">Karte</a>
+    <a href="quellen.html">Quellen</a>
+    <a href="mailto:info@vergesellschaftungsrechner-berlin.de" class="nav-contact">Kontakt</a>
+  </nav>
+
+  <div class="layout">
+
+    <aside class="controls">
+
+      <div class="group">
+        <div class="field">
+          <button class="preset-btn" data-preset="linke">Faire-Mieten-Modell</button>
+          <button class="preset-btn" data-preset="holm2025">DWE-Studie 2025</button>
+          <button class="preset-btn" data-preset="holm">Bernt/Holm</button>
+          <button class="preset-btn" data-preset="rechnungshof">Rechnungshof</button>
+          <button class="preset-btn" data-preset="gegenmodell">IW/Empirica</button>
+        </div>
+        <div class="field" id="savedSlots"></div>
+        <div class="field" style="display:flex;gap:6px;">
+          <input type="text" id="saveLabel" placeholder="Name des Szenarios" maxlength="18"
+            style="flex:1;padding:6px 7px;border:1px solid var(--line-strong);font-family:'IBM Plex Sans',sans-serif;font-size:11px;">
+          <button class="snap-btn" id="saveBtn">Speichern</button>
+        </div>
+      </div>
+
+      <div class="group">
+        <div class="field">
+          <div class="field-row"><label data-term="Betrachtungszeitraum">Betrachtungszeitraum</label><span class="val" id="v-horizon">50 Jahre</span></div>
+          <input type="range" id="horizon" min="10" max="100" step="1" value="50">
+        </div>
+      </div>
+
+      <div class="group">
+        <p class="group-title">Bestand &amp; Entschädigung</p>
+        <div class="field">
+          <div class="field-row"><label>Anzahl Wohnungen</label><span class="val" id="v-units">240.000</span></div>
+          <input type="range" id="units" min="50000" max="400000" step="1000" value="240000">
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Ø Wohnungsgröße</label><span class="val" id="v-avgSize">62 m²</span></div>
+          <input type="range" id="avgSize" min="40" max="100" step="1" value="62">
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Verkehrswert">Verkehrswert/m²</label><span class="val" id="v-price">2.085 €/m²</span></div>
+          <input type="range" id="price" min="500" max="5000" step="5" value="2085">
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Entschädigungsquote">Entschädigungsquote (vom Verkehrswert)</label><span class="val" id="v-purchaseFactor">100 %</span></div>
+          <input type="range" id="purchaseFactor" min="20" max="100" step="0.01" value="100">
+          <div class="hint">Kaufpreis <span id="v-effectivePrice">2.085 €/m² · 31,0</span> von <span id="v-totalDerived">31,0 Mrd €</span></div>
+          <div class="linked-row">
+            <label class="linked-label">≈ pro Wohnung</label>
+            <input type="number" class="linked-input" id="pricePerUnit" step="1000">
+            <span class="linked-suffix">€ Verkehrswert</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="group">
+        <p class="group-title">Finanzierung</p>
+        <div class="field">
+          <div class="seg" id="seg-financing">
+            <button data-val="kredit" class="active">Kredit</button>
+            <button data-val="eigen">Eigenmittel</button>
+          </div>
+        </div>
+        <div class="field" id="wrap-rate">
+          <div class="field-row"><label data-term="Zinssatz">Zinssatz</label><span class="val" id="v-rate">3,5 %</span></div>
+          <input type="range" id="rate" min="0" max="7" step="0.1" value="3.5">
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Risikoprämie">Risikoprämie ab Ankündigung</label><span class="val" id="v-riskPremium">0,0 pp</span></div>
+          <input type="range" id="riskPremium" min="0" max="2" step="0.1" value="0">
+        </div>
+        <div class="field" id="wrap-term">
+          <div class="field-row"><label data-term="Tilgungsdauer">Tilgungsdauer</label><span class="val" id="v-term">30 J.</span></div>
+          <input type="range" id="term" min="5" max="100" step="1" value="30">
+        </div>
+        <div class="field" id="wrap-reset">
+          <div class="field-row"><label data-term="Zinsbindung">Zinsbindung</label><span class="val" id="v-rateResetYears">10 J.</span></div>
+          <input type="range" id="rateResetYears" min="5" max="100" step="1" value="10">
+        </div>
+        <div class="field" id="wrap-increment">
+          <div class="field-row"><label data-term="Zinsaufschlag">Zinsaufschlag danach</label><span class="val" id="v-rateIncrement">+1,0 pp</span></div>
+          <input type="range" id="rateIncrement" min="0" max="3" step="0.1" value="1.0">
+        </div>
+        <div class="field" id="wrap-bond">
+          <div class="field-row"><label data-term="Anfangstilgung">Anfangstilgung</label><span class="val" id="v-initialRepayment">Annuität</span></div>
+          <input type="range" id="initialRepayment" min="0" max="5" step="0.01" value="0">
+          <div class="field-row"><label data-term="Endfällige Anleihe">Anteil endfällige Anleihe</label><span class="val" id="v-bondShare">0 %</span></div>
+          <input type="range" id="bondShare" min="0" max="100" step="5" value="0">
+          <div class="field-row"><label>Zins der Anleihe</label><span class="val" id="v-bondRate">4,0 %</span></div>
+          <input type="range" id="bondRate" min="0" max="7" step="0.1" value="4">
+          <div class="field-row"><label>Laufzeit der Anleihe</label><span class="val" id="v-bondReset">7 J.</span></div>
+          <input type="range" id="bondReset" min="1" max="15" step="1" value="7">
+          <div class="field-row"><label data-term="Strukturierungsentgelt">Strukturierungsentgelt</label><span class="val" id="v-feeRate">0,0 %</span></div>
+          <input type="range" id="feeRate" min="0" max="3" step="0.1" value="0">
+          <div class="field-row"><label data-term="Überschüsse tilgen">Überschüsse tilgen</label></div>
+          <div class="seg" id="seg-sweep">
+            <button data-val="aus" class="active">aus</button>
+            <button data-val="an">an</button>
+          </div>
+        </div>
+        <div class="field" id="wrap-equity">
+          <div class="field-row"><label data-term="Eigenkapitalanteil">Eigenkapitalanteil des Landes</label><span class="val" id="v-equityShare">0 %</span></div>
+          <input type="range" id="equityShare" min="0" max="100" step="1" value="0">
+          <div class="field-row"><label data-term="Eigenkapitalanteil">Zins des Landes</label><span class="val" id="v-equityRate">3,0 %</span></div>
+          <input type="range" id="equityRate" min="0" max="6" step="0.1" value="3">
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Mehrkosten Landesschulden">Mehrkosten Landesschulden</label><span class="val" id="v-landDebtCost">0 Mio €/J.</span></div>
+          <input type="range" id="landDebtCost" min="0" max="1000" step="10" value="0">
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Fehlbeträge verzinsen">Fehlbeträge verzinsen</label></div>
+          <div class="seg" id="seg-deficit">
+            <button data-val="aus" class="active">aus</button>
+            <button data-val="an">an</button>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Einmalige Kosten">Einmalige Kosten</label><span class="val" id="v-onceCosts">0 Mio €</span></div>
+          <input type="range" id="onceCosts" min="0" max="1500" step="5" value="0">
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Integrationskosten">Integrationskosten</label><span class="val" id="v-integrationCosts">0,0 %</span></div>
+          <input type="range" id="integrationCosts" min="0" max="10" step="0.5" value="0">
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Sanierungsstau">Sanierungsstau pro Wohnung</label><span class="val" id="v-maintBacklog">0 €</span></div>
+          <input type="range" id="maintBacklog" min="0" max="30000" step="500" value="0">
+        </div>
+      </div>
+
+      <div class="group">
+        <p class="group-title">Miete &amp; Bewirtschaftung</p>
+        <div class="field">
+          <div class="field-row"><label data-term="Ausgangsmiete" data-note="Ø Nettokaltmiete der 6 größten privaten Wohnungskonzerne, exakt der Vergesellschaftungs-Bestand (Bernt/Holm 2023, Rosa-Luxemburg-Stiftung)">Ausgangsmiete</label><span class="val" id="v-baseRent">7,63 €/m²</span></div>
+          <input type="range" id="baseRent" min="3" max="20" step="0.01" value="7.63">
+          <div class="linked-row">
+            <label class="linked-label">≈ pro Wohnung</label>
+            <input type="number" class="linked-input" id="baseRentPerUnit" step="5">
+            <span class="linked-suffix">€/Monat</span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Mietsteigerung">Mietsteigerung p.a.</label><span class="val" id="v-rentGrowth">1,5 %</span></div>
+          <input type="range" id="rentGrowth" min="0" max="4" step="0.01" value="1.5">
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Kosteninflation">Kosteninflation p.a.</label><span class="val" id="v-costInflation">2,5 %</span></div>
+          <input type="range" id="costInflation" min="0" max="6" step="0.01" value="2.5">
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Anfangsphase">Anfangsphase</label><span class="val" id="v-startYears">keine</span></div>
+          <input type="range" id="startYears" min="0" max="5" step="1" value="0">
+          <div id="wrap-start">
+            <div class="field-row"><label>Inflation in der Anfangsphase</label><span class="val" id="v-startInflation">10,0 %</span></div>
+            <input type="range" id="startInflation" min="0" max="15" step="0.5" value="10">
+            <div class="field-row"><label>Mietsteigerung in der Anfangsphase</label><span class="val" id="v-startRentGrowth">1,0 %</span></div>
+            <input type="range" id="startRentGrowth" min="0" max="5" step="0.1" value="1">
+          </div>
+        </div>
+        <div class="field">
+          <div class="seg" id="seg-opexmode">
+            <button data-val="percent" class="active">% der Miete</button>
+            <button data-val="absolute">Absolut €/m²</button>
+          </div>
+        </div>
+        <div class="field" id="wrap-opex-percent">
+          <div class="field-row"><label data-term="Bewirtschaftungskosten">Bewirtschaftungskosten</label><span class="val" id="v-opex">40 %</span></div>
+          <input type="range" id="opex" min="20" max="60" step="1" value="40">
+        </div>
+        <div class="field" id="wrap-opex-absolute" style="display:none;">
+          <div class="field-row"><label data-term="Bewirtschaftungskosten">Bewirtschaftungskosten absolut</label><span class="val" id="v-opexAbsolute">2,20 €/m²</span></div>
+          <input type="range" id="opexAbsolute" min="1" max="5" step="0.01" value="2.2">
+          <div class="linked-row">
+            <label class="linked-label">≈ pro Wohnung</label>
+            <input type="number" class="linked-input" id="opexAbsolutePerUnit" step="5">
+            <span class="linked-suffix">€/Monat</span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Mietausfallwagnis">Mietausfallwagnis</label><span class="val" id="v-vacancyRate">0,0 %</span></div>
+          <input type="range" id="vacancyRate" min="0" max="10" step="0.5" value="0">
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Neuvertragsmiete" data-note="Angebotsmiete Berlin Anfang 2026 16,75 €/m² (IW/Empirica 2026, S. 12), fortgeschrieben mit 2,3 % pro Jahr wie die ortsübliche Vergleichsmiete bei Bernt/Holm 2023 (S. 22)">Referenz: freier Markt</label><span class="val" id="v-freeMarketRent">16,75 €/m²</span></div>
+          <input type="range" id="freeMarketRent" min="8" max="25" step="0.01" value="16.75">
+          <div class="field-row"><label>Steigerung freier Markt</label><span class="val" id="v-freeMarketGrowth">2,3 %/J.</span></div>
+          <input type="range" id="freeMarketGrowth" min="0" max="8" step="0.1" value="2.3">
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Grenze Sozialmiete" data-note="Miete der Landeseigenen, auf die Bernt/Holm 2023 senken (S. 12); Wachstum 1,6 %/Jahr (S. 22)">Grenze Sozialmiete</label><span class="val" id="v-munizRent">6,39 €/m²</span></div>
+          <input type="range" id="munizRent" min="4" max="12" step="0.01" value="6.39">
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="CPI">Referenz: Verbraucherpreise (CPI)</label><span class="val" id="v-cpiGrowth">2,0 %/J.</span></div>
+          <input type="range" id="cpiGrowth" min="0" max="5" step="0.1" value="2.0">
+        </div>
+        <div class="field">
+          <div class="field-row"><label data-term="Haushaltseinkommen">Referenz: Haushaltseinkommen</label><span class="val" id="v-incomeGrowth">3,0 %/J.</span></div>
+          <input type="range" id="incomeGrowth" min="0" max="6" step="0.1" value="3.0">
+        </div>
+      </div>
+
+      <div class="group">
+        <p class="group-title">Bewertung</p>
+        <div class="field">
+          <div class="seg" id="seg-valuation">
+            <button data-val="nominal" class="active">Nominal</button>
+            <button data-val="barwert">Barwert</button>
+          </div>
+        </div>
+        <div class="field" id="wrap-discount">
+          <div class="field-row"><label data-term="Barwert">Abzinsungssatz</label><span class="val" id="v-discountRate">3,15 %</span></div>
+          <input type="range" id="discountRate" min="0" max="6" step="0.05" value="3.15">
+        </div>
+      </div>
+
+      <div class="group">
+        <p class="group-title">Der Überschuss</p>
+        <div class="field">
+          <select id="mode">
+            <option value="none">Keine Reinvestition</option>
+            <option value="neubau">Neubau — Bestand wächst</option>
+          </select>
+        </div>
+
+        <div class="subpanel" id="panel-neubau">
+          <div class="field">
+            <div class="field-row"><label data-term="Baukosten Neubau">Baukosten Neubau</label><span class="val" id="v-buildCost">3.500 €/m²</span></div>
+            <input type="range" id="buildCost" min="1500" max="6000" step="100" value="3500">
+            <div class="linked-row">
+              <label class="linked-label">≈ pro Wohnung</label>
+              <input type="number" class="linked-input" id="buildCostPerUnit" step="1000">
+              <span class="linked-suffix">€ (Baukosten je Whg.)</span>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-row"><label data-term="Reinvestitionsquote">Reinvestitionsquote</label><span class="val" id="v-reinvestQuota1">100 %</span></div>
+            <input type="range" id="reinvestQuota1" min="0" max="100" step="5" value="100">
+          </div>
+        </div>
+
+      </div>
+
+      <div class="reset-row">
+        <button class="reset-btn" id="resetBtn">Zurücksetzen</button>
+        <button class="print-btn" id="printBtn">Ergebnisse drucken</button>
+        <button class="print-btn" id="shareBtn">Link kopieren</button>
+      </div>
+
+    </aside>
+
+    <main class="results">
+
+      <section class="summary">
+        <h1>Kosten- und Finanzierungsmodell der Vergesellschaftung großer Wohnungsunternehmen</h1>
+
+        <p class="figures">Kaufpreis <span class="value" id="s-kaufpreis">–</span> (<span id="s-kaufpreis-sub">–</span>), <span data-term="Nettoergebnis">Nettoergebnis</span> <span id="s-netto-label">nach 50 Jahren</span> <span class="value" id="s-netto">–</span>, <span id="s-netto-sub">–</span>. <span data-term="Ergebnis der AöR">Ergebnis der AöR</span>, Ø Jahr 1–10: <span class="value" id="s-aoer">–</span>; <span data-term="Restschuld">Restschuld</span> am Ende <span class="value" id="s-rest">–</span>. Alle Werte: <span id="s-valuation">–</span>.</p>
+      </section>
+
+      <p class="group-title section-jump" id="finanzen"><span>Die Finanzen</span><a href="#mieter">Die Mieter</a><a href="#vergleich">Der Modellvergleich</a><a href="#sensitivitaet">Die Sensitivität</a><a href="#tabellen">Die Tabellen</a></p>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Kaufpreis und Finanzierung</h2>
+        </div>
+        <p class="panel-sub">Die Entschädigung und woher das Geld kommt, bei der Übernahme (Jahr 0): Ihre Einstellung und die fünf Positionen. Eigenkapital zahlt das Land aus dem Haushalt oder über einen eigenen Kredit; Bankdarlehen und Anleihe nimmt die AöR auf. Beide sind geliehen und werden zurückgezahlt: das Darlehen in jährlichen Raten, die Anleihe am Ende ihrer Laufzeit.</p>
+        <div style="position:relative;height:230px"><canvas id="chartFinance"></canvas></div>
+        <div class="legend" id="legFinance"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Wohin die Miete geht</h2>
+          <div class="seg" id="seg-finunit">
+            <button data-val="mio" class="active">€ je Jahr</button>
+            <button data-val="qm">€ je m² und Monat</button>
+          </div>
+        </div>
+        <p class="panel-sub">Je Jahr die Mieteinnahmen (Linie) und wofür sie verwendet werden. Bewirtschaftung, Zinsen und Entgelte sind Aufwand; Tilgung wandelt Schulden in Eigentum. Liegt der Stapel über der Linie, reicht die Miete nicht; der Fehlbetrag steht unter null. Sondertilgungen zahlt die AöR aus der Rücklage früherer Jahre; sie stehen im nächsten Diagramm. Nominale Werte.</p>
+        <canvas id="chartRentUse" height="70"></canvas>
+        <div class="legend" id="legRentUse"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Schulden und Rücklage</h2>
+        </div>
+        <p class="panel-sub">Je Jahresende: unter null, was noch geschuldet wird und was das Land bereits gezahlt hat; über null die Rücklage der AöR. Die Linie ist die Summe, also was die Übernahme Berlin bis dahin netto kostet. Tilgungen ändern sie nicht, Zinsen senken sie, Überschüsse heben sie. Ohne Wert des Bestands. Nominale Werte.</p>
+        <canvas id="chartDebt" height="70"></canvas>
+        <div class="legend" id="legDebt"></div>
+      </div>
+
+      <!-- Bisherige Diagramme, auf der Testseite ausgeblendet -->
+      <div hidden>
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Der <span data-term="Cashflow">Cashflow</span> pro Jahr</h2>
+        </div>
+        <p class="panel-sub">Je Jahr: das Ergebnis der AöR (Mieteinnahmen minus Bewirtschaftung und Kapitaldienst), die Zahlungen des Landes (Kredit für den Eigenkapitalanteil, Mehrkosten der Landesschulden) und Sondertilgungen aus der Rücklage der AöR. Zusammen ergeben sie die Veränderung der kumulierten Kurve. Springen die Balken nach oben, ist ein Kredit getilgt; fällt am Ende der Laufzeit die Restschuld an, zahlt die AöR sie aus ihrer Rücklage.</p>
+        <canvas id="chartCashflow" height="70"></canvas>
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--green)"></i><i class="swatch" style="background:var(--red)"></i>Ergebnis der AöR</span>
+          <span><i class="swatch" style="background:#A9762C"></i>Land</span>
+          <span><i class="swatch" style="background:var(--blue-light)"></i>Sondertilgung</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Der Cashflow kumuliert</h2>
+        </div>
+        <p class="panel-sub">Summe aller Jahresergebnisse seit der Übernahme, einschließlich der Einmalkosten. Die Kurve sinkt, solange Kreditraten anfallen, und steigt nach der Tilgung; ihr Endwert ist das Nettoergebnis oben.</p>
+        <canvas id="chartCumulative" height="70"></canvas>
+      </div>
+
+      <div class="panel" id="balancePanelWrap">
+        <div class="panel-head">
+          <h2>Die <span data-term="Restschuld">Restschuld</span></h2>
+        </div>
+        <p class="panel-sub">Verbleibender Kredit der AöR, mit Eigenkapitalanteil zuzüglich des Kredits des Landes. Am Knick endet die Zinsbindung; danach gilt der höhere Anschlusszins.</p>
+        <canvas id="chartBalance" height="70"></canvas>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Die Kapitalposition Berlins</h2>
+        </div>
+        <p class="panel-sub">Was Berlin besitzt, minus was es schuldet: Verkehrswert des übernommenen Bestands und Baukosten neu gebauter Wohnungen, abzüglich Restschuld, zuzüglich der bisherigen Überschüsse (nach Kosten für Neubau). Über null ist der Bestand mehr wert als die verbleibenden Schulden.</p>
+        <canvas id="chartCapital" height="70"></canvas>
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--blue-light)"></i>Vermögenswert Bestand</span>
+          <span><i class="swatch" style="background:var(--red)"></i>Restschuld</span>
+          <span><i class="swatch" style="background:#A9762C"></i>Kumulierter Cashflow</span>
+          <span><i class="swatch" style="background:var(--green)"></i>Nettoposition</span>
+        </div>
+      </div>
+
+      </div>
+
+      <p class="group-title section-jump" id="mieter"><a href="#finanzen">Die Finanzen</a><span>Die Mieter</span><a href="#vergleich">Der Modellvergleich</a><a href="#sensitivitaet">Die Sensitivität</a><a href="#tabellen">Die Tabellen</a></p>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Die Mieten</h2>
+        </div>
+        <p class="panel-sub">Durchschnittliche Nettokaltmiete im übernommenen Bestand, verglichen mit der Marktmiete, der Grenze Sozialmiete (Miete der Landeseigenen), Verbraucherpreisen und Haushaltseinkommen. Liegt die Miete höchstens auf der Grenze, gilt der Bestand als Sozialwohnungen.</p>
+        <canvas id="chartRent" height="70"></canvas>
+        <div class="legend">
+          <span><i class="swatch" style="background:#E0435C"></i>Freier Markt</span>
+          <span><i class="swatch" style="background:#A9762C"></i>Grenze Sozialmiete</span>
+          <span><i class="swatch" style="background:#6B6B63"></i>CPI (indexiert)</span>
+          <span><i class="swatch" style="background:#109A82"></i>Einkommen (indexiert)</span>
+          <span><i class="swatch" style="background:var(--blue)"></i>Ø Miete Bestand (Modell)</span>
+        </div>
+        <p class="panel-sub" id="rentLimitNote"></p>
+      </div>
+
+      <div class="panel" id="stockPanelWrap" style="display:none;">
+        <div class="panel-head">
+          <h2 id="stock-title">Der Bestand</h2>
+        </div>
+        <p class="panel-sub" id="stock-sub">Zahl der Wohnungen, wenn die Überschüsse in Neubau fließen (Einstellung unter „Der Überschuss“).</p>
+        <canvas id="chartStock" height="70"></canvas>
+      </div>
+
+      <p class="group-title section-jump" id="vergleich"><a href="#finanzen">Die Finanzen</a><a href="#mieter">Die Mieter</a><span>Der Modellvergleich</span><a href="#sensitivitaet">Die Sensitivität</a><a href="#tabellen">Die Tabellen</a></p>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Der Cashflow kumuliert im Vergleich</h2>
+        </div>
+        <p class="panel-sub">Summe aller Jahresergebnisse seit der Übernahme, je Position. Die dicke Linie ist die aktuelle Einstellung, gestrichelte Linien sind gespeicherte Szenarien.</p>
+        <canvas id="chartCompareCum" height="70"></canvas>
+        <div class="legend compare-legend"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Die <span data-term="Restschuld">Restschuld</span> im Vergleich</h2>
+        </div>
+        <p class="panel-sub">Verbleibender Kredit je Position. Positionen mit Eigenmitteln haben keine Linie.</p>
+        <canvas id="chartCompareBalance" height="70"></canvas>
+        <div class="legend compare-legend"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Die Mieten im Vergleich</h2>
+        </div>
+        <p class="panel-sub">Durchschnittliche Nettokaltmiete im übernommenen Bestand je Position, in €/m².</p>
+        <canvas id="chartCompareRent" height="70"></canvas>
+        <div class="legend compare-legend"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Kaufpreis und Nettoergebnis</h2>
+        </div>
+        <p class="panel-sub">Kaufpreis und Nettoergebnis über den Betrachtungszeitraum: aktuelle Einstellung, die fünf Positionen und Ihre gespeicherten Szenarien.</p>
+        <canvas id="chartScenarios" height="80"></canvas>
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--blue-light)"></i>Kaufpreis</span>
+          <span><i class="swatch" style="background:var(--green)"></i><i class="swatch" style="background:var(--red)"></i>Nettoergebnis</span>
+        </div>
+      </div>
+
+      <p class="group-title section-jump" id="sensitivitaet"><a href="#finanzen">Die Finanzen</a><a href="#mieter">Die Mieter</a><a href="#vergleich">Der Modellvergleich</a><span>Die Sensitivität</span><a href="#tabellen">Die Tabellen</a></p>
+
+      <details class="panel" id="sensPanel">
+        <summary>Diagramme</summary>
+        <div class="sens-block">
+          <p class="panel-sub">Ergebnis, wenn ein Regler über seinen ganzen Bereich variiert wird, alle übrigen Regler auf aktuellem Stand. Die senkrechte Linie markiert die aktuelle Einstellung.</p>
+        </div>
+        <div class="sens-block" id="rateSensWrap">
+          <div class="panel-head"><h2>Das Ergebnis je <span data-term="Zinssatz">Zinssatz</span></h2></div>
+          <p class="panel-sub">Nettoergebnis über den Betrachtungszeitraum (linke Achse, Mrd €) und Break-even-Jahr (rechte Achse), wenn nur dieser Wert verändert wird. Zum Zinssatz kommt die Risikoprämie, nach Ende der Zinsbindung zusätzlich der Zinsaufschlag.</p>
+          <canvas id="chartRateSens" height="70"></canvas>
+        </div>
+        <div class="sens-block">
+          <div class="panel-head"><h2>Das Ergebnis je <span data-term="Entschädigungsquote">Entschädigungsquote</span></h2></div>
+          <p class="panel-sub">Nettoergebnis über den Betrachtungszeitraum (linke Achse, Mrd €) und Break-even-Jahr (rechte Achse), wenn nur dieser Wert verändert wird.</p>
+          <canvas id="chartCompSens" height="70"></canvas>
+        </div>
+      </details>
+
+      <p class="group-title section-jump" id="tabellen"><a href="#finanzen">Die Finanzen</a><a href="#mieter">Die Mieter</a><a href="#vergleich">Der Modellvergleich</a><a href="#sensitivitaet">Die Sensitivität</a><span>Die Tabellen</span></p>
+
+      <details class="panel" id="comparePanel">
+        <summary>Die Kennzahlen</summary>
+        <div class="table-wrap" style="max-height:none;">
+          <table id="compareTable">
+            <thead>
+              <tr id="compareHeadRow">
+                <th style="text-align:left;">Kennzahl</th>
+                <th>Aktuell</th>
+              </tr>
+            </thead>
+            <tbody id="compareBody"></tbody>
+          </table>
+        </div>
+      </details>
+
+      <details class="panel" id="tablePanel">
+        <summary>Jahr für Jahr</summary>
+        <p class="panel-sub" id="tableNote"></p>
+        <div class="table-wrap">
+          <table id="dataTable">
+            <thead>
+              <tr>
+                <th>Jahr</th><th>Ø Miete Bestand €/m²</th><th>Mieteinnahmen</th><th><span data-term="NOI">NOI</span></th>
+                <th><span data-term="Annuität">Annuität</span> AöR</th><th><span data-term="Ergebnis der AöR">Ergebnis AöR</span></th><th>Land</th><th>Cashflow</th><th>Kumuliert</th><th>Restschuld</th><th>Bestand</th>
+              </tr>
+            </thead>
+            <tbody id="dataTableBody"></tbody>
+          </table>
+        </div>
+      </details>
+
+    </main>
+
+  <div class="bg-col"><div class="bg-page">
+
+    <p class="group-title">Hintergrund</p>
+
+    <div class="jump-nav">
+      <a href="#section-einfuehrung">Einführung</a>
+      <a href="#section-modelle">Modelle</a>
+      <a href="#section-glossar">Glossar</a>
+    </div>
+
+    <h2 id="section-einfuehrung">Einführung</h2>
+    <p class="lead">Der Volksentscheid „Deutsche Wohnen &amp; Co enteignen" (26. September 2021) sprach sich mit 59,1 % der gültigen Stimmen dafür aus, Wohnungsunternehmen mit mehr als 3.000 Berliner Wohnungen im Bestand zu vergesellschaften. Der Senat setzte daraufhin eine Expertenkommission ein; das Abgeordnetenhaus hat bislang kein Umsetzungsgesetz beschlossen. Dieses Modell rechnet durch, was ein solches Gesetz finanziell bedeuten würde — unter verschiedenen Annahmen zu Entschädigung, Finanzierung und Mietniveau.</p>
+    <h3>Der Ablauf seit 2021</h3>
+    <div data-include="timeline"></div>
+
+    <h3>Der rechtliche Rahmen</h3>
+    <p>Anders als die Enteignung nach Art. 14 Abs. 3 GG (Einzelfall, im öffentlichen Interesse, gegen Entschädigung) erlaubt Art. 15 GG die Vergesellschaftung ganzer Wirtschaftszweige — Grund und Boden, Naturschätze, Produktionsmittel — in Gemeineigentum, „durch ein Gesetz, das Art und Ausmaß der Entschädigung bestimmt". Art. 15 GG wurde seit 1949 noch nie angewendet; es gibt daher keine Rechtsprechung, die die Entschädigungshöhe konkretisiert. Zentraler Streitpunkt: Muss die Entschädigung dem vollen Verkehrswert entsprechen (wie bei Art. 14 GG üblich), oder erlaubt Art. 15 GG als eigenständige Kategorie eine geringere Entschädigung, weil sie strukturell anders angelegt ist als die klassische Enteignung? Die Expertenkommission war hier gespalten; eine verbindliche gerichtliche Klärung steht aus.</p>
+
+    <h2>Der Rechenweg</h2>
+    <p>Der Kaufpreis (Verkehrswert × Entschädigungsquote) wird entweder über ein Annuitätendarlehen finanziert (Zins + Tilgung, mit Zinsbindung und Anschlussfinanzierungs-Risiko) oder aus Eigenmitteln des Landeshaushalts. Die laufenden Mieteinnahmen abzüglich Bewirtschaftungskosten (Nettobetriebsergebnis, NOI) müssen den Schuldendienst tragen. Positive Überschüsse können in Neubau reinvestiert werden (Bestand wächst). Als Sozialwohnungen gilt der Bestand, solange seine Durchschnittsmiete höchstens auf der Miete der Landeseigenen liegt (Grenze Sozialmiete).</p>
+    <h3>Die Grenzen des Modells</h3>
+    <div data-include="limits"></div>
+
+    <h3>Die Wertermittlung</h3>
+    <p>Für vermietete Mehrfamilienhäuser mit Bestandsmieter:innen ist rechtlich das Ertragswertverfahren einschlägig: Wert = kapitalisierter Reinertrag (Miete abzüglich Bewirtschaftungskosten), abgezinst mit dem amtlichen Liegenschaftszins des Gutachterausschusses Berlin — der laut Gutachterausschuss ausdrücklich auch „zur Bemessung von Enteignungsentschädigungen" dient. Das ergibt bei den heutigen, oft regulierten Bestandsmieten (~7 €/m²) deutlich niedrigere Werte (rund 1.500–2.500 €/m²) als der Vergleichswert für leerstehende Eigentumswohnungen (~5.000–5.700 €/m², Gutachterausschuss H1/2025).</p>
+
+    <h3>Der Bestand</h3>
+    <p>Rund 240.000 Wohnungen bei Unternehmen mit &gt;3.000 Berliner Einheiten (u. a. Deutsche Wohnen, Vonovia-Bestände, Akelius u. a.) — Berechnungsgrundlage des Rechnungshof-Berichts 2024 und der ursprünglichen Landesschätzung von 2019.</p>
+    <h3 id="section-modelle">Die Entschädigungsspanne</h3>
+    <p>Diese Spanne stammt aus der offiziellen Kostenschätzung des Landes Berlin (2019, BBU-Einordnung) und gilt als „verkehrswertnah" — sie basiert auf einem Ertragswertverfahren (siehe oben), nicht auf Vergleichspreisen für leerstehende Eigentumswohnungen. 28,8–36 Mrd. € ist dabei die Entschädigung allein; rechnet man die Erwerbsnebenkosten (1,5–2,9 Mrd. €) hinzu, kommt dieselbe Schätzung auf 29–39 Mrd. € Gesamtkosten — kein Widerspruch zu den „29–39 Mrd. €", die DWE-Buch und IW/Empirica-Gutachten zitieren, sondern derselbe Wert mit und ohne Nebenkosten (BBU-Sodan-Gutachten, S. 9, 68, 70, 102). Andere Modelle kommen zu deutlich anderen Zahlen:</p>
+    <ul>
+      <li><strong>Faire-Mieten-Modell (DWE 2022)</strong> — 10 Mrd. € für 243.000 Wohnungen à 62 m² (Gesetzentwurf 2022; frühere Rechnung 7,3–13,2 Mrd. €). Die Entschädigung ist der Reinertrag aus 40 Jahren: leistbare Miete 4,04 €/m² (30 % des Einkommens an der Armutsgrenze) abzüglich Bewirtschaftung 2,76 €/m², gezahlt in unverzinsten Schuldverschreibungen mit 40 Jahren Laufzeit (DWE 2022, S. 10, 96–102).</li>
+      <li><strong>Bernt/Holm (2023)</strong> — Die Studie nennt keine Summe; sie senkt die Miete auf das Niveau der Landeseigenen, 6,39 €/m² (S. 12). Gerhardt/Holm (2021) kommen mit den Mieten der Landeseigenen auf einen Ertragswert von 17 Mrd. €; bis zu dieser Summe sei die Entschädigung aus den Mieten refinanzierbar (DWE 2022, S. 112).</li>
+      <li><strong>Landesschätzung / BBU 2019</strong> — ≈ 29–36 Mrd. €. Ertragswertverfahren, verkehrswertnah.</li>
+      <li><strong>DWE-Gesetzentwurf (2025)</strong> — 200.000–220.000 Wohnungen, in der Regel 40–60 % des Marktwerts; Sachwertverfahren, Zahlung über Schuldverschreibungen mit 3,5 % Zins über 100 Jahre aus den Mieteinnahmen der AöR (Factsheet, 26.09.2025, S. 1, 3). Eine Gesamtsumme und eine Miete nennt das Factsheet nicht; die 14,5–17,0 Mrd. €, die das PwC-Whitepaper ihm zuschreibt, stehen dort nicht.</li>
+      <li><strong>DWE-Studie (Holm/Thonke/Arpagaus 2025)</strong> — Grundmodell 10,11 Mrd. €, davon 2,02 Mrd. € Eigenkapital des Landes und 8,09 Mrd. € aus den Mieten refinanziert (7,00 €/m², Bewirtschaftung 3,73 €/m², Bankdarlehen und Anleihen; Finanzierungskosten des Landes nicht enthalten), in realistischen Varianten 10–17 Mrd. € (S. 3, 33–34, 41). Das Modell rechnet das Grundmodell als Position „DWE-Studie 2025“ nach.</li>
+      <li><strong>Sondervotum der Expertenkommission (3 von 13 Mitgliedern)</strong> — Verkehrswert als zwingender Ausgangspunkt, Abschläge etwa wegen Sozialbindung nur in engem Rahmen (Abschlussbericht, S. 16, 124 f.). Nicht offiziell beziffert.</li>
+    </ul>
+
+    <h3>Die Studie von Bernt und Holm</h3>
+    <p>Die Studie von Matthias Bernt und Andrej Holm (Rosa-Luxemburg-Stiftung, Januar 2023) vergleicht die Bewirtschaftungspraxis der sechs größten privaten Wohnungskonzerne (~222.000 Wohnungen) mit der der landeseigenen Gesellschaften. Kernbefunde:</p>
+    <ul>
+      <li>Ø Nettokaltmiete große Private: 7,63 €/m² — Ø Landeseigene: 6,29 €/m²</li>
+      <li>Vergesellschaftung könnte die Miete für ~200.000 Haushalte im Schnitt um 16 % senken</li>
+      <li>Landeseigene erwirtschaften trotz niedrigerer Miete einen Überschuss im dreistelligen Millionenbereich — Kernargument, dass niedrigere Miete wirtschaftliche Tragfähigkeit nicht ausschließt</li>
+      <li>Weitere Befunde: bessere Instandhaltung als bei den Konzernen zu erwarten, mehr Sozialwohnungen, wirkt räumlicher Segregation entgegen (private Bestände konzentrieren sich in teuren Innenstadtlagen, landeseigene eher am Stadtrand)</li>
+    </ul>
+    <p>Diese Zahlen bilden die Grundlage für die Ausgangsmiete (7,63 €/m²) und die Linie „Grenze Sozialmiete“ im Modell (6,39 €/m², das Niveau, auf das Bernt/Holm senken, S. 12; Wachstum 1,6 %/Jahr, S. 22).</p>
+
+    <h2>Der Rechnungshof</h2>
+    <p>Der Berliner Rechnungshof veröffentlichte am 20.02.2024 einen Beratungsbericht (nach § 88 Abs. 2 LHO) zu den „Auswirkungen einer Vergesellschaftung großer Wohnungsunternehmen auf den Landeshaushalt". Der Rechnungshof entscheidet nicht über die Entschädigungshöhe; diese obliegt dem Gesetzgeber. Der Bericht rechnet vier exogen übernommene Szenarien durch: 8, 11, 29 und 36 Mrd. € für 240.000 Wohnungen — Werte aus der Initiative bzw. der amtlichen Senatsschätzung, keine eigene Bewertung des Rechnungshofs ("Der Rechnungshof hat sich nicht mit einer angemessenen Entschädigungssumme beschäftigt.", § 2.1). Finanzierungsannahme: 80/20 Fremd-/Eigenkapital.</p>
+    <p>Auf S. 23 hält der Bericht fest: „Das vom Rechnungshof entwickelte Berechnungsmodell hat ergeben, dass bereits Entschädigungssummen über 11 Mrd. € wegen der hohen Finanzierungskosten unweigerlich zu Defiziten bei der Bewirtschaftung der zu vergesellschaftenden Bestände durch eine AöR führen." Ebenfalls auf S. 23 beziffert der Bericht den jährlichen Zuschussbedarf für die ersten zehn Jahre konkret je Szenario: rund 700 Mio. € bei einer verkehrswertorientierten Entschädigung von 29 Mrd. €, rund 1 Mrd. € bei 36 Mrd. €.</p>
+    <p>Der Bericht nennt auf S. 25 f. jährliche Bewirtschaftungskosten als Absolutbeträge: 343,69 €/Wohneinheit (Verwaltung), 17,18 €/m² (Instandhaltung), 3,60 €/m² (Betriebskosten), dazu Modernisierung rd. 12 €/m² und ein Mietausfallwagnis von 2 %. Bei 61 m² ergibt das 3,20 €/m² im Monat zuzüglich Mietausfallwagnis. Finanziert wird zu 80 % über einen AöR-Kredit zu 4,5 % und zu 20 % über Eigenkapital des Landes zu 3,0 %, beide 30 Jahre fest (S. 27). Die Position Rechnungshof übernimmt diese Werte, die Inflation von 10 % und die Mieterhöhung von 1 % in den ersten beiden Jahren und die Abzinsung auf Kapitalwerte. So gerechnet, trifft das Modell die Jahreswerte des Berichts (Ansicht 12, S. 30) auf höchstens 25 Mio. € genau; die Abzinsung mit der Zinsstrukturkurve zuzüglich 75 Basispunkten ist dabei durch einen festen Satz von 3,15 % ersetzt.</p>
+    <p>Von allen zitierten Quellen ist der Rechnungshof am ehesten unabhängig — aber nicht ergebnisoffen im Sinne von „ohne Tendenz". Seine Kernaufgabe ist Haushaltskonsolidierung und Risikovermeidung; Präsidentin Karin Klingen äußerte öffentlich, sie sehe „keine Möglichkeit, eine Vergesellschaftung mit vertretbaren Risiken umzusetzen" — eine Einschätzung, die auch die Schlussfolgerung des Berichts trägt (§ 4, S. 22): „Eine Vergesellschaftung kann nur verhältnismäßig sein, wenn dadurch die Mieten gesenkt oder zumindest entdynamisiert werden." Das ist eine andere Motivation als bei IW/Empirica (marktliberal) oder Bernt/Holm (umverteilungsorientiert), führt aber in eine ähnliche Richtung wie IW/Empirica — aus einer schuldenbremsen-fokussierten statt marktideologischen Perspektive. Zur Einordnung: Die Expertenkommission hat die methodischen Grundannahmen des Rechnungshofs bereits 2023 explizit zurückgewiesen — sie hält seine Prognosen für „auf wenig überzeugenden faktischen Grundannahmen" beruhend, weil sie von einem „gegriffen niedrigen und zudem in der Zeit unflexiblen Mietniveau" ausgingen (Expertenkommission-Abschlussbericht, S. 60, § 202). Unabhängigkeit der Institution heißt also nicht, dass die Fachleute der Kommission die zugrunde liegenden Annahmen teilen.</p>
+
+    <h2 id="section-glossar">Das Glossar</h2>
+    <div data-include="glossary"></div>
+
+    <h2>Die Quellen</h2>
+    <ul class="source-list">
+      <li>Berliner Rechnungshof (20.02.2024) — Beratungsbericht „Auswirkungen einer Vergesellschaftung großer Wohnungsunternehmen auf den Landeshaushalt" (§ 88 Abs. 2 LHO)</li>
+      <li>Expertenkommission Vergesellschaftung Berlin (2023) — Abschlussbericht, Mehrheits- und Sondervotum</li>
+      <li>BBU Verband Berlin-Brandenburgischer Wohnungsunternehmen — Kostenschätzung Land Berlin 2019</li>
+      <li>Matthias Bernt &amp; Andrej Holm (2023) — „Vergesellschaftung senkt die Miete", Rosa-Luxemburg-Stiftung</li>
+      <li>Andrej Holm, Friederike Thonke, Gian Arpagaus (2025) — „Refinanzierungsoptionen in vergesellschafteten Wohnungsbeständen", Kurzstudie im Auftrag von Deutsche Wohnen &amp; Co enteignen</li>
+      <li>Deutsche Wohnen &amp; Co enteignen (26.09.2025) — Factsheet: Vergesellschaftungsgesetz – VergG</li>
+      <li>Sebastian Gerhardt (2021) — „Neubau, Mietenregulierung, Vergesellschaftung?", Beitrag zur Memo-Sommerschule</li>
+      <li>IW Köln &amp; Empirica (2026) — „Auswirkungen der Vergesellschaftung privater Wohnungsunternehmen in Berlin" (Deschermeier/Voigtländer, Simons), im Auftrag Berliner Sparkasse/Volksbank/DKB/IBB</li>
+      <li>Gutachterausschuss für Grundstückswerte in Berlin — Liegenschaftszinssätze 2025, Kaufpreisstatistik H1/2025</li>
+      <li>BKI / Statistisches Bundesamt (Destatis) — Baupreisindex Wohngebäude 2025/26</li>
+      <li>Marktdaten Baufinanzierung (Finanztip, Dr. Klein, Baufi24) — Bauzinsen Stand Juli 2026</li>
+      <li>IW Köln — Gutachten zu Refinanzierungsrisiken einer Vergesellschaftung (Titel und Jahr nicht angegeben, nicht im Projektordner)</li>
+    </ul>
+    <p>Alle Parameter sind Modellannahmen, keine amtlichen Festlegungen. Die Entschädigungshöhe für eine Vergesellschaftung nach Art. 15 GG ist rechtlich ungeklärt (BVerfG-Klärung steht aus). Referenzwerte (Stand: Juli 2026): Bestandsmiete landeseigene Wohnungsgesellschaften Berlin &lt;7,50 €/m², Angebotsmiete Anfang 2026 16,75 €/m² (IW/Empirica 2026, S. 12; IBB-Wohnungsmarktbericht 2025: 16,25 €/m², nach PwC-Whitepaper, S. 4); Baukosten Neubau 3.300–3.800 €/m² (BKI/Destatis 2025); Bauzinsen 10 Jahre fest 3,6–4,0 % (Marktdaten Juli 2026). Finanzierungskorridor 10–17 Mrd. € (Holm/Thonke/Arpagaus 2025, S. 3, 41); Sanierungskosten-Bandbreite 660–1.600 €/m² (IW Consult 2024). Einmalige Kosten 200 Mio. € in der Position IW/Empirica: Integrationskosten der Fusion Vonovia/Deutsche Wohnen, laut Gutachten eher eine Untergrenze (S. 17); die übrigen Positionen setzen keine an.</p>
+
+  </div></div>
+  </div>
+
+  <div class="colophon">Modell-Stand: September 2026 · <a href="quellen.html">Quellen</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></div>
+
+</div>
+
+<script src="model-calc.js?v=20261016test"></script>
+<script src="content.js?v=20261015e"></script>
+<script src="include.js"></script>
+<script src="tooltips.js?v=20261003a"></script>
+<script src="nav.js?v=20261005a"></script>
+</body>
+</html>
