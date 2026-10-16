@@ -15,6 +15,8 @@
 
 - Model (2026-10-15): DWE-Studie 2025 (Holm/Thonke/Arpagaus) replaces the DWE draft-law preset; the five positions of `02_Vergesellschaftung` reproduce their sources' own results; `node 02_Vergesellschaftung/pruefung.js` checks them (details in `parameterpruefung.md`, log in `entwicklungsprotokoll.md`).
 
+- Model charts (2026-10-16): the four cashflow/debt charts on the model page are replaced by "Kaufpreis und Finanzierung", "Wohin die Miete geht" and "Schulden und Rücklage" (cost, repayment and financing kept apart; details in `entwicklungsprotokoll.md`).
+
 ## Next
 
 5. Tempelhofer Feld map (`config/maps/tempelhofer-feld.json`): BRW time series, B-Pläne, FNP 2025 (mixed polygon/point geometry, needs handling), Grünanlagen, Klimaanalyse 2022, StEP Wohnen. Verify each service first.

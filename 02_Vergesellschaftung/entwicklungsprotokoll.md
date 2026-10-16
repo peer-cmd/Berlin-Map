@@ -8,6 +8,16 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-16 — Finanzierung, Mietverwendung, Schulden statt Cashflow-Diagrammen
+
+Die Diagramme „Der Cashflow pro Jahr“, „Der Cashflow kumuliert“, „Die Restschuld“ und „Die Kapitalposition Berlins“ mischten Aufwand und Tilgung: Zinsen und Rückzahlungen steckten zusammen im Ergebnis der AöR, Sondertilgungen senkten die kumulierte Kurve, und endfällige Anleihen wirkten in den Jahren ohne Rückzahlung wie Gewinn (DWE-Studie: Break-even in Jahr 28, danach −2,3 Mrd. € in Jahr 29). Kreditaufnahme und Kaufpreis erschienen nirgends. Ersetzt durch drei Diagramme mit getrennten Begriffen (Aufwand, Tilgung, Finanzierung):
+
+- **Kaufpreis und Finanzierung:** Entschädigung je Position und eigene Einstellung, aufgeteilt in Eigenkapital des Landes (im Modus Eigenmittel der ganze Kaufpreis), Bankdarlehen, Anleihe, Einmalkosten.
+- **Wohin die Miete geht:** je Jahr Mieteinnahmen (Linie) und ihre Verwendung: Bewirtschaftung, Zinsen und Entgelte, Tilgung, Neubau, Überschuss, Fehlbetrag; wahlweise in € je m² und Monat.
+- **Schulden und Rücklage:** Restschuld je Kreditart, Kredit des Landes, vom Land Gezahltes, Rücklage oder aufgelaufene Fehlbeträge der AöR; Linie „Nettokosten für Berlin“ (Kasse minus alle Schulden). Tilgungen ändern sie nicht.
+
+Alle drei nominal. Rechenkern unverändert; `runScenario` gibt je Jahr zusätzlich `parts` aus (Zinsen und Tilgung je Kreditart, Sondertilgungen, Entgelte, Neubau, Salden) sowie `upfrontCosts`, `equityUpfront`, `loanStart`, `bondStart`. Die alten Diagramme zeichnet `model-calc.js` nur noch, wenn ihre Canvas existieren (Archivseiten). Kennzahlen oben (Nettoergebnis, Break-even), Modellvergleich und Tabellen unverändert; `pruefung.js` besteht. Glossar: „Tilgung“, „Nettokosten für Berlin“ neu. Versions-Tags `model-calc.js` und `content.js` auf `20261016a`.
+
 ## 2026-10-15 — Cashflow-Diagramm gestapelt, Eigenkapital als Einlage
 
 „Der Cashflow pro Jahr“ zeigte bei der DWE-Studie in den Jahren 8–19 Fehlbeträge, die fast nur aus den 67 Mio. € pro Jahr bestanden, mit denen das Modell das Eigenkapital des Landes über 30 Jahre verteilte; Sondertilgungen fehlten in den Balken, nur die kumulierte Kurve zog sie ab. Neu: Steht der Zins des Landes auf 0, zahlt das Land seinen Anteil als Einmalzahlung in Jahr 0 (so beschreibt es die Studie, S. 25); mit Zins bleibt es ein Kredit des Landes (Rechnungshof, IW/Empirica, Bernt/Holm unverändert). Die Balken sind gestapelt: Ergebnis der AöR, Land, Sondertilgung; zusammen ergeben sie die Veränderung der kumulierten Kurve. Legende und Erläuterung (Sprünge bei Tilgungsende, Restschuld am Laufzeitende aus der Rücklage) unter dem Diagramm. Nettoergebnis und alle Prüfwerte unverändert. Versions-Tags `model-calc.js` und `content.js` auf `20261015e`.
