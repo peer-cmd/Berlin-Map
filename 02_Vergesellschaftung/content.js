@@ -115,6 +115,7 @@ window.SITE_INCLUDES = {
       <dl>
         <div><dt>Nettoergebnis</dt> <dd>Kumulierter Cashflow am Ende des Betrachtungszeitraums, einschließlich der Einmalkosten. Im Modus Eigenmittel ist der aus dem Haushalt gezahlte Kaufpreis abgezogen.</dd></div>
         <div><dt>Nettokaltmiete (NKM) / Bestandsmiete vs. Neuvertragsmiete</dt> <dd>Nettokaltmiete ist die Miete ohne Betriebskosten. Bestandsmiete meint die in laufenden, oft älteren Mietverhältnissen tatsächlich gezahlte Miete; Neuvertragsmiete die bei Neuabschluss verlangte, meist deutlich höhere Miete. Das Modell rechnet mit Bestandsmieten, da die übernommenen Wohnungen bereits vermietet sind.</dd></div>
+        <div><dt>Nettokosten für Berlin</dt> <dd>Was die Übernahme Berlin bis zu einem Jahr netto gekostet hat: Rücklage der AöR minus Restschuld aller Kredite und minus dem, was das Land bereits gezahlt hat. Tilgungen ändern den Wert nicht, Zinsen senken ihn, Überschüsse aus den Mieten heben ihn; der Wert des Bestands ist nicht enthalten.</dd></div>
         <div><dt>Nettoposition</dt> <dd>Vermögenswert des Bestands (Verkehrswert × Bestandsgröße) abzüglich Restschuld, zuzüglich kumuliertem Cashflow aus dem laufenden Betrieb. Zeigt die Gesamtvermögensposition des Landes, nicht nur den laufenden Cashflow.</dd></div>
         <div><dt>NOI (Nettobetriebsergebnis)</dt> <dd>Mieteinnahmen abzüglich laufender Bewirtschaftungskosten, vor Schuldendienst.</dd></div>
       </dl>
@@ -141,6 +142,7 @@ window.SITE_INCLUDES = {
       <section class="gl-group">
       <h3 class="gl-letter">T</h3>
       <dl>
+        <div><dt>Tilgung</dt> <dd>Rückzahlung geliehenen Geldes. Sie ist kein Aufwand: Die Schuld sinkt um denselben Betrag, Berlin gehört mehr vom Bestand. Beim Bankdarlehen fällt sie jährlich an, bei der endfälligen Anleihe am Ende ihrer Laufzeit; Sondertilgungen zahlt die AöR aus ihrer Rücklage.</dd></div>
         <div><dt>Tilgungsdauer</dt> <dd>Gesamtlaufzeit, über die der Kredit vollständig zurückgezahlt wird. Nicht zu verwechseln mit der Zinsbindung, die nur einen Teilzeitraum davon mit fest vereinbartem Zins abdeckt.</dd></div>
       </dl>
       </section>

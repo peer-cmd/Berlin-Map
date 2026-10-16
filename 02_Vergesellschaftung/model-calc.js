@@ -242,7 +242,7 @@
         units, bookNew, rateNow: currentRate*100,
         avgRent: income/(units*p.avgSize*12),
         service: annuityThisYear, swept,
-        parts: {opex:opexAmt, loanInt, loanPrin, bondInt, bondPrin, fees:feesNow, sweptLoan, sweptBond, landInt, landPrin, land, cashInterest:interest, cash, loanBal:balance, bondBal:bondBalance, equityBal:equityBalance},
+        parts: {opex:opexAmt, loanInt, loanPrin, bondInt, bondPrin, fees:feesNow, sweptLoan, sweptBond, landInt, landPrin, land, cashInterest:interest, cash, loanBal:kredit?balance:0, bondBal:kredit?bondBalance:0, equityBal:equityBalance, build:0},
         balance: kredit ? balance+bondBalance+equityBalance : null});
 
       // reinvestment for next year -- spending is subtracted from the cash reserve (cum) so it is
@@ -253,6 +253,7 @@
         const buildSpend = Math.max(cashflow,0)*(p.reinvestQuota1/100);
         units += buildSpend/(p.buildCost*ci*p.avgSize);
         bookNew += buildSpend;
+        rows[rows.length-1].parts.build = buildSpend;
         cash -= buildSpend;
         cum -= buildSpend*d;
       }
@@ -263,7 +264,7 @@
     const first10 = rows.slice(0, 10);
     return {
       principal, fullValue, equity, rows, breakEvenYear, netResult: last.cumForChart,
-      upfrontCosts, equityUpfront, bondStart: debt*((p.bondShare||0)/100), loanStart: debt*(1-(p.bondShare||0)/100),
+      upfrontCosts, equityUpfront, bondStart: kredit ? debt*((p.bondShare||0)/100) : 0, loanStart: kredit ? debt*(1-(p.bondShare||0)/100) : 0,
       finalUnits: last.units,
       finalDebt: last.balance || 0,
       aoerAvg10: first10.reduce((s,r)=>s+r.aoer, 0)/first10.length,
@@ -385,6 +386,7 @@
   };
 
   function initCharts(){
+    if(byId('chartCashflow')){
     const ctx1 = $('chartCashflow').getContext('2d');
     chartCashflow = new Chart(ctx1, {
       data:{ labels:[], datasets:[
@@ -408,7 +410,9 @@
         }
       }
     });
+    }
 
+    if(byId('chartCumulative')){
     const ctx1b = $('chartCumulative').getContext('2d');
     chartCumulative = new Chart(ctx1b, {
       data:{ labels:[], datasets:[
@@ -430,6 +434,7 @@
         }
       }
     });
+    }
 
     const ctx2 = $('chartStock').getContext('2d');
     chartStock = new Chart(ctx2, {
@@ -474,6 +479,7 @@
       }
     });
 
+    if(byId('chartBalance')){
     const ctx5 = $('chartBalance').getContext('2d');
     chartBalance = new Chart(ctx5, {
       type:'line',
@@ -495,7 +501,9 @@
         }
       }
     });
+    }
 
+    if(byId('chartCapital')){
     const ctx6 = $('chartCapital').getContext('2d');
     chartCapital = new Chart(ctx6, {
       type:'line',
@@ -519,6 +527,7 @@
         }
       }
     });
+    }
 
     if(byId('chartScenarios')) initScenarioChart();
     if(byId('chartFinance')) initFinanceCharts();
@@ -577,12 +586,12 @@
     chartCompareRent = compareChart('chartCompareRent', fmtRent);
   }
 
-  // ---- Finanzierung, Mietverwendung, Schulden (Testseite) ----
+  // ---- Finanzierung, Mietverwendung, Schulden ----
   // Drei Begriffe: Aufwand (Bewirtschaftung, Zinsen, Entgelte) ist verbraucht; Tilgung wandelt Schulden in Eigentum;
   // Finanzierung sagt, woher das Geld für den Kauf kommt. Alle Werte nominal.
   let chartFinance, chartRentUse, chartDebt, finUnit = 'mio';
   const FC = {equity:'#A9762C', bank:'#4A6FA5', bond:'#93AECB', once:'#6E6E66', opex:'#B8B8AE', interest:'#E0435C',
-    repay:'#00788C', rest:'#109A82', deficit:'#7A1F2E', landBal:'#D9BC8C', landPaid:'#A9762C'};
+    repay:'#00788C', build:'#8C6BB1', rest:'#109A82', deficit:'#7A1F2E', landBal:'#D9BC8C', landPaid:'#A9762C'};
   const finBar = (label, color) => ({type:'bar', label, data:[], backgroundColor:color, stack:'s', categoryPercentage:0.9, barPercentage:0.9});
   const finLine = label => ({type:'line', label, data:[], borderColor:'#222', borderWidth:1.8, pointRadius:0, tension:0, stack:'line', order:0});
   const finFmtQ = v => v.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})+' €/m²';
@@ -603,7 +612,7 @@
           y:{stacked:true, grid:{display:false}, afterFit:s=>{ s.width = Math.max(s.width, 140); }, ticks:{autoSkip:false, font:{family:'IBM Plex Sans',size:11}}}}}});
     chartRentUse = new Chart($('chartRentUse').getContext('2d'), {data:{labels:[], datasets:[
       finLine('Mieteinnahmen'), finBar('Bewirtschaftung',FC.opex), finBar('Zinsen und Entgelte',FC.interest),
-      finBar('Tilgung',FC.repay), finBar('Überschuss',FC.rest), finBar('Fehlbetrag',FC.deficit)]}, options:finYearOptions(fmtEUR)});
+      finBar('Tilgung',FC.repay), finBar('Neubau',FC.build), finBar('Überschuss',FC.rest), finBar('Fehlbetrag',FC.deficit)]}, options:finYearOptions(fmtEUR)});
     chartDebt = new Chart($('chartDebt').getContext('2d'), {data:{labels:[], datasets:[
       finLine('Nettokosten für Berlin'), finBar('Bankdarlehen der AöR',FC.bank), finBar('Anleihe der AöR',FC.bond),
       finBar('Kredit des Landes (Eigenkapital)',FC.landBal), finBar('Vom Land bereits gezahlt',FC.landPaid),
@@ -621,11 +630,13 @@
   }
   function renderFinance(result){
     // 1 · Kaufpreis und Finanzierung: aktuelle Einstellung und alle Positionen.
-    const entries = [['Ihre Einstellung', result]].concat(PRESET_ORDER.map(([key,label])=>{
-      const p = Object.assign({}, defaults, presets[key]); return [label, runScenario(p.price, p)]; }));
+    const entries = [['Ihre Einstellung', result, state]].concat(PRESET_ORDER.map(([key,label])=>{
+      const p = Object.assign({}, defaults, presets[key]); return [label, runScenario(p.price, p), p]; }));
     chartFinance.data.labels = entries.map(e=>e[0]);
-    const fin = [r=>r.equity, r=>r.loanStart, r=>r.bondStart, r=>r.upfrontCosts-r.equityUpfront];
-    fin.forEach((f,i)=>{ chartFinance.data.datasets[i].data = entries.map(e=>f(e[1])); });
+    // Im Modus Eigenmittel zahlt das Land den ganzen Kaufpreis aus dem Haushalt.
+    const fromBudget = (r, p) => p.financing==='kredit' ? r.equity : r.principal;
+    const fin = [(r,p)=>fromBudget(r,p), r=>r.loanStart, r=>r.bondStart, r=>r.upfrontCosts-r.equityUpfront];
+    fin.forEach((f,i)=>{ chartFinance.data.datasets[i].data = entries.map(e=>f(e[1], e[2])); });
     chartFinance.update('none');
     finLegend('legFinance', chartFinance);
 
@@ -643,19 +654,23 @@
     ds2[1].data = q.map(x=>flow(x.opex));
     ds2[2].data = interest.map(flow);
     ds2[3].data = q.map(x=>flow(x.loanPrin+x.bondPrin));
-    ds2[4].data = restNom.map(v=>flow(Math.max(v,0)));
-    ds2[5].data = restNom.map(v=>flow(Math.min(v,0)));
+    ds2[4].data = q.map(x=>flow(x.build));
+    ds2[5].data = restNom.map((v,i)=>flow(Math.max(v,0)-q[i].build));
+    ds2[6].data = restNom.map(v=>flow(Math.min(v,0)));
     const f2 = finUnit==='qm' ? finFmtQ : fmtEUR;
     chartRentUse.options.plugins.tooltip.callbacks.label = c=>c.dataset.label+': '+f2(Math.abs(c.parsed.y));
     chartRentUse.options.scales.y.ticks.callback = v=>f2(v);
     chartRentUse.update('none');
     finLegend('legRentUse', chartRentUse);
     // 3 · Schulden und Rücklage
-    let aoerCash = 0, landPaid = result.upfrontCosts;
-    const acc = rows.map((r,i)=>{ aoerCash += restNom[i] - q[i].sweptLoan - q[i].sweptBond; landPaid += q[i].land; return [aoerCash, landPaid]; });
+    // Rücklage der AöR: Überschüsse minus Sondertilgungen und Neubau; das Land zahlt Einmalkosten, Eigenkapital
+    // (im Modus Eigenmittel den ganzen Kaufpreis) und seine laufenden Beträge.
+    const budget = state.financing==='kredit' ? 0 : result.principal;
+    let aoerCash = 0, landPaid = result.upfrontCosts + budget;
+    const acc = rows.map((r,i)=>{ aoerCash += restNom[i] - q[i].sweptLoan - q[i].sweptBond - q[i].build; landPaid += q[i].land; return [aoerCash, landPaid]; });
     const ds3 = chartDebt.data.datasets;
     chartDebt.data.labels = labels;
-    ds3[0].data = q.map(x=>stock(x.cash-(x.loanBal+x.bondBal+x.equityBal)));
+    ds3[0].data = q.map(x=>stock(x.cash-budget-(x.loanBal+x.bondBal+x.equityBal)));
     ds3[1].data = q.map(x=>stock(-x.loanBal));
     ds3[2].data = q.map(x=>stock(-x.bondBal));
     ds3[3].data = q.map(x=>stock(-x.equityBal));
@@ -702,6 +717,7 @@
     const labels = result.rows.map(r=>r.t);
     // Die drei Teile ergeben zusammen die Veränderung der kumulierten Kurve.
     const aoerValues = result.rows.map(r=>r.aoer + r.interest);
+    if(chartCashflow){
     chartCashflow.data.labels = labels;
     chartCashflow.data.datasets[0].data = aoerValues;
     chartCashflow.data.datasets[0].backgroundColor = aoerValues.map(v=> v>=0 ? '#109A82' : '#E0435C');
@@ -709,8 +725,10 @@
     chartCashflow.data.datasets[2].data = result.rows.map(r=>-r.sweptPV);
     chartCashflow.data.datasets[3].data = labels.map(()=>0);
     chartCashflow.update('none');
+    }
 
     // ---- Kumulierter Cashflow (line) ----
+    if(chartCumulative){
     chartCumulative.data.labels = labels;
     chartCumulative.data.datasets[0].data = result.rows.map(r=>r.cumForChart);
     chartCumulative.data.datasets[1].data = labels.map(()=>0);
@@ -721,6 +739,7 @@
       chartCumulative.options.plugins.vlineMarker.index = null;
     }
     chartCumulative.update('none');
+    }
 
     // ---- chart stock (conditional) ----
     const showStock = state.mode==='neubau';
@@ -751,8 +770,8 @@
 
     // ---- chart Restschuld (conditional on Kredit) ----
     const showBalance = state.financing==='kredit';
-    $('balancePanelWrap').style.display = showBalance ? 'block' : 'none';
-    if(showBalance){
+    if(byId('balancePanelWrap')) $('balancePanelWrap').style.display = showBalance ? 'block' : 'none';
+    if(chartBalance && showBalance){
       chartBalance.data.labels = labels;
       chartBalance.data.datasets[0].data = result.rows.map(r=>r.balance);
       if(state.rateResetYears < state.term && state.rateResetYears < state.horizon){
@@ -765,6 +784,7 @@
     }
 
     // ---- chart Kapitalposition (Vermögenswert Bestand vs. Restschuld) ----
+    if(chartCapital){
     chartCapital.data.labels = labels;
     // Übernommener Bestand zum Verkehrswert, neu gebaute Wohnungen zu ihren Baukosten.
     const assetValue = r => state.price*state.avgSize*state.units + r.bookNew;
@@ -773,6 +793,7 @@
     chartCapital.data.datasets[2].data = result.rows.map(r=>r.cumForChart);
     chartCapital.data.datasets[3].data = result.rows.map(r=>assetValue(r)-(r.balance||0)+r.cumForChart);
     chartCapital.update('none');
+    }
     if(chartFinance) renderFinance(result);
 
     // ---- Sensitivität: Achsenbereich aus allen Presets an beiden Enden des Reglers ----
@@ -1052,7 +1073,7 @@
   if (window.matchMedia('(max-width:600px)').matches) Chart.defaults.aspectRatio = 1.8;
 
   // Seiten ohne Regler (Die Zahlen) zeigen nur die Szenario-Übersicht.
-  if(!byId('chartCashflow')){
+  if(!byId('chartCashflow') && !byId('chartRentUse')){
     if(byId('chartScenarios')){ initScenarioChart(); updateScenarioChart(); }
     return;
   }
