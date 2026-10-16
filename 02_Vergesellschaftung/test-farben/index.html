@@ -1,7 +1,18 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Farblogik Diagramme</title>
-<style>body{margin:0;padding:24px;font:14px/1.4 "IBM Plex Sans",system-ui,sans-serif;color:#14171a;background:#fff}h1{font-size:20px;margin:0 0 4px}h2{font-size:15px;margin:32px 0 4px;border-top:1px solid #14171a;padding-top:8px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:16px 24px}figure{margin:0}figcaption{font:12px "IBM Plex Mono",monospace;margin-bottom:4px}figcaption span{font-family:"IBM Plex Sans",sans-serif;color:#555}
-img{width:100%;border:1px solid #dadad2}p,ul{max-width:900px}.sw i{display:inline-block;width:14px;height:14px;margin-right:4px;vertical-align:middle}</style></head><body>
+<title>Farblogik Diagramme</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>
+/* Testseite: Varianten nebeneinander, ein Raster je Diagramm */
+:root{--bg:#fff;--fg:#14171a;--muted:#55554f;--rule:#dadad2;--sans:"IBM Plex Sans",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#16171a;--fg:#ecece6;--muted:#a6a69f;--rule:#3a3a36;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#16171a;--fg:#ecece6;--muted:#a6a69f;--rule:#3a3a36;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font:14px/1.45 var(--sans);padding-block:24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1{font-size:20px;margin:0 0 4px;text-wrap:balance}h2{font-size:15px;margin:32px 0 4px;border-top:1px solid var(--fg);padding-top:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr));gap:16px 24px}figure{margin:0;min-width:0}
+figcaption{font:12px var(--mono);margin-bottom:4px}figcaption span{font-family:var(--sans);color:var(--muted)}
+img{width:100%;max-width:100%;border:1px solid var(--rule);background:#fff}p,ul{max-width:900px}
+.sw i{display:inline-block;width:14px;height:14px;margin-right:4px;vertical-align:middle}
+</style>
 <h1>Farblogik der Modell-Diagramme</h1>
 <p>Testseite, nicht verlinkt. Regel: Farbe zeigt nur, was das Geld tut. Alles andere (Modellergebnis, Referenzlinien, Positionen) steht in Schwarz und Grau, unterschieden durch Strichstärke, Strichart und Beschriftung am Linienende. Bilder aus der laufenden Seite mit „Ihre Einstellung“.</p>
 <ul><li><b>Herkunft:</b> Land Orange (Eigenkapital, Kredit des Landes hell), AöR Violett (Bank, Anleihe hell)</li><li><b>Verbraucht:</b> Bewirtschaftung, Einmalkosten Grau; Zinsen und Entgelte Pink</li><li><b>Eigentum:</b> Tilgung Cyan, Neubau Hellcyan</li><li><b>Saldo:</b> Überschuss, Rücklage Gelb; Fehlbetrag Dunkelmagenta (überall, auch Szenarien und Sensitivität)</li></ul>
@@ -13,4 +24,3 @@ img{width:100%;border:1px solid #dadad2}p,ul{max-width:900px}.sw i{display:inlin
 <h2>Ergebnis je Zinssatz</h2><p>Nettoergebnis schwarz, Fläche gelb über null und dunkelmagenta unter null; Break-even grau gestrichelt.</p><div class="grid"><figure><figcaption>Heute<br><span>Legenden stehen unter dem Diagramm (hier nicht abgebildet).</span></figcaption><img src="chartRateSens-0.png" alt="Ergebnis je Zinssatz, Heute"></figure><figure><figcaption>A · Positionen in Graustufen</figcaption><img src="chartRateSens-A.png" alt="Ergebnis je Zinssatz, A · Positionen in Graustufen"></figure><figure><figcaption>B · Positionen in eigenen Farben</figcaption><img src="chartRateSens-B.png" alt="Ergebnis je Zinssatz, B · Positionen in eigenen Farben"></figure></div>
 <h2>Wohin die Miete geht</h2><p>Geldfarben unverändert; nur die Linie in Textschwarz.</p><div class="grid"><figure><figcaption>Heute<br><span>Legenden stehen unter dem Diagramm (hier nicht abgebildet).</span></figcaption><img src="chartRentUse-0.png" alt="Wohin die Miete geht, Heute"></figure><figure><figcaption>A · Positionen in Graustufen</figcaption><img src="chartRentUse-A.png" alt="Wohin die Miete geht, A · Positionen in Graustufen"></figure><figure><figcaption>B · Positionen in eigenen Farben</figcaption><img src="chartRentUse-B.png" alt="Wohin die Miete geht, B · Positionen in eigenen Farben"></figure></div>
 <h2>Schulden und Rücklage</h2><div class="grid"><figure><figcaption>Heute<br><span>Legenden stehen unter dem Diagramm (hier nicht abgebildet).</span></figcaption><img src="chartDebt-0.png" alt="Schulden und Rücklage, Heute"></figure><figure><figcaption>A · Positionen in Graustufen</figcaption><img src="chartDebt-A.png" alt="Schulden und Rücklage, A · Positionen in Graustufen"></figure><figure><figcaption>B · Positionen in eigenen Farben</figcaption><img src="chartDebt-B.png" alt="Schulden und Rücklage, B · Positionen in eigenen Farben"></figure></div>
-</body></html>
