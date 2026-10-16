@@ -174,10 +174,8 @@
     // und in der Break-even-Berechnung sichtbar/wirksam sind -- statt nur am Ende vom Nettoergebnis
     // abgezogen zu werden, ohne je im Cashflow-Verlauf aufzutauchen.
     const upfrontCosts = p.onceCosts*1e6 + equityUpfront;
-    // cum: Kassenstand kumuliert, nominal oder als Barwert (Tilgungen sind Ausgaben).
-    // netPos: Vermögensposition mit dem Bestand zum Kaufpreis. Kaufpreis gegen Bestand ist ein Tausch, Tilgung
-    // senkt Kasse und Schuld um denselben Betrag; es zählen nur die Einmalkosten und die Überschüsse vor Tilgung.
-    let cum = -upfrontCosts, netPos = -p.onceCosts*1e6;
+    // cum: kumuliert, nominal oder als Barwert.
+    let cum = -upfrontCosts;
     const rows = [];
     let breakEvenYear = null;
     const opexPerUnitBase = p.avgSize*p.opexAbsolute*12;
@@ -194,7 +192,7 @@
 
       // financing with rate reset at end of Zinsbindung
       // Kapitaldienst der AöR: Annuität, Anleihezinsen, Strukturierungsentgelte, Restzahlung am Laufzeitende.
-      let annuityThisYear = 0, swept = 0, repaid = 0;
+      let annuityThisYear = 0, swept = 0;
       if(t<=p.term){
         if(t === p.rateResetYears+1 && p.rateResetYears < p.term){
           currentRate = p.rate/100 + p.rateIncrement/100;
@@ -220,10 +218,9 @@
           let principalPortion = t===p.term ? balance : Math.min(annuity - interestPortion, balance);
           balance = Math.max(balance - principalPortion, 0);
           loanService = interestPortion + principalPortion;
-          repaid += principalPortion;
         }
         let bondService = bondBalance*bondRateNow;
-        if(t===p.term){ bondService += bondBalance; repaid += bondBalance; bondBalance = 0; }
+        if(t===p.term){ bondService += bondBalance; bondBalance = 0; }
         annuityThisYear = loanService + bondService + fees;
         lastService = annuityThisYear;
       }
@@ -232,27 +229,22 @@
       const aoer = noi - annuityThisYear;
       if(p.sweep==='an') reserve += aoer;
       // Land: Kapitaldienst für den Eigenkapitalanteil und Mehrkosten der Landesschulden.
-      let land = (p.landDebtCost||0)*1e6, landRepaid = 0;
+      let land = (p.landDebtCost||0)*1e6;
       if(t<=p.term && equityBalance>0){
         let pr = equityAnnuity - equityBalance*equityRate;
         if(pr > equityBalance) pr = equityBalance;
         equityBalance = Math.max(equityBalance - pr, 0);
         land += equityAnnuity;
-        landRepaid = pr;
       }
       const cashflow = aoer - land;
       const d = df(t);
       // Getilgte Rücklage verlässt die Kasse und senkt die Schuld um denselben Betrag.
       cum += (cashflow - swept)*d;
-      // Überschuss vor Tilgung: Mieten minus Bewirtschaftung, Zinsen und Entgelte von AöR und Land.
-      const surplus = cashflow + repaid + landRepaid;
-      netPos += surplus*d;
-      if(breakEvenYear===null && netPos>0) breakEvenYear = t;
+      if(breakEvenYear===null && cum>0) breakEvenYear = t;
 
       rows.push({t, rent, limit, income, noi, annuity:annuityThisYear, aoer:aoer*d, land:land*d,
-        cashflow:cashflow*d, surplus:surplus*d, repaid:(repaid+landRepaid)*d,
-        aoerPre:(aoer+repaid)*d, landCost:(land-landRepaid)*d,
-        cumForChart: cum, netPos,
+        cashflow:cashflow*d, sweptPV: swept*d,
+        cumForChart: cum,
         units, bookNew, rateNow: currentRate*100,
         avgRent: income/(units*p.avgSize*12),
         service: annuityThisYear, swept,
@@ -270,11 +262,11 @@
       }
     }
 
-    // Einmalkosten sind bereits im Startsaldo von cum und netPos enthalten (s.o.), daher hier kein erneuter Abzug.
+    // Einmalkosten sind bereits im Startsaldo von cum enthalten (s.o.), daher hier kein erneuter Abzug.
     const last = rows[rows.length-1];
     const first10 = rows.slice(0, 10);
     return {
-      principal, fullValue, equity, rows, breakEvenYear, netResult: last.netPos, cashResult: last.cumForChart,
+      principal, fullValue, equity, rows, breakEvenYear, netResult: last.cumForChart,
       finalUnits: last.units,
       finalDebt: last.balance,
       aoerAvg10: first10.reduce((s,r)=>s+r.aoer, 0)/first10.length,
@@ -380,9 +372,10 @@
     const ctx1 = $('chartCashflow').getContext('2d');
     chartCashflow = new Chart(ctx1, {
       data:{ labels:[], datasets:[
-        // Gestapelt: Überschuss der AöR vor Tilgung und Kosten des Landes (Zinsen, Mehrkosten); zusammen die Veränderung der kumulierten Kurve.
-        {type:'bar', label:'AöR vor Tilgung', data:[], backgroundColor:[], yAxisID:'y', order:2, stack:'cf'},
+        // Gestapelt: Ergebnis der AöR, Zahlungen des Landes, Sondertilgungen.
+        {type:'bar', label:'Ergebnis der AöR', data:[], backgroundColor:[], yAxisID:'y', order:2, stack:'cf'},
         {type:'bar', label:'Land', data:[], backgroundColor:'#A9762C', yAxisID:'y', order:2, stack:'cf'},
+        {type:'bar', label:'Sondertilgung', data:[], backgroundColor:'#93AECB', yAxisID:'y', order:2, stack:'cf'},
         {type:'line', label:'Null', data:[], borderColor:'#9A9A90', borderWidth:1, pointRadius:0, borderDash:[2,3], yAxisID:'y', order:3, stack:'null'}
       ]},
       options:{
@@ -593,24 +586,24 @@
       ? 'Barwerte, abgezinst mit '+state.discountRate.toLocaleString('de-DE',{maximumFractionDigits:2})+' % auf den Beginn von Jahr 1'
       : 'nominale Werte';
     if(byId('tableNote')) $('tableNote').textContent = state.valuation==='barwert'
-      ? 'Ergebnis AöR, Land, Tilgung, Überschuss und Kumuliert als Barwerte; Mieteinnahmen, NOI, Annuität und Restschuld nominal. Ergebnis AöR − Land + Tilgung = Überschuss vor Tilgung.'
-      : 'Alle Werte nominal. Ergebnis AöR − Land + Tilgung = Überschuss vor Tilgung.';
+      ? 'Ergebnis AöR, Land, Cashflow und Kumuliert als Barwerte; Mieteinnahmen, NOI und Annuität nominal.' : 'Alle Werte nominal.';
 
 
     // ---- Jahres-Cashflow (bars) ----
     const labels = result.rows.map(r=>r.t);
-    // Beide Teile ergeben zusammen die Veränderung der kumulierten Kurve.
-    const aoerValues = result.rows.map(r=>r.aoerPre);
+    // Die drei Teile ergeben zusammen die Veränderung der kumulierten Kurve.
+    const aoerValues = result.rows.map(r=>r.aoer);
     chartCashflow.data.labels = labels;
     chartCashflow.data.datasets[0].data = aoerValues;
     chartCashflow.data.datasets[0].backgroundColor = aoerValues.map(v=> v>=0 ? '#109A82' : '#E0435C');
-    chartCashflow.data.datasets[1].data = result.rows.map(r=>-r.landCost);
-    chartCashflow.data.datasets[2].data = labels.map(()=>0);
+    chartCashflow.data.datasets[1].data = result.rows.map(r=>-r.land);
+    chartCashflow.data.datasets[2].data = result.rows.map(r=>-r.sweptPV);
+    chartCashflow.data.datasets[3].data = labels.map(()=>0);
     chartCashflow.update('none');
 
     // ---- Kumulierter Cashflow (line) ----
     chartCumulative.data.labels = labels;
-    chartCumulative.data.datasets[0].data = result.rows.map(r=>r.netPos);
+    chartCumulative.data.datasets[0].data = result.rows.map(r=>r.cumForChart);
     chartCumulative.data.datasets[1].data = labels.map(()=>0);
     if(result.breakEvenYear){
       chartCumulative.options.plugins.vlineMarker.index = result.breakEvenYear-1;
@@ -730,7 +723,7 @@
       return '<tr><td>'+r.t+'</td><td>'+r.avgRent.toLocaleString('de-DE',{maximumFractionDigits:2})+'</td>'+
         '<td>'+fmtEUR(r.income)+'</td><td>'+fmtEUR(r.noi)+'</td><td>'+fmtEUR(r.annuity)+'</td>'+
         '<td>'+fmtEUR(r.aoer)+'</td><td>'+fmtEUR(-r.land)+'</td>'+
-        '<td>'+fmtEUR(r.repaid)+'</td><td>'+fmtEUR(r.surplus)+'</td><td>'+fmtEUR(r.netPos)+'</td><td>'+fmtEUR(r.balance||0)+'</td><td>'+stockCell+'</td></tr>';
+        '<td>'+fmtEUR(r.cashflow)+'</td><td>'+fmtEUR(r.cumForChart)+'</td><td>'+fmtEUR(r.balance||0)+'</td><td>'+stockCell+'</td></tr>';
     }).join('');
 
     renderCompareTable();
@@ -841,7 +834,7 @@
       }));
       chart.update('none');
     };
-    set(chartCompareCum, 'netPos');
+    set(chartCompareCum, 'cumForChart');
     set(chartCompareBalance, 'balance');
     set(chartCompareRent, 'avgRent');
     const legend = entries.map(e=>'<span><i class="swatch" style="background:'+e.color+'"></i>'+escapeHtml(e.label)+'</span>').join('');

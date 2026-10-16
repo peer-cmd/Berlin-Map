@@ -8,16 +8,6 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
-## 2026-10-16 — Nettoergebnis mit dem Bestand zum Kaufpreis
-
-Anlass: Bei der DWE-Studie 2025 stieg die kumulierte Kurve bis Jahr 28 über null und fiel in Jahr 29–30 auf −1,9 Mrd €, weil die Rücklage die endfällige Anleihe tilgte. Der Kassenstand zählt Tilgung als Ausgabe, ohne die sinkende Schuld zu zeigen; Positionen mit Anleihe sahen dadurch anders aus als solche mit Annuitätendarlehen.
-
-Neu: Kumulierte Kurve, Vergleichskurve, Nettoergebnis und Break-even rechnen die Vermögensposition mit dem Bestand zum Kaufpreis (`netPos` = Kasse − Restschuld + Kaufpreis). Start bei −Einmalkosten; jährlich kommt der Überschuss vor Tilgung hinzu (Mieten minus Bewirtschaftung, Zinsen und Entgelte von AöR und Land), als Barwert abgezinst, wenn eingestellt. Neubau zählt zu Baukosten als Vermögen. Das Balkendiagramm zeigt „AöR vor Tilgung“ und „Land“ (Zinsen, Mehrkosten); die Sondertilgungsbalken entfallen. Tabelle „Jahr für Jahr“: neue Spalten Tilgung und Überschuss vor Tilgung (Ergebnis AöR − Land + Tilgung = Überschuss). Neuer Glossarbegriff „Überschuss vor Tilgung“.
-
-Unverändert: Kassenstand (`cumForChart`, `cashResult`), Restschuld, Ergebnis der AöR (Ø Jahr 1–10, Abgleich mit Rechnungshof Ansicht 12) und die Kapitalposition zum Verkehrswert. `pruefung.js` prüft das Faire-Mieten-Modell jetzt am Kassenstand.
-
-Ergebnisse (Mrd €, vorher Kassenstand): Faire-Mieten-Modell +10,1 (+0,1), DWE-Studie +8,2 (−1,9), Bernt/Holm +2,3 (−8,0), Rechnungshof −1,6 (−19,1), IW/Empirica −15,5 (−32,9). Break-even: Faire-Mieten-Modell und DWE-Studie Jahr 1, Bernt/Holm Jahr 23. Startseitenbild `img/modell-cashflow.png` neu erzeugt. Versions-Tags: `model-calc.js` `20261016a`, `content.js` `20261016a`.
-
 ## 2026-10-15 — Weniger Regler
 
 Sieben Regler entfallen, ohne dass sich ein Ergebnis der Positionen ändert (geprüft: Nettoergebnis, Break-even und kumulierter Verlauf aller fünf Positionen identisch):

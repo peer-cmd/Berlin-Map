@@ -115,15 +115,15 @@ Bei 8 und 11 Mrd. € liegt das Modell in allen Jahren 12–17 Mio. € über de
 
 ## Wirkung (Modellrechnung, Voreinstellung der Position)
 
-| Position | Kaufpreis (Mrd. €) | Ergebnis AöR, Ø Jahr 1–10 (Mio. €) | Nettoergebnis (Mrd. €; Kassenstand) | Zeitraum, Bewertung |
+| Position | Kaufpreis (Mrd. €) | Ergebnis AöR, Ø Jahr 1–10 (Mio. €) | Nettoergebnis (Mrd. €) | Zeitraum, Bewertung |
 |---|---|---|---|---|
-| Faire-Mieten-Modell | 10,0 (vorher 9,9) | −14 | +10,1 (+0,1) | 40 Jahre, nominal |
-| DWE-Studie 2025 | 10,11 (vorher DWE-Gesetzentwurf 15,75) | +52 | +8,2 (−1,9, davon Eigenkapital des Landes −2,0) | 30 Jahre, nominal |
-| Bernt/Holm | 17,0 (17,0) | −263 | +2,3 (−8,0) | 32 Jahre, Barwert |
-| Rechnungshof | 29,0 (31,0) | −711 | −1,6 (−19,1) | 32 Jahre, Barwert |
-| IW/Empirica | 29,0 (31,0) | −843 | −15,5 (−32,9) | 32 Jahre, Barwert |
+| Faire-Mieten-Modell | 10,0 (vorher 9,9) | −14 | +0,1 | 40 Jahre, nominal |
+| DWE-Studie 2025 | 10,11 (vorher DWE-Gesetzentwurf 15,75) | +52 | −1,9 (davon Eigenkapital des Landes −2,0) | 30 Jahre, nominal |
+| Bernt/Holm | 17,0 (17,0) | −263 | −8,0 | 32 Jahre, Barwert |
+| Rechnungshof | 29,0 (31,0) | −711 | −19,1 | 32 Jahre, Barwert |
+| IW/Empirica | 29,0 (31,0) | −843 | −32,9 | 32 Jahre, Barwert |
 
-Das Nettoergebnis rechnet seit 2026-10-16 den Bestand zum Kaufpreis (Kasse minus Restschuld plus Kaufpreis); es enthält die Zinsen des Landes für den Eigenkapitalanteil und bei IW/Empirica die Mehrkosten der Landesschulden. In Klammern der Kassenstand am Ende, die frühere Kennzahl, in der Tilgung und Eigenkapital als Ausgaben zählen.
+Das Nettoergebnis enthält den Kapitaldienst des Landes für den Eigenkapitalanteil (Rechnungshof: rd. 300 Mio. € pro Jahr) und bei IW/Empirica die Mehrkosten der Landesschulden.
 
 ## Offen
 

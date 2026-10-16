@@ -64,8 +64,8 @@ console.log("\nFaire-Mieten-Modell (DWE 2022, S. 89, 96–97, 102)");
   check("Entschädigung 10 Mrd €", Math.abs(r.principal / 1e9 - 10) < 0.05, `${fmt(r.principal / 1e9, 2)} Mrd €`);
   check("Reinertrag aus 40 Jahren = Entschädigung", Math.abs(sumNoi / r.principal - 1) < 0.01, `Reinertrag ${fmt(sumNoi / 1e9, 2)} Mrd €`);
   const minCum = Math.min(...r.rows.map(x => x.cumForChart));
-  check("aus den Mieten bedient, Land haftet nicht (Kassenstand Jahr 40 ≥ 0)", r.cashResult >= 0,
-    `Kassenstand Jahr 40 ${fmt(r.cashResult / 1e9, 2)} Mrd €; tiefster Stand ${fmt(minCum / 1e9, 2)} Mrd € (feste Tilgung 1/40 bei steigendem Reinertrag)`);
+  check("aus den Mieten bedient, Land haftet nicht (Saldo Jahr 40 ≥ 0)", r.netResult >= 0,
+    `Saldo Jahr 40 ${fmt(r.netResult / 1e9, 2)} Mrd €; tiefster Stand ${fmt(minCum / 1e9, 2)} Mrd € (feste Tilgung 1/40 bei steigendem Reinertrag)`);
 }
 
 // ---- Holm/Thonke/Arpagaus 2025 (Kurzstudie im Auftrag von DWE) ----

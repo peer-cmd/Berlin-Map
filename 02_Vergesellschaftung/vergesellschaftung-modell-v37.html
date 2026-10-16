@@ -261,21 +261,22 @@
 
       <div class="panel">
         <div class="panel-head">
-          <h2>Der <span data-term="Überschuss vor Tilgung">Überschuss vor Tilgung</span> pro Jahr</h2>
+          <h2>Der <span data-term="Cashflow">Cashflow</span> pro Jahr</h2>
         </div>
-        <p class="panel-sub">Je Jahr: Mieteinnahmen der AöR minus Bewirtschaftung, Zinsen und Entgelte; dazu die Kosten des Landes (Zinsen für seinen Eigenkapitalanteil, Mehrkosten der Landesschulden). Tilgungen fehlen, weil sie Kasse und Schuld um denselben Betrag senken; sie zeigt das Diagramm der Restschuld. Zusammen ergeben die Balken die Veränderung der kumulierten Kurve.</p>
+        <p class="panel-sub">Je Jahr: das Ergebnis der AöR (Mieteinnahmen minus Bewirtschaftung und Kapitaldienst), die Zahlungen des Landes (Kredit für den Eigenkapitalanteil, Mehrkosten der Landesschulden) und Sondertilgungen aus der Rücklage der AöR. Zusammen ergeben sie die Veränderung der kumulierten Kurve. Springen die Balken nach oben, ist ein Kredit getilgt; fällt am Ende der Laufzeit die Restschuld an, zahlt die AöR sie aus ihrer Rücklage.</p>
         <canvas id="chartCashflow" height="70"></canvas>
         <div class="legend">
-          <span><i class="swatch" style="background:var(--green)"></i><i class="swatch" style="background:var(--red)"></i>AöR vor Tilgung</span>
+          <span><i class="swatch" style="background:var(--green)"></i><i class="swatch" style="background:var(--red)"></i>Ergebnis der AöR</span>
           <span><i class="swatch" style="background:#A9762C"></i>Land</span>
+          <span><i class="swatch" style="background:var(--blue-light)"></i>Sondertilgung</span>
         </div>
       </div>
 
       <div class="panel">
         <div class="panel-head">
-          <h2>Das <span data-term="Nettoergebnis">Ergebnis</span> kumuliert</h2>
+          <h2>Der Cashflow kumuliert</h2>
         </div>
-        <p class="panel-sub">Vermögensposition des Landes mit dem Bestand zum Kaufpreis: Kasse minus Restschuld plus Kaufpreis. Die Übernahme tauscht Geld und Schulden gegen Wohnungen; die Kurve beginnt daher bei den Einmalkosten und summiert die Überschüsse vor Tilgung. Ihr Endwert ist das Nettoergebnis oben. Den Bestand zum Verkehrswert zeigt die Kapitalposition.</p>
+        <p class="panel-sub">Summe aller Jahresergebnisse seit der Übernahme, einschließlich der Einmalkosten. Die Kurve sinkt, solange Kreditraten anfallen, und steigt nach der Tilgung; ihr Endwert ist das Nettoergebnis oben.</p>
         <canvas id="chartCumulative" height="70"></canvas>
       </div>
 
@@ -333,7 +334,7 @@
         <div class="panel-head">
           <h2>Die Finanzierung im Vergleich</h2>
         </div>
-        <p class="panel-sub">Wie jede Position die Entschädigung finanziert, nach den Werten ihrer Quelle. Endfällige Anleihen und das Tilgen aus Überschüssen bestimmen den Verlauf der Restschuld; auf das kumulierte Ergebnis wirken nur Zinsen und Entgelte.</p>
+        <p class="panel-sub">Wie jede Position die Entschädigung finanziert, nach den Werten ihrer Quelle. Endfällige Anleihen und das Tilgen aus Überschüssen erzeugen Sprünge in den Kurven; eine Einlage des Landes bei der Übernahme lässt die kumulierte Kurve im Minus beginnen.</p>
         <div class="table-wrap" style="max-height:none;">
           <table id="financeTable">
             <thead>
@@ -346,9 +347,9 @@
 
       <div class="panel">
         <div class="panel-head">
-          <h2>Das Ergebnis kumuliert im Vergleich</h2>
+          <h2>Der Cashflow kumuliert im Vergleich</h2>
         </div>
-        <p class="panel-sub">Vermögensposition mit dem Bestand zum Kaufpreis, je Position: Einmalkosten und Überschüsse vor Tilgung seit der Übernahme. Die dicke Linie ist die aktuelle Einstellung, gestrichelte Linien sind gespeicherte Szenarien.</p>
+        <p class="panel-sub">Summe aller Jahresergebnisse seit der Übernahme, je Position. Die dicke Linie ist die aktuelle Einstellung, gestrichelte Linien sind gespeicherte Szenarien.</p>
         <canvas id="chartCompareCum" height="70"></canvas>
         <div class="legend compare-legend"></div>
       </div>
@@ -427,7 +428,7 @@
             <thead>
               <tr>
                 <th>Jahr</th><th>Ø Miete Bestand €/m²</th><th>Mieteinnahmen</th><th><span data-term="NOI">NOI</span></th>
-                <th><span data-term="Annuität">Annuität</span> AöR</th><th><span data-term="Ergebnis der AöR">Ergebnis AöR</span></th><th>Land</th><th>Tilgung</th><th><span data-term="Überschuss vor Tilgung">Überschuss vor Tilgung</span></th><th>Kumuliert</th><th>Restschuld</th><th>Bestand</th>
+                <th><span data-term="Annuität">Annuität</span> AöR</th><th><span data-term="Ergebnis der AöR">Ergebnis AöR</span></th><th>Land</th><th>Cashflow</th><th>Kumuliert</th><th>Restschuld</th><th>Bestand</th>
               </tr>
             </thead>
             <tbody id="dataTableBody"></tbody>
@@ -519,8 +520,8 @@
 
 </div>
 
-<script src="model-calc.js?v=20261016a"></script>
-<script src="content.js?v=20261016a"></script>
+<script src="model-calc.js?v=20261015g"></script>
+<script src="content.js?v=20261015f"></script>
 <script src="include.js"></script>
 <script src="tooltips.js?v=20261003a"></script>
 <script src="nav.js?v=20261005a"></script>
