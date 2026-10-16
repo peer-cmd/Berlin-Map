@@ -20,7 +20,7 @@ window.SITE_INCLUDES = {
       <li>Politisches/rechtliches Verzögerungsrisiko bis zu einer verfassungsgerichtlichen Klärung</li>
       <li>Die Zinsstrukturkurve des Rechnungshofs; die Abzinsung rechnet mit einem festen Satz</li>
     </ul>
-    <p>Nettoergebnis und kumulierter Cashflow sind ohne Barwert nominal aufsummiert. Die Restschuld am Ende des Betrachtungszeitraums ist darin nicht abgezogen; das Modell weist sie daneben aus.</p>`,
+    <p>Nettoergebnis und kumuliertes Ergebnis sind ohne Barwert nominal aufsummiert. Der Bestand steht darin zum Kaufpreis, ohne Wertänderung; die Bewirtschaftungskosten enthalten Instandhaltung und Modernisierung. Den Bestand zum Verkehrswert zeigt die Kapitalposition.</p>`,
 "glossary": `
     <div class="glossary">
       <section class="gl-group">
@@ -42,13 +42,13 @@ window.SITE_INCLUDES = {
         <div><dt>Bestandseffekt</dt> <dd>Was bis zum Ende des Betrachtungszeitraums erreicht ist: wie lange die Ø Miete im Bestand höchstens auf der Grenze Sozialmiete liegt (alle Jahre, bis Jahr X oder nie) und, im Modus „Neubau", die Zahl neu gebauter Wohnungen.</dd></div>
         <div><dt>Betrachtungszeitraum</dt> <dd>Zahl der Jahre, über die das Modell Mieteinnahmen, Kosten und Schulden fortschreibt. Nettoergebnis, Bestandseffekt und Nettoposition beziehen sich auf das Ende dieses Zeitraums.</dd></div>
         <div><dt>Bewirtschaftungskosten</dt> <dd>Laufende, nicht auf Mieter umlegbare Kosten der Immobilienverwaltung: Instandhaltung, Verwaltung, Mietausfallwagnis (<span class="src">ImmoWertV Anlage 3</span>).</dd></div>
-        <div><dt>Break-even</dt> <dd>Erstes Jahr, in dem der kumulierte Cashflow positiv wird.</dd></div>
+        <div><dt>Break-even</dt> <dd>Erstes Jahr, in dem das kumulierte Ergebnis positiv wird: Die Überschüsse vor Tilgung haben die Einmalkosten gedeckt.</dd></div>
       </dl>
       </section>
       <section class="gl-group">
       <h3 class="gl-letter">C</h3>
       <dl>
-        <div><dt>Cashflow</dt> <dd>NOI abzüglich Schuldendienst in einem Jahr. Der kumulierte Cashflow summiert die Jahreswerte seit Übernahme, beginnend mit den Einmalkosten in Jahr 0.</dd></div>
+        <div><dt>Cashflow</dt> <dd>NOI abzüglich Schuldendienst (Zinsen und Tilgung) in einem Jahr, also die Veränderung der Kasse. Im Modell das Ergebnis der AöR abzüglich der Zahlungen des Landes. Kumuliert zeigt er den Kassenstand; diesen nutzt die Kapitalposition.</dd></div>
       </dl>
       </section>
       <section class="gl-group">
@@ -111,7 +111,7 @@ window.SITE_INCLUDES = {
       <section class="gl-group">
       <h3 class="gl-letter">N</h3>
       <dl>
-        <div><dt>Nettoergebnis</dt> <dd>Kumulierter Cashflow am Ende des Betrachtungszeitraums, einschließlich der Einmalkosten und des Eigenkapitals, das das Land bei der Übernahme einzahlt.</dd></div>
+        <div><dt>Nettoergebnis</dt> <dd>Vermögensposition des Landes am Ende des Betrachtungszeitraums, mit dem Bestand zum Kaufpreis: Kasse minus Restschuld plus Kaufpreis. Gleich der Summe der Überschüsse vor Tilgung abzüglich der Einmalkosten. Kaufpreis, Eigenkapital und Tilgung gehen nicht ein, weil sie Geld oder Schulden gegen Wohnungen tauschen.</dd></div>
         <div><dt>Nettokaltmiete (NKM) / Bestandsmiete vs. Neuvertragsmiete</dt> <dd>Nettokaltmiete ist die Miete ohne Betriebskosten. Bestandsmiete meint die in laufenden, oft älteren Mietverhältnissen tatsächlich gezahlte Miete; Neuvertragsmiete die bei Neuabschluss verlangte, meist deutlich höhere Miete. Das Modell rechnet mit Bestandsmieten, da die übernommenen Wohnungen bereits vermietet sind.</dd></div>
         <div><dt>Nettoposition</dt> <dd>Vermögenswert des Bestands (Verkehrswert × Bestandsgröße) abzüglich Restschuld, zuzüglich kumuliertem Cashflow aus dem laufenden Betrieb. Zeigt die Gesamtvermögensposition des Landes, nicht nur den laufenden Cashflow.</dd></div>
         <div><dt>NOI (Nettobetriebsergebnis)</dt> <dd>Mieteinnahmen abzüglich laufender Bewirtschaftungskosten, vor Schuldendienst.</dd></div>
@@ -121,7 +121,7 @@ window.SITE_INCLUDES = {
       <h3 class="gl-letter">R</h3>
       <dl>
         <div><dt>Reinvestitionsquote</dt> <dd>Anteil des positiven Cashflows nach Schuldendienst, der in Neubau fließt, statt als Rücklage zu verbleiben.</dd></div>
-        <div><dt>Restschuld</dt> <dd>Zu einem Zeitpunkt noch nicht getilgter Anteil der ursprünglichen Kreditsumme. Im Modell der Kredit der AöR und, bei einem Eigenkapitalanteil, der Kredit des Landes; die Restschuld am Ende des Betrachtungszeitraums ist im Nettoergebnis nicht abgezogen und wird daneben ausgewiesen.</dd></div>
+        <div><dt>Restschuld</dt> <dd>Zu einem Zeitpunkt noch nicht getilgter Anteil der ursprünglichen Kreditsumme. Im Modell der Kredit der AöR und, bei einem Eigenkapitalanteil, der Kredit des Landes; im Nettoergebnis ist sie abgezogen, der Bestand zum Kaufpreis hinzugerechnet.</dd></div>
         <div><dt>Risikoprämie</dt> <dd>Zinsaufschlag ab dem Zeitpunkt der Ankündigung einer Vergesellschaftung, den Kreditgeber laut <span class="src">IW Köln/Empirica (2026)</span> wegen erhöhter wahrgenommener Risiken verlangen könnten (Kapitalflucht-These). Im Modell als Aufschlag auf den Zinssatz einzustellen.</dd></div>
       </dl>
       </section>
@@ -145,6 +145,7 @@ window.SITE_INCLUDES = {
       <section class="gl-group">
       <h3 class="gl-letter">U</h3>
       <dl>
+        <div><dt>Überschuss vor Tilgung</dt> <dd>Mieteinnahmen minus Bewirtschaftung, Zinsen und Entgelte der AöR und des Landes in einem Jahr. Tilgungen zählen nicht, weil sie Kasse und Schuld um denselben Betrag senken. Die Summe dieser Jahreswerte abzüglich der Einmalkosten ist das Nettoergebnis.</dd></div>
         <div><dt>Überschüsse tilgen</dt> <dd>Wenn eingeschaltet, sammelt die AöR ihre Überschüsse in einer Rücklage und tilgt damit zu Beginn jeder neuen Zins- oder Anleiheperiode, zuerst die Anleihe, dann das Darlehen; drei Monatsraten bleiben als Reserve (Cash Sweep, <span class="src">Holm/Thonke/Arpagaus 2025, S. 31</span>).</dd></div>
       </dl>
       </section>
