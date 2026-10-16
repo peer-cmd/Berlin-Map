@@ -2525,6 +2525,515 @@
    }
   },
   {
+   "id": "fnp2025_symbole",
+   "title": {
+    "de": "Flächennutzungsplan 2025: Symbole",
+    "en": "Land-use plan 2025: symbols"
+   },
+   "unit_label": {
+    "de": "Symbole",
+    "en": "symbols"
+   },
+   "geometry": "point",
+   "enabled": true,
+   "source": {
+    "type": "wfs",
+    "base_url": "https://gdi.berlin.de/services/wfs/fnp_2025",
+    "type_name": "fnp_2025:fnp_2025_vektor",
+    "version": "2.0.0",
+    "output_format": "application/json",
+    "srs_name": "EPSG:4326",
+    "dataset_page": "https://gdi.berlin.de/services/wfs/fnp_2025?request=GetCapabilities&service=WFS"
+   },
+   "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+   "license": {
+    "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+    "id": "dl-de-zero-2.0",
+    "url": "https://www.govdata.de/dl-de/zero-2-0"
+   },
+   "fields": [
+    {
+     "key": "nutzungsart",
+     "label": {
+      "de": "Darstellung",
+      "en": "Designation"
+     }
+    },
+    {
+     "key": "zweckbestimmung",
+     "label": {
+      "de": "Zweckbestimmung",
+      "en": "Purpose"
+     }
+    },
+    {
+     "key": "gisid",
+     "label": {
+      "de": "Objekt-ID",
+      "en": "Object ID"
+     }
+    }
+   ],
+   "popup_title": "nutzungsart",
+   "note": {
+    "de": "Flächennutzungsplan Berlin in der Fassung der Neubekanntmachung 2025. Der FNP stellt die beabsichtigte Bodennutzung in Grundzügen dar; er ist nicht parzellenscharf und für Grundstücke nicht unmittelbar verbindlich.",
+    "en": "Berlin land-use plan as re-published in 2025. The FNP shows intended land use in outline; it is not parcel-precise and does not bind individual plots directly."
+   },
+   "process": {
+    "id_field": "gisid",
+    "precision": 6,
+    "keep_fields": [
+     "nutzungsart",
+     "zweckbestimmung",
+     "gisid"
+    ],
+    "only_geometry": true
+   },
+   "views": {
+    "symbol": {
+     "label": {
+      "de": "Symbol",
+      "en": "Symbol"
+     },
+     "description": {
+      "de": "Symbole und Lagesymbole im FNP sowie Kennbuchstaben von Schutzgebieten.",
+      "en": "Symbols and position symbols in the land-use plan, and letters marking protected areas."
+     },
+     "style": {
+      "kind": "categorical",
+      "property": "nutzungsart",
+      "categories": [
+       {
+        "label": {
+         "de": "Soziale Infrastruktur und Verwaltung",
+         "en": "Social infrastructure and administration"
+        },
+        "color": "orange",
+        "values": [
+         "Lagesymbol Schule",
+         "Lagesymbol Hochschule, Forschung",
+         "Lagesymbol Krankenhaus",
+         "Lagesymbol Kultur",
+         "Lagesymbol Verwaltung",
+         "Lagesymbol Sicherheit, Ordnung",
+         "Lagesymbol Post"
+        ]
+       },
+       {
+        "label": {
+         "de": "Sport und Freizeit",
+         "en": "Sport and leisure"
+        },
+        "color": "yellow",
+        "values": [
+         "Symbol Sport",
+         "Lagesymbol Sport",
+         "Lagesymbol Wassersport",
+         "Symbol Camping"
+        ]
+       },
+       {
+        "label": {
+         "de": "Grün (Park, Kleingarten, Friedhof, Feld)",
+         "en": "Green (park, allotments, cemetery, fields)"
+        },
+        "color": "green",
+        "values": [
+         "Symbol Parkanlage",
+         "Symbol Kleingarten",
+         "Symbol Friedhof",
+         "Symbol Feld, Flur, Wiese"
+        ]
+       },
+       {
+        "label": {
+         "de": "Technische Infrastruktur",
+         "en": "Technical infrastructure"
+        },
+        "color": "violet",
+        "values": [
+         "Lagesymbol Autobahnanschlussstelle",
+         "Symbol Betriebshof (Bahn und Bus)",
+         "Symbol Abfall, Abwasser",
+         "Symbol Energie",
+         "Symbol Wasser"
+        ]
+       },
+       {
+        "label": {
+         "de": "Schadstoffbelasteter Boden",
+         "en": "Contaminated soil"
+        },
+        "color": "magenta",
+        "values": [
+         "Symbol schadstoffbel. Boden"
+        ]
+       },
+       {
+        "label": {
+         "de": "Schutzgebiete (Kennbuchstabe)",
+         "en": "Protected areas (letter)"
+        },
+        "color": "olive",
+        "values": [
+         "Landschaftsschutzgebiet (Buchstabe)",
+         "Naturschutzgebiet (Buchstabe)",
+         "FFH (Buchstabe)",
+         "Wasserschutzgebiet (Buchstabe)",
+         "Weltkulturerbe (Buchstabe)"
+        ]
+       }
+      ],
+      "other_color": "grey"
+     }
+    }
+   }
+  },
+  {
+   "id": "fnp2025_einzelhandel",
+   "title": {
+    "de": "Flächennutzungsplan 2025: Einzelhandelskonzentration",
+    "en": "Land-use plan 2025: retail concentration"
+   },
+   "unit_label": {
+    "de": "Flächen",
+    "en": "areas"
+   },
+   "geometry": "polygon",
+   "enabled": true,
+   "source": {
+    "type": "wfs",
+    "base_url": "https://gdi.berlin.de/services/wfs/fnp_2025",
+    "type_name": "fnp_2025:fnp_2025_vektor",
+    "version": "2.0.0",
+    "output_format": "application/json",
+    "srs_name": "EPSG:4326",
+    "dataset_page": "https://gdi.berlin.de/services/wfs/fnp_2025?request=GetCapabilities&service=WFS"
+   },
+   "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+   "license": {
+    "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+    "id": "dl-de-zero-2.0",
+    "url": "https://www.govdata.de/dl-de/zero-2-0"
+   },
+   "fields": [
+    {
+     "key": "nutzungsart",
+     "label": {
+      "de": "Darstellung",
+      "en": "Designation"
+     }
+    },
+    {
+     "key": "zweckbestimmung",
+     "label": {
+      "de": "Zweckbestimmung",
+      "en": "Purpose"
+     }
+    },
+    {
+     "key": "gisid",
+     "label": {
+      "de": "Objekt-ID",
+      "en": "Object ID"
+     }
+    }
+   ],
+   "popup_title": "nutzungsart",
+   "note": {
+    "de": "Flächennutzungsplan Berlin in der Fassung der Neubekanntmachung 2025. Der FNP stellt die beabsichtigte Bodennutzung in Grundzügen dar; er ist nicht parzellenscharf und für Grundstücke nicht unmittelbar verbindlich.",
+    "en": "Berlin land-use plan as re-published in 2025. The FNP shows intended land use in outline; it is not parcel-precise and does not bind individual plots directly."
+   },
+   "process": {
+    "id_field": "gisid",
+    "precision": 6,
+    "keep_fields": [
+     "nutzungsart",
+     "zweckbestimmung",
+     "gisid"
+    ],
+    "only_geometry": true,
+    "filter": {
+     "property": "nutzungsart",
+     "include": [
+      "Einzelhandelskonzentration"
+     ]
+    },
+    "simplify_m": 1.5
+   },
+   "views": {
+    "einzelhandel": {
+     "label": {
+      "de": "Einzelhandelskonzentration",
+      "en": "Retail concentration"
+     },
+     "description": {
+      "de": "Überlagernde Darstellung im FNP: Standorte mit Einzelhandelskonzentration. Liegt über der Flächendarstellung.",
+      "en": "Overlay in the land-use plan: locations with retail concentration. Lies on top of the area designation."
+     },
+     "style": {
+      "kind": "single",
+      "color": "magenta"
+     }
+    }
+   }
+  },
+  {
+   "id": "fnp2025_flaechen",
+   "title": {
+    "de": "Flächennutzungsplan 2025: Flächen",
+    "en": "Land-use plan 2025: areas"
+   },
+   "unit_label": {
+    "de": "Flächen",
+    "en": "areas"
+   },
+   "geometry": "polygon",
+   "enabled": true,
+   "source": {
+    "type": "wfs",
+    "base_url": "https://gdi.berlin.de/services/wfs/fnp_2025",
+    "type_name": "fnp_2025:fnp_2025_vektor",
+    "version": "2.0.0",
+    "output_format": "application/json",
+    "srs_name": "EPSG:4326",
+    "dataset_page": "https://gdi.berlin.de/services/wfs/fnp_2025?request=GetCapabilities&service=WFS"
+   },
+   "publisher": "Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen Berlin",
+   "license": {
+    "name": "Datenlizenz Deutschland – Zero – Version 2.0",
+    "id": "dl-de-zero-2.0",
+    "url": "https://www.govdata.de/dl-de/zero-2-0"
+   },
+   "fields": [
+    {
+     "key": "nutzungsart",
+     "label": {
+      "de": "Darstellung",
+      "en": "Designation"
+     }
+    },
+    {
+     "key": "zweckbestimmung",
+     "label": {
+      "de": "Zweckbestimmung",
+      "en": "Purpose"
+     }
+    },
+    {
+     "key": "gisid",
+     "label": {
+      "de": "Objekt-ID",
+      "en": "Object ID"
+     }
+    }
+   ],
+   "popup_title": "nutzungsart",
+   "note": {
+    "de": "Flächennutzungsplan Berlin in der Fassung der Neubekanntmachung 2025. Der FNP stellt die beabsichtigte Bodennutzung in Grundzügen dar; er ist nicht parzellenscharf und für Grundstücke nicht unmittelbar verbindlich.",
+    "en": "Berlin land-use plan as re-published in 2025. The FNP shows intended land use in outline; it is not parcel-precise and does not bind individual plots directly."
+   },
+   "process": {
+    "id_field": "gisid",
+    "precision": 6,
+    "keep_fields": [
+     "nutzungsart",
+     "zweckbestimmung",
+     "gisid"
+    ],
+    "only_geometry": true,
+    "filter": {
+     "property": "nutzungsart",
+     "exclude": [
+      "Einzelhandelskonzentration"
+     ]
+    },
+    "simplify_m": 1.5,
+    "sort": "area_desc"
+   },
+   "views": {
+    "nutzungsart": {
+     "label": {
+      "de": "Darstellung",
+      "en": "Designation"
+     },
+     "description": {
+      "de": "Dargestellte Bodennutzung im Flächennutzungsplan, Stand Neubekanntmachung 2025. Wohnbauflächen nach Dichtestufe (GFZ).",
+      "en": "Land use designated in the land-use plan, 2025 re-publication. Residential areas by density class (floor area ratio)."
+     },
+     "style": {
+      "kind": "categorical",
+      "property": "nutzungsart",
+      "opacity": 0.85,
+      "categories": [
+       {
+        "label": {
+         "de": "Wohnbaufläche W1 (GFZ über 1,5)",
+         "en": "Residential W1 (FAR above 1.5)"
+        },
+        "color": "#d6336c",
+        "values": [
+         "Wohnbaufläche, W1 (GFZ über 1,5)"
+        ]
+       },
+       {
+        "label": {
+         "de": "Wohnbaufläche W2 (GFZ bis 1,5)",
+         "en": "Residential W2 (FAR up to 1.5)"
+        },
+        "color": "pink",
+        "values": [
+         "Wohnbaufläche, W2 (GFZ bis 1,5)"
+        ]
+       },
+       {
+        "label": {
+         "de": "Wohnbaufläche W3 (GFZ bis 0,8)",
+         "en": "Residential W3 (FAR up to 0.8)"
+        },
+        "color": "#f59ab2",
+        "values": [
+         "Wohnbaufläche, W3 (GFZ bis 0,8)",
+         "Wohnbaufläche, W3 (GFZ bis 0,8) mit landschaftlicher Prägung"
+        ]
+       },
+       {
+        "label": {
+         "de": "Wohnbaufläche W4 (GFZ bis 0,4)",
+         "en": "Residential W4 (FAR up to 0.4)"
+        },
+        "color": "rose",
+        "values": [
+         "Wohnbaufläche, W4 (GFZ bis 0,4)",
+         "Wohnbaufläche, W4 (GFZ bis 0,4) mit landschaftlicher Prägung"
+        ]
+       },
+       {
+        "label": {
+         "de": "Gemischte Baufläche M1",
+         "en": "Mixed use M1"
+        },
+        "color": "plum",
+        "values": [
+         "Gemischte Baufläche, M1"
+        ]
+       },
+       {
+        "label": {
+         "de": "Gemischte Baufläche M2",
+         "en": "Mixed use M2"
+        },
+        "color": "#c05a88",
+        "values": [
+         "Gemischte Baufläche, M2"
+        ]
+       },
+       {
+        "label": {
+         "de": "Gewerbliche Baufläche",
+         "en": "Commercial"
+        },
+        "color": "violet",
+        "values": [
+         "Gewerbliche Baufläche"
+        ]
+       },
+       {
+        "label": {
+         "de": "Gemeinbedarfsfläche",
+         "en": "Public facilities"
+        },
+        "color": "orange",
+        "values": [
+         "Gemeinbedarfsfläche",
+         "Gemeinbedarfsfläche mit hohem Grünanteil"
+        ]
+       },
+       {
+        "label": {
+         "de": "Sonderbaufläche",
+         "en": "Special building land"
+        },
+        "color": "yellow",
+        "values": [
+         "Sonderbaufläche mit hohem Grünanteil",
+         "Sonderbaufläche Hauptstadtfunktion (H)",
+         "Sonderbaufläche mit gewerblichem Charakter",
+         "Sonderbaufläche (entspr. Zweckbestimmung)"
+        ]
+       },
+       {
+        "label": {
+         "de": "Ver- und Entsorgungsfläche",
+         "en": "Utilities"
+        },
+        "color": "#9a9a92",
+        "values": [
+         "Ver- und Entsorgungsfläche mit gewerblichem Charakter",
+         "Ver- und Entsorgungsfläche mit hohem Grünanteil",
+         "Ver- und Entsorgungsfläche mit Mischnutzungscharakter",
+         "Ver- und Entsorgungsfläche mit landwirtschaftlicher Nutzung"
+        ]
+       },
+       {
+        "label": {
+         "de": "Grünfläche",
+         "en": "Green space"
+        },
+        "color": "#6fae7c",
+        "values": [
+         "Grünfläche"
+        ]
+       },
+       {
+        "label": {
+         "de": "Wald",
+         "en": "Forest"
+        },
+        "color": "green",
+        "values": [
+         "Wald"
+        ]
+       },
+       {
+        "label": {
+         "de": "Landwirtschaftsfläche",
+         "en": "Agriculture"
+        },
+        "color": "olive",
+        "values": [
+         "Landwirtschaftsfläche"
+        ]
+       },
+       {
+        "label": {
+         "de": "Wasserfläche",
+         "en": "Water"
+        },
+        "color": "#a9cfe6",
+        "values": [
+         "Wasserfläche"
+        ]
+       },
+       {
+        "label": {
+         "de": "Verkehr (Autobahn, Hauptverkehrsstraße, Bahn)",
+         "en": "Transport (motorway, main road, rail)"
+        },
+        "color": "#bdbdb5",
+        "values": [
+         "Autobahn",
+         "übergeordnete Hauptverkehrsstraße",
+         "Bahnfläche"
+        ]
+       }
+      ],
+      "other_color": "grey"
+     }
+    }
+   }
+  },
+  {
    "id": "step_wohnen_potenziale",
    "enabled": true,
    "title": {
