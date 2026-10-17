@@ -21,6 +21,8 @@
 
 - Colours (2026-10-16): model charts in print colours after three test palettes (see `02_Vergesellschaftung/entwicklungsprotokoll.md`); FNP areas: residential in pink steps W1–W4, other building land in greys, green and water pale. Site interface unchanged.
 
+- Model controls (2026-10-17): grouped by category with closed „Weitere Annahmen“ per group, no greyed-out controls, „% der Miete“ and Integrationskosten removed (details in `entwicklungsprotokoll.md`). Proposed next: chart review (nominal/Barwert mismatch in „Schulden und Rücklage“, fewer comparison charts).
+
 ## Next
 
 5. Tempelhofer Feld map (`config/maps/tempelhofer-feld.json`): BRW time series, B-Pläne, FNP 2025 (mixed polygon/point geometry, needs handling), Grünanlagen, Klimaanalyse 2022, StEP Wohnen. Verify each service first.
