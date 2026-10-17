@@ -55,7 +55,7 @@ window.SITE_INCLUDES = {
       <h3 class="gl-letter">E</h3>
       <dl>
         <div><dt>Eigenkapitalanteil</dt> <dd>Teil des Kaufpreises, den das Land aufbringt; die AöR leiht nur den Rest. Das Land finanziert seinen Anteil über einen eigenen Kredit zum Zins des Landes mit derselben Laufzeit; dessen Kapitaldienst erscheint in der Spalte „Land“. Der Rechnungshof rechnet mit 20 % zu 3 % (<span class="src">Rechnungshof 2024, S. 27</span>). Steht der Zins des Landes auf 0, zahlt das Land seinen Anteil bei der Übernahme auf einmal ein; Finanzierungskosten des Landes sind dann nicht enthalten (so bei der DWE-Studie 2025, die keinen Zins nennt).</dd></div>
-        <div><dt>Einmalige Kosten</dt> <dd>Kosten, die einmalig bei der Übernahme in Jahr 0 anfallen: Transaktion, Aufbau der Trägerorganisation, Rechtsverfahren. Im Modell zusätzlich zu Integrationskosten und Sanierungsstau. Nur die Position IW/Empirica setzt 200 Mio. € an: die Integrationskosten der Fusion Vonovia/Deutsche Wohnen, laut <span class="src">IW Köln/Empirica 2026, S. 17</span> eher eine Untergrenze.</dd></div>
+        <div><dt>Einmalige Kosten</dt> <dd>Kosten, die einmalig bei der Übernahme in Jahr 0 anfallen: Transaktion, Aufbau der Trägerorganisation, Rechtsverfahren. Im Modell zusätzlich zum Sanierungsstau. Nur die Position IW/Empirica setzt 200 Mio. € an: die Integrationskosten der Fusion Vonovia/Deutsche Wohnen, laut <span class="src">IW Köln/Empirica 2026, S. 17</span> eher eine Untergrenze.</dd></div>
         <div><dt>Endfällige Anleihe</dt> <dd>Teil des Fremdkapitals, für den nur Zinsen gezahlt werden; die Summe wird am Ende jeder Anleiheperiode neu aufgenommen und am Ende der Laufzeit zurückgezahlt. Holm/Thonke/Arpagaus finanzieren die Hälfte des Fremdkapitals so, zu 4,0 % für je 7 Jahre (<span class="src">Holm/Thonke/Arpagaus 2025, S. 28–29, 33</span>).</dd></div>
         <div><dt>Entschädigungsquote</dt> <dd>Anteil des vollen Verkehrswerts, der tatsächlich als Entschädigung gezahlt wird (100 % = voller Verkehrswert, sog. Kaufpreisfaktor). Ein Wert unter 100 % ist <span class="src">laut Expertenkommission</span> rechtlich umstritten, wird aber mehrheitlich für zulässig gehalten.</dd></div>
         <div><dt>Ergebnis der AöR</dt> <dd>Mieteinnahmen abzüglich Bewirtschaftung und Kapitaldienst der AöR in einem Jahr, ohne die Kosten des Landes. Ein negativer Wert ist der Zuschuss, den das Land der AöR zahlen muss; im Mittel der Jahre 1–10 ist er mit den Angaben des Rechnungshofs vergleichbar (rd. 700 Mio. € bei 29 Mrd. €, rd. 1 Mrd. € bei 36 Mrd. €).</dd></div>
@@ -65,7 +65,7 @@ window.SITE_INCLUDES = {
       <section class="gl-group">
       <h3 class="gl-letter">F</h3>
       <dl>
-        <div><dt>Fehlbeträge verzinsen</dt> <dd>Wenn eingeschaltet, trägt der laufende Kassenstand Zinsen zum Kreditzins: Fehlbeträge kosten Zinsen, Überschüsse bringen welche. Keine der Quellen rechnet so; der Rechnungshof erfasst den Zeitwert über die Abzinsung.</dd></div>
+        <div><dt>Fehlbeträge verzinsen</dt> <dd>Wenn eingeschaltet, kostet ein negativer Kassenstand der AöR Zinsen zum Kreditzins; eine Rücklage bringt keine. Keine der Quellen rechnet so; der Rechnungshof erfasst den Zeitwert über die Abzinsung. Bei Bewertung Barwert zählt der Zeitwert daher doppelt, sinnvoll ist die Einstellung bei nominaler Bewertung.</dd></div>
         <div><dt>Finanzierungsmodus (Kredit / Eigenmittel)</dt> <dd>Kredit: Der Kaufpreis wird über ein Annuitätendarlehen finanziert und mit Zins und Tilgung aus den Mieteinnahmen bedient. Eigenmittel: Das Land zahlt den Kaufpreis aus dem Haushalt; es fällt kein Schuldendienst an, der Kaufpreis wird im Nettoergebnis als Ausgabe abgezogen.</dd></div>
       </dl>
       </section>
@@ -85,7 +85,6 @@ window.SITE_INCLUDES = {
       <section class="gl-group">
       <h3 class="gl-letter">I</h3>
       <dl>
-        <div><dt>Integrationskosten</dt> <dd>Einmalige Kosten der Zusammenführung vieler getrennter Bestände in eine Anstalt (IT, Verwaltung, Recht), Jahr 0, als % des Kaufpreises. Von <span class="src">IW Köln 2026</span> als im DWE-Modell fehlend kritisiert. Keine Quelle nennt einen Prozentsatz; Voreinstellung daher 0 %. Den einzigen bezifferten Wert, 200 Mio. € für die Fusion Vonovia/Deutsche Wohnen, enthalten die Einmaligen Kosten.</dd></div>
       </dl>
       </section>
       <section class="gl-group">
@@ -131,7 +130,7 @@ window.SITE_INCLUDES = {
       <section class="gl-group">
       <h3 class="gl-letter">S</h3>
       <dl>
-        <div><dt>Sanierungsstau</dt> <dd>Einmaliger Nachholbedarf bei Übernahme (<span class="src">These Bernt/Holm</span>: private Konzerne unterinvestieren). Keine der ausgewerteten Quellen beziffert ihn; der <span class="src">Rechnungshof</span> rechnet ohne und nennt sein Ergebnis deshalb eine Untergrenze. Voreinstellung daher 0 €. Zur Größenordnung: energetische Vollsanierung nach <span class="src">IW-Consult-Kostensätzen</span> 660–1.600 €/m². Laufende Modernisierung steckt in den Bewirtschaftungskosten der Positionen.</dd></div>
+        <div><dt>Sanierungsstau</dt> <dd>Einmaliger Nachholbedarf bei Übernahme (<span class="src">These Bernt/Holm</span>: private Konzerne unterinvestieren). Keine der ausgewerteten Quellen beziffert ihn. Modernisierungen aus einem möglichen Instandhaltungsstau oder energetischem Sanierungsbedarf hat der Rechnungshof nach eigener Angabe noch nicht berücksichtigt; seine Parameter bilden eher vorteilhafte Rahmenbedingungen ab (<span class="src">Rechnungshof 2024, S. 11</span>). Voreinstellung daher 0 €. Zur Größenordnung: energetische Vollsanierung nach <span class="src">IW-Consult-Kostensätzen</span> 660–1.600 €/m². Laufende Modernisierung steckt in den Bewirtschaftungskosten der Positionen.</dd></div>
         <div><dt>Strukturierungsentgelt</dt> <dd>Einmalige Gebühr bei Aufnahme oder Erneuerung eines Darlehens oder einer Anleihe, in Prozent der Summe. Holm/Thonke/Arpagaus setzen 1 % je Zins- bzw. Anleiheperiode an (<span class="src">Holm/Thonke/Arpagaus 2025, S. 29</span>).</dd></div>
         <div><dt>Schuldendienst</dt> <dd>Jährliche Zahlung an die Kreditgeber aus Zinsen und Tilgung; beim Annuitätendarlehen gleich der Annuität.</dd></div>
         <div><dt>Sondervotum / Mehrheitsvotum</dt> <dd>Stimmt eine Kommission nicht einstimmig ab, hält der Abschlussbericht die Position der Mehrheit (Mehrheitsvotum) und die der überstimmten Minderheit (Sondervotum) getrennt fest. Bei der Expertenkommission Vergesellschaftung vertraten 3 von 13 Mitgliedern ein Sondervotum zur Entschädigung: Verkehrswert als zwingender Ausgangspunkt, nur enger Spielraum für Abschläge — nicht schlicht „voller Verkehrswert".</dd></div>

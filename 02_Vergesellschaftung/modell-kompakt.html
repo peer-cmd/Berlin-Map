@@ -6,7 +6,7 @@
 <title>Kosten- und Finanzierungsmodell der Vergesellschaftung Berlin — kompakt</title>
 <link rel="stylesheet" href="fonts/fonts.css">
 <script src="vendor/chart.umd.js"></script>
-<link rel="stylesheet" href="style.css?v=20261006p">
+<link rel="stylesheet" href="style.css?v=20261017a">
 </head>
 <body class="model-page">
 <!-- Generated from vergesellschaftung-modell-v37.html by build_kompakt.py. Do not edit by hand. -->
@@ -58,10 +58,6 @@
           <input type="range" id="units" min="50000" max="400000" step="1000" value="240000">
         </div>
         <div class="field">
-          <div class="field-row"><label>Ø Wohnungsgröße</label><span class="val" id="v-avgSize">62 m²</span></div>
-          <input type="range" id="avgSize" min="40" max="100" step="1" value="62">
-        </div>
-        <div class="field">
           <div class="field-row"><label data-term="Verkehrswert">Verkehrswert/m²</label><span class="val" id="v-price">2.085 €/m²</span></div>
           <input type="range" id="price" min="500" max="5000" step="5" value="2085">
         </div>
@@ -75,6 +71,13 @@
             <span class="linked-suffix">€ Verkehrswert</span>
           </div>
         </div>
+        <details class="more">
+          <summary>Weitere Annahmen<span class="more-note"></span></summary>
+          <div class="field">
+            <div class="field-row"><label>Ø Wohnungsgröße</label><span class="val" id="v-avgSize">62 m²</span></div>
+            <input type="range" id="avgSize" min="40" max="100" step="1" value="62">
+          </div>
+        </details>
       </div>
 
       <div class="group">
@@ -84,77 +87,77 @@
             <button data-val="kredit" class="active">Kredit</button>
             <button data-val="eigen">Eigenmittel</button>
           </div>
+          <p class="hint needs" data-needs="kredit">Mit Eigenmitteln zahlt das Land den ganzen Kaufpreis; Zins, Laufzeit, Eigenkapital und Anleihe wirken erst wieder bei Kredit.</p>
         </div>
-        <div class="field" id="wrap-rate">
+        <div class="field">
           <div class="field-row"><label data-term="Zinssatz">Zinssatz</label><span class="val" id="v-rate">3,5 %</span></div>
           <input type="range" id="rate" min="0" max="7" step="0.1" value="3.5">
         </div>
         <div class="field">
-          <div class="field-row"><label data-term="Risikoprämie">Risikoprämie ab Ankündigung</label><span class="val" id="v-riskPremium">0,0 pp</span></div>
-          <input type="range" id="riskPremium" min="0" max="2" step="0.1" value="0">
-        </div>
-        <div class="field" id="wrap-term">
           <div class="field-row"><label data-term="Tilgungsdauer">Tilgungsdauer</label><span class="val" id="v-term">30 J.</span></div>
           <input type="range" id="term" min="5" max="100" step="1" value="30">
         </div>
-        <div class="field" id="wrap-reset">
-          <div class="field-row"><label data-term="Zinsbindung">Zinsbindung</label><span class="val" id="v-rateResetYears">10 J.</span></div>
-          <input type="range" id="rateResetYears" min="5" max="100" step="1" value="10">
-        </div>
-        <div class="field" id="wrap-increment">
-          <div class="field-row"><label data-term="Zinsaufschlag">Zinsaufschlag danach</label><span class="val" id="v-rateIncrement">+1,0 pp</span></div>
-          <input type="range" id="rateIncrement" min="0" max="3" step="0.1" value="1.0">
-        </div>
-        <div class="field" id="wrap-bond">
-          <div class="field-row"><label data-term="Anfangstilgung">Anfangstilgung</label><span class="val" id="v-initialRepayment">Annuität</span></div>
-          <input type="range" id="initialRepayment" min="0" max="5" step="0.01" value="0">
-          <div class="field-row"><label data-term="Endfällige Anleihe">Anteil endfällige Anleihe</label><span class="val" id="v-bondShare">0 %</span></div>
-          <input type="range" id="bondShare" min="0" max="100" step="5" value="0">
-          <div class="field-row"><label>Zins der Anleihe</label><span class="val" id="v-bondRate">4,0 %</span></div>
-          <input type="range" id="bondRate" min="0" max="7" step="0.1" value="4">
-          <div class="field-row"><label>Laufzeit der Anleihe</label><span class="val" id="v-bondReset">7 J.</span></div>
-          <input type="range" id="bondReset" min="1" max="15" step="1" value="7">
-          <div class="field-row"><label data-term="Strukturierungsentgelt">Strukturierungsentgelt</label><span class="val" id="v-feeRate">0,0 %</span></div>
-          <input type="range" id="feeRate" min="0" max="3" step="0.1" value="0">
-          <div class="field-row"><label data-term="Überschüsse tilgen">Überschüsse tilgen</label></div>
-          <div class="seg" id="seg-sweep">
-            <button data-val="aus" class="active">aus</button>
-            <button data-val="an">an</button>
-          </div>
-        </div>
-        <div class="field" id="wrap-equity">
+        <div class="field">
           <div class="field-row"><label data-term="Eigenkapitalanteil">Eigenkapitalanteil des Landes</label><span class="val" id="v-equityShare">0 %</span></div>
           <input type="range" id="equityShare" min="0" max="100" step="1" value="0">
-          <div class="field-row"><label data-term="Eigenkapitalanteil">Zins des Landes</label><span class="val" id="v-equityRate">3,0 %</span></div>
-          <input type="range" id="equityRate" min="0" max="6" step="0.1" value="3">
         </div>
-        <div class="field">
-          <div class="field-row"><label data-term="Mehrkosten Landesschulden">Mehrkosten Landesschulden</label><span class="val" id="v-landDebtCost">0 Mio €/J.</span></div>
-          <input type="range" id="landDebtCost" min="0" max="1000" step="10" value="0">
-        </div>
-        <div class="field">
-          <div class="field-row"><label data-term="Fehlbeträge verzinsen">Fehlbeträge verzinsen</label></div>
-          <div class="seg" id="seg-deficit">
-            <button data-val="aus" class="active">aus</button>
-            <button data-val="an">an</button>
+        <details class="more">
+          <summary>Weitere Annahmen<span class="more-note"></span></summary>
+          <div class="field">
+            <div class="field-row"><label data-term="Eigenkapitalanteil">Zins des Landes</label><span class="val" id="v-equityRate">3,0 %</span></div>
+            <input type="range" id="equityRate" min="0" max="6" step="0.1" value="3">
+            <p class="hint needs" data-needs="equity">wirkt ab einem Eigenkapitalanteil über 0 %</p>
           </div>
-        </div>
-        <div class="field">
-          <div class="field-row"><label data-term="Einmalige Kosten">Einmalige Kosten</label><span class="val" id="v-onceCosts">0 Mio €</span></div>
-          <input type="range" id="onceCosts" min="0" max="1500" step="5" value="0">
-        </div>
-        <div class="field">
-          <div class="field-row"><label data-term="Integrationskosten">Integrationskosten</label><span class="val" id="v-integrationCosts">0,0 %</span></div>
-          <input type="range" id="integrationCosts" min="0" max="10" step="0.5" value="0">
-        </div>
-        <div class="field">
-          <div class="field-row"><label data-term="Sanierungsstau">Sanierungsstau pro Wohnung</label><span class="val" id="v-maintBacklog">0 €</span></div>
-          <input type="range" id="maintBacklog" min="0" max="30000" step="500" value="0">
-        </div>
+          <div class="field">
+            <div class="field-row"><label data-term="Zinsbindung">Zinsbindung</label><span class="val" id="v-rateResetYears">10 J.</span></div>
+            <input type="range" id="rateResetYears" min="5" max="100" step="1" value="10">
+          </div>
+          <div class="field">
+            <div class="field-row"><label data-term="Zinsaufschlag">Zinsaufschlag danach</label><span class="val" id="v-rateIncrement">+1,0 pp</span></div>
+            <input type="range" id="rateIncrement" min="0" max="3" step="0.1" value="1.0">
+            <p class="hint needs" data-needs="reset">wirkt, wenn die Zinsbindung vor der Tilgungsdauer endet</p>
+          </div>
+          <div class="field">
+            <div class="field-row"><label data-term="Risikoprämie">Risikoprämie ab Ankündigung</label><span class="val" id="v-riskPremium">0,0 pp</span></div>
+            <input type="range" id="riskPremium" min="0" max="2" step="0.1" value="0">
+          </div>
+          <div class="field">
+            <div class="field-row"><label data-term="Anfangstilgung">Anfangstilgung</label><span class="val" id="v-initialRepayment">Annuität</span></div>
+            <input type="range" id="initialRepayment" min="0" max="5" step="0.01" value="0">
+          </div>
+          <div class="field">
+            <div class="field-row"><label data-term="Endfällige Anleihe">Anteil endfällige Anleihe</label><span class="val" id="v-bondShare">0 %</span></div>
+            <input type="range" id="bondShare" min="0" max="100" step="5" value="0">
+            <div class="field-row"><label>Zins der Anleihe</label><span class="val" id="v-bondRate">4,0 %</span></div>
+            <input type="range" id="bondRate" min="0" max="7" step="0.1" value="4">
+            <div class="field-row"><label>Laufzeit der Anleihe</label><span class="val" id="v-bondReset">7 J.</span></div>
+            <input type="range" id="bondReset" min="1" max="15" step="1" value="7">
+            <p class="hint needs" data-needs="bond">Zins und Laufzeit wirken ab einem Anleihe-Anteil über 0 %</p>
+          </div>
+          <div class="field">
+            <div class="field-row"><label data-term="Strukturierungsentgelt">Strukturierungsentgelt</label><span class="val" id="v-feeRate">0,0 %</span></div>
+            <input type="range" id="feeRate" min="0" max="3" step="0.1" value="0">
+          </div>
+          <div class="field">
+            <div class="field-row"><label data-term="Überschüsse tilgen">Überschüsse tilgen</label></div>
+            <div class="seg" id="seg-sweep">
+              <button data-val="aus" class="active">aus</button>
+              <button data-val="an">an</button>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-row"><label data-term="Fehlbeträge verzinsen">Fehlbeträge verzinsen</label></div>
+            <div class="seg" id="seg-deficit">
+              <button data-val="aus" class="active">aus</button>
+              <button data-val="an">an</button>
+            </div>
+            <p class="hint needs" data-needs="deficitNominal">Bei Barwert zählt der Zeitwert doppelt: einmal über die Zinsen, einmal über die Abzinsung.</p>
+          </div>
+        </details>
       </div>
 
       <div class="group">
-        <p class="group-title">Miete &amp; Bewirtschaftung</p>
+        <p class="group-title">Miete</p>
         <div class="field">
           <div class="field-row"><label data-term="Ausgangsmiete" data-note="Ø Nettokaltmiete der 6 größten privaten Wohnungskonzerne, exakt der Vergesellschaftungs-Bestand (Bernt/Holm 2023, Rosa-Luxemburg-Stiftung)">Ausgangsmiete</label><span class="val" id="v-baseRent">7,63 €/m²</span></div>
           <input type="range" id="baseRent" min="3" max="20" step="0.01" value="7.63">
@@ -168,33 +171,25 @@
           <div class="field-row"><label data-term="Mietsteigerung">Mietsteigerung p.a.</label><span class="val" id="v-rentGrowth">1,5 %</span></div>
           <input type="range" id="rentGrowth" min="0" max="4" step="0.01" value="1.5">
         </div>
-        <div class="field">
-          <div class="field-row"><label data-term="Kosteninflation">Kosteninflation p.a.</label><span class="val" id="v-costInflation">2,5 %</span></div>
-          <input type="range" id="costInflation" min="0" max="6" step="0.01" value="2.5">
-        </div>
-        <div class="field">
-          <div class="field-row"><label data-term="Anfangsphase">Anfangsphase</label><span class="val" id="v-startYears">keine</span></div>
-          <input type="range" id="startYears" min="0" max="5" step="1" value="0">
-          <div id="wrap-start">
+        <details class="more">
+          <summary>Weitere Annahmen<span class="more-note"></span></summary>
+          <div class="field">
+            <div class="field-row"><label data-term="Anfangsphase">Anfangsphase</label><span class="val" id="v-startYears">keine</span></div>
+            <input type="range" id="startYears" min="0" max="5" step="1" value="0">
             <div class="field-row"><label>Inflation in der Anfangsphase</label><span class="val" id="v-startInflation">10,0 %</span></div>
             <input type="range" id="startInflation" min="0" max="15" step="0.5" value="10">
             <div class="field-row"><label>Mietsteigerung in der Anfangsphase</label><span class="val" id="v-startRentGrowth">1,0 %</span></div>
             <input type="range" id="startRentGrowth" min="0" max="5" step="0.1" value="1">
+            <p class="hint needs" data-needs="start">Inflation und Mietsteigerung wirken ab einer Anfangsphase von 1 Jahr</p>
           </div>
-        </div>
+        </details>
+      </div>
+
+      <div class="group">
+        <p class="group-title">Kosten</p>
         <div class="field">
-          <div class="seg" id="seg-opexmode">
-            <button data-val="percent" class="active">% der Miete</button>
-            <button data-val="absolute">Absolut €/m²</button>
-          </div>
-        </div>
-        <div class="field" id="wrap-opex-percent">
-          <div class="field-row"><label data-term="Bewirtschaftungskosten">Bewirtschaftungskosten</label><span class="val" id="v-opex">40 %</span></div>
-          <input type="range" id="opex" min="20" max="60" step="1" value="40">
-        </div>
-        <div class="field" id="wrap-opex-absolute" style="display:none;">
-          <div class="field-row"><label data-term="Bewirtschaftungskosten">Bewirtschaftungskosten absolut</label><span class="val" id="v-opexAbsolute">2,20 €/m²</span></div>
-          <input type="range" id="opexAbsolute" min="1" max="5" step="0.01" value="2.2">
+          <div class="field-row"><label data-term="Bewirtschaftungskosten">Bewirtschaftungskosten</label><span class="val" id="v-opexAbsolute">3,05 €/m²</span></div>
+          <input type="range" id="opexAbsolute" min="1" max="5" step="0.01" value="3.05">
           <div class="linked-row">
             <label class="linked-label">≈ pro Wohnung</label>
             <input type="number" class="linked-input" id="opexAbsolutePerUnit" step="5">
@@ -202,27 +197,28 @@
           </div>
         </div>
         <div class="field">
-          <div class="field-row"><label data-term="Mietausfallwagnis">Mietausfallwagnis</label><span class="val" id="v-vacancyRate">0,0 %</span></div>
-          <input type="range" id="vacancyRate" min="0" max="10" step="0.5" value="0">
+          <div class="field-row"><label data-term="Kosteninflation">Kosteninflation p.a.</label><span class="val" id="v-costInflation">2,5 %</span></div>
+          <input type="range" id="costInflation" min="0" max="6" step="0.01" value="2.5">
         </div>
-        <div class="field">
-          <div class="field-row"><label data-term="Neuvertragsmiete" data-note="Angebotsmiete Berlin Anfang 2026 16,75 €/m² (IW/Empirica 2026, S. 12), fortgeschrieben mit 2,3 % pro Jahr wie die ortsübliche Vergleichsmiete bei Bernt/Holm 2023 (S. 22)">Referenz: freier Markt</label><span class="val" id="v-freeMarketRent">16,75 €/m²</span></div>
-          <input type="range" id="freeMarketRent" min="8" max="25" step="0.01" value="16.75">
-          <div class="field-row"><label>Steigerung freier Markt</label><span class="val" id="v-freeMarketGrowth">2,3 %/J.</span></div>
-          <input type="range" id="freeMarketGrowth" min="0" max="8" step="0.1" value="2.3">
-        </div>
-        <div class="field">
-          <div class="field-row"><label data-term="Grenze Sozialmiete" data-note="Miete der Landeseigenen, auf die Bernt/Holm 2023 senken (S. 12); Wachstum 1,6 %/Jahr (S. 22)">Grenze Sozialmiete</label><span class="val" id="v-munizRent">6,39 €/m²</span></div>
-          <input type="range" id="munizRent" min="4" max="12" step="0.01" value="6.39">
-        </div>
-        <div class="field">
-          <div class="field-row"><label data-term="CPI">Referenz: Verbraucherpreise (CPI)</label><span class="val" id="v-cpiGrowth">2,0 %/J.</span></div>
-          <input type="range" id="cpiGrowth" min="0" max="5" step="0.1" value="2.0">
-        </div>
-        <div class="field">
-          <div class="field-row"><label data-term="Haushaltseinkommen">Referenz: Haushaltseinkommen</label><span class="val" id="v-incomeGrowth">3,0 %/J.</span></div>
-          <input type="range" id="incomeGrowth" min="0" max="6" step="0.1" value="3.0">
-        </div>
+        <details class="more">
+          <summary>Weitere Annahmen<span class="more-note"></span></summary>
+          <div class="field">
+            <div class="field-row"><label data-term="Mietausfallwagnis">Mietausfallwagnis</label><span class="val" id="v-vacancyRate">0,0 %</span></div>
+            <input type="range" id="vacancyRate" min="0" max="10" step="0.5" value="0">
+          </div>
+          <div class="field">
+            <div class="field-row"><label data-term="Einmalige Kosten">Einmalige Kosten</label><span class="val" id="v-onceCosts">0 Mio €</span></div>
+            <input type="range" id="onceCosts" min="0" max="1500" step="5" value="0">
+          </div>
+          <div class="field">
+            <div class="field-row"><label data-term="Sanierungsstau">Sanierungsstau pro Wohnung</label><span class="val" id="v-maintBacklog">0 €</span></div>
+            <input type="range" id="maintBacklog" min="0" max="30000" step="500" value="0">
+          </div>
+          <div class="field">
+            <div class="field-row"><label data-term="Mehrkosten Landesschulden">Mehrkosten Landesschulden</label><span class="val" id="v-landDebtCost">0 Mio €/J.</span></div>
+            <input type="range" id="landDebtCost" min="0" max="1000" step="10" value="0">
+          </div>
+        </details>
       </div>
 
       <div class="group">
@@ -233,10 +229,14 @@
             <button data-val="barwert">Barwert</button>
           </div>
         </div>
-        <div class="field" id="wrap-discount">
-          <div class="field-row"><label data-term="Barwert">Abzinsungssatz</label><span class="val" id="v-discountRate">3,15 %</span></div>
-          <input type="range" id="discountRate" min="0" max="6" step="0.05" value="3.15">
-        </div>
+        <details class="more">
+          <summary>Weitere Annahmen<span class="more-note"></span></summary>
+          <div class="field">
+            <div class="field-row"><label data-term="Barwert">Abzinsungssatz</label><span class="val" id="v-discountRate">3,15 %</span></div>
+            <input type="range" id="discountRate" min="0" max="6" step="0.05" value="3.15">
+            <p class="hint needs" data-needs="barwert">wirkt bei Bewertung Barwert</p>
+          </div>
+        </details>
       </div>
 
       <div class="group">
@@ -247,8 +247,8 @@
             <option value="neubau">Neubau — Bestand wächst</option>
           </select>
         </div>
-
-        <div class="subpanel" id="panel-neubau">
+        <details class="more">
+          <summary>Weitere Annahmen<span class="more-note"></span></summary>
           <div class="field">
             <div class="field-row"><label data-term="Baukosten Neubau">Baukosten Neubau</label><span class="val" id="v-buildCost">3.500 €/m²</span></div>
             <input type="range" id="buildCost" min="1500" max="6000" step="100" value="3500">
@@ -261,9 +261,9 @@
           <div class="field">
             <div class="field-row"><label data-term="Reinvestitionsquote">Reinvestitionsquote</label><span class="val" id="v-reinvestQuota1">100 %</span></div>
             <input type="range" id="reinvestQuota1" min="0" max="100" step="5" value="100">
+            <p class="hint needs" data-needs="neubau">Baukosten und Quote wirken im Modus Neubau</p>
           </div>
-        </div>
-
+        </details>
       </div>
 
       <div class="reset-row">
@@ -331,6 +331,27 @@
           <span><i class="swatch" style="background:#00A0E3"></i>Ø Miete Bestand (Modell)</span>
         </div>
         <p class="panel-sub" id="rentLimitNote"></p>
+        <details class="more panel-more">
+          <summary>Vergleichslinien einstellen</summary>
+          <div class="field">
+            <div class="field-row"><label data-term="Neuvertragsmiete" data-note="Angebotsmiete Berlin Anfang 2026 16,75 €/m² (IW/Empirica 2026, S. 12), fortgeschrieben mit 2,3 % pro Jahr wie die ortsübliche Vergleichsmiete bei Bernt/Holm 2023 (S. 22)">Freier Markt</label><span class="val" id="v-freeMarketRent">16,75 €/m²</span></div>
+            <input type="range" id="freeMarketRent" min="8" max="25" step="0.01" value="16.75">
+            <div class="field-row"><label>Steigerung freier Markt</label><span class="val" id="v-freeMarketGrowth">2,3 %/J.</span></div>
+            <input type="range" id="freeMarketGrowth" min="0" max="8" step="0.1" value="2.3">
+          </div>
+          <div class="field">
+            <div class="field-row"><label data-term="Grenze Sozialmiete" data-note="Miete der Landeseigenen, auf die Bernt/Holm 2023 senken (S. 12); Wachstum 1,6 %/Jahr (S. 22)">Grenze Sozialmiete</label><span class="val" id="v-munizRent">6,39 €/m²</span></div>
+            <input type="range" id="munizRent" min="4" max="12" step="0.01" value="6.39">
+          </div>
+          <div class="field">
+            <div class="field-row"><label data-term="CPI">Verbraucherpreise (CPI)</label><span class="val" id="v-cpiGrowth">2,0 %/J.</span></div>
+            <input type="range" id="cpiGrowth" min="0" max="5" step="0.1" value="2.0">
+          </div>
+          <div class="field">
+            <div class="field-row"><label data-term="Haushaltseinkommen">Haushaltseinkommen</label><span class="val" id="v-incomeGrowth">3,0 %/J.</span></div>
+            <input type="range" id="incomeGrowth" min="0" max="6" step="0.1" value="3.0">
+          </div>
+        </details>
       </div>
 
       <div class="panel" id="stockPanelWrap" style="display:none;">
@@ -442,8 +463,8 @@
 
 </div>
 
-<script src="model-calc.js?v=20261016b"></script>
-<script src="content.js?v=20261016a"></script>
+<script src="model-calc.js?v=20261017a"></script>
+<script src="content.js?v=20261017a"></script>
 <script src="tooltips.js?v=20261003a"></script>
 <script src="nav.js?v=20261005a"></script>
 </body>

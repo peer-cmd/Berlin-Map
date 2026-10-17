@@ -365,13 +365,17 @@ select{
   color:var(--ink);
 }
 
-.subpanel{
-  margin-top:10px;
-  padding-top:10px;
-  border-top:1px dashed var(--line-strong);
-  display:none;
-}
-.subpanel.show{display:block;}
+/* „Weitere Annahmen“ je Reglergruppe, zugeklappt; dieselbe Form unter „Die Mieten“ für die Vergleichslinien */
+details.more{margin-top:4px;}
+details.more summary{cursor:pointer;list-style:none;font-size:11.5px;color:var(--muted);padding:4px 0;}
+details.more summary::-webkit-details-marker{display:none;}
+details.more summary:before{content:"▸ ";color:var(--blue);}
+details.more[open] summary:before{content:"▾ ";}
+.more-note{color:var(--violet);}
+details.more[open]{padding-bottom:2px;}
+details.more[open] > summary{margin-bottom:10px;}
+p.hint{margin:4px 0 0;}
+.panel-more{margin-top:10px;max-width:420px;}
 
 .reset-row{padding:16px 22px;}
 .reset-btn{
