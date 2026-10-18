@@ -319,7 +319,7 @@
         <div class="panel-head">
           <h2><span data-term="Restschuld">Schulden</span> und Rücklage</h2>
         </div>
-        <p class="panel-sub">Je Jahresende: unter null, was noch geschuldet wird und was das Land bereits gezahlt hat; über null die Rücklage der AöR. Die Linie ist die Summe, die <span data-term="Nettokosten für Berlin">Nettokosten für Berlin</span>. Tilgungen ändern sie nicht, Zinsen senken sie, Überschüsse heben sie. Steigt die Linie über null, deckt die Rücklage alle Schulden und Zahlungen des Landes; die senkrechte Linie markiert dieses Jahr. Ohne Wert des Bestands. Nominale Werte.</p>
+        <p class="panel-sub">Je Jahresende: unter null, was noch geschuldet wird und was das Land bereits gezahlt hat; über null die Rücklage der AöR. Die Linie ist die Summe, die <span data-term="Nettokosten für Berlin">Nettokosten für Berlin</span>. Tilgungen ändern sie nicht, Zinsen senken sie, Überschüsse heben sie. Steigt die Linie über null, deckt die Rücklage alle Schulden und Zahlungen des Landes; die senkrechte Linie markiert dieses Jahr, das Jahr <span data-term="Schulden gedeckt">Schulden gedeckt</span> in den Kennzahlen oben. Ohne Wert des Bestands. Nominale Werte.</p>
         <canvas id="chartDebt" height="70"></canvas>
         <div class="legend" id="legDebt"></div>
       </div>
@@ -341,7 +341,7 @@
       <details class="panel" id="cashflowPanel">
         <summary>Bisherige Darstellung: Cashflow</summary>
         <div class="sens-block">
-          <p class="panel-sub">Die Diagramme bis Oktober 2026, zum Vergleich. Sie zählen <span data-term="Tilgung">Tilgung</span> wie Aufwand: Die kumulierte Kurve sinkt, solange Kredite getilgt werden, obwohl die Schulden dabei abnehmen. Der <span data-term="Break-even">Break-even</span> in den Kennzahlen oben folgt dieser Rechnung.</p>
+          <p class="panel-sub">Die Diagramme bis Oktober 2026, zum Vergleich. Sie zählen <span data-term="Tilgung">Tilgung</span> wie Aufwand: Die kumulierte Kurve sinkt, solange Kredite getilgt werden, obwohl die Schulden dabei abnehmen. Daraus folgt der <span data-term="Break-even">Break-even</span>: Er kann in Jahr 1 liegen, solange fast der ganze Kredit noch offen ist. Die Kennzahlen oben nennen deshalb das Jahr, in dem die Schulden gedeckt sind.</p>
         </div>
         <div class="sens-block">
           <div class="panel-head"><h2>Der <span data-term="Cashflow">Cashflow</span> pro Jahr</h2></div>
@@ -462,12 +462,12 @@
         </div>
         <div class="sens-block" id="rateSensWrap">
           <div class="panel-head"><h2>Das Ergebnis je <span data-term="Zinssatz">Zinssatz</span></h2></div>
-          <p class="panel-sub">Nettoergebnis über den Betrachtungszeitraum (linke Achse, Mrd €) und Break-even-Jahr (rechte Achse), wenn nur dieser Wert verändert wird. Zum Zinssatz kommt die Risikoprämie, nach Ende der Zinsbindung zusätzlich der Zinsaufschlag.</p>
+          <p class="panel-sub">Nettoergebnis über den Betrachtungszeitraum (linke Achse, Mrd €) und Jahr, in dem die Schulden gedeckt sind (rechte Achse), wenn nur dieser Wert verändert wird. Zum Zinssatz kommt die Risikoprämie, nach Ende der Zinsbindung zusätzlich der Zinsaufschlag.</p>
           <canvas id="chartRateSens" height="70"></canvas>
         </div>
         <div class="sens-block">
           <div class="panel-head"><h2>Das Ergebnis je <span data-term="Entschädigungsquote">Entschädigungsquote</span></h2></div>
-          <p class="panel-sub">Nettoergebnis über den Betrachtungszeitraum (linke Achse, Mrd €) und Break-even-Jahr (rechte Achse), wenn nur dieser Wert verändert wird.</p>
+          <p class="panel-sub">Nettoergebnis über den Betrachtungszeitraum (linke Achse, Mrd €) und Jahr, in dem die Schulden gedeckt sind (rechte Achse), wenn nur dieser Wert verändert wird.</p>
           <canvas id="chartCompSens" height="70"></canvas>
         </div>
       </details>
@@ -513,8 +513,8 @@
 
 </div>
 
-<script src="model-calc.js?v=20261018a"></script>
-<script src="content.js?v=20261017a"></script>
+<script src="model-calc.js?v=20261018b"></script>
+<script src="content.js?v=20261018a"></script>
 <script src="tooltips.js?v=20261003a"></script>
 <script src="nav.js?v=20261005a"></script>
 </body>

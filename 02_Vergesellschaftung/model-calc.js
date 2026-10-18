@@ -172,6 +172,8 @@
     let cash = -upfrontCosts, cum = -upfrontCosts;
     const rows = [];
     let breakEvenYear = null;
+    // Schulden gedeckt: erstes Jahr, in dem Kasse minus Restschuld (im Modus Eigenmittel minus Kaufpreis) null erreicht. Nominal.
+    let coverYear = null;
     const opexPerUnitBase = p.avgSize*p.opexAbsolute*12;
 
     for(let t=1;t<=p.horizon;t++){
@@ -266,13 +268,14 @@
         cash -= buildSpend;
         cum -= buildSpend*d;
       }
+      if(coverYear===null && cash - (kredit ? balance+bondBalance+equityBalance : principal) >= 0) coverYear = t;
     }
 
     // Einmalkosten sind bereits im Startsaldo von cum enthalten (s.o.), daher hier kein erneuter Abzug.
     const last = rows[rows.length-1];
     const first10 = rows.slice(0, 10);
     return {
-      principal, fullValue, equity, rows, breakEvenYear, netResult: last.cumForChart,
+      principal, fullValue, equity, rows, breakEvenYear, coverYear, netResult: last.cumForChart,
       upfrontCosts, equityUpfront, bondStart: kredit ? debt*((p.bondShare||0)/100) : 0, loanStart: kredit ? debt*(1-(p.bondShare||0)/100) : 0,
       finalUnits: last.units,
       finalDebt: last.balance || 0,
@@ -555,18 +558,18 @@
     if(byId('chartScenarios')) initScenarioChart();
     if(byId('chartFinance')) initFinanceCharts();
 
-    // Beide Sensitivitätsdiagramme: Nettoergebnis (links) und Break-even-Jahr (rechts) je Reglerwert.
+    // Beide Sensitivitätsdiagramme: Nettoergebnis (links) und Jahr „Schulden gedeckt“ (rechts) je Reglerwert.
     const sensChart = (id, xTitle) => new Chart($(id).getContext('2d'), {
       data:{ labels:[], datasets:[
         {type:'line', label:'Nettoergebnis', data:[], borderColor:'#00A0E3', backgroundColor:'rgba(0,160,227,0.08)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.15, yAxisID:'y'},
-        {type:'line', label:'Break-even (Jahr)', data:[], borderColor:'#FF8A1E', backgroundColor:'transparent', borderWidth:1.5, borderDash:[4,2], pointRadius:0, tension:0.15, yAxisID:'y1'}
+        {type:'line', label:'Schulden gedeckt (Jahr)', data:[], borderColor:'#FF8A1E', backgroundColor:'transparent', borderWidth:1.5, borderDash:[4,2], pointRadius:0, tension:0.15, yAxisID:'y1'}
       ]},
       options:{
         responsive:true,
         animation:{duration:250},
         interaction:{mode:'index', intersect:false},
         plugins:{ legend:{display:false},
-          tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+(ctx.dataset.label==='Break-even (Jahr)' ? (ctx.parsed.y===null?'kein Break-even':('Jahr '+ctx.parsed.y)) : fmtEUR(ctx.parsed.y)) }},
+          tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+(ctx.dataset.label==='Schulden gedeckt (Jahr)' ? (ctx.parsed.y===null?'nicht gedeckt':('Jahr '+ctx.parsed.y)) : fmtEUR(ctx.parsed.y)) }},
           vlineMarker:{ index:null, label:'' }
         },
         scales:{
@@ -710,7 +713,7 @@
     const acc = rows.map((r,i)=>{ aoerCash += restNom[i] - q[i].sweptLoan - q[i].sweptBond - q[i].build; landPaid += q[i].land; return [aoerCash, landPaid]; });
     const ds3 = chartDebt.data.datasets;
     chartDebt.data.labels = labels;
-    ds3[0].data = q.map(x=>stock(x.cash-budget-(x.loanBal+x.bondBal+x.equityBal)));
+    ds3[0].data = q.map(x=>stock(x.cash-x.build-budget-(x.loanBal+x.bondBal+x.equityBal)));
     ds3[1].data = q.map(x=>stock(-x.loanBal));
     ds3[2].data = q.map(x=>stock(-x.bondBal));
     ds3[3].data = q.map(x=>stock(-x.equityBal));
@@ -720,9 +723,8 @@
     const f3 = finUnit==='qm' ? finFmtStock : fmtEUR;
     chartDebt.options.plugins.tooltip.callbacks.label = c=>c.dataset.label+': '+f3(c.parsed.y);
     chartDebt.options.scales.y.ticks.callback = v=>f3(v);
-    // Erstes Jahr, in dem die Rücklage alle Schulden und Zahlungen des Landes deckt.
-    const cover = ds3[0].data.findIndex(v=>v>=0);
-    chartDebt.options.plugins.vlineMarker = cover<0 ? {index:null, label:''} : {index:cover, label:'Schulden gedeckt (Jahr '+labels[cover]+')'};
+    chartDebt.options.plugins.vlineMarker = result.coverYear===null ? {index:null, label:''}
+      : {index:result.coverYear-1, label:'Schulden gedeckt (Jahr '+result.coverYear+')'};
     chartDebt.update('none');
     finLegend('legDebt', chartDebt);
   }
@@ -734,7 +736,7 @@
     const result = runScenario(state.price, state);
 
     // ---- stats ----
-    // Kennzahlen oben: eine Nachkommastelle, Break-even als Halbsatz unter dem Nettoergebnis.
+    // Kennzahlen oben: eine Nachkommastelle, „Schulden gedeckt“ als Halbsatz unter dem Nettoergebnis.
     const mrd1 = n => (n<0?'−':'')+(Math.abs(n)/1e9).toLocaleString('de-DE',{minimumFractionDigits:1,maximumFractionDigits:1})+' Mrd €';
     $('s-kaufpreis').textContent = mrd1(result.principal);
     // Eigenkapital des Landes ausweisen; ohne Zins des Landes trägt das Modell keine Finanzierungskosten dafür.
@@ -744,7 +746,7 @@
     $('s-netto-label').textContent = 'nach '+state.horizon+' Jahren';
     $('s-netto').textContent = mrd1(result.netResult);
     $('s-netto').className = 'value '+(result.netResult>=0?'pos':'neg');
-    $('s-netto-sub').textContent = result.breakEvenYear===null ? 'kein Break-even im Zeitraum' : 'Break-even in Jahr '+result.breakEvenYear;
+    $('s-netto-sub').textContent = result.coverYear===null ? 'Schulden im Zeitraum nicht gedeckt' : 'Schulden gedeckt in Jahr '+result.coverYear;
     // Ergebnis der AöR im Mittel der Jahre 1–10 (vergleichbar mit dem Zuschussbedarf beim Rechnungshof) und offene Schuld am Ende.
     $('s-aoer').textContent = fmtEUR(result.aoerAvg10)+' pro Jahr';
     $('s-aoer').className = 'value '+(result.aoerAvg10>=0?'pos':'neg');
@@ -864,8 +866,8 @@
       const rateResults = rateSteps.map(r=>runScenario(state.price, Object.assign({}, state, {rate:r})));
       chartRateSens.data.labels = rateSteps.map(r=>r.toLocaleString('de-DE',{minimumFractionDigits:1}));
       chartRateSens.data.datasets[0].data = rateResults.map(r=>r.netResult);
-      chartRateSens.data.datasets[1].data = rateResults.map(r=>r.breakEvenYear);
-      chartRateSens.options.scales.y1.ticks.display = rateResults.some(r=>r.breakEvenYear!==null);
+      chartRateSens.data.datasets[1].data = rateResults.map(r=>r.coverYear);
+      chartRateSens.options.scales.y1.ticks.display = rateResults.some(r=>r.coverYear!==null);
       const [rateLo, rateHi] = sensRange('rate', [0,7]);
       chartRateSens.options.scales.y.suggestedMin = rateLo;
       chartRateSens.options.scales.y.suggestedMax = rateHi;
@@ -884,8 +886,8 @@
     });
     chartCompSens.data.labels = pfSteps;
     chartCompSens.data.datasets[0].data = pfResults.map(r=>r.netResult);
-    chartCompSens.data.datasets[1].data = pfResults.map(r=>r.breakEvenYear);
-    chartCompSens.options.scales.y1.ticks.display = pfResults.some(r=>r.breakEvenYear!==null);
+    chartCompSens.data.datasets[1].data = pfResults.map(r=>r.coverYear);
+    chartCompSens.options.scales.y1.ticks.display = pfResults.some(r=>r.coverYear!==null);
     const [compLo, compHi] = sensRange('purchaseFactor', [20,100]);
     chartCompSens.options.scales.y.suggestedMin = compLo;
     chartCompSens.options.scales.y.suggestedMax = compHi;
@@ -933,7 +935,7 @@
       ['Konfiguration', r=>describeSnapshot(r.s)],
       ['Kaufpreis (Basis)', r=>fmtEUR(r.r.principal)],
       ['davon Eigenkapital des Landes', r=>r.r.equity>0 ? fmtEUR(r.r.equity)+(r.s.equityRate>0 ? ' zu '+fmtQuote(r.s.equityRate) : ' ohne Zins') : '–'],
-      ['Break-even (Basis)', r=>fmtYear(r.r.breakEvenYear)],
+      ['Schulden gedeckt', r=>fmtYear(r.r.coverYear)],
       ['Nettoergebnis (Basis)', r=>fmtEUR(r.r.netResult)],
       ['Ergebnis AöR, Ø Jahr 1–10', r=>fmtEUR(r.r.aoerAvg10)],
       ['Restschuld am Ende', r=>fmtEUR(r.r.finalDebt)],
@@ -1016,19 +1018,19 @@
     }
     const presetResults = entries.map(({label,p})=>{
       const r = runScenario(p.price, Object.assign({}, p, {horizon}));
-      return {label, principal:r.principal, netResult:r.netResult, breakEvenYear:r.breakEvenYear};
+      return {label, principal:r.principal, netResult:r.netResult, coverYear:r.coverYear};
     });
     chartScenarios.data.labels = presetResults.map(r=>r.label);
     chartScenarios.data.datasets[0].data = presetResults.map(r=>r.principal);
     chartScenarios.data.datasets[1].data = presetResults.map(r=>r.netResult);
     chartScenarios.data.datasets[1].backgroundColor = presetResults.map(r=>r.netResult>=0?'#FFE500':'#FF3D8B');
     chartScenarios.update('none');
-    // Break-even als Satz statt als zweite Achse: im Horizont erreichen ihn meist nur wenige Positionen.
-    const be = presetResults.filter(r=>r.breakEvenYear!==null);
-    const beList = be.map(r=>r.label+' (Jahr '+r.breakEvenYear+')').join(', ');
-    const beText = be.length===0 ? 'Keine Position erreicht innerhalb des Horizonts den Break-even.'
-      : be.length===presetResults.length ? 'Break-even: '+beList+'.'
-      : 'Innerhalb des Horizonts '+(be.length===1?'erreicht':'erreichen')+' nur '+beList+' den Break-even.';
+    // „Schulden gedeckt“ als Satz statt als zweite Achse: im Horizont erreichen es meist nur wenige Positionen.
+    const be = presetResults.filter(r=>r.coverYear!==null);
+    const beList = be.map(r=>r.label+' (Jahr '+r.coverYear+')').join(', ');
+    const beText = be.length===0 ? 'Keine Position deckt innerhalb des Horizonts ihre Schulden.'
+      : be.length===presetResults.length ? 'Schulden gedeckt: '+beList+'.'
+      : 'Innerhalb des Horizonts '+(be.length===1?'deckt':'decken')+' nur '+beList+' die Schulden.';
     if(byId('scenario-breakeven')) $('scenario-breakeven').textContent = beText;
     if(byId('scenario-horizon')) $('scenario-horizon').textContent = defaults.horizon;
   }
