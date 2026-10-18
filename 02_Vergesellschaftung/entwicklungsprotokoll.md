@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-18 — Die Zahlen: Positionen vor dem Vergleich
+
+Neue Reihenfolge: Einleitung → Die Positionen → Verkehrswert → Bestand → Entschädigung (vorher „Die Kosten im Vergleich“) → Mieten → Kosten und Finanzierung → Das Ergebnis im Modell (Diagramm aus dem Rechenweg hierher) → Rechenweg → Grenzen → Anmerkungen. Jede Position gegliedert in „Die Quelle“, „Im Modell“, „Abweichungen“; der DWE-Gesetzentwurf 2025 steht als Hintergrund bei der DWE-Studie, da er keine Position im Modell ist (Anker `#dwe-gesetzentwurf` bleibt). Korrigiert: Bestandstabelle Faire-Mieten-Modell 243.000 statt 240.000 (wie im Preset); Rechnungshof-Text verweist auf „Kredit des Landes“ im Diagramm „Schulden und Rücklage“ statt auf die Spalte „Land“; Rechenweg beschreibt Anleihe, Eigenkapital des Landes, Rücklage und „Schulden gedeckt“. Gestrichen: zwei Füllsätze und der Satz zur Einordnung „verkehrswertnah“, die auf der Seite nicht mehr vorkam. Der Stern in der Mietentabelle ist direkt darunter erklärt. Alle Zahlen und Fußnoten unverändert.
+
 ## 2026-10-18 — Gleicher Abstand zwischen Reglern
 
 Regler, die sich ein Feld teilen (Anleihe: Anteil, Zins, Laufzeit; Anfangsphase: Dauer, Inflation, Mietsteigerung; Vergleichslinien unter „Die Mieten“), standen ohne Abstand untereinander, getrennte Felder mit 14 px. Jetzt überall 14 px (`.field input[type=range] + .field-row`); „Weitere Annahmen“ ohne zusätzlichen Abstand oben. Versions-Tag `style.css` auf `20261018b`.
