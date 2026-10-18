@@ -8,6 +8,10 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-18 — Reglerwerte eintippen
+
+Klick auf den Wert neben einem Regler öffnet ein Eingabefeld (gepunktete Unterstreichung als Hinweis). Enter oder Verlassen übernimmt, Escape bricht ab; Komma und Punkt als Dezimalzeichen, „243.500“ als Tausendertrennung. Der Wert wird auf den Reglerbereich begrenzt, aber nicht auf die Schrittweite gerundet (Regler mit Schritt ≥ 1 nehmen ganze Zahlen); beim nächsten Ziehen rastet der Regler wieder ein. Gespeicherte Szenarien und Links behalten eingetippte Werte genau (`applyState` setzt die Schrittweite aus; alle Positionen liegen auf dem Raster, rechnen also unverändert). Versions-Tags `style.css` auf `20261018a`, `model-calc.js` auf `20261018c`.
+
 ## 2026-10-18 — Die Finanzen in Lernreihenfolge, frühere Cashflow-Diagramme zum Vergleich
 
 Abschnitt „Die Finanzen“ baut aufeinander auf: Kaufpreis und Finanzierung → Einnahmen und Aufwand (neu: Mieteinnahmen und Aufwand ohne Tilgung als zwei Linien, Überschuss gelb, Fehlbetrag pink) → Wohin die Miete geht → Schulden und Rücklage → Die Kapitalposition Berlins (wieder aufgenommen). „Schulden und Rücklage“ markiert das erste Jahr, in dem die Nettokosten für Berlin null erreichen („Schulden gedeckt“). Zugeklappt darunter „Bisherige Darstellung: Cashflow“ mit Cashflow pro Jahr, Cashflow kumuliert (Break-even-Marke) und Restschuld, zum Vergleich.

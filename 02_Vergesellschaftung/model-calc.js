@@ -1128,6 +1128,50 @@
     $(id).addEventListener('input', render);
   });
 
+  // Reglerwerte eintippen: Klick auf den Wert neben einem Regler öffnet ein Feld. Enter oder Verlassen
+  // übernimmt, Escape bricht ab. Der Wert wird auf den Reglerbereich begrenzt, aber nicht auf die
+  // Schrittweite gerundet (Regler mit Schritt ≥ 1 nehmen ganze Zahlen); beim nächsten Ziehen rastet der Regler wieder ein.
+  function parseNumber(t){
+    t = String(t).replace(/[\s%€]|m²|pp|J\.|Jahre/g, '').replace(/[^0-9,.\-−]/g, '').replace('−','-');
+    if(t.includes(',')) t = t.replace(/\./g, '').replace(',', '.');
+    else if(/^-?\d{1,3}(\.\d{3})+$/.test(t)) t = t.replace(/\./g, '');
+    return t==='' ? NaN : +t;
+  }
+  sliderIds.forEach(id=>{
+    const slider = $(id), label = byId('v-'+id);
+    if(!label) return;
+    slider.dataset.step = slider.step;
+    slider.addEventListener('pointerdown', ()=>{ slider.step = slider.dataset.step; });
+    label.classList.add('editable');
+    label.title = 'Klicken, um einen Wert einzugeben';
+    label.addEventListener('click', ()=>{
+      const input = document.createElement('input');
+      input.type = 'text'; input.inputMode = 'decimal'; input.className = 'val-input';
+      input.value = (+slider.value).toLocaleString('de-DE', {maximumFractionDigits:3, useGrouping:false});
+      label.style.display = 'none';
+      label.after(input);
+      input.focus(); input.select();
+      let done = false;
+      const close = commit=>{
+        if(done) return; done = true;
+        const v = parseNumber(input.value);
+        input.remove(); label.style.display = '';
+        if(!commit || !isFinite(v)) return;
+        const step = +slider.dataset.step || 1;
+        let x = Math.min(+slider.max, Math.max(+slider.min, v));
+        x = step>=1 ? Math.round(x) : Math.round(x*1000)/1000;
+        slider.step = 'any';
+        slider.value = x;
+        slider.dispatchEvent(new Event('input', {bubbles:true}));
+      };
+      input.addEventListener('keydown', e=>{
+        if(e.key==='Enter'){ e.preventDefault(); close(true); }
+        else if(e.key==='Escape') close(false);
+      });
+      input.addEventListener('blur', ()=>close(true));
+    });
+  });
+
   // Ruecklaeufige Bindung: "pro Wohnung"-Zweitfeld editieren -> €/m²-Regler + state aktualisieren.
   // Gerundet/geclamped auf den erlaubten Bereich des zugehoerigen Reglers, damit beide Felder
   // immer denselben (ggf. geclampten) Wert zeigen -- nie stillschweigend auseinanderlaufen.
@@ -1159,7 +1203,8 @@
   });
   function applyState(overrides){
     state = Object.assign({}, defaults, overrides);
-    sliderIds.forEach(id=>{ $(id).value = state[id]; });
+    // Schrittweite aus, damit eingetippte Werte aus Speicherungen und Links genau bleiben; Ziehen rastet wieder ein.
+    sliderIds.forEach(id=>{ const el = $(id); el.step = 'any'; el.value = state[id]; });
     $('mode').value = state.mode;
     Object.entries(segIds).forEach(([key, id])=>{
       document.querySelectorAll('#'+id+' button').forEach(b=>b.classList.toggle('active', b.dataset.val===state[key]));
@@ -1192,7 +1237,7 @@
   };
   const controlsEl = document.querySelector('.controls');
   if(controlsEl){
-    controlsEl.addEventListener('input', e=>{ if(e.target.id!=='saveLabel') clearPreset(); });
+    controlsEl.addEventListener('input', e=>{ if(e.target.id!=='saveLabel' && !e.target.classList.contains('val-input')) clearPreset(); });
     controlsEl.addEventListener('change', e=>{ if(e.target.id==='mode') clearPreset(); });
     controlsEl.querySelectorAll('.seg button').forEach(b=>b.addEventListener('click', clearPreset));
   }

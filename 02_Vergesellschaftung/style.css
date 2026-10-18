@@ -335,6 +335,10 @@ input[type=range]::-moz-range-track{
 .linked-label{font-size:10px;color:var(--muted);font-family:'IBM Plex Mono',monospace;white-space:nowrap;}
 .linked-input{width:96px;font-family:'IBM Plex Mono',monospace;font-size:11px;border:1px solid var(--line-strong);background:#fff;padding:3px 6px;color:var(--ink);}
 .linked-input:focus{outline:1px solid var(--blue);border-color:var(--blue);}
+/* Reglerwerte zum Eintippen: Klick auf den Wert öffnet ein Feld (model-calc.js). */
+.field-row .val.editable{cursor:text;border-bottom:1px dotted var(--blue);}
+.field-row .val-input{width:84px;text-align:right;font-family:'IBM Plex Mono',monospace;font-size:12px;border:1px solid var(--blue);background:#fff;padding:1px 4px;color:var(--ink);}
+.field-row .val-input:focus{outline:none;}
 .linked-suffix{font-size:10px;color:var(--muted);font-family:'IBM Plex Mono',monospace;}
 
 .seg{
