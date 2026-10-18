@@ -295,6 +295,15 @@
 
       <div class="panel">
         <div class="panel-head">
+          <h2>Einnahmen und Aufwand</h2>
+        </div>
+        <p class="panel-sub">Je Jahr die Mieteinnahmen und der Aufwand: <span data-term="Bewirtschaftungskosten">Bewirtschaftung</span>, Zinsen und <span data-term="Strukturierungsentgelt">Entgelte</span>. <span data-term="Tilgung">Tilgung</span> ist kein Aufwand und steht hier nicht. Liegen die Einnahmen über dem Aufwand, erwirtschaftet die AöR einen Überschuss, aus dem sie tilgt; gelb ist der Überschuss, pink der Fehlbetrag. Nominale Werte.</p>
+        <canvas id="chartIncome" height="70"></canvas>
+        <div class="legend" id="legIncome"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
           <h2>Wohin die Miete geht</h2>
           <div class="seg" id="seg-finunit">
             <button data-val="mio" class="active">€ je Jahr</button>
@@ -310,10 +319,51 @@
         <div class="panel-head">
           <h2><span data-term="Restschuld">Schulden</span> und Rücklage</h2>
         </div>
-        <p class="panel-sub">Je Jahresende: unter null, was noch geschuldet wird und was das Land bereits gezahlt hat; über null die Rücklage der AöR. Die Linie ist die Summe, die <span data-term="Nettokosten für Berlin">Nettokosten für Berlin</span>. Tilgungen ändern sie nicht, Zinsen senken sie, Überschüsse heben sie. Ohne Wert des Bestands. Nominale Werte.</p>
+        <p class="panel-sub">Je Jahresende: unter null, was noch geschuldet wird und was das Land bereits gezahlt hat; über null die Rücklage der AöR. Die Linie ist die Summe, die <span data-term="Nettokosten für Berlin">Nettokosten für Berlin</span>. Tilgungen ändern sie nicht, Zinsen senken sie, Überschüsse heben sie. Steigt die Linie über null, deckt die Rücklage alle Schulden und Zahlungen des Landes; die senkrechte Linie markiert dieses Jahr. Ohne Wert des Bestands. Nominale Werte.</p>
         <canvas id="chartDebt" height="70"></canvas>
         <div class="legend" id="legDebt"></div>
       </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Die <span data-term="Nettoposition">Kapitalposition</span> Berlins</h2>
+        </div>
+        <p class="panel-sub">Was Berlin besitzt, minus was es schuldet: Verkehrswert des übernommenen Bestands und Baukosten neu gebauter Wohnungen, abzüglich Restschuld, zuzüglich der bisherigen Überschüsse (nach Kosten für Neubau). Über null ist der Bestand mehr wert als die verbleibenden Schulden.</p>
+        <canvas id="chartCapital" height="70"></canvas>
+        <div class="legend">
+          <span><i class="swatch" style="background:#B8B2E8"></i>Vermögenswert Bestand</span>
+          <span><i class="swatch" style="background:#FF3D8B"></i>Restschuld</span>
+          <span><i class="swatch" style="background:#FF8A1E"></i>Kumulierter Cashflow</span>
+          <span><i class="swatch" style="background:#C8B400"></i>Nettoposition</span>
+        </div>
+      </div>
+
+      <details class="panel" id="cashflowPanel">
+        <summary>Bisherige Darstellung: Cashflow</summary>
+        <div class="sens-block">
+          <p class="panel-sub">Die Diagramme bis Oktober 2026, zum Vergleich. Sie zählen <span data-term="Tilgung">Tilgung</span> wie Aufwand: Die kumulierte Kurve sinkt, solange Kredite getilgt werden, obwohl die Schulden dabei abnehmen. Der <span data-term="Break-even">Break-even</span> in den Kennzahlen oben folgt dieser Rechnung.</p>
+        </div>
+        <div class="sens-block">
+          <div class="panel-head"><h2>Der <span data-term="Cashflow">Cashflow</span> pro Jahr</h2></div>
+          <p class="panel-sub">Je Jahr: das Ergebnis der AöR (Mieteinnahmen minus Bewirtschaftung und Kapitaldienst), die Zahlungen des Landes (Kredit für den Eigenkapitalanteil, Mehrkosten der Landesschulden) und Sondertilgungen aus der Rücklage der AöR. Zusammen ergeben sie die Veränderung der kumulierten Kurve.</p>
+          <canvas id="chartCashflow" height="70"></canvas>
+          <div class="legend">
+            <span><i class="swatch" style="background:#FFE500"></i><i class="swatch" style="background:#FF3D8B"></i>Ergebnis der AöR</span>
+            <span><i class="swatch" style="background:#FF8A1E"></i>Land</span>
+            <span><i class="swatch" style="background:#B8B2E8"></i>Sondertilgung</span>
+          </div>
+        </div>
+        <div class="sens-block">
+          <div class="panel-head"><h2>Der Cashflow kumuliert</h2></div>
+          <p class="panel-sub">Summe aller Jahresergebnisse seit der Übernahme, einschließlich der Einmalkosten. Die Kurve sinkt, solange Kreditraten anfallen, und steigt nach der Tilgung; ihr Endwert ist das Nettoergebnis oben. Die senkrechte Linie markiert den Break-even.</p>
+          <canvas id="chartCumulative" height="70"></canvas>
+        </div>
+        <div class="sens-block" id="balancePanelWrap">
+          <div class="panel-head"><h2>Die <span data-term="Restschuld">Restschuld</span></h2></div>
+          <p class="panel-sub">Verbleibender Kredit der AöR, mit Eigenkapitalanteil zuzüglich des Kredits des Landes. Am Knick endet die Zinsbindung; danach gilt der höhere Anschlusszins.</p>
+          <canvas id="chartBalance" height="70"></canvas>
+        </div>
+      </details>
 
 <p class="group-title section-jump" id="mieter"><a href="#finanzen">Die Finanzen</a><span>Die Mieter</span><a href="#vergleich">Der Modellvergleich</a><a href="#sensitivitaet">Die Sensitivität</a><a href="#tabellen">Die Tabellen</a></p>
 
@@ -463,7 +513,7 @@
 
 </div>
 
-<script src="model-calc.js?v=20261017a"></script>
+<script src="model-calc.js?v=20261018a"></script>
 <script src="content.js?v=20261017a"></script>
 <script src="tooltips.js?v=20261003a"></script>
 <script src="nav.js?v=20261005a"></script>

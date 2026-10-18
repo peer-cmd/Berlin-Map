@@ -579,6 +579,8 @@
     chartRateSens = sensChart('chartRateSens', 'Zinssatz %');
     chartCompSens = sensChart('chartCompSens', 'Entschädigungsquote %');
     // Chart.js misst im geschlossenen <details> eine Breite von 0; beim Öffnen neu messen.
+    if(byId('cashflowPanel')) $('cashflowPanel').addEventListener('toggle', ()=>{
+      [chartCashflow, chartCumulative, chartBalance].forEach(c=>{ if(c) c.resize(); }); });
     $('sensPanel').addEventListener('toggle', ()=>{ chartRateSens.resize(); chartCompSens.resize(); });
     // Sprunglinks „Die Sensitivität“ und „Die Tabellen“ öffnen die zugeklappten Panels.
     [['sensitivitaet',['sensPanel']],['tabellen',['comparePanel','tablePanel']]].forEach(([target, panels])=>{
@@ -612,7 +614,7 @@
   // ---- Finanzierung, Mietverwendung, Schulden ----
   // Drei Begriffe: Aufwand (Bewirtschaftung, Zinsen, Entgelte) ist verbraucht; Tilgung wandelt Schulden in Eigentum;
   // Finanzierung sagt, woher das Geld für den Kauf kommt. Alle Werte nominal.
-  let chartFinance, chartRentUse, chartDebt, finUnit = 'mio';
+  let chartFinance, chartIncome, chartRentUse, chartDebt, finUnit = 'mio';
   const FC = {equity:'#FF8A1E', bank:'#6E62D6', bond:'#B8B2E8', once:'#9A9A92', opex:'#D4D4CC', interest:'#FF3D8B',
     repay:'#00A0E3', build:'#8FD3F2', rest:'#FFE500', deficit:'#9C0059', landBal:'#FFC48A', landPaid:'#FF8A1E'};
   const finBar = (label, color) => ({type:'bar', label, data:[], backgroundColor:color, stack:'s', categoryPercentage:0.9, barPercentage:0.9});
@@ -633,6 +635,13 @@
         plugins:{legend:{display:false}, tooltip:{callbacks:{label:c=>c.dataset.label+': '+fmtEUR(c.parsed.x)}}},
         scales:{x:{stacked:true, ticks:{font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v)}, grid:{color:'#EAEAE4'}},
           y:{stacked:true, grid:{display:false}, afterFit:s=>{ s.width = Math.max(s.width, 140); }, ticks:{autoSkip:false, font:{family:'IBM Plex Sans',size:11}}}}}});
+    // Einnahmen und Aufwand: zwei Linien, die Fläche dazwischen ist der Überschuss vor Tilgung.
+    chartIncome = new Chart($('chartIncome').getContext('2d'), {data:{labels:[], datasets:[
+      Object.assign(finLine('Mieteinnahmen'), {fill:{target:1, above:'rgba(255,229,0,0.35)', below:'rgba(255,61,139,0.25)'}}),
+      Object.assign(finLine('Aufwand'), {borderColor:FC.interest})]}, options:finYearOptions(fmtEUR)});
+    chartIncome.options.scales.x.offset = false;
+    chartIncome.options.scales.y.stacked = false;
+    chartIncome.options.scales.y.beginAtZero = true;
     chartRentUse = new Chart($('chartRentUse').getContext('2d'), {data:{labels:[], datasets:[
       finLine('Mieteinnahmen'), finBar('Bewirtschaftung',FC.opex), finBar('Zinsen und Entgelte',FC.interest),
       finBar('Tilgung',FC.repay), finBar('Neubau',FC.build), finBar('Überschuss',FC.rest), finBar('Fehlbetrag',FC.deficit)]}, options:finYearOptions(fmtEUR)});
@@ -649,7 +658,7 @@
   function finLegend(id, chart){
     if(!byId(id)) return;
     byId(id).innerHTML = chart.data.datasets.filter(d=>d.data.some(v=>Math.abs(v)>1e-6)).map(d=>
-      '<span><i class="swatch" style="background:'+(d.type==='line'?'#222':d.backgroundColor)+';height:'+(d.type==='line'?2:8)+'px"></i>'+d.label+'</span>').join('');
+      '<span><i class="swatch" style="background:'+(d.type==='line'?d.borderColor:d.backgroundColor)+';height:'+(d.type==='line'?2:8)+'px"></i>'+d.label+'</span>').join('');
   }
   function renderFinance(result){
     // 1 · Kaufpreis und Finanzierung: aktuelle Einstellung und alle Positionen.
@@ -670,7 +679,16 @@
     // 2 · Wohin die Miete geht
     const q = rows.map(r=>r.parts);
     const interest = rows.map((r,i)=>q[i].loanInt+q[i].bondInt+q[i].fees-q[i].cashInterest);
+    const f2 = finUnit==='qm' ? finFmtQ : fmtEUR;
     const restNom = rows.map((r,i)=>r.income-q[i].opex-interest[i]-q[i].loanPrin-q[i].bondPrin);
+    // 2 · Einnahmen und Aufwand
+    chartIncome.data.labels = labels;
+    chartIncome.data.datasets[0].data = rows.map(r=>flow(r.income));
+    chartIncome.data.datasets[1].data = q.map((x,i)=>flow(x.opex+interest[i]));
+    chartIncome.options.plugins.tooltip.callbacks.label = c=>c.dataset.label+': '+f2(c.parsed.y);
+    chartIncome.options.scales.y.ticks.callback = v=>f2(v);
+    chartIncome.update('none');
+    finLegend('legIncome', chartIncome);
     const ds2 = chartRentUse.data.datasets;
     chartRentUse.data.labels = labels;
     ds2[0].data = rows.map(r=>flow(r.income));
@@ -680,7 +698,6 @@
     ds2[4].data = q.map(x=>flow(x.build));
     ds2[5].data = restNom.map((v,i)=>flow(Math.max(v,0)-q[i].build));
     ds2[6].data = restNom.map(v=>flow(Math.min(v,0)));
-    const f2 = finUnit==='qm' ? finFmtQ : fmtEUR;
     chartRentUse.options.plugins.tooltip.callbacks.label = c=>c.dataset.label+': '+f2(Math.abs(c.parsed.y));
     chartRentUse.options.scales.y.ticks.callback = v=>f2(v);
     chartRentUse.update('none');
@@ -703,6 +720,9 @@
     const f3 = finUnit==='qm' ? finFmtStock : fmtEUR;
     chartDebt.options.plugins.tooltip.callbacks.label = c=>c.dataset.label+': '+f3(c.parsed.y);
     chartDebt.options.scales.y.ticks.callback = v=>f3(v);
+    // Erstes Jahr, in dem die Rücklage alle Schulden und Zahlungen des Landes deckt.
+    const cover = ds3[0].data.findIndex(v=>v>=0);
+    chartDebt.options.plugins.vlineMarker = cover<0 ? {index:null, label:''} : {index:cover, label:'Schulden gedeckt (Jahr '+labels[cover]+')'};
     chartDebt.update('none');
     finLegend('legDebt', chartDebt);
   }

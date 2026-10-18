@@ -8,6 +8,12 @@ Läuft parallel zur Datei, damit Entscheidungen auch in einer neuen Konversation
 - **Archiv:** `archive/` — alle Vorversionen (v13–v36, plus die drei frühesten Entwürfe `vergesellschaftung-modell.html`, `_1`, `_3`), aufgehoben zum Diff, nicht mehr aktiv gepflegt
 - **Quellen:** `pdf/` — Primärquellen (Expertenkommission 2023, Rechnungshof/BBU-Gutachten, Bernt/Holm-Studie, DWE-Band, Becker 2024, OECD, Sodan-Rechtsgutachten)
 
+## 2026-10-18 — Die Finanzen in Lernreihenfolge, frühere Cashflow-Diagramme zum Vergleich
+
+Abschnitt „Die Finanzen“ baut aufeinander auf: Kaufpreis und Finanzierung → Einnahmen und Aufwand (neu: Mieteinnahmen und Aufwand ohne Tilgung als zwei Linien, Überschuss gelb, Fehlbetrag pink) → Wohin die Miete geht → Schulden und Rücklage → Die Kapitalposition Berlins (wieder aufgenommen). „Schulden und Rücklage“ markiert das erste Jahr, in dem die Nettokosten für Berlin null erreichen („Schulden gedeckt“). Zugeklappt darunter „Bisherige Darstellung: Cashflow“ mit Cashflow pro Jahr, Cashflow kumuliert (Break-even-Marke) und Restschuld, zum Vergleich.
+
+Zwei Schwellen: Der Break-even der Kennzahlen zählt Tilgung als Kosten (kumulierter Cashflow > 0), „Schulden gedeckt“ rechnet die Restschuld ein. Beispiel Faire-Mieten-Modell: Break-even Jahr 37, Schulden gedeckt Jahr 40. Offen: welche Schwelle die Kennzahlen und die Sensitivitätsdiagramme zeigen sollen. Rechenkern unverändert; `pruefung.js` besteht. Versions-Tag `model-calc.js` auf `20261018a`.
+
 ## 2026-10-17 — Regler nach Kategorien, „Weitere Annahmen“ zugeklappt
 
 Reglerspalte: Betrachtungszeitraum oben, dann Bestand & Entschädigung, Finanzierung, Miete, Kosten (neu), Bewertung, Der Überschuss. Jede Gruppe zeigt ihre Hauptregler (zusammen 14) und darunter zugeklappt „Weitere Annahmen“; der Titel nennt, wie viele Werte darin vom Standard abweichen (etwa „6 vom Standard abweichend“ bei DWE-Studie 2025). Einmalige Kosten, Sanierungsstau, Mehrkosten Landesschulden und Mietausfallwagnis stehen unter Kosten statt unter Finanzierung. Die Vergleichslinien (freier Markt, Grenze Sozialmiete, CPI, Haushaltseinkommen) stehen zugeklappt unter „Die Mieten“, da sie das Ergebnis nicht ändern.
