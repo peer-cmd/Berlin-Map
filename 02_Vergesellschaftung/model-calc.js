@@ -172,6 +172,8 @@
     let cash = -upfrontCosts, cum = -upfrontCosts;
     const rows = [];
     let breakEvenYear = null;
+    // Schulden gedeckt: erstes Jahr, in dem Kasse minus Restschuld (im Modus Eigenmittel minus Kaufpreis) null erreicht. Nominal.
+    let coverYear = null;
     const opexPerUnitBase = p.avgSize*p.opexAbsolute*12;
 
     for(let t=1;t<=p.horizon;t++){
@@ -266,13 +268,14 @@
         cash -= buildSpend;
         cum -= buildSpend*d;
       }
+      if(coverYear===null && cash - (kredit ? balance+bondBalance+equityBalance : principal) >= 0) coverYear = t;
     }
 
     // Einmalkosten sind bereits im Startsaldo von cum enthalten (s.o.), daher hier kein erneuter Abzug.
     const last = rows[rows.length-1];
     const first10 = rows.slice(0, 10);
     return {
-      principal, fullValue, equity, rows, breakEvenYear, netResult: last.cumForChart,
+      principal, fullValue, equity, rows, breakEvenYear, coverYear, netResult: last.cumForChart,
       upfrontCosts, equityUpfront, bondStart: kredit ? debt*((p.bondShare||0)/100) : 0, loanStart: kredit ? debt*(1-(p.bondShare||0)/100) : 0,
       finalUnits: last.units,
       finalDebt: last.balance || 0,
@@ -555,18 +558,18 @@
     if(byId('chartScenarios')) initScenarioChart();
     if(byId('chartFinance')) initFinanceCharts();
 
-    // Beide Sensitivitätsdiagramme: Nettoergebnis (links) und Break-even-Jahr (rechts) je Reglerwert.
+    // Beide Sensitivitätsdiagramme: Nettoergebnis (links) und Jahr „Schulden gedeckt“ (rechts) je Reglerwert.
     const sensChart = (id, xTitle) => new Chart($(id).getContext('2d'), {
       data:{ labels:[], datasets:[
         {type:'line', label:'Nettoergebnis', data:[], borderColor:'#00A0E3', backgroundColor:'rgba(0,160,227,0.08)', borderWidth:2.2, pointRadius:0, fill:true, tension:0.15, yAxisID:'y'},
-        {type:'line', label:'Break-even (Jahr)', data:[], borderColor:'#FF8A1E', backgroundColor:'transparent', borderWidth:1.5, borderDash:[4,2], pointRadius:0, tension:0.15, yAxisID:'y1'}
+        {type:'line', label:'Schulden gedeckt (Jahr)', data:[], borderColor:'#FF8A1E', backgroundColor:'transparent', borderWidth:1.5, borderDash:[4,2], pointRadius:0, tension:0.15, yAxisID:'y1'}
       ]},
       options:{
         responsive:true,
         animation:{duration:250},
         interaction:{mode:'index', intersect:false},
         plugins:{ legend:{display:false},
-          tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+(ctx.dataset.label==='Break-even (Jahr)' ? (ctx.parsed.y===null?'kein Break-even':('Jahr '+ctx.parsed.y)) : fmtEUR(ctx.parsed.y)) }},
+          tooltip:{callbacks:{ label: ctx => ctx.dataset.label+': '+(ctx.dataset.label==='Schulden gedeckt (Jahr)' ? (ctx.parsed.y===null?'nicht gedeckt':('Jahr '+ctx.parsed.y)) : fmtEUR(ctx.parsed.y)) }},
           vlineMarker:{ index:null, label:'' }
         },
         scales:{
@@ -579,6 +582,8 @@
     chartRateSens = sensChart('chartRateSens', 'Zinssatz %');
     chartCompSens = sensChart('chartCompSens', 'Entschädigungsquote %');
     // Chart.js misst im geschlossenen <details> eine Breite von 0; beim Öffnen neu messen.
+    if(byId('cashflowPanel')) $('cashflowPanel').addEventListener('toggle', ()=>{
+      [chartCashflow, chartCumulative, chartBalance].forEach(c=>{ if(c) c.resize(); }); });
     $('sensPanel').addEventListener('toggle', ()=>{ chartRateSens.resize(); chartCompSens.resize(); });
     // Sprunglinks „Die Sensitivität“ und „Die Tabellen“ öffnen die zugeklappten Panels.
     [['sensitivitaet',['sensPanel']],['tabellen',['comparePanel','tablePanel']]].forEach(([target, panels])=>{
@@ -612,7 +617,7 @@
   // ---- Finanzierung, Mietverwendung, Schulden ----
   // Drei Begriffe: Aufwand (Bewirtschaftung, Zinsen, Entgelte) ist verbraucht; Tilgung wandelt Schulden in Eigentum;
   // Finanzierung sagt, woher das Geld für den Kauf kommt. Alle Werte nominal.
-  let chartFinance, chartRentUse, chartDebt, finUnit = 'mio';
+  let chartFinance, chartIncome, chartRentUse, chartDebt, finUnit = 'mio';
   const FC = {equity:'#FF8A1E', bank:'#6E62D6', bond:'#B8B2E8', once:'#9A9A92', opex:'#D4D4CC', interest:'#FF3D8B',
     repay:'#00A0E3', build:'#8FD3F2', rest:'#FFE500', deficit:'#9C0059', landBal:'#FFC48A', landPaid:'#FF8A1E'};
   const finBar = (label, color) => ({type:'bar', label, data:[], backgroundColor:color, stack:'s', categoryPercentage:0.9, barPercentage:0.9});
@@ -633,6 +638,13 @@
         plugins:{legend:{display:false}, tooltip:{callbacks:{label:c=>c.dataset.label+': '+fmtEUR(c.parsed.x)}}},
         scales:{x:{stacked:true, ticks:{font:{family:'IBM Plex Mono',size:9}, callback:v=>fmtEUR(v)}, grid:{color:'#EAEAE4'}},
           y:{stacked:true, grid:{display:false}, afterFit:s=>{ s.width = Math.max(s.width, 140); }, ticks:{autoSkip:false, font:{family:'IBM Plex Sans',size:11}}}}}});
+    // Einnahmen und Aufwand: zwei Linien, die Fläche dazwischen ist der Überschuss vor Tilgung.
+    chartIncome = new Chart($('chartIncome').getContext('2d'), {data:{labels:[], datasets:[
+      Object.assign(finLine('Mieteinnahmen'), {fill:{target:1, above:'rgba(255,229,0,0.35)', below:'rgba(255,61,139,0.25)'}}),
+      Object.assign(finLine('Aufwand'), {borderColor:FC.interest})]}, options:finYearOptions(fmtEUR)});
+    chartIncome.options.scales.x.offset = false;
+    chartIncome.options.scales.y.stacked = false;
+    chartIncome.options.scales.y.beginAtZero = true;
     chartRentUse = new Chart($('chartRentUse').getContext('2d'), {data:{labels:[], datasets:[
       finLine('Mieteinnahmen'), finBar('Bewirtschaftung',FC.opex), finBar('Zinsen und Entgelte',FC.interest),
       finBar('Tilgung',FC.repay), finBar('Neubau',FC.build), finBar('Überschuss',FC.rest), finBar('Fehlbetrag',FC.deficit)]}, options:finYearOptions(fmtEUR)});
@@ -649,7 +661,7 @@
   function finLegend(id, chart){
     if(!byId(id)) return;
     byId(id).innerHTML = chart.data.datasets.filter(d=>d.data.some(v=>Math.abs(v)>1e-6)).map(d=>
-      '<span><i class="swatch" style="background:'+(d.type==='line'?'#222':d.backgroundColor)+';height:'+(d.type==='line'?2:8)+'px"></i>'+d.label+'</span>').join('');
+      '<span><i class="swatch" style="background:'+(d.type==='line'?d.borderColor:d.backgroundColor)+';height:'+(d.type==='line'?2:8)+'px"></i>'+d.label+'</span>').join('');
   }
   function renderFinance(result){
     // 1 · Kaufpreis und Finanzierung: aktuelle Einstellung und alle Positionen.
@@ -670,7 +682,16 @@
     // 2 · Wohin die Miete geht
     const q = rows.map(r=>r.parts);
     const interest = rows.map((r,i)=>q[i].loanInt+q[i].bondInt+q[i].fees-q[i].cashInterest);
+    const f2 = finUnit==='qm' ? finFmtQ : fmtEUR;
     const restNom = rows.map((r,i)=>r.income-q[i].opex-interest[i]-q[i].loanPrin-q[i].bondPrin);
+    // 2 · Einnahmen und Aufwand
+    chartIncome.data.labels = labels;
+    chartIncome.data.datasets[0].data = rows.map(r=>flow(r.income));
+    chartIncome.data.datasets[1].data = q.map((x,i)=>flow(x.opex+interest[i]));
+    chartIncome.options.plugins.tooltip.callbacks.label = c=>c.dataset.label+': '+f2(c.parsed.y);
+    chartIncome.options.scales.y.ticks.callback = v=>f2(v);
+    chartIncome.update('none');
+    finLegend('legIncome', chartIncome);
     const ds2 = chartRentUse.data.datasets;
     chartRentUse.data.labels = labels;
     ds2[0].data = rows.map(r=>flow(r.income));
@@ -680,7 +701,6 @@
     ds2[4].data = q.map(x=>flow(x.build));
     ds2[5].data = restNom.map((v,i)=>flow(Math.max(v,0)-q[i].build));
     ds2[6].data = restNom.map(v=>flow(Math.min(v,0)));
-    const f2 = finUnit==='qm' ? finFmtQ : fmtEUR;
     chartRentUse.options.plugins.tooltip.callbacks.label = c=>c.dataset.label+': '+f2(Math.abs(c.parsed.y));
     chartRentUse.options.scales.y.ticks.callback = v=>f2(v);
     chartRentUse.update('none');
@@ -693,7 +713,7 @@
     const acc = rows.map((r,i)=>{ aoerCash += restNom[i] - q[i].sweptLoan - q[i].sweptBond - q[i].build; landPaid += q[i].land; return [aoerCash, landPaid]; });
     const ds3 = chartDebt.data.datasets;
     chartDebt.data.labels = labels;
-    ds3[0].data = q.map(x=>stock(x.cash-budget-(x.loanBal+x.bondBal+x.equityBal)));
+    ds3[0].data = q.map(x=>stock(x.cash-x.build-budget-(x.loanBal+x.bondBal+x.equityBal)));
     ds3[1].data = q.map(x=>stock(-x.loanBal));
     ds3[2].data = q.map(x=>stock(-x.bondBal));
     ds3[3].data = q.map(x=>stock(-x.equityBal));
@@ -703,6 +723,8 @@
     const f3 = finUnit==='qm' ? finFmtStock : fmtEUR;
     chartDebt.options.plugins.tooltip.callbacks.label = c=>c.dataset.label+': '+f3(c.parsed.y);
     chartDebt.options.scales.y.ticks.callback = v=>f3(v);
+    chartDebt.options.plugins.vlineMarker = result.coverYear===null ? {index:null, label:''}
+      : {index:result.coverYear-1, label:'Schulden gedeckt (Jahr '+result.coverYear+')'};
     chartDebt.update('none');
     finLegend('legDebt', chartDebt);
   }
@@ -714,7 +736,7 @@
     const result = runScenario(state.price, state);
 
     // ---- stats ----
-    // Kennzahlen oben: eine Nachkommastelle, Break-even als Halbsatz unter dem Nettoergebnis.
+    // Kennzahlen oben: eine Nachkommastelle, „Schulden gedeckt“ als Halbsatz unter dem Nettoergebnis.
     const mrd1 = n => (n<0?'−':'')+(Math.abs(n)/1e9).toLocaleString('de-DE',{minimumFractionDigits:1,maximumFractionDigits:1})+' Mrd €';
     $('s-kaufpreis').textContent = mrd1(result.principal);
     // Eigenkapital des Landes ausweisen; ohne Zins des Landes trägt das Modell keine Finanzierungskosten dafür.
@@ -724,7 +746,7 @@
     $('s-netto-label').textContent = 'nach '+state.horizon+' Jahren';
     $('s-netto').textContent = mrd1(result.netResult);
     $('s-netto').className = 'value '+(result.netResult>=0?'pos':'neg');
-    $('s-netto-sub').textContent = result.breakEvenYear===null ? 'kein Break-even im Zeitraum' : 'Break-even in Jahr '+result.breakEvenYear;
+    $('s-netto-sub').textContent = result.coverYear===null ? 'Schulden im Zeitraum nicht gedeckt' : 'Schulden gedeckt in Jahr '+result.coverYear;
     // Ergebnis der AöR im Mittel der Jahre 1–10 (vergleichbar mit dem Zuschussbedarf beim Rechnungshof) und offene Schuld am Ende.
     $('s-aoer').textContent = fmtEUR(result.aoerAvg10)+' pro Jahr';
     $('s-aoer').className = 'value '+(result.aoerAvg10>=0?'pos':'neg');
@@ -844,8 +866,8 @@
       const rateResults = rateSteps.map(r=>runScenario(state.price, Object.assign({}, state, {rate:r})));
       chartRateSens.data.labels = rateSteps.map(r=>r.toLocaleString('de-DE',{minimumFractionDigits:1}));
       chartRateSens.data.datasets[0].data = rateResults.map(r=>r.netResult);
-      chartRateSens.data.datasets[1].data = rateResults.map(r=>r.breakEvenYear);
-      chartRateSens.options.scales.y1.ticks.display = rateResults.some(r=>r.breakEvenYear!==null);
+      chartRateSens.data.datasets[1].data = rateResults.map(r=>r.coverYear);
+      chartRateSens.options.scales.y1.ticks.display = rateResults.some(r=>r.coverYear!==null);
       const [rateLo, rateHi] = sensRange('rate', [0,7]);
       chartRateSens.options.scales.y.suggestedMin = rateLo;
       chartRateSens.options.scales.y.suggestedMax = rateHi;
@@ -864,8 +886,8 @@
     });
     chartCompSens.data.labels = pfSteps;
     chartCompSens.data.datasets[0].data = pfResults.map(r=>r.netResult);
-    chartCompSens.data.datasets[1].data = pfResults.map(r=>r.breakEvenYear);
-    chartCompSens.options.scales.y1.ticks.display = pfResults.some(r=>r.breakEvenYear!==null);
+    chartCompSens.data.datasets[1].data = pfResults.map(r=>r.coverYear);
+    chartCompSens.options.scales.y1.ticks.display = pfResults.some(r=>r.coverYear!==null);
     const [compLo, compHi] = sensRange('purchaseFactor', [20,100]);
     chartCompSens.options.scales.y.suggestedMin = compLo;
     chartCompSens.options.scales.y.suggestedMax = compHi;
@@ -913,7 +935,7 @@
       ['Konfiguration', r=>describeSnapshot(r.s)],
       ['Kaufpreis (Basis)', r=>fmtEUR(r.r.principal)],
       ['davon Eigenkapital des Landes', r=>r.r.equity>0 ? fmtEUR(r.r.equity)+(r.s.equityRate>0 ? ' zu '+fmtQuote(r.s.equityRate) : ' ohne Zins') : '–'],
-      ['Break-even (Basis)', r=>fmtYear(r.r.breakEvenYear)],
+      ['Schulden gedeckt', r=>fmtYear(r.r.coverYear)],
       ['Nettoergebnis (Basis)', r=>fmtEUR(r.r.netResult)],
       ['Ergebnis AöR, Ø Jahr 1–10', r=>fmtEUR(r.r.aoerAvg10)],
       ['Restschuld am Ende', r=>fmtEUR(r.r.finalDebt)],
@@ -996,19 +1018,19 @@
     }
     const presetResults = entries.map(({label,p})=>{
       const r = runScenario(p.price, Object.assign({}, p, {horizon}));
-      return {label, principal:r.principal, netResult:r.netResult, breakEvenYear:r.breakEvenYear};
+      return {label, principal:r.principal, netResult:r.netResult, coverYear:r.coverYear};
     });
     chartScenarios.data.labels = presetResults.map(r=>r.label);
     chartScenarios.data.datasets[0].data = presetResults.map(r=>r.principal);
     chartScenarios.data.datasets[1].data = presetResults.map(r=>r.netResult);
     chartScenarios.data.datasets[1].backgroundColor = presetResults.map(r=>r.netResult>=0?'#FFE500':'#FF3D8B');
     chartScenarios.update('none');
-    // Break-even als Satz statt als zweite Achse: im Horizont erreichen ihn meist nur wenige Positionen.
-    const be = presetResults.filter(r=>r.breakEvenYear!==null);
-    const beList = be.map(r=>r.label+' (Jahr '+r.breakEvenYear+')').join(', ');
-    const beText = be.length===0 ? 'Keine Position erreicht innerhalb des Horizonts den Break-even.'
-      : be.length===presetResults.length ? 'Break-even: '+beList+'.'
-      : 'Innerhalb des Horizonts '+(be.length===1?'erreicht':'erreichen')+' nur '+beList+' den Break-even.';
+    // „Schulden gedeckt“ als Satz statt als zweite Achse: im Horizont erreichen es meist nur wenige Positionen.
+    const be = presetResults.filter(r=>r.coverYear!==null);
+    const beList = be.map(r=>r.label+' (Jahr '+r.coverYear+')').join(', ');
+    const beText = be.length===0 ? 'Keine Position deckt innerhalb des Horizonts ihre Schulden.'
+      : be.length===presetResults.length ? 'Schulden gedeckt: '+beList+'.'
+      : 'Innerhalb des Horizonts '+(be.length===1?'deckt':'decken')+' nur '+beList+' die Schulden.';
     if(byId('scenario-breakeven')) $('scenario-breakeven').textContent = beText;
     if(byId('scenario-horizon')) $('scenario-horizon').textContent = defaults.horizon;
   }
@@ -1106,6 +1128,50 @@
     $(id).addEventListener('input', render);
   });
 
+  // Reglerwerte eintippen: Klick auf den Wert neben einem Regler öffnet ein Feld. Enter oder Verlassen
+  // übernimmt, Escape bricht ab. Der Wert wird auf den Reglerbereich begrenzt, aber nicht auf die
+  // Schrittweite gerundet (Regler mit Schritt ≥ 1 nehmen ganze Zahlen); beim nächsten Ziehen rastet der Regler wieder ein.
+  function parseNumber(t){
+    t = String(t).replace(/[\s%€]|m²|pp|J\.|Jahre/g, '').replace(/[^0-9,.\-−]/g, '').replace('−','-');
+    if(t.includes(',')) t = t.replace(/\./g, '').replace(',', '.');
+    else if(/^-?\d{1,3}(\.\d{3})+$/.test(t)) t = t.replace(/\./g, '');
+    return t==='' ? NaN : +t;
+  }
+  sliderIds.forEach(id=>{
+    const slider = $(id), label = byId('v-'+id);
+    if(!label) return;
+    slider.dataset.step = slider.step;
+    slider.addEventListener('pointerdown', ()=>{ slider.step = slider.dataset.step; });
+    label.classList.add('editable');
+    label.title = 'Klicken, um einen Wert einzugeben';
+    label.addEventListener('click', ()=>{
+      const input = document.createElement('input');
+      input.type = 'text'; input.inputMode = 'decimal'; input.className = 'val-input';
+      input.value = (+slider.value).toLocaleString('de-DE', {maximumFractionDigits:3, useGrouping:false});
+      label.style.display = 'none';
+      label.after(input);
+      input.focus(); input.select();
+      let done = false;
+      const close = commit=>{
+        if(done) return; done = true;
+        const v = parseNumber(input.value);
+        input.remove(); label.style.display = '';
+        if(!commit || !isFinite(v)) return;
+        const step = +slider.dataset.step || 1;
+        let x = Math.min(+slider.max, Math.max(+slider.min, v));
+        x = step>=1 ? Math.round(x) : Math.round(x*1000)/1000;
+        slider.step = 'any';
+        slider.value = x;
+        slider.dispatchEvent(new Event('input', {bubbles:true}));
+      };
+      input.addEventListener('keydown', e=>{
+        if(e.key==='Enter'){ e.preventDefault(); close(true); }
+        else if(e.key==='Escape') close(false);
+      });
+      input.addEventListener('blur', ()=>close(true));
+    });
+  });
+
   // Ruecklaeufige Bindung: "pro Wohnung"-Zweitfeld editieren -> €/m²-Regler + state aktualisieren.
   // Gerundet/geclamped auf den erlaubten Bereich des zugehoerigen Reglers, damit beide Felder
   // immer denselben (ggf. geclampten) Wert zeigen -- nie stillschweigend auseinanderlaufen.
@@ -1137,7 +1203,8 @@
   });
   function applyState(overrides){
     state = Object.assign({}, defaults, overrides);
-    sliderIds.forEach(id=>{ $(id).value = state[id]; });
+    // Schrittweite aus, damit eingetippte Werte aus Speicherungen und Links genau bleiben; Ziehen rastet wieder ein.
+    sliderIds.forEach(id=>{ const el = $(id); el.step = 'any'; el.value = state[id]; });
     $('mode').value = state.mode;
     Object.entries(segIds).forEach(([key, id])=>{
       document.querySelectorAll('#'+id+' button').forEach(b=>b.classList.toggle('active', b.dataset.val===state[key]));
@@ -1170,7 +1237,7 @@
   };
   const controlsEl = document.querySelector('.controls');
   if(controlsEl){
-    controlsEl.addEventListener('input', e=>{ if(e.target.id!=='saveLabel') clearPreset(); });
+    controlsEl.addEventListener('input', e=>{ if(e.target.id!=='saveLabel' && !e.target.classList.contains('val-input')) clearPreset(); });
     controlsEl.addEventListener('change', e=>{ if(e.target.id==='mode') clearPreset(); });
     controlsEl.querySelectorAll('.seg button').forEach(b=>b.addEventListener('click', clearPreset));
   }
